@@ -1,0 +1,24 @@
+box: ruby:2.3.1
+
+deploy:
+  steps:
+    - script:
+        name: Install Node.js
+        code: |
+          sudo apt-get update -y
+          sudo apt-get install -y nodejs
+    - bundle-install
+    - script:
+        name: configure git user
+        code: |
+          git config user.name $WERCKER_STARTED_BY
+          git config user.email `git log -1 --format="%ce"`
+    - add-ssh-key:
+        keyname: DEPLOY_SSH_KEY
+        host: github.com
+    - add-to-known_hosts:
+        hostname: github.com
+        fingerprint: 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
+    - script:
+        name: deploy
+        code: bundle exec middleman deploy
