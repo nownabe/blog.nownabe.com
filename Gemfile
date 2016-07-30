@@ -6,7 +6,6 @@ source "https://rubygems.org"
 # Middleman Gems
 gem "middleman", "~> 4.1"
 gem "middleman-blog"
-gem "middleman-syntax"
 gem "middleman-renderers-qiita_template"
 gem "middleman-deploy",
     github: "middleman-contrib/middleman-deploy",
