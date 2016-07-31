@@ -245,6 +245,10 @@ article {
       border: 0;
       border-top: 1px solid $light-gray;
     }
+    img.emoji {
+      vertical-align: text-bottom;
+      margin: 0;
+    }
   }
 }
 
