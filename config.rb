@@ -57,9 +57,6 @@ TAG_CLOUD_CLASSES = {
 helpers do
   def tag_cloud_class(number, max)
     ratio = number / max.to_f
-    puts number
-    puts max
-    puts ratio
     TAG_CLOUD_CLASSES.each do |threshold, klass|
       return klass if ratio >= threshold
     end
