@@ -143,6 +143,7 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    rouge (2.0.5)
     rugged (0.25.0b4)
     sanitize (4.1.0)
       crass (~> 1.0.2)
@@ -173,6 +174,7 @@ DEPENDENCIES
   middleman-deploy!
   middleman-gemoji
   middleman-renderers-qiita_template
+  rouge
   slim
 
 BUNDLED WITH

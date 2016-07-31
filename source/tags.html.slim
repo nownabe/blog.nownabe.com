@@ -1,0 +1,6 @@
+h1 Tags
+
+ul#tags
+  - blog.tags.to_a.shuffle.each do |tag, articles|
+    li
+      = link_to tag, tag_path(tag), class: tag_cloud_class(articles.size, blog.articles.size)

@@ -9,42 +9,57 @@ html
       - if current_article
         = " | #{current_article.title}"
     = feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed"
-    link rel="stylesheet" href="/styles/material.min.css"
+    link rel="stylesheet" href="/styles/ress.min.css"
+    link rel="stylesheet" href="/styles/font-awesome.min.css"
+    link rel="stylesheet" href="/styles/index.css"
     link rel="stylesheet" href="/styles/highlight.css"
-    script src="/scripts/material.min.js"
-    link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    link rel="shortcut icon" type="image/vnd.microsoft.ico" href="/favicon.ico"
 
   body
     #site-container
       #header-container
-        header role="header"
-          h1 nownab.log
-        nav role="navigation"
-          nav
-            p menu bar
+        header.container role="banner"
+          h1
+            a href="/"
+              img src="/images/nownabe.svg"
+              | nownab.log
+          p logging daily technical learnings
 
-      #content-container role="main"
-        #content role="main"
-          = yield
+      #navigation-container
+        nav.container role="navigation"
+          ul
+            li
+              a href="/tags.html" tags
+            - blog.articles.group_by { |a| a.date.year }.each do |year, _|
+              li = link_to "#{year}", blog_year_path(year)
+
+      #content-container
+        #content.container role="main"
+          - if current_article
+            article
+              .title
+                span.date = current_article.date.strftime("%Y/%m/%d %H:%M:%S")
+                h1 = link_to current_article.title, current_article
+              .body
+                = yield
+          - else
+            = yield
 
       #footer-container
-        footer role="contentinfo"
-          p footer
-
-      aside
-        h2 Recent Articles
-        ol
-          - blog.articles.take(10).each do |article|
+        footer.container role="contentinfo"
+          p copyright &copy; 2016 nownabe
+        aside#information.container role="complementary"
+          ul#links
+            - if false
+              li
+                a href="https://nownabe.github.io"
+                  img src="/images/nownabe.svg"
             li
-              = link_to article.title, article
-              span = article.date.strftime("%b %e")
-
-        h2 Tags
-        ol
-          - blog.tags.each do |tag, articles|
-            li = link_to "#{tag} (#{articles.size})", tag_path(tag)
-
-        h2 By Year
-        ol
-          - blog.articles.group_by { |a| a.date.year }.each do |year, articles|
-            li = link_to "#{year} (#{articles.size})", blog_year_path(year)
+              a href="https://github.com/nownabe"
+                img src="/images/github.svg"
+            li
+              a href="https://qiita.com/nownabe"
+                img src="/images/qiita.svg"
+            li
+              a href="https://twitter.com/nownabe"
+                img src="/images/twitter.svg"

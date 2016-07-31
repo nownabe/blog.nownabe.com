@@ -12,6 +12,7 @@ gem "middleman-gemoji"
 gem "middleman-renderers-qiita_template"
 
 gem "slim"
+gem "rouge"
 
 # For feed.xml.builder
 gem "builder", "~> 3.0"
