@@ -1,6 +1,6 @@
 doctype html
 html
-  head
+  head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"
     meta charset="utf-8"
     meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1"
     meta name="viewport" content="width=device-width, initial-scale=1"
@@ -14,6 +14,27 @@ html
     link rel="stylesheet" href="/styles/index.css"
     link rel="stylesheet" href="/styles/highlight.css"
     link rel="shortcut icon" type="image/vnd.microsoft.ico" href="/favicon.ico"
+    meta property="og:site_name" content="nownab.log"
+    meta property="og:article" content="article"
+    meta property="twitter:card" content="summary"
+    meta property="twitter:site" content="@nownabe"
+    meta property="twitter:creator" content="@nownabe"
+    meta property="twitter:image" content="http://blog.nownabe.com/images/nownabe.png"
+    meta property="fb:app_id" content="1775541316016693"
+    - if current_article
+      meta property="og:title" content=current_article.title
+      meta property="og:description" content=article_description
+      meta property="og:image" content="http://blog.nownabe.com/images/nownabe.png"
+      meta property="og:url" content=url
+      meta property="twitter:description" content=article_description
+      meta property="twitter:title" content=current_article.title
+    - else
+      meta property="og:title" content="nownab.log"
+      meta property="og:description" content="logging daily technical learnings"
+      meta property="og:image" content="http://blog.nownabe.com/images/nownabe.png"
+      meta property="og:url" content="http://blog.nownabe.com/"
+      meta property="twitter:description" content="logging daily technical learnings"
+      meta property="twitter:title" content="nownab.log"
 
   body
     #site-container

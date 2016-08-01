@@ -80,4 +80,16 @@ helpers do
       return klass if ratio >= threshold
     end
   end
+
+  def url
+    if config.environment == :development
+      "http://localhost:4567#{current_article.url}"
+    else
+      "http://blog.nownabe.com#{current_article.url}"
+    end
+  end
+
+  def article_description
+    current_article.summary.gsub(%r{(</?[^<>]+>)+}, " ").gsub(/([\n\r])+/, " ")
+  end
 end
