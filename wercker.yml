@@ -12,6 +12,9 @@ deploy:
         code: |
           sudo apt-get update -y
           sudo apt-get install -y nodejs
+    - script:
+        name: Clear bundle cache
+        code: rm -rf /pipeline/cache/bundle-install/ruby/2.3.0/cache/bundler/git/*
     - bundle-install
     - script:
         name: configure git user
