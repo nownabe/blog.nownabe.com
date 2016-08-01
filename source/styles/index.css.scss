@@ -4,9 +4,17 @@ $gray: rgba(0, 0, 0, 0.5);
 $light-gray: rgba(0, 0, 0, 0.09);
 
 /* Base Styles */
-.container {
-  max-width: 1000px;
-  margin: 1rem auto;
+@media screen and (min-width: 1057px) {
+  .container {
+    max-width: 1000px;
+    margin: 1rem auto;
+  }
+}
+@media screen and (max-width: 1056px) {
+  .container {
+    width: calc(100% - 4rem);
+    margin: 1rem 2rem;
+  }
 }
 
 html {
