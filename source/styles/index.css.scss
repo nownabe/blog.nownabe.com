@@ -249,6 +249,34 @@ article {
       vertical-align: text-bottom;
       margin: 0;
     }
+    .asin {
+      display: flex;
+      padding: 1rem;
+      border: 1px solid $light-gray;
+      border-radius: 4px;
+      .asin-image {
+        margin: 0;
+        a {
+          img {
+            margin: 0 auto;
+          }
+        }
+      }
+      .asin-detail {
+        flex: auto;
+        margin: 0 0 0 1rem;
+        p {
+          margin: 0;
+        }
+        ul {
+          margin: 0;
+          list-style-type: none;
+          li {
+            margin: 1rem 0;
+          }
+        }
+      }
+    }
   }
 }
 

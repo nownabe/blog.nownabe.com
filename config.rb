@@ -1,5 +1,23 @@
 # frozen_string_literal: true
 
+$LOAD_PATH.unshift File.expand_path("../lib", __FILE__)
+
+unless ENV["CI"]
+  require "dotenv"
+  Dotenv.load
+end
+
+require "amazon/ecs"
+
+Amazon::Ecs.configure do |c|
+  c[:AWS_access_key_id] = ENV["AWS_ACCESS_KEY_ID"]
+  c[:AWS_secret_key]    = ENV["AWS_SECRET_KEY"]
+  c[:associate_tag]     = ENV["AMAZON_ASSOCIATE_TAG"]
+  c[:country]           = :jp
+end
+
+require "filters/amazon_associate"
+
 module EsaFrontmatter
   def data
     return @page_data if @page_data
@@ -32,6 +50,7 @@ page "/feed.xml", layout: false
 
 set :markdown_engine_prefix, Middleman::Renderers
 set :markdown_engine, :qiita
+set :markdown, filters: [Filters::AmazonAssociate]
 
 set :slim, format: :html
 

@@ -18,6 +18,9 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    amazon-ecs (2.5.0)
+      nokogiri (~> 1.4)
+      ruby-hmac (~> 0.3)
     backports (3.6.8)
     builder (3.2.2)
     charlock_holmes (0.7.3)
@@ -101,7 +104,7 @@ GEM
     middleman-gemoji (0.1.2)
       gemoji (>= 2.1)
       middleman (>= 4.0)
-    middleman-renderers-qiita_template (0.1.0)
+    middleman-renderers-qiita_template (0.1.1)
       activesupport (~> 4.2)
       qiita-markdown
       tilt (~> 1.4.1)
@@ -116,7 +119,7 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
-    nokogumbo (1.4.7)
+    nokogumbo (1.4.9)
       nokogiri
     padrino-helpers (0.13.2)
       i18n (~> 0.6, >= 0.6.7)
@@ -144,6 +147,7 @@ GEM
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
     rouge (2.0.5)
+    ruby-hmac (0.4.0)
     rugged (0.25.0b4)
     sanitize (4.1.0)
       crass (~> 1.0.2)
@@ -168,12 +172,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  amazon-ecs
   builder (~> 3.0)
+  dotenv
   middleman (~> 4.1)
   middleman-blog
   middleman-deploy!
   middleman-gemoji
-  middleman-renderers-qiita_template
+  middleman-renderers-qiita_template (~> 0.1.1)
   rouge
   slim
 
