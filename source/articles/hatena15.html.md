@@ -22,7 +22,7 @@ An unhandled lowlevel error occurred. The application logs may have details.
 
 とでていて、systemctlでstatusみてみると、
 
-```
+```bash
 [root@bots ~]# systemctl status postgresql-9.6
 ● postgresql-9.6.service - PostgreSQL 9.6 database server
    Loaded: loaded (/usr/lib/systemd/system/postgresql-9.6.service; enabled; vendor preset: disabled)
@@ -70,7 +70,7 @@ beta3のリリースノートみたらちゃんと書いてあった。
 
 > Due to changes in system catalogs, a pg_upgrade or dump and restore will be required for users migrating databases from earlier betas.
 
-[https://www.postgresql.org/about/news/1686/:title]
+[PostgreSQL: PostgreSQL 9.6 Beta 3 Released](https://www.postgresql.org/about/news/1686/)
 
 というわけで、pg_upgradeしたら動きました。以下、そのときの手順です。
 

@@ -49,7 +49,7 @@ end
 
 なんですが簡単に使えるようにGemにもしました。
 
-[https://rubygems.org/gems/middleman-renderers-qiita_template:title]
+[middleman-renderers-qiita_template | RubyGems.org | your community gem host](https://rubygems.org/gems/middleman-renderers-qiita_template:)
 
 `Gemfile`に`gem "middleman-renderers-qiita_template"`を追加して、`config.rb`に
 
@@ -64,4 +64,4 @@ set :markdown_engine, :qiita
 
 数式への対応とかMiddleman風のリンクへの対応とかしたいですねー。
 
-何かアレばぜひPRください 😇
+何かアレばぜひPRください :innocent:
