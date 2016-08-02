@@ -9,10 +9,7 @@ published: true
 今までRailsとかその他諸々のアプリケーションで、定数の管理に[Settingslogic](https://github.com/settingslogic/settingslogic)を使ってました。
 色々不満がありつつ使ってたんですが、この度[EasySettings](https://rubygems.org/gems/easy_settings)というGemを新しく作りました。
 
-[https://github.com/nownabe/easy_settings:embed]
-
-[https://github.com/nownabe/easy_settings:title]
-
+https://github.com/nownabe/easy_settings
 
 元々はアプリ側でデフォルト値を設定したくて[SettingslogicDefault](https://rubygems.org/gems/settingslogic_default)みたいなGemを作ったんですが、色々と限界を感じたのでもう新しいの作ってしまおうと。
 

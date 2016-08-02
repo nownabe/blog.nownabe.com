@@ -9,13 +9,13 @@ published: true
 # はじめに
 サーバのあるディレクトリ内のファイルを[IDCFのオブジェクトストレージ](http://www.idcf.jp/cloud/storage/)に定期バックアップする[Itamae](http://itamae.kitchen/)プラグインを作ったので紹介します！
 
-[https://github.com/nownabe-infra/itamae-plugin-recipe-idcf-backup_to_object_storage:embed:cite]
+[nownabe/itamae-plugin-recipe-idcf-backup_to_object_storage](https://github.com/nownabe-infra/itamae-plugin-recipe-idcf-backup_to_object_storage)
 
 # 結論
 作ったのは`itamae-plugin-recipe-idcf-backup_to_object_storage`というクソ長い名前のGem（Itamaeプラグイン）です。
 このプラグインを使うと、下の図のように任意の期間のバックアップファイルをオブジェクトストレージに保存することができます。
 
-[f:id:nownabe:20150521000006p:plain]
+![01](/images/articles/hatena08/01.png)
 
 # 概要
 このプラグインを使ってプロビジョニングするとどうなるのか簡単に説明します。
@@ -33,7 +33,7 @@ published: true
 ## サンプル
 サンプルを見てもらうのが一番はやいと思います。
 
-[https://github.com/nownabe-infra/example-idcf-backup_to_object_storage:title]
+https://github.com/nownabe-infra/example-idcf-backup_to_object_storage
 
 ## Gemfile
 Gemfileにプラグインを追加します。

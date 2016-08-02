@@ -9,7 +9,7 @@ published: true
 # はじめに
 プライベートなGem Serverというか、[Gem in a Box](https://github.com/geminabox/geminabox)に手軽にGemをリリースできるようにする[geminabox-rake_tasks](https://github.com/nownabe/geminabox-rake_tasks)というGemを作りました。
 
-[https://github.com/nownabe/geminabox-rake_tasks:embed:cite]
+https://github.com/nownabe/geminabox-rake_tasks
 
 このGemを使うと、次の2点が実現できます。
 
@@ -63,7 +63,7 @@ Pushed git commits and tags.
 Pushed testgem 0.1.0
 ```
 
-[f:id:nownabe:20150520001411p:plain]
+![01](/images/articles/hatena07/01.png)
 
 他にも、`bundler/gem_tasks`と同じタスクが使えます。
 
@@ -79,7 +79,7 @@ rake release        # Create tag v0.1.0 and build and push testgem-0.1.0.gem to 
 よく調べもせずに作ったので、同じようなのがいっぱいありました。
 
 ## geminabox-release
-[https://github.com/dfherr/geminabox-release:title]
+https://github.com/dfherr/geminabox-release
 
 Rakefile:
 
@@ -104,7 +104,7 @@ rake release           # Create tag v0.1.0 and build and push testgem-0.1.0.gem 
 ```
 
 ## geminabox-rake
-[https://github.com/jgraichen/geminabox-rake:title]
+https://github.com/jgraichen/geminabox-rake
 
 Rakefile:
 
@@ -124,7 +124,7 @@ rake geminabox:release        # Create tag v0.1.0 and build and push testgem-0.1
 ```
 
 ## bundler-geminabox
-[https://github.com/sonots/bundler-geminabox:title]
+https://github.com/sonots/bundler-geminabox
 
 Rakefile:
 
@@ -164,7 +164,7 @@ GEMINABOX=https://your.rubygems.org bundle-geminabox gem foo
 ```
 
 ## bundler_geminabox
-[https://github.com/joshkrueger/bundler_geminabox:title]
+https://github.com/joshkrueger/bundler_geminabox
 
 Rakefile:
 

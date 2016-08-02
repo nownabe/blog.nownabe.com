@@ -9,7 +9,7 @@ published: true
 Gem in a Box冗長化の情報があんまりない気がしたのでQiitaに記事を書きました。
 みんなどうやってるんだろう。（そもそも同期とか冗長化とかいらない場合も多そう）
 
-[http://qiita.com/nownabe/items/bd3f9328b314b6c0adf6:embed:cite]
+[Gem in a Boxサーバーのデータをrsyncで同期する - Qiita](http://qiita.com/nownabe/items/bd3f9328b314b6c0adf6)
 
 この記事はデータの同期だけなので、フェイルオーバーはVIPなりLBなりでやればいいと思います。
 

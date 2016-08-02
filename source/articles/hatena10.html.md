@@ -26,18 +26,19 @@ APIで操作できるので動的にレコードが変化するようなドメ�
 
 # IDCF DNSに登録する
 こちらにアクセスします。
-[https://console.idcfcloud.com/dns/]
+https://console.idcfcloud.com/dns/
 
 多分登録画面とかログイン画面とか出てくるはず。。。
 
 # IDCF DNSにゾーン作成
 無事にログインできるとこんな画面が出るので、「ゾーン作成」をクリックします。
-[f:id:nownabe:20150809205557p:plain]
+
+![ゾーン作成1](/images/articles/hatena10/01.png)
 
 作成画面が出てくるので、ドメインやメールアドレスを入力します。
 ドメインがそのままゾーン名となります。hogehoge.comみたいな感じです。
 
-[f:id:nownabe:20150809205809p:plain]
+![ゾーン作成2](/images/articles/hatena10/02.png)
 
 これでゾーンが作成されました。
 
@@ -46,40 +47,40 @@ APIで操作できるので動的にレコードが変化するようなドメ�
 
 ゾーンが作成されると、このようにゾーン一覧に新しいゾーンが表示されます。
 
-[f:id:nownabe:20150809210127p:plain]
+![ゾーン一覧](/images/articles/hatena10/03.png)
 
 ゾーン名をクリックすると、SOAレコードやNSレコードが登録されていることがわかります。
 右上の「レコード登録」から今登録してあるレコードを登録していきます。
 
-[f:id:nownabe:20150809210257p:plain]
+![レコード登録1](/images/articles/hatena10/04.png)
 
 今のところ登録できるレコードはA、CNAME、AAAA、MX、TXT、SRVのみです。
 
-[f:id:nownabe:20150809210513p:plain]
+![レコード登録2](/images/articles/hatena10/05.png)
 
 こんな感じで、お名前.comと差異がないようにします。
 
-[f:id:nownabe:20150810234436p:plain]
+![レコード比較 IDCF](/images/articles/hatena10/06.png)
 
-[f:id:nownabe:20150809211023p:plain]
+![レコード比較 onamae](/images/articles/hatena10/07.png)
 
 # IDCD DNSでドメイン認証
 ドメインの所有者であるということを確認するため、ドメインの認証が必要になっています。
 
 IDCF DNSのゾーンページの、「認証する」をクリックします。
 
-[f:id:nownabe:20150809211457p:plain]
+![認証する](/images/articles/hatena10/08.png)
 
 すると、このような認証方法が書かれたモーダルが表示されます。
 
-[f:id:nownabe:20150809213245p:plain]
+![認証モーダル](/images/articles/hatena10/09.png)
 
 モザイクばかりでわかりにくいですが、、、今回は新規ドメインではないので1番の方法を使用します。
 よくあるTXTレコードに認証文字列を登録する方法です。
 
 お名前.comの方で、TXTレコードを登録します。
 
-[f:id:nownabe:20150809211943p:plain]
+![TXTレコード](/images/articles/hatena10/10.png)
 
 digコマンドでTXTレコードが確認できたら、準備完了です。
 
@@ -122,11 +123,11 @@ hogehoge.com.		86400	IN	NS	04.dnsv.jp.
 
 準備ができたら、認証しましょう。
 
-[f:id:nownabe:20150809213232p:plain]
+![認証モーダル2](/images/articles/hatena10/11.png)
 
 無事に終わると認証完了とでます。
 
-[f:id:nownabe:20150809213342p:plain]
+![認証完了](/images/articles/hatena10/12.png)
 
 ちゃんとIDCF DNSのネームサーバーで名前解決できるようになってます。
 
@@ -159,11 +160,11 @@ hogehoge.com.		3600	IN	A	1.2.3.4
 お名前.comの、「ドメイン設定 > ネームサーバーの変更」を開きます。
 切り替えたいドメインを選択し、「他のネームサーバーを利用」を選びます。
 
-[f:id:nownabe:20150809213938p:plain]
+![ネームサーバー変更](/images/articles/hatena10/13.png)
 
 IDCF DNSのネームサーバーを入力し、設定します。
 
-[f:id:nownabe:20150809214107p:plain]
+![ネームサーバー](/images/articles/hatena10/14.png)
 
 これで切り替え完了です。
 digコマンドで確認できます。

@@ -12,7 +12,7 @@ published: true
 GWに企画してる[ライブのイベントサイト](http://unionfes.tojok-on.com/2015/)をGithub Pagesで公開してます。
 サーバとか用意すんのめんどいしって理由でGithub Pagesにしたんですが、これがとても便利でした。
 
-[https://github.com/unionfes/unionfes.github.io:embed:cite]
+https://github.com/unionfes/unionfes.github.io
 
 もちろんGithubの恩恵が受けられて、誰かがめんどくさい修正のプルリク作ってくれたり、誰かが勝手にサイトが更新してくれたり、とてもイイです。
 

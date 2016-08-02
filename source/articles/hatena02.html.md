@@ -43,4 +43,4 @@ ruboty-leveldbもほとんど[ruboty-redis](https://github.com/r7kamura/ruboty-r
 …今気づいたんですがRubotyのREADMEでruboty-leveldbが紹介されてる…！！
 ありがとうございます！！
 
-[https://github.com/r7kamura/ruboty:embed]
+https://github.com/r7kamura/ruboty

@@ -11,7 +11,7 @@ published: true
 ## セッション
 ### Phoenixを使った案件でリリースまでに起きた問題と対応 by [@ndruger](https://twitter.com/ndruger)
 
-[http://www.slideshare.net/ndruger/phoenix-62288840:embed:cite]
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/M2erfQuGQQVhj0" width="510" height="420" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/ndruger/phoenix-62288840" title="Phoenixを使った案件でリリースまでに起きた問題と対応" target="_blank">Phoenixを使った案件でリリースまでに起きた問題と対応</a> </strong> from <strong><a href="//www.slideshare.net/ndruger" target="_blank">ndruger</a></strong> </div>
 
 * コンパイル時の型がなくてErlangのDialyzerを使ってチェック
     * ある程度チェックする術があるのはいいけどなんかもやもやする
@@ -22,7 +22,7 @@ published: true
 
 ### running webb app on elixir by [@ohrdev](https://twitter.com/ohrdev)
 
-[http://www.slideshare.net/ohr486/running-web-app-on-elixir:embed:cite]
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/fxbWyONifRtZG5" width="510" height="420" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/ohr486/running-web-app-on-elixir" title="running web app on elixir" target="_blank">running web app on elixir</a> </strong> from <strong><a href="//www.slideshare.net/ohr486" target="_blank">Tsunenori Oohara</a></strong> </div>
 
 * ドリコムで1年半Elixirを運用してきた中での話
 * とは言いつつElixirならではの話題はなし
@@ -49,7 +49,7 @@ http://tuvistavie.com/slides/concurrency/#/
 
 ### Create LINE Bot with Elixir by [@ma2ge](https://twitter.com/ma2ge)
 
-[https://speakerdeck.com/ma2gedev/create-line-bot-with-elixir:embed:cite]
+<script async class="speakerdeck-embed" data-id="e1aa1812b2bf4e1693b3c815c9f9e340" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 
 * LINE botをPhoenixで作ったという話
 * IoTでいろいろやってて楽しそう
@@ -57,10 +57,7 @@ http://tuvistavie.com/slides/concurrency/#/
 
 ### Phoenix Tips and Tricks by [@yohei_tanimoto](https://twitter.com/yohei_tanimoto)
 
-(資料なし)
-
-[http://www.slideshare.net/tanimotoyohei/for-tokyoex-2-lt:embed:cite]
-
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/jRclcpE6eKWHbB" width="510" height="420" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/tanimotoyohei/for-tokyoex-2-lt" title="For tokyo.ex #2 LT" target="_blank">For tokyo.ex #2 LT</a> </strong> from <strong><a href="//www.slideshare.net/tanimotoyohei" target="_blank">Yohei Tanimoto</a></strong> </div>
 
 
 * PhoenixのTipsを過去の資料とともに紹介
@@ -87,7 +84,7 @@ http://tuvistavie.com/slides/concurrency/#/
 * ElixirのOTPを勉強してRuby 3.0に活かすためにやってる
   * Ruby 3.0楽しみ
 
-[asin:4798143499:detail]
+https://www.amazon.co.jp/dp/4798143499
 
 ## 感想
 Elixir全然わかってない状態で行っても大丈夫かなーと思ってたけど、行ってよかった。というかむしろ初心者のうちの方が楽しめるかもしれませんね 😊

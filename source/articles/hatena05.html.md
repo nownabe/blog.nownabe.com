@@ -6,11 +6,11 @@ updated_at: 2015-03-14 04:04:43 +0900
 published: true
 ---
 
-[f:id:nownabe:20150314035956p:plain]
+![01](/images/articles/hatena05.png)
 
 今日（昨日？）から始まったサバフェスというイベントに参加してます。
 
-[https://2015spring.serverfesta.info/:embed]
+https://2015spring.serverfesta.info/
 
 ISUCONとかと似たようなイベントですが、インフラに特化しています。
 第2回となる今回はなんとFusion-ioのioDrive2搭載のサーバでMySQLの速さを競うという豪勢な大会です。

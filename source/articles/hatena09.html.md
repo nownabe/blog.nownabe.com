@@ -6,7 +6,7 @@ updated_at: 2015-08-09 00:21:18 +0900
 published: true
 ---
 
-[f:id:nownabe:20150808235527j:plain]
+![Lチカ](/images/articles/hatena09/01.jpg)
 
 流行りにのってRaspberry PiでLチカやってみました！（だいぶ乗り遅れてる）
 
@@ -17,9 +17,9 @@ LEDとかは家にあったものを拾い集めました。
 # Raspberry Pi準備
 OSのインストールや初期設定はQiitaにまとめました。
 
-[http://qiita.com/nownabe/items/e16b962fcdb1a702093e:embed:cite]
+[MacOSXでRasberry PiにRaspbianをインストールする - Qiita](http://qiita.com/nownabe/items/e16b962fcdb1a702093e)
 
-[http://qiita.com/nownabe/items/a6ec3dfcfcb6ab37ea1e:embed:cite]
+[Raspberry PiをWLI-UC-GNMEで無線LANに接続する - Qiita](http://qiita.com/nownabe/items/a6ec3dfcfcb6ab37ea1e)
 
 これ以外でやったのはパッケージのアップデートと、
 
@@ -70,7 +70,7 @@ pi@raspberrypi ~ $ sudo echo 0 > /sys/class/gpio/gpio4/value
 
 LEDが光ったり消えたりします。
 
-[f:id:nownabe:20150808235527j:plain]
+![Lチカ](/images/articles/hatena09/01.jpg)
 
 # Lチカ
 点滅させてみます。とりあえずbashで。。。
@@ -79,16 +79,16 @@ LEDが光ったり消えたりします。
 while :; do sudo echo 1 > /sys/class/gpio/gpio4/value; sleep 0.001; sudo echo 0 > /sys/class/gpio/gpio4/value; sleep 0.001; done
 ```
 
-[https://youtu.be/jThq1LOG9IQ:embed:cite]
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jThq1LOG9IQ" frameborder="0" allowfullscreen></iframe>
 
 # 電圧？
 電圧を測ってみると5Vピンも3Vピンも3.3Vでした。
 う〜んなんでだろう。
 
-[f:id:nownabe:20150808235625j:plain]
+![02](/images/articles/hatena09/02.jpg)
 
 GNDと畳の電位差はほとんどなかったのでGNDはちゃんととれてるみたいですw
-[f:id:nownabe:20150808235731j:plain]
+![03](/images/articles/hatena09/03.jpg)
 
 # おわりに
 高専時代にやったZ80ぶりのLチカでした。
