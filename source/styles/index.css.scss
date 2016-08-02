@@ -81,7 +81,7 @@ nav {
 }
 
 /* Article Styles */
-@mixin header-icon {
+@mixin header-common {
   a {
     i {
       display: none;
@@ -147,36 +147,46 @@ article {
     }
     p {
       line-height: 1.8rem;
+      iframe {
+        margin: 0;
+      }
+      img {
+        margin: 0;
+        max-width: 100%;
+      }
+    }
+    img {
+      border: 1px solid $light-gray;
     }
     h1 {
-      @include header-icon;
+      @include header-common;
       border-bottom: 3px solid $light-gray;
       font-weight: normal;
       font-size: 2rem;
     }
     h2 {
-      @include header-icon;
+      @include header-common;
       border-bottom: 1px solid $light-gray;
       font-weight: normal;
       font-size: 1.7rem;
     }
     h3 {
-      @include header-icon;
+      @include header-common;
       font-weight: bold;
       font-size: 1.4rem;
     }
     h4 {
-      @include header-icon;
+      @include header-common;
       font-weight: bold;
       font-size: 1.2rem;
     }
     h5 {
-      @include header-icon;
+      @include header-common;
       font-weight: normal;
       font-size: 1.2rem;
     }
     h6 {
-      @include header-icon;
+      @include header-common;
       font-weight: normal;
       font-size: 1rem;
     }
@@ -287,6 +297,7 @@ article {
     }
   }
   .sns-buttons {
+    margin-top: 4rem;
     overflow: hidden;
     ul {
       list-style-type: none;
