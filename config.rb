@@ -83,9 +83,9 @@ helpers do
 
   def url
     if config.environment == :development
-      "http://localhost:4567#{current_article.url}"
+      "https://localhost:4567#{current_article.url}"
     else
-      "http://blog.nownabe.com#{current_article.url}"
+      "https://blog.nownabe.com#{current_article.url}"
     end
   end
 
