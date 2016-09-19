@@ -331,6 +331,13 @@ article {
 footer {
   border-top: 1px solid $light-gray;
   padding-top: 1rem;
+  .copyright {
+    img {
+      width: 1rem;
+      height: 1rem;
+      margin: 0 0.2rem;
+    }
+  }
 }
 
 #information {
