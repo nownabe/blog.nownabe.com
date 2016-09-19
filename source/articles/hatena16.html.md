@@ -49,7 +49,7 @@ end
 
 なんですが簡単に使えるようにGemにもしました。
 
-[middleman-renderers-qiita_template | RubyGems.org | your community gem host](https://rubygems.org/gems/middleman-renderers-qiita_template:)
+[middleman-renderers-qiita_template | RubyGems.org | your community gem host](https://rubygems.org/gems/middleman-renderers-qiita_template)
 
 `Gemfile`に`gem "middleman-renderers-qiita_template"`を追加して、`config.rb`に
 
