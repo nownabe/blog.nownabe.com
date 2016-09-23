@@ -14,8 +14,5 @@ gem "middleman-renderers-qiita_template", "~> 0.1.1"
 gem "slim"
 gem "rouge"
 
-gem "amazon-ecs"
-gem "dotenv"
-
 # For feed.xml.builder
 gem "builder", "~> 3.0"

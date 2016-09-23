@@ -84,7 +84,7 @@ http://tuvistavie.com/slides/concurrency/#/
 * ElixirのOTPを勉強してRuby 3.0に活かすためにやってる
   * Ruby 3.0楽しみ
 
-https://www.amazon.co.jp/dp/4798143499
+<div class="asin"><div class="asin-image"><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4798143499/nownabe0c-22/"><img src="http://images-jp.amazon.com/images/P/4798143499.09._SL160_.jpg" alt="ルビィのぼうけん こんにちは!  プログラミング" title="ルビィのぼうけん こんにちは!  プログラミング"></a></div><div class="asin-detail"><p><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4798143499/nownabe0c-22/">ルビィのぼうけん こんにちは!  プログラミング</a></p><ul><li>リンダ・リウカス</li><li>翔泳社</li></ul></div></div>
 
 ## 感想
 Elixir全然わかってない状態で行っても大丈夫かなーと思ってたけど、行ってよかった。というかむしろ初心者のうちの方が楽しめるかもしれませんね 😊
