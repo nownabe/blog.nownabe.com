@@ -59,6 +59,11 @@ configure :build do
   activate :minify_javascript
 end
 
+activate :external_pipeline,
+  name: :prebuilt,
+  command: ": 'External Pipeline: Prebuilt'",
+  source: "prebuilt"
+
 activate :deploy do |deploy|
   deploy.build_before = true
   deploy.deploy_method = :git
