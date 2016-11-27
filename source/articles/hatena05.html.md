@@ -6,7 +6,7 @@ updated_at: 2015-03-14 04:04:43 +0900
 published: true
 ---
 
-![01](/images/articles/hatena05.png)
+![01](/images/articles/hatena05/01.png)
 
 今日（昨日？）から始まったサバフェスというイベントに参加してます。
 
