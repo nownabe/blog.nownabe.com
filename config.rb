@@ -46,7 +46,6 @@ set :markdown,
     Qiita::Markdown::Filters::Footnote,
     Qiita::Markdown::Filters::Code,
     Qiita::Markdown::Filters::Checkbox,
-    Qiita::Markdown::Filters::Emoji,
     Qiita::Markdown::Filters::SyntaxHighlight,
     Qiita::Markdown::Filters::ExternalLink,
     Qiita::Markdown::Filters::Sanitize

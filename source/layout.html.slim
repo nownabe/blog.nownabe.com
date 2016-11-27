@@ -115,8 +115,14 @@ html
                 img src="/images/facebook.png" alt="www.facebook.com/nownabe"
         .container
           p 今が最高
-
       #fb-root
+
+    script async="async" src="/scripts/emojione.min.js"
+    javascript:
+      window.onload = function() {
+        var content = document.getElementById("content");
+        content.innerHTML = emojione.toImage(content.innerHTML);
+      };
 
     javascript:
       // Twitter
