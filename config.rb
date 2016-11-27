@@ -35,7 +35,21 @@ page "/feed.xml", layout: false
 
 set :markdown_engine_prefix, Middleman::Renderers
 set :markdown_engine, :qiita
-set :markdown
+set :markdown,
+  option_context: {
+    hostname: ENV["WERCKER"] ? "blog.nownabe.com" : "localhost:4567",
+    script: true
+  },
+  filters: [
+    Qiita::Markdown::Filters::Greenmat,
+    Qiita::Markdown::Filters::ImageLink,
+    Qiita::Markdown::Filters::Footnote,
+    Qiita::Markdown::Filters::Code,
+    Qiita::Markdown::Filters::Checkbox,
+    Qiita::Markdown::Filters::SyntaxHighlight,
+    Qiita::Markdown::Filters::ExternalLink,
+    Qiita::Markdown::Filters::Sanitize
+  ]
 
 set :slim, format: :html
 
@@ -43,6 +57,11 @@ configure :build do
   activate :minify_css
   activate :minify_javascript
 end
+
+activate :external_pipeline,
+  name: :prebuilt,
+  command: ": 'External Pipeline: Prebuilt'",
+  source: "prebuilt"
 
 activate :deploy do |deploy|
   deploy.build_before = true
