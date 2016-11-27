@@ -35,7 +35,22 @@ page "/feed.xml", layout: false
 
 set :markdown_engine_prefix, Middleman::Renderers
 set :markdown_engine, :qiita
-set :markdown
+set :markdown,
+  option_context: {
+    hostname: ENV["WERCKER"] ? "blog.nownabe.com" : "localhost:4567",
+    script: true
+  },
+  filters: [
+    Qiita::Markdown::Filters::Greenmat,
+    Qiita::Markdown::Filters::ImageLink,
+    Qiita::Markdown::Filters::Footnote,
+    Qiita::Markdown::Filters::Code,
+    Qiita::Markdown::Filters::Checkbox,
+    Qiita::Markdown::Filters::Emoji,
+    Qiita::Markdown::Filters::SyntaxHighlight,
+    Qiita::Markdown::Filters::ExternalLink,
+    Qiita::Markdown::Filters::Sanitize
+  ]
 
 set :slim, format: :html
 
