@@ -35,10 +35,16 @@ page "/feed.xml", layout: false
 
 set :markdown_engine_prefix, Middleman::Renderers
 set :markdown_engine, :qiita
+
+emoji_collection = Somemoji.emoji_one_emoji_collection
+url_generator = proc { |code| "/images/emoji/#{emoji_collection.find_by_code(code).base_path}.svg" }
+
 set :markdown,
   option_context: {
     hostname: ENV["WERCKER"] ? "blog.nownabe.com" : "localhost:4567",
-    script: true
+    script: true,
+    emoji_url_generator: url_generator,
+    emoji_names: Somemoji.send(:emoji_definitions).map { |h| h["code"] }
   },
   filters: [
     Qiita::Markdown::Filters::Greenmat,
@@ -46,6 +52,7 @@ set :markdown,
     Qiita::Markdown::Filters::Footnote,
     Qiita::Markdown::Filters::Code,
     Qiita::Markdown::Filters::Checkbox,
+    Qiita::Markdown::Filters::Emoji,
     Qiita::Markdown::Filters::SyntaxHighlight,
     Qiita::Markdown::Filters::ExternalLink,
     Qiita::Markdown::Filters::Sanitize
