@@ -10,6 +10,8 @@ gem "middleman-deploy",
     ref: "243ab38b08896cd5a37d6845a01a5761b934a898"
 gem "middleman-renderers-qiita_template", "~> 0.2.0"
 
+gem "somemoji", "~> 0.6.1"
+
 gem "slim"
 gem "rouge"
 
