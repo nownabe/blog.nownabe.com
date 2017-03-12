@@ -68,8 +68,8 @@ html
               .title
                 h1 = link_to current_article.title, current_article
                 span.date
-                  | last modified at&nbsp;
-                  = current_article.data.updated_at.getlocal("+09:00").strftime("%Y/%m/%d %H:%M:%S")
+                  | created_at at&nbsp;
+                  = current_article.data.created_at.getlocal("+09:00").strftime("%Y/%m/%d %H:%M:%S")
               .body
                 = yield
               .sns-buttons

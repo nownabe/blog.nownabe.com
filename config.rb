@@ -1,13 +1,21 @@
 # frozen_string_literal: true
 
+require "time"
+
 $LOAD_PATH.unshift File.expand_path("../lib", __FILE__)
 Time.zone = "Asia/Tokyo"
 
 module EsaFrontmatter
+  WORK_DIR = File.expand_path("../", __FILE__).freeze
+
   def data
     return @page_data if @page_data
     super
-    @page_data[:date] ||= @page_data[:created_at]
+    command = "cd #{WORK_DIR} && " \
+      "git log --date=rfc --pretty=format:\"%ad\" source/#{@file_descriptor.relative_path}"
+    created_at = Time.rfc2822(`#{command}`.lines.last)
+    @page_data[:created_at] = created_at
+    @page_data[:date] = created_at
     @page_data
   end
 end
