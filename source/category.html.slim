@@ -1,0 +1,7 @@
+h1 = category
+
+- pages.each do |article|
+  article.desc
+    .title
+      span.date = article.data.created_at.getlocal("+09:00").strftime("%Y/%m/%d")
+      h1 = link_to article.title, article
