@@ -1,5 +1,6 @@
 ---
 title: RubotyのデータをLevelDBで永続化するruboty-leveldbというGemを作った
+category: Diary
 tags: ruby, leveldb, ruboty
 created_at: 2015-03-01 19:10:15 +0900
 updated_at: 2015-03-01 19:10:15 +0900

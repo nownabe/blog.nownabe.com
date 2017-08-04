@@ -1,5 +1,6 @@
 ---
 title: PostgreSQLの更新でRails 5が動かなくなった
+category: Log
 tags: postgresql, rails, ruby
 created_at: 2016-07-24 15:31:39 +0900
 updated_at: 2016-07-24 15:31:39 +0900

@@ -1,5 +1,6 @@
 ---
 title: 機械学習勉強会というものを始めた
+category: Diary
 tags: machine learning, event
 created_at: 2016-07-22 00:44:19 +0900
 updated_at: 2016-07-22 00:44:19 +0900

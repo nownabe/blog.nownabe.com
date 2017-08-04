@@ -1,5 +1,6 @@
 ---
 title: Gem in a Boxの冗長化
+category: Diary
 tags: gem in a box, ruby
 created_at: 2015-08-31 01:11:48 +0900
 updated_at: 2015-08-31 01:11:48 +0900

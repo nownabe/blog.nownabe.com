@@ -1,5 +1,6 @@
 ---
 title: プログラミングのための確率統計読み始めた
+category: Diary
 tags: event, book
 created_at: 2016-07-22 00:47:58 +0900
 updated_at: 2016-07-22 00:47:58 +0900

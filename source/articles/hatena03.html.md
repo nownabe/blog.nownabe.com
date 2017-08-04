@@ -1,5 +1,6 @@
 ---
 title: EasySettingsをSettingslogicの替りにいかがでしょうか
+category: Tech
 tags: ruby, easy_settings
 created_at: 2015-03-07 02:15:01 +0900
 updated_at: 2015-03-07 02:15:01 +0900

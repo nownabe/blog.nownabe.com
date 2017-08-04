@@ -1,5 +1,6 @@
 ---
 title: 今更Raspberry PiでLチカやってみた
+category: Diary
 tags: raspberry pi
 created_at: 2015-08-09 00:21:18 +0900
 updated_at: 2015-08-09 00:21:18 +0900

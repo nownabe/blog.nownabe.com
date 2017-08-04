@@ -1,5 +1,6 @@
 ---
 title: tokyo.ex #2
+category: Diary
 tags: elixir, event
 created_at: 2016-05-24 00:36:44 +0900
 updated_at: 2016-05-24 00:36:44 +0900

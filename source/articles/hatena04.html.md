@@ -1,5 +1,6 @@
 ---
 title: OSS活動初心者になりました
+category: Diary
 tags:
 created_at: 2015-03-08 02:02:14 +0900
 updated_at: 2015-03-08 02:02:14 +0900

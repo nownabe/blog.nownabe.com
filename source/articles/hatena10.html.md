@@ -1,5 +1,6 @@
 ---
 title: お名前.comからIDCF DNSに移行した話
+category: Tech
 tags: idcf cloud, dns
 created_at: 2015-08-10 23:46:12 +0900
 updated_at: 2015-08-10 23:46:12 +0900

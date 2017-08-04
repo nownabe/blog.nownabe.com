@@ -1,5 +1,6 @@
 ---
 title: qiita-markdownをMiddlemanで使えるようにするGemを作った
+category: Diary
 tags: ruby, middleman, markdown, github pages
 created_at: 2016-07-26 23:57:51 +0900
 updated_at: 2016-07-26 23:57:51 +0900
