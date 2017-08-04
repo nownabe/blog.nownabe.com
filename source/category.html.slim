@@ -1,6 +1,6 @@
 h1 = category
 
-- pages.each do |article|
+- pages.sort { |a, b| b.data.created_at <=> a.data.created_at }.each do |article|
   article.desc
     .title
       span.date = article.data.created_at.getlocal("+09:00").strftime("%Y/%m/%d")
