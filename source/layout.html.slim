@@ -56,10 +56,12 @@ html
       #navigation-container
         nav.container
           ul
+            li = link_to "Diary", "/Diary.html"
+            li = link_to "Tech", "/Tech.html"
+            li = link_to "Log", "/Log.html"
+            li = link_to "Books", "/Books.html"
             li
               a href="/tags.html" tags
-            - blog.articles.group_by { |a| a.date.year }.each do |year, _|
-              li = link_to "#{year}", blog_year_path(year)
 
       #content-container
         #content.container role="main"

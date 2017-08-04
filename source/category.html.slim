@@ -1,0 +1,10 @@
+- if defined? category
+  h1 = category
+
+  - pages.sort { |a, b| b.data.created_at <=> a.data.created_at }.each do |article|
+    article.desc
+      .title
+        span.date = article.data.created_at.getlocal("+09:00").strftime("%Y/%m/%d")
+        h1 = link_to article.title, article
+- else
+  h1 Category

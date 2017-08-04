@@ -11,6 +11,8 @@ module EsaFrontmatter
   def data
     return @page_data if @page_data
     super
+    return @pagedata unless @file_descriptor&.relative_path.to_s =~ /^articles/
+
     command = "cd #{WORK_DIR} && " \
       "git log --date=rfc --pretty=format:\"%ad\" source/#{@file_descriptor.relative_path}"
     created_at = Time.rfc2822(`#{command}`.lines.last)
@@ -91,6 +93,16 @@ TAG_CLOUD_CLASSES = {
   0.01 => "rare-tag",
   0.0 => "unusual-tag"
 }.freeze
+
+ready do
+  sitemap.resources.group_by { |r| r.data&.category }.each do |category, pages|
+    proxy(
+      "/#{category}.html",
+      "category.html",
+      locals: { category: category, pages: pages }
+    ) if category
+  end
+end
 
 helpers do
   def tag_cloud_class(number, max)
