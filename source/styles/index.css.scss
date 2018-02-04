@@ -4,13 +4,13 @@ $gray: rgba(0, 0, 0, 0.5);
 $light-gray: rgba(0, 0, 0, 0.09);
 
 /* Base Styles */
-@media screen and (min-width: 857px) {
+@media screen and (min-width: 1024px) {
   .container {
-    max-width: 800px;
+    max-width: calc(1024px - 4rem);
     margin: 1rem auto;
   }
 }
-@media screen and (max-width: 856px) {
+@media screen and (max-width: 1023px) {
   .container {
     width: calc(100% - 4rem);
     margin: 1rem 2rem;
@@ -18,7 +18,7 @@ $light-gray: rgba(0, 0, 0, 0.09);
 }
 
 html {
-  font-size: 87.5%;
+  font-size: 100%;
 }
 
 body {
@@ -160,6 +160,7 @@ article {
     }
     h1 {
       @include header-common;
+      margin-top: 3rem;
       border-bottom: 3px solid $light-gray;
       font-weight: normal;
       font-size: 2rem;
