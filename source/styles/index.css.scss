@@ -4,13 +4,13 @@ $gray: rgba(0, 0, 0, 0.5);
 $light-gray: rgba(0, 0, 0, 0.09);
 
 /* Base Styles */
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 857px) {
   .container {
-    max-width: calc(1024px - 4rem);
+    max-width: calc(857px - 4rem);
     margin: 1rem auto;
   }
 }
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 856px) {
   .container {
     width: calc(100% - 4rem);
     margin: 1rem 2rem;
