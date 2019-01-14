@@ -23,6 +23,7 @@ deploy:
           rm -rf $dir
           mkdir -p $dir
           cd $dir
+          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
           git clone \
             --quiet \
             --progress \
