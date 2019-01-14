@@ -1,4 +1,4 @@
-box: ruby:2.4.1
+box: ruby:2.6.0
 
 deploy:
   steps:
