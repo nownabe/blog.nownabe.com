@@ -5,32 +5,13 @@ require "time"
 $LOAD_PATH.unshift File.expand_path("../lib", __FILE__)
 Time.zone = "Asia/Tokyo"
 
-module EsaFrontmatter
-  WORK_DIR = File.expand_path("../", __FILE__).freeze
-
-  def data
-    return @page_data if @page_data
-    super
-    return @pagedata unless @file_descriptor&.relative_path.to_s =~ /^articles/
-
-    command = "cd #{WORK_DIR} && " \
-      "git log --date=rfc --pretty=format:\"%ad\" source/#{@file_descriptor.relative_path}"
-    created_at = Time.rfc2822(`#{command}`.lines.last)
-    @page_data[:created_at] = created_at
-    @page_data[:date] = created_at
-    @page_data
-  end
-end
-
-Middleman::Sitemap::Resource.prepend(EsaFrontmatter)
-
 page "/*.xml", layout: false
 page "/*.json", layout: false
 page "/*.txt", layout: false
 
 activate :blog do |blog|
   blog.permalink = ":year/:month/:day/:title.html"
-  blog.sources = "articles/:title.html"
+  blog.sources = "articles/:year/:month/:day/:title.html"
   blog.default_extension = ".md"
 
   blog.tag_template = "tag.html"
