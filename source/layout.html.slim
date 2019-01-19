@@ -60,8 +60,8 @@ html
               .title
                 h1 = link_to current_article.title, current_article
                 span.date
-                  | posted on&nbsp;
-                  = current_article.data.created_at.getlocal("+09:00").strftime("%Y/%m/%d")
+                  | Posted on&nbsp;
+                  = current_article.data.created_at.getlocal("+09:00").strftime("%b %d, %Y")
               .body
                 = yield
               .sns-buttons
