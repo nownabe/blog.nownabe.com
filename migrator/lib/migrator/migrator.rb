@@ -14,7 +14,7 @@ module Migrator
     end
 
     def call
-      ensure_dir
+      ensure_dirs
       write_file
       delete_original_file
     end
@@ -25,6 +25,19 @@ module Migrator
       @article ||= Article.new(@file)
     end
 
+    def article_dir
+      @article_dir ||= File.join("articles", date_path)
+    end
+
+    def article_destination
+      @article_destination ||=
+        File.join(
+          @base_dir,
+          article_dir,
+          File.basename(@file)
+        )
+    end
+
     # Download images hosted by esa
     def body
       article.body.gsub(%r{https://img.esa.io/[^"\)]+}) do |image_url|
@@ -32,45 +45,38 @@ module Migrator
       end
     end
 
-    def delete_original_file
-      FileUtils.rm(@file)
-    end
-
-    def destination_dir
-      @destination_dir ||=
+    def date_path
+      @date_path ||=
         File.join(
-          @base_dir,
           sprintf("%04d", article.date.year),
           sprintf("%02d", article.date.month),
           sprintf("%02d", article.date.day)
         )
     end
 
-    def destination_path
-      @destination_path ||=
-        File.join(
-          destination_dir,
-          File.basename(@file)
-        )
+    def delete_original_file
+      FileUtils.rm(@file)
     end
 
-    def ensure_dir
-      FileUtils.mkdir_p(destination_dir)
+
+    def ensure_dirs
+      FileUtils.mkdir_p(File.join(@base_dir, article_dir))
+      FileUtils.mkdir_p(File.join(@base_dir, image_dir))
+    end
+
+    def image_dir
+      @image_dir ||= File.join("images", date_path)
     end
 
     def save_image(url)
-      filename = "#{@next_image_id}#{File.extname(url)}"
+      filepath = File.join(image_dir, "#{@next_image_id}#{File.extname(url)}")
       @next_image_id += 1
-      path = File.join(destination_dir, filename)
-      ImageDownloader.new(url, path).call
-      "./#{filename}"
+      ImageDownloader.new(url, File.join(@base_dir, filepath)).call
+      "/#{filepath}"
     end
 
     def write_file
-      File.write(
-        destination_path,
-        body
-      )
+      File.write(article_destination, body)
     end
   end
 end

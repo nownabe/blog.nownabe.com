@@ -7,7 +7,7 @@ module Migrator
     def initialize(args)
       @base_dir =
         if args.empty?
-          File.expand_path("../../../source/articles", __dir__)
+          File.expand_path("../../../source", __dir__)
         else
           File.expand_path(args.first)
         end
