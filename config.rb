@@ -14,11 +14,10 @@ activate :blog do |blog|
   blog.sources = "articles/:year/:month/:day/:title.html"
   blog.default_extension = ".md"
 
-  blog.tag_template = "tag.html"
   blog.calendar_template = "calendar.html"
 
   blog.paginate = true
-  blog.per_page = 10
+  blog.per_page = 20
   blog.page_link = "page/{num}"
 end
 
@@ -65,33 +64,7 @@ activate :deploy do |deploy|
   deploy.deploy_method = :git
 end
 
-TAG_CLOUD_CLASSES = {
-  0.2 => "big-tag",
-  0.1 => "major-tag",
-  0.05 => "normal-tag",
-  0.02 => "minor-tag",
-  0.01 => "rare-tag",
-  0.0 => "unusual-tag"
-}.freeze
-
-ready do
-  sitemap.resources.group_by { |r| r.data&.category }.each do |category, pages|
-    proxy(
-      "/#{category}.html",
-      "category.html",
-      locals: { category: category, pages: pages }
-    ) if category
-  end
-end
-
 helpers do
-  def tag_cloud_class(number, max)
-    ratio = number / max.to_f
-    TAG_CLOUD_CLASSES.each do |threshold, klass|
-      return klass if ratio >= threshold
-    end
-  end
-
   def url
     if config.environment == :development
       "https://localhost:4567#{current_article.url}"

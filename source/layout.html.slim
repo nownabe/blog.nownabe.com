@@ -51,17 +51,7 @@ html
             a href="/"
               img src="/images/nownabe.svg" alt="now"
               | nownab.log
-          p logging nownabe's life
-
-      #navigation-container
-        nav.container
-          ul
-            li = link_to "Diary", "/Diary.html"
-            li = link_to "Tech", "/Tech.html"
-            li = link_to "Log", "/Log.html"
-            li = link_to "Books", "/Books.html"
-            li
-              a href="/tags.html" tags
+          p nownab.log is the life log of nownabe
 
       #content-container
         #content.container role="main"
@@ -70,8 +60,8 @@ html
               .title
                 h1 = link_to current_article.title, current_article
                 span.date
-                  | created at&nbsp;
-                  = current_article.data.created_at.getlocal("+09:00").strftime("%Y/%m/%d %H:%M:%S")
+                  | Posted on&nbsp;
+                  = current_article.data.created_at.getlocal("+09:00").strftime("%b %d, %Y")
               .body
                 = yield
               .sns-buttons
