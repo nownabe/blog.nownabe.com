@@ -64,16 +64,6 @@ activate :deploy do |deploy|
   deploy.deploy_method = :git
 end
 
-ready do
-  sitemap.resources.group_by { |r| r.data&.category }.each do |category, pages|
-    proxy(
-      "/#{category}.html",
-      "category.html",
-      locals: { category: category, pages: pages }
-    ) if category
-  end
-end
-
 helpers do
   def url
     if config.environment == :development
