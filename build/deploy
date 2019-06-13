@@ -4,8 +4,8 @@ set -eu
 
 . .envrc
 
-git_name=$(git config --get user.name)
-git_email=$(git config --get user.email)
+git_name=$(git log -1 --pretty=format:"%cn")
+git_email=$(git log -1 --pretty=format:"%ce")
 
 git clone \
   --depth 1 \
