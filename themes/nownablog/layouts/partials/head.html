@@ -1,0 +1,54 @@
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {{- if .IsHome -}}
+  <title>{{ .Site.Title }}</title>
+  {{- else -}}
+  <title>{{ .Title }} - {{ .Site.Title }}</title>
+  {{- end -}}
+
+  <link rel="alternate" type="application/rss+xml" href="{{ .Site.BaseURL }}feed.xml" title="{{ .Site.Title }}">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="{{ .Site.Params.Author }}">
+  <meta name="description" content="{{ .Site.Params.Description }}">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693">
+
+  {{- if .IsHome -}}
+  <meta property="og:url" content="{{ .Site.BaseURL }}">
+  <meta property="og:title" content="{{ .Site.Title }}">
+  <meta property="og:description" content="{{ .Site.Params.Description }}">
+  <meta property="og:image" content="{{ .Site.BaseURL }}img/nownabe.png">
+  <meta property="twitter:title" content="{{ .Site.Title }}">
+  <meta property="twitter:description" content="{{ .Site.Params.Description }}">
+  <meta property="twitter:image" content="{{ .Site.BaseURL }}img/nownabe.png">
+  {{- else -}}
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:title" content="{{ .Title }} - {{ .Site.Title }}">
+  <meta property="og:description" content="{{ .Summary }}">
+  <meta property="og:image" content="{{ .Site.BaseURL }}img/nownabe.png">
+  <meta property="twitter:title" content="{{ .Title }} - {{ .Site.Title }}">
+  <meta property="twitter:description" content="{{ .Summary }}">
+  <meta property="twitter:image" content="{{ .Site.BaseURL }}img/nownabe.png">
+  {{- end -}}
+
+  {{- if not .Site.IsServer -}}
+  {{ template "_internal/google_analytics_async.html" . }}
+  {{- end -}}
+</head>

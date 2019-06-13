@@ -1,0 +1,21 @@
+# theme.toml template for a Hugo theme
+# See https://github.com/gohugoio/hugoThemes#themetoml for an example
+
+name = "nownablog"
+license = "MIT"
+licenselink = "https://github.com/nownabe/blog.nownabe.com/blob/master/themes/nownablog/LICENSE"
+description = ""
+homepage = "http://blog.nownabe.com/"
+tags = []
+features = []
+min_version = "0.41"
+
+[author]
+  name = "nownabe"
+  homepage = ""
+
+# If porting an existing theme
+[original]
+  name = ""
+  homepage = ""
+  repo = ""
