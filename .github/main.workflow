@@ -34,5 +34,5 @@ action "Deploy" {
   uses = "./build/"
   needs = ["when source branch"]
   runs = "./build/deploy"
-  secrets = ["GITHUB_TOKEN"]
+  secrets = ["PERSONAL_GITHUB_TOKEN"]
 }
