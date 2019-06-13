@@ -1,0 +1,299 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | 統計学入門  第12章 仮説検定</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="統計学入門  第12章 仮説検定" property="og:title"><meta content=" nownab.log | 統計学入門 第11章 推定         統計学入門 (基礎統計学Ⅰ)     東京大学教養学部統計学教室   東京大学出版会             機械学習勉強会として今は 統計学入門 をやっている。  週一でやっていて、今週から輪読形式で進めてみることになった。   また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。   Wondershake/ml-statistics-intro: 基礎統計学 I 統計学入門 (東京大学出版会)     今回の内容  ..." property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2017/10/25/1165.html" property="og:url"><meta content=" nownab.log | 統計学入門 第11章 推定         統計学入門 (基礎統計学Ⅰ)     東京大学教養学部統計学教室   東京大学出版会             機械学習勉強会として今は 統計学入門 をやっている。  週一でやっていて、今週から輪読形式で進めてみることになった。   また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。   Wondershake/ml-statistics-intro: 基礎統計学 I 統計学入門 (東京大学出版会)     今回の内容  ..." property="twitter:description"><meta content="統計学入門  第12章 仮説検定" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2017/10/25/1165.html">統計学入門  第12章 仮説検定</a></h1><span class="date">Posted on&nbsp;Oct 24, 2017</span></div><div class="body"><p><a href="https://blog.nownabe.com/2017/10/16/1142.html">nownab.log | 統計学入門 第11章 推定</a></p>
+
+<div class="asin">
+<div class="asin-image"><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/" rel="nofollow noopener" target="_blank"><img src="http://images-jp.amazon.com/images/P/4130420658.09._SL160_.jpg" alt="統計学入門 (基礎統計学Ⅰ)" title="統計学入門 (基礎統計学Ⅰ)"></a></div>
+<div class="asin-detail">
+<p><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/" rel="nofollow noopener" target="_blank">統計学入門 (基礎統計学Ⅰ)</a></p>
+<ul>
+<li>東京大学教養学部統計学教室</li>
+<li>東京大学出版会</li>
+</ul>
+</div>
+
+<p></p>
+
+<p></p>
+</div>
+
+<p>機械学習勉強会として今は<a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/" rel="nofollow noopener" target="_blank">統計学入門</a>をやっている。<br>
+週一でやっていて、今週から輪読形式で進めてみることになった。</p>
+
+<p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。<br>
+<a href="https://github.com/Wondershake/ml-statistics-intro" rel="nofollow noopener" target="_blank">Wondershake/ml-statistics-intro: 基礎統計学 I 統計学入門 (東京大学出版会)</a></p>
+
+<h1>
+<span id="今回の内容" class="fragment"></span><a href="#%E4%BB%8A%E5%9B%9E%E3%81%AE%E5%86%85%E5%AE%B9"><i class="fa fa-link"></i></a>今回の内容</h1>
+
+<h2>
+<span id="121-検定の考え方" class="fragment"></span><a href="#121-%E6%A4%9C%E5%AE%9A%E3%81%AE%E8%80%83%E3%81%88%E6%96%B9"><i class="fa fa-link"></i></a>12.1 検定の考え方</h2>
+
+<ul>
+<li>仮説検定の目的は、母集団について仮定された命題を標本に基づいて検証すること</li>
+<li>仮説からのずれに意味がある場合、<strong>有意 (significant)</strong>であるという</li>
+<li>仮説のことを<strong>統計的仮説 (statistical hypothesis)</strong>又は<strong>仮説 (hypothesis)</strong>という</li>
+<li>仮説検定: 統計的仮説の<strong>優位性検定 (test of significance)</strong>
+</li>
+<li>
+<strong>棄却 (reject)</strong>: その仮説に基づくと観測された標本が現れる確率が希少なとき、仮説は棄却される、という</li>
+<li>
+<strong>有意水準 (significance level)</strong>: どの程度の希少確率を考えるかという基準の確率。</li>
+<li>
+<strong>採択 (accept)</strong>: 仮説が棄却できないこと</li>
+<li>
+<strong>帰無仮説 (null hypothesis)</strong>: 棄却されるかされないかの判断にさらされる仮説</li>
+<li>
+<strong>対立仮説 (alternative hypothesis)</strong>: 帰無仮説に対立する仮説</li>
+<li>
+<strong>第一種の誤り (error of the first kind)</strong>
+
+<ul>
+<li>帰無仮説が正しいのにそれを棄却する</li>
+</ul>
+</li>
+<li>
+<strong>第二種の誤り (error of the second kind)</strong>
+
+<ul>
+<li>帰無仮説が誤っているのにそれを採択する</li>
+</ul>
+</li>
+<li>
+<strong>検定統計量 (test statistic)</strong>: 検定に用いる統計量</li>
+<li>
+<strong>棄却域 (rejection region)</strong>: 帰無仮説を棄却すべき統計量の値の集合</li>
+<li>
+<strong>採択域 (acceptance region)</strong>: 帰無仮説を棄却しない統計量の値の集合</li>
+<li>
+<strong>両側検定 (two-sided test)</strong>: <strong>両側対立仮説 (two-sided alternative hypothesis)</strong>のときに用いる</li>
+<li>
+<strong>片側検定 (one-sided test)</strong>: <strong>片側対立仮説 (one-sided alternative hypothesis)</strong>のときに用いる</li>
+</ul>
+
+<h2>
+<span id="122-正規母集団に対する仮説検定" class="fragment"></span><a href="#122-%E6%AD%A3%E8%A6%8F%E6%AF%8D%E9%9B%86%E5%9B%A3%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E4%BB%AE%E8%AA%AC%E6%A4%9C%E5%AE%9A"><i class="fa fa-link"></i></a>12.2 正規母集団に対する仮説検定</h2>
+
+<h3>
+<span id="1221-母平均に関する検定" class="fragment"></span><a href="#1221-%E6%AF%8D%E5%B9%B3%E5%9D%87%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E6%A4%9C%E5%AE%9A"><i class="fa fa-link"></i></a>12.2.1 母平均に関する検定</h3>
+
+<ul>
+<li>両側検定
+
+<ul>
+<li>帰無仮説: $H_0:\mu=\mu_0$</li>
+<li>対立仮説: $H_1: \mu\neq\mu_0$</li>
+<li>分散が既知のとき
+
+<ul>
+<li>検定統計量Zを使う</li>
+<li>$Z=\frac{\bar{X}-\mu}{\frac{\sigma}{\sqrt{n}}}$</li>
+<li>$|Z|&gt;Z_{\frac{\alpha}{2}}$のとき帰無仮説を棄却する</li>
+<li>$|Z|\leq Z_{\frac{\alpha}{2}}$のとき帰無仮説を棄却しない</li>
+</ul>
+</li>
+<li>分散が未知のとき
+
+<ul>
+<li><strong>t検定 (Student's t-test)</strong></li>
+<li>検定統計量tを使う</li>
+<li>$t=\frac{\bar{X}-\mu}{\frac{s}{\sqrt{n}}}$</li>
+<li>$|t|&gt;t_\frac{\alpha}{2}(n-1)$のとき帰無仮説を棄却する</li>
+<li>$|t|\leq t_\frac{\alpha}{2}(n-1)$のとき帰無仮説を棄却しない</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>片側検定
+
+<ul>
+<li>帰無仮説: $H_0:\mu=\mu_0$</li>
+<li>対立仮説: $H_1: \mu&gt;\mu_0$</li>
+<li>分散が既知のとき
+
+<ul>
+<li>$Z&gt;Z_\alpha$のとき帰無仮説を棄却する</li>
+<li>$Z\leq Z_\alpha$のとき帰無仮説を棄却しない</li>
+</ul>
+</li>
+<li>分散が未知のとき
+
+<ul>
+<li>$t&gt;t_\alpha(n-1)$のとき帰無仮説を棄却する</li>
+<li>$t\leq t_\alpha(n-1)$のとき帰無仮説を棄却しない</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="1222-母分散に対する仮説検定" class="fragment"></span><a href="#1222-%E6%AF%8D%E5%88%86%E6%95%A3%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E4%BB%AE%E8%AA%AC%E6%A4%9C%E5%AE%9A"><i class="fa fa-link"></i></a>12.2.2 母分散に対する仮説検定</h3>
+
+<ul>
+<li>
+<strong>$\chi^2$検定 ($\chi^2$-test)</strong>
+
+<ul>
+<li>帰無仮説: $H_0: \sigma^2=\sigma_0^2$</li>
+<li>$\chi^2=(n-1)\frac{s^2}{\sigma_0^2}$</li>
+<li>両側検定
+
+<ul>
+<li>対立仮説: $H_1: \sigma^2\neq\sigma_0^2$</li>
+<li>$\chi^2_{1-\frac{\alpha}{2}}(n-1)&lt;\chi^2&lt;\chi^2_{\frac{\alpha}{2}}(n-1)$のとき帰無仮説を棄却せず、それ以外で棄却する</li>
+</ul>
+</li>
+<li>片側検定
+
+<ul>
+<li>対立仮説: $H_1: \sigma^2&lt;\sigma_0^2$</li>
+<li>$\chi^2&lt;\chi^2_{1-\alpha}(n-1)$のとき帰無仮説を棄却し、それ以外で棄却しない</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="1223-母平均の差の検定" class="fragment"></span><a href="#1223-%E6%AF%8D%E5%B9%B3%E5%9D%87%E3%81%AE%E5%B7%AE%E3%81%AE%E6%A4%9C%E5%AE%9A"><i class="fa fa-link"></i></a>12.2.3 母平均の差の検定</h3>
+
+<ul>
+<li>
+<strong>2標本検定 (two-sample test)</strong>: 2つのグループで結果に差があるかどうかを検定する
+
+<ul>
+<li>治療法の効果を調べるときなど</li>
+<li>治療等を行ったグループを<strong>処理群 (treatment group)</strong>という</li>
+<li>行わなかった基準となるグループを<strong>対照群 (contrast group)</strong>または<strong>制御群 (control group)</strong>という</li>
+<li>帰無仮説 $H_0: \mu_1=\mu_2$</li>
+<li>母分散が等しいとき
+
+<ul>
+<li>2標本t統計量 $t=\frac{\displaystyle\bar{X}-\bar{Y}}{\displaystyle s\sqrt{\frac{1}{m}+\frac{1}{n}}}$</li>
+<li>両側検定
+
+<ul>
+<li>対立仮説 $H_1: \mu_1\neq\mu_2$</li>
+<li>$|t|&gt;t_\frac{\alpha}{2}(m+n-2)$のとき帰無仮説を棄却する</li>
+</ul>
+</li>
+<li>片側検定
+
+<ul>
+<li>対立仮説 $H_1: \mu_1&gt;\mu_2$</li>
+<li>$t&gt;t_\alpha(m+n-2)$のとき帰無仮説を棄却する</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>母分散が等しくないとき
+
+<ul>
+<li><strong>ウェルチの検定 (Welch's test)</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="1224-母分散の比の検定" class="fragment"></span><a href="#1224-%E6%AF%8D%E5%88%86%E6%95%A3%E3%81%AE%E6%AF%94%E3%81%AE%E6%A4%9C%E5%AE%9A"><i class="fa fa-link"></i></a>12.2.4 母分散の比の検定</h3>
+
+<ul>
+<li>2つの正規母集団の母平均が等しいか否か</li>
+<li>帰無仮説 $H_0:\sigma_1^2=\sigma_2^2$</li>
+<li>対立仮説 $H_1:\sigma_1^2\neq\sigma_2^2$</li>
+<li>統計量 $F=\frac{s_1^2}{s_2^2}$</li>
+<li>$F_{1-\frac{\alpha}{2}}(m-1, n-1)\leq F\leq F_\frac{\alpha}{2}(m-1, n-1)$のとき帰無仮説を棄却しない</li>
+<li><strong>F検定</strong></li>
+</ul>
+
+<h2>
+<span id="123-いろいろのchi2検定" class="fragment"></span><a href="#123-%E3%81%84%E3%82%8D%E3%81%84%E3%82%8D%E3%81%AEchi2%E6%A4%9C%E5%AE%9A"><i class="fa fa-link"></i></a>12.3 いろいろの$\chi^2$検定</h2>
+
+<h3>
+<span id="1231-適合度の検定" class="fragment"></span><a href="#1231-%E9%81%A9%E5%90%88%E5%BA%A6%E3%81%AE%E6%A4%9C%E5%AE%9A"><i class="fa fa-link"></i></a>12.3.1 適合度の検定</h3>
+
+<ul>
+<li>
+<strong>適合度の$\chi^2$検定 ($\chi^2$-test of goodness of fit)</strong>
+
+<ul>
+<li>仮定された理論上の確率分布に対して、標本から求められた度数が適合するか否か</li>
+<li>$n$個の標本が$k$主のカテゴリ$A_1,\dots,A_k$へ分類されたとする</li>
+<li>
+<strong>観測度数 (Observed frequency)</strong>: $f_1,\dots,f_k$</li>
+<li>各カテゴリの理論確率: $p_1,\dots,p_k$</li>
+<li>理論度数(または<strong>期待度数 (Expected frequency)</strong>): $np_1, \dots, np_k$</li>
+<li>K. ピアソンの適合度基準 $\chi^2=\sum_{i=1}^{k}\frac{(f_i-np_i)^2}{np_i}$</li>
+<li>帰無仮説 $H_0: P(A_1)=p_1,\dots,P(A_k)=p_k$</li>
+<li>$\chi^2&gt;\chi_\alpha^2(k-1)$なら帰無仮説は棄却される</li>
+</ul>
+</li>
+<li>$\chi^2=\sum\frac{(O-E)^2}{E}$と要約できる
+
+<ul>
+<li>O: Observed</li>
+<li>E: Expected</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="1232-分割表と独立性の検定" class="fragment"></span><a href="#1232-%E5%88%86%E5%89%B2%E8%A1%A8%E3%81%A8%E7%8B%AC%E7%AB%8B%E6%80%A7%E3%81%AE%E6%A4%9C%E5%AE%9A"><i class="fa fa-link"></i></a>12.3.2 分割表と独立性の検定</h3>
+
+<ul>
+<li>
+<strong>独立性の$\chi^2$検定 ($\chi^2$ test for independence)</strong>
+
+<ul>
+<li>$n$個の個体に対して2つの異なる属性$A, B$を同時に測定したとする</li>
+<li>$A$は$A_1,\dots,A_r$</li>
+<li>$B$は$B_1,\dots,B_c$</li>
+<li>
+<strong>分割表</strong>: A, Bについて度数を集計した表</li>
+<li>独立の仮説: $H_0: すべてのi,jに対しP(A_i\cap B_j)=P(A_i)P(B_j)$</li>
+<li>$\chi^2=\sum_i\sum_j\frac{\displaystyle (f_{ij}-\frac{f_{i\cdot}f_{\cdot j}}{n})^2}{\displaystyle \frac{f_{i\cdot}f_{\cdot j}}{n}}=\sum_i\sum_j\frac{\displaystyle (nf_{ij}-f_{i\cdot}f_{\cdot j})^2}{\displaystyle nf_{i\cdot}f_{\cdot j}}$</li>
+<li>自由度は$(r-1)(c-1)$</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<span id="124-中心極限定理を用いる検定" class="fragment"></span><a href="#124-%E4%B8%AD%E5%BF%83%E6%A5%B5%E9%99%90%E5%AE%9A%E7%90%86%E3%82%92%E7%94%A8%E3%81%84%E3%82%8B%E6%A4%9C%E5%AE%9A"><i class="fa fa-link"></i></a>12.4 中心極限定理を用いる検定</h2>
+
+<ul>
+<li>各$X_i$が独立に$B_i(1, p)$に従う</li>
+<li>$S_n=X_i+\dots+X_n$</li>
+<li>$\hat{p}=\frac{S_n}{n}$</li>
+<li>検定統計量 $Z=\frac{\hat{p}-p}{\sqrt{p(1-p)/n}}$</li>
+</ul>
+
+<h1>
+<span id="練習問題" class="fragment"></span><a href="#%E7%B7%B4%E7%BF%92%E5%95%8F%E9%A1%8C"><i class="fa fa-link"></i></a>練習問題</h1>
+
+<p><a href="https://github.com/Wondershake/machine-learning-study/issues/26" rel="nofollow noopener" target="_blank">第12章 仮説検定 · Issue #26 · Wondershake/machine-learning-study</a></p>
+
+<h1>
+<span id="所感" class="fragment"></span><a href="#%E6%89%80%E6%84%9F"><i class="fa fa-link"></i></a>所感</h1>
+
+<ul>
+<li>理解度が怪しい部門第1位の検定をちゃんと勉強できてよかった</li>
+</ul>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+</pre></div></div>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

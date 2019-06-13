@@ -1,0 +1,87 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | Python機械学習プログラミング  第2章</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="Python機械学習プログラミング  第2章" property="og:title"><meta content="    概要   Python機械学習プログラミングの学習メモです。  勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。     資料     2.1-2.4   2.5-2.6       メモ     2.1 人工ニューロン     2.2 パーセプトロンの学習アルゴリズムをPythonで実装する     2.3 Iris データセットでのパーセプトロンモデルのトレーニング     2.4 ADALINEと学習の収束   "ADALINE"の発音は"アダライン"でいいっぽい。     https://www.youtube...   " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2018/01/12/1238.html" property="og:url"><meta content="    概要   Python機械学習プログラミングの学習メモです。  勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。     資料     2.1-2.4   2.5-2.6       メモ     2.1 人工ニューロン     2.2 パーセプトロンの学習アルゴリズムをPythonで実装する     2.3 Iris データセットでのパーセプトロンモデルのトレーニング     2.4 ADALINEと学習の収束   "ADALINE"の発音は"アダライン"でいいっぽい。     https://www.youtube...   " property="twitter:description"><meta content="Python機械学習プログラミング  第2章" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2018/01/12/1238.html">Python機械学習プログラミング  第2章</a></h1><span class="date">Posted on&nbsp;Jan 12, 2018</span></div><div class="body">
+<h1>
+<span id="概要" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81"><i class="fa fa-link"></i></a>概要</h1>
+
+<p>Python機械学習プログラミングの学習メモです。<br>
+勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。</p>
+
+<h1>
+<span id="資料" class="fragment"></span><a href="#%E8%B3%87%E6%96%99"><i class="fa fa-link"></i></a>資料</h1>
+
+<ul>
+<li><a href="https://gitpitch.com/mmyoji/slides/python-ml-1st#/" rel="nofollow noopener" target="_blank">2.1-2.4</a></li>
+<li><a href="https://nownabe.github.io/slides/20180111-python-ml-ch02-1/index.html#/" rel="nofollow noopener" target="_blank">2.5-2.6</a></li>
+</ul>
+
+<h1>
+<span id="メモ" class="fragment"></span><a href="#%E3%83%A1%E3%83%A2"><i class="fa fa-link"></i></a>メモ</h1>
+
+<h2>
+<span id="21-人工ニューロン" class="fragment"></span><a href="#21-%E4%BA%BA%E5%B7%A5%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%AD%E3%83%B3"><i class="fa fa-link"></i></a>2.1 人工ニューロン</h2>
+
+<h2>
+<span id="22-パーセプトロンの学習アルゴリズムをpythonで実装する" class="fragment"></span><a href="#22-%E3%83%91%E3%83%BC%E3%82%BB%E3%83%97%E3%83%88%E3%83%AD%E3%83%B3%E3%81%AE%E5%AD%A6%E7%BF%92%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E3%82%92python%E3%81%A7%E5%AE%9F%E8%A3%85%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>2.2 パーセプトロンの学習アルゴリズムをPythonで実装する</h2>
+
+<h2>
+<span id="23-iris-データセットでのパーセプトロンモデルのトレーニング" class="fragment"></span><a href="#23-iris-%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%83%E3%83%88%E3%81%A7%E3%81%AE%E3%83%91%E3%83%BC%E3%82%BB%E3%83%97%E3%83%88%E3%83%AD%E3%83%B3%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AE%E3%83%88%E3%83%AC%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>2.3 Iris データセットでのパーセプトロンモデルのトレーニング</h2>
+
+<h2>
+<span id="24-adalineと学習の収束" class="fragment"></span><a href="#24-adaline%E3%81%A8%E5%AD%A6%E7%BF%92%E3%81%AE%E5%8F%8E%E6%9D%9F"><i class="fa fa-link"></i></a>2.4 ADALINEと学習の収束</h2>
+
+<p>"ADALINE"の発音は"アダライン"でいいっぽい。</p>
+
+<ul>
+<li><a href="https://www.youtube.com/watch?v=hc2Zj55j1zU" class="autolink" rel="nofollow noopener" target="_blank">https://www.youtube.com/watch?v=hc2Zj55j1zU</a></li>
+<li><a href="https://www.youtube.com/watch?v=SRRcrl4WBnc" class="autolink" rel="nofollow noopener" target="_blank">https://www.youtube.com/watch?v=SRRcrl4WBnc</a></li>
+</ul>
+
+<h2>
+<span id="25-勾配降下法によるコスト関数の最小化" class="fragment"></span><a href="#25-%E5%8B%BE%E9%85%8D%E9%99%8D%E4%B8%8B%E6%B3%95%E3%81%AB%E3%82%88%E3%82%8B%E3%82%B3%E3%82%B9%E3%83%88%E9%96%A2%E6%95%B0%E3%81%AE%E6%9C%80%E5%B0%8F%E5%8C%96"><i class="fa fa-link"></i></a>2.5 勾配降下法によるコスト関数の最小化</h2>
+
+<h3>
+<span id="251-adalineをpythonで実装する" class="fragment"></span><a href="#251-adaline%E3%82%92python%E3%81%A7%E5%AE%9F%E8%A3%85%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>2.5.1 ADALINEをPythonで実装する</h3>
+
+<h2>
+<span id="26-大規模な機械学習と確率的勾配降下法" class="fragment"></span><a href="#26-%E5%A4%A7%E8%A6%8F%E6%A8%A1%E3%81%AA%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E3%81%A8%E7%A2%BA%E7%8E%87%E7%9A%84%E5%8B%BE%E9%85%8D%E9%99%8D%E4%B8%8B%E6%B3%95"><i class="fa fa-link"></i></a>2.6 大規模な機械学習と確率的勾配降下法</h2>
+
+<p>何が"確率的"なのかわからなかったので調べてみた。</p>
+
+<blockquote>
+<p>そこで勾配 $\nabla L(w)$ の代わりに，その不偏推定量である確率的勾配(stochastic gradient) $\nabla l(w,z)$ を用いた勾配法が SGD である</p>
+
+<p><a href="http://www.msi.co.jp/nuopt/glossary/term_da265770bed70e5f0a764f3d20c0ce3d242e6467.html" rel="nofollow noopener" target="_blank">確率的勾配降下法 - 数理計画用語集</a></p>
+</blockquote>
+
+<p>うーん、わからん。ランダムにサンプリングするから確率的？</p>
+
+<h1>
+<span id="python機械学習プログラミング" class="fragment"></span><a href="#python%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>Python機械学習プログラミング</h1>
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&amp;bc1=000000&amp;IS2=1&amp;bg1=FFFFFF&amp;fc1=000000&amp;lc1=0000FF&amp;t=nownabe0c-22&amp;o=9&amp;p=8&amp;l=as4&amp;m=amazon&amp;f=ifr&amp;ref=as_ss_li_til&amp;asins=B01HGIPIAK&amp;linkId=ef8aa25f336a01f62b00fce21e6f952a"></iframe>
+
+<h1>
+<span id="機械学習勉強会について" class="fragment"></span><a href="#%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E5%8B%89%E5%BC%B7%E4%BC%9A%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>機械学習勉強会について</h1>
+
+<p>社内で毎週開催している。本書は輪読形式でまわしているが、題材によって形式は柔軟に変えている。<br>
+毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。</p>
+
+<p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。<br>
+<a href="https://github.com/Wondershake/machine-learning-study" rel="nofollow noopener" target="_blank">Wondershake/machine-learning-study: 機械学習勉強会</a></p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+</pre></div></div>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

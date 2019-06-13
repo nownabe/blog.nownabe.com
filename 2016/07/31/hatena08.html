@@ -1,0 +1,164 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | 超簡単にサーバのデータをIDCFオブストに定期バックアップするItamaeプラグイン</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="超簡単にサーバのデータをIDCFオブストに定期バックアップするItamaeプラグイン" property="og:title"><meta content="    はじめに   サーバのあるディレクトリ内のファイルを IDCFのオブジェクトストレージ に定期バックアップする Itamae プラグインを作ったので紹介します！   nownabe/itamae-plugin-recipe-idcf-backup_to_object_storage     結論   作ったのは itamae-plugin-recipe-idcf-backup_to_object_storage というクソ長い名前のGem（Itamaeプラグイン）です。  このプラグインを使うと、下の図のよう... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2016/07/31/hatena08.html" property="og:url"><meta content="    はじめに   サーバのあるディレクトリ内のファイルを IDCFのオブジェクトストレージ に定期バックアップする Itamae プラグインを作ったので紹介します！   nownabe/itamae-plugin-recipe-idcf-backup_to_object_storage     結論   作ったのは itamae-plugin-recipe-idcf-backup_to_object_storage というクソ長い名前のGem（Itamaeプラグイン）です。  このプラグインを使うと、下の図のよう... " property="twitter:description"><meta content="超簡単にサーバのデータをIDCFオブストに定期バックアップするItamaeプラグイン" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2016/07/31/hatena08.html">超簡単にサーバのデータをIDCFオブストに定期バックアップするItamaeプラグイン</a></h1><span class="date">Posted on&nbsp;May 21, 2015</span></div><div class="body">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>サーバのあるディレクトリ内のファイルを<a href="http://www.idcf.jp/cloud/storage/" rel="nofollow noopener" target="_blank">IDCFのオブジェクトストレージ</a>に定期バックアップする<a href="http://itamae.kitchen/" rel="nofollow noopener" target="_blank">Itamae</a>プラグインを作ったので紹介します！</p>
+
+<p><a href="https://github.com/nownabe-infra/itamae-plugin-recipe-idcf-backup_to_object_storage" rel="nofollow noopener" target="_blank">nownabe/itamae-plugin-recipe-idcf-backup_to_object_storage</a></p>
+
+<h1>
+<span id="結論" class="fragment"></span><a href="#%E7%B5%90%E8%AB%96"><i class="fa fa-link"></i></a>結論</h1>
+
+<p>作ったのは<code>itamae-plugin-recipe-idcf-backup_to_object_storage</code>というクソ長い名前のGem（Itamaeプラグイン）です。<br>
+このプラグインを使うと、下の図のように任意の期間のバックアップファイルをオブジェクトストレージに保存することができます。</p>
+
+<p><a href="/images/articles/hatena08/01.png" target="_blank"><img src="/images/articles/hatena08/01.png" alt="01"></a></p>
+
+<h1>
+<span id="概要" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81"><i class="fa fa-link"></i></a>概要</h1>
+
+<p>このプラグインを使ってプロビジョニングするとどうなるのか簡単に説明します。</p>
+
+<ul>
+<li>バックアップスクリプトが作成される</li>
+<li>バックアップスクリプトを叩くcronジョブが作成される</li>
+<li>バックアップスクリプトは
+
+<ul>
+<li>指定されたサーバのディレクトリと指定されたオブストのバケットを同期する</li>
+<li>指定された期間より古いファイルはサーバからもオブストからも削除する</li>
+</ul>
+</li>
+<li>バックアップ実行前に任意のコマンドを実行できる
+
+<ul>
+<li>mysqldumpとかtar zcfとか</li>
+<li>このコマンドで、指定したディレクトリ内にバックアップファイルを生成する</li>
+</ul>
+</li>
+</ul>
+
+<h1>
+<span id="使い方" class="fragment"></span><a href="#%E4%BD%BF%E3%81%84%E6%96%B9"><i class="fa fa-link"></i></a>使い方</h1>
+
+<h2>
+<span id="サンプル" class="fragment"></span><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB"><i class="fa fa-link"></i></a>サンプル</h2>
+
+<p>サンプルを見てもらうのが一番はやいと思います。</p>
+
+<p><a href="https://github.com/nownabe-infra/example-idcf-backup_to_object_storage" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/nownabe-infra/example-idcf-backup_to_object_storage</a></p>
+
+<h2>
+<span id="gemfile" class="fragment"></span><a href="#gemfile"><i class="fa fa-link"></i></a>Gemfile</h2>
+
+<p>Gemfileにプラグインを追加します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+# Gemfile
+source "https://rubygems.org"
+gem "itamae-plugin-recipe-idcf-backup_to_object_storage"
+</pre></div></div>
+
+<p>bundle installも忘れずにやっておきましょう。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ bundle install
+</pre></div></div>
+
+<h2>
+<span id="nodeyml" class="fragment"></span><a href="#nodeyml"><i class="fa fa-link"></i></a>node.yml</h2>
+
+<p>node.ymlでいろいろ設定します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+# node.yml
+idcf:
+  backup_to_object_storage:
+    access_key: YOUR_ACCESS_KEY
+    secret_key: YOUR_SECRET_KEY
+    directories:
+      - schedule: 30 3 * * *
+        path: /backups
+        bucket: backup.yourbucket
+        expire: 7
+        command: mysqldump -u root -x --all-databases &gt; /backups/dump_`date +\%Y\%m\%d\%H\%M`.sql
+</pre></div></div>
+
+<ul>
+<li>
+<code>idcf.backup_to_object_storage.access_key</code>: オブストのアクセスキー</li>
+<li>
+<code>idcf.backup_to_object_storage.secret_key</code>: オブストのシークレットキー</li>
+<li>
+<code>idcf.backup_to_object_storage.directories</code>: バックアップの設定の配列</li>
+</ul>
+
+<p>バックアップの設定は、次のようになってます。</p>
+
+<ul>
+<li>
+<code>schedule</code>: バックアップを実行するスケジュール。みんなおなじみのcron形式</li>
+<li>
+<code>path</code>: バックアップ元のディレクトリ。この中のファイルをオブストに同期します</li>
+<li>
+<code>bucket</code>: 同期先のバケット</li>
+<li>
+<code>expire</code>: ファイルを保持する期間。ここで設定した日数より前に作成されたファイルは、サーバーからもオブストからも削除されます</li>
+<li>
+<code>command</code>: (optional) バックアップ前に実行するコマンド。だいたいはこのコマンドで<code>path</code>のディレクトリ内にバックアップファイルを作ることになると思います</li>
+</ul>
+
+<p>上記のサンプルだと、</p>
+
+<ul>
+<li>毎日3時30分に</li>
+<li>mysqldumpで/backupsディレクトリに全データベースのdumpをとる</li>
+<li>7日前より古く作成されたファイルを削除する</li>
+<li>/backupsディレクトリをbackup.yourbucketに同期する</li>
+</ul>
+
+<p>という一連の処理になります。</p>
+
+<h2>
+<span id="recipe" class="fragment"></span><a href="#recipe"><i class="fa fa-link"></i></a>recipe</h2>
+
+<p>recipeには、1行追加するだけでOKです。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+# recipe.rb
+include_recipe "idcf-backup_to_object_storage"
+</pre></div></div>
+
+<h2>
+<span id="プロビジョニング" class="fragment"></span><a href="#%E3%83%97%E3%83%AD%E3%83%93%E3%82%B8%E3%83%A7%E3%83%8B%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>プロビジョニング</h2>
+
+<p>最後に、SSH経由でプロビジョニングします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ bundle exec itamae ssh -h ${YOURHOST} -y node.yml recipe.rb
+</pre></div></div>
+
+<p>ユーザを指定する場合は<code>-u</code>オプション、ポートを指定する場合は<code>-p</code>オプションを使います。</p>
+
+<p>プロビジョニングが完了してスケジュールが実行されると、オブストにバックアップファイルがアップロードされているはずです。<br>
+コントロールパネルでファイル一覧を表示できるので確認してみてください。</p>
+
+<h1>
+<span id="おわりに" class="fragment"></span><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>おわりに</h1>
+
+<p>プルリクお待ちしております！</p>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

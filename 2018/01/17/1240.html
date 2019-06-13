@@ -1,0 +1,216 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | Python機械学習プログラミング  第3章</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="Python機械学習プログラミング  第3章" property="og:title"><meta content="    概要   Python機械学習プログラミングの学習メモです。  勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。   今回は、第3章 分類問題 - 機械学習ライブラリ scikit-learn の活用   前回:  nownab.log | Python機械学習プログラミング 第2章     資料     3.1-3.3   3.4-3.7       環境   本書の各バージョンは結構古いので、できるだけ新しいバージョンを使うようにしている。     Python 3.6.4   scikit-learn 0...   " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2018/01/17/1240.html" property="og:url"><meta content="    概要   Python機械学習プログラミングの学習メモです。  勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。   今回は、第3章 分類問題 - 機械学習ライブラリ scikit-learn の活用   前回:  nownab.log | Python機械学習プログラミング 第2章     資料     3.1-3.3   3.4-3.7       環境   本書の各バージョンは結構古いので、できるだけ新しいバージョンを使うようにしている。     Python 3.6.4   scikit-learn 0...   " property="twitter:description"><meta content="Python機械学習プログラミング  第3章" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2018/01/17/1240.html">Python機械学習プログラミング  第3章</a></h1><span class="date">Posted on&nbsp;Jan 15, 2018</span></div><div class="body">
+<h1>
+<span id="概要" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81"><i class="fa fa-link"></i></a>概要</h1>
+
+<p>Python機械学習プログラミングの学習メモです。<br>
+勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。</p>
+
+<p>今回は、第3章 分類問題 - 機械学習ライブラリ scikit-learn の活用</p>
+
+<p>前回: <a href="https://blog.nownabe.com/2018/01/12/1238.html">nownab.log | Python機械学習プログラミング 第2章</a></p>
+
+<h1>
+<span id="資料" class="fragment"></span><a href="#%E8%B3%87%E6%96%99"><i class="fa fa-link"></i></a>資料</h1>
+
+<ul>
+<li><a href="">3.1-3.3</a></li>
+<li><a href="https://nownabe.github.io/slides/20180118-python-ml-ch03/index.html" rel="nofollow noopener" target="_blank">3.4-3.7</a></li>
+</ul>
+
+<h1>
+<span id="環境" class="fragment"></span><a href="#%E7%92%B0%E5%A2%83"><i class="fa fa-link"></i></a>環境</h1>
+
+<p>本書の各バージョンは結構古いので、できるだけ新しいバージョンを使うようにしている。</p>
+
+<ul>
+<li>Python 3.6.4</li>
+<li>scikit-learn 0.19.1</li>
+<li>matplotlib 2.1.1</li>
+</ul>
+
+<h1>
+<span id="メモ" class="fragment"></span><a href="#%E3%83%A1%E3%83%A2"><i class="fa fa-link"></i></a>メモ</h1>
+
+<h2>
+<span id="31-分類アルゴリズムの選択" class="fragment"></span><a href="#31-%E5%88%86%E9%A1%9E%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E3%81%AE%E9%81%B8%E6%8A%9E"><i class="fa fa-link"></i></a>3.1 分類アルゴリズムの選択</h2>
+
+<h2>
+<span id="32-scikit-learn活用へのファーストステップ" class="fragment"></span><a href="#32-scikit-learn%E6%B4%BB%E7%94%A8%E3%81%B8%E3%81%AE%E3%83%95%E3%82%A1%E3%83%BC%E3%82%B9%E3%83%88%E3%82%B9%E3%83%86%E3%83%83%E3%83%97"><i class="fa fa-link"></i></a>3.2 scikit-learn活用へのファーストステップ</h2>
+
+<h3>
+<span id="321-scikit-learnを使ったパーセプトロンのトレーニング" class="fragment"></span><a href="#321-scikit-learn%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E3%83%91%E3%83%BC%E3%82%BB%E3%83%97%E3%83%88%E3%83%AD%E3%83%B3%E3%81%AE%E3%83%88%E3%83%AC%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>3.2.1 scikit-learnを使ったパーセプトロンのトレーニング</h3>
+
+<p>プログラムを何箇所か修正した。</p>
+
+<p>cross_validationモジュールはscikit-learn 0.18から非推奨になのでmodel_selectionモジュールを使うようにした。</p>
+
+<p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Perceptron.html" rel="nofollow noopener" target="_blank">Perceptron</a>の<code>n_iter</code>パラメータはscikit-learn 0.19から非推奨なので<code>max_iter</code>パラメータを使うようにした。</p>
+
+<p><code>plot_decision_regions</code>関数が本書のプログラムだとテストサンプルを囲う丸が表示されなかったので以下のように<code>edgecolors</code>を追加した。<sup id="fnref1"><a href="#fn1" rel="footnote" title="matplotlib.pyplot.scatter — Matplotlib 2.1.1 documentation">1</a></sup></p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+    if test_idx:
+        X_test, y_test = X[test_idx, :], y[test_idx]
+        plt.scatter(
+            X_test[:, 0],
+            X_test[:, 1],
+            c="",
+            edgecolors="black",
+            alpha=1.0,
+            linewidths=1,
+            marker="o",
+            s=55,
+            label="test set"
+        )
+</pre></div></div>
+
+<p>また、<code>plot_decision_regions</code>は結構使う予感がするので、トップディレクトリの<code>util.py</code>というファイルに定義した。各章でディレクトリを切っているので、使うときはこんな感じになる。<sup id="fnref2"><a href="#fn2" rel="footnote" title="もっとましなimportの仕方はないのか…。">2</a></sup></p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+import sys, os
+sys.path.append(os.pardir)
+from util import plot_decision_regions
+</pre></div></div>
+
+<h2>
+<span id="33-ロジスティック回帰を使ったクラスの確率のモデリング" class="fragment"></span><a href="#33-%E3%83%AD%E3%82%B8%E3%82%B9%E3%83%86%E3%82%A3%E3%83%83%E3%82%AF%E5%9B%9E%E5%B8%B0%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%AE%E7%A2%BA%E7%8E%87%E3%81%AE%E3%83%A2%E3%83%87%E3%83%AA%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>3.3 ロジスティック回帰を使ったクラスの確率のモデリング</h2>
+
+<h3>
+<span id="331-ロジスティック回帰の直感的知識と条件付き確率" class="fragment"></span><a href="#331-%E3%83%AD%E3%82%B8%E3%82%B9%E3%83%86%E3%82%A3%E3%83%83%E3%82%AF%E5%9B%9E%E5%B8%B0%E3%81%AE%E7%9B%B4%E6%84%9F%E7%9A%84%E7%9F%A5%E8%AD%98%E3%81%A8%E6%9D%A1%E4%BB%B6%E4%BB%98%E3%81%8D%E7%A2%BA%E7%8E%87"><i class="fa fa-link"></i></a>3.3.1 ロジスティック回帰の直感的知識と条件付き確率</h3>
+
+<p>なんでlogit関数の方から説明してあるんだろうか…。</p>
+
+<h3>
+<span id="332-ロジスティック関数の重みの学習" class="fragment"></span><a href="#332-%E3%83%AD%E3%82%B8%E3%82%B9%E3%83%86%E3%82%A3%E3%83%83%E3%82%AF%E9%96%A2%E6%95%B0%E3%81%AE%E9%87%8D%E3%81%BF%E3%81%AE%E5%AD%A6%E7%BF%92"><i class="fa fa-link"></i></a>3.3.2 ロジスティック関数の重みの学習</h3>
+
+<p>尤度関数 $L(\boldsymbol{w})=P(\boldsymbol{y}|\boldsymbol{x; w})$ を使って最尤推定する。実際は負の対数尤度関数をコスト関数として勾配法でパラメータを求める。</p>
+
+<h3>
+<span id="333-scikit-learn-によるロジスティック回帰モデルのトレーニング" class="fragment"></span><a href="#333-scikit-learn-%E3%81%AB%E3%82%88%E3%82%8B%E3%83%AD%E3%82%B8%E3%82%B9%E3%83%86%E3%82%A3%E3%83%83%E3%82%AF%E5%9B%9E%E5%B8%B0%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AE%E3%83%88%E3%83%AC%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>3.3.3 scikit-learn によるロジスティック回帰モデルのトレーニング</h3>
+
+<p><code>predict_proba</code>のところがそのままだと次のエラーが出る。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+ValueError: Expected 2D array, got 1D array instead:
+array=[0.70793846 1.50872803].
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+</pre></div></div>
+
+<p>次のように修正した。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+print(lr.predict_proba(X_test_std[0:1, :]))
+</pre></div></div>
+
+<h3>
+<span id="334-正則化による化学週への対処" class="fragment"></span><a href="#334-%E6%AD%A3%E5%89%87%E5%8C%96%E3%81%AB%E3%82%88%E3%82%8B%E5%8C%96%E5%AD%A6%E9%80%B1%E3%81%B8%E3%81%AE%E5%AF%BE%E5%87%A6"><i class="fa fa-link"></i></a>3.3.4 正則化による化学週への対処</h3>
+
+<p>3.3.22式と3.3.24式が等価じゃない気がするんですが…。</p>
+
+<p>正則化パラメータと重みをプロットするコードがそのままだと次のエラーが出る。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+ValueError: Integers to negative integer powers are not allowed.
+</pre></div></div>
+
+<p>次の1行を追加した。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+c = np.int(c)
+</pre></div></div>
+
+<p>ロジスティック回帰の詳しい説明はこの本がオススメらしい。</p>
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&amp;bc1=000000&amp;IS2=1&amp;bg1=FFFFFF&amp;fc1=000000&amp;lc1=0000FF&amp;t=nownabe0c-22&amp;o=9&amp;p=8&amp;l=as4&amp;m=amazon&amp;f=ifr&amp;ref=as_ss_li_til&amp;asins=4320018672&amp;linkId=c4f3bad11834727e6686d620fde154cd"></iframe>
+
+<h2>
+<span id="34-サポートベクトルマシンによる最大マージン分類" class="fragment"></span><a href="#34-%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%AB%E3%82%88%E3%82%8B%E6%9C%80%E5%A4%A7%E3%83%9E%E3%83%BC%E3%82%B8%E3%83%B3%E5%88%86%E9%A1%9E"><i class="fa fa-link"></i></a>3.4 サポートベクトルマシンによる最大マージン分類</h2>
+
+<h3>
+<span id="341-最大マージンを直感的に理解する" class="fragment"></span><a href="#341-%E6%9C%80%E5%A4%A7%E3%83%9E%E3%83%BC%E3%82%B8%E3%83%B3%E3%82%92%E7%9B%B4%E6%84%9F%E7%9A%84%E3%81%AB%E7%90%86%E8%A7%A3%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>3.4.1 最大マージンを直感的に理解する</h3>
+
+<p>詳しくは</p>
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&amp;bc1=000000&amp;IS2=1&amp;bg1=FFFFFF&amp;fc1=000000&amp;lc1=0000FF&amp;t=nownabe0c-22&amp;o=9&amp;p=8&amp;l=as4&amp;m=amazon&amp;f=ifr&amp;ref=as_ss_li_til&amp;asins=4061529064&amp;linkId=390de8411a89fa3b9fee1455d8c57b82"></iframe>
+
+<h3>
+<span id="342-スラック変数を使った非線形分離可能なケースへの対処" class="fragment"></span><a href="#342-%E3%82%B9%E3%83%A9%E3%83%83%E3%82%AF%E5%A4%89%E6%95%B0%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E9%9D%9E%E7%B7%9A%E5%BD%A2%E5%88%86%E9%9B%A2%E5%8F%AF%E8%83%BD%E3%81%AA%E3%82%B1%E3%83%BC%E3%82%B9%E3%81%B8%E3%81%AE%E5%AF%BE%E5%87%A6"><i class="fa fa-link"></i></a>3.4.2 スラック変数を使った非線形分離可能なケースへの対処</h3>
+
+<h3>
+<span id="343-scikit-learn-での代替実装" class="fragment"></span><a href="#343-scikit-learn-%E3%81%A7%E3%81%AE%E4%BB%A3%E6%9B%BF%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>3.4.3 scikit-learn での代替実装</h3>
+
+<h2>
+<span id="35-カーネル-svm-を使った非線形問題の求解" class="fragment"></span><a href="#35-%E3%82%AB%E3%83%BC%E3%83%8D%E3%83%AB-svm-%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E9%9D%9E%E7%B7%9A%E5%BD%A2%E5%95%8F%E9%A1%8C%E3%81%AE%E6%B1%82%E8%A7%A3"><i class="fa fa-link"></i></a>3.5 カーネル SVM を使った非線形問題の求解</h2>
+
+<h3>
+<span id="351-カーネルトリックを使って分離超平面を高次元空間で特定する" class="fragment"></span><a href="#351-%E3%82%AB%E3%83%BC%E3%83%8D%E3%83%AB%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E5%88%86%E9%9B%A2%E8%B6%85%E5%B9%B3%E9%9D%A2%E3%82%92%E9%AB%98%E6%AC%A1%E5%85%83%E7%A9%BA%E9%96%93%E3%81%A7%E7%89%B9%E5%AE%9A%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>3.5.1 カーネルトリックを使って分離超平面を高次元空間で特定する</h3>
+
+<h2>
+<span id="36-決定木学習" class="fragment"></span><a href="#36-%E6%B1%BA%E5%AE%9A%E6%9C%A8%E5%AD%A6%E7%BF%92"><i class="fa fa-link"></i></a>3.6 決定木学習</h2>
+
+<h3>
+<span id="361-情報利得の最大化-できるだけ高い効果を得る" class="fragment"></span><a href="#361-%E6%83%85%E5%A0%B1%E5%88%A9%E5%BE%97%E3%81%AE%E6%9C%80%E5%A4%A7%E5%8C%96-%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%A0%E3%81%91%E9%AB%98%E3%81%84%E5%8A%B9%E6%9E%9C%E3%82%92%E5%BE%97%E3%82%8B"><i class="fa fa-link"></i></a>3.6.1 情報利得の最大化: できるだけ高い効果を得る</h3>
+
+<h3>
+<span id="362-決定木の構築" class="fragment"></span><a href="#362-%E6%B1%BA%E5%AE%9A%E6%9C%A8%E3%81%AE%E6%A7%8B%E7%AF%89"><i class="fa fa-link"></i></a>3.6.2 決定木の構築</h3>
+
+<h3>
+<span id="363-ランダムフォレストを使って弱い学習アルゴリズムと強い学習アルゴリズムを結合する" class="fragment"></span><a href="#363-%E3%83%A9%E3%83%B3%E3%83%80%E3%83%A0%E3%83%95%E3%82%A9%E3%83%AC%E3%82%B9%E3%83%88%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E5%BC%B1%E3%81%84%E5%AD%A6%E7%BF%92%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E3%81%A8%E5%BC%B7%E3%81%84%E5%AD%A6%E7%BF%92%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E3%82%92%E7%B5%90%E5%90%88%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>3.6.3 ランダムフォレストを使って弱い学習アルゴリズムと強い学習アルゴリズムを結合する</h3>
+
+<p>なぜ復元抽出なんだろうか。一般的なブートストラップ法も復元抽出をするので、それを踏襲してるだけなのか。ブートストラップ法は非復元じゃだめなのか。</p>
+
+<p>元の分布と似た別のデータが手に入る、ってとこが重要なのかな。統計的には人工的にデータを増やして母集団を近似するって意味があるっぽい。</p>
+
+<p><a href="https://books.google.co.jp/books?id=gLlpIUxRntoC&amp;printsec=frontcover&amp;hl=ja&amp;source=gbs_ge_summary_r&amp;cad=0#v=onepage&amp;q&amp;f=false" rel="nofollow noopener" target="_blank">An Introduction to the Bootstrap - Bradley Efron, R.J. Tibshirani - Google ブックス</a></p>
+
+<p>この辺に書いてあんのかな。。。</p>
+
+<h2>
+<span id="37-k近傍法-怠惰学習アルゴリズム" class="fragment"></span><a href="#37-k%E8%BF%91%E5%82%8D%E6%B3%95-%E6%80%A0%E6%83%B0%E5%AD%A6%E7%BF%92%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0"><i class="fa fa-link"></i></a>3.7 k近傍法: 怠惰学習アルゴリズム</h2>
+
+<h1>
+<span id="python機械学習プログラミング" class="fragment"></span><a href="#python%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>Python機械学習プログラミング</h1>
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&amp;bc1=000000&amp;IS2=1&amp;bg1=FFFFFF&amp;fc1=000000&amp;lc1=0000FF&amp;t=nownabe0c-22&amp;o=9&amp;p=8&amp;l=as4&amp;m=amazon&amp;f=ifr&amp;ref=as_ss_li_til&amp;asins=B01HGIPIAK&amp;linkId=ef8aa25f336a01f62b00fce21e6f952a"></iframe>
+
+<h1>
+<span id="機械学習勉強会について" class="fragment"></span><a href="#%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E5%8B%89%E5%BC%B7%E4%BC%9A%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>機械学習勉強会について</h1>
+
+<p>社内で毎週開催している。本書は輪読形式でまわしているが、題材によって形式は柔軟に変えている。<br>
+毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。</p>
+
+<p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。<br>
+<a href="https://github.com/Wondershake/machine-learning-study" rel="nofollow noopener" target="_blank">Wondershake/machine-learning-study: 機械学習勉強会</a></p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+</pre></div></div>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p><a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.scatter.html#matplotlib.pyplot.scatter" rel="nofollow noopener" target="_blank">matplotlib.pyplot.scatter — Matplotlib 2.1.1 documentation</a> <a href="#fnref1" rev="footnote">↩</a></p>
+</li>
+
+<li id="fn2">
+<p>もっとましなimportの仕方はないのか…。 <a href="#fnref2" rev="footnote">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

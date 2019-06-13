@@ -1,0 +1,164 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | Mac OS Xで逆アセンブル</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="Mac OS Xで逆アセンブル" property="og:title"><meta content="    objdump   Linuxで有名なobjdumpというツールが使えます。  objdumpは    objdump - display information from object files.    とありますが、逆アセンブルもしてくれます。     インストール   Homebrewでいれます。 binutils というパッケージに含まれています。    brew install binutils    コマンドは gobjdump になります。    $ gobjdump -v GNU objdump... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2016/08/30/420.html" property="og:url"><meta content="    objdump   Linuxで有名なobjdumpというツールが使えます。  objdumpは    objdump - display information from object files.    とありますが、逆アセンブルもしてくれます。     インストール   Homebrewでいれます。 binutils というパッケージに含まれています。    brew install binutils    コマンドは gobjdump になります。    $ gobjdump -v GNU objdump... " property="twitter:description"><meta content="Mac OS Xで逆アセンブル" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2016/08/30/420.html">Mac OS Xで逆アセンブル</a></h1><span class="date">Posted on&nbsp;Aug 30, 2016</span></div><div class="body">
+<h1>
+<span id="objdump" class="fragment"></span><a href="#objdump"><i class="fa fa-link"></i></a>objdump</h1>
+
+<p>Linuxで有名なobjdumpというツールが使えます。<br>
+objdumpは</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+objdump - display information from object files.
+</pre></div></div>
+
+<p>とありますが、逆アセンブルもしてくれます。</p>
+
+<h1>
+<span id="インストール" class="fragment"></span><a href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>インストール</h1>
+
+<p>Homebrewでいれます。<code>binutils</code>というパッケージに含まれています。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+brew install binutils
+</pre></div></div>
+
+<p>コマンドは<code>gobjdump</code>になります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ gobjdump -v
+GNU objdump (GNU Binutils) 2.26.1
+Copyright (C) 2015 Free Software Foundation, Inc.
+This program is free software; you may redistribute it under the terms of
+the GNU General Public License version 3 or (at your option) any later version.
+This program has absolutely no warranty.
+</pre></div></div>
+
+<h1>
+<span id="使い方" class="fragment"></span><a href="#%E4%BD%BF%E3%81%84%E6%96%B9"><i class="fa fa-link"></i></a>使い方</h1>
+
+<p>適当なプログラムを作って逆アセンブルしてみます。<br>
+ただ終了するだけのプログラムです。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+int main() {
+  return 0;
+}
+</pre></div></div>
+
+<p>コンパイルします。<sup id="fnref1"><a href="#fn1" rel="footnote" title="Macだとgccがclangになってしまってるので、gcc-6というコマンドでgccを使ってます。">1</a></sup></p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+gcc-6 exit0.c -o exit0
+</pre></div></div>
+
+<p>objdumpで逆アセンブルします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ gobjdump -d -M intel exit0
+
+exit0:     ファイル形式 mach-o-x86-64
+
+
+セクション .text の逆アセンブル:
+
+0000000100000fa5 &lt;_main&gt;:
+   100000fa5:   55                      push   rbp
+   100000fa6:   48 89 e5                mov    rbp,rsp
+   100000fa9:   b8 00 00 00 00          mov    eax,0x0
+   100000fae:   5d                      pop    rbp
+   100000faf:   c3                      ret
+</pre></div></div>
+
+<p>いい感じですね！</p>
+
+<h1>
+<span id="c--アセンブリ" class="fragment"></span><a href="#c--%E3%82%A2%E3%82%BB%E3%83%B3%E3%83%96%E3%83%AA"><i class="fa fa-link"></i></a>C =&gt; アセンブリ</h1>
+
+<p>Cからアセンブリに直接変換もできます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ gcc -S exit0.c
+$ cat exit0.s
+    .section    __TEXT,__text,regular,pure_instructions
+    .macosx_version_min 10, 11
+    .globl  _main
+    .align  4, 0x90
+_main:                                  ## @main
+    .cfi_startproc
+## BB#0:
+    pushq   %rbp
+Ltmp0:
+    .cfi_def_cfa_offset 16
+Ltmp1:
+    .cfi_offset %rbp, -16
+    movq    %rsp, %rbp
+Ltmp2:
+    .cfi_def_cfa_register %rbp
+    xorl    %eax, %eax
+    movl    $0, -4(%rbp)
+    popq    %rbp
+    retq
+    .cfi_endproc
+
+
+.subsections_via_symbols
+</pre></div></div>
+
+<h1>
+<span id="ソースコードに対応するアセンブリ" class="fragment"></span><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AB%E5%AF%BE%E5%BF%9C%E3%81%99%E3%82%8B%E3%82%A2%E3%82%BB%E3%83%B3%E3%83%96%E3%83%AA"><i class="fa fa-link"></i></a>ソースコードに対応するアセンブリ</h1>
+
+<p>C言語のソースコードと、対応するアセンブリをわかりやすく表示することもできます。</p>
+
+<p>まずコンパイルします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+gcc -c -g exit0.c
+</pre></div></div>
+
+<p><code>-c</code>はリンクしないオプション、<code>-g</code>はデバッグ情報を付与します。</p>
+
+<p><code>gobjdump</code>で表示します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ gobjdump -d -S -M intel exit0.o
+exit0.o:     ファイル形式 mach-o-x86-64
+
+
+セクション .text の逆アセンブル:
+
+0000000000000000 &lt;_main&gt;:
+int main() {
+   0:   55                      push   rbp
+   1:   48 89 e5                mov    rbp,rsp
+  return 0;
+   4:   b8 00 00 00 00          mov    eax,0x0
+}
+   9:   5d                      pop    rbp
+   a:   c3                      ret
+</pre></div></div>
+
+<p>いい感じですね <img class="emoji" title=":grin:" alt=":grin:" src="/images/emoji/unicode/1f601.svg" height="20" width="20" align="absmiddle"> </p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>Macだと<code>gcc</code>が<code>clang</code>になってしまってるので、<code>gcc-6</code>というコマンドでgccを使ってます。 <a href="#fnref1" rev="footnote">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | Golangの標準sqlパッケージ</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="Golangの標準sqlパッケージ" property="og:title"><meta content=" http://go-database-sql.org/index.html   を読んだ。のでまとめてみた      内容はちょっと古いっぽい。     Overview       sql.DB はDB connectionではない     sql.DB はインターフェイスの抽象であり、DBの存在である     sql.DB は次のことをやってくれる    コネクションの管理   コネクションプールの管理       コネクションはちゃんと閉じよう       Importing a Database Driver     driverは直接使...   " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2017/01/16/570.html" property="og:url"><meta content=" http://go-database-sql.org/index.html   を読んだ。のでまとめてみた      内容はちょっと古いっぽい。     Overview       sql.DB はDB connectionではない     sql.DB はインターフェイスの抽象であり、DBの存在である     sql.DB は次のことをやってくれる    コネクションの管理   コネクションプールの管理       コネクションはちゃんと閉じよう       Importing a Database Driver     driverは直接使...   " property="twitter:description"><meta content="Golangの標準sqlパッケージ" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2017/01/16/570.html">Golangの標準sqlパッケージ</a></h1><span class="date">Posted on&nbsp;Jan 12, 2017</span></div><div class="body"><p><a href="http://go-database-sql.org/index.html" class="autolink" rel="nofollow noopener" target="_blank">http://go-database-sql.org/index.html</a></p>
+
+<p>を読んだ。のでまとめてみた <img class="emoji" title=":smiley:" alt=":smiley:" src="/images/emoji/unicode/1f603.svg" height="20" width="20" align="absmiddle"> </p>
+
+<p>内容はちょっと古いっぽい。</p>
+
+<h1>
+<span id="overview" class="fragment"></span><a href="#overview"><i class="fa fa-link"></i></a>Overview</h1>
+
+<ul>
+<li>
+<code>sql.DB</code>はDB connectionではない</li>
+<li>
+<code>sql.DB</code>はインターフェイスの抽象であり、DBの存在である</li>
+<li>
+<code>sql.DB</code>は次のことをやってくれる
+
+<ul>
+<li>コネクションの管理</li>
+<li>コネクションプールの管理</li>
+</ul>
+</li>
+<li>コネクションはちゃんと閉じよう</li>
+</ul>
+
+<h1>
+<span id="importing-a-database-driver" class="fragment"></span><a href="#importing-a-database-driver"><i class="fa fa-link"></i></a>Importing a Database Driver</h1>
+
+<ul>
+<li>driverは直接使うな</li>
+</ul>
+
+<h1>
+<span id="accessing-the-database" class="fragment"></span><a href="#accessing-the-database"><i class="fa fa-link"></i></a>Accessing the Database</h1>
+
+<ul>
+<li>
+<code>sql.Open()</code>は<code>*sql.DB</code>を返す</li>
+<li>
+<code>sql.Open()</code>ではコネクションは確立しない</li>
+<li>実際に接続が必要になったとき、遅延的に接続される</li>
+<li>
+<code>sql.DB</code>は長生きするようにデザインされている</li>
+<li>頻繁にOpen/Closeするな</li>
+</ul>
+
+<h1>
+<span id="retrieving-result-sets" class="fragment"></span><a href="#retrieving-result-sets"><i class="fa fa-link"></i></a>Retrieving Result Sets</h1>
+
+<ul>
+<li>
+<code>database/sql</code>の関数名は大きな意味を持つ</li>
+<li>例えば<code>Query</code>って単語を含んでいれば、DBに問い合わせて行のセットを返す</li>
+</ul>
+
+<h2>
+<span id="fetching-data-from-the-database" class="fragment"></span><a href="#fetching-data-from-the-database"><i class="fa fa-link"></i></a>Fetching Data from the Database</h2>
+
+<ul>
+<li>結果を受け取るには適切な型の変数のポインタを<code>rows.Scan()</code>に渡す</li>
+<li>
+<code>db.Query()</code>で返る<code>rows</code>はコネクションを占領し続けるので適切に<code>rows.Close()</code>する</li>
+<li>
+<code>rows.Next()</code>は最終的にはEOFになって<code>rows.Close()</code>呼ぶけど、ループ途中で抜けたりしたときのために</li>
+<li>
+<code>rows.Close()</code>は既にクローズ済でも無害</li>
+<li>とりあえず<code>defer rows.Close()</code>しときましょう</li>
+<li>ループの中でクエリして結果を受け取るような場合は、ループの中で<code>defer</code>を使わず明示的に<code>rows.Close()</code>しましょう</li>
+</ul>
+
+<h2>
+<span id="how-scan-works" class="fragment"></span><a href="#how-scan-works"><i class="fa fa-link"></i></a>How Scan() Works</h2>
+
+<ul>
+<li>
+<code>Scan()</code>使えばクエリ結果をよろしく型変換してくれる</li>
+</ul>
+
+<h2>
+<span id="preparing-queries" class="fragment"></span><a href="#preparing-queries"><i class="fa fa-link"></i></a>Preparing Queries</h2>
+
+<ul>
+<li>何回も同じクエリを実行するときは<code>db.Prepare()</code>しましょう</li>
+</ul>
+
+<h2>
+<span id="single-row-queries" class="fragment"></span><a href="#single-row-queries"><i class="fa fa-link"></i></a>Single-Row Queries</h2>
+
+<ul>
+<li>
+<code>err = db.QueryRow().Scan()</code>でエラーが起きると、<code>Scan()</code>までdeferされる</li>
+</ul>
+
+<h1>
+<span id="modifying-data-and-using-transactions" class="fragment"></span><a href="#modifying-data-and-using-transactions"><i class="fa fa-link"></i></a>Modifying Data and Using Transactions</h1>
+
+<h2>
+<span id="statements-that-modify-data" class="fragment"></span><a href="#statements-that-modify-data"><i class="fa fa-link"></i></a>Statements that Modify Data</h2>
+
+<ul>
+<li>行を返さないinsertとかdeleteには<code>Exec()</code>を使う</li>
+<li>
+<code>Query()</code>は行を返さないSQLでも<code>sql.Rows</code>を返し、それは実行後もコネクションを確保している</li>
+</ul>
+
+<h2>
+<span id="working-with-transactions" class="fragment"></span><a href="#working-with-transactions"><i class="fa fa-link"></i></a>Working with Transactions</h2>
+
+<ul>
+<li>
+<code>db.Begin()</code>から<code>Commint()</code>か<code>Rollback()</code>までが1つのトランザクションとなる</li>
+<li>トランザクションの中で<code>Db</code>を操作しちゃダメ。<code>Tx</code>を使う。<code>Tx</code>はトランザクション内にいるけど、<code>Db</code>はトランザクション外</li>
+<li>コネクションの状態を変えるような複数のStatementを使う時はトランザクションが必要なくても<code>Tx</code>が必要
+
+<ul>
+<li>temporary table</li>
+<li><code>SET @var := value</code></li>
+<li>charset, timeoutみたいな接続オプションとか</li>
+</ul>
+</li>
+<li>シングルコネクションでごにょごにょする方法がGoには<code>Tx</code>しかない</li>
+</ul>
+
+<h1>
+<span id="using-prepared-statements" class="fragment"></span><a href="#using-prepared-statements"><i class="fa fa-link"></i></a>Using Prepared Statements</h1>
+
+<h2>
+<span id="prepared-statements-and-connections" class="fragment"></span><a href="#prepared-statements-and-connections"><i class="fa fa-link"></i></a>Prepared Statements And Connections</h2>
+
+<ul>
+<li>Prepared Statementは、特定のコネクションと紐づく</li>
+<li>database/sqlでは、statementがどのコネクションと紐付いているかを<code>Stmt</code>オブジェクトが記憶している</li>
+<li>
+<code>Stmt</code>を実行するとき、<code>Stmt</code>がそのコネクションを使おうとする
+
+<ul>
+<li>もしコネクションが閉じてたり、busyだった場合は他のコネクションに再度prepareし直す</li>
+</ul>
+</li>
+<li>こうすることでhigh-concurrencyを実現してる</li>
+</ul>
+
+<h2>
+<span id="avoiding-prepared-statements" class="fragment"></span><a href="#avoiding-prepared-statements"><i class="fa fa-link"></i></a>Avoiding Prepared Statements</h2>
+
+<ul>
+<li>
+<code>db.Query(sql, param)</code>でも背後でPrepared Statementしてる</li>
+<li>Prepared Statementが好ましくないときもある
+
+<ul>
+<li>RDBMSがサポートしてないとき</li>
+<li>パフォーマンスが厳しいとき(セキュリティは別の方法でなんとかする)</li>
+</ul>
+</li>
+<li>Prepared Statementしたくないときは、<code>fmt.Sprint()</code>とかで整形して、<code>db.Query()</code>とかに渡す</li>
+</ul>
+
+<h2>
+<span id="prepared-statements-in-transactions" class="fragment"></span><a href="#prepared-statements-in-transactions"><i class="fa fa-link"></i></a>Prepared Statements in Transactions</h2>
+
+<ul>
+<li>
+<code>Tx</code>で作られたPrepared Statementsはその<code>Tx</code>にのみ紐づく</li>
+<li>同様に<code>DB</code>上で作られたPrepared Statementはトランザクション内では使えない</li>
+<li>トランザクション外で準備されたPrepared Statementを使うには<code>Tx.Stmt()</code>を使う</li>
+<li>あんま使わない方がいい (今も？)</li>
+</ul>
+
+<h2>
+<span id="parameter-placeholder-syntax" class="fragment"></span><a href="#parameter-placeholder-syntax"><i class="fa fa-link"></i></a>Parameter Placeholder Syntax</h2>
+
+<h1>
+<span id="handling-errors" class="fragment"></span><a href="#handling-errors"><i class="fa fa-link"></i></a>Handling Errors</h1>
+
+<ul>
+<li>
+<code>database/sql</code>のほぼすべての機能は返り値でエラーを返すから無視すんなよ</li>
+</ul>
+
+<h2>
+<span id="errors-from-iterating-resultsets" class="fragment"></span><a href="#errors-from-iterating-resultsets"><i class="fa fa-link"></i></a>Errors From Iterating Resultsets</h2>
+
+<ul>
+<li>ループ後<code>rows.Err()</code>で確認する</li>
+<li>異常終了した時自動で<code>rows.Close()</code>される</li>
+</ul>
+
+<h2>
+<span id="errors-from-closing-resultsets" class="fragment"></span><a href="#errors-from-closing-resultsets"><i class="fa fa-link"></i></a>Errors From Closing Resultsets</h2>
+
+<ul>
+<li>
+<code>rows.Next()</code>が最後までいくと勝手に<code>rows.Close()</code>されるけど、途中で抜けた時のために明示的にループ後で<code>rows.Close()</code>する</li>
+<li>
+<code>rows.Close()</code>によるエラーは、何をすべきか明確でないので、ログとったりpanicしたりする</li>
+</ul>
+
+<h2>
+<span id="errors-from-queryrow" class="fragment"></span><a href="#errors-from-queryrow"><i class="fa fa-link"></i></a>Errors From QueryRow()</h2>
+
+<ul>
+<li>
+<code>QueryRow()</code>で結果が空のとき<code>sql.ErrNoRows</code>というエラーを返す</li>
+<li>結果が空なのはエラーじゃないことがほとんどなので、適切にハンドルする必要がある</li>
+</ul>
+
+<h2>
+<span id="identifying-specific-database-errors" class="fragment"></span><a href="#identifying-specific-database-errors"><i class="fa fa-link"></i></a>Identifying Specific Database Errors</h2>
+
+<ul>
+<li>エラーのハンドルはエラーメッセージじゃなくエラー番号で</li>
+<li>ドライバごとに方法は異なる</li>
+<li>エラー番号はデータベースによる</li>
+<li>数字をそのまま使うのは臭うので、定数を使おう</li>
+</ul>
+
+<h2>
+<span id="handling-connection-errors" class="fragment"></span><a href="#handling-connection-errors"><i class="fa fa-link"></i></a>Handling Connection Errors</h2>
+
+<ul>
+<li>10回を上限に自動で再接続する</li>
+</ul>
+
+<h1>
+<span id="working-with-nulls" class="fragment"></span><a href="#working-with-nulls"><i class="fa fa-link"></i></a>Working with NULLs</h1>
+
+<ul>
+<li>NULLABLEな値を扱う時、database/sqlに用意されている特別な型を使う</li>
+<li>トリッキーかつ将来性ないので、あんま使わない方がいい</li>
+<li>デフォルト値を設定した方がいい</li>
+<li>どうしてもNULLを避けられなかったら、SQLで<code>COALESCE()</code>を使うのもあり</li>
+</ul>
+
+<h1>
+<span id="working-with-unknown-columns" class="fragment"></span><a href="#working-with-unknown-columns"><i class="fa fa-link"></i></a>Working with Unknown Columns</h1>
+
+<ul>
+<li>
+<code>Scan()</code>は渡す変数の数がクエリ結果の列数と一致してないといけない</li>
+<li>クエリ結果の列数がわからないときは、<code>Columns()</code>が使える</li>
+<li>なんもわからんときは<code>sql.RawBytes</code>を使う</li>
+</ul>
+
+<h1>
+<span id="the-connection-pool" class="fragment"></span><a href="#the-connection-pool"><i class="fa fa-link"></i></a>The Connection Pool</h1>
+
+<ul>
+<li>デフォルトで接続数に上限はない</li>
+<li>
+<code>db.SetMaxOpenConns(N)</code>で接続数の上限を設定できる</li>
+<li>db.SetMaxIdleConns(N)`はうまく調整する</li>
+</ul>
+
+<h1>
+<span id="surprises-antipatterns-and-limitations" class="fragment"></span><a href="#surprises-antipatterns-and-limitations"><i class="fa fa-link"></i></a>Surprises, Antipatterns and Limitations</h1>
+
+<h2>
+<span id="resource-exhaustion" class="fragment"></span><a href="#resource-exhaustion"><i class="fa fa-link"></i></a>Resource Exhaustion</h2>
+
+<h2>
+<span id="large-uint64-values" class="fragment"></span><a href="#large-uint64-values"><i class="fa fa-link"></i></a>Large uint64 Values</h2>
+
+<h2>
+<span id="connection-state-mismatch" class="fragment"></span><a href="#connection-state-mismatch"><i class="fa fa-link"></i></a>Connection State Mismatch</h2>
+
+<h2>
+<span id="database-specific-syntax" class="fragment"></span><a href="#database-specific-syntax"><i class="fa fa-link"></i></a>Database-Specific Syntax</h2>
+
+<h2>
+<span id="multiple-result-sets" class="fragment"></span><a href="#multiple-result-sets"><i class="fa fa-link"></i></a>Multiple Result Sets</h2>
+
+<h2>
+<span id="invoking-stored-procedures" class="fragment"></span><a href="#invoking-stored-procedures"><i class="fa fa-link"></i></a>Invoking Stored Procedures</h2>
+
+<h2>
+<span id="multiple-statement-support" class="fragment"></span><a href="#multiple-statement-support"><i class="fa fa-link"></i></a>Multiple Statement Support</h2>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

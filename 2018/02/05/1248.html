@@ -1,0 +1,755 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | Google Cloud Endpoints for gRPCの認証まわり</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="Google Cloud Endpoints for gRPCの認証まわり" property="og:title"><meta content="    はじめに   Cloud Endpoints for gRPCの認証まわりでちょっと引っかかったので整理しました。  GCPのドキュメントは大元の英語版であっても間違ってる箇所が多いので注意が必要です。   言語はGolangです。     Cloud Endpoints   Cloud Endpoints はAPIを管理するためのサービスです。いまいちわかりにくいですが、こんなことをやってくれます。     gRPC APIをREST APIに変換して提供   APIのモニタリング   Auth0やFirebase...   " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2018/02/05/1248.html" property="og:url"><meta content="    はじめに   Cloud Endpoints for gRPCの認証まわりでちょっと引っかかったので整理しました。  GCPのドキュメントは大元の英語版であっても間違ってる箇所が多いので注意が必要です。   言語はGolangです。     Cloud Endpoints   Cloud Endpoints はAPIを管理するためのサービスです。いまいちわかりにくいですが、こんなことをやってくれます。     gRPC APIをREST APIに変換して提供   APIのモニタリング   Auth0やFirebase...   " property="twitter:description"><meta content="Google Cloud Endpoints for gRPCの認証まわり" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2018/02/05/1248.html">Google Cloud Endpoints for gRPCの認証まわり</a></h1><span class="date">Posted on&nbsp;Feb 05, 2018</span></div><div class="body">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>Cloud Endpoints for gRPCの認証まわりでちょっと引っかかったので整理しました。<br>
+GCPのドキュメントは大元の英語版であっても間違ってる箇所が多いので注意が必要です。</p>
+
+<p>言語はGolangです。</p>
+
+<h1>
+<span id="cloud-endpoints" class="fragment"></span><a href="#cloud-endpoints"><i class="fa fa-link"></i></a>Cloud Endpoints</h1>
+
+<p><a href="https://cloud.google.com/endpoints/?hl=ja" rel="nofollow noopener" target="_blank">Cloud Endpoints</a>はAPIを管理するためのサービスです。いまいちわかりにくいですが、こんなことをやってくれます。</p>
+
+<ul>
+<li>gRPC APIをREST APIに変換して提供</li>
+<li>APIのモニタリング</li>
+<li>Auth0やFirebaseでの認証</li>
+</ul>
+
+<p>Cloud Endpointsは大きく3つの形式で利用できます。</p>
+
+<ul>
+<li>
+<a href="https://cloud.google.com/endpoints/docs/openapi/?hl=ja" rel="nofollow noopener" target="_blank">OpenAPI (JSON/REST API)</a>
+
+<ul>
+<li>一般的なREST APIをCloud Endpointsで管理する感じ</li>
+<li>旧Swagger</li>
+</ul>
+</li>
+<li>
+<a href="https://cloud.google.com/endpoints/docs/frameworks/about-cloud-endpoints-frameworks?hl=ja" rel="nofollow noopener" target="_blank">Endpoints Framework</a>
+
+<ul>
+<li>アプリケーションに組み込んで使うタイプ</li>
+<li>App Engine Standard、Java or Python</li>
+</ul>
+</li>
+<li><a href="https://cloud.google.com/endpoints/docs/grpc/about-grpc?hl=ja" rel="nofollow noopener" target="_blank">gRPC</a></li>
+</ul>
+
+<h1>
+<span id="extensible-service-proxy" class="fragment"></span><a href="#extensible-service-proxy"><i class="fa fa-link"></i></a>Extensible Service Proxy</h1>
+
+<p>for gRPCではリクエストは<a href="https://cloud.google.com/endpoints/docs/frameworks-extensible-service-proxy?hl=ja" rel="nofollow noopener" target="_blank">Extensible Service Proxy</a>(以下ESP)を経由することになります。ESPはNginxベースのリバースプロキシでCloud Endpointsの機能を提供します。</p>
+
+<p>このESPをサイドカーコンテナとしてアプリケーションと一緒にデプロイすることでCloud Endpointsの機能を利用できます。</p>
+
+<h1>
+<span id="認証" class="fragment"></span><a href="#%E8%AA%8D%E8%A8%BC"><i class="fa fa-link"></i></a>認証</h1>
+
+<p>Cloud Endpointsの認証には大きくわけて2種類あります。</p>
+
+<ul>
+<li>APIキー
+
+<ul>
+<li>呼び出し元を識別する</li>
+</ul>
+</li>
+<li>認証スキーム (Firebase、Auth0など)
+
+<ul>
+<li>エンドユーザを識別する</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<span id="apiキー" class="fragment"></span><a href="#api%E3%82%AD%E3%83%BC"><i class="fa fa-link"></i></a>APIキー</h2>
+
+<p><a href="https://cloud.google.com/endpoints/docs/restricting-api-access-with-api-keys-grpc?hl=ja" rel="nofollow noopener" target="_blank">API キーで API アクセスを制限する（gRPC）  |  Cloud Endpoints  |  Google Cloud Platform</a></p>
+
+<p>APIキーの認証を有効化するには<a href="https://cloud.google.com/endpoints/docs/grpc/grpc-service-config?hl=ja" rel="nofollow noopener" target="_blank">サービス設定</a>の<code>usage.rules</code>で<code>allow_unregistered_calls</code>を<code>false</code>にします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+usage:
+  rules:
+    - selector: "*"
+      allow_unregistered_calls: false
+</pre></div></div>
+
+<p>クライアント側はmetadataの<code>x-api-key</code>にAPIキーをセットしてリクエストします。また、例えばAPIキーの制限としてリファラを設定している場合は、metadataの<code>referer</code>にリファラをセットする必要があります。</p>
+
+<h2>
+<span id="認証スキーム" class="fragment"></span><a href="#%E8%AA%8D%E8%A8%BC%E3%82%B9%E3%82%AD%E3%83%BC%E3%83%A0"><i class="fa fa-link"></i></a>認証スキーム</h2>
+
+<p><a href="https://cloud.google.com/endpoints/docs/grpc/authenticating-users-grpc?hl=ja" rel="nofollow noopener" target="_blank">ユーザーの認証  |  gRPC を使用する Cloud Endpoints  |  Google Cloud Platform</a></p>
+
+<p>認証スキームではより細い認証を行うことができます。Firebaseやサービスアカウント、Auth0などで認証することができます。有効化するにはサービス設定の<code>authentication</code>を設定します。</p>
+
+<p>クライアント側ではmetadataの<code>authorization</code>に<code>Baarer + token</code>をセットします。</p>
+
+<h1>
+<span id="やってみる" class="fragment"></span><a href="#%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B"><i class="fa fa-link"></i></a>やってみる</h1>
+
+<p>実際に実装して認証結果をみていきます。細かい部分はかなり適当なのでそのままプロダクションでは使わないでください。</p>
+
+<p>gRPCのメソッドはEcho1〜4までの4つを用意して、次のように認証を設定します。</p>
+
+<table>
+<thead>
+<tr>
+<th>メソッド</th>
+<th>APIキー認証</th>
+<th>認証スキーム認証</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Echo1</td>
+<td>なし</td>
+<td>なし</td>
+</tr>
+<tr>
+<td>Echo2</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+<tr>
+<td>Echo3</td>
+<td>あり</td>
+<td>なし</td>
+</tr>
+<tr>
+<td>Echo4</td>
+<td>あり</td>
+<td>あり</td>
+</tr>
+</tbody>
+</table>
+
+<p>認証スキームにはサービスアカウントを利用します。</p>
+
+<p>ここではGCPのプロジェクトとして<code>cloud-endpoints-grpc-auth</code>を使っています。適宜書き換えてください。</p>
+
+<p>完成コードは<a href="https://github.com/nownabe/examples/tree/master/cloud-endpoints-grpc-authentication" rel="nofollow noopener" target="_blank">こちら</a>にあります。</p>
+
+<h2>
+<span id="サービスの定義実装" class="fragment"></span><a href="#%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%AE%E5%AE%9A%E7%BE%A9%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>サービスの定義・実装</h2>
+
+<p>まず、gRPCのサービスを定義してGoのコードとデスクリプタファイルを生成します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+syntax = "proto3";
+
+package echo;
+option go_package = "main";
+
+service EchoService {
+  rpc Echo1 (Request) returns (Response) {}
+  rpc Echo2 (Request) returns (Response) {}
+  rpc Echo3 (Request) returns (Response) {}
+  rpc Echo4 (Request) returns (Response) {}
+}
+
+message Request {
+  string message = 1;
+}
+
+message Response {
+  string message = 1;
+}
+</pre></div></div>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+protoc \
+  -I=. \
+  --include_source_info \
+  --descriptor_set_out=echo.pb \
+  --go_out=plugins=grpc:. \
+  echo.proto
+</pre></div></div>
+
+<p>次に、サーバとクライアントを実装します。まだ認証部分は実装しません。それぞれのディレクトリを作成します。ここではめんどくさいのでpbファイルはコピーします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+mkdir server client
+cp echo.pb.go server
+cp echo.pb.go client
+</pre></div></div>
+
+<p>サーバの実装です。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+package main
+
+import (
+    "fmt"
+    "net"
+
+    "golang.org/x/net/context"
+    "google.golang.org/grpc"
+    "google.golang.org/grpc/metadata"
+    "google.golang.org/grpc/reflection"
+)
+
+const (
+    port = ":50051"
+)
+
+func echo(ctx context.Context, in *Request) (*Response, error) {
+    md, _ := metadata.FromIncomingContext(ctx)
+    fmt.Println(", Metadata:", md)
+    return &amp;Response{Message: in.Message}, nil
+}
+
+type server struct{}
+
+func (server) Echo1(ctx context.Context, in *Request) (*Response, error) {
+    fmt.Print("Echo1 Received: ", in.Message)
+    return echo(ctx, in)
+}
+
+func (server) Echo2(ctx context.Context, in *Request) (*Response, error) {
+    fmt.Print("Echo2 Received: ", in.Message)
+    return echo(ctx, in)
+}
+
+func (server) Echo3(ctx context.Context, in *Request) (*Response, error) {
+    fmt.Print("Echo3 Received: ", in.Message)
+    return echo(ctx, in)
+}
+
+func (server) Echo4(ctx context.Context, in *Request) (*Response, error) {
+    fmt.Print("Echo4 Received: ", in.Message)
+    return echo(ctx, in)
+}
+
+func main() {
+    s := grpc.NewServer()
+    RegisterEchoServiceServer(s, server{})
+    reflection.Register(s)
+
+    lis, err := net.Listen("tcp", port)
+    if err != nil {
+        panic(err)
+    }
+
+    if err := s.Serve(lis); err != nil {
+        panic(err)
+    }
+}
+</pre></div></div>
+
+<p>metadataの<code>x-endpoint-api-userinfo</code>には認証したユーザの情報が入ります。</p>
+
+<p>起動してみましょう。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+cd server
+go get .
+go run *.go
+</pre></div></div>
+
+<p>クライアントの実装です。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+package main
+
+import (
+    "flag"
+    "fmt"
+
+    "golang.org/x/net/context"
+    "google.golang.org/grpc"
+)
+
+func main() {
+    var addr, msg string
+    flag.StringVar(&amp;addr, "addr", "127.0.0.1:50051", "server address")
+    flag.StringVar(&amp;msg, "msg", "Hello", "message")
+    flag.Parse()
+
+    conn, err := grpc.Dial(addr, grpc.WithInsecure())
+    if err != nil {
+        panic(err)
+    }
+    defer conn.Close()
+
+    c := NewEchoServiceClient(conn)
+
+    ctx := context.Background()
+    req := &amp;Request{Message: msg}
+
+    res, err := c.Echo1(ctx, req)
+    if err == nil {
+        fmt.Println("Echo1: succeeded:", res)
+    } else {
+        fmt.Println("Echo1: failed:", err)
+    }
+
+    res, err = c.Echo2(ctx, req)
+    if err == nil {
+        fmt.Println("Echo2: succeeded:", res)
+    } else {
+        fmt.Println("Echo2: failed:", err)
+    }
+
+    res, err = c.Echo3(ctx, req)
+    if err == nil {
+        fmt.Println("Echo3: succeeded:", res)
+    } else {
+        fmt.Println("Echo3: failed:", err)
+    }
+
+    res, err = c.Echo4(ctx, req)
+    if err == nil {
+        fmt.Println("Echo4: succeeded:", res)
+    } else {
+        fmt.Println("Echo4: failed:", err)
+    }
+}
+
+</pre></div></div>
+
+<p>サーバが起動していることを確認して、クライアントを実行してみます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+cd client
+go run *.go
+</pre></div></div>
+
+<p>次のような出力が得られます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+Echo1: succeeded: message:"Hello"
+Echo2: succeeded: message:"Hello"
+Echo3: succeeded: message:"Hello"
+Echo4: succeeded: message:"Hello"
+</pre></div></div>
+
+<p>これでgRPCサービスの定義と実装がおわりました。</p>
+
+<h2>
+<span id="cloud-endpointsのデプロイ" class="fragment"></span><a href="#cloud-endpoints%E3%81%AE%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4"><i class="fa fa-link"></i></a>Cloud Endpointsのデプロイ</h2>
+
+<p>Cloud Endpointsをデプロイする前に、認証に必要なサービスアカウントを作成しておきます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+gcloud iam service-accounts create client1 --display-name=client1
+gcloud iam service-accounts add-iam-policy-binding \
+  client1@cloud-endpoints-grpc-auth.iam.gserviceaccount.com \
+  --member serviceAccount:client1@cloud-endpoints-grpc-auth.iam.gserviceaccount.com \
+  --role roles/iam.serviceAccountUser
+</pre></div></div>
+
+<p>前述の表を満たすようにサービス設定をYAMLで書きます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+type: google.api.Service
+config_version: 3
+
+name: echo.endpoints.cloud-endpoints-grpc-auth.cloud.goog
+
+title: Echo API
+apis:
+  - name: echo.EchoService
+
+usage:
+  rules:
+    - selector: "echo.EchoService.Echo1"
+      allow_unregistered_calls: true
+    - selector: "echo.EchoService.Echo2"
+      allow_unregistered_calls: true
+    - selector: "echo.EchoService.Echo3"
+      allow_unregistered_calls: false
+    - selector: "echo.EchoService.Echo4"
+      allow_unregistered_calls: false
+
+authentication:
+  providers:
+    - id: client1
+      issuer: client1@cloud-endpoints-grpc-auth.iam.serviceaccount.com
+      jwks_uri: https://www.googleapis.com/robot/v1/metadata/x509/client1@cloud-endpoints-grpc-auth.iam.gserviceaccount.com
+  rules:
+    - selector: "echo.EchoService.Echo2"
+      requirements:
+        - provider_id: client1
+    - selector: "echo.EchoService.Echo4"
+      requirements:
+        - provider_id: client1
+</pre></div></div>
+
+<p>Cloud Endpointsをデプロイします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+gcloud endpoints services deploy api_config.yaml echo.pb
+</pre></div></div>
+
+<p>成功すると次のようなメッセージが表示されます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+Service Configuration [2018-02-05r0] uploaded for service [echo.endpoints.cloud-endpoints-grpc-auth.cloud.goog]
+
+To manage your API, go to: https://console.cloud.google.com/endpoints/api/echo.endpoints.cloud-endpoints-grpc-auth.cloud.goog/overview?project=cloud-endpoints-grpc-auth
+</pre></div></div>
+
+<p>この<code>2018-02-05r0</code>と<code>echo.endpoints.cloud-endpoints-grpc-auth.cloud.goog</code>は後で必要になります。また、最後のURLにアクセスするとAPIのダッシュボードが表示され、モニタリング結果を確認できます。</p>
+
+<h2>
+<span id="apiのデプロイ" class="fragment"></span><a href="#api%E3%81%AE%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4"><i class="fa fa-link"></i></a>APIのデプロイ</h2>
+
+<p>実装したAPI(サービス)をデプロイします。今回はGKEにデプロイします。また、Cloud Endpointsを有効にするため、サイドカーコンテナとしてESPを使います。</p>
+
+<p>まずはサーバのDockerfileを定義します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+FROM golang:1.9
+
+WORKDIR /go/src/app
+ADD . .
+RUN go get .
+
+EXPOSE 50051
+
+CMD ["go", "run", "main.go", "echo.pb.go"]
+</pre></div></div>
+
+<p>Dockerイメージをレジストリにプッシュします。コンソールでContainer Registry APIを有効にしておく必要があります。<a href="https://console.cloud.google.com/apis/api/containerregistry.googleapis.com/overview?project=cloud-endpoints-grpc-auth" class="autolink" rel="nofollow noopener" target="_blank">https://console.cloud.google.com/apis/api/containerregistry.googleapis.com/overview?project=cloud-endpoints-grpc-auth</a></p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+cd server
+docker build -t gcr.io/cloud-endpoints-grpc-auth/echo .
+gcloud docker -- push gcr.io/cloud-endpoints-grpc-auth/echo
+</pre></div></div>
+
+<p>KubernetesのDeploymentとServiceの設定ファイルを作ります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: echo
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        service: echo
+    spec:
+      containers:
+        - name: esp
+          image: gcr.io/endpoints-release/endpoints-runtime:1
+          imagePullPolicy: Always
+          args: [
+            "-P", "9000",
+            "-a", "grpc://127.0.0.1:50051",
+            "-s", "echo.endpoints.cloud-endpoints-grpc-auth.cloud.goog",
+            "-v", "2018-02-05r0",
+          ]
+          ports:
+            - containerPort: 9000
+        - name: echo
+          image: gcr.io/cloud-endpoints-grpc-auth/echo
+          ports:
+            - containerPort: 50051
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: echo
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 9000
+      protocol: TCP
+  selector:
+    service: echo
+</pre></div></div>
+
+<p>ESPの<code>args</code>の<code>-s</code>はサービス名、<code>-v</code>は設定IDです。Endpointをデプロイしたときに表示されたものを使います。</p>
+
+<p>GKEクラスタを作成してAPIをデプロイします。Kubernetes Engine APIを有効にしておく必要があります。<br>
+<a href="https://console.cloud.google.com/apis/api/container.googleapis.com/overview?project=cloud-endpoints-grpc-auth" class="autolink" rel="nofollow noopener" target="_blank">https://console.cloud.google.com/apis/api/container.googleapis.com/overview?project=cloud-endpoints-grpc-auth</a></p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+# GKEクラスタ作成
+gcloud container clusters create cluster-1 \
+  --cluster-version 1.8.7-gke.0 \
+  --num-nodes 1 \
+  --zone asia-northeast1-a
+
+# APIデプロイ
+gcloud container clusters get-credentials cluster-1 --zone asia-northeast1-a
+kubectl create -f k8s.yaml
+</pre></div></div>
+
+<p>しばらくするとGCEのロードバランサが作成されてIPが取得できるので、クライアントでリクエストしてみます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+ADDRESS=$(kubectl get service echo --output jsonpath="{.status.loadBalancer.ingress[0].ip}")
+cd client
+go run *.go -addr=${ADDRESS}:80
+</pre></div></div>
+
+<p>次のように出力されます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+Echo1: succeeded: message:"Hello"
+Echo2: failed: rpc error: code = Unauthenticated desc = JWT validation failed: Missing or invalid credentials
+Echo3: failed: rpc error: code = Unauthenticated desc = Method doesn't allow unregistered callers (callers without established identity). Please use API Key or other form of API consumer identity to call this API.
+Echo4: failed: rpc error: code = Unauthenticated desc = JWT validation failed: Missing or invalid credentials
+</pre></div></div>
+
+<p>なんの認証もかかっていないEcho1だけレスポンスを返します。他はESPで拒否されています。</p>
+
+<p>ログを見るとESPで401を返していることがわかります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ kubectl logs -lservice=echo -c esp
+10.52.0.1 - - [05/Feb/2018:05:50:59 +0000] "POST /echo.EchoService/Echo1 HTTP/2.0" 200 12 "-" "grpc-go/1.10.0-dev"
+2018/02/05 05:50:59 [warn] 9#9: *1 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000001, client: 10.52.0.1, server: , request: "POST /echo.EchoService/Echo1 HTTP/2.0", host: "35.189.159.64:80"
+2018/02/05 05:50:59[warn]9#9: Received non-matching report response service config ID: '', requested: '2018-02-05r0'
+10.52.0.1 - - [05/Feb/2018:05:50:59 +0000] "POST /echo.EchoService/Echo2 HTTP/2.0" 401 0 "-" "grpc-go/1.10.0-dev"
+10.52.0.1 - - [05/Feb/2018:05:50:59 +0000] "POST /echo.EchoService/Echo3 HTTP/2.0" 401 0 "-" "grpc-go/1.10.0-dev"
+10.52.0.1 - - [05/Feb/2018:05:50:59 +0000] "POST /echo.EchoService/Echo4 HTTP/2.0" 401 0 "-" "grpc-go/1.10.0-dev"
+</pre></div></div>
+
+<h2>
+<span id="apiキーで認証" class="fragment"></span><a href="#api%E3%82%AD%E3%83%BC%E3%81%A7%E8%AA%8D%E8%A8%BC"><i class="fa fa-link"></i></a>APIキーで認証</h2>
+
+<p>クライアントが認証できるようにしていきます。</p>
+
+<p>まず、APIキーを取得します。コンソールのAPIとサービスの認証情報から、APIキーを作成します。<br>
+<a href="https://console.cloud.google.com/apis/credentials?project=cloud-endpoints-grpc-auth" class="autolink" rel="nofollow noopener" target="_blank">https://console.cloud.google.com/apis/credentials?project=cloud-endpoints-grpc-auth</a></p>
+
+<p>なんらかの制限をかけるように警告されるので、ここではHTTP リファラーを設定してみます。とりあえず<code>dummy.example.com</code>としておきます。</p>
+
+<p>クライアントのコードを次のように修正します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+// 省略
+
+type credential struct {
+    key     string
+    referer string
+}
+
+func (c credential) GetRequestMetadata(ctx context.Context, uri ...string) (map[string]string, error) {
+    return map[string]string{
+        "x-api-key": c.key,
+        "referer":   c.referer,
+    }, nil
+}
+
+func (credential) RequireTransportSecurity() bool {
+    return false
+}
+
+func main() {
+    var addr, msg, key, referer string
+    flag.StringVar(&amp;addr, "addr", "127.0.0.1:50051", "server address")
+    flag.StringVar(&amp;msg, "msg", "Hello", "message")
+    flag.StringVar(&amp;key, "key", "invalid", "API Key")
+    flag.StringVar(&amp;referer, "referer", "invalid", "referer")
+    flag.Parse()
+
+    cred := credential{
+        key:     key,
+        referer: referer,
+    }
+
+    conn, err := grpc.Dial(addr, grpc.WithInsecure(), grpc.WithPerRPCCredentials(cred))
+    if err != nil {
+        panic(err)
+    }
+    defer conn.Close()
+
+        // 省略
+}
+</pre></div></div>
+
+<p>認証情報をリクエストに付加する方法は何通りかありますが、grpcパッケージのAPIを見る限りこれがよさそうな気がします。</p>
+
+<p>これを実行すると、次のようにAPIキーでの認証が成功していることがわかります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ go run *.go -addr=${ADDRESS}:80 -key=${API_KEY} -referer=dummy.example.com
+Echo1: succeeded: message:"Hello"
+Echo2: failed: rpc error: code = Unauthenticated desc = JWT validation failed: Missing or invalid credentials
+Echo3: succeeded: message:"Hello"
+Echo4: failed: rpc error: code = Unauthenticated desc = JWT validation failed: Missing or invalid credentials
+</pre></div></div>
+
+<p>認証はESPが行うのでサーバのコードは変更不要です。</p>
+
+<h2>
+<span id="サービスアカウントで認証" class="fragment"></span><a href="#%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%A7%E8%AA%8D%E8%A8%BC"><i class="fa fa-link"></i></a>サービスアカウントで認証</h2>
+
+<p>次にサービスアカウントで認証します。認証にはトークンが必要になるので、まずサービスアカウントの秘密鍵でJSON Web Tokenを生成します。</p>
+
+<p>サービスアカウントの秘密鍵はJSONで生成して<code>client/service_account.json</code>に保存しておいてください。</p>
+
+<p>JWT生成にはPythonスクリプトを使います。このスクリプトは<a href="https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/endpoints/bookstore-grpc/jwt_token_gen.py" rel="nofollow noopener" target="_blank">Google公式のもの</a>を少し修正しています。公式のものだとIssuerとSubjectが異なるため認証できません。<sup id="fnref1"><a href="#fn1" rel="footnote" title="https://github.com/grpc/grpc/blob/master/src/core/lib/security/credentials/jwt/jwt_verifier.cc#L298-L306">1</a></sup></p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+import argparse
+import json
+import time
+
+import google.auth.crypt
+import google.auth.jwt
+
+MAX_TOKEN_LIFETIME_SECS = 3600
+
+def generate_jwt(service_account_file, issuer, audiences):
+    with open(service_account_file, 'r') as fh:
+        service_account_info = json.load(fh)
+
+    signer = google.auth.crypt.RSASigner.from_string(
+        service_account_info['private_key'],
+        service_account_info['private_key_id'])
+
+    now = int(time.time())
+
+    payload = {
+        'iat': now,
+        'exp': now + MAX_TOKEN_LIFETIME_SECS,
+        'aud': audiences,
+        'iss': issuer,
+        'sub': issuer,
+        'email': 'user@example.com'
+    }
+
+    signed_jwt = google.auth.jwt.encode(signer, payload)
+    return signed_jwt
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument('--file',
+                        help='The path to your service account json file.')
+    parser.add_argument('--issuer', default='', help='issuer')
+    parser.add_argument('--audiences', default='', help='audiences')
+
+    args = parser.parse_args()
+
+    signed_jwt = generate_jwt(args.file, args.issuer, args.audiences)
+    print(signed_jwt.decode())
+</pre></div></div>
+
+<p>実行します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+JWT=$(python gen_jwt.py --file service_account.json --audience echo.endpoints.cloud-endpoints-grpc-auth.cloud.goog --issuer client1@cloud-endpoints-grpc-auth.iam.serviceaccount.com)
+</pre></div></div>
+
+<p><code>audience</code>はCloud Endpointsのサービス名 (サービス設定の<code>name</code>)、<code>issuer</code>はサービス設定で設定した<code>issuer</code>と一致する必要があります。</p>
+
+<p>クライアントを次のように修正します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+// 適当に省略
+
+type credential struct {
+    key     string
+    referer string
+    jwt     string
+}
+
+func (c credential) GetRequestMetadata(ctx context.Context, uri ...string) (map[string]string, error) {
+    return map[string]string{
+        "x-api-key":     c.key,
+        "referer":       c.referer,
+        "authorization": "Bearer " + c.jwt,
+    }, nil
+}
+
+func main() {
+    var addr, msg, key, referer, jwt string
+    flag.StringVar(&amp;jwt, "jwt", "invalid", "JSON Web Token")
+
+    cred := credential{
+        key:     key,
+        referer: referer,
+        jwt:     jwt,
+    }
+}
+</pre></div></div>
+
+<p>これを実行するとすべての認証が成功します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+go run *.go -addr=${ADDRESS}:80 -key=${API_KEY} -referer=dummy.example.com -jwt=${JWT}
+Echo1: succeeded: message:"Hello"
+Echo2: succeeded: message:"Hello"
+Echo3: succeeded: message:"Hello"
+Echo4: succeeded: message:"Hello"
+</pre></div></div>
+
+<p>サーバのログを見ると、それぞれの認証でMetadataがどうなっているか確認できます。JWTやAPIキーがそのまま格納されるようです。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+kubectl logs -lservice=echo -c echo
+</pre></div></div>
+
+<h1>
+<span id="認証の組合せ" class="fragment"></span><a href="#%E8%AA%8D%E8%A8%BC%E3%81%AE%E7%B5%84%E5%90%88%E3%81%9B"><i class="fa fa-link"></i></a>認証の組合せ</h1>
+
+<p>確認するため雑な表にしてみました。</p>
+
+<p><a href="/images/2018/02/05/1.png" target="_blank"><img width="994" alt="スクリーンショット 2018-02-05 16.15.16.png (270.9 kB)" src="/images/2018/02/05/1.png"></a></p>
+
+<p>どちらも認証がかかっている場合は、どちらかが不正だとエラーになりました。また、両方不正な場合はサービスアカウント認証のエラーが返ってきました。</p>
+
+<p>APIキー、JWTともにフォーマットが不正だとその旨のエラーが返ってきます。</p>
+
+<p>APIキーの認証エラーは次のような感じで結構細かくメッセージが返ってきました。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+# フォーマット不正
+code = InvalidArgument desc = API key not valid. Please pass a valid API key.
+
+# 違うプロジェクトのAPIキー
+code = PermissionDenied desc = API echo.endpoints.cloud-endpoints-grpc-auth.cloud.goog is not enabled for the project.
+
+# 削除した
+code = InvalidArgument desc = API key expired. Please renew the API key.
+</pre></div></div>
+
+<h1>
+<span id="おわりに" class="fragment"></span><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>おわりに</h1>
+
+<p>サンプルがなかったりドキュメントが間違ってたりしますが、認証を自分で持たなくていいのはとても楽ですね。</p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p><a href="https://github.com/grpc/grpc/blob/master/src/core/lib/security/credentials/jwt/jwt_verifier.cc#L298-L306" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/grpc/grpc/blob/master/src/core/lib/security/credentials/jwt/jwt_verifier.cc#L298-L306</a> <a href="#fnref1" rev="footnote">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

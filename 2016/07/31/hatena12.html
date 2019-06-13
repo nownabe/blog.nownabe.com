@@ -1,0 +1,161 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | tokyo.ex</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="tokyo.ex" property="og:title"><meta content=" tokyo.ex に参加してきました。Elixir初心者なので全部の話が面白かった 🤗     セッション     Phoenixを使った案件でリリースまでに起きた問題と対応 by  @ndruger             Phoenixを使った案件でリリースまでに起きた問題と対応    from  ndruger       コンパイル時の型がなくてErlangのDialyzerを使ってチェック    ある程度チェックする術があるのはいいけどなんかもやもやする   発表者の方も言ってたけどないよりはいいってことか       依存...   " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2016/07/31/hatena12.html" property="og:url"><meta content=" tokyo.ex に参加してきました。Elixir初心者なので全部の話が面白かった 🤗     セッション     Phoenixを使った案件でリリースまでに起きた問題と対応 by  @ndruger             Phoenixを使った案件でリリースまでに起きた問題と対応    from  ndruger       コンパイル時の型がなくてErlangのDialyzerを使ってチェック    ある程度チェックする術があるのはいいけどなんかもやもやする   発表者の方も言ってたけどないよりはいいってことか       依存...   " property="twitter:description"><meta content="tokyo.ex" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2016/07/31/hatena12.html">tokyo.ex</a></h1><span class="date">Posted on&nbsp;May 24, 2016</span></div><div class="body"><p><a href="http://beam-lang.connpass.com/event/30513/" rel="nofollow noopener" target="_blank">tokyo.ex</a>に参加してきました。Elixir初心者なので全部の話が面白かった 🤗</p>
+
+<h2>
+<span id="セッション" class="fragment"></span><a href="#%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3"><i class="fa fa-link"></i></a>セッション</h2>
+
+<h3>
+<span id="phoenixを使った案件でリリースまでに起きた問題と対応-by-ndruger" class="fragment"></span><a href="#phoenix%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E6%A1%88%E4%BB%B6%E3%81%A7%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%81%BE%E3%81%A7%E3%81%AB%E8%B5%B7%E3%81%8D%E3%81%9F%E5%95%8F%E9%A1%8C%E3%81%A8%E5%AF%BE%E5%BF%9C-by-ndruger"><i class="fa fa-link"></i></a>Phoenixを使った案件でリリースまでに起きた問題と対応 by <a href="https://twitter.com/ndruger" rel="nofollow noopener" target="_blank">@ndruger</a>
+</h3>
+
+<p><iframe src="//www.slideshare.net/slideshow/embed_code/key/M2erfQuGQQVhj0" width="510" height="420" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> </p><div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/ndruger/phoenix-62288840" title="Phoenixを使った案件でリリースまでに起きた問題と対応" target="_blank" rel="nofollow noopener">Phoenixを使った案件でリリースまでに起きた問題と対応</a> </strong> from <strong><a href="//www.slideshare.net/ndruger" target="_blank" rel="nofollow noopener">ndruger</a></strong> </div>
+
+<ul>
+<li>コンパイル時の型がなくてErlangのDialyzerを使ってチェック
+
+<ul>
+<li>ある程度チェックする術があるのはいいけどなんかもやもやする</li>
+<li>発表者の方も言ってたけどないよりはいいってことか</li>
+</ul>
+</li>
+<li>依存パッケージの記述をミスってproductionでだけ500エラーが発生
+
+<ul>
+<li>確かにはまったらはまりそう… <img class="emoji" title=":scream:" alt=":scream:" src="/images/emoji/unicode/1f631.svg" height="20" width="20" align="absmiddle">
+</li>
+<li>そのうち改善されるんだろうか</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="running-webb-app-on-elixir-by-ohrdev" class="fragment"></span><a href="#running-webb-app-on-elixir-by-ohrdev"><i class="fa fa-link"></i></a>running webb app on elixir by <a href="https://twitter.com/ohrdev" rel="nofollow noopener" target="_blank">@ohrdev</a>
+</h3>
+
+<p><iframe src="//www.slideshare.net/slideshow/embed_code/key/fxbWyONifRtZG5" width="510" height="420" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> </p><div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/ohr486/running-web-app-on-elixir" title="running web app on elixir" target="_blank" rel="nofollow noopener">running web app on elixir</a> </strong> from <strong><a href="//www.slideshare.net/ohr486" target="_blank" rel="nofollow noopener">Tsunenori Oohara</a></strong> </div>
+
+<ul>
+<li>ドリコムで1年半Elixirを運用してきた中での話</li>
+<li>とは言いつつElixirならではの話題はなし</li>
+<li>Varnishの話が気になったから調べてみよう</li>
+</ul>
+
+<h2>
+<span id="lt" class="fragment"></span><a href="#lt"><i class="fa fa-link"></i></a>LT</h2>
+
+<h3>
+<span id="etsgive_away3-by-coldfreak" class="fragment"></span><a href="#etsgive_away3-by-coldfreak"><i class="fa fa-link"></i></a>:ets.give_away/3 by <a href="https://github.com/ColdFreak" rel="nofollow noopener" target="_blank">@ColdFreak</a>
+</h3>
+
+<p><a href="http://coldfreak.github.io/ets-give-away/" class="autolink" rel="nofollow noopener" target="_blank">http://coldfreak.github.io/ets-give-away/</a></p>
+
+<ul>
+<li>元同僚</li>
+<li>具体的なコードと丁寧な解説でわかりやすかった</li>
+<li>Erlangおもしろいなーって感じ</li>
+<li>ets側の実装が気になる</li>
+</ul>
+
+<h3>
+<span id="concurrency-basis-by-tuvistavie" class="fragment"></span><a href="#concurrency-basis-by-tuvistavie"><i class="fa fa-link"></i></a>Concurrency basis by <a href="https://github.com/tuvistavie" rel="nofollow noopener" target="_blank">@tuvistavie</a>
+</h3>
+
+<p><a href="http://tuvistavie.com/slides/concurrency/#/" class="autolink" rel="nofollow noopener" target="_blank">http://tuvistavie.com/slides/concurrency/#/</a></p>
+
+<ul>
+<li>Live Coding!</li>
+<li>こちらも具体的なコード + ライブコーディングで非常にわかりやすかった</li>
+<li>あれだけのコードであんな面白いことができるの面白いなーって感じ</li>
+<li>遊んでみたい</li>
+</ul>
+
+<h3>
+<span id="create-line-bot-with-elixir-by-ma2ge" class="fragment"></span><a href="#create-line-bot-with-elixir-by-ma2ge"><i class="fa fa-link"></i></a>Create LINE Bot with Elixir by <a href="https://twitter.com/ma2ge" rel="nofollow noopener" target="_blank">@ma2ge</a>
+</h3>
+
+<script async class="speakerdeck-embed" data-id="e1aa1812b2bf4e1693b3c815c9f9e340" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li>LINE botをPhoenixで作ったという話</li>
+<li>IoTでいろいろやってて楽しそう</li>
+<li>cloudBit欲しくなりました</li>
+</ul>
+
+<h3>
+<span id="phoenix-tips-and-tricks-by-yohei_tanimoto" class="fragment"></span><a href="#phoenix-tips-and-tricks-by-yohei_tanimoto"><i class="fa fa-link"></i></a>Phoenix Tips and Tricks by <a href="https://twitter.com/yohei_tanimoto" rel="nofollow noopener" target="_blank">@yohei_tanimoto</a>
+</h3>
+
+<p><iframe src="//www.slideshare.net/slideshow/embed_code/key/jRclcpE6eKWHbB" width="510" height="420" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> </p><div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/tanimotoyohei/for-tokyoex-2-lt" title="For tokyo.ex #2 LT" target="_blank" rel="nofollow noopener">For tokyo.ex #2 LT</a> </strong> from <strong><a href="//www.slideshare.net/tanimotoyohei" target="_blank" rel="nofollow noopener">Yohei Tanimoto</a></strong> </div>
+
+<ul>
+<li>PhoenixのTipsを過去の資料とともに紹介</li>
+<li>新参者なのでこれまでのダイジェストをやってくれるのはとてもよかった</li>
+</ul>
+
+<h3>
+<span id="improve-the-performance-of-cryptographic-functions-by-aes-ni-by-mururururu" class="fragment"></span><a href="#improve-the-performance-of-cryptographic-functions-by-aes-ni-by-mururururu"><i class="fa fa-link"></i></a>Improve the performance of cryptographic functions by AES-NI by <a href="https://twitter.com/mururururu" rel="nofollow noopener" target="_blank">@mururururu</a>
+</h3>
+
+<p>(資料なし)</p>
+
+<ul>
+<li>
+<code>StringIO</code>とか<code>ExUnit.CaptureIO</code>とかの作者の方</li>
+<li>まだ学生らしい</li>
+<li>Erlang 19.0からAES-NIを使えるようになる</li>
+<li>4-5倍速くなる</li>
+</ul>
+
+<h3>
+<span id="書籍programming-elixir関連-by-_ko1" class="fragment"></span><a href="#%E6%9B%B8%E7%B1%8Dprogramming-elixir%E9%96%A2%E9%80%A3-by-_ko1"><i class="fa fa-link"></i></a>書籍Programming Elixir関連 by <a href="https://twitter.com/_ko1" rel="nofollow noopener" target="_blank">@_ko1</a>
+</h3>
+
+<p>(資料なし)</p>
+
+<ul>
+<li>RubyのYARVを作った方</li>
+<li>まさかElixirの会でみるとはw</li>
+<li>ルビィのぼうけん
+
+<ul>
+<li>子供ができたらぜひ読ませたい</li>
+</ul>
+</li>
+<li><a href="http://regional.rubykaigi.org/tokyo11/" rel="nofollow noopener" target="_blank">東京Ruby会議</a></li>
+<li>ElixirのOTPを勉強してRuby 3.0に活かすためにやってる
+
+<ul>
+<li>Ruby 3.0楽しみ</li>
+</ul>
+</li>
+</ul>
+
+<div class="asin">
+<div class="asin-image"><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4798143499/nownabe0c-22/" rel="nofollow noopener" target="_blank"><img src="http://images-jp.amazon.com/images/P/4798143499.09._SL160_.jpg" alt="ルビィのぼうけん こんにちは!  プログラミング" title="ルビィのぼうけん こんにちは!  プログラミング"></a></div>
+<div class="asin-detail">
+<p><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4798143499/nownabe0c-22/" rel="nofollow noopener" target="_blank">ルビィのぼうけん こんにちは!  プログラミング</a></p>
+<ul>
+<li>リンダ・リウカス</li>
+<li>翔泳社</li>
+</ul>
+</div>
+</div>
+
+<h2>
+<span id="感想" class="fragment"></span><a href="#%E6%84%9F%E6%83%B3"><i class="fa fa-link"></i></a>感想</h2>
+
+<p>Elixir全然わかってない状態で行っても大丈夫かなーと思ってたけど、行ってよかった。というかむしろ初心者のうちの方が楽しめるかもしれませんね 😊</p>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

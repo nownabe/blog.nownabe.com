@@ -1,0 +1,173 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | RDB as a Serviceのベンチマーク</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="RDB as a Serviceのベンチマーク" property="og:title"><meta content="    はじめに   最近古くなったWebアプリケーションインフラの刷新プロジェクトをやっていて、AWSとGCPそれぞれのパフォーマンスが気になっていたところにIDCFのRDBサービスがリリースされたのでベンチマークを取ってみました。   ベンチマークしたのサービスは以下の4つで、すべてMySQL互換です。     Amazon Aurora   Amazon RDS   Cloud SQL   IDCFクラウド RDB     ベンチマークログ、Terraformのコードは次のレポジトリにあります。   https:... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2018/07/02/1346.html" property="og:url"><meta content="    はじめに   最近古くなったWebアプリケーションインフラの刷新プロジェクトをやっていて、AWSとGCPそれぞれのパフォーマンスが気になっていたところにIDCFのRDBサービスがリリースされたのでベンチマークを取ってみました。   ベンチマークしたのサービスは以下の4つで、すべてMySQL互換です。     Amazon Aurora   Amazon RDS   Cloud SQL   IDCFクラウド RDB     ベンチマークログ、Terraformのコードは次のレポジトリにあります。   https:... " property="twitter:description"><meta content="RDB as a Serviceのベンチマーク" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2018/07/02/1346.html">RDB as a Serviceのベンチマーク</a></h1><span class="date">Posted on&nbsp;Jul 02, 2018</span></div><div class="body">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>最近古くなったWebアプリケーションインフラの刷新プロジェクトをやっていて、AWSとGCPそれぞれのパフォーマンスが気になっていたところにIDCFのRDBサービスがリリースされたのでベンチマークを取ってみました。</p>
+
+<p>ベンチマークしたのサービスは以下の4つで、すべてMySQL互換です。</p>
+
+<ul>
+<li><a href="https://aws.amazon.com/jp/rds/aurora/" rel="nofollow noopener" target="_blank">Amazon Aurora</a></li>
+<li><a href="https://aws.amazon.com/jp/rds/" rel="nofollow noopener" target="_blank">Amazon RDS</a></li>
+<li><a href="https://cloud.google.com/sql/" rel="nofollow noopener" target="_blank">Cloud SQL</a></li>
+<li><a href="https://www.idcf.jp/cloud/rdb/" rel="nofollow noopener" target="_blank">IDCFクラウド RDB</a></li>
+</ul>
+
+<p>ベンチマークログ、Terraformのコードは次のレポジトリにあります。</p>
+
+<p><a href="https://gitlab.com/nownabe/rdb-bench" class="autolink" rel="nofollow noopener" target="_blank">https://gitlab.com/nownabe/rdb-bench</a></p>
+
+<h1>
+<span id="tl-dr" class="fragment"></span><a href="#tl-dr"><i class="fa fa-link"></i></a>TL; DR</h1>
+
+<p>おおむね、</p>
+
+<p>IDCF &gt; Aurora &gt; Cloud SQL &gt; RDS</p>
+
+<p>でした。IDCFはやい。</p>
+
+<h1>
+<span id="ベンチマーク方法" class="fragment"></span><a href="#%E3%83%99%E3%83%B3%E3%83%81%E3%83%9E%E3%83%BC%E3%82%AF%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>ベンチマーク方法</h1>
+
+<p>ベンチマークツールはtpcc-mysqlとsysbenchを使いました。MySQLのパラメータはすべてサービスのデフォルトのままです。また、それぞれ計測は1回のみとなります。</p>
+
+<h2>
+<span id="構築" class="fragment"></span><a href="#%E6%A7%8B%E7%AF%89"><i class="fa fa-link"></i></a>構築</h2>
+
+<p>それぞれのクラウドでRDBのインスタンスとベンチマークをかけるクライアントとなるVMインスタンスを立ち上げました。</p>
+
+<p>AWSとGCPの構築はTerraformで自動化してあります。</p>
+
+<p><a href="https://gitlab.com/nownabe/rdb-bench/tree/master/terraform" class="autolink" rel="nofollow noopener" target="_blank">https://gitlab.com/nownabe/rdb-bench/tree/master/terraform</a></p>
+
+<h2>
+<span id="tpcc-mysql" class="fragment"></span><a href="#tpcc-mysql"><i class="fa fa-link"></i></a>tpcc-mysql</h2>
+
+<p><a href="https://github.com/Percona-Lab/tpcc-mysql" rel="nofollow noopener" target="_blank">tpcc-mysql</a>はPerconaが提供しているベンチマークツールで、TPC-Cというベンチマーク仕様の実装です。<sup id="fnref1"><a href="#fn1" rel="footnote" title="厳密ではないらしい">1</a></sup></p>
+
+<p>tpcc-mysqlでは以下の設定で計測をしました。</p>
+
+<ul>
+<li>Warehouseは50, 100</li>
+<li>同時接続数は20, 40, 60, 80, 100</li>
+<li>ウォーミングアップ時間は300秒</li>
+<li>計測時間は600秒</li>
+</ul>
+
+<p><a href="https://gitlab.com/nownabe/rdb-bench/blob/master/run-tpcc.sh" class="autolink" rel="nofollow noopener" target="_blank">https://gitlab.com/nownabe/rdb-bench/blob/master/run-tpcc.sh</a></p>
+
+<h2>
+<span id="sysbench" class="fragment"></span><a href="#sysbench"><i class="fa fa-link"></i></a>sysbench</h2>
+
+<p><a href="https://github.com/akopytov/sysbench" rel="nofollow noopener" target="_blank">sysbench</a>はLuaスクリプトでベンチマークを定義できるベンチマークツールです。CPUやメモリなどに加えて、MySQLとPostgreSQLの性能も計測できます。</p>
+
+<p>sysbenchでは以下の設定で計測をしました。</p>
+
+<ul>
+<li>シナリオはoltp_read_write.lua</li>
+<li>Table sizeは10k, 100k, 1m</li>
+<li>Threadsは2, 4, 8, 16, 32, 64, 128, 256</li>
+<li>計測時間は300秒</li>
+</ul>
+
+<p><a href="https://gitlab.com/nownabe/rdb-bench/blob/master/run-sysbench.sh" class="autolink" rel="nofollow noopener" target="_blank">https://gitlab.com/nownabe/rdb-bench/blob/master/run-sysbench.sh</a></p>
+
+<h1>
+<span id="結果" class="fragment"></span><a href="#%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>結果</h1>
+
+<p>細かい結果が気になる方はレポジトリにログが全部あるので見てみてください。</p>
+
+<h2>
+<span id="インスタンスタイプ" class="fragment"></span><a href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%B3%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%97"><i class="fa fa-link"></i></a>インスタンスタイプ</h2>
+
+<p>それぞれのサービスで次の表のインスタンスタイプを使いました。</p>
+
+<table>
+<thead>
+<tr>
+<th>サービス</th>
+<th>タイプ</th>
+<th>vCPU</th>
+<th>Memory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RDS</td>
+<td>db.r4.2xlarge</td>
+<td>8</td>
+<td>61</td>
+</tr>
+<tr>
+<td>Aurora</td>
+<td>db.r4.2xlarge</td>
+<td>8</td>
+<td>61</td>
+</tr>
+<tr>
+<td>Cloud SQL</td>
+<td>db-n1-highmem-8</td>
+<td>8</td>
+<td>52</td>
+</tr>
+<tr>
+<td>IDCF RDB</td>
+<td>highmem.XL64</td>
+<td>8</td>
+<td>64</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<span id="tpcc-mysql-1" class="fragment"></span><a href="#tpcc-mysql-1"><i class="fa fa-link"></i></a>tpcc-mysql</h2>
+
+<p><a href="/images/2018/07/02/1.png" target="_blank"><img src="/images/2018/07/02/1.png" alt="tpcc-mysql-50.png (15.3 kB)"></a></p>
+
+<p><a href="/images/2018/07/02/2.png" target="_blank"><img src="/images/2018/07/02/2.png" alt="tpcc-mysql-100.png (13.4 kB)"></a></p>
+
+<p>RDSはデータのロードがおそすぎて待ち時間がやばかったのでWarehouse = 100は計測してません。</p>
+
+<h2>
+<span id="sysbench-1" class="fragment"></span><a href="#sysbench-1"><i class="fa fa-link"></i></a>sysbench</h2>
+
+<p><a href="/images/2018/07/02/3.png" target="_blank"><img src="/images/2018/07/02/3.png" alt="oltp_read_write-10k.png (18.3 kB)"></a></p>
+
+<p><a href="/images/2018/07/02/4.png" target="_blank"><img src="/images/2018/07/02/4.png" alt="oltp_read_write-100k.png (18.8 kB)"></a></p>
+
+<p><a href="/images/2018/07/02/5.png" target="_blank"><img src="/images/2018/07/02/5.png" alt="oltp_read_write-1m.png (17.4 kB)"></a></p>
+
+<p>IDCFはデフォルトで<code>max_connections</code>が151だったのでThreads = 256は計測できていません。ちなみに、RDSは5100、Auroraは3000、Cloud SQLは4000でした。</p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>IDCFめっちゃ速いですね。<br>
+Auroraもさすがという感じで、ある程度トラフィックがあるようなサービスだとコスパ的にもわざわざAWSでRDSを選択する意味はあまりなさそうです。<br>
+Cloud SQLは概ねRDSよりはやくて、特にデータが多くて同時接続数が多いときが得意そうです。</p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>厳密ではないらしい <a href="#fnref1" rev="footnote">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

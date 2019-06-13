@@ -1,0 +1,225 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | nownabe release note v2017.12</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="nownabe release note v2017.12" property="og:title"><meta content=" a-knowさんがやって て振り返りにいいなぁと思ったので真似してみた。     Tech   10〜11月のアップデート。     GAE/Goのアプリをいくつかデプロイして、次のようなことがわかってきた    GAE/Goのデプロイどうすればいいか   ディレクトリ構成どうすればいいか   ベンダリングはどうすればいいか   App Engine SDKはいろいろあるけどどれを使えばいいのか   これらをMakefileにまとめる方法   GCPのAPIを使う方法       Cloud Dataflowのレベルが上がった    " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2017/12/02/1205.html" property="og:url"><meta content=" a-knowさんがやって て振り返りにいいなぁと思ったので真似してみた。     Tech   10〜11月のアップデート。     GAE/Goのアプリをいくつかデプロイして、次のようなことがわかってきた    GAE/Goのデプロイどうすればいいか   ディレクトリ構成どうすればいいか   ベンダリングはどうすればいいか   App Engine SDKはいろいろあるけどどれを使えばいいのか   これらをMakefileにまとめる方法   GCPのAPIを使う方法       Cloud Dataflowのレベルが上がった    " property="twitter:description"><meta content="nownabe release note v2017.12" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2017/12/02/1205.html">nownabe release note v2017.12</a></h1><span class="date">Posted on&nbsp;Dec 02, 2017</span></div><div class="body"><p><a href="http://blog.a-know.me/entry/2017/12/01/100000" rel="nofollow noopener" target="_blank">a-knowさんがやって</a>て振り返りにいいなぁと思ったので真似してみた。</p>
+
+<h1>
+<span id="tech" class="fragment"></span><a href="#tech"><i class="fa fa-link"></i></a>Tech</h1>
+
+<p>10〜11月のアップデート。</p>
+
+<ul>
+<li>GAE/Goのアプリをいくつかデプロイして、次のようなことがわかってきた
+
+<ul>
+<li>GAE/Goのデプロイどうすればいいか</li>
+<li>ディレクトリ構成どうすればいいか</li>
+<li>ベンダリングはどうすればいいか</li>
+<li>App Engine SDKはいろいろあるけどどれを使えばいいのか</li>
+<li>これらをMakefileにまとめる方法</li>
+<li>GCPのAPIを使う方法</li>
+</ul>
+</li>
+<li>Cloud Dataflowのレベルが上がった
+
+<ul>
+<li>テンプレートの使い方</li>
+<li>様々なLimitation</li>
+<li>ValueProviderの使い方</li>
+<li>APIの使い方</li>
+</ul>
+</li>
+<li>Cloud Functionを本番導入した</li>
+<li>AWS Batchを本番導入した</li>
+<li>AWSのレベルアップ
+
+<ul>
+<li>OpsWorks</li>
+<li>CloudWatch + Lambda</li>
+<li>Batch</li>
+</ul>
+</li>
+<li>DataflowでサーバサイドKotlinを使い始めた
+
+<ul>
+<li>Kotlinこそは真のBetter Javaって感じがする</li>
+</ul>
+</li>
+<li>RailsのViewテンプレート探索のコードを読んだ
+
+<ul>
+<li>versioncakeとともに</li>
+</ul>
+</li>
+</ul>
+
+<h1>
+<span id="work" class="fragment"></span><a href="#work"><i class="fa fa-link"></i></a>Work</h1>
+
+<p>仕事の振り返り。</p>
+
+<ul>
+<li>インフラとか運用の改善が多かった。おかげでピーク時に不安定になることはなくなった
+
+<ul>
+<li>パフォーマンスチューニング</li>
+<li>EC2インスタンス、オートスケールの最適化</li>
+<li>監視強化・改善</li>
+<li>MySQLのSlow Query分析</li>
+<li>セキュリティ改善</li>
+<li>データ分析基盤構築</li>
+</ul>
+</li>
+<li>引き続き、社内技術LT会の企画・運用をしている</li>
+<li>インフラ屋さんをしてたので、機械学習系の仕事があまりできていない</li>
+<li>ミーティングもリモートでやることが増えて、会社に行く頻度が2週間に1回ぐらいになった</li>
+<li>最近使われてないSlackチャンネルを自動でアーカイブするやつとか、BigQueryの課金額を通知するやつとかをGAE/Goで作った</li>
+</ul>
+
+<h1>
+<span id="private" class="fragment"></span><a href="#private"><i class="fa fa-link"></i></a>Private</h1>
+
+<ul>
+<li>遠い親戚の結婚式で福岡に行って、その後神戸の実家で1週間仕事して、地元の友達の結婚式に出席して、こっちに帰ってきた
+
+<ul>
+<li>実家でも問題なく仕事できた</li>
+</ul>
+</li>
+<li>神戸空港使いやすくてよかった
+
+<ul>
+<li>実家帰るときは飛行機でよさそう</li>
+</ul>
+</li>
+<li>3年ぶりぐらいにバンドっぽいバンドの練習をした
+
+<ul>
+<li>バンド？は？なにそれ？ぐらいのタイムスリップ感があった</li>
+</ul>
+</li>
+<li>車を処分した
+
+<ul>
+<li>そんなに乗らないし、維持費がもったいなかった</li>
+</ul>
+</li>
+<li>漫画をダンボール1箱分処分した</li>
+</ul>
+
+<h1>
+<span id="books" class="fragment"></span><a href="#books"><i class="fa fa-link"></i></a>Books</h1>
+
+<ul>
+<li>
+<a href="http://amzn.to/2zFZiyG" rel="nofollow noopener" target="_blank">Kotlinスタートブック</a>を読み始めた
+
+<ul>
+<li>Kotlin書き心地良いのでAndroidアプリでも作るかーという気分</li>
+</ul>
+</li>
+<li>
+<a href="http://amzn.to/2zFSZv4" rel="nofollow noopener" target="_blank">アド・アストラ</a>を読み始めた
+
+<ul>
+<li>ハンニバルとスキピオの漫画</li>
+<li>面白い</li>
+</ul>
+</li>
+<li>
+<a href="http://amzn.to/2zG0eTI" rel="nofollow noopener" target="_blank">BLUE GIANT</a>を読んだ
+
+<ul>
+<li>Jazzのアツい漫画</li>
+<li>面白かった。続編も読みたい</li>
+<li><a href="http://amzn.to/2i7joun" rel="nofollow noopener" target="_blank">全10巻</a></li>
+</ul>
+</li>
+<li>
+<a href="http://amzn.to/2BD5WHi" rel="nofollow noopener" target="_blank">Duo 3.0</a>をちょっとずつやり始めた
+
+<ul>
+<li>学生のときに買った英単語集</li>
+<li>全単語がいい感じに例文になってて、全例文<a href="http://amzn.to/2BtfsM6" rel="nofollow noopener" target="_blank">CD</a>になってる</li>
+<li>CD聞きながら散歩しつつぶつぶつ復唱してる</li>
+</ul>
+</li>
+<li>こち亀を50巻481話まで読んだ</li>
+</ul>
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&amp;bc1=000000&amp;IS2=1&amp;bg1=FFFFFF&amp;fc1=000000&amp;lc1=0000FF&amp;t=nownabe0c-22&amp;o=9&amp;p=8&amp;l=as4&amp;m=amazon&amp;f=ifr&amp;ref=as_ss_li_til&amp;asins=B06XHJMR65&amp;linkId=ed6f68c6a978fbc1e820c49c075300b6"></iframe><iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&amp;bc1=000000&amp;IS2=1&amp;bg1=FFFFFF&amp;fc1=000000&amp;lc1=0000FF&amp;t=nownabe0c-22&amp;o=9&amp;p=8&amp;l=as4&amp;m=amazon&amp;f=ifr&amp;ref=as_ss_li_til&amp;asins=B00BCY592C&amp;linkId=c87142d928cad6e6fbb9189b8ff43b15"></iframe><iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&amp;bc1=000000&amp;IS2=1&amp;bg1=FFFFFF&amp;fc1=000000&amp;lc1=0000FF&amp;t=nownabe0c-22&amp;o=9&amp;p=8&amp;l=as4&amp;m=amazon&amp;f=ifr&amp;ref=as_ss_li_til&amp;asins=B00GSMDY48&amp;linkId=6277f1ca3ba732ac1b465cf776005aff"></iframe><iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&amp;bc1=000000&amp;IS2=1&amp;bg1=FFFFFF&amp;fc1=000000&amp;lc1=0000FF&amp;t=nownabe0c-22&amp;o=9&amp;p=8&amp;l=as4&amp;m=amazon&amp;f=ifr&amp;ref=as_ss_li_til&amp;asins=4900790052&amp;linkId=152d568ec6f3930585ad4b38aeb751ff"></iframe><iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&amp;bc1=000000&amp;IS2=1&amp;bg1=FFFFFF&amp;fc1=000000&amp;lc1=0000FF&amp;t=nownabe0c-22&amp;o=9&amp;p=8&amp;l=as4&amp;m=amazon&amp;f=ifr&amp;ref=as_ss_li_til&amp;asins=4900790079&amp;linkId=cd2026b6051cc00e6d68fb6bbce4a8dd"></iframe>
+
+<h1>
+<span id="retrospective" class="fragment"></span><a href="#retrospective"><i class="fa fa-link"></i></a>Retrospective</h1>
+
+<h2>
+<span id="good" class="fragment"></span><a href="#good"><i class="fa fa-link"></i></a>Good</h2>
+
+<ul>
+<li>機械学習勉強会を継続できている</li>
+<li>GAE/Goを使い始めるとき迷わなくなった</li>
+<li>朝、昼に散歩して陽の光を浴びる</li>
+<li>神戸空港</li>
+</ul>
+
+<h2>
+<span id="not-good" class="fragment"></span><a href="#not-good"><i class="fa fa-link"></i></a>Not Good</h2>
+
+<ul>
+<li>機械学習の仕事ができていない
+
+<ul>
+<li>インフラがだいぶ落ち着いたので、やり始めてはいる</li>
+</ul>
+</li>
+<li>最近はメインの言語としてJava、Kotlin、Go、Python、Ruby、Node、Bashを使ってて、つまりメインの言語がない
+
+<ul>
+<li>できればどれか1つの言語に集中してレベルアップしたい</li>
+</ul>
+</li>
+<li>RubyのGemTesterを放置している
+
+<ul>
+<li>2.5のリリースが終わってからやればいいかと思っている</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<span id="action" class="fragment"></span><a href="#action"><i class="fa fa-link"></i></a>Action</h2>
+
+<ul>
+<li>趣味で使う言語を絞りたい
+
+<ul>
+<li>Kotlin, Go, Ruby, TypeScriptぐらい？あんまり絞れてない</li>
+<li>仕事では相変わらずいろんな言語を書く必要がありそう</li>
+</ul>
+</li>
+<li>単発の小さなアプリじゃなくて、画面があってDBもそれなりに使うぐらいのアプリケーションをGAE/Goで書きたい
+
+<ul>
+<li>GAE/Kotlinもやってみたさはある</li>
+</ul>
+</li>
+<li>そろそろ初めての確定申告の準備をしたほうがよさそう…</li>
+<li>機械学習の仕事で進捗だす</li>
+</ul>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>初めてやってみたけど振り返りができるし、今後の行動の指針にもなりそうで良い。あとこっから今後のブログのネタを拾うとかもできそう。</p>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

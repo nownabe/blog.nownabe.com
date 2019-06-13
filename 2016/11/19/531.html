@@ -1,0 +1,467 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | RubyVM: メソッド呼び出し</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="RubyVM: メソッド呼び出し" property="og:title"><meta content="    はじめに   メソッド呼び出し時のRubyVMの動作を調べました。   というのも、どうやら巷に存在しているYARVの記事は古いらしく、現在のRubyのソースコードと合致しない部分があったので改めて調べてみました。   主にスタックフレームについてです。YARVのスタックフレームについてはYARV公式？サイトの YARVアーキテクチャ で解説されています。   スタックフレームはざっくりいうと、Rubyプログラムのスコープを扱うものです。  例えば、メソッド呼び出しのたびに新しくフレームが作成されま... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2016/11/19/531.html" property="og:url"><meta content="    はじめに   メソッド呼び出し時のRubyVMの動作を調べました。   というのも、どうやら巷に存在しているYARVの記事は古いらしく、現在のRubyのソースコードと合致しない部分があったので改めて調べてみました。   主にスタックフレームについてです。YARVのスタックフレームについてはYARV公式？サイトの YARVアーキテクチャ で解説されています。   スタックフレームはざっくりいうと、Rubyプログラムのスコープを扱うものです。  例えば、メソッド呼び出しのたびに新しくフレームが作成されま... " property="twitter:description"><meta content="RubyVM: メソッド呼び出し" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2016/11/19/531.html">RubyVM: メソッド呼び出し</a></h1><span class="date">Posted on&nbsp;Nov 19, 2016</span></div><div class="body">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>メソッド呼び出し時のRubyVMの動作を調べました。</p>
+
+<p>というのも、どうやら巷に存在しているYARVの記事は古いらしく、現在のRubyのソースコードと合致しない部分があったので改めて調べてみました。</p>
+
+<p>主にスタックフレームについてです。YARVのスタックフレームについてはYARV公式？サイトの<a href="http://www.atdot.net/yarv/yarvarch.ja.html#i-4-2" rel="nofollow noopener" target="_blank">YARVアーキテクチャ</a>で解説されています。</p>
+
+<p>スタックフレームはざっくりいうと、Rubyプログラムのスコープを扱うものです。<br>
+例えば、メソッド呼び出しのたびに新しくフレームが作成されます。</p>
+
+<p>今もそうなのかわかりませんが、YARVのフレームには</p>
+
+<ul>
+<li>メソッドフレーム</li>
+<li>ブロックフレーム</li>
+<li>クラスフレーム</li>
+</ul>
+
+<p>という3種類があるそうです。現在のRubyのダンプ関数を見ると12種類の場合分けがあります <img class="emoji" title=":eyes:" alt=":eyes:" src="/images/emoji/unicode/1f440.svg" height="20" width="20" align="absmiddle"> </p>
+
+<h1>
+<span id="データ構造" class="fragment"></span><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E6%A7%8B%E9%80%A0"><i class="fa fa-link"></i></a>データ構造</h1>
+
+<p><code>rb_control_frame_t</code>という型で定義されています。<br>
+ここまでスタックフレームと書きましたが、Ruby的にはコントロールフレームと呼ぶのが正しいみたいです。</p>
+
+<p>Rubyのソースコードでは次のように定義されています。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+typedef struct rb_control_frame_struct {
+    const VALUE *pc;        /* cfp[0] */
+    VALUE *sp;              /* cfp[1] */
+    const rb_iseq_t *iseq;  /* cfp[2] */
+    VALUE self;             /* cfp[3] / block[0] */
+    const VALUE *ep;        /* cfp[4] / block[1] */
+    const void *block_code; /* cfp[5] / block[2] */ /* iseq or ifunc */
+} rb_control_frame_t;
+</pre></div></div>
+
+<p>多分、</p>
+
+<ul>
+<li>
+<code>pc</code>: プログラムカウンタ</li>
+<li>
+<code>sp</code>: スタックポインタ</li>
+<li>
+<code>iseq</code>: 命令列</li>
+<li>
+<code>self</code>: そのスコープでの<code>self</code>
+</li>
+<li>
+<code>ep</code>: ローカル変数とかのためにあるポインタ？</li>
+<li>
+<code>block_code</code>: ブロック？</li>
+</ul>
+
+<p>みたいな感じでしょう。多分。</p>
+
+<h1>
+<span id="メソッド呼び出しの命令列" class="fragment"></span><a href="#%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E5%91%BC%E3%81%B3%E5%87%BA%E3%81%97%E3%81%AE%E5%91%BD%E4%BB%A4%E5%88%97"><i class="fa fa-link"></i></a>メソッド呼び出しの命令列</h1>
+
+<p>今回は次のソースコードの処理を追って、コントロールフレームの挙動を調べたいと思います。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+def hello(arg)
+  puts arg
+end
+
+hello("Hello, world!")
+</pre></div></div>
+
+<p>かんたんですね。これの命令列は次のようになります。最適化は無効化しています。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+== disasm: #&lt;ISeq:&lt;main&gt;@./test/scripts/3_method.rb&gt;====================
+0000 putspecialobject 1                                               (   1)
+0002 putobject        :hello
+0004 putiseq          hello
+0006 send             &lt;callinfo!mid:core#define_method, argc:2, ARGS_SIMPLE&gt;, &lt;callcache&gt;, nil
+0010 pop
+0011 putself                                                          (   5)
+0012 putstring        "Hello, world!"
+0014 send             &lt;callinfo!mid:hello, argc:1, FCALL|ARGS_SIMPLE&gt;, &lt;callcache&gt;, nil
+0018 leave
+== disasm: #&lt;ISeq:hello@./test/scripts/3_method.rb&gt;=====================
+local table (size: 2, argc: 1 [opts: 0, rest: -1, post: 0, block: -1, kw: -1@-1, kwrest: -1])
+[ 2] arg&lt;Arg&gt;
+0000 putself                                                          (   2)
+0001 getlocal         arg, 0
+0004 send             &lt;callinfo!mid:puts, argc:1, FCALL|ARGS_SIMPLE&gt;, &lt;callcache&gt;, nil
+0008 leave
+</pre></div></div>
+
+<h1>
+<span id="観察" class="fragment"></span><a href="#%E8%A6%B3%E5%AF%9F"><i class="fa fa-link"></i></a>観察</h1>
+
+<p>単純に、命令ごとにみていきましょう。</p>
+
+<h2>
+<span id="初期状態" class="fragment"></span><a href="#%E5%88%9D%E6%9C%9F%E7%8A%B6%E6%85%8B"><i class="fa fa-link"></i></a>初期状態</h2>
+
+<p>命令を実行する前の、VMの初期状態です。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+-- stack frame ------------
+0000 (0x100700000): 10087f310
+0001 (0x100700008): 10087f2e8
+0002 (0x100700010): 00000000
+0003 (0x100700018): 10085f3f8
+-- Control frame information -----------------------------------------------
+c:0002 p:0000 s:0004 E:000290 EVAL   /Users/nownabe/src/github.com/nownabe/nyarv/test/scripts/3_method.rb:1 [FINISH]
+c:0001 p:0000 s:0002 E:000d10 (none) [FINISH]
+</pre></div></div>
+
+<p>コントロールフレームが2つありますが、<code>0001</code>はダミーのフレーム、<code>0002</code>は<code>main</code>のフレームだと思われます。<br>
+<code>p</code>はプログラムカウンタ、<code>s</code>はスタックポインタ、<code>E</code>は<code>ep</code>を表してるみたいです。<br>
+<a href="https://github.com/ruby/ruby/blob/202bbda2bf5f25343e286099140fb9282880ecba/vm_dump.c#L28" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/ruby/ruby/blob/202bbda2bf5f25343e286099140fb9282880ecba/vm_dump.c#L28</a></p>
+
+<h2>
+<span id="putspecialobject-main" class="fragment"></span><a href="#putspecialobject-main"><i class="fa fa-link"></i></a>putspecialobject (main)</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+0000 putspecialobject 1                                               (   1)
+</pre></div></div>
+
+<p>を実行したら、こうなります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+-- stack frame ------------
+0000 (0x100700000): 10087f310
+0001 (0x100700008): 10087f2e8
+0002 (0x100700010): 00000000
+0003 (0x100700018): 10085f3f8
+0004 (0x100700020): 100885878
+-- Control frame information -----------------------------------------------
+c:0002 p:0002 s:0005 E:000290 EVAL   /Users/nownabe/src/github.com/nownabe/nyarv/test/scripts/3_method.rb:1 [FINISH]
+c:0001 p:0000 s:0002 E:000d10 (none) [FINISH]
+</pre></div></div>
+
+<p><code>Stack[0004]</code>に<code>BasicObject</code>が積まれました。<br>
+<code>c:0002</code>のPCとSPが変化したこともわかります。</p>
+
+<h2>
+<span id="putobject-main" class="fragment"></span><a href="#putobject-main"><i class="fa fa-link"></i></a>putobject (main)</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+0002 putobject        :hello
+</pre></div></div>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+-- stack frame ------------
+0000 (0x100700000): 10087f310
+0001 (0x100700008): 10087f2e8
+0002 (0x100700010): 00000000
+0003 (0x100700018): 10085f3f8
+0004 (0x100700020): 100885878
+0005 (0x100700028): 0065010c
+-- Control frame information -----------------------------------------------
+c:0002 p:0004 s:0006 E:000290 EVAL   /Users/nownabe/src/github.com/nownabe/nyarv/test/scripts/3_method.rb:1 [FINISH]
+c:0001 p:0000 s:0002 E:000d10 (none) [FINISH]
+</pre></div></div>
+
+<p><code>Stack[0005]</code>に<code>:hello</code>が積まれました。</p>
+
+<h2>
+<span id="putiseq-main" class="fragment"></span><a href="#putiseq-main"><i class="fa fa-link"></i></a>putiseq (main)</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+0004 putiseq          hello
+</pre></div></div>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+-- stack frame ------------
+0000 (0x100700000): 10087f310
+0001 (0x100700008): 10087f2e8
+0002 (0x100700010): 00000000
+0003 (0x100700018): 10085f3f8
+0004 (0x100700020): 100885878
+0005 (0x100700028): 0065010c
+0006 (0x100700030): 10085f5d8
+-- Control frame information -----------------------------------------------
+c:0002 p:0006 s:0007 E:000290 EVAL   /Users/nownabe/src/github.com/nownabe/nyarv/test/scripts/3_method.rb:1 [FINISH]
+c:0001 p:0000 s:0002 E:000d10 (none) [FINISH]
+</pre></div></div>
+
+<p><code>Stack[0006]</code>に<code>hello</code>メソッドを表す命令列が積まれました。</p>
+
+<h2>
+<span id="send-main" class="fragment"></span><a href="#send-main"><i class="fa fa-link"></i></a>send (main)</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+0006 send             &lt;callinfo!mid:core#define_method, argc:2, ARGS_SIMPLE&gt;, &lt;callcache&gt;, nil
+</pre></div></div>
+
+<p>メソッド定義ですね。<code>define_method</code>です。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+-- stack frame ------------
+0000 (0x100700000): 10087f310
+0001 (0x100700008): 10087f2e8
+0002 (0x100700010): 00000000
+0003 (0x100700018): 10085f3f8
+0004 (0x100700020): 0065010c
+-- Control frame information -----------------------------------------------
+c:0002 p:0010 s:0005 E:000290 EVAL   /Users/nownabe/src/github.com/nownabe/nyarv/test/scripts/3_method.rb:1 [FINISH]
+c:0001 p:0000 s:0002 E:000d10 (none) [FINISH]
+</pre></div></div>
+
+<p>Stackから<code>BasicObject</code>、<code>:hello</code>、<code>hello</code>メソッドの命令列がpopされ、<code>define_method</code>の返り値である<code>:hello</code>が<code>Stack[0004]</code>に積まれました。</p>
+
+<h2>
+<span id="pop-main" class="fragment"></span><a href="#pop-main"><i class="fa fa-link"></i></a>pop (main)</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+0010 pop
+</pre></div></div>
+
+<p><code>define_method</code>の返り値は利用しないので、破棄しています。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+-- stack frame ------------
+0000 (0x100700000): 10087f310
+0001 (0x100700008): 10087f2e8
+0002 (0x100700010): 00000000
+0003 (0x100700018): 10085f3f8
+-- Control frame information -----------------------------------------------
+c:0002 p:0011 s:0004 E:000290 EVAL   /Users/nownabe/src/github.com/nownabe/nyarv/test/scripts/3_method.rb:1 [FINISH]
+c:0001 p:0000 s:0002 E:000d10 (none) [FINISH]
+</pre></div></div>
+
+<p><code>hello</code>メソッドが定義され、スタックは初期状態と同じ状態になりました。</p>
+
+<h2>
+<span id="putself-main" class="fragment"></span><a href="#putself-main"><i class="fa fa-link"></i></a>putself (main)</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+0011 putself  
+</pre></div></div>
+
+<p>次は<code>hello</code>メソッドを呼び出すための準備です。ここではレシーバとなる<code>self</code>を積んでいます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+-- stack frame ------------
+0000 (0x100700000): 10087f310
+0001 (0x100700008): 10087f2e8
+0002 (0x100700010): 00000000
+0003 (0x100700018): 10085f3f8
+0004 (0x100700020): 1008d6660
+-- Control frame information -----------------------------------------------
+c:0002 p:0012 s:0005 E:000290 EVAL   /Users/nownabe/src/github.com/nownabe/nyarv/test/scripts/3_method.rb:5 [FINISH]
+c:0001 p:0000 s:0002 E:000d10 (none) [FINISH]
+</pre></div></div>
+
+<p><code>Stack[0004]</code>に<code>main</code>が積まれました。</p>
+
+<h2>
+<span id="putstring-main" class="fragment"></span><a href="#putstring-main"><i class="fa fa-link"></i></a>putstring (main)</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+0012 putstring        "Hello, world!"
+</pre></div></div>
+
+<p>引数である<code>"Hello, world!"</code>をスタックに積んでいます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+-- stack frame ------------
+0000 (0x100700000): 10087f310
+0001 (0x100700008): 10087f2e8
+0002 (0x100700010): 00000000
+0003 (0x100700018): 10085f3f8
+0004 (0x100700020): 1008d6660
+0005 (0x100700028): 10085f1c8
+-- Control frame information -----------------------------------------------
+c:0002 p:0014 s:0006 E:000290 EVAL   /Users/nownabe/src/github.com/nownabe/nyarv/test/scripts/3_method.rb:5 [FINISH]
+c:0001 p:0000 s:0002 E:000d10 (none) [FINISH]
+</pre></div></div>
+
+<p><code>Stack[0005]</code>に<code>"Hello, world!"</code>が積まれました。</p>
+
+<h2>
+<span id="send-main-1" class="fragment"></span><a href="#send-main-1"><i class="fa fa-link"></i></a>send (main)</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+0014 send             &lt;callinfo!mid:hello, argc:1, FCALL|ARGS_SIMPLE&gt;, &lt;callcache&gt;, nil
+</pre></div></div>
+
+<p>いよいよ、<code>hello</code>メソッドの呼び出しです。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+-- stack frame ------------
+0000 (0x100700000): 10087f310
+0001 (0x100700008): 10087f2e8
+0002 (0x100700010): 00000000
+0003 (0x100700018): 10085f3f8
+0004 (0x100700020): 1008d6660
+0005 (0x100700028): 10085f1c8
+0006 (0x100700030): 10085f290
+0007 (0x100700038): 00000003 &lt;- ep
+-- Control frame information -----------------------------------------------
+c:0003 p:0000 s:0008 e:000007 METHOD /Users/nownabe/src/github.com/nownabe/nyarv/test/scripts/3_method.rb:2
+c:0002 p:0018 s:0004 E:000290 EVAL   /Users/nownabe/src/github.com/nownabe/nyarv/test/scripts/3_method.rb:5 [FINISH]
+c:0001 p:0000 s:0002 E:000d10 (none) [FINISH]
+</pre></div></div>
+
+<p>コントロールフレームが増えました！</p>
+
+<p>詳しく見てみましょう。</p>
+
+<p>まず、<code>main</code>のコントロールフレーム<code>c:0002</code>は、<code>p:0018 s:0004</code>となっています。<br>
+これは、<code>hello</code>メソッドから返ってきたときの状態ですね。<br>
+<code>p:0018</code>は次の命令である<code>leave</code>、<code>s:0004</code>はメソッドから返ってきたとき、<code>hello</code>メソッドの返り値が入るスタックポインタですね。</p>
+
+<p>次に、<code>hello</code>メソッドのコントロールフレーム<code>c:0003</code>は、<code>p:0000 s:0008 e:000007</code>となっています。<br>
+<code>ep</code>はスタックの一番新しい値を指してますね。</p>
+
+<p>スタックにも新しく2つ値が積まれました。<br>
+<code>Stack[0006]</code>には<code>Object</code>クラスのインスタンスが、<code>Stack[0007]</code>には<code>1</code>が積まれました。なんでしょうね〜。</p>
+
+<h2>
+<span id="putself-hello" class="fragment"></span><a href="#putself-hello"><i class="fa fa-link"></i></a>putself (hello)</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+0000 putself                                                          (   2)
+</pre></div></div>
+
+<p>次は<code>puts</code>メソッドを実行するための準備です。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+-- stack frame ------------
+0000 (0x100700000): 10087f310
+0001 (0x100700008): 10087f2e8
+0002 (0x100700010): 00000000
+0003 (0x100700018): 10085f3f8
+0004 (0x100700020): 1008d6660
+0005 (0x100700028): 10085f1c8
+0006 (0x100700030): 10085f290
+0007 (0x100700038): 00000003 &lt;- ep
+0008 (0x100700040): 1008d6660
+-- Control frame information -----------------------------------------------
+c:0003 p:0001 s:0009 e:000007 METHOD /Users/nownabe/src/github.com/nownabe/nyarv/test/scripts/3_method.rb:2
+c:0002 p:0018 s:0004 E:000290 EVAL   /Users/nownabe/src/github.com/nownabe/nyarv/test/scripts/3_method.rb:5 [FINISH]
+c:0001 p:0000 s:0002 E:000d10 (none) [FINISH]
+</pre></div></div>
+
+<p><code>putself</code>によってレシーバである<code>main</code>が<code>Stack[0008]</code>に積まれました。</p>
+
+<h2>
+<span id="getlocal-hello" class="fragment"></span><a href="#getlocal-hello"><i class="fa fa-link"></i></a>getlocal (hello)</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+0001 getlocal         arg, 0
+</pre></div></div>
+
+<p><code>arg</code>は<code>2</code>と対応しています。<br>
+<code>getlocal</code>はローカル変数の値を取得してスタックに積むという命令になります。<br>
+ローカル変数が指す値は<code>Stack[ep - 第1引数]</code>になります。<br>
+<code>arg</code>は<code>2</code>と対応しているため、この場合は<code>Stack[0005]</code>の<code>0x10085f1c8</code>、つまり<code>"Hello, world!"</code>を指します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+-- stack frame ------------
+0000 (0x100700000): 10087f310
+0001 (0x100700008): 10087f2e8
+0002 (0x100700010): 00000000
+0003 (0x100700018): 10085f3f8
+0004 (0x100700020): 1008d6660
+0005 (0x100700028): 10085f1c8
+0006 (0x100700030): 10085f290
+0007 (0x100700038): 00000003 &lt;- ep
+0008 (0x100700040): 1008d6660
+0009 (0x100700048): 10085f1c8
+-- Control frame information -----------------------------------------------
+c:0003 p:0004 s:0010 e:000007 METHOD /Users/nownabe/src/github.com/nownabe/nyarv/test/scripts/3_method.rb:2
+c:0002 p:0018 s:0004 E:000290 EVAL   /Users/nownabe/src/github.com/nownabe/nyarv/test/scripts/3_method.rb:5 [FINISH]
+c:0001 p:0000 s:0002 E:000d10 (none) [FINISH]
+</pre></div></div>
+
+<p>新しく<code>Stack[0009]</code>に<code>Stack[ep - arg]</code>と同じ値が積まれています。</p>
+
+<h2>
+<span id="send-hello" class="fragment"></span><a href="#send-hello"><i class="fa fa-link"></i></a>send (hello)</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+0004 send             &lt;callinfo!mid:puts, argc:1, FCALL|ARGS_SIMPLE&gt;, &lt;callcache&gt;, nil
+</pre></div></div>
+
+<p><code>puts</code>の呼び出しです。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+-- stack frame ------------
+0000 (0x100700000): 10087f310
+0001 (0x100700008): 10087f2e8
+0002 (0x100700010): 00000000
+0003 (0x100700018): 10085f3f8
+0004 (0x100700020): 1008d6660
+0005 (0x100700028): 10085f1c8
+0006 (0x100700030): 10085f290
+0007 (0x100700038): 00000003 &lt;- ep
+0008 (0x100700040): 00000008
+-- Control frame information -----------------------------------------------
+c:0003 p:0008 s:0009 e:000007 METHOD /Users/nownabe/src/github.com/nownabe/nyarv/test/scripts/3_method.rb:2
+c:0002 p:0018 s:0004 E:000290 EVAL   /Users/nownabe/src/github.com/nownabe/nyarv/test/scripts/3_method.rb:5 [FINISH]
+c:0001 p:0000 s:0002 E:000d10 (none) [FINISH]
+</pre></div></div>
+
+<p><code>puts</code>が実行され、返り値である<code>nil</code>が<code>Stack[0008]</code>に積まれました。</p>
+
+<h2>
+<span id="leave-hello" class="fragment"></span><a href="#leave-hello"><i class="fa fa-link"></i></a>leave (hello)</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+0008 leave
+</pre></div></div>
+
+<p><code>hello</code>メソッドから返ります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+-- stack frame ------------
+0000 (0x100700000): 10087f310
+0001 (0x100700008): 10087f2e8
+0002 (0x100700010): 00000000
+0003 (0x100700018): 10085f3f8
+0004 (0x100700020): 00000008
+-- Control frame information -----------------------------------------------
+c:0002 p:0018 s:0005 E:000290 EVAL   /Users/nownabe/src/github.com/nownabe/nyarv/test/scripts/3_method.rb:5 [FINISH]
+c:0001 p:0000 s:0002 E:000d10 (none) [FINISH]
+</pre></div></div>
+
+<p>コントロールフレーム<code>c:0003</code>がなくなり、<code>c:0002</code>が指していたSPに<code>hello</code>の返り値である<code>nil</code>が積まれました。</p>
+
+<h2>
+<span id="leave-main" class="fragment"></span><a href="#leave-main"><i class="fa fa-link"></i></a>leave (main)</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+0018 leave
+</pre></div></div>
+
+<p>これで一連のプログラムは終了です。</p>
+
+<h1>
+<span id="おわりに" class="fragment"></span><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>おわりに</h1>
+
+<p>メソッド呼び出しで新しいコントロールフレームが作成できること、ローカル変数の値の取得は<code>ep</code>というポインタから計算されることがわかりました。</p>
+
+<p><code>getlocal</code>命令には第2引数で<code>level</code>というものがとれるようになっていて、これによってベースとなる<code>ep</code>が違ってくるようです。<br>
+ブロックの上位のスコープの変数も参照できるという機能で使われるみたいです。<br>
+ここも調べてみたいですね。</p>
+
+<p>あとは<code>hello</code>メソッドを呼び出したときに積まれた謎の<code>Object</code>と<code>1</code>も調べないといけませんね。</p>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | Dockerの実行ユーザ</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="Dockerの実行ユーザ" property="og:title"><meta content=" Dockerでコンテナを起動するとき、rootユーザでプロセスを起動してしまうと危険です。   参考:  Dockerコンテナを本番環境で使うためのセキュリティ設定 - Qiita   公開されているDockerイメージの多くは何もしなければrootで実行するようになっているので、実行ユーザを変更する設定が必要になります。   最も簡単で効果が高いのは、Dockerfile内でユーザを作成して実行ユーザに指定する方法です。  コンテナ起動時に  docker run -u &lt;uid&gt;  でUIDを指定す... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2018/06/05/1321.html" property="og:url"><meta content=" Dockerでコンテナを起動するとき、rootユーザでプロセスを起動してしまうと危険です。   参考:  Dockerコンテナを本番環境で使うためのセキュリティ設定 - Qiita   公開されているDockerイメージの多くは何もしなければrootで実行するようになっているので、実行ユーザを変更する設定が必要になります。   最も簡単で効果が高いのは、Dockerfile内でユーザを作成して実行ユーザに指定する方法です。  コンテナ起動時に  docker run -u &lt;uid&gt;  でUIDを指定す... " property="twitter:description"><meta content="Dockerの実行ユーザ" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2018/06/05/1321.html">Dockerの実行ユーザ</a></h1><span class="date">Posted on&nbsp;Jun 05, 2018</span></div><div class="body"><p>Dockerでコンテナを起動するとき、rootユーザでプロセスを起動してしまうと危険です。</p>
+
+<p>参考: <a href="https://qiita.com/muff1225/items/4edea7b039dd9f26098f#root%E6%A8%A9%E9%99%90%E3%82%92%E5%89%A5%E5%A5%AA%E3%81%99%E3%82%8B" rel="nofollow noopener" target="_blank">Dockerコンテナを本番環境で使うためのセキュリティ設定 - Qiita</a></p>
+
+<p>公開されているDockerイメージの多くは何もしなければrootで実行するようになっているので、実行ユーザを変更する設定が必要になります。</p>
+
+<p>最も簡単で効果が高いのは、Dockerfile内でユーザを作成して実行ユーザに指定する方法です。<br>
+コンテナ起動時に <code>docker run -u &lt;uid&gt;</code> でUIDを指定する方法や、KubernetesのSecurityContextを使う方法などもあります。</p>
+
+<p>例えば、次のような感じになります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+FROM debian
+
+RUN useradd docker
+USER docker
+
+CMD ["bash"]
+</pre></div></div>
+
+<p>これで <code>bash</code> が <code>docker</code> ユーザで実行されます。</p>
+
+<p>これだけでもまあいいのですが、<code>useradd</code>にはいろいろオプションがあり、どのオプションを指定すればいいのか考えてみました。</p>
+
+<p>Dockerfileでよく指定されるオプションには次のようなものがあります。</p>
+
+<ul>
+<li>
+<code>-g</code>: name or ID of the primary group of the new account</li>
+<li>
+<code>-l</code>: do not add the user to the lastlog and faillog databases</li>
+<li>
+<code>-m</code>: create the user's home directory</li>
+<li>
+<code>-M</code>: do not create the user's home directory</li>
+<li>
+<code>-r</code>: create a system account</li>
+<li>
+<code>-s</code>: login shell of the new account</li>
+<li>
+<code>-u</code>: user ID of the new account</li>
+<li>
+<code>-U</code>: create a group with the same name as the user</li>
+</ul>
+
+<p>それぞれについてみていきます。</p>
+
+<p><code>-g</code>はグループを指定します。グループのgidもuidと同じにしていたほうがわかりやすいので <code>-g</code> で指定することになります。</p>
+
+<p><code>-l</code> ですが、lastlogとfaillogはほぼ意味がないのでつけといて思います。</p>
+
+<p><code>-m/-M</code> は、例えばそのユーザでシェルを起動して運用することが想定される場合はホームディレクトリは作成しておいた方が便利です。</p>
+
+<p><code>-r</code> を指定するとシステムアカウントとしてユーザが作成されます。<code>/etc/login.defs</code> に定義されているシステムアカウントの範囲でuidが設定されます。また、ホームディレクトリが作成されません。<code>-u</code> でuidを指定し、ホームディレクトリについては <code>-m/-M</code> で指定するのでこのオプションは不要です。</p>
+
+<p><code>-s /bin/false</code> でリモートログインを禁止できます。<code>/bin/false</code> や <code>/sbin/nologin</code> が指定してあっても、<code>docker exec -u &lt;uid&gt; sh</code> や <code>sudo -u &lt;user&gt; sh</code> によってそのユーザでシェルを実行できます。防げない攻撃がないこともないのでセキュリティ向上のために指定しておいてもいいでしょう。</p>
+
+<p><code>-u</code> で明示的にuidを設定できます。これを指定しない場合は自動で番号を割り振られます。コンテナ外でユーザを指定するときはuidが必要になったりするので、明示的に設定しておいたほうがいいです。</p>
+
+<p><code>-U</code>でユーザと同じ名前のグループを作成しますが、gidがuidと同じになるとは限らないのでグループは<code>-g</code>で指定した方がいいです。</p>
+
+<p>つまり、次のようにユーザを作成するといいと思います。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+RUN groupadd -g 61000 docker
+RUN useradd -g 61000 -l -M -s /bin/false -u 61000 docker
+</pre></div></div>
+
+<p>ユーザでシェルを起動して運用が発生する場合<sup id="fnref1"><a href="#fn1" rel="footnote" title="例えば、bundle exec rails consoleによる運用があるとか">1</a></sup>は、次のように<code>-M</code>ではなく<code>-m</code>を使ってホームディレクトリを作成した方が便利です。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+RUN groupadd -g 61000 docker
+RUN useradd -g 61000 -l -m -s /bin/false -u 61000 docker
+</pre></div></div>
+
+<p>uidが61000なのは、だいたい自動で生成されるuidが1000〜60000に設定されている<sup id="fnref2"><a href="#fn2" rel="footnote" title="/etc/login.defs に書いてある">2</a></sup>ので、その範囲から外しているからです。ちなみにGKEのホストVMは5000〜60000になっていて、uidを5000とかにするとGKEが作ったユーザとuidがかぶる可能性があります。</p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>例えば、<code>bundle exec rails console</code>による運用があるとか <a href="#fnref1" rev="footnote">↩</a></p>
+</li>
+
+<li id="fn2">
+<p><code>/etc/login.defs</code> に書いてある <a href="#fnref2" rev="footnote">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

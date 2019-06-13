@@ -1,0 +1,79 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | 言語処理のための機械学習入門 第11回</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="言語処理のための機械学習入門 第11回" property="og:title"><meta content=" nownab.log | 言語処理のための機械学習入門 第10回     概要   機械学習勉強会で輪読してる 言語処理のための機械学習入門 の学習メモです。  勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。     資料置き場   11回目 4.1, 4.2.1 · Issue #94 · Wondershake/machine-learning-study     範囲     4 分類    4.1 準備   4.2 ナイーブベイズ分類器    4.2.1 多変数ベルヌーイモデル               4 分... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2018/05/16/1298.html" property="og:url"><meta content=" nownab.log | 言語処理のための機械学習入門 第10回     概要   機械学習勉強会で輪読してる 言語処理のための機械学習入門 の学習メモです。  勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。     資料置き場   11回目 4.1, 4.2.1 · Issue #94 · Wondershake/machine-learning-study     範囲     4 分類    4.1 準備   4.2 ナイーブベイズ分類器    4.2.1 多変数ベルヌーイモデル               4 分... " property="twitter:description"><meta content="言語処理のための機械学習入門 第11回" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2018/05/16/1298.html">言語処理のための機械学習入門 第11回</a></h1><span class="date">Posted on&nbsp;May 16, 2018</span></div><div class="body"><p><a href="https://blog.nownabe.com/2018/05/16/1297.html">nownab.log | 言語処理のための機械学習入門 第10回</a></p>
+
+<h1>
+<span id="概要" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81"><i class="fa fa-link"></i></a>概要</h1>
+
+<p>機械学習勉強会で輪読してる<a href="http://amzn.to/2BFQSee" rel="nofollow noopener" target="_blank">言語処理のための機械学習入門</a>の学習メモです。<br>
+勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。</p>
+
+<h1>
+<span id="資料置き場" class="fragment"></span><a href="#%E8%B3%87%E6%96%99%E7%BD%AE%E3%81%8D%E5%A0%B4"><i class="fa fa-link"></i></a>資料置き場</h1>
+
+<p><a href="https://github.com/Wondershake/machine-learning-study/issues/94" rel="nofollow noopener" target="_blank">11回目 4.1, 4.2.1 · Issue #94 · Wondershake/machine-learning-study</a></p>
+
+<h1>
+<span id="範囲" class="fragment"></span><a href="#%E7%AF%84%E5%9B%B2"><i class="fa fa-link"></i></a>範囲</h1>
+
+<ul>
+<li>4 分類
+
+<ul>
+<li>4.1 準備</li>
+<li>4.2 ナイーブベイズ分類器
+
+<ul>
+<li>4.2.1 多変数ベルヌーイモデル</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<h1>
+<span id="4-分類" class="fragment"></span><a href="#4-%E5%88%86%E9%A1%9E"><i class="fa fa-link"></i></a>4 分類</h1>
+
+<h2>
+<span id="41-準備" class="fragment"></span><a href="#41-%E6%BA%96%E5%82%99"><i class="fa fa-link"></i></a>4.1 準備</h2>
+
+<h2>
+<span id="42-ナイーブベイズ分類器" class="fragment"></span><a href="#42-%E3%83%8A%E3%82%A4%E3%83%BC%E3%83%96%E3%83%99%E3%82%A4%E3%82%BA%E5%88%86%E9%A1%9E%E5%99%A8"><i class="fa fa-link"></i></a>4.2 ナイーブベイズ分類器</h2>
+
+<h3>
+<span id="421-多変数ベルヌーイモデル" class="fragment"></span><a href="#421-%E5%A4%9A%E5%A4%89%E6%95%B0%E3%83%99%E3%83%AB%E3%83%8C%E3%83%BC%E3%82%A4%E3%83%A2%E3%83%87%E3%83%AB"><i class="fa fa-link"></i></a>4.2.1 多変数ベルヌーイモデル</h3>
+
+<h1>
+<span id="所感" class="fragment"></span><a href="#%E6%89%80%E6%84%9F"><i class="fa fa-link"></i></a>所感</h1>
+
+<p>ナイーブベイズは実装もしたし大枠理解してたけど、パラメータを最尤推定、MAP推定という枠組みを使ってラグランジュ乗数法で求めるのはほーーん！<img class="emoji" title=":bulb:" alt=":bulb:" src="/images/emoji/unicode/1f4a1.svg" height="20" width="20" align="absmiddle">という感じだった。</p>
+
+<h1>
+<span id="言語処理のための機械学習入門" class="fragment"></span><a href="#%E8%A8%80%E8%AA%9E%E5%87%A6%E7%90%86%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E5%85%A5%E9%96%80"><i class="fa fa-link"></i></a>言語処理のための機械学習入門</h1>
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&amp;bc1=000000&amp;IS2=1&amp;bg1=FFFFFF&amp;fc1=000000&amp;lc1=0000FF&amp;t=nownabe0c-22&amp;o=9&amp;p=8&amp;l=as4&amp;m=amazon&amp;f=ifr&amp;ref=as_ss_li_til&amp;asins=4339027510&amp;linkId=1c6291b86381f20d113796257356ef1b"></iframe>
+
+<h1>
+<span id="機械学習勉強会について" class="fragment"></span><a href="#%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E5%8B%89%E5%BC%B7%E4%BC%9A%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>機械学習勉強会について</h1>
+
+<p>社内で毎週開催している。本書は輪読形式でまわしているが、題材によって形式は柔軟に変えている。<br>
+毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。</p>
+
+<p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。<br>
+<a href="https://github.com/Wondershake/machine-learning-study" rel="nofollow noopener" target="_blank">Wondershake/machine-learning-study: 機械学習勉強会</a></p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+</pre></div></div>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

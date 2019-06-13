@@ -1,0 +1,122 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | できるだけシンプルにFlake8でPython修行</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="できるだけシンプルにFlake8でPython修行" property="og:title"><meta content="    はじめに   この記事ではPythonの良い書き方を身につけるためにVimからLintツールを使う方法を紹介する。   Pythonは前から使う必要があるときに書いていたが、これから書く機会も増えるだろうから本格的に学ぼうと考えている。  そこで、良い書き方を身につけるためにLint系のツールを導入した。     結論   Flake8に以下のプラグインを入れて使うのが最強っぽい。     hacking   flake8-import-order   flake8-docstrings       Flake8  ..." property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2017/08/15/1096.html" property="og:url"><meta content="    はじめに   この記事ではPythonの良い書き方を身につけるためにVimからLintツールを使う方法を紹介する。   Pythonは前から使う必要があるときに書いていたが、これから書く機会も増えるだろうから本格的に学ぼうと考えている。  そこで、良い書き方を身につけるためにLint系のツールを導入した。     結論   Flake8に以下のプラグインを入れて使うのが最強っぽい。     hacking   flake8-import-order   flake8-docstrings       Flake8  ..." property="twitter:description"><meta content="できるだけシンプルにFlake8でPython修行" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2017/08/15/1096.html">できるだけシンプルにFlake8でPython修行</a></h1><span class="date">Posted on&nbsp;Aug 15, 2017</span></div><div class="body">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>この記事ではPythonの良い書き方を身につけるためにVimからLintツールを使う方法を紹介する。</p>
+
+<p>Pythonは前から使う必要があるときに書いていたが、これから書く機会も増えるだろうから本格的に学ぼうと考えている。<br>
+そこで、良い書き方を身につけるためにLint系のツールを導入した。</p>
+
+<h1>
+<span id="結論" class="fragment"></span><a href="#%E7%B5%90%E8%AB%96"><i class="fa fa-link"></i></a>結論</h1>
+
+<p>Flake8に以下のプラグインを入れて使うのが最強っぽい。</p>
+
+<ul>
+<li>hacking</li>
+<li>flake8-import-order</li>
+<li>flake8-docstrings</li>
+</ul>
+
+<h1>
+<span id="flake8" class="fragment"></span><a href="#flake8"><i class="fa fa-link"></i></a>Flake8</h1>
+
+<p><a href="http://flake8.pycqa.org/en/latest/" rel="nofollow noopener" target="_blank">Flake8: Your Tool For Style Guide Enforcement — flake8 3.4.1 documentation</a></p>
+
+<p>Flake8はPythonのコードチェックツールである。<br>
+複数のコードチェックツールのラッパーであり、つまり広範囲のコードチェックをやってくれる。</p>
+
+<p>PythonのLintで調べるとPEP 8やらpyflakesやら色々見つかるが、とりあえずFlake8だけ入れておけば良い。</p>
+
+<p>参考:</p>
+
+<ul>
+<li><a href="http://wonderwall.hatenablog.com/entry/2017/02/05/214004" rel="nofollow noopener" target="_blank">Vimメモ : flake8でPythonのコードをチェックする - もた日記</a></li>
+<li><a href="http://tech.sideci.com/entry/2016/12/01/130459" rel="nofollow noopener" target="_blank">Flake8 のプラグイン機構についてのお話 - SideCI TechBlog</a></li>
+</ul>
+
+<h1>
+<span id="flake8のプラグイン" class="fragment"></span><a href="#flake8%E3%81%AE%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3"><i class="fa fa-link"></i></a>Flake8のプラグイン</h1>
+
+<p>Flake8はプラグイン機構を持っており、プラグインによってより厳しくチェックできる。</p>
+
+<p>有名なプラグインにOpenStackのStyle Guildelinesのルールをチェックするhackingがある。<br>
+<a href="https://docs.openstack.org/hacking/latest/" rel="nofollow noopener" target="_blank">OpenStack Docs: hacking: OpenStack Hacking Guideline Enforcement</a></p>
+
+<p>今回の目的は修行で厳しければ厳しいほどありがたいため以下のプラグインを導入した。</p>
+
+<ul>
+<li>hacking</li>
+<li>flake8-import-order</li>
+<li>flake8-docstrings<sup id="fnref1"><a href="#fn1" rel="footnote" title="flake8-pep257は古くてルールがコンフリクトしてる">1</a></sup>
+</li>
+<li>pep8-naming</li>
+<li>flake8-double-quotes</li>
+</ul>
+
+<p>参考: <a href="http://qiita.com/kitsuyui/items/5ab4608003a29ff7689f" rel="nofollow noopener" target="_blank">Python の Lint (文法チェッカ) まとめ - flake8 + hacking を使う - - Qiita</a></p>
+
+<h1>
+<span id="インストール" class="fragment"></span><a href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>インストール</h1>
+
+<p>pipでインストールする。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+pip install flake8 hacking flake8-import-order flake8-docstrings pep8-naming flake8-double-quotes
+</pre></div></div>
+
+<h1>
+<span id="vimで使う" class="fragment"></span><a href="#vim%E3%81%A7%E4%BD%BF%E3%81%86"><i class="fa fa-link"></i></a>Vimで使う</h1>
+
+<p>とりあえずここではシンプルに、syntasticを使って保存時にチェックするようにする。<br>
+いろいろカスタマイズはできると思う。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+" ...
+NeoBundle 'scrooloose/syntastic'
+" ...
+
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['python'] }
+let g:syntastic_python_checkers = ['flake8']
+</pre></div></div>
+
+<p><code>NeoBundle</code>を使っている場合はこんな感じ。</p>
+
+<p>参考:</p>
+
+<ul>
+<li><a href="http://wonderwall.hatenablog.com/entry/2017/02/05/214004#vim-flake8%E3%81%AB%E3%82%88%E3%82%8AVim%E3%81%A7flake8%E3%82%92%E5%AE%9F%E8%A1%8C" rel="nofollow noopener" target="_blank">Vimメモ : flake8でPythonのコードをチェックする - もた日記</a></li>
+<li><a href="http://tk0miya.hatenablog.com/entry/2013/12/12/140240" rel="nofollow noopener" target="_blank">vim で python を書いてる時に flake8 をいい感じに実行する - Hack like a rolling stone</a></li>
+</ul>
+
+<h1>
+<span id="おわりに" class="fragment"></span><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>おわりに</h1>
+
+<p>これでだめな書き方は指摘されるようになったので、指摘を潰していけばまぁまぁ良い書き方ができるようになるのではないかと思う。<br>
+Python書いていくぞい <img class="emoji" title=":muscle:" alt=":muscle:" src="/images/emoji/unicode/1f4aa.svg" height="20" width="20" align="absmiddle"></p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>flake8-pep257は古くてルールがコンフリクトしてる <a href="#fnref1" rev="footnote">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

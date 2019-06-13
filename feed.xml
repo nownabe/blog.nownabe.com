@@ -1,0 +1,1823 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>nownab.log</title>
+  <subtitle>logging daily technical learnings</subtitle>
+  <id>https://blog.nownabe.com</id>
+  <link href="https://blog.nownabe.com"/>
+  <link href="https://blog.nownabe.com/feed.xml" rel="self"/>
+  <updated>2019-05-28T15:00:00+00:00</updated>
+  <author>
+    <name>nownabe</name>
+  </author>
+  <entry>
+    <title>GCP Updates | May 28, 2019</title>
+    <link rel="alternate" href="https://blog.nownabe.com/2019/05/29/gcp-product-updates-may-28-2019.html"/>
+    <id>https://blog.nownabe.com/2019/05/29/gcp-product-updates-may-28-2019.html</id>
+    <published>2019-05-28T15:00:00+00:00</published>
+    <updated>2019-06-13T15:17:39+00:00</updated>
+    <author>
+      <name>nownabe</name>
+    </author>
+    <content type="html">&lt;p&gt;再開しました。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="hybrid--multi-cloud" class="fragment"&gt;&lt;/span&gt;&lt;a href="#hybrid--multi-cloud"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;HYBRID &amp;amp; MULTI-CLOUD&lt;/h1&gt;
+
+&lt;h2&gt;
+&lt;span id="anthos-config-management-ga" class="fragment"&gt;&lt;/span&gt;&lt;a href="#anthos-config-management-ga"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Anthos Config Management: GA&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Manage configuration and enforce policy across your clusters – whether they’re on-premises or in the cloud. Set a declarative configuration for role-based access controls, resource quotas, and Namespaces – all from a single place. &lt;a href="https://cloud.google.com/anthos/docs/concepts/anthos-overview#centralized_config_management" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt; | &lt;a href="https://cloud.google.com/blog/topics/hybrid-cloud/new-platform-for-managing-applications-in-todays-multi-cloud-world" rel="nofollow noopener" target="_blank"&gt;Blog&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;GitOpsみたいなことができるっぽいけどContact Salesになってる。。。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="compute" class="fragment"&gt;&lt;/span&gt;&lt;a href="#compute"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;COMPUTE&lt;/h1&gt;
+
+&lt;h2&gt;
+&lt;span id="kubernetes-engine--intranode-visibility-beta" class="fragment"&gt;&lt;/span&gt;&lt;a href="#kubernetes-engine--intranode-visibility-beta"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Kubernetes Engine – Intranode Visibility: beta&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;This feature makes all your network traffic visible to the GCP network. You can see flow logs for all traffic between Pods, including traffic between Pods on the same node. And you can create firewall rules that apply to all traffic between Pods. &lt;a href="https://cloud.google.com/kubernetes-engine/docs/how-to/intranode-visibility" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Pod間のトラフィックに対してflow logとファイアウォールを有効にするもの。既存クラスタも有効にできる。&lt;/p&gt;
+
+&lt;div class="code-frame" data-lang="text"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;
+gcloud beta container clusters update [CLUSTER_NAME] --enable-intra-node-visibility
+&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ファイアウォールについては特に記載がなかった。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="compute-engine--reserving-zonal-resources-beta" class="fragment"&gt;&lt;/span&gt;&lt;a href="#compute-engine--reserving-zonal-resources-beta"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Compute Engine – reserving zonal resources: beta&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Reserve VM instances in a specific zone to ensure they’re available for future increases in demand, such as planned or unplanned spikes, large migrations, backup and disaster recovery, or planned growth. You can create or cancel a reservation at any time, with no commitment. &lt;a href="https://cloud.google.com/compute/docs/instances/reserving-zonal-resources" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;当然っちゃ当然ですが普通にお金かかるみたいですね。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="api-platform--ecosystems" class="fragment"&gt;&lt;/span&gt;&lt;a href="#api-platform--ecosystems"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;API PLATFORM &amp;amp; ECOSYSTEMS&lt;/h1&gt;
+
+&lt;h2&gt;
+&lt;span id="apigee-developer-portal--audience-management-and-developer-teams-beta" class="fragment"&gt;&lt;/span&gt;&lt;a href="#apigee-developer-portal--audience-management-and-developer-teams-beta"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Apigee Developer Portal – audience management and developer teams: beta&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;This release allows portal users to share responsibility for an app with other portal users, as well as segment individuals in order to control access to content. &lt;a href="https://docs.apigee.com/release/notes/190507-apigee-edge-public-cloud-release-notes-ui#teams-audience-management" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt; | &lt;a href="https://community.apigee.com/idea/68536/introducing-developer-programs-and-the-developer-t.html" rel="nofollow noopener" target="_blank"&gt;Blog&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1&gt;
+&lt;span id="ai--machine-learning" class="fragment"&gt;&lt;/span&gt;&lt;a href="#ai--machine-learning"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;AI &amp;amp; MACHINE LEARNING&lt;/h1&gt;
+
+&lt;h2&gt;
+&lt;span id="ai-platform-notebooks-beta" class="fragment"&gt;&lt;/span&gt;&lt;a href="#ai-platform-notebooks-beta"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;AI Platform Notebooks: beta&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;This managed enterprise notebook service helps you get projects up and running in minutes. In one click, you can create instances in JupyterLab that come pre-installed with the latest data science and machine learning frameworks. The service is available through AI Platform in the Google Cloud Platform Console.&lt;br&gt;
+ &lt;a href="https://cloud.google.com/ml-engine/docs/notebooks/" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1&gt;
+&lt;span id="mobile-app-development" class="fragment"&gt;&lt;/span&gt;&lt;a href="#mobile-app-development"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;MOBILE APP DEVELOPMENT&lt;/h1&gt;
+
+&lt;h2&gt;
+&lt;span id="firebase--shared-ios-keychain-beta" class="fragment"&gt;&lt;/span&gt;&lt;a href="#firebase--shared-ios-keychain-beta"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Firebase – shared iOS keychain: beta&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Share authentication states across multiple apps or extensions on iOS. This allows users to sign in or out once and have the action apply across all apps that belong to the same access group. &lt;a href="https://firebase.google.com/docs/auth/ios/single-sign-on" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1&gt;
+&lt;span id="identity--security" class="fragment"&gt;&lt;/span&gt;&lt;a href="#identity--security"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;IDENTITY &amp;amp; SECURITY&lt;/h1&gt;
+
+&lt;h2&gt;
+&lt;span id="gke-sandbox-beta" class="fragment"&gt;&lt;/span&gt;&lt;a href="#gke-sandbox-beta"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;GKE Sandbox: beta&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Get increased security for your Kubernetes Engine containers – without added complexity. This managed service, based on the open-source project gVisor, is a container-isolation solution that provides a second layer of defense between your containerized workloads on Kubernetes Engine. &lt;a href="https://cloud.google.com/kubernetes-engine/sandbox/" rel="nofollow noopener" target="_blank"&gt;Product page&lt;/a&gt; | &lt;a href="https://cloud.google.com/blog/products/identity-security/increasing-trust-in-google-cloud-visibility-control-and-automation" rel="nofollow noopener" target="_blank"&gt;Blog&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;GKEでgVisorが使えるやつ。GKE Sandboxを有効にしたNode Poolを新しく作ってPod templateで&lt;code&gt;runtimeClassName: gvisor&lt;/code&gt;とすれば使える。&lt;br&gt;
+いろいろ制約があるみたいなので使うときは注意が必要ですね。&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>よくしらんRailsアプリとかをAWSのレガシーシステムからGCPのイケイケシステムに移行した話</title>
+    <link rel="alternate" href="https://blog.nownabe.com/2019/05/21/migration-to-gcp.html"/>
+    <id>https://blog.nownabe.com/2019/05/21/migration-to-gcp.html</id>
+    <published>2019-05-20T15:00:00+00:00</published>
+    <updated>2019-06-13T15:17:39+00:00</updated>
+    <author>
+      <name>nownabe</name>
+    </author>
+    <content type="html">
+&lt;h1&gt;
+&lt;span id="はじめに" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;はじめに&lt;/h1&gt;
+
+&lt;p&gt;Railsアプリケーションを中心とするシステムをAWSからGCPに移行しました。本記事ではその過程をできるだけ赤裸々に公開します。&lt;/p&gt;
+
+&lt;p&gt;本プロジェクトではインフラ移行と同時にアーキテクチャも刷新しました。AWSがレガシーでGCPがイケイケという意味ではなく、移行対象システムのアーキテクチャがレガシーからイケイケになったという意味です。&lt;/p&gt;
+
+&lt;p&gt;技術的な内容については詳細は省いて概要の説明にとどめています。AWS、GCP、Docker、Kubernetesあたりの知識があるとスッと読めると思います。&lt;/p&gt;
+
+&lt;p&gt;書きたいこと書いたので長い記事になってますがぜひお付き合いください。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="目次" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E7%9B%AE%E6%AC%A1"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;目次&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#%E3%83%AC%E3%82%AC%E3%82%B7%E3%83%BC%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%A8%E3%82%A4%E3%82%B1%E3%82%A4%E3%82%B1%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0"&gt;レガシーシステムとイケイケシステム&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#%E3%81%AA%E3%81%9C%E7%A7%BB%E8%A1%8C%E3%81%97%E3%81%9F%E3%81%AE%E3%81%8B"&gt;なぜ移行したのか&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"&gt;プロジェクトについて&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#%E6%8A%80%E8%A1%93%E8%AA%BF%E6%9F%BB"&gt;技術調査&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#%E6%A0%B9%E5%9B%9E%E3%81%97%E3%81%A8%E3%81%8B%E7%A8%9F%E8%AD%B0%E7%9A%84%E3%81%AA%E3%82%A2%E3%83%AC"&gt;根回しとか稟議的なアレ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#terraform%E6%95%B4%E5%82%99"&gt;Terraform整備&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#kubernetes%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%BF%E3%81%AE%E8%A8%AD%E5%AE%9A"&gt;Kubernetesクラスタの設定&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#rails%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%BA%96%E5%82%99"&gt;Railsアプリの移行準備&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#docker%E5%8C%96"&gt;Docker化&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#kubernetes%E5%8C%96"&gt;Kubernetes化&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#ci%E6%95%B4%E5%82%99"&gt;CI整備&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#%E5%8B%95%E7%94%BB%E5%A4%89%E6%8F%9B%E6%A9%9F%E8%83%BD%E3%81%AEgcp%E5%AF%BE%E5%BF%9C"&gt;動画変換機能のGCP対応&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%83%B3%E3%82%B9%E3%82%B5%E3%83%BC%E3%83%90%E6%A7%8B%E7%AF%89"&gt;メンテナンスサーバ構築&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86%E6%9B%B8%E4%BD%9C%E6%88%90"&gt;移行手順書作成&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#%E7%A7%BB%E8%A1%8C%E3%83%AA%E3%83%8F%E3%83%BC%E3%82%B5%E3%83%AB"&gt;移行リハーサル&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#%E8%B2%A0%E8%8D%B7%E3%83%86%E3%82%B9%E3%83%88"&gt;負荷テスト&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#qa%E3%83%86%E3%82%B9%E3%83%88"&gt;QAテスト&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#%E7%A7%BB%E8%A1%8C%E4%BD%9C%E6%A5%AD"&gt;移行作業&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#%E7%A7%BB%E8%A1%8C%E5%BE%8C"&gt;移行後&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#%E8%89%AF%E3%81%8B%E3%81%A3%E3%81%9F%E7%82%B9%E3%81%A8%E5%8F%8D%E7%9C%81%E7%82%B9"&gt;良かった点と反省点&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#%E4%BB%8A%E5%BE%8C"&gt;今後&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#%E7%B5%82%E3%82%8F%E3%82%8A%E3%81%AB"&gt;終わりに&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1&gt;
+&lt;span id="レガシーシステムとイケイケシステム" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%83%AC%E3%82%AC%E3%82%B7%E3%83%BC%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%A8%E3%82%A4%E3%82%B1%E3%82%A4%E3%82%B1%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;レガシーシステムとイケイケシステム&lt;/h1&gt;
+
+&lt;p&gt;まず、移行前のレガシーシステムと移行後のイケイケシステムについて軽く説明します。&lt;/p&gt;
+
+&lt;p&gt;タイトルをキャッチーにするためこうしましたが、特別レガシーでもイケイケでもないのでご了承ください。ちょっと前と今の普通のアーキテクチャという感じです。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="ざっくり全体像" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%81%96%E3%81%A3%E3%81%8F%E3%82%8A%E5%85%A8%E4%BD%93%E5%83%8F"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;ざっくり全体像&lt;/h2&gt;
+
+&lt;p&gt;移行前のシステムのざっくりとした全体像はこんな感じです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://i.imgur.com/exakOsX.png" target="_blank" rel="nofollow noopener"&gt;&lt;img src="https://i.imgur.com/exakOsX.png" alt=""&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;基本はモノリシックなRailsアプリ&lt;/li&gt;
+&lt;li&gt;クライアントとしてAndroidアプリ、iOSアプリがあり、それらはRailsのAPIを叩いている&lt;/li&gt;
+&lt;li&gt;WebはRailsでHTMLを出力している&lt;/li&gt;
+&lt;li&gt;管理画面も同じRailsアプリで実装している&lt;/li&gt;
+&lt;li&gt;モノリシックなRailsアプリ以外にも周辺にいくつかアプリケーションが存在する&lt;/li&gt;
+&lt;li&gt;多くの外部サービスに依存している&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;
+&lt;span id="レガシーシステム" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%83%AC%E3%82%AC%E3%82%B7%E3%83%BC%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;レガシーシステム&lt;/h2&gt;
+
+&lt;p&gt;モノリシックなRailsアプリケーションを中心としてAWS上に構築されたシステムです。6年間開発されていてそれなりに負債もたまっています。&lt;/p&gt;
+
+&lt;p&gt;EC2-ClassicのVMインスタンスにOpsWorksのChefでプロビジョニングを行い、OpsWorksでデプロイしていました。データベースやストレージはRDS(MySQL)、ElastiCache(Redis、Memcached)、DynamoDB、S3、CloudSearchなどを使用していました。&lt;/p&gt;
+
+&lt;p&gt;Railsアプリ以外にも、EC2-VPCにデプロイされたGoのアプリケーション、LambdaやAWS Batchで動作するアプリケーションなどが存在しました。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="イケイケシステム" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%82%A4%E3%82%B1%E3%82%A4%E3%82%B1%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;イケイケシステム&lt;/h2&gt;
+
+&lt;p&gt;同じくモノリシックなRailsアプリケーションを中心としてGCP上に構築されたシステムです。&lt;/p&gt;
+
+&lt;p&gt;各アプリケーションはコンテナ化され、GKEのKubernetes上で動作しています。データベースやストレージも一部を除きGCPのサービスを使用しています。&lt;/p&gt;
+
+&lt;p&gt;DynamoDBやCloudSearchなど引き続き使用しているAWSのサービスもあります。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="なぜ移行したのか" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%81%AA%E3%81%9C%E7%A7%BB%E8%A1%8C%E3%81%97%E3%81%9F%E3%81%AE%E3%81%8B"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;なぜ移行したのか&lt;/h1&gt;
+
+&lt;p&gt;本プロジェクトではアーキテクチャ刷新とインフラ移行を同時に行いました。本記事のアーキテクチャという言葉はシステムのインフラ構成ぐらいの意味で使っています。&lt;/p&gt;
+
+&lt;p&gt;アーキテクチャ刷新の目的としては4つありました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;運用コスト削減&lt;/li&gt;
+&lt;li&gt;セキュリティ向上&lt;/li&gt;
+&lt;li&gt;開発効率向上&lt;/li&gt;
+&lt;li&gt;今後のビジネス展開の準備&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;インフラ移行の目的としては3つありました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;新アーキテクチャの構築&lt;/li&gt;
+&lt;li&gt;セキュリティ向上&lt;/li&gt;
+&lt;li&gt;インフラコスト削減&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;それぞれについて説明します。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="アーキテクチャ刷新の目的" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E5%88%B7%E6%96%B0%E3%81%AE%E7%9B%AE%E7%9A%84"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;アーキテクチャ刷新の目的&lt;/h2&gt;
+
+&lt;h3&gt;
+&lt;span id="運用コスト削減" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E9%81%8B%E7%94%A8%E3%82%B3%E3%82%B9%E3%83%88%E5%89%8A%E6%B8%9B"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;運用コスト削減&lt;/h3&gt;
+
+&lt;p&gt;旧システムは急ごしらえで構築され、現在ではインフラ担当者もおらずほぼ放置で長年運用されていたためかなりガタがきていました。運用のコストも馬鹿にならなかったのでそれを改善する目的がありました。&lt;/p&gt;
+
+&lt;p&gt;旧システムのガタとしてはこんな感じでした。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;アラート頻発&lt;/li&gt;
+&lt;li&gt;デプロイに30分から1時間かかる&lt;/li&gt;
+&lt;li&gt;デプロイするたびに障害発生&lt;/li&gt;
+&lt;li&gt;Chefのコードは不要なコードだらけのコピペ祭りだし一部はエラーで実行不可能&lt;/li&gt;
+&lt;li&gt;RubyのバージョンアップはVMにSSHでログインして頑張る&lt;/li&gt;
+&lt;li&gt;インフラ構築した人はすでにおらずInfra as Codeもされていないので構築意図がまったくわからず何か起こるたびに困る&lt;/li&gt;
+&lt;li&gt;などなど&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;高頻度で様々な障害対応が発生するけど誰にも聞けずに辛みが深いし、インフラを改善しようにもほぼコード化されてないし部分的にコード化されてるChefもリファクタリングが必要とかいうレベルではない上にそもそもエラーで実行できない箇所があるという状況でした。&lt;/p&gt;
+
+&lt;p&gt;こういった状況を抜本的に改善するために、アーキテクチャを刷新するという選択をしました。&lt;/p&gt;
+
+&lt;h3&gt;
+&lt;span id="セキュリティ向上" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E5%90%91%E4%B8%8A"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;セキュリティ向上&lt;/h3&gt;
+
+&lt;p&gt;今までのインフラはセキュリティ意識が低く構築されていました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;OpsWorksとChefコードの制約からめっちゃ古いOSを使い続けている
+
+&lt;ul&gt;
+&lt;li&gt;Kernelもミドルウェアも古い&lt;/li&gt;
+&lt;li&gt;新しい脆弱性に対するセキュリティパッチがない&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SSHの鍵はDropboxで広く共有されている&lt;/li&gt;
+&lt;li&gt;MySQLのrootパスワードが誰かの名前&lt;/li&gt;
+&lt;li&gt;IAMの権限がめっちゃ強い&lt;/li&gt;
+&lt;li&gt;などなど&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;という具合です。脆弱性など致命的な部分は都度対応しているものの、それしかできていない状態でした。&lt;/p&gt;
+
+&lt;p&gt;セキュリティに関しても抜本的に作り直したほうが早く改善できるという判断でした。&lt;/p&gt;
+
+&lt;h3&gt;
+&lt;span id="開発効率向上" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E9%96%8B%E7%99%BA%E5%8A%B9%E7%8E%87%E5%90%91%E4%B8%8A"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;開発効率向上&lt;/h3&gt;
+
+&lt;p&gt;次のような施策によって開発効率の向上を目指しました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;インフラまわりの単純化&lt;/li&gt;
+&lt;li&gt;徹底的なInfra as a Code&lt;/li&gt;
+&lt;li&gt;コンテナ化&lt;/li&gt;
+&lt;li&gt;Kubernetes化&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;新システムではインフラまわりを単純化することで理解しやすくして開発効率向上を目指しました。旧システムは歴史的経緯なのかそもそもの設計が悪いのかわかりませんが無駄な複雑さが多くありました。そういった複雑な依存や機能をひとつひとつ紐解きシンプルに構築しなおすことで理解しやすくしました。&lt;/p&gt;
+
+&lt;p&gt;新システムではほぼすべてをTerraformで構築しました。Terraformでカバーできない範囲もコード化しCI/CDするようにしました。旧システムでは誰が何を意図して作ったかもよくわからないインスタンスや設定が多々あるし、Chefのレシピがあったとしても実はエラーで実行されなかったり、実際の設定は手動で変更されてたりするので期待される正しい状態がわからないという状況でした。そういったことがないように構成管理はTerraformに一任し、コードはGitでバージョン管理するようにしました。&lt;/p&gt;
+
+&lt;p&gt;コンテナ化によってアプリケーションの実行環境に対してアプリ開発者が責任を持てるようにしました。新しいライブラリが必要になったりRubyのバージョンアップしたくなったりしてもDockerfileを修正するだけで済みます。&lt;/p&gt;
+
+&lt;p&gt;Kubernetesを採用することでインフラの単純化、インフラのコード化、実行環境に対する権限の移譲をシンプルに実現しました。Kubernetes自体がシンプルかどうかは様々な観点で議論があると思いますが、アプリ開発者がアプリケーションを継続的に運用するという点では一からAWSで同じものを構築するより簡単に実現できます&lt;sup id="fnref1"&gt;&lt;a href="#fn1" rel="footnote" title="簡単さの比較に関してはもちろん組み立て方次第なんですが、なんとなく雰囲気を感じ取っていただければ幸いです。参考: Kubernetes は辛いのか？ - @amsy810's Blog"&gt;1&lt;/a&gt;&lt;/sup&gt;。Kubernetesはとてもよくインフラを抽象化していて、理解すれば様々なことを標準機能&lt;sup id="fnref2"&gt;&lt;a href="#fn2" rel="footnote" title="GKEのようなマネージドサービスの機能も含む"&gt;2&lt;/a&gt;&lt;/sup&gt;で実現できます。標準機能でできるということが大切で、Kubernetes採用にあたっては標準機能でできないことはしないということに気をつけました。&lt;/p&gt;
+
+&lt;h3&gt;
+&lt;span id="今後のビジネス展開の準備" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E4%BB%8A%E5%BE%8C%E3%81%AE%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9%E5%B1%95%E9%96%8B%E3%81%AE%E6%BA%96%E5%82%99"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;今後のビジネス展開の準備&lt;/h3&gt;
+
+&lt;p&gt;今後のビジネス展開として新しいサービスを開発していくための準備という目的がありました。「サービスを新規開発していくからマイクロサービスができるようによろしくやっといてくれ」みたいなことを言われていました。サービスの新規開発とMicroservicesとはまったく別の話ですが、新しいアプリケーションを構築する際にも統一的なインフラ基盤があったほうが開発・運用の効率がいいことは間違いないのでそれに備えるという目的がありました。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="インフラ移行の目的" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9%E7%A7%BB%E8%A1%8C%E3%81%AE%E7%9B%AE%E7%9A%84"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;インフラ移行の目的&lt;/h2&gt;
+
+&lt;p&gt;なぜAWSでアーキテクチャを刷新せずにGCPに移行したか、という話です。これは簡単で、Kubernetesを使うためです。&lt;/p&gt;
+
+&lt;p&gt;技術選定をしたときにマネージドKubernetesを使おうと思ったらGKE一択だったのでGCP以外に選択肢は考えていませんでした。また、BigQueryを使うためにデータ分析基盤がGCPに構築されており、今後のデータ活用を考えるとGCPに統一した方が転送量等のコストも抑えられるし開発運用がやりやすいというのも理由です。&lt;/p&gt;
+
+&lt;p&gt;他にも値段あたりのVM性能が良かったり、セキュリティへの安心感&lt;sup id="fnref3"&gt;&lt;a href="#fn3" rel="footnote" title="GCPはかなりセキュリティに力を入れてるし、例えばコンテナまわりの脆弱性が発表されたときにGKEのContainer-Optimized OSの場合は対応不要ということも多かった。"&gt;3&lt;/a&gt;&lt;/sup&gt;があったりという理由もありました。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="プロジェクトについて" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;プロジェクトについて&lt;/h1&gt;
+
+&lt;p&gt;プロジェクトについて、社内やチームの状況、全体の流れなどを説明します。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="状況" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E7%8A%B6%E6%B3%81"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;状況&lt;/h2&gt;
+
+&lt;p&gt;なかなか特殊な状況だったので、まずそれを説明します。状況が異なればプロジェクトの進め方等も異なってくると思います。&lt;/p&gt;
+
+&lt;h3&gt;
+&lt;span id="自分について" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E8%87%AA%E5%88%86%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;自分について&lt;/h3&gt;
+
+&lt;p&gt;会社には数ヶ月の業務委託を経て入社しました。業務委託期間を含めて移行プロジェクトを始めるまではCTOの傭兵のような立ち位置で次のようなことを行っていました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;データ・機械学習系
+
+&lt;ul&gt;
+&lt;li&gt;ログ分析基盤構築&lt;/li&gt;
+&lt;li&gt;類似画像検索エンジン開発&lt;/li&gt;
+&lt;li&gt;画像置換システム開発&lt;/li&gt;
+&lt;li&gt;記事カテゴリ分類API開発&lt;/li&gt;
+&lt;li&gt;機械学習チーム立ち上げ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;インフラ系
+
+&lt;ul&gt;
+&lt;li&gt;障害対応&lt;/li&gt;
+&lt;li&gt;パフォーマンスチューニング&lt;/li&gt;
+&lt;li&gt;セキュリティ対応&lt;/li&gt;
+&lt;li&gt;調査とか掃除とか&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Railsのパフォーマンスチューニング&lt;/li&gt;
+&lt;li&gt;勉強会の主催&lt;/li&gt;
+&lt;li&gt;などなど&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;機械学習寄りでいろいろやりつつ、他にできる人がいないのでインフラまわりも最低限は面倒をみていました。Railsに関しては、アプリケーションの機能開発にはまったく関わらず、使用Gemのせいでめちゃくちゃ遅くなっていた部分に関して泣く泣くRailsにパッチをあてたり、CIを高速化したりと裏方的なところをやっていました。&lt;/p&gt;
+
+&lt;p&gt;そんな中で、インフラやべーからなんとかしないと、という話がずっとありました。あるタイミングでCTOとバックエンドのリードエンジニアと、いつかはやらないといけないしインフラ移行やろう、という話をして自分がやることになりました。&lt;/p&gt;
+
+&lt;p&gt;自分はRailsアプリの機能開発は一切していなかったので、ドメインは全然詳しくないし、コードベースもほぼ触ってないし、インフラは一番詳しいかもしれないけどまだまだ闇は深い、という状況でプロジェクトが開始しました。何かあればCTOとリードエンジニアと相談しつつ進めようという感じでした。&lt;/p&gt;
+
+&lt;h3&gt;
+&lt;span id="開発チームについて" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E9%96%8B%E7%99%BA%E3%83%81%E3%83%BC%E3%83%A0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;開発チームについて&lt;/h3&gt;
+
+&lt;p&gt;本プロジェクト開始と同時期に会社がごたついて全社的な退職のビッグウェーブが来てしまい、開発チームもCTO含めRailsエンジニアが全員退職しました。以前は業務委託等でもっと多かったみたいですが、本プロジェクト開始とほぼ同時にサービスのRails開発者がゼロになりました。&lt;/p&gt;
+
+&lt;p&gt;CTOは事業責任者も兼任していて、サービスのProduct Management、Project Management、技術チームのリードなどなどかなり広範囲のことをやっていたし、その後の会社の対応もよくなくて社内はまあ荒れました。詳しくは大人の事情で割愛します。&lt;/p&gt;
+
+&lt;p&gt;その後、クローズが決まった他サービスを開発していたRailsエンジニアが開発チームにジョインしましたが、もちろんドメインには詳しくないしコードベースには触っていないというところからでした。&lt;/p&gt;
+
+&lt;p&gt;そんな感じで、誰も何も知らないし何も決められないという状況でプロジェクトを進めることになりました。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="プロジェクトチーム" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%83%81%E3%83%BC%E3%83%A0"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;プロジェクトチーム&lt;/h2&gt;
+
+&lt;p&gt;本プロジェクトのチームについて説明します。&lt;/p&gt;
+
+&lt;p&gt;といっても自分一人でした。前述のような状況だったので、プロジェクトマネジメントや実作業を1人でやっていました。本プロジェクト以外にも通常の運用業務やRails含むバックエンドの技術的なケア、その他の割り込み開発、機械学習チームのリードをやりつつ、という感じでした。&lt;/p&gt;
+
+&lt;p&gt;後半はいろいろあって機械学習チームが自然消滅した&lt;sup id="fnref4"&gt;&lt;a href="#fn4" rel="footnote" title="語り尽くせない出来事がいろいろあったりしたのですが、本筋と関係ないので泣く泣く割愛します。"&gt;4&lt;/a&gt;&lt;/sup&gt;のでメンバーの1人には週2で移行プロジェクトを手伝ってもらいました。移行当日の深夜作業も手伝ってもらったり、彼なしでは途中で心が折れてプロジェクトを完遂できなかったと思います。圧倒的感謝です &lt;img class="emoji" title=":pray:" alt=":pray:" src="/images/emoji/unicode/1f64f.svg" height="20" width="20" align="absmiddle"&gt; &lt;img class="emoji" title=":pray:" alt=":pray:" src="/images/emoji/unicode/1f64f.svg" height="20" width="20" align="absmiddle"&gt; &lt;img class="emoji" title=":pray:" alt=":pray:" src="/images/emoji/unicode/1f64f.svg" height="20" width="20" align="absmiddle"&gt;&lt;/p&gt;
+
+&lt;p&gt;また、他サービスからジョインしたRailsエンジニアにもコードレビューしてもらったり、確認のタスクをやってもらったりしました。&lt;img class="emoji" title=":pray:" alt=":pray:" src="/images/emoji/unicode/1f64f.svg" height="20" width="20" align="absmiddle"&gt;&lt;/p&gt;
+
+&lt;p&gt;最後のQAテストではPMやiOS、Androidのエンジニアにも手伝ってもらい、不具合を修正することができました &lt;img class="emoji" title=":pray:" alt=":pray:" src="/images/emoji/unicode/1f64f.svg" height="20" width="20" align="absmiddle"&gt;&lt;/p&gt;
+
+&lt;p&gt;また、後半のメンテナンス等の調整はPMにやっていただきました &lt;img class="emoji" title=":pray:" alt=":pray:" src="/images/emoji/unicode/1f64f.svg" height="20" width="20" align="absmiddle"&gt;&lt;/p&gt;
+
+&lt;p&gt;謝辞みたいになってしまいましたがそんな感じでした。基本的には1人で、他にケツ持つ人もおらず、相談相手もいないという状況でした。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="プロジェクト全体の流れ" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E5%85%A8%E4%BD%93%E3%81%AE%E6%B5%81%E3%82%8C"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;プロジェクト全体の流れ&lt;/h2&gt;
+
+&lt;p&gt;プロジェクトの流れはこんな感じでした。単純にひとつずつこなしていったというわけでもないので、多少の前後はあります。また、以降で説明するものに絞って列挙しています。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;技術調査&lt;/li&gt;
+&lt;li&gt;根回しとか稟議的なアレ&lt;/li&gt;
+&lt;li&gt;Terraform整備&lt;/li&gt;
+&lt;li&gt;Kubernetesクラスタの設定&lt;/li&gt;
+&lt;li&gt;Railsアプリの準備&lt;/li&gt;
+&lt;li&gt;Docker化&lt;/li&gt;
+&lt;li&gt;Kubernetes化&lt;/li&gt;
+&lt;li&gt;CI整備&lt;/li&gt;
+&lt;li&gt;動画変換機能のGCP対応&lt;/li&gt;
+&lt;li&gt;メンテナンスサーバ構築&lt;/li&gt;
+&lt;li&gt;移行手順書作成&lt;/li&gt;
+&lt;li&gt;移行リハーサル&lt;/li&gt;
+&lt;li&gt;負荷試験&lt;/li&gt;
+&lt;li&gt;QAテスト&lt;/li&gt;
+&lt;li&gt;移行作業&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1&gt;
+&lt;span id="技術調査" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E6%8A%80%E8%A1%93%E8%AA%BF%E6%9F%BB"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;技術調査&lt;/h1&gt;
+
+&lt;p&gt;最初に新しいシステムをどういう技術スタックで構成するかを決定するために調査・検討しました。&lt;/p&gt;
+
+&lt;p&gt;例として次のような判断がありました。補足として選定理由やコメントも付け加えています。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Dockerでいこう
+
+&lt;ul&gt;
+&lt;li&gt;コンテナで動かしてまずいワークロードはなかった&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Kubernetes/GKEでいこう
+
+&lt;ul&gt;
+&lt;li&gt;マネージドで考えるとECSもあったがKubernetes on AWSの噂もありわざわざプロプライエタリなECSを学習したくなかった&lt;/li&gt;
+&lt;li&gt;Kubernetesの経験があったし好きだった&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cloud SQLでいこう
+
+&lt;ul&gt;
+&lt;li&gt;メンテナンスは許容できる&lt;/li&gt;
+&lt;li&gt;RDSを使っているが、Cloud SQLでも性能は問題なさそう&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;RedisはHA構成でKubernetesクラスタにデプロイしよう
+
+&lt;ul&gt;
+&lt;li&gt;選定当時Memorystoreがなかった&lt;/li&gt;
+&lt;li&gt;セキュリティめんどくさくなるしパフォーマンスの観点からElastiCacheは使いたくなかった&lt;/li&gt;
+&lt;li&gt;HA構成Redisの構築・運用経験があった&lt;/li&gt;
+&lt;li&gt;→ 選定後に東京リージョンにMemorystoreが追加されたので最終的にはそっちを使った&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;MemcachedはKubernetesクラスタにデプロイしよう
+
+&lt;ul&gt;
+&lt;li&gt;キャッシュだし&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;DynamoDBは使い続けよう
+
+&lt;ul&gt;
+&lt;li&gt;DynamoDBと密結合してる部分があった&lt;/li&gt;
+&lt;li&gt;レイテンシは問題なかった&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Kubernetesのクラスタは1つでいこう
+
+&lt;ul&gt;
+&lt;li&gt;本番環境、ステージング環境を同じクラスタに同居させる&lt;/li&gt;
+&lt;li&gt;1人で複数クラスタの面倒をみつつ移行作業するのは負担がでかいと判断した&lt;/li&gt;
+&lt;li&gt;→ 移行後、本番環境専用のクラスタとそれ以外の開発クラスタに分割した&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Spinnakerはやめておこう
+
+&lt;ul&gt;
+&lt;li&gt;検証はしたが必要なかった&lt;/li&gt;
+&lt;li&gt;運用つらそう、ルール作りつらそう、コードで管理できない&lt;/li&gt;
+&lt;li&gt;デプロイするためにKubernetesに加えてSpinnakerの知識が必要となってしまう。開発者の学習コストを抑えたかった&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;CronJobでいこう
+
+&lt;ul&gt;
+&lt;li&gt;Jobを高可用、スケーラブルにできる&lt;/li&gt;
+&lt;li&gt;それまではwhenever gemを使って1つのVMで定期バッチをすべて実行していたが問題が多かった&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;証明書は&lt;a href="https://github.com/jetstack/cert-manager" rel="nofollow noopener" target="_blank"&gt;cert-manager&lt;/a&gt;で取得しよう
+
+&lt;ul&gt;
+&lt;li&gt;ACMで取得していた証明書の代替が可能&lt;/li&gt;
+&lt;li&gt;多少バグがあったりしたが問題なかった&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1&gt;
+&lt;span id="根回しとか稟議的なアレ" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E6%A0%B9%E5%9B%9E%E3%81%97%E3%81%A8%E3%81%8B%E7%A8%9F%E8%AD%B0%E7%9A%84%E3%81%AA%E3%82%A2%E3%83%AC"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;根回しとか稟議的なアレ&lt;/h1&gt;
+
+&lt;p&gt;根回しというか、技術的な部分以外でプロジェクトを始めるまでにやったことと理由やコメントです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Googleの営業チームとミーティング
+
+&lt;ul&gt;
+&lt;li&gt;プロジェクト初期は定期的にやっていた&lt;/li&gt;
+&lt;li&gt;社内へのGoogleさんと一緒にやってますよというアピールの意味合いが強かった&lt;/li&gt;
+&lt;li&gt;今後リリースされるサービスのクローズドな情報を教えてもらえてよかった&lt;/li&gt;
+&lt;li&gt;GCPを使う上での注意点など教えてもらえてよかった&lt;/li&gt;
+&lt;li&gt;技術的な質問などはドキュメントに書かれている以上の回答は得られなかった&lt;/li&gt;
+&lt;li&gt;社内で技術的な話ができる人はいなかったので、Googleのエンジニアと同じレベル感で話せてコメントがもらえるのがよかった&lt;/li&gt;
+&lt;li&gt;Googleオフィスに行くのは楽しかった &lt;img class="emoji" title=":relaxed:" alt=":relaxed:" src="/images/emoji/unicode/263a-fe0f.svg" height="20" width="20" align="absmiddle"&gt;
+&lt;/li&gt;
+&lt;li&gt;ミーティングの内容自体は、今回みたいな小規模システムかつ自分で調査・検証できる人であれば必要ないと思う&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Googleのエンジニアによるハンズオン
+
+&lt;ul&gt;
+&lt;li&gt;弊社にきてもらって技術ハンズオンしてもらった&lt;/li&gt;
+&lt;li&gt;これも社内へのアピールのため&lt;/li&gt;
+&lt;li&gt;内容は要望と異なるものだった&lt;/li&gt;
+&lt;li&gt;社内のエンジニアはDockerに詳しくないのでDocker/Kubernetesとはなにか、どういうメリットがあるのかが理解できる入門的な内容がいいと依頼したが、アプリケーションのDockerイメージをCloud BuildでビルドしてSpinnakerでKubernetesにデプロイするというものを短時間に書いてある手順をただこなすだけのハンズオンで、Docker/Kubernetesの理解にはつながらなかった&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;弊社とGoogleの偉い人同士のミーティング
+
+&lt;ul&gt;
+&lt;li&gt;Googleの偉い人にきてもらって、弊社の偉い人に話をしてもらった&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;新しい事業責任者にプロジェクトを説明
+
+&lt;ul&gt;
+&lt;li&gt;社内の話&lt;/li&gt;
+&lt;li&gt;プロジェクトのゴーサインを責任者にもらうため&lt;/li&gt;
+&lt;li&gt;何をするのか、なぜ必要なのかを説明&lt;/li&gt;
+&lt;li&gt;ダウンタイムが発生するということも説明&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;その他
+
+&lt;ul&gt;
+&lt;li&gt;CTO/事業責任者がいなくなってたので、ある程度偉い人にちょいちょい移行しますよ、よろしく。という話をしたりしてた&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;率直な感想を書きましたが、最初のGoogleチームが丁寧に対応してくれていなかったらプロジェクトが開始できていなかったかもしれないので感謝しています &lt;img class="emoji" title=":pray:" alt=":pray:" src="/images/emoji/unicode/1f64f.svg" height="20" width="20" align="absmiddle"&gt;&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="terraform整備" class="fragment"&gt;&lt;/span&gt;&lt;a href="#terraform%E6%95%B4%E5%82%99"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Terraform整備&lt;/h1&gt;
+
+&lt;p&gt;新しいインフラの構築にはTerraformを使いました。GCPだけでなく新システムに必要なAWSやCDNのリソースもTerraform化しました。&lt;/p&gt;
+
+&lt;p&gt;移行時のTerraform運用は単純で、Pull Requestを作ると&lt;code&gt;terraform plan&lt;/code&gt;の結果がコメントされ、masterブランチにマージされると&lt;code&gt;terraform apply&lt;/code&gt;されるというものでした。通知やコメントには&lt;a href="https://github.com/mercari/tfnotify" rel="nofollow noopener" target="_blank"&gt;mercari/tfnotify&lt;/a&gt;を使っています。&lt;/p&gt;
+
+&lt;p&gt;コード構成も単純で、アプリケーションごとにmoduleとしてディレクトリを分割していました。ここでいうアプリケーションはRailsアプリケーション、Goの広告配信アプリケーション、機械学習による記事カテゴリ分類API、といった粒度です。TerraformのWorkspaceは使わず本番環境やステージング環境のコードが重複して存在していました。&lt;/p&gt;
+
+&lt;p&gt;最初期はアプリケーションごとに&lt;code&gt;terraform apply&lt;/code&gt;するように実装しましたが、まだ必要無いと判断してスピードを出せるようにこのような構成にしました。Workspaceを使わなかったのも同じ理由です。&lt;/p&gt;
+
+&lt;p&gt;移行後は一段落したので安全に運用できるようにTerraformのコードと運用を構築し直しました。アプリケーションごとにplan/applyできるようにして影響範囲を抑えplan結果を見やすくして高速化しました。また、Workspaceも導入して本番環境とそれ以外の環境を分離しました。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="gcpのproject構成" class="fragment"&gt;&lt;/span&gt;&lt;a href="#gcp%E3%81%AEproject%E6%A7%8B%E6%88%90"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;GCPのProject構成&lt;/h2&gt;
+
+&lt;p&gt;GCPでは上述のアプリケーションごとにプロジェクトを作るようにしています。そうすることで、IAMでの権限管理がしやすくなります。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="kubernetesクラスタの設定" class="fragment"&gt;&lt;/span&gt;&lt;a href="#kubernetes%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%BF%E3%81%AE%E8%A8%AD%E5%AE%9A"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Kubernetesクラスタの設定&lt;/h1&gt;
+
+&lt;p&gt;KubernetesクラスタはTerraformでデプロイしましたが、その他のクラスタに対する設定は専用のリポジトリでマニフェストYAMLを&lt;code&gt;kubectl apply&lt;/code&gt;でデプロイするようにしています。Terraformで一元して管理したかったのですが当時はKubernetesプロバイダがまだ充実していませんでした。&lt;/p&gt;
+
+&lt;p&gt;次のようなものをYAMLで管理しています。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ClusterRole&lt;/li&gt;
+&lt;li&gt;ClusterRoleBinding&lt;/li&gt;
+&lt;li&gt;StorageClass&lt;/li&gt;
+&lt;li&gt;PodSecurityPolicy&lt;/li&gt;
+&lt;li&gt;DaemonSetとそれに関わるNamespaceやRole、Secretなど&lt;/li&gt;
+&lt;li&gt;Helm関係&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;このリポジトリもTerraformと同様に、Pull Requestでdry runしてmasterブランチにマージするとデプロイされるようにしました。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="railsアプリの移行準備" class="fragment"&gt;&lt;/span&gt;&lt;a href="#rails%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%BA%96%E5%82%99"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Railsアプリの移行準備&lt;/h1&gt;
+
+&lt;p&gt;当初はアプリケーションコードにはあまり変更を加えずにインフラ移行・アーキテクチャ刷新をするという方針でしたが、結果的にはそれなりに手を加えることになりました。&lt;/p&gt;
+
+&lt;p&gt;以下の点について大きく修正しました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;コンフィグ整理&lt;/li&gt;
+&lt;li&gt;バグ潰し&lt;/li&gt;
+&lt;li&gt;リファクタリング&lt;/li&gt;
+&lt;li&gt;SMTPの廃止&lt;/li&gt;
+&lt;li&gt;fluentdの廃止&lt;/li&gt;
+&lt;li&gt;オブジェクトストレージ整理&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;それぞれについて説明します。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="コンフィグ整理" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%82%B3%E3%83%B3%E3%83%95%E3%82%A3%E3%82%B0%E6%95%B4%E7%90%86"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;コンフィグ整理&lt;/h2&gt;
+
+&lt;p&gt;まずはじめにコンフィグの整理をしました。これには次の2つの目的がありました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;アプリケーションを知る
+
+&lt;ul&gt;
+&lt;li&gt;どのような環境依存動作があるのか&lt;/li&gt;
+&lt;li&gt;どのような外部依存があるのか&lt;/li&gt;
+&lt;li&gt;コンフィグ周辺の機能やドメイン、コードの把握&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;移行中に必要となる様々な環境で動作するようにする
+
+&lt;ul&gt;
+&lt;li&gt;AWSのproduction/staging環境&lt;/li&gt;
+&lt;li&gt;GCPのproduction/staging環境&lt;/li&gt;
+&lt;li&gt;AWS用で今までどおり開発している開発者のローカル環境&lt;/li&gt;
+&lt;li&gt;GCPの移行準備をしている開発者のローカル環境&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;コンフィグと言っているのは主に環境ごとに異なる次のような定数のことです。また、&lt;code&gt;Rails.env&lt;/code&gt;をみて動作を変えるような分岐もここでのコンフィグに含みます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;各種APIキーやパスワードなどの認証情報&lt;/li&gt;
+&lt;li&gt;データベースや外部サービスの接続先&lt;/li&gt;
+&lt;li&gt;オブジェクトストレージのバケットやパス&lt;/li&gt;
+&lt;li&gt;データベースなどのprefixや名前空間&lt;/li&gt;
+&lt;li&gt;ホスト名やポート番号&lt;/li&gt;
+&lt;li&gt;HTTP or HTTPS&lt;/li&gt;
+&lt;li&gt;などなど&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;それまで各種コンフィグは様々な場所に散らばっていました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;config/application.rb&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;config/database.yml&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;config/environments/*.rb&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;config/initializers/*.rb&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;config/secrets.yml&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;code&gt;app/&lt;/code&gt;や&lt;code&gt;lib/&lt;/code&gt;の中の定数やクラス変数&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;つまりあらゆる場所にありました。これらを次のように整理しました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;コンフィグは環境変数で設定する
+
+&lt;ul&gt;
+&lt;li&gt;The Twelve-Factor App&lt;/li&gt;
+&lt;li&gt;Kubernetes環境で簡単に設定可能&lt;/li&gt;
+&lt;li&gt;本番環境、ステージング環境のコンフィグはKubernetesのConfigMapまたはSecretで管理する&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;環境変数は&lt;code&gt;config/my_app.rb&lt;/code&gt;で一元管理する
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;code&gt;config/my_app.rb&lt;/code&gt;を見ればすべてのコンフィグを確認できる&lt;/li&gt;
+&lt;li&gt;コンフィグを抽象化するため&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;アプリケーション側では&lt;code&gt;ENV['NAME']&lt;/code&gt;のように直接環境変数を見ずに&lt;code&gt;MyApp.config.key&lt;/code&gt;のようにアクセスする
+
+&lt;ul&gt;
+&lt;li&gt;アプリケーション側が直接環境変数の面倒をみなくてよくする&lt;/li&gt;
+&lt;li&gt;Boolean、Hash、Arrayなどを扱える&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;APIキーやパスワードなどの秘匿情報は暗号化してコミットする
+
+&lt;ul&gt;
+&lt;li&gt;今までは平文でコミットされていた&lt;/li&gt;
+&lt;li&gt;本番環境、ステージング環境の秘匿情報はKubernetesのSecretのYAMLを暗号化してコミットしている&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Credentialsを導入し全環境共通の秘匿情報は&lt;code&gt;config/credentials.yml.enc&lt;/code&gt;で管理する
+
+&lt;ul&gt;
+&lt;li&gt;ここでの&lt;code&gt;RAILS_MASTER_KEY&lt;/code&gt;はSecretの暗号化の暗号キーとしても用いている&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;MyApp.config&lt;/code&gt;を実現するために、要件を満たして最もシンプルだった&lt;a href="https://github.com/dry-rb/dry-configurable" rel="nofollow noopener" target="_blank"&gt;dry-configurable&lt;/a&gt;を導入しました。また、Credentialsを使うためにRailsを5.2にアップデートしました。&lt;/p&gt;
+
+&lt;p&gt;環境ごとに異なる動作をするようなコードは移行で必要になる様々な環境を考慮するとif文が非常に複雑になってしまうため、&lt;code&gt;ENABLE_MYFUNC&lt;/code&gt;のような環境変数を用意して分岐するようにしました。&lt;/p&gt;
+
+&lt;div class="code-frame" data-lang="text"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;
+# 修正前
+do_myfunc if Rails.env.production?
+
+# 修正後
+do_myfunc if MyApp.config.enabled_myfunc?
+&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;今まで環境変数によるコンフィグ管理はしていなかったので、ローカル開発環境用のコンフィグは&lt;a href="https://github.com/direnv/direnv" rel="nofollow noopener" target="_blank"&gt;direnv&lt;/a&gt;で管理して、移行が終わるまでのAWSの本番環境、ステージング環境のコンフィグは&lt;a href="https://github.com/bkeepers/dotenv" rel="nofollow noopener" target="_blank"&gt;dotenv&lt;/a&gt;を使って&lt;code&gt;.env.production&lt;/code&gt;/&lt;code&gt;.env.staging&lt;/code&gt;で管理するようにしました。&lt;/p&gt;
+
+&lt;p&gt;このコンフィグ整理でアプリケーションについて多くのことを知れたのと、設定が楽になり移行がスムーズにできたので最初に取り組んで正解でした。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="バグ潰し" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%83%90%E3%82%B0%E6%BD%B0%E3%81%97"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;バグ潰し&lt;/h2&gt;
+
+&lt;p&gt;バグ潰しをしました。それまでは常にSentryに数百のIssueが溜まっている状態だったので、GCP環境でエラーが出ても埋もれて気づかないといったことを避けるためです。&lt;/p&gt;
+
+&lt;p&gt;コンフィグ整理と同じく、バグを修正することでアプリケーションを知るという目的もありました。&lt;/p&gt;
+
+&lt;p&gt;ただし、こちらはあまりにも数が多く、一筋縄ではいかないようなものもあり、さらに作業中も新しいIssueがどんどん増えるのである程度減らしたところで終了しました。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="リファクタリング" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%83%AA%E3%83%95%E3%82%A1%E3%82%AF%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;リファクタリング&lt;/h2&gt;
+
+&lt;p&gt;前述のコンフィグ整理、バグ潰しはボーイスカウトになりきって作業しました。もう誰も知らない触らない部分も多かったので良い機会だとガツガツとリファクタリングしました。気づいたそのときにリファクタリングしないとコードはどんどん魔物化していくので重要なことです。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="smtpの廃止" class="fragment"&gt;&lt;/span&gt;&lt;a href="#smtp%E3%81%AE%E5%BB%83%E6%AD%A2"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;SMTPの廃止&lt;/h2&gt;
+
+&lt;p&gt;それまではRailsからSMTPでメールを送信していましたが、GCEでは基本的にSMTPが使えないのでSendgridのAPIでメールを送信するようにしました。これについてはAWSで動作しているときに切り替えました。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="fluentdの廃止" class="fragment"&gt;&lt;/span&gt;&lt;a href="#fluentd%E3%81%AE%E5%BB%83%E6%AD%A2"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;fluentdの廃止&lt;/h2&gt;
+
+&lt;p&gt;旧システムではfluentdで様々なログを収集していましたが、新システムでは欲しいログは特になにもしなくてもStackdriver Loggingに集約されるので、設定の管理コストや運用コストをなくすためにfluentdを廃止することにしました。&lt;/p&gt;
+
+&lt;p&gt;Railsアプリにも&lt;a href="https://github.com/fluent/fluent-logger-ruby" rel="nofollow noopener" target="_blank"&gt;fluent-logger&lt;/a&gt;で送信しているログがあったので、これをStackdriver Loggingに直接送信するように修正しました。こんな感じです。&lt;/p&gt;
+
+&lt;div class="code-frame" data-lang="text"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;
+# TODO(GCP): Remove fluentd
+if MyApp.config.enabled_fluentd?
+  Fluent::Logger.post_with_time(table, data, timestamp)
+end
+
+if MyApp.config.enabled_stackdriver?
+  StackdriverLogger.write(
+    MyApp.config.stackdriver_log_name,
+    data.merge(timestamp: timestamp.utc.iso8601),
+  )
+end
+&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;このとき、&lt;a href="https://github.com/googleapis/google-cloud-ruby/tree/master/google-cloud-logging" rel="nofollow noopener" target="_blank"&gt;google-cloud-logging gem&lt;/a&gt;でStackdriver Loggingにログを送信しようとするとSegmentation faultで落ちるという問題が発生しました。結論としてはPumaのCluster Modeで&lt;code&gt;preload_app!&lt;/code&gt;するとgrpcがセグフォする、というバグでした&lt;sup id="fnref5"&gt;&lt;a href="#fn5" rel="footnote" title="Googleのエンジニアにも伝え、grpc/grpcにもIssueをあげたけどまだ未解決っぽい"&gt;5&lt;/a&gt;&lt;/sup&gt;。メモリ効率は悪くなりますがCluster Modeをやめることで対応しました。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="オブジェクトストレージ整理" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8%E6%95%B4%E7%90%86"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;オブジェクトストレージ整理&lt;/h2&gt;
+
+&lt;p&gt;Railsのアセットファイル、ユーザーにアップロードされたファイル、それ以外のロゴ画像などの静的ファイルはS3にアップロードして配信していました。今回のプロジェクトではせっかくダウンタイムがあるし、オブジェクトストレージも同時に移行しようということでS3からGCSに移行しました。そのとき、オブジェクトストレージまわりでこれは美しくなさすぎて見過ごせないという以下の点を見つけたので修正しました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;全環境で1つのS3バケットを使っている&lt;/li&gt;
+&lt;li&gt;環境のprefixがバラバラ
+
+&lt;ul&gt;
+&lt;li&gt;例えばproduction環境のファイルのprefixには&lt;code&gt;s3.myapp.com/web/images/p/&lt;/code&gt;や&lt;code&gt;s3.myapp.com/assets/production/&lt;/code&gt;といったものがある&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;バケット内のprefixを見てもどういう種類のファイルかわからない
+
+&lt;ul&gt;
+&lt;li&gt;CarrierWaveでアップロードされたものなのか？誰かが直接アップロードしたものなのか？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;人手で直接S3にアップロードされたもの、&lt;code&gt;app/assets&lt;/code&gt;にあるもの、&lt;code&gt;public/&lt;/code&gt;にあるものが明確な基準がなく混在している&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;これを新システムでは次の方針で整理しました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;環境ごとにバケットはわける
+
+&lt;ul&gt;
+&lt;li&gt;s.myapp.com&lt;/li&gt;
+&lt;li&gt;s.staging.myapp.com&lt;/li&gt;
+&lt;li&gt;s.development.myapp.com&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;prefixでどういう種類のファイルかわかるようにする
+
+&lt;ul&gt;
+&lt;li&gt;CarrierWaveでアップロードされたもの: &lt;code&gt;s.myapp.com/upload/&lt;/code&gt;
+&lt;/li&gt;
+&lt;li&gt;そうでないもの: &lt;code&gt;s.myapp.com/static/&lt;/code&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;code&gt;s.myapp.com/static/&lt;/code&gt;にアップロードするファイルはすべてGitで&lt;code&gt;public/static/&lt;/code&gt;にコミットする&lt;/li&gt;
+&lt;li&gt;assets、packsはGCSにはアップロードしない
+
+&lt;ul&gt;
+&lt;li&gt;アプリケーションサーバから配信してCDNでキャッシュする&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;これを実現するためにはS3からGCSへのデータ転送とそれぞれのファイルのパス変更が必要になります。移行時にこの2つを一気にやろうとすると非常に時間がかかるので、移行まで日次で以下の処理を行うバッチを実行するようにしました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;GCPのStorage Transfer Serviceを使ってS3からGCSの中間バケットに全ファイルを転送する&lt;/li&gt;
+&lt;li&gt;prefixマッピングテーブルに従って中間バケットからGCSの各環境用バケットにファイルをコピーする
+
+&lt;ul&gt;
+&lt;li&gt;このとき各ファイルで更新時間を比較し、更新がなければコピーしない&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;このバッチスクリプトははじめはRubyで実装していましたが、数日経っても終了しないのでGoで実装しなおしたところ数時間でおわるようになりました。&lt;/p&gt;
+
+&lt;p&gt;日次で実行しても新しいprefixへのマッピングは約50M個のファイルをすべてチェックする必要があるので6時間強必要でした。S3からGCSへの1日分のファイルの転送は30分程度なので、合計7時間程度処理にかかっていました。&lt;/p&gt;
+
+&lt;p&gt;実はオブジェクトストレージの移行はやるかどうかかなり悩みました。というか最初はやらないつもりでした。アプリケーションサーバはGCPでもそのままS3を使うことはできたし、汚いままGCSに移行することもできたからです。移行することで工数はガツッと増えるし、移行で気にすることが増えるため、「移行」プロジェクトとして考えたときには大きいデメリットがありました。しかし、まだ続いていくサービスとしてはやったほうがいいことは明らかでした。&lt;/p&gt;
+
+&lt;p&gt;結局、ダウンタイムなしでこれを実現するにはアプリケーション側で頑張らないといけないけど頑張る人はいなくなったし、今やらないと今後永久にできないだろうということで、これ以上エンジニアのSAN値を削らずサービスを存続させるためにもこのプロジェクトでやることに決めました。男気のある良い決断だったと思います。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="docker化" class="fragment"&gt;&lt;/span&gt;&lt;a href="#docker%E5%8C%96"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Docker化&lt;/h1&gt;
+
+&lt;p&gt;RailsアプリについてはそれまでもDocker化しようという試みはありDockerfileは存在したのですが、CentOS 6にrvmでRubyをインストールしてNginxやらNodeやらを詰め込んでmonitを起動するというVM用のChefをそのまま移植したみたいな代物でした。さすがにそれを使うわけにはいかないので一から作り直しました。&lt;/p&gt;
+
+&lt;p&gt;どのアプリケーションのDockerfileも特殊なことはせず、こんな感じになっています。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Railsアプリ
+
+&lt;ul&gt;
+&lt;li&gt;Baseイメージはruby:x.x.x-slim-stretch&lt;/li&gt;
+&lt;li&gt;Multi-stageビルドのビルドステージで次のことをしている
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;bundle install&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;yarn install&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rake assets:precompile&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Goアプリ
+
+&lt;ul&gt;
+&lt;li&gt;Baseイメージはなし(scratch)&lt;/li&gt;
+&lt;li&gt;Multi-stageビルドのビルドステージでビルド&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;また、この2種以外にもDockerイメージはあり、すべてのDockerfileで統一したユーザを作ってそのユーザを使うようにしています。&lt;sup id="fnref6"&gt;&lt;a href="#fn6" rel="footnote" title="参考 Secure User in Docker - DEV Community 👩‍💻👨‍💻"&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="kubernetes化" class="fragment"&gt;&lt;/span&gt;&lt;a href="#kubernetes%E5%8C%96"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Kubernetes化&lt;/h1&gt;
+
+&lt;p&gt;Dockerコンテナとして起動できるようにした後、Kubernetesで動作するようにしました。移行時は1つのクラスタに18個のNamespaceがあり、7個のアプリケーションの本番環境とステージング環境が稼働していました。アプリケーションによってKubernetesでの構成要素やデプロイ方法が多少変わりますが、ここではメインとなるRailsアプリのみ説明します。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="リソース構成" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E6%A7%8B%E6%88%90"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;リソース構成&lt;/h2&gt;
+
+&lt;p&gt;Railsアプリを構成するKubernetesのリソース一覧です。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Namespace
+
+&lt;ul&gt;
+&lt;li&gt;本番環境Railsアプリ&lt;/li&gt;
+&lt;li&gt;ステージング環境Railsアプリ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Deployment
+
+&lt;ul&gt;
+&lt;li&gt;Puma&lt;/li&gt;
+&lt;li&gt;Sidekiq&lt;/li&gt;
+&lt;li&gt;Memcached&lt;/li&gt;
+&lt;li&gt;Console
+
+&lt;ul&gt;
+&lt;li&gt;移行時にログインして作業するため&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Service
+
+&lt;ul&gt;
+&lt;li&gt;Puma
+
+&lt;ul&gt;
+&lt;li&gt;Ingressを使うためNodePort&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Memcached
+
+&lt;ul&gt;
+&lt;li&gt;外には公開しないのでClusterIP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Ingress
+
+&lt;ul&gt;
+&lt;li&gt;Puma&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Job
+
+&lt;ul&gt;
+&lt;li&gt;デプロイ時の&lt;code&gt;db:migrate&lt;/code&gt;や初期構築時の&lt;code&gt;db:create&lt;/code&gt;などのRakeタスクたち&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;CronJob
+
+&lt;ul&gt;
+&lt;li&gt;Wheneverで管理していた定期実行のRakeタスクたち&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;ConfigMap
+
+&lt;ul&gt;
+&lt;li&gt;Rails環境変数
+
+&lt;ul&gt;
+&lt;li&gt;環境変数でRailsアプリを設定できるようにしたのでConfigMapにすべてまとめて&lt;code&gt;envFrom&lt;/code&gt;で設定している&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;その他いろいろ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Secret
+
+&lt;ul&gt;
+&lt;li&gt;Rails環境変数
+
+&lt;ul&gt;
+&lt;li&gt;ConfigMapと同じ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;その他いろいろ
+
+&lt;ul&gt;
+&lt;li&gt;Cloud SQL Proxyやcert-manager用のService AccountのCredentials JSONなど&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;HorizontalPodAutoscaler
+
+&lt;ul&gt;
+&lt;li&gt;Puma&lt;/li&gt;
+&lt;li&gt;Sidekiq&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;RoleBinding
+
+&lt;ul&gt;
+&lt;li&gt;開発者
+
+&lt;ul&gt;
+&lt;li&gt;ステージング環境にadmin権限を与える&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;運用者
+
+&lt;ul&gt;
+&lt;li&gt;本番環境にadmin権限を与える&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;PodSecurityPolicy用
+
+&lt;ul&gt;
+&lt;li&gt;default ServiceAccountにPodSecurityPolicyのuse権限を与える&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;LimitRange
+
+&lt;ul&gt;
+&lt;li&gt;default
+
+&lt;ul&gt;
+&lt;li&gt;意図しないkill等を防ぐため&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Certificate (cert-manager)
+
+&lt;ul&gt;
+&lt;li&gt;Puma Ingress用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Issuer (cert-manager)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;
+&lt;span id="デプロイ方法" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E6%96%B9%E6%B3%95"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;デプロイ方法&lt;/h2&gt;
+
+&lt;p&gt;デプロイはCircleCIでデプロイ用のBashスクリプトを実行しています。ブランチモデルはgit-flowの簡易版で、featureブランチをdevelopブランチにマージしたらステージング環境にデプロイ、developブランチをmasterブランチにマージしたら本番環境にデプロイするという運用になっています。&lt;/p&gt;
+
+&lt;p&gt;スクリプトはこんな感じです。Namespaceが存在しない場合は初期構築の手順が追加されますが、ここでは省略しています。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;gcloud等をインストール&lt;/li&gt;
+&lt;li&gt;gcloud、kubectlの認証&lt;/li&gt;
+&lt;li&gt;ブランチ名から適切なKubernetesのNamespaceを設定
+
+&lt;ul&gt;
+&lt;li&gt;develop -&amp;gt; &lt;code&gt;export NAMESPACE=myapp-staging&lt;/code&gt;
+&lt;/li&gt;
+&lt;li&gt;master -&amp;gt; &lt;code&gt;export NAMESPACE=myapp-production&lt;/code&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Namespace用の変数を設定
+
+&lt;ul&gt;
+&lt;li&gt;後述する&lt;code&gt;--build-arg&lt;/code&gt;やReplica数などConfigMapで設定できないもの&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;source k8s/namespaces/${NAMESPACE}/config.sh&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Dockerイメージのbuild、push
+
+&lt;ul&gt;
+&lt;li&gt;このときWebpack(&lt;code&gt;assets:precompile&lt;/code&gt;)用の環境変数を&lt;code&gt;--build-arg&lt;/code&gt;で設定する&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;RakeタスクでERBテンプレートからDeploymentやJobのYAMLを生成する&lt;/li&gt;
+&lt;li&gt;Namespaceの各種リソースを&lt;code&gt;kubectl apply&lt;/code&gt;する
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;kubectl apply -f k8s/namespaces/${NAMESPACE}/*.yaml&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;NamespaceのSecretを復号してデプロイする&lt;/li&gt;
+&lt;li&gt;
+&lt;code&gt;db:migrate&lt;/code&gt;のJobをapplyし、終了するまで待つ&lt;/li&gt;
+&lt;li&gt;CronJobを&lt;code&gt;kubectl apply --prune&lt;/code&gt;する&lt;/li&gt;
+&lt;li&gt;Sidekiq、PumaのDeploymentを&lt;code&gt;kubectl apply&lt;/code&gt;する&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;
+&lt;span id="マニフェストyaml生成" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%83%9E%E3%83%8B%E3%83%95%E3%82%A7%E3%82%B9%E3%83%88yaml%E7%94%9F%E6%88%90"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;マニフェストYAML生成&lt;/h2&gt;
+
+&lt;p&gt;KubernetesのマニフェストYAMLは3種類の方法で管理しています。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;普通のYAML&lt;/li&gt;
+&lt;li&gt;暗号化されたYAML&lt;/li&gt;
+&lt;li&gt;ERBテンプレート&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Dockerイメージの指定が必要ないマニフェストに関しては普通にYAMLでコミットして、SecretはYAMLを暗号化してコミットしています。&lt;/p&gt;
+
+&lt;p&gt;CIでDockerイメージをビルドするとき、Gitのコミットハッシュをタグに使っています。そして、デプロイではDeploymentやJobのERBテンプレートにコミットハッシュを埋め込んでYAMLを生成するRakeタスクを実行して、生成されたYAMLを&lt;code&gt;kubectl apply&lt;/code&gt;しています。ERBやRakeを採用したのはRailsとの親和性が高くRails開発者が触りやすいからです。&lt;/p&gt;
+
+&lt;p&gt;また、Rakeタスク実行用のJobやCronJobに関してはタスク名も埋め込めるようにしています。CronJobに関してはスケジュールとタスク名を定義する&lt;code&gt;config/schedule.yaml&lt;/code&gt;というファイルから自動生成しています。&lt;code&gt;config/schedule.yaml&lt;/code&gt;はRails開発者がKubernetesを意識せず気軽に変更できるため、CronJobのみ&lt;code&gt;kubectl apply --prune&lt;/code&gt;で削除にも対応しています。その他のリソースは手動で削除しています。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="secret管理" class="fragment"&gt;&lt;/span&gt;&lt;a href="#secret%E7%AE%A1%E7%90%86"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Secret管理&lt;/h2&gt;
+
+&lt;p&gt;前述のとおりSecretは暗号化してコミットしています。そのために&lt;a href="https://github.com/nownabe/sekret" rel="nofollow noopener" target="_blank"&gt;Sekret&lt;/a&gt;という簡単なコマンドラインツールを開発しました。&lt;code&gt;sekret (new|edit|show|encrypte|decrypt) foobar.yaml.enc&lt;/code&gt;のように簡単に暗号化ファイルを扱えて、Secretのバリデーションもやってくれます。&lt;/p&gt;
+
+&lt;p&gt;Railsのcredentialsで使われている&lt;code&gt;ActiveSupport::EncryptedFile&lt;/code&gt;や&lt;code&gt;rails encrypted:edit&lt;/code&gt;を使うことも考えましたが、以下の理由で採用を見送りました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ただYAMLを修正したいだけなのにRailsなので起動が遅い&lt;/li&gt;
+&lt;li&gt;Railsが動くまで環境構築しないとYAMLを修正できない&lt;/li&gt;
+&lt;li&gt;暗号化してコミットしてしまうので編集時にスキーマのバリデーションをしたいができない&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;そんなわけで、お手軽に暗号化YAMLを扱えてスキーマチェックしてくれてCIで使いやすいワンバイナリなSekretを作りました。&lt;/p&gt;
+
+&lt;p&gt;ぜひ使ってみてください(宣伝)。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="railsアセット配信方法の変遷" class="fragment"&gt;&lt;/span&gt;&lt;a href="#rails%E3%82%A2%E3%82%BB%E3%83%83%E3%83%88%E9%85%8D%E4%BF%A1%E6%96%B9%E6%B3%95%E3%81%AE%E5%A4%89%E9%81%B7"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Railsアセット配信方法の変遷&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;assets:precompile&lt;/code&gt;で生成されるアセットを配信する方法は紆余曲折ありました。&lt;/p&gt;
+
+&lt;p&gt;一番最初はアセットを&lt;a href="https://github.com/AssetSync/asset_sync" rel="nofollow noopener" target="_blank"&gt;asset_sync&lt;/a&gt;でGCSにアップロードしてアプリケーションとは別ドメインで配信していました。これは旧アーキテクチャがそうなっていて、プロジェクト初期段階でとりあえずGKEで動かすためにこうしていました。細かい手順としては、CIでPuma Deploymentのapply前に&lt;code&gt;assets:precompile assets:sync&lt;/code&gt;をJobとして実行し、Puma DeploymentのInit Containerでemptyボリュームに&lt;code&gt;manifest.json&lt;/code&gt;をダウンロードする、という感じです。&lt;/p&gt;
+
+&lt;p&gt;asset_syncによる方法は最初から変更するつもりでした。アプリケーションサーバ(Puma)の前段にもCDNがいるのでGCSにアップロードせず直接Pumaから配信して複雑性を減らしたかったからです。&lt;/p&gt;
+
+&lt;p&gt;Pumaからアセットを配信するときにPumaコンテナがアセットを持っておく必要があります。その場合、いつ&lt;code&gt;assets:precompile&lt;/code&gt;して、どこに持つかということが問題になります。以下のような選択肢があります。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;いつ&lt;code&gt;assets:precompile&lt;/code&gt;するか
+
+&lt;ul&gt;
+&lt;li&gt;Pumaコンテナ起動時 (&lt;code&gt;bundle exec puma&lt;/code&gt;の直前)&lt;/li&gt;
+&lt;li&gt;Puma Pod起動時 (Init Container)&lt;/li&gt;
+&lt;li&gt;デプロイ時&lt;/li&gt;
+&lt;li&gt;Dockerイメージビルド時&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;どこに持つか
+
+&lt;ul&gt;
+&lt;li&gt;&lt;del&gt;オブジェクトストレージ&lt;/del&gt;&lt;/li&gt;
+&lt;li&gt;外部永続ディスク&lt;/li&gt;
+&lt;li&gt;その他ボリューム (&lt;code&gt;emptyDir&lt;/code&gt;や&lt;code&gt;hostPath&lt;/code&gt;など)&lt;/li&gt;
+&lt;li&gt;起動後のコンテナ&lt;/li&gt;
+&lt;li&gt;Dockerイメージ内&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;2つ目の方法は、CIでPuma Deploymentのapply前にアセット用のRegional Persistent DiskをReadWriteOnceでマウントしたJobで&lt;code&gt;assets:precompile&lt;/code&gt;を実行し、DeploymentはReadOnlyManyでそのDiskをマウントするという方法でした。この方法は&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Dockerイメージビルドがはやく、イメージが軽くなる&lt;/li&gt;
+&lt;li&gt;
+&lt;code&gt;assets:precompile&lt;/code&gt;が1回で済む&lt;/li&gt;
+&lt;li&gt;Podの起動がはやい&lt;/li&gt;
+&lt;li&gt;Webpackに渡す環境変数をConfigMapやSecretで管理できる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;というメリットがあり、なによりGKEっぽいイケイケな感じで本来やりたい方法でした。&lt;/p&gt;
+
+&lt;p&gt;ところがこの方法もあとから問題が発覚しました。ボリューム関係のエラーでPodが起動しないということが続き、調べるとRegional Persistent DiskはそもそもReadOnlyManyをサポートしておらず、レプリケーションも2つのゾーン間のみということがわかりました。完全に調査不足でした &lt;img class="emoji" title=":sob:" alt=":sob:" src="/images/emoji/unicode/1f62d.svg" height="20" width="20" align="absmiddle"&gt;&lt;/p&gt;
+
+&lt;p&gt;最終的に、Dockerイメージビルド時に&lt;code&gt;assets:precompile&lt;/code&gt;するという方法に落ち着きました。Podの起動時間を犠牲にせず、最もシンプルな方法ということで採用しました。&lt;/p&gt;
+
+&lt;p&gt;最終的な方法ではイメージビルドが遅くなったり、イメージサイズが大きくなったり、Webpack用の環境変数がConfigMapで管理できないという課題があります。GKEにおいてそれなりのサイズのボリュームをマルチゾーンにPodで共有する方法がない&lt;sup id="fnref7"&gt;&lt;a href="#fn7" rel="footnote" title="正確にはないことはないが、ないと言っていいぐらい面倒な方法しかないはず。簡単な方法があったら教えてください。"&gt;7&lt;/a&gt;&lt;/sup&gt;以上、アセットは各Podでそれぞれ持つしかありません。そうするとイメージに含める以外だと各PodでダウンロードするかコンパイルするかになるのでPodの起動時間が大幅に長くなってしまいます。なので、イメージサイズについては諦めています。環境変数についてはKubernetes上でkanikoなどを使ってイメージをビルドすることでConfigMapやSecretで管理できそうなのでそのうち試してみたいと考えています。&lt;/p&gt;
+
+&lt;p&gt;ここに関してはまだ改善できると感じているのでいい方法を模索していきたいです。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="connection-refused問題" class="fragment"&gt;&lt;/span&gt;&lt;a href="#connection-refused%E5%95%8F%E9%A1%8C"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Connection refused問題&lt;/h2&gt;
+
+&lt;p&gt;デプロイしたときや、CronJobで稀にMySQLのConnection refusedエラーが発生するという問題がありました。Rails側からMySQLへリクエストするときにSidecarのCloud SQL Proxyが起動していないことが原因でした。これはPodの起動時と停止時どちらにも発生し得るので、Rails起動前にSleepを入れることと停止時にCloud SQL ProxyのpreStopでsleepすることで対応しました。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="ci整備" class="fragment"&gt;&lt;/span&gt;&lt;a href="#ci%E6%95%B4%E5%82%99"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;CI整備&lt;/h1&gt;
+
+&lt;p&gt;Kubernetesで動くようにした後はCIを整備しました。スムーズに移行できるように旧システムへのデプロイと並行して、developブランチでステージング環境用のNamespaceに、masterブランチで本番環境用のNamespaceにデプロイするようにしました。移行プロジェクト中盤までは通常の開発に影響しないようにKubernetesへのデプロイが失敗してもCIはパスするようにしていました。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="動画変換機能のgcp対応" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E5%8B%95%E7%94%BB%E5%A4%89%E6%8F%9B%E6%A9%9F%E8%83%BD%E3%81%AEgcp%E5%AF%BE%E5%BF%9C"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;動画変換機能のGCP対応&lt;/h1&gt;
+
+&lt;p&gt;システムの中でAWSの機能に依存していてGCPでは代替が難しいものがいくつかあり、その中でも動画変換機能がAWSとGCPをうまく連携させてKubernetesの恩恵を感じられたので紹介します。&lt;/p&gt;
+
+&lt;p&gt;動画変換機能はユーザがS3にアップロードした動画をAWSのElastic Transcoderで変換してS3に保存するというものでした。Elastic Transcoderが変換後の動画を配信用S3バケットに保存してくれるのでAWSで完結していれば非常に単純な仕組みです。図にするとこんな感じです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://i.imgur.com/dKT0yfD.png" target="_blank" rel="nofollow noopener"&gt;&lt;img src="https://i.imgur.com/dKT0yfD.png" alt=""&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ユーザがS3に動画をアップロード&lt;/li&gt;
+&lt;li&gt;S3オブジェクト作成イベントをトリガーにLambda関数を実行し、Elastic Transcoderの動画変換ジョブを作成&lt;/li&gt;
+&lt;li&gt;Elastic Transcoderはアップロードされた動画を変換して配信用S3バケットに保存し、終了をSNSで通知&lt;/li&gt;
+&lt;li&gt;SNSから動画変換終了をHTTPSでRailsアプリに通知&lt;/li&gt;
+&lt;li&gt;Railsアプリは通知を受け取ったらデータベースの動画ステータスを更新&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;新システムでは変換後の動画をS3ではなくGCSに保存する必要があります。S3から配信することもできましたが、それまでの配信用のURLをGCPに向けるためドメインを変える必要があることや、動画だけAWSから配信されるという複雑な状況を避けるためにGCSから配信することにしました。&lt;/p&gt;
+
+&lt;p&gt;次の図が新システムでのアーキテクチャです。HTTPSでRailsアプリに直接通知せず、SQS経由で動画転送アプリを通してRailsアプリに通知するようにしました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://i.imgur.com/fj7OAdK.png" target="_blank" rel="nofollow noopener"&gt;&lt;img src="https://i.imgur.com/fj7OAdK.png" alt=""&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;SNSから動画変換終了をSQSに通知&lt;/li&gt;
+&lt;li&gt;SQSをポーリングしている動画転送アプリが通知を受信&lt;/li&gt;
+&lt;li&gt;動画転送アプリはGCPのStorage Transfer Serviceの転送ジョブを作成し動画をGCSに転送&lt;/li&gt;
+&lt;li&gt;転送が終了したらHTTPSでRailsアプリにSNS互換の通知を送信&lt;/li&gt;
+&lt;li&gt;Railsアプリは通知を受け取ったらデータベースの動画ステータスを更新&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;動画転送アプリからRailsアプリへの通知はSNS互換としました。これには2つ理由があります。1つ目はRailsアプリへの変更が不要だからです。2つ目はRailsアプリを気にせず動画変換機能単体で移行ができるからです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://i.imgur.com/nJzc3nG.png" target="_blank" rel="nofollow noopener"&gt;&lt;img src="https://i.imgur.com/nJzc3nG.png" alt=""&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;動画変換機能の移行作業中はこのように従来通りSNSからRailsアプリに通知を送りつつ、動画転送アプリも稼働させていました。Webhookのエンドポイントは冪等だったので、動画転送アプリがうまく動作していることが確認できたら動画転送アプリからもRailsアプリに通知を送るようにしました。そして最後にSNSからの通知を切りました。こうすることで、バツッと切替えるみたいにドキドキすることなく移行が完了しました。また、この機能はAWSで旧システムを運用している段階で移行して、本移行作業では無視できるようにしました。&lt;/p&gt;
+
+&lt;p&gt;動画転送アプリは独立したアプリとしてGoで実装しました。Railsアプリに依存がなく、Railsだけでやろうとするとエンドポイントを増やしたりインフラの構成要素を増やしたりSidekiqのスレッドを長く専有したりする必要があったからです。Kubernetesを採用したことで気軽にこのような選択肢を取ることができました。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="メンテナンスサーバ構築" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%83%B3%E3%82%B9%E3%82%B5%E3%83%BC%E3%83%90%E6%A7%8B%E7%AF%89"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;メンテナンスサーバ構築&lt;/h1&gt;
+
+&lt;p&gt;移行作業中にメンテナンスページを表示するためのメンテナンスサーバを構築しました。「もう少し待ってね」というHTMLを503で返すだけのページです。何かをトリガーにしてメンテナンスモードになるようなものではなく、あくまでも本プロジェクトの移行作業のために構築しました。&lt;/p&gt;
+
+&lt;p&gt;また、それまでメンテナンスモードがなかったのでモバイルアプリには新しく503が返ってきたらメンテナンス表示がでるようにしました。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="移行手順書作成" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86%E6%9B%B8%E4%BD%9C%E6%88%90"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;移行手順書作成&lt;/h1&gt;
+
+&lt;p&gt;移行前に手順書を作成しました。手順書はMarkdownで書きGitHubのリポジトリにコミットしました。作業当日に実行した手順をチェックできるように、手順一つ一つにチェックボックスをつけるようにしました。こんな感じです。&lt;/p&gt;
+
+&lt;div class="code-frame" data-lang="text"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;
+02 停止手順書
+===========
+
+# Webサーバインスタンス停止
+
+* [ ] myapp-webのオートスケールスケジュールを設定する
+
+aws --region us-east-1 opsworks describe-instances \
+  --layer-id ${myapp_web_layer_id} \
+  | jq -r ...
+
+* [ ] myapp-webインスタンスを停止する
+
+aws --region us-east-1 opsworks describe-instance \
+  --layer-id ${myapp_web_layer_id} \
+  | jq -r ...
+&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;GitHubのWebだとコミットされているファイルのチェックボックスにはチェックできないので、作業当日は手順書をIssueにコピーしてチェックしていきました。Issueにしておけばコメントで作業ログも残せるし、1つの手順書が完了するとクローズできてテンションあがるのでいい方法でした。&lt;/p&gt;
+
+&lt;p&gt;ファイルとしては次の6つを用意しました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;準備手順書: 移行作業当日までの準備のTODO&lt;/li&gt;
+&lt;li&gt;停止手順書: AWSの旧システムを停止する手順書&lt;/li&gt;
+&lt;li&gt;転送手順書: MySQLやオブジェクトストレージのデータを転送する手順書&lt;/li&gt;
+&lt;li&gt;起動手順書: GCPの新システムを起動する手順書&lt;/li&gt;
+&lt;li&gt;起動後手順書: 新システムが起動したあと、周辺システムなどを新システムへ切替える手順書&lt;/li&gt;
+&lt;li&gt;ロールバック手順書: 作業途中で問題が発生したときにAWSの旧システムを復旧させる手順書&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;だいたいの手順はチェックボックス1つにつき1つのコマンドとなっていましたが、関連した一連のコマンドを実行して長時間待って終わったらSlackに通知、のような作業は1つのBashスクリプトにまとめたりもしました。&lt;/p&gt;
+
+&lt;p&gt;また、手順書のコマンドを実行するための作業サーバを構築しました。ローカルの意図しない影響が入らないようにするためと、ネットワーク切断や電源が落ちる等のトラブルを避けるためです。作業サーバではscreenを使って作業しました。作業サーバ構築もスクリプトで自動化して、何かあったときすぐ再構築できるようにしました。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="移行リハーサル" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E7%A7%BB%E8%A1%8C%E3%83%AA%E3%83%8F%E3%83%BC%E3%82%B5%E3%83%AB"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;移行リハーサル&lt;/h1&gt;
+
+&lt;p&gt;旧システムを停止してから新システムを起動するまで迅速に作業できるように、転送手順書、起動手順書のリハーサルを行いました。これには負荷テストやQAテストのために本番環境のリアルデータを新システムにコピーするという目的もありました。&lt;/p&gt;
+
+&lt;p&gt;リハーサルでは各作業の時間を計測しながら実行し、手順書にミスがあれば修正してコミットしました。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="負荷テスト" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E8%B2%A0%E8%8D%B7%E3%83%86%E3%82%B9%E3%83%88"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;負荷テスト&lt;/h1&gt;
+
+&lt;p&gt;新システムが負荷に耐えられるか確認するため負荷テストを行いました。&lt;/p&gt;
+
+&lt;p&gt;今回のプロジェクトではシステムにかかる負荷が予めわかっていたので目標設定は簡単でした。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;シナリオは高負荷時に実際のスマホアプリから発生するリクエスト群&lt;/li&gt;
+&lt;li&gt;最高負荷時の倍のリクエスト (rps) をさばける&lt;/li&gt;
+&lt;li&gt;レイテンシは旧システムより良い値を維持できる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;負荷テストツールには&lt;a href="https://locust.io/" rel="nofollow noopener" target="_blank"&gt;Locust&lt;/a&gt;を使いました。選定理由は以下のとおりです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;上記のように目標が明らかで詳細な分析が不要だった&lt;/li&gt;
+&lt;li&gt;Locust単体でWebでグラフ表示できる&lt;/li&gt;
+&lt;li&gt;シナリオをXMLじゃない言語で書けてGitで管理できる&lt;/li&gt;
+&lt;li&gt;分散負荷テストが可能&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;インフラとしてはGCPにMaster 1台とSlave 5台のVMを用意しました。&lt;/p&gt;
+
+&lt;p&gt;最初はクライアント数が増えるとリクエストをさばけずにコンテナが再起動してしまっていたので、コンテナ内外の仮で設定した値をチューニングしました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PumaのWorker数やThread数やメモリ制限&lt;/li&gt;
+&lt;li&gt;コンテナのCPU、メモリ&lt;/li&gt;
+&lt;li&gt;DeploymentのReplica数&lt;/li&gt;
+&lt;li&gt;Horizontal Pod Autoscaler&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;HPAはスパイク時にはまったく追いつかないことがわかったので、高負荷時のために予めPod数を増やしておくようにしました。&lt;/p&gt;
+
+&lt;p&gt;通常なら負荷テストはもっと早い段階でやっておきたいところですが、今回はシステムの改修後に実データでやりたかったのでここで実施しました。そんなに負荷がかかるサービスでもないのでまあ大丈夫だろうと予想していて、技術調査の段階でもパフォーマンスのボトルネックになりそうなCloud SQLの負荷テストは実施していました。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="qaテスト" class="fragment"&gt;&lt;/span&gt;&lt;a href="#qa%E3%83%86%E3%82%B9%E3%83%88"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;QAテスト&lt;/h1&gt;
+
+&lt;p&gt;プロジェクトの最終チェックとしてQAテストを行いました。自分は普段サービスを開発していないので、実作業は主にRailsエンジニアやアプリエンジニアなど他のエンジニアにやってもらいました。&lt;/p&gt;
+
+&lt;p&gt;対応漏れや、GCP移行対応をしたあとにGCPを考慮せず追加された部分が見つかり修正しました。&lt;/p&gt;
+
+&lt;p&gt;しっかりチェックしてもらい非常に助かりました。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="移行作業" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E7%A7%BB%E8%A1%8C%E4%BD%9C%E6%A5%AD"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;移行作業&lt;/h1&gt;
+
+&lt;p&gt;土曜の夜から日曜の朝にかけて移行作業を行いました。業務委託で移行プロジェクトを手伝ってくれていたエンジニアと2人で作業しました。&lt;/p&gt;
+
+&lt;p&gt;その週はデプロイ禁止にして、最終的な確認・調整やAWSからGCPに切替えるPull Requestを準備しました。また、作業開始から1時間程度前に集合して手順書、作業の流れ、分担を確認しました。&lt;/p&gt;
+
+&lt;p&gt;23時から作業開始で最初にトラフィックをすべてメンテナンスサーバに向けるという作業があったのですが、ここでいきなりトラブルが発生しました &lt;img class="emoji" title=":scream:" alt=":scream:" src="/images/emoji/unicode/1f631.svg" height="20" width="20" align="absmiddle"&gt;&lt;br&gt;
+切り替え作業をやったにもかかわらずメンテナンスサーバが表示されずにCDNのエラーメッセージが表示されていました。そのトラブルも2つの原因が重なっていて、作業開始早々いきなりの緊急事態発生でした。本プロジェクトで最もアツかった時間でした &lt;img class="emoji" title=":triumph:" alt=":triumph:" src="/images/emoji/unicode/1f624.svg" height="20" width="20" align="absmiddle"&gt; &lt;img class="emoji" title=":fire:" alt=":fire:" src="/images/emoji/unicode/1f525.svg" height="20" width="20" align="absmiddle"&gt;&lt;br&gt;
+原因はメンテナンスサーバがHTTPSに対応できてなかったことと、Nginxの設定の不備だったので手分けして対応しました。ELBを作成しACMで証明書を取得してHTTPSに対応し、Nginxの設定は直接サーバで設定を書き換えました。すぐにメンテナンスページを表示するはずが表示まで50分ほどかかってしまいました。&lt;/p&gt;
+
+&lt;p&gt;初っ端で躓いたもののそれ以降は特にトラブルもなく旧システムを停止し、仮眠などしつつデータ転送が終わるのを待ちました。&lt;/p&gt;
+
+&lt;p&gt;4時半頃にMySQLのデータ転送が終了したので新システムの起動を開始しました。7時半頃にはオブジェクトストレージのデータ転送も終了し、公開作業を開始しました。&lt;/p&gt;
+
+&lt;p&gt;8時頃公開作業が完了し、待機してくれていた他のエンジニアが動作確認を開始しました。その動作確認でQAテストで漏れていた問題が見つかったり、HTTPからHTTPSに統一したことによる問題が見つかりましたがすぐに修正して9時前に公式にメンテナンス終了のアナウンスをしました。&lt;/p&gt;
+
+&lt;p&gt;その後諸々の確認や残タスクをこなし、15時頃に移行作業を完全に終えました。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="移行後" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E7%A7%BB%E8%A1%8C%E5%BE%8C"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;移行後&lt;/h1&gt;
+
+&lt;p&gt;移行後は大きな問題はなく運用できています。問題と言えばSidekiqのキューが詰まりスレッド数とコンテナ数を調整したぐらいです。&lt;/p&gt;
+
+&lt;p&gt;インフラ費用は安くなり、デプロイのたびに心の準備をしなくてよくなり、30分から1時間かかっていたデプロイは8〜15分で終わるようになり、Rubyのバージョンアップができるようになり、同じ構成のステージング環境ができて、今の所いいことばかりです。&lt;/p&gt;
+
+&lt;p&gt;移行前後の2ヶ月をPingdomで比較したところダウンタイムは30分から14分に減り、レスンポンスタイムは約500msはやくなりました。&lt;sup id="fnref8"&gt;&lt;a href="#fn8" rel="footnote" title="あくまでもPingdomのレスンポンスタイム"&gt;8&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://i.imgur.com/GZc7vJO.png" target="_blank" rel="nofollow noopener"&gt;&lt;img src="https://i.imgur.com/GZc7vJO.png" alt=""&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="良かった点と反省点" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E8%89%AF%E3%81%8B%E3%81%A3%E3%81%9F%E7%82%B9%E3%81%A8%E5%8F%8D%E7%9C%81%E7%82%B9"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;良かった点と反省点&lt;/h1&gt;
+
+&lt;p&gt;良かった点は、なんと言っても移行後ほぼ問題なく運用できていることです。ただインフラを移行するだけでなくアーキテクチャやアプリケーションコードをガッツリ変更したにも関わらず、トラブルがなく運用できているのは素晴らしい成果だと思います。また、かなりスムーズに移行作業ができたのも非常に良かった点です。準備が長くて嫌にもなりましたが、しっかり準備をしたおかげですね。&lt;/p&gt;
+
+&lt;p&gt;プロジェクトの進行もうまくいったと思います。1人でスケジュール管理してタスク管理していろんなリポジトリを行ったりきたりして目が回りましたが、それほど手戻りもなくスケジュールどおりに進めることができました。&lt;/p&gt;
+
+&lt;p&gt;反省点ですが、そもそも1人でやるようなプロジェクトではありませんでした。移行プロジェクトにフルコミットしてくれるエンジニアを探したり、PMをお願いしたりしたほうがよかったかもしれません。時間もかかったし、やりたかったけどできてないことも多々あります。一斉退職があった時点でプロジェクトを諦めたり会社を辞めたりという選択肢もありましたが、自分にとって今までにない挑戦だしいい経験になると思いやりました。&lt;/p&gt;
+
+&lt;p&gt;あと、メンテナンスサーバについては反省しかないですね &lt;img class="emoji" title=":joy:" alt=":joy:" src="/images/emoji/unicode/1f602.svg" height="20" width="20" align="absmiddle"&gt;&lt;br&gt;
+他と比べて簡単な部分だったので気が抜けていました。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="今後" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E4%BB%8A%E5%BE%8C"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;今後&lt;/h1&gt;
+
+&lt;p&gt;まだまだやりたいことはいろいろあります。例をざっとあげるとこんな感じです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Service Mesh
+
+&lt;ul&gt;
+&lt;li&gt;すでにいくつかMicroservices的なものがあり、Envoyあったらな〜的なことがあるので何かしらやりたい&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;分散トレーシング
+
+&lt;ul&gt;
+&lt;li&gt;すでにいくつかMicroservices的なものがあり、このエラーどこがどうなった的なことがあるのでほしい&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;One-shotなジョブを実行する仕組み
+
+&lt;ul&gt;
+&lt;li&gt;Rakeタスクとか。今はコンテナに入って実行する感じ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Horizontal Pod AutoscalerのCustom metrics利用
+
+&lt;ul&gt;
+&lt;li&gt;Sidekiqをキューに溜まってるジョブ数でスケールするとか&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;NetworkPolicy
+
+&lt;ul&gt;
+&lt;li&gt;Namespace間で通信を制限したい&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;ヘルスチェック用エンドポイント
+
+&lt;ul&gt;
+&lt;li&gt;今はRackが起動してるかどうかなので、ちゃんとreadiness probeできるエンドポイントがほしい&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;監視の充実
+
+&lt;ul&gt;
+&lt;li&gt;今は最低限の監視しかないので充実させたい&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;などなど&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1&gt;
+&lt;span id="終わりに" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E7%B5%82%E3%82%8F%E3%82%8A%E3%81%AB"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;終わりに&lt;/h1&gt;
+
+&lt;p&gt;今までも新規開発でエンジニア1人というプロジェクトの経験はありましたが、6年続いている既存のシステムに関するプロジェクトでエンジニアどころかPMはおろか社内に相談相手すらおらず本当に1人で長期間走るのは(精神的に)大変でした。前半はごたごたのおかげでプロジェクト外のストレスも多かったですが、後半は週2日といえども頼りになるエンジニアが手伝ってくれたのと会社に行かずリモートワークとフレックスで様々なストレスをシャットアウトできたのがよかったんだと思います &lt;img class="emoji" title=":smiley:" alt=":smiley:" src="/images/emoji/unicode/1f603.svg" height="20" width="20" align="absmiddle"&gt; &lt;img class="emoji" title=":thought_balloon:" alt=":thought_balloon:" src="/images/emoji/unicode/1f4ad.svg" height="20" width="20" align="absmiddle"&gt;&lt;/p&gt;
+
+&lt;p&gt;プロジェクト自体は大成功と言っても良い結果となったので良かったです。&lt;/p&gt;
+
+&lt;p&gt;いろいろ知見や経験も得られたので、今後ひとつずつ何かしらの形で公開していきたいです。&lt;/p&gt;
+
+&lt;div class="footnotes"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+
+&lt;li id="fn1"&gt;
+&lt;p&gt;簡単さの比較に関してはもちろん組み立て方次第なんですが、なんとなく雰囲気を感じ取っていただければ幸いです。参考: &lt;a href="https://amsy810.hateblo.jp/entry/2019/04/03/071858" rel="nofollow noopener" target="_blank"&gt;Kubernetes は辛いのか？ - @amsy810's Blog&lt;/a&gt; &lt;a href="#fnref1" rev="footnote"&gt;↩&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li id="fn2"&gt;
+&lt;p&gt;GKEのようなマネージドサービスの機能も含む &lt;a href="#fnref2" rev="footnote"&gt;↩&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li id="fn3"&gt;
+&lt;p&gt;GCPはかなりセキュリティに力を入れてるし、例えばコンテナまわりの脆弱性が発表されたときにGKEのContainer-Optimized OSの場合は対応不要ということも多かった。 &lt;a href="#fnref3" rev="footnote"&gt;↩&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li id="fn4"&gt;
+&lt;p&gt;語り尽くせない出来事がいろいろあったりしたのですが、本筋と関係ないので泣く泣く割愛します。 &lt;a href="#fnref4" rev="footnote"&gt;↩&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li id="fn5"&gt;
+&lt;p&gt;Googleのエンジニアにも伝え、grpc/grpcにも&lt;a href="https://github.com/grpc/grpc/issues/16013" rel="nofollow noopener" target="_blank"&gt;Issue&lt;/a&gt;をあげたけどまだ未解決っぽい &lt;a href="#fnref5" rev="footnote"&gt;↩&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li id="fn6"&gt;
+&lt;p&gt;参考 &lt;a href="https://dev.to/nownabe/secure-user-in-docker-1b5m" rel="nofollow noopener" target="_blank"&gt;Secure User in Docker - DEV Community 👩‍💻👨‍💻&lt;/a&gt; &lt;a href="#fnref6" rev="footnote"&gt;↩&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li id="fn7"&gt;
+&lt;p&gt;正確にはないことはないが、ないと言っていいぐらい面倒な方法しかないはず。簡単な方法があったら教えてください。 &lt;a href="#fnref7" rev="footnote"&gt;↩&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li id="fn8"&gt;
+&lt;p&gt;あくまでもPingdomのレスンポンスタイム &lt;a href="#fnref8" rev="footnote"&gt;↩&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;/ol&gt;
+&lt;/div&gt;
+</content>
+  </entry>
+  <entry>
+    <title>GCP updates  | January 7, 2019</title>
+    <link rel="alternate" href="https://blog.nownabe.com/2019/01/15/1450.html"/>
+    <id>https://blog.nownabe.com/2019/01/15/1450.html</id>
+    <published>2019-01-14T15:00:00+00:00</published>
+    <updated>2019-06-13T15:17:39+00:00</updated>
+    <author>
+      <name>nownabe</name>
+    </author>
+    <content type="html">
+&lt;h1&gt;
+&lt;span id="management-tools" class="fragment"&gt;&lt;/span&gt;&lt;a href="#management-tools"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;MANAGEMENT TOOLS&lt;/h1&gt;
+
+&lt;h2&gt;
+&lt;span id="istio-on-kubernetes-engine-beta" class="fragment"&gt;&lt;/span&gt;&lt;a href="#istio-on-kubernetes-engine-beta"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Istio on Kubernetes Engine: beta&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Get one-click Istio deployment on Kubernetes Engine – or add Istio to an existing Kubernetes Engine cluster. Quickly create all the components you need to run an open-source service mesh to connect, manage, and secure microservices in a uniform way. &lt;a href="https://cloud.google.com/istio/docs/istio-on-gke/overview" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;GKEにマネージドのIstioをデプロイできるようになったってやつです。いいですね！！ &lt;img class="emoji" title=":tada:" alt=":tada:" src="/images/emoji/unicode/1f389.svg" height="20" width="20" align="absmiddle"&gt;&lt;br&gt;
+既存のクラスタにも追加できて、AddonにIstioがあるのでそれをEnableにするだけです。&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Additional Releases&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="compute" class="fragment"&gt;&lt;/span&gt;&lt;a href="#compute"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;COMPUTE&lt;/h1&gt;
+
+&lt;h2&gt;
+&lt;span id="kubernetes-engine-flexible-pod-cidr" class="fragment"&gt;&lt;/span&gt;&lt;a href="#kubernetes-engine-flexible-pod-cidr"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Kubernetes Engine: flexible Pod CIDR&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Optimize IP utilization by controlling the use of Pod CIDR ranges across nodes by allowing users to specify the maximum number of Pods per node that they want to run. This feature allows for a more efficient allocation of Pod CIDR ranges from cluster-level CIDR for containers, and it helps reduce IP utilization. &lt;a href="https://cloud.google.com/kubernetes-engine/docs/how-to/flexible-pod-cidr" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;各Nodeに割り当てるCIDRブロックを変更できる機能です。デフォルトでは&lt;code&gt;/24&lt;/code&gt;を割り当て、Pod数は上限110ですがこれを&lt;code&gt;/28&lt;/code&gt;まで減らせる感じです。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="app-engine-standard-environment--python-37-ga" class="fragment"&gt;&lt;/span&gt;&lt;a href="#app-engine-standard-environment--python-37-ga"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;App Engine standard environment – Python 3.7: GA&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Use the latest versions of popular libraries with Python 3 on Titanium. Features include the ability to access the file system and install third-party packages and dependencies that rely on native code – all with reduced cost and latency, and improved code portability. &lt;a href="https://cloud.google.com/appengine/docs/standard/python3/" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;filesystemやネイティブコードが動くのはgVisorの恩恵ですね。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="compute-engine--control-the-location-of-persistent-disk-snapshots-beta" class="fragment"&gt;&lt;/span&gt;&lt;a href="#compute-engine--control-the-location-of-persistent-disk-snapshots-beta"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Compute Engine – control the location of Persistent Disk snapshots: beta&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Gain a greater level of control over your Persistent Disk snapshots by specifying their storage location down to regional and multi-regional Cloud Storage locations. This feature can help you meet data-residency, regulatory, and compliance requirements. &lt;a href="https://cloud.google.com/blog/products/storage-data-transfer/new-in-compute-engine-control-the-storage-location-of-your-snapshots" rel="nofollow noopener" target="_blank"&gt;Blog&lt;/a&gt; | &lt;a href="https://cloud.google.com/storage/docs/locations" rel="nofollow noopener" target="_blank"&gt;Storage locations&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2&gt;
+&lt;span id="app-engine-standard-environment--nodejs-8-ga" class="fragment"&gt;&lt;/span&gt;&lt;a href="#app-engine-standard-environment--nodejs-8-ga"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;App Engine standard environment – Node.js 8: GA&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The Node.js 8 runtime is now ready to use for your App Engine standard environment projects. &lt;a href="https://cloud.google.com/appengine/docs/standard/nodejs/" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1&gt;
+&lt;span id="databases" class="fragment"&gt;&lt;/span&gt;&lt;a href="#databases"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;DATABASES&lt;/h1&gt;
+
+&lt;h2&gt;
+&lt;span id="cloud-bigtable--tables-list-ga" class="fragment"&gt;&lt;/span&gt;&lt;a href="#cloud-bigtable--tables-list-ga"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Cloud Bigtable – tables list: GA&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Use the Google Cloud Platform Console to display a list of all your tables in Cloud Bigtable. The new tables-list feature also shows the size and replication status of each table, along with monitoring metrics. &lt;a href="https://cloud.google.com/bigtable/docs/managing-tables#viewing_a_list_of_tables" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1&gt;
+&lt;span id="networking" class="fragment"&gt;&lt;/span&gt;&lt;a href="#networking"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;NETWORKING&lt;/h1&gt;
+
+&lt;h2&gt;
+&lt;span id="cloud-dns--dns-forwarding-open-beta" class="fragment"&gt;&lt;/span&gt;&lt;a href="#cloud-dns--dns-forwarding-open-beta"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Cloud DNS – DNS forwarding: open beta&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Link your cloud and on-premises environments with bidirectional forwarding zones between your name servers and internal GCP name servers – and use the same DNS service for all your workloads and resources. &lt;a href="https://cloud.google.com/blog/products/networking/announcing-cloud-dns-forwarding-unifying-hybrid-cloud-naming" rel="nofollow noopener" target="_blank"&gt;Blog&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1&gt;
+&lt;span id="management-tools-1" class="fragment"&gt;&lt;/span&gt;&lt;a href="#management-tools-1"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;MANAGEMENT TOOLS&lt;/h1&gt;
+
+&lt;h2&gt;
+&lt;span id="cloud-billing--reconcile-billing-export-to-the-invoice" class="fragment"&gt;&lt;/span&gt;&lt;a href="#cloud-billing--reconcile-billing-export-to-the-invoice"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Cloud Billing – reconcile billing export to the invoice&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Export your billing data to BigQuery to view a broad range of new data fields – and see all invoice-level costs. To reconcile your invoice to the penny, see the “cost_type” field. Or to query costs by folder, see the “project.ancestry_numbers” field. &lt;a href="https://cloud.google.com/billing/docs/how-to/export-data-bigquery#billing_data_in" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt; | &lt;a href="https://cloud.google.com/billing/docs/how-to/bq-examples" rel="nofollow noopener" target="_blank"&gt;Example queries&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1&gt;
+&lt;span id="security" class="fragment"&gt;&lt;/span&gt;&lt;a href="#security"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;SECURITY&lt;/h1&gt;
+
+&lt;h2&gt;
+&lt;span id="access-transparency-beta" class="fragment"&gt;&lt;/span&gt;&lt;a href="#access-transparency-beta"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Access Transparency: beta&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Access Transparency logs actions taken by Google staff when accessing your data. This helps you confirm that your data is being accessed only for valid business reasons, such as addressing a support issue. &lt;a href="https://cloud.google.com/logging/docs/audit/access-transparency-overview" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2&gt;
+&lt;span id="vpc-service-controls-beta" class="fragment"&gt;&lt;/span&gt;&lt;a href="#vpc-service-controls-beta"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;VPC Service Controls: beta&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Define security perimeters for sensitive data in GCP services and establish virtual security perimeters for API-based services. VPC Service Controls lets you keep data private and mitigate data exfiltration risks, while maintaining your access to fully managed services on GCP. &lt;a href="https://cloud.google.com/vpc-service-controls/docs/" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2&gt;
+&lt;span id="cloud-identity-for-customers-and-partners-beta" class="fragment"&gt;&lt;/span&gt;&lt;a href="#cloud-identity-for-customers-and-partners-beta"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Cloud Identity for Customers and Partners: beta&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Add identity and access management functionality to your applications, protect user accounts, and easily scale on Google Cloud with Cloud Identity for Customers and Partners, our new identity and access management platform. &lt;a href="https://cloud.google.com/identity-cp/" rel="nofollow noopener" target="_blank"&gt;Product page&lt;/a&gt; | &lt;a href="https://cloud.google.com/identity-cp/docs/" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;いろいろカスタマイズできるAuthentication as a Serviceらしいです。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="internet-of-things" class="fragment"&gt;&lt;/span&gt;&lt;a href="#internet-of-things"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;INTERNET OF THINGS&lt;/h1&gt;
+
+&lt;h2&gt;
+&lt;span id="cloud-iot-core--gateways-beta" class="fragment"&gt;&lt;/span&gt;&lt;a href="#cloud-iot-core--gateways-beta"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Cloud IoT Core – gateways: beta&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;This feature introduces gateways as a new device type to Cloud IoT Core. A gateway is a hub or proxy device that connects Cloud IoT Core services to devices that cannot natively connect to Cloud IoT Core. &lt;a href="https://cloud.google.com/iot/docs/how-tos/gateways/" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1&gt;
+&lt;span id="ai--machine-learning" class="fragment"&gt;&lt;/span&gt;&lt;a href="#ai--machine-learning"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;AI &amp;amp; MACHINE LEARNING&lt;/h1&gt;
+
+&lt;h2&gt;
+&lt;span id="cloud-vision-api--handwriting-ocr-ga" class="fragment"&gt;&lt;/span&gt;&lt;a href="#cloud-vision-api--handwriting-ocr-ga"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Cloud Vision API – Handwriting OCR: GA&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Add the ability to detect and decipher handwritten text to your apps with the optical character recognition features in the Cloud Vision API. &lt;a href="https://cloud.google.com/vision/docs/handwriting" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+  </entry>
+  <entry>
+    <title>2019年の抱負</title>
+    <link rel="alternate" href="https://blog.nownabe.com/2019/01/14/1449.html"/>
+    <id>https://blog.nownabe.com/2019/01/14/1449.html</id>
+    <published>2019-01-13T15:00:00+00:00</published>
+    <updated>2019-06-13T15:17:39+00:00</updated>
+    <author>
+      <name>nownabe</name>
+    </author>
+    <content type="html">&lt;p&gt;いまさら感ありますが、三連休でふと気が向いたので書きます。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="2018年" class="fragment"&gt;&lt;/span&gt;&lt;a href="#2018%E5%B9%B4"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;2018年&lt;/h1&gt;
+
+&lt;p&gt;2018年は総合すると良い一年ではありませんでした。いろいろあってだいぶ死んでました。&lt;/p&gt;
+
+&lt;p&gt;ただ良いこともあって、新しい家に引っ越して犬を飼い始めたのは最高でした。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="/images/2019/01/14/1.JPG" target="_blank"&gt;&lt;img src="/images/2019/01/14/1.JPG" width="480"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;かわいすぎて、今では1日の発言の9割が「かわいい」です。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="2019年" class="fragment"&gt;&lt;/span&gt;&lt;a href="#2019%E5%B9%B4"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;2019年&lt;/h1&gt;
+
+&lt;p&gt;2018年が死んでたので、2019年はリハビリを頑張ろうと思っています。&lt;/p&gt;
+
+&lt;p&gt;その前に大きな方向性として、30代のうちに有給ニートになりたいという目標があります。&lt;/p&gt;
+
+&lt;p&gt;2018年で30歳になりました。今まで30年人間として生きてきたわけですが、どう考えても人間は週40時間で働くようにはできてません。なので人間的な生活を送るためにバッサリ労働をやめたくて、そのために何かしていきたいと考えています。わかりやすく言うと不労所得の確保ですね。&lt;/p&gt;
+
+&lt;p&gt;10年後も東京であくせく労働してるなんて考えたくもないので、将来はブリーダーの資格でも取って東京から離れたところで犬とともにゆるりと生きていきたいです。&lt;/p&gt;
+
+&lt;p&gt;それを見据えて今年頑張りたいのは次の3つ。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;健康維持&lt;/li&gt;
+&lt;li&gt;なんか出す&lt;/li&gt;
+&lt;li&gt;YouTubeでの情報発信&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;
+&lt;span id="健康維持" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E5%81%A5%E5%BA%B7%E7%B6%AD%E6%8C%81"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;健康維持&lt;/h2&gt;
+
+&lt;p&gt;健康がないと何も始まらないので、第一に健康維持です。具体的には、筋肉とか骨格部分の正常化と減量です。&lt;/p&gt;
+
+&lt;p&gt;2018年に死んでた原因のひとつに腰痛がありました。9月から11月にかけて、月に1、2回ぎっくり腰になるというやばい状態で、かなりの日数を寝たきりで過ごしました。&lt;br&gt;
+かなり最悪な出来事だったんですが悪いことだけだったかというとそういうこともなくて、自分の身体と向き合う良い機会になりました。&lt;br&gt;
+今はかなり腰痛に対する知見がたまり、今のところ12月からはぎっくり腰をギリギリ回避できています。&lt;br&gt;
+身体の悪いところを把握できて、どうすればいいかがなんとなくわかってきたので2019年は継続的に色々対策していきます。&lt;/p&gt;
+
+&lt;p&gt;また、学生時代に比べてかなり体重と体脂肪率が増えてて、それが腰痛とか他の不調の原因にもなってると感じています。あと自分の場合は「自分は学生時代に比べて劣っている」と常に考えてしまうので精神的にも良くないです。&lt;br&gt;
+2019年の前半に5kg減らして残り半年はそれを維持するというのが目標です。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="なんか出す" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%81%AA%E3%82%93%E3%81%8B%E5%87%BA%E3%81%99"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;なんか出す&lt;/h2&gt;
+
+&lt;p&gt;これは、Webサービスとかモバイルアプリとか、そういうものをリリースするという意味です。&lt;br&gt;
+自分にはソフトウェアエンジニアとしてのスキルがあるので不労所得を得る手段として最も有望な方法です。&lt;/p&gt;
+
+&lt;p&gt;ですが、今までこれは自分にとってそれなりに難しいことでした。&lt;br&gt;
+自分は技術への好奇心は尽きないんですが、あまり「サービス」とか「プロダクト」に興味がないというのが理由です。&lt;/p&gt;
+
+&lt;p&gt;なのでサービスをリリースするというモチベーションはなかなか湧かないんですが、お金を得るという強い気持ちを持って2019年に何かひとつリリースするというのが目標です。&lt;br&gt;
+ひとつと言わずいくつかリリースしたいですが、まずはひとつ。少しでもお金が入れば次のモチベーションにもなるはずなので。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="youtubeでの情報発信" class="fragment"&gt;&lt;/span&gt;&lt;a href="#youtube%E3%81%A7%E3%81%AE%E6%83%85%E5%A0%B1%E7%99%BA%E4%BF%A1"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;YouTubeでの情報発信&lt;/h2&gt;
+
+&lt;p&gt;これは2つ目的があります。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;不労所得の確保&lt;/li&gt;
+&lt;li&gt;動画メディアでの情報発信のキャッチアップ&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;まずひとつ目の不労所得の確保ですが、これは正直勝ち目は薄いと思ってます。&lt;/p&gt;
+
+&lt;p&gt;ただ、自分の趣味のペットやゲームやバンドとの相性はいいので、動画を作って投稿するフローを確立しておけば小遣い程度にはなるかもしれないという期待があります。小遣いが得られれば趣味の正当化にもなるので一石二鳥です。&lt;/p&gt;
+
+&lt;p&gt;ふたつ目の情報発信ですが、今後これができないと困ることが増えていきそうなので身につけておきたいというのが理由です。&lt;/p&gt;
+
+&lt;p&gt;これはかなり苦手意識があって、今まではYouTuberの動画なんて見たこともないし、技術系の動画もまったく見ないし、そもそも動画メディアに興味がないという状態でした。しかし、例えばリリースしたサービスを動画で宣伝したかったり、広く若い世代に何かを伝えたかったりしたときに、これができないと困るでしょう。ブログ書くより動画で出すほうが効果的になってきていると思います。というわけで、2019年はちょっとずつ頑張っていきたいです。&lt;/p&gt;
+
+&lt;p&gt;自分の声を入れたりするのはすごい抵抗があるんですが、おそらくそれは自分がおじさんだからなので克服していきたいですね。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="まとめ" class="fragment"&gt;&lt;/span&gt;&lt;a href="#%E3%81%BE%E3%81%A8%E3%82%81"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;まとめ&lt;/h1&gt;
+
+&lt;p&gt;働きたくない。&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>GitHubの有料プランを解約した</title>
+    <link rel="alternate" href="https://blog.nownabe.com/2019/01/08/1448.html"/>
+    <id>https://blog.nownabe.com/2019/01/08/1448.html</id>
+    <published>2019-01-07T15:00:00+00:00</published>
+    <updated>2019-06-13T15:17:39+00:00</updated>
+    <author>
+      <name>nownabe</name>
+    </author>
+    <content type="html">&lt;p&gt;GitHubのプランが刷新されて無料で無制限のプライベートレポジトリが使えるようになりましたね &lt;img class="emoji" title=":tada:" alt=":tada:" src="/images/emoji/unicode/1f389.svg" height="20" width="20" align="absmiddle"&gt;&lt;br&gt;
+というわけでGitHubの有料プランを解約しました。&lt;/p&gt;
+
+&lt;blockquote class="twitter-tweet" data-lang="ja"&gt;
+&lt;p lang="en" dir="ltr"&gt;New year, new upgrades.&lt;br&gt;&lt;br&gt;Introducing unlimited free private repositories, and a new unified Enterprise product.&lt;a href="https://t.co/6YB1BynM4A" rel="nofollow noopener" target="_blank"&gt;https://t.co/6YB1BynM4A&lt;/a&gt; &lt;a href="https://t.co/0EXJO8MqEu" rel="nofollow noopener" target="_blank"&gt;pic.twitter.com/0EXJO8MqEu&lt;/a&gt;&lt;/p&gt;— GitHub (@github) &lt;a href="https://twitter.com/github/status/1082345362503938049?ref_src=twsrc%5Etfw" rel="nofollow noopener" target="_blank"&gt;2019年1月7日&lt;/a&gt;
+&lt;/blockquote&gt;
+
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/pricing" rel="nofollow noopener" target="_blank"&gt;Pricing · Plans for every developer&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;今のGitHubは個人プランとして無料のFreeと月7ドルのProがあります。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Free 無料
+
+&lt;ul&gt;
+&lt;li&gt;無制限のパブリックレポジトリ&lt;/li&gt;
+&lt;li&gt;無制限のプライベートレポジトリ&lt;/li&gt;
+&lt;li&gt;プライベートレポジトリのコラボレータは3人まで&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Pro 月7ドル
+
+&lt;ul&gt;
+&lt;li&gt;無制限のパブリックレポジトリ&lt;/li&gt;
+&lt;li&gt;無制限のプライベートレポジトリ&lt;/li&gt;
+&lt;li&gt;無制限のコラボレータ&lt;/li&gt;
+&lt;li&gt;Advanced code review tools&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Advanced code review toolsが何かはわかってません。&lt;br&gt;
+Organizationでプライベートレポジトリを作るには変わらず課金が必要みたいです。&lt;/p&gt;
+
+&lt;p&gt;個人のプライベートレポはほぼ自分一人だし、複数人いてもせいぜい3人だろうということで問題なしと判断しました。自分一人なのでレビューツールも不要です。&lt;/p&gt;
+
+&lt;p&gt;最近は個人開発はGitLabをメインで使ってたりしてたのでいいタイミングでした。&lt;/p&gt;
+
+&lt;p&gt;月7ドルだったので年間1万円ぐらいの節約になりますね。寿司が食べられます &lt;img class="emoji" title=":yum:" alt=":yum:" src="/images/emoji/unicode/1f60b.svg" height="20" width="20" align="absmiddle"&gt; &lt;img class="emoji" title=":sushi:" alt=":sushi:" src="/images/emoji/unicode/1f363.svg" height="20" width="20" align="absmiddle"&gt; &lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>GCP updates | December 17, 2018</title>
+    <link rel="alternate" href="https://blog.nownabe.com/2018/12/18/1447.html"/>
+    <id>https://blog.nownabe.com/2018/12/18/1447.html</id>
+    <published>2018-12-17T15:00:00+00:00</published>
+    <updated>2019-06-13T15:17:39+00:00</updated>
+    <author>
+      <name>nownabe</name>
+    </author>
+    <content type="html">
+&lt;h1&gt;
+&lt;span id="security" class="fragment"&gt;&lt;/span&gt;&lt;a href="#security"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;SECURITY&lt;/h1&gt;
+
+&lt;h2&gt;
+&lt;span id="cloud-security-command-center-beta" class="fragment"&gt;&lt;/span&gt;&lt;a href="#cloud-security-command-center-beta"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Cloud Security Command Center: beta&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Monitor your cloud resources and quickly mitigate threats to them from a single, centralized dashboard. Track your cloud asset inventory, scan storage systems for sensitive data, detect common web vulnerabilities, and review access rights to your critical resources. &lt;a href="https://cloud.google.com/security-command-center/" rel="nofollow noopener" target="_blank"&gt;Product page&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;beta期間は無料とのことで使ってみました。SCC自体に何か特別な機能があるってわけではなくて、セキュリティ関連の機能のダッシュボード的なサービスみたいですね。&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Additional Releases&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="compute" class="fragment"&gt;&lt;/span&gt;&lt;a href="#compute"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;COMPUTE&lt;/h1&gt;
+
+&lt;h2&gt;
+&lt;span id="cloud-functions--per-function-identities-beta" class="fragment"&gt;&lt;/span&gt;&lt;a href="#cloud-functions--per-function-identities-beta"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Cloud Functions – per-function identities: beta&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;This feature allows you to set service accounts on a per-function basis, so that each function is assigned the appropriate level of access. This helps you more easily manage permissions when multiple functions are accessing different resources. &lt;a href="https://cloud.google.com/functions/docs/securing/function-identity#per-function_identity" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Cloud FunctionsのFunctionごとにサービスアカウントを割り当てられるやつ。ありがたい。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="kubernetes-engine--usage-metering-beta" class="fragment"&gt;&lt;/span&gt;&lt;a href="#kubernetes-engine--usage-metering-beta"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Kubernetes Engine – usage metering: beta&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;You can now break down Kubernetes Engine cluster usage by namespace, label, or a combination of both. This helps you more easily manage multitenant clusters by tying usage to individual teams or business units within your organization. &lt;a href="https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-usage-metering" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;GCP内のマネージドサービスのみでこういった情報が楽に見れるのは助かりますね。&lt;/p&gt;
+
+&lt;h2&gt;
+&lt;span id="cloud-functions--environment-variables-ga" class="fragment"&gt;&lt;/span&gt;&lt;a href="#cloud-functions--environment-variables-ga"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Cloud Functions – environment variables: GA&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Environment variables allow you to specify arbitrary key-value pairs during deployment, which will surface as literal environment variables accessible by your code at runtime. Environment variables are stored in the Cloud Functions backend and are bound to a single function. &lt;a href="https://cloud.google.com/functions/docs/env-var" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img class="emoji" title=":tada:" alt=":tada:" src="/images/emoji/unicode/1f389.svg" height="20" width="20" align="absmiddle"&gt;&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="data-analytics" class="fragment"&gt;&lt;/span&gt;&lt;a href="#data-analytics"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;DATA ANALYTICS&lt;/h1&gt;
+
+&lt;h2&gt;
+&lt;span id="cloud-composer-for-python-3-ga" class="fragment"&gt;&lt;/span&gt;&lt;a href="#cloud-composer-for-python-3-ga"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Cloud Composer for Python 3: GA&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Cloud Composer, a fully managed workflow orchestration service, based on Apache Airflow, now supports Python 3. You can create reliable Python 3–based Cloud Composer environments, then write new Python 3 workflows or lift and shift existing Python 3 workflows from local environments to Cloud Composer. &lt;a href="https://cloud.google.com/composer/docs/concepts/python-version" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img class="emoji" title=":snake:" alt=":snake:" src="/images/emoji/unicode/1f40d.svg" height="20" width="20" align="absmiddle"&gt; &lt;img class="emoji" title=":snake:" alt=":snake:" src="/images/emoji/unicode/1f40d.svg" height="20" width="20" align="absmiddle"&gt; &lt;img class="emoji" title=":snake:" alt=":snake:" src="/images/emoji/unicode/1f40d.svg" height="20" width="20" align="absmiddle"&gt;&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="api-management" class="fragment"&gt;&lt;/span&gt;&lt;a href="#api-management"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;API MANAGEMENT&lt;/h1&gt;
+
+&lt;h2&gt;
+&lt;span id="apigee-edge-api-client-library-for-php-ga" class="fragment"&gt;&lt;/span&gt;&lt;a href="#apigee-edge-api-client-library-for-php-ga"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Apigee Edge API Client Library for PHP: GA&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Build your own fully customized developer portal with the Apigee Edge Client Library for PHP. Used in conjunction with your Apigee Edge module for Drupal 8, this allows your portal and your API management platform to communicate and keep your data synced. &lt;a href="https://docs.apigee.com/release/notes/18112700-apigee-developer-portal-release-notes" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2&gt;
+&lt;span id="apigee-edge--drupal-8-open-source-module-beta" class="fragment"&gt;&lt;/span&gt;&lt;a href="#apigee-edge--drupal-8-open-source-module-beta"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Apigee Edge – Drupal 8 open-source module: beta&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Drupal 8 provides a reliable open-source, enterprise-level content management system. This module allows you to build a fully customizable developer portal that includes API key management, role-based access control, and API documentation rendering. &lt;a href="https://docs.apigee.com/api-platform/publish/drupal/open-source-drupal-8" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;ApigeeもGCPのマネージドサービスとして出てくるっぽいので見たほうがよさそうだなー。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="developer-tools" class="fragment"&gt;&lt;/span&gt;&lt;a href="#developer-tools"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;DEVELOPER TOOLS&lt;/h1&gt;
+
+&lt;h2&gt;
+&lt;span id="cloud-source-repositories--new-user-interface-ga" class="fragment"&gt;&lt;/span&gt;&lt;a href="#cloud-source-repositories--new-user-interface-ga"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Cloud Source Repositories – new user interface: GA&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Cloud Source Repositories provides a place for teams to store, manage, and track code. This second release offers an updated UI, additional features, and private Git repositories hosted on Google Cloud Platform. &lt;a href="https://cloud.google.com/source-repositories/docs/" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;新ダッシュボード出たばっかりのときはGitHubのミラー作れなかったりいろいろ不便だったけど、今はできるようになってますね。よかった。&lt;/p&gt;
+
+&lt;h1&gt;
+&lt;span id="internet-of-things" class="fragment"&gt;&lt;/span&gt;&lt;a href="#internet-of-things"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;INTERNET OF THINGS&lt;/h1&gt;
+
+&lt;h2&gt;
+&lt;span id="cloud-iot-core--commands-ga" class="fragment"&gt;&lt;/span&gt;&lt;a href="#cloud-iot-core--commands-ga"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Cloud IoT Core – commands: GA&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Now you can use Cloud IoT Core to send commands to devices. Commands are transitory, one-time directives sent to devices that are connected to Cloud IoT Core and subscribed to the commands topic. &lt;a href="https://cloud.google.com/iot/docs/how-tos/commands" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt; | &lt;a href="https://cloud.google.com/blog/products/iot-devices/introducing-cloud-iot-core-commands-increased-flexibility-to-control-your-fleet-of-embedded-devices" rel="nofollow noopener" target="_blank"&gt;Blog&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2&gt;
+&lt;span id="cloud-iot-core--device-logging-ga" class="fragment"&gt;&lt;/span&gt;&lt;a href="#cloud-iot-core--device-logging-ga"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Cloud IoT Core – device logging: GA&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Cloud IoT Core now includes device logging to aid in troubleshooting and help you find information about device connections, errors, and other lifecycle events. The logs are configurable for use with millions of devices. &lt;a href="https://cloud.google.com/iot/docs/how-tos/logging-monitoring" rel="nofollow noopener" target="_blank"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1&gt;
+&lt;span id="google-cloud-platform-support" class="fragment"&gt;&lt;/span&gt;&lt;a href="#google-cloud-platform-support"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;GOOGLE CLOUD PLATFORM SUPPORT&lt;/h1&gt;
+
+&lt;h2&gt;
+&lt;span id="google-cloud-platform--support-for-firebase-beta" class="fragment"&gt;&lt;/span&gt;&lt;a href="#google-cloud-platform--support-for-firebase-beta"&gt;&lt;i class="fa fa-link"&gt;&lt;/i&gt;&lt;/a&gt;Google Cloud Platform – support for Firebase: beta&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Firebase support is now available through the GCP support console. When this graduates to general availability, it will include target response times, technical account management for the enterprise tier, and more. &lt;a href="https://cloud.google.com/support/" rel="nofollow noopener" target="_blank"&gt;Product page&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+  </entry>
+</feed>

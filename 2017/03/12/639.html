@@ -1,0 +1,129 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | Blogのタイムスタンプをごにょごにょした</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="Blogのタイムスタンプをごにょごにょした" property="og:title"><meta content="    弊blog   弊blogはesaで記事を書き、esaのGitHub WebhookでGitHubにPushしてMiddlemanでHTML化している。  詳しくはQiitaに書いた。   esaで書いた記事をGitHub Pagesでブログとして公開する   この仕組みだとタイムスタンプまわりに少し問題があったので改善した。     タイムスタンプ   esaのGitHub Webhookは優秀で、PushするときはMiddlemanなどで扱いやすいように記事のMarkdownにfrontmatter... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2017/03/12/639.html" property="og:url"><meta content="    弊blog   弊blogはesaで記事を書き、esaのGitHub WebhookでGitHubにPushしてMiddlemanでHTML化している。  詳しくはQiitaに書いた。   esaで書いた記事をGitHub Pagesでブログとして公開する   この仕組みだとタイムスタンプまわりに少し問題があったので改善した。     タイムスタンプ   esaのGitHub Webhookは優秀で、PushするときはMiddlemanなどで扱いやすいように記事のMarkdownにfrontmatter... " property="twitter:description"><meta content="Blogのタイムスタンプをごにょごにょした" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2017/03/12/639.html">Blogのタイムスタンプをごにょごにょした</a></h1><span class="date">Posted on&nbsp;Mar 12, 2017</span></div><div class="body">
+<h1>
+<span id="弊blog" class="fragment"></span><a href="#%E5%BC%8Ablog"><i class="fa fa-link"></i></a>弊blog</h1>
+
+<p>弊blogはesaで記事を書き、esaのGitHub WebhookでGitHubにPushしてMiddlemanでHTML化している。<br>
+詳しくはQiitaに書いた。</p>
+
+<p><a href="http://qiita.com/nownabe/items/915c44f19d5806058419" rel="nofollow noopener" target="_blank">esaで書いた記事をGitHub Pagesでブログとして公開する</a></p>
+
+<p>この仕組みだとタイムスタンプまわりに少し問題があったので改善した。</p>
+
+<h1>
+<span id="タイムスタンプ" class="fragment"></span><a href="#%E3%82%BF%E3%82%A4%E3%83%A0%E3%82%B9%E3%82%BF%E3%83%B3%E3%83%97"><i class="fa fa-link"></i></a>タイムスタンプ</h1>
+
+<p>esaのGitHub Webhookは優秀で、PushするときはMiddlemanなどで扱いやすいように記事のMarkdownにfrontmatterを付与してくれる。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+---
+title: "たいとる"
+category: かてごり
+tags: 
+created_at: 2016-07-28 00:56:48 +0900
+updated_at: 2016-07-28 00:58:15 +0900
+published: true
+number: 123
+---
+
+# 記事本文
+
+hogehoge
+</pre></div></div>
+
+<p>このうち、</p>
+
+<ul>
+<li>
+<code>created_at</code>はesaでの記事作成日時</li>
+<li>
+<code>updated_at</code>はesaでの記事更新日時</li>
+</ul>
+
+<p>になっている。</p>
+
+<p>Middlemanの場合はこれらの日時を自動で記事のタイムスタンプとして扱ってくれる。</p>
+
+<h1>
+<span id="問題点" class="fragment"></span><a href="#%E5%95%8F%E9%A1%8C%E7%82%B9"><i class="fa fa-link"></i></a>問題点</h1>
+
+<p>何が問題かというとblog記事をWIPで下書きしたときである。下書きをWIPで保存したとき、</p>
+
+<ul>
+<li>GitHubにはまだPushされない(blogには投稿されない)</li>
+<li>esaでは記事が作成されたことになるので<code>created_at</code>はそのときの日時となる</li>
+</ul>
+
+<p>という動作になる。</p>
+
+<p>その後blog投稿のためShip It!すると、</p>
+
+<ul>
+<li>GitHubにPushされる(blogに投稿される)</li>
+<li>
+<code>updated_at</code>は更新されるが<code>created_at</code>は更新されない</li>
+</ul>
+
+<p>という動作になる。<br>
+そのため、下書き後にblogへ投稿すると<code>created_at</code>は実際のblog投稿日時より過去の日時となってしまう。</p>
+
+<p>本来であればblogの投稿日時としてはblogに投稿された日時を使いたい。(当たり前)</p>
+
+<h1>
+<span id="解決策1" class="fragment"></span><a href="#%E8%A7%A3%E6%B1%BA%E7%AD%961"><i class="fa fa-link"></i></a>解決策1</h1>
+
+<p>解決策その1はそもそもblogに投稿日時を表示しないことである。<br>
+弊blogも今までは<code>created_at</code>を使わず<code>updated_at</code>のみを使っていた。</p>
+
+<p>が、やはり昔の記事のタイポを修正しただけでトップに来るのはいただけないのでなんとかしたいと考えていた。</p>
+
+<h1>
+<span id="解決策2" class="fragment"></span><a href="#%E8%A7%A3%E6%B1%BA%E7%AD%962"><i class="fa fa-link"></i></a>解決策2</h1>
+
+<p>現在採用しているのはGitのログから日時を取得する方法である。<br>
+GitHubにPushされたとき、はじめてblogに投稿される。<br>
+なので、記事ファイルが始めてGitにコミットされた日時を得ることができれば、blogに正しく投稿日時を表示することができる。</p>
+
+<p>Gitの日時を使うため<code>config.rb</code>でMiddlemanに次のようなパッチをあてた。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+require "time"
+
+module EsaFrontmatter
+  WORK_DIR = File.expand_path("../", __FILE__).freeze
+
+  def data
+    return @page_data if @page_data
+    super
+    command = "cd #{WORK_DIR} &amp;&amp; " \
+      "git log --date=rfc --pretty=format:\"%ad\" source/#{@file_descriptor.relative_path}"
+    created_at = Time.rfc2822(`#{command}`.lines.last)
+    @page_data[:created_at] = created_at
+    @page_data[:date] = created_at
+    @page_data
+  end
+end
+
+Middleman::Sitemap::Resource.prepend(EsaFrontmatter)
+</pre></div></div>
+
+<p>これで無事に記事の<code>created_at</code>としてblogに投稿された日時を使うことができた。</p>
+
+<h1>
+<span id="おわりに" class="fragment"></span><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>おわりに</h1>
+
+<p>だんだん複雑になっていってあんまり好ましくはない… <img class="emoji" title=":sob:" alt=":sob:" src="/images/emoji/unicode/1f62d.svg" height="20" width="20" align="absmiddle"></p>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

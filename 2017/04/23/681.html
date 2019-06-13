@@ -1,0 +1,87 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | Private Docker Registry比較</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="Private Docker Registry比較" property="og:title"><meta content=" PrivateなDocker Registryが欲しい時、昔は自分で建ててたけど今回はGoogle Container Registryを使った。  楽ちんでした。     Private Docker Registry比較     Docker Hub   https://hub.docker.com/   一応オフィシャルな老舗サービス。  Dockerイメージを使うといったらたいていの場合はここからpublicなイメージを落として使うことになる。   Privateリポジトリも1つまでなら無料。タグを... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2017/04/23/681.html" property="og:url"><meta content=" PrivateなDocker Registryが欲しい時、昔は自分で建ててたけど今回はGoogle Container Registryを使った。  楽ちんでした。     Private Docker Registry比較     Docker Hub   https://hub.docker.com/   一応オフィシャルな老舗サービス。  Dockerイメージを使うといったらたいていの場合はここからpublicなイメージを落として使うことになる。   Privateリポジトリも1つまでなら無料。タグを... " property="twitter:description"><meta content="Private Docker Registry比較" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2017/04/23/681.html">Private Docker Registry比較</a></h1><span class="date">Posted on&nbsp;Apr 23, 2017</span></div><div class="body"><p>PrivateなDocker Registryが欲しい時、昔は自分で建ててたけど今回はGoogle Container Registryを使った。<br>
+楽ちんでした。</p>
+
+<h1>
+<span id="private-docker-registry比較" class="fragment"></span><a href="#private-docker-registry%E6%AF%94%E8%BC%83"><i class="fa fa-link"></i></a>Private Docker Registry比較</h1>
+
+<h2>
+<span id="docker-hub" class="fragment"></span><a href="#docker-hub"><i class="fa fa-link"></i></a>Docker Hub</h2>
+
+<p><a href="https://hub.docker.com/" class="autolink" rel="nofollow noopener" target="_blank">https://hub.docker.com/</a></p>
+
+<p>一応オフィシャルな老舗サービス。<br>
+Dockerイメージを使うといったらたいていの場合はここからpublicなイメージを落として使うことになる。</p>
+
+<p>Privateリポジトリも1つまでなら無料。タグを頑張って使い分ければ好きなだけPrivateイメージをpushできる気もするけど、さすがに運用がつらそう。<br>
+複数個のPrivateリポジトリを使いたければ<a href="https://hub.docker.com/account/billing-plans/" rel="nofollow noopener" target="_blank">有料プラン</a>が必要で、Privateリポジトリ5つで月7ドルとなる。昔のGitHubみたいな料金体系。</p>
+
+<p>GitHubと連携して自動でビルドもできるし、Docker本家のサービスってところがいいところ。</p>
+
+<h2>
+<span id="docker-registry" class="fragment"></span><a href="#docker-registry"><i class="fa fa-link"></i></a>Docker Registry</h2>
+
+<p><a href="https://hub.docker.com/_/registry/" class="autolink" rel="nofollow noopener" target="_blank">https://hub.docker.com/_/registry/</a></p>
+
+<p>Docker RegistryはDockerイメージが公開されていて自分で構築することもできる。</p>
+
+<p>今だとほとんどの場合は運用が辛いだけなので選択肢にはならない。<br>
+どうしてもイメージを外に出したくないとか、既に大規模なインフラ持っててコストを安くしたいってときの選択肢。</p>
+
+<p>昔これを使ってたときは証明書まわりとかストレージまわりがめんどくさかった。<br>
+ストレージにS3やGCSも使えるけど、その場合は素直に外のサービスを使ったほうがいい。</p>
+
+<h2>
+<span id="amazon-ec2-container-registry" class="fragment"></span><a href="#amazon-ec2-container-registry"><i class="fa fa-link"></i></a>Amazon EC2 Container Registry</h2>
+
+<p><a href="https://aws.amazon.com/jp/ecr/" class="autolink" rel="nofollow noopener" target="_blank">https://aws.amazon.com/jp/ecr/</a></p>
+
+<p>AWSのPrivate Container Registry。<br>
+料金はストレージ料金と転送料金の従量課金。</p>
+
+<p>ストレージは月0.10ドル/GB。<br>
+転送料は例によってややこしいけど、月0.14ドル/GBぐらいかと。</p>
+
+<p>AWSの指示に従って<code>docker</code>コマンドでログインすれば使えるようになる。</p>
+
+<p>AWS内でイメージをビルドしてECRにpushするには<a href="https://aws.amazon.com/jp/codebuild/" rel="nofollow noopener" target="_blank">CodeBuild</a>を使うっぽい。</p>
+
+<h2>
+<span id="google-container-registry" class="fragment"></span><a href="#google-container-registry"><i class="fa fa-link"></i></a>Google Container Registry</h2>
+
+<p><a href="https://cloud.google.com/container-registry/" class="autolink" rel="nofollow noopener" target="_blank">https://cloud.google.com/container-registry/</a></p>
+
+<p>GCPのPrivate Container Registry。<br>
+料金は<a href="https://cloud.google.com/storage/pricing" rel="nofollow noopener" target="_blank">GCSの料金</a>のみ。</p>
+
+<p>ストレージはデフォルトでMulti-Regionalが選択されるので、月0.026ドル/GB。<br>
+転送料は月0.12ドル/GB。</p>
+
+<p>なので料金はECRより安いはず。</p>
+
+<p>GCRは<code>gcloud</code>コマンドで操作することが推奨されているが、ドキュメントに従ってログインすれば<code>docker</code>コマンドでも使えるようになる。<br>
+例えば、JSONキーファイルを使ってログインする場合はこんな感じ。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+docker login -e 1234@5678.com -u _json_key -p "$(cat keyfile.json)" https://asia.gcr.io
+</pre></div></div>
+
+<h1>
+<span id="おわりに" class="fragment"></span><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>おわりに</h1>
+
+<p>今回は料金のやすさやお手軽さなどからGCRを選択した。<br>
+使いやすくて引っかかるところもなかったし、push/pullもはやいので満足している。</p>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | RubotyのデータをLevelDBで永続化するruboty-leveldbというGemを作った</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="RubotyのデータをLevelDBで永続化するruboty-leveldbというGemを作った" property="og:title"><meta content="    経緯   会社でチャットボットとして Ruboty を使ってます。   Rubotyはデータの永続化にプラグインを使わないといけないんですが、今はRedis用のプラグインしか用意されていません。  （もしかしたら誰か作ってるのがあるかも）   おそらく、RubotyはHeroku + Redis To Goのような環境で運用されることを想定されていて、Redis用のプラグインしかないんだと思います。  プライベートで使ってるのはその構成なんですが、会社では自前のサーバでDockerコンテナとして動作... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2016/07/31/hatena02.html" property="og:url"><meta content="    経緯   会社でチャットボットとして Ruboty を使ってます。   Rubotyはデータの永続化にプラグインを使わないといけないんですが、今はRedis用のプラグインしか用意されていません。  （もしかしたら誰か作ってるのがあるかも）   おそらく、RubotyはHeroku + Redis To Goのような環境で運用されることを想定されていて、Redis用のプラグインしかないんだと思います。  プライベートで使ってるのはその構成なんですが、会社では自前のサーバでDockerコンテナとして動作... " property="twitter:description"><meta content="RubotyのデータをLevelDBで永続化するruboty-leveldbというGemを作った" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2016/07/31/hatena02.html">RubotyのデータをLevelDBで永続化するruboty-leveldbというGemを作った</a></h1><span class="date">Posted on&nbsp;Mar 01, 2015</span></div><div class="body">
+<h1>
+<span id="経緯" class="fragment"></span><a href="#%E7%B5%8C%E7%B7%AF"><i class="fa fa-link"></i></a>経緯</h1>
+
+<p>会社でチャットボットとして<a href="https://github.com/r7kamura/ruboty" rel="nofollow noopener" target="_blank">Ruboty</a>を使ってます。</p>
+
+<p>Rubotyはデータの永続化にプラグインを使わないといけないんですが、今はRedis用のプラグインしか用意されていません。<br>
+（もしかしたら誰か作ってるのがあるかも）</p>
+
+<p>おそらく、RubotyはHeroku + Redis To Goのような環境で運用されることを想定されていて、Redis用のプラグインしかないんだと思います。<br>
+プライベートで使ってるのはその構成なんですが、会社では自前のサーバでDockerコンテナとして動作させています。</p>
+
+<p>外部のサーバに置きたくなくてそうしてるのでデータも内部に持ちたかったんですが、RubotyのためだけにRedisサーバ運用するのもなんだかなーとしばらくデータ永続化せずに使ってました。</p>
+
+<p>けどこのままはアカンなーということで、<a href="https://github.com/google/leveldb" rel="nofollow noopener" target="_blank">LevelDB</a>を使ってRubotyのデータを永続化できる<a href="https://rubygems.org/gems/ruboty-leveldb" rel="nofollow noopener" target="_blank">ruboty-leveldb</a>というプラグインを作成しました！</p>
+
+<h1>
+<span id="なぜleveldb" class="fragment"></span><a href="#%E3%81%AA%E3%81%9Cleveldb"><i class="fa fa-link"></i></a>なぜLevelDB？</h1>
+
+<p>正直言うと、余分なサーバ建てずにデータの永続化ができればテキストファイルでも他のKVSでもなんでも良かったんですが、使ってみたかったのでLevelDBにしました。</p>
+
+<p>Rubotyのデータぐらいだと、LevelDBが他のKVSに比べてどういいのかとかは全然見えません。</p>
+
+<p>個人的には<a href="http://fallabs.com/kyotocabinet/" rel="nofollow noopener" target="_blank">KyotoCabinet</a>が好きで使ってたんですが、ほぼ同じ感覚で使えました。<br>
+LevelDBが流行りならLevelDBでも全然いいなーという感想です。</p>
+
+<p>LevelDBについてはここがまとまってました。</p>
+
+<ul>
+<li><a href="http://yosuke-furukawa.hatenablog.com/entry/2014/05/05/095207" rel="nofollow noopener" target="_blank">LevelDB入門 (基本編)</a></li>
+</ul>
+
+<h1>
+<span id="使い方" class="fragment"></span><a href="#%E4%BD%BF%E3%81%84%E6%96%B9"><i class="fa fa-link"></i></a>使い方</h1>
+
+<p>Qiitaに書きました。</p>
+
+<ul>
+<li><a href="http://qiita.com/nownabe/items/06977acec7f08133d8c9" rel="nofollow noopener" target="_blank">Rubotyのデータ永続化にLevelDBを使う</a></li>
+</ul>
+
+<h1>
+<span id="感想" class="fragment"></span><a href="#%E6%84%9F%E6%83%B3"><i class="fa fa-link"></i></a>感想</h1>
+
+<p>Rubotyまわりはとてもコードが綺麗でよく見てるんですが、本当に参考になります。<br>
+ruboty-leveldbもほとんど<a href="https://github.com/r7kamura/ruboty-redis" rel="nofollow noopener" target="_blank">ruboty-redis</a>まんまですw</p>
+
+<p>…今気づいたんですがRubotyのREADMEでruboty-leveldbが紹介されてる…！！<br>
+ありがとうございます！！</p>
+
+<p><a href="https://github.com/r7kamura/ruboty" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/r7kamura/ruboty</a></p>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

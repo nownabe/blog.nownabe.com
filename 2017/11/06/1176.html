@@ -1,0 +1,113 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | CloudGarageのDev Assist Programの無償VM使ってみた</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="CloudGarageのDev Assist Programの無償VM使ってみた" property="og:title"><meta content=" a-knowさんの記事を読んで知ったCloudGarageのDevAssistProgramに応募してみたら、審査に通ったので早速触ってみた。   CloudGarage の無償インスタンスを利用して kubernetes クラスタを構築してみる - えいのうにっき     CloudGarage   CloudGarageというのはNHNテラコスが今年の夏頃ローンチしたパブリックIaaSで、定額料金を謳っている。例えば BOX3/1GB というプランでは月々固定の1480円で 1Core / 1GB... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2017/11/06/1176.html" property="og:url"><meta content=" a-knowさんの記事を読んで知ったCloudGarageのDevAssistProgramに応募してみたら、審査に通ったので早速触ってみた。   CloudGarage の無償インスタンスを利用して kubernetes クラスタを構築してみる - えいのうにっき     CloudGarage   CloudGarageというのはNHNテラコスが今年の夏頃ローンチしたパブリックIaaSで、定額料金を謳っている。例えば BOX3/1GB というプランでは月々固定の1480円で 1Core / 1GB... " property="twitter:description"><meta content="CloudGarageのDev Assist Programの無償VM使ってみた" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2017/11/06/1176.html">CloudGarageのDev Assist Programの無償VM使ってみた</a></h1><span class="date">Posted on&nbsp;Nov 06, 2017</span></div><div class="body"><p>a-knowさんの記事を読んで知ったCloudGarageのDevAssistProgramに応募してみたら、審査に通ったので早速触ってみた。</p>
+
+<p><a href="http://blog.a-know.me/entry/2017/10/01/214621" rel="nofollow noopener" target="_blank">CloudGarage の無償インスタンスを利用して kubernetes クラスタを構築してみる - えいのうにっき</a></p>
+
+<h1>
+<span id="cloudgarage" class="fragment"></span><a href="#cloudgarage"><i class="fa fa-link"></i></a>CloudGarage</h1>
+
+<p>CloudGarageというのはNHNテラコスが今年の夏頃ローンチしたパブリックIaaSで、定額料金を謳っている。例えば BOX3/1GB というプランでは月々固定の1480円で 1Core / 1GB / 50GB の仮想マシンが同時に3台まで使える。</p>
+
+<p>"クラウド"と名のつくサービスで従量課金ではなく定額なのは珍しいし枠内なら使い放題というのも面白い。</p>
+
+<p>現在は在庫不足で無料お試しやいくつかのプランが制限されている。そうせざるを得ないほど好評らしい。他のプランは申し込めるし制限されているプランも予約できるそうなので、興味ある方は是非そちらをどうぞ。</p>
+
+<p><a href="https://cloudgarage.jp/information/570/" rel="nofollow noopener" target="_blank">[更新]CloudGarage４プランおよび無料お試しプラン新規申込み受付停止のお知らせ | CloudGarage - クラウドガレージ</a></p>
+
+<h1>
+<span id="dev-assist-program" class="fragment"></span><a href="#dev-assist-program"><i class="fa fa-link"></i></a>Dev Assist Program</h1>
+
+<p>今回応募したDev Assist Program (DAP) は開発者向けのインスタンス無償提供制度で「エンジニアの好奇心やアイディアをカタチにする」ためのプログラムだそう。審査はあるらしいが、ウェブサービス開発者、開発コミュニティ、スタートアップ企業に無償でインスタンスを提供するというなんとも太っ腹な制度 <img class="emoji" title=":flushed:" alt=":flushed:" src="/images/emoji/unicode/1f633.svg" height="20" width="20" align="absmiddle"> </p>
+
+<p><a href="https://cloudgarage.jp/dap/" rel="nofollow noopener" target="_blank">開発者向けインスタンス無償提供制度 Dev Assist Program (DAP) | CloudGarage</a></p>
+
+<p>提供されるのは先程紹介した BOX3/1GB プランを1年間なので、スペックは高くないものの3台のVMがタダで1年間も使えることになる。なんとも太っ腹である。</p>
+
+<h1>
+<span id="応募してみた" class="fragment"></span><a href="#%E5%BF%9C%E5%8B%9F%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F"><i class="fa fa-link"></i></a>応募してみた</h1>
+
+<p>応募は非常に簡単で名前やメールアドレスに加えて、</p>
+
+<ul>
+<li>どんな活動をどんな目的でするのか</li>
+<li>PR活動へ協力するか</li>
+</ul>
+
+<p>をフォームに書いて送信するだけだった。</p>
+
+<p>自分は<a href="https://blog.nownabe.com/2017/09/22/1133.html#gemtester">先日ブログにも書いたGemTester</a>を実行したり、結果を保存・表示するダッシュボードを動かす場所が欲しかったのでその旨を書いた。</p>
+
+<p>先週の金曜日 (祝日) に応募して、今日 (月曜日) の15時頃に審査完了のメールが来た。めっちゃ早い <img class="emoji" title=":sparkles:" alt=":sparkles:" src="/images/emoji/unicode/2728.svg" height="20" width="20" align="absmiddle"></p>
+
+<h1>
+<span id="使ってみた" class="fragment"></span><a href="#%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F"><i class="fa fa-link"></i></a>使ってみた</h1>
+
+<p>とりあえずインスタンスを立ち上げてSSHログインするところまでやってみた。</p>
+
+<p>コントロールパネルにログインするとまずプランを購入する必要がある。購入と言っても金額は0円のDAP用のプランが用意されているのでそれを選択して購入する。</p>
+
+<p>そうするとインスタンスが作成できるようになる。「インスタンス追加」ボタンをクリックすると簡単な作成画面が表示されるのでポチポチ設定していく。</p>
+
+<p>最初はインスタンスの種類の選択だが、DAPだと1GBタイプしか選べない。OS/イメージも主要なものは用意されているし、RailsやWordPressなんかのイメージもある。</p>
+
+<p><a href="/images/2017/11/06/1.png" target="_blank"><img src="/images/2017/11/06/1.png" alt="スクリーンショット 2017-11-06 20.11.18.png (83.6 kB)"></a></p>
+
+<p>次は接続を許可するポートを選ぶ。任意のポートは指定できず、リストにあるポートから選ぶ。任意のポートを開放したい場合は全開放にしておいてインスタンス内でiptablesを設定するのがよさそう。</p>
+
+<p><a href="/images/2017/11/06/2.png" target="_blank"><img src="/images/2017/11/06/2.png" alt="スクリーンショット 2017-11-06 20.12.38.png (44.6 kB)"></a></p>
+
+<p>次はSSH鍵の設定。インスタンス作成時にSSH公開鍵を登録する場合は予め登録しておいた鍵を使うか、ここで新しい鍵を作成する。ここで作成した場合、秘密鍵はブラウザからダウンロードする。</p>
+
+<p><a href="/images/2017/11/06/3.png" target="_blank"><img src="/images/2017/11/06/3.png" alt="スクリーンショット 2017-11-06 20.14.02.png (19.6 kB)"></a></p>
+
+<p>最後にインスタンス情報を入力する。ここのインスタンス名はローカルのホスト名にもなる。</p>
+
+<p><a href="/images/2017/11/06/4.png" target="_blank"><img src="/images/2017/11/06/4.png" alt="スクリーンショット 2017-11-06 20.15.52.png (23.9 kB)"></a></p>
+
+<p>あとは「インスタンス作成」ボタンをクリックすれば作成される。時間を計ってみたが20秒程度で作成された。はやい <img class="emoji" title=":sparkles:" alt=":sparkles:" src="/images/emoji/unicode/2728.svg" height="20" width="20" align="absmiddle"></p>
+
+<p>作成されるとこんな感じで一覧表示される。</p>
+
+<p><a href="/images/2017/11/06/5.png" target="_blank"><img src="/images/2017/11/06/5.png" alt="スクリーンショット_2017-11-06_21_16_54.png (33.9 kB)"></a></p>
+
+<p>インスタンスの詳細画面はこんな感じ。グローバルIPを使う/使わない、ルートパスワードの変更、接続許可ポートの変更、なんかができる。</p>
+
+<p><a href="/images/2017/11/06/6.png" target="_blank"><img src="/images/2017/11/06/6.png" alt="スクリーンショット_2017-11-06_20_18_04.png (86.9 kB)"></a></p>
+
+<p>表示されているグローバルIPアドレスにrootユーザーで、ダウンロードした秘密鍵を使ってSSHすると無事ログインできた。</p>
+
+<p>1つ注意点として、作成時にSSH鍵を使うようにしても<code>PasswordAuthentication yes</code>になっているのですぐ変更しておいた方がよさそう。</p>
+
+<h1>
+<span id="感想" class="fragment"></span><a href="#%E6%84%9F%E6%83%B3"><i class="fa fa-link"></i></a>感想</h1>
+
+<p>まだ全然使ってないけどCloudGarageのファンになった <img class="emoji" title=":relaxed:" alt=":relaxed:" src="/images/emoji/unicode/263a-fe0f.svg" height="20" width="20" align="absmiddle"> </p>
+
+<p>まず開発者やコミュニティに無償で提供してやろうっていうのが粋だし、多機能を目指さずシンプルに使いやすいところを目指している<sup id="fnref1"><a href="#fn1" rel="footnote" title="違ったらすみません">1</a></sup>のが伝わってくるし、実際そうなので素晴らしい。DAPという強い後ろ盾はあったものの、IaaSやVPSで何一つ迷うポイントがなかったサービスは多分CloudGarageが始めてだと思う。</p>
+
+<p>応援していきたいし、上手く活用していきたい <img class="emoji" title=":muscle:" alt=":muscle:" src="/images/emoji/unicode/1f4aa.svg" height="20" width="20" align="absmiddle"></p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>違ったらすみません <a href="#fnref1" rev="footnote">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

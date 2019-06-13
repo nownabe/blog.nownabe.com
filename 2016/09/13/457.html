@@ -1,0 +1,92 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | ReactとReduxでx86のエミュレータを作った</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="ReactとReduxでx86のエミュレータを作った" property="og:title"><meta content="    はじめに   こちらです。herokuの無料プランなので、起動に時間がかかる場合があります。   https://x86-emulator.nownabe.com/   レポジトリはこちらです。   https://github.com/nownabe/x86-emulator-js   この記事はこいつの紹介記事になります。アセンブリのことやCPUの仕組みやReact/Reduxの話はあまりでてきません。       なに？   x86 CPUをエミュレートするやつです。ブラウザでx86の32bit 1 プ... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2016/09/13/457.html" property="og:url"><meta content="    はじめに   こちらです。herokuの無料プランなので、起動に時間がかかる場合があります。   https://x86-emulator.nownabe.com/   レポジトリはこちらです。   https://github.com/nownabe/x86-emulator-js   この記事はこいつの紹介記事になります。アセンブリのことやCPUの仕組みやReact/Reduxの話はあまりでてきません。       なに？   x86 CPUをエミュレートするやつです。ブラウザでx86の32bit 1 プ... " property="twitter:description"><meta content="ReactとReduxでx86のエミュレータを作った" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2016/09/13/457.html">ReactとReduxでx86のエミュレータを作った</a></h1><span class="date">Posted on&nbsp;Sep 13, 2016</span></div><div class="body">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>こちらです。herokuの無料プランなので、起動に時間がかかる場合があります。<br>
+<a href="https://x86-emulator.nownabe.com/" class="autolink" rel="nofollow noopener" target="_blank">https://x86-emulator.nownabe.com/</a></p>
+
+<p>レポジトリはこちらです。<br>
+<a href="https://github.com/nownabe/x86-emulator-js" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/nownabe/x86-emulator-js</a></p>
+
+<p>この記事はこいつの紹介記事になります。アセンブリのことやCPUの仕組みやReact/Reduxの話はあまりでてきません。</p>
+
+<p><a href="/images/2016/09/13/1.png" target="_blank"><img width="1276" alt="スクリーンショット 2016-09-13 21.12.42.png (434.4 kB)" src="/images/2016/09/13/1.png"></a></p>
+
+<h1>
+<span id="なに" class="fragment"></span><a href="#%E3%81%AA%E3%81%AB"><i class="fa fa-link"></i></a>なに？</h1>
+
+<p>x86 CPUをエミュレートするやつです。ブラウザでx86の32bit<sup id="fnref1"><a href="#fn1" rel="footnote" title="i386なんて言ったりもします。">1</a></sup>プログラム(バイナリ)を実行することができるJavaScriptのプログラムです。</p>
+
+<p>といってもまだまだ未完成品で、命令などが全然足りてませんがある程度基本的な機能は実装できたので公開しました。<br>
+もし足りてないのがあれば<a href="https://github.com/nownabe/x86-emulator-js/issues" rel="nofollow noopener" target="_blank">Issue</a>ください <img class="emoji" title=":sweat_smile:" alt=":sweat_smile:" src="/images/emoji/unicode/1f605.svg" height="20" width="20" align="absmiddle"> </p>
+
+<p>完全なPCを目指すというよりは、アセンブリ教育用のマイコンボード的位置づけのアプリケーションになっていて、レジスタやメモリの内容を表示できるようになっています。<br>
+また、そういう位置づけなのでバイナリを入力するのではなく、ブラウザでx86のアセンブリを入力してそれを直接実行できるという形にしています。ステップ実行できるのも特徴かと思います。</p>
+
+<h1>
+<span id="なぜ" class="fragment"></span><a href="#%E3%81%AA%E3%81%9C"><i class="fa fa-link"></i></a>なぜ？</h1>
+
+<p>弊社の変態プログラマが「バイナリで短歌を詠みたい」<sup id="fnref2"><a href="#fn2" rel="footnote" title="http://kozos.jp/asm-tanka/">2</a></sup>とわけのわからないことを言い出したのがそもそものきっかけです。<br>
+気づいたら作ってました。</p>
+
+<p>まったく目的もなく、一体全体どこからモチベーションがわいてきたのかさっぱりわかりません。</p>
+
+<p>はじめはこの本を読みながらC言語で作ってました。</p>
+
+<div class="asin">
+<div class="asin-image"><a href="https://www.amazon.co.jp/exec/obidos/ASIN/B0148FQNVC/nownabe0c-22/" rel="nofollow noopener" target="_blank"><img src="http://images-jp.amazon.com/images/P/B0148FQNVC.09._SL160_.jpg" alt="自作エミュレータで学ぶx86アーキテクチャ　コンピュータが動く仕組みを徹底理解！" title="自作エミュレータで学ぶx86アーキテクチャ　コンピュータが動く仕組みを徹底理解！"></a></div>
+<div class="asin-detail">
+<p><a href="https://www.amazon.co.jp/exec/obidos/ASIN/B0148FQNVC/nownabe0c-22/" rel="nofollow noopener" target="_blank">自作エミュレータで学ぶx86アーキテクチャ　コンピュータが動く仕組みを徹底理解！</a></p>
+<ul>
+<li>内田 公太, 上川 大介</li>
+<li>マイナビ出版</li>
+</ul>
+</div>
+</div>
+
+<h1>
+<span id="しくみ" class="fragment"></span><a href="#%E3%81%97%E3%81%8F%E3%81%BF"><i class="fa fa-link"></i></a>しくみ</h1>
+
+<p>メモリやレジスタはすべてReduxのStoreとしていて、命令を実行するたびにImmutableな感じで新しいメモリやレジスタのオブジェクトを生成しています。<br>
+メモリやレジスタはそもそもMutableなものなのでここはちょっと無理してる感がありました。</p>
+
+<p>特にメモリは1Byteごとに描画する必要があり、React/Reduxではギガバイトのメモリとか夢物語でした <img class="emoji" title=":innocent:" alt=":innocent:" src="/images/emoji/unicode/1f607.svg" height="20" width="20" align="absmiddle"> </p>
+
+<p>アセンブリプログラムはAssembleボタンをクリックすると裏側のSinatraアプリに送られ、NASMというアセンブルでバイナリに変換し、それをBase64エンコードしてJavaScriptに返しています。</p>
+
+<h1>
+<span id="おわりに" class="fragment"></span><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>おわりに</h1>
+
+<p>React/Reduxでエミュレータ作る方法とか、JavaScriptでバイナリを扱う方法とかは需要ないと思いますが別途書けたらなーと思ってます :memo:</p>
+
+<p>次はファミコンのエミュレータ作りたいです <img class="emoji" title=":yum:" alt=":yum:" src="/images/emoji/unicode/1f60b.svg" height="20" width="20" align="absmiddle"></p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>i386なんて言ったりもします。 <a href="#fnref1" rev="footnote">↩</a></p>
+</li>
+
+<li id="fn2">
+<p><a href="http://kozos.jp/asm-tanka/" class="autolink" rel="nofollow noopener" target="_blank">http://kozos.jp/asm-tanka/</a> <a href="#fnref2" rev="footnote">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

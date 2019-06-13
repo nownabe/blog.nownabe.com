@@ -1,0 +1,123 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | Spacemacsを使い始めた</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="Spacemacsを使い始めた" property="og:title"><meta content="    はじめに   Spacemacs を使い始めた。   今、エディタはTypeScriptはVisual Studio Code、JavaはIntelliJ IDEA、その他はVimを使っている。  IDE系はいいとして、Vimの後釜として使い始めた。   VimはVimで気に入ってるのだが、いろいろ設定しないといけないのがめんどくさい。  ほとんどカスタマイズはしない方なのだが、それでもめんどくさい。   設定するのが楽しいという人もいるとは思うが自分はそこに楽しさを見いだせないので、とことん自分好... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2017/07/14/1050.html" property="og:url"><meta content="    はじめに   Spacemacs を使い始めた。   今、エディタはTypeScriptはVisual Studio Code、JavaはIntelliJ IDEA、その他はVimを使っている。  IDE系はいいとして、Vimの後釜として使い始めた。   VimはVimで気に入ってるのだが、いろいろ設定しないといけないのがめんどくさい。  ほとんどカスタマイズはしない方なのだが、それでもめんどくさい。   設定するのが楽しいという人もいるとは思うが自分はそこに楽しさを見いだせないので、とことん自分好... " property="twitter:description"><meta content="Spacemacsを使い始めた" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2017/07/14/1050.html">Spacemacsを使い始めた</a></h1><span class="date">Posted on&nbsp;Jul 14, 2017</span></div><div class="body">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p><a href="https://github.com/syl20bnr/spacemacs" rel="nofollow noopener" target="_blank">Spacemacs</a>を使い始めた。</p>
+
+<p>今、エディタはTypeScriptはVisual Studio Code、JavaはIntelliJ IDEA、その他はVimを使っている。<br>
+IDE系はいいとして、Vimの後釜として使い始めた。</p>
+
+<p>VimはVimで気に入ってるのだが、いろいろ設定しないといけないのがめんどくさい。<br>
+ほとんどカスタマイズはしない方なのだが、それでもめんどくさい。</p>
+
+<p>設定するのが楽しいという人もいるとは思うが自分はそこに楽しさを見いだせないので、とことん自分好みにカスタマイズするよりはデフォルトでいい感じになってるものに自分を合わせていくほうが良い。</p>
+
+<p>というわけで、標準でいい感じらしいというSpacemacsを使ってみることにした。</p>
+
+<p>そのうちシェルもzshからfishに乗り換えようかと考えている。</p>
+
+<h1>
+<span id="tl-dr" class="fragment"></span><a href="#tl-dr"><i class="fa fa-link"></i></a>TL; DR</h1>
+
+<ul>
+<li>Vimと同じ感じで使える</li>
+<li>インサートステートから素早く<code>fd</code>押下でノーマルステートに変わるのが良い</li>
+<li>スペースキー起点でいろいろできるのが良い</li>
+<li>デフォルトである程度いい感じに使えるっぽい</li>
+<li>調整は必要っぽい</li>
+</ul>
+
+<h1>
+<span id="インストール" class="fragment"></span><a href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>インストール</h1>
+
+<p>SpacemacsはEmacs上に実装されている。</p>
+
+<p>それEmacsじゃねーのという感じだがまったくそ通りで、便利設定をパッケージングして名前をつけたものっぽい。<br>
+なのでSpacemacsは<code>~/.emacs.d</code>として配布されている。</p>
+
+<p>インストールはEmacsをインストールして<a href="https://github.com/syl20bnr/spacemacs" rel="nofollow noopener" target="_blank">syl20bnr/spacemacs</a>を<code>~/.emacs.d</code>に<code>git clone</code>する。</p>
+
+<p>Emacsを使うのは高校時代以来でめちゃくちゃ久しぶりだ。</p>
+
+<h1>
+<span id="初期設定" class="fragment"></span><a href="#%E5%88%9D%E6%9C%9F%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>初期設定</h1>
+
+<p>起動はやはり<code>emacs</code>コマンドを使う。<br>
+<code>emacs</code>コマンドで最初に起動すると3つの質問とそれぞれの選択肢が表示される。</p>
+
+<ul>
+<li>編集スタイルは何がいい？
+
+<ul>
+<li>
+<strong>Vim</strong> / Emacs</li>
+<li>もちろんVimを選択</li>
+</ul>
+</li>
+<li>Spacemacsのディストリビューションは何がいい？
+
+<ul>
+<li>
+<strong>Standard</strong> / Minimal</li>
+<li>めんどくさくないのが一番なのでStandardを選択</li>
+</ul>
+</li>
+<li>補完フレームワークは何がいい？
+
+<ul>
+<li>
+<strong>Ivy</strong> / Helm / None</li>
+<li>よくわかってないが、新しくて軽いっぽいIvyを選択</li>
+</ul>
+</li>
+</ul>
+
+<p>これらをそれぞれ選ぶと、Spacemacsが依存しているパッケージがダウンロード、インストールされる。<br>
+インストール後、ショートカット一覧といくつかチュートリアルへのリンクが表示される。</p>
+
+<h1>
+<span id="evil-tutor" class="fragment"></span><a href="#evil-tutor"><i class="fa fa-link"></i></a>Evil Tutor</h1>
+
+<p><a href="https://www.emacswiki.org/emacs/Evil" rel="nofollow noopener" target="_blank">Evil</a>はEmacs上でVimを再現するというなんとも悪そうな拡張である。<br>
+SpacemacsでもEvilを使ってVimの操作性を再現している。</p>
+
+<p>Evil TutorはEvilの使い方を説明するチュートリアルで、まぁVim Tutorと同じものだ。<br>
+Vimに馴染みがある人はスキップしてもいいと思う。<br>
+全部で30分ぐらいかかる。</p>
+
+<p>通常のEmacs画面からEvil Tutorを起動するには<code>M-x evil-tutor-start</code>とすればいい。(<code>M-x</code>は<code>Alt + x</code>)<br>
+自分の環境では初回だけ<code>M-x</code>のあとにスペースキーを押す必要があった。</p>
+
+<h1>
+<span id="ちょっと書いてみた" class="fragment"></span><a href="#%E3%81%A1%E3%82%87%E3%81%A3%E3%81%A8%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%BF%E3%81%9F"><i class="fa fa-link"></i></a>ちょっと書いてみた</h1>
+
+<p>ちょっとだけRubyとGoを書いてみた。</p>
+
+<ul>
+<li>go-modeやruby-modeは<code>.go</code>、<code>.rb</code>を開いたときに自動でインストールされる</li>
+<li>書き心地は良い</li>
+<li>タブ補完、コメント補完は調整が必要</li>
+<li>Rubocop用の何かは入ってるっぽいけど使い方がわからん</li>
+<li>gofmtはやってくれるけどgoimportsではない</li>
+</ul>
+
+<h1>
+<span id="感想" class="fragment"></span><a href="#%E6%84%9F%E6%83%B3"><i class="fa fa-link"></i></a>感想</h1>
+
+<p>評判通り、最初からVimっぽいしVimのめんどくさいところをある程度やってくれてる感があって良い。<br>
+そもそもEmacsがよくわかってないのでそれに慣れる必要はあるが、最初の手触りはいい感じなのでしばらく使ってみたい。</p>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

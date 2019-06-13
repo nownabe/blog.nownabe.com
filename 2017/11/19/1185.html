@@ -1,0 +1,274 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | Pythonではじめる機械学習  3回目</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="Pythonではじめる機械学習  3回目" property="og:title"><meta content=" nownab.log | Pythonではじめる機械学習 2回目     週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。   また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。   Wondershake/machine-learning-study: 機械学習勉強会   この記事は資料作りの下書き的扱い。     3章 教師なし学習と前処理     3.1 教師なし学習の種類     教師なし変換 (Unsupervised transformations...   " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2017/11/19/1185.html" property="og:url"><meta content=" nownab.log | Pythonではじめる機械学習 2回目     週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。   また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。   Wondershake/machine-learning-study: 機械学習勉強会   この記事は資料作りの下書き的扱い。     3章 教師なし学習と前処理     3.1 教師なし学習の種類     教師なし変換 (Unsupervised transformations...   " property="twitter:description"><meta content="Pythonではじめる機械学習  3回目" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2017/11/19/1185.html">Pythonではじめる機械学習  3回目</a></h1><span class="date">Posted on&nbsp;Nov 15, 2017</span></div><div class="body"><p><a href="https://blog.nownabe.com/2017/11/08/1174.html">nownab.log | Pythonではじめる機械学習 2回目</a></p>
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&amp;bc1=000000&amp;IS2=1&amp;bg1=FFFFFF&amp;fc1=000000&amp;lc1=0000FF&amp;t=nownabe0c-22&amp;o=9&amp;p=8&amp;l=as4&amp;m=amazon&amp;f=ifr&amp;ref=as_ss_li_til&amp;asins=4873117984&amp;linkId=05656b0761603e4e9f88423f102e42c6"></iframe>
+
+<p>週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。</p>
+
+<p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。<br>
+<a href="https://github.com/Wondershake/machine-learning-study" rel="nofollow noopener" target="_blank">Wondershake/machine-learning-study: 機械学習勉強会</a></p>
+
+<p>この記事は資料作りの下書き的扱い。</p>
+
+<h1>
+<span id="3章-教師なし学習と前処理" class="fragment"></span><a href="#3%E7%AB%A0-%E6%95%99%E5%B8%AB%E3%81%AA%E3%81%97%E5%AD%A6%E7%BF%92%E3%81%A8%E5%89%8D%E5%87%A6%E7%90%86"><i class="fa fa-link"></i></a>3章 教師なし学習と前処理</h1>
+
+<h2>
+<span id="31-教師なし学習の種類" class="fragment"></span><a href="#31-%E6%95%99%E5%B8%AB%E3%81%AA%E3%81%97%E5%AD%A6%E7%BF%92%E3%81%AE%E7%A8%AE%E9%A1%9E"><i class="fa fa-link"></i></a>3.1 教師なし学習の種類</h2>
+
+<ul>
+<li>教師なし変換 (Unsupervised transformations)
+
+<ul>
+<li>もとのデータを変換して、人間やアルゴリズムにわかりやすいデータを作る</li>
+<li>次元削減、トピック抽出</li>
+</ul>
+</li>
+<li>クラスタリングアルゴリズム (Clustering algorithms)
+
+<ul>
+<li>データをグループに分ける</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<span id="32-教師なし学習の難しさ" class="fragment"></span><a href="#32-%E6%95%99%E5%B8%AB%E3%81%AA%E3%81%97%E5%AD%A6%E7%BF%92%E3%81%AE%E9%9B%A3%E3%81%97%E3%81%95"><i class="fa fa-link"></i></a>3.2 教師なし学習の難しさ</h2>
+
+<ul>
+<li>アルゴリズムの評価が難しい
+
+<ul>
+<li>出力がどうあるべきかわからない</li>
+</ul>
+</li>
+<li>データを理解するために用いられることが多い</li>
+<li>教師あり学習の前処理としても使われる</li>
+</ul>
+
+<h2>
+<span id="33-前処理とスケール変換" class="fragment"></span><a href="#33-%E5%89%8D%E5%87%A6%E7%90%86%E3%81%A8%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%AB%E5%A4%89%E6%8F%9B"><i class="fa fa-link"></i></a>3.3 前処理とスケール変換</h2>
+
+<h3>
+<span id="331-さまざまな前処理" class="fragment"></span><a href="#331-%E3%81%95%E3%81%BE%E3%81%96%E3%81%BE%E3%81%AA%E5%89%8D%E5%87%A6%E7%90%86"><i class="fa fa-link"></i></a>3.3.1 さまざまな前処理</h3>
+
+<ul>
+<li>StandardScaler
+
+<ul>
+<li>それぞれの特徴量が平均0、分散1となるように変換する</li>
+</ul>
+</li>
+<li>RobustScaler
+
+<ul>
+<li>平均値と分散のかわりに中央地と四分位数を用いる</li>
+<li>外れ値を無視する</li>
+</ul>
+</li>
+<li>MinMaxScaler
+
+<ul>
+<li>データが0から1の間になるように変換する</li>
+</ul>
+</li>
+<li>Normalizer
+
+<ul>
+<li>特徴量ベクトルのユークリッド長が1になるように変換する</li>
+<li>データポイントを超球面に投射する</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="332-データ変換の適用" class="fragment"></span><a href="#332-%E3%83%87%E3%83%BC%E3%82%BF%E5%A4%89%E6%8F%9B%E3%81%AE%E9%81%A9%E7%94%A8"><i class="fa fa-link"></i></a>3.3.2 データ変換の適用</h3>
+
+<h3>
+<span id="333-訓練データとテストデータを同じように変換する" class="fragment"></span><a href="#333-%E8%A8%93%E7%B7%B4%E3%83%87%E3%83%BC%E3%82%BF%E3%81%A8%E3%83%86%E3%82%B9%E3%83%88%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%90%8C%E3%81%98%E3%82%88%E3%81%86%E3%81%AB%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>3.3.3 訓練データとテストデータを同じように変換する</h3>
+
+<ul>
+<li>訓練データにfitしたものを使ってテストデータを変換する</li>
+<li>テストデータでfitしてはダメ</li>
+</ul>
+
+<h3>
+<span id="334-教師あり学習における前処理の効果" class="fragment"></span><a href="#334-%E6%95%99%E5%B8%AB%E3%81%82%E3%82%8A%E5%AD%A6%E7%BF%92%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%89%8D%E5%87%A6%E7%90%86%E3%81%AE%E5%8A%B9%E6%9E%9C"><i class="fa fa-link"></i></a>3.3.4 教師あり学習における前処理の効果</h3>
+
+<h2>
+<span id="34-次元削減特徴量抽出多様体学習" class="fragment"></span><a href="#34-%E6%AC%A1%E5%85%83%E5%89%8A%E6%B8%9B%E7%89%B9%E5%BE%B4%E9%87%8F%E6%8A%BD%E5%87%BA%E5%A4%9A%E6%A7%98%E4%BD%93%E5%AD%A6%E7%BF%92"><i class="fa fa-link"></i></a>3.4 次元削減、特徴量抽出、多様体学習</h2>
+
+<h3>
+<span id="341-主成分分析-pca" class="fragment"></span><a href="#341-%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90-pca"><i class="fa fa-link"></i></a>3.4.1 主成分分析 (PCA)</h3>
+
+<ul>
+<li>データセットの特徴量を回転する
+
+<ul>
+<li>まず最も分散が大きい方向をみつけ、その方向の軸を第1成分とする</li>
+<li>第1成分と直行する軸のうち最も情報を持つ軸を探し第2成分とする</li>
+<li>これを繰り返す</li>
+</ul>
+</li>
+<li>それぞれの軸を主成分という</li>
+<li>もとの特徴量と同じだけ主成分が存在する</li>
+</ul>
+
+<h3>
+<span id="3411-cancerデータセットのpcaによる可視化" class="fragment"></span><a href="#3411-cancer%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%83%E3%83%88%E3%81%AEpca%E3%81%AB%E3%82%88%E3%82%8B%E5%8F%AF%E8%A6%96%E5%8C%96"><i class="fa fa-link"></i></a>3.4.1.1 cancerデータセットのPCAによる可視化</h3>
+
+<ul>
+<li>PCAは高次元データセットの可視化で用いられることがある</li>
+<li>主成分の解釈が簡単ではないことが多い</li>
+</ul>
+
+<h3>
+<span id="3412-固有顔による特徴量抽出" class="fragment"></span><a href="#3412-%E5%9B%BA%E6%9C%89%E9%A1%94%E3%81%AB%E3%82%88%E3%82%8B%E7%89%B9%E5%BE%B4%E9%87%8F%E6%8A%BD%E5%87%BA"><i class="fa fa-link"></i></a>3.4.1.2 固有顔による特徴量抽出</h3>
+
+<ul>
+<li>PCAを特徴量抽出に使う
+
+<ul>
+<li>より機械学習アルゴリズムに適したデータに変換する</li>
+</ul>
+</li>
+<li>Labeled Faces in the Wild</li>
+<li>主成分の一部で元のデータをある程度再現できる
+
+<ul>
+<li>すべての主成分を使えば完全に再現できる</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="342-非負値行列因子分解-nmf" class="fragment"></span><a href="#342-%E9%9D%9E%E8%B2%A0%E5%80%A4%E8%A1%8C%E5%88%97%E5%9B%A0%E5%AD%90%E5%88%86%E8%A7%A3-nmf"><i class="fa fa-link"></i></a>3.4.2 非負値行列因子分解 (NMF)</h3>
+
+<ul>
+<li>特徴量を抽出することを目的とする教師なし学習手法</li>
+<li>係数と成分が非負
+
+<ul>
+<li>特徴量が非負のデータにしか使えない</li>
+</ul>
+</li>
+<li>複数の独立した発生源からのデータを重ね合わせたデータに有効</li>
+<li>NMFはPCAよりも理解しやすい成分に分解する</li>
+</ul>
+
+<h4>
+<span id="3421-nmfの合成データへの適用" class="fragment"></span><a href="#3421-nmf%E3%81%AE%E5%90%88%E6%88%90%E3%83%87%E3%83%BC%E3%82%BF%E3%81%B8%E3%81%AE%E9%81%A9%E7%94%A8"><i class="fa fa-link"></i></a>3.4.2.1 NMFの合成データへの適用</h4>
+
+<ul>
+<li>NMFの成分に順番はない</li>
+<li>乱数で初期化するので毎回結果が変わる</li>
+</ul>
+
+<h4>
+<span id="3422-nmfの顔画像への適用" class="fragment"></span><a href="#3422-nmf%E3%81%AE%E9%A1%94%E7%94%BB%E5%83%8F%E3%81%B8%E3%81%AE%E9%81%A9%E7%94%A8"><i class="fa fa-link"></i></a>3.4.2.2 NMFの顔画像への適用</h4>
+
+<ul>
+<li>再構成やエンコードは苦手</li>
+<li>データ中から興味深いパターンを見つけるのに用いられる</li>
+<li>音声データ、遺伝子発見、テキストデータにうまく機能する</li>
+<li>合成データをうまく分離できる</li>
+</ul>
+
+<h3>
+<span id="343-t-sneを用いた多様体学習" class="fragment"></span><a href="#343-t-sne%E3%82%92%E7%94%A8%E3%81%84%E3%81%9F%E5%A4%9A%E6%A7%98%E4%BD%93%E5%AD%A6%E7%BF%92"><i class="fa fa-link"></i></a>3.4.3 t-SNEを用いた多様体学習</h3>
+
+<ul>
+<li>多様体学習アルゴリズムは可視化によく用いられる
+
+<ul>
+<li>特に有用なのがt-SNE</li>
+</ul>
+</li>
+<li>訓練データにしか使えない
+
+<ul>
+<li>探索的なデータ解析に有用</li>
+<li>教師あり学習の前処理には用いない</li>
+</ul>
+</li>
+<li>デフォルトのパラメータで大抵うまくいく</li>
+</ul>
+
+<h2>
+<span id="35-クラスタリング" class="fragment"></span><a href="#35-%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>3.5 クラスタリング</h2>
+
+<ul>
+<li>クラスタリングはデータセットをクラスタと呼ばれるグループに分割するタスク</li>
+</ul>
+
+<h3>
+<span id="351-k-meansクラスタリング" class="fragment"></span><a href="#351-k-means%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>3.5.1 k-meansクラスタリング</h3>
+
+<ul>
+<li>k-meansは最も単純で最も広く用いられているクラスタリングアルゴリズム</li>
+<li>クラスタ重心を見つけていく
+
+<ul>
+<li>ランダムでクラスタセンタを選択</li>
+<li>個々のデータポインタを最も近いクラスタセンタのクラスタに割り当てる</li>
+<li>それぞれのクラスタの重心をクラスタセンタに設定し直す</li>
+<li>繰り返し、収束したら終了</li>
+</ul>
+</li>
+</ul>
+
+<h4>
+<span id="3511-k-meansがうまくいかない場合" class="fragment"></span><a href="#3511-k-means%E3%81%8C%E3%81%86%E3%81%BE%E3%81%8F%E3%81%84%E3%81%8B%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88"><i class="fa fa-link"></i></a>3.5.1.1 k-meansがうまくいかない場合</h4>
+
+<ul>
+<li>k-meanのクラスタは凸形状であるという強い仮定がある
+
+<ul>
+<li>複雑な形のクラスタにはうまく対応できない</li>
+</ul>
+</li>
+</ul>
+
+<h4>
+<span id="3412-ベクトル量子化もしくは成分分解としてのk-means" class="fragment"></span><a href="#3412-%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E9%87%8F%E5%AD%90%E5%8C%96%E3%82%82%E3%81%97%E3%81%8F%E3%81%AF%E6%88%90%E5%88%86%E5%88%86%E8%A7%A3%E3%81%A8%E3%81%97%E3%81%A6%E3%81%AEk-means"><i class="fa fa-link"></i></a>3.4.1.2 ベクトル量子化、もしくは成分分解としてのk-means</h4>
+
+<ul>
+<li>PCAやNMFなどの成分分解手法との類似性がある
+
+<ul>
+<li>個々のデータポイントをクラスタセンタという単一の成分で表現していると考えることができる</li>
+</ul>
+</li>
+<li>ベクトル量子化 (vector quantization)
+
+<ul>
+<li>k-meansを単一成分で個々のデータポイントを表現する成分分解手法としてみる考え方</li>
+</ul>
+</li>
+<li>k-meansによるベクトル量子化では入力次元よりはるかに多くのクラスタを使うことができるのが特徴</li>
+<li>k-meansの欠点の1つは乱数で初期化されること</li>
+</ul>
+
+<h1>
+<span id="所感" class="fragment"></span><a href="#%E6%89%80%E6%84%9F"><i class="fa fa-link"></i></a>所感</h1>
+
+<ul>
+<li>k-meansのベクトル量子化の項はそういう使い方もあるのか！という感じだった</li>
+</ul>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+</pre></div></div>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

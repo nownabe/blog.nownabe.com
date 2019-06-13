@@ -1,0 +1,232 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | お名前.comからIDCF DNSに移行した話</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="お名前.comからIDCF DNSに移行した話" property="og:title"><meta content=" ネームサーバーをお名前.comからIDCF DNSに移行しました。   IDCF DNSは1ドメイン50円で100レコードまでなら使い放題です（クエリ数に関係ない）。  お名前.comはドメイン取得のおまけで無料なので、50円余分に払わないといけません。  とはいえまあ50円です笑   APIで操作できるので動的にレコードが変化するようなドメインのDNSとしてはよさそうです。  ということでなけなしの50円を払いお名前.comから移行することにしました。     流れ   移行の流れとしては、次のようにな... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2016/07/31/hatena10.html" property="og:url"><meta content=" ネームサーバーをお名前.comからIDCF DNSに移行しました。   IDCF DNSは1ドメイン50円で100レコードまでなら使い放題です（クエリ数に関係ない）。  お名前.comはドメイン取得のおまけで無料なので、50円余分に払わないといけません。  とはいえまあ50円です笑   APIで操作できるので動的にレコードが変化するようなドメインのDNSとしてはよさそうです。  ということでなけなしの50円を払いお名前.comから移行することにしました。     流れ   移行の流れとしては、次のようにな... " property="twitter:description"><meta content="お名前.comからIDCF DNSに移行した話" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2016/07/31/hatena10.html">お名前.comからIDCF DNSに移行した話</a></h1><span class="date">Posted on&nbsp;Aug 10, 2015</span></div><div class="body"><p>ネームサーバーをお名前.comからIDCF DNSに移行しました。</p>
+
+<p>IDCF DNSは1ドメイン50円で100レコードまでなら使い放題です（クエリ数に関係ない）。<br>
+お名前.comはドメイン取得のおまけで無料なので、50円余分に払わないといけません。<br>
+とはいえまあ50円です笑</p>
+
+<p>APIで操作できるので動的にレコードが変化するようなドメインのDNSとしてはよさそうです。<br>
+ということでなけなしの50円を払いお名前.comから移行することにしました。</p>
+
+<h1>
+<span id="流れ" class="fragment"></span><a href="#%E6%B5%81%E3%82%8C"><i class="fa fa-link"></i></a>流れ</h1>
+
+<p>移行の流れとしては、次のようになります。</p>
+
+<ol>
+<li>IDCF DNSに登録する</li>
+<li>IDCF DNSにゾーンを作成する</li>
+<li>IDCF DNSにレコードを登録する</li>
+<li>IDCF DNSでドメインを認証する</li>
+<li>ネームサーバーを切り替える</li>
+</ol>
+
+<h1>
+<span id="idcf-dnsに登録する" class="fragment"></span><a href="#idcf-dns%E3%81%AB%E7%99%BB%E9%8C%B2%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>IDCF DNSに登録する</h1>
+
+<p>こちらにアクセスします。<br>
+<a href="https://console.idcfcloud.com/dns/" class="autolink" rel="nofollow noopener" target="_blank">https://console.idcfcloud.com/dns/</a></p>
+
+<p>多分登録画面とかログイン画面とか出てくるはず。。。</p>
+
+<h1>
+<span id="idcf-dnsにゾーン作成" class="fragment"></span><a href="#idcf-dns%E3%81%AB%E3%82%BE%E3%83%BC%E3%83%B3%E4%BD%9C%E6%88%90"><i class="fa fa-link"></i></a>IDCF DNSにゾーン作成</h1>
+
+<p>無事にログインできるとこんな画面が出るので、「ゾーン作成」をクリックします。</p>
+
+<p><a href="/images/articles/hatena10/01.png" target="_blank"><img src="/images/articles/hatena10/01.png" alt="ゾーン作成1"></a></p>
+
+<p>作成画面が出てくるので、ドメインやメールアドレスを入力します。<br>
+ドメインがそのままゾーン名となります。hogehoge.comみたいな感じです。</p>
+
+<p><a href="/images/articles/hatena10/02.png" target="_blank"><img src="/images/articles/hatena10/02.png" alt="ゾーン作成2"></a></p>
+
+<p>これでゾーンが作成されました。</p>
+
+<h1>
+<span id="idcf-dnsにレコード登録" class="fragment"></span><a href="#idcf-dns%E3%81%AB%E3%83%AC%E3%82%B3%E3%83%BC%E3%83%89%E7%99%BB%E9%8C%B2"><i class="fa fa-link"></i></a>IDCF DNSにレコード登録</h1>
+
+<p>次はレコードを登録していきます。</p>
+
+<p>ゾーンが作成されると、このようにゾーン一覧に新しいゾーンが表示されます。</p>
+
+<p><a href="/images/articles/hatena10/03.png" target="_blank"><img src="/images/articles/hatena10/03.png" alt="ゾーン一覧"></a></p>
+
+<p>ゾーン名をクリックすると、SOAレコードやNSレコードが登録されていることがわかります。<br>
+右上の「レコード登録」から今登録してあるレコードを登録していきます。</p>
+
+<p><a href="/images/articles/hatena10/04.png" target="_blank"><img src="/images/articles/hatena10/04.png" alt="レコード登録1"></a></p>
+
+<p>今のところ登録できるレコードはA、CNAME、AAAA、MX、TXT、SRVのみです。</p>
+
+<p><a href="/images/articles/hatena10/05.png" target="_blank"><img src="/images/articles/hatena10/05.png" alt="レコード登録2"></a></p>
+
+<p>こんな感じで、お名前.comと差異がないようにします。</p>
+
+<p><a href="/images/articles/hatena10/06.png" target="_blank"><img src="/images/articles/hatena10/06.png" alt="レコード比較 IDCF"></a></p>
+
+<p><a href="/images/articles/hatena10/07.png" target="_blank"><img src="/images/articles/hatena10/07.png" alt="レコード比較 onamae"></a></p>
+
+<h1>
+<span id="idcd-dnsでドメイン認証" class="fragment"></span><a href="#idcd-dns%E3%81%A7%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E8%AA%8D%E8%A8%BC"><i class="fa fa-link"></i></a>IDCD DNSでドメイン認証</h1>
+
+<p>ドメインの所有者であるということを確認するため、ドメインの認証が必要になっています。</p>
+
+<p>IDCF DNSのゾーンページの、「認証する」をクリックします。</p>
+
+<p><a href="/images/articles/hatena10/08.png" target="_blank"><img src="/images/articles/hatena10/08.png" alt="認証する"></a></p>
+
+<p>すると、このような認証方法が書かれたモーダルが表示されます。</p>
+
+<p><a href="/images/articles/hatena10/09.png" target="_blank"><img src="/images/articles/hatena10/09.png" alt="認証モーダル"></a></p>
+
+<p>モザイクばかりでわかりにくいですが、、、今回は新規ドメインではないので1番の方法を使用します。<br>
+よくあるTXTレコードに認証文字列を登録する方法です。</p>
+
+<p>お名前.comの方で、TXTレコードを登録します。</p>
+
+<p><a href="/images/articles/hatena10/10.png" target="_blank"><img src="/images/articles/hatena10/10.png" alt="TXTレコード"></a></p>
+
+<p>digコマンドでTXTレコードが確認できたら、準備完了です。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ dig @157.7.32.53 hogehoge.com. TXT
+
+; &lt;&lt;&gt;&gt; DiG 9.8.3-P1 &lt;&lt;&gt;&gt; @157.7.32.53 hogehoge.com. TXT
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 53710
+;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 6
+;; WARNING: recursion requested but not available
+
+;; QUESTION SECTION:
+;hogehoge.com.          IN  TXT
+
+;; ANSWER SECTION:
+hogehoge.com.       3600    IN  TXT "idcf-dns-token=xxxxxxxxxxxxxxxxxxxxxxxx"
+
+;; AUTHORITY SECTION:
+hogehoge.com.       86400   IN  NS  02.dnsv.jp.
+hogehoge.com.       86400   IN  NS  01.dnsv.jp.
+hogehoge.com.       86400   IN  NS  03.dnsv.jp.
+hogehoge.com.       86400   IN  NS  04.dnsv.jp.
+
+;; ADDITIONAL SECTION:
+01.dnsv.jp.     86400   IN  A   157.7.32.53
+02.dnsv.jp.     86400   IN  A   157.7.33.53
+03.dnsv.jp.     86400   IN  A   157.7.32.35
+03.dnsv.jp.     86400   IN  AAAA    2400:8500:3000::53
+04.dnsv.jp.     86400   IN  A   157.7.33.35
+04.dnsv.jp.     86400   IN  AAAA    2400:8500:3fff::53
+
+;; Query time: 6 msec
+;; SERVER: 157.7.32.53#53(157.7.32.53)
+;; WHEN: Sun Aug  9 21:26:58 2015
+;; MSG SIZE  rcvd: 285
+</pre></div></div>
+
+<p>準備ができたら、認証しましょう。</p>
+
+<p><a href="/images/articles/hatena10/11.png" target="_blank"><img src="/images/articles/hatena10/11.png" alt="認証モーダル2"></a></p>
+
+<p>無事に終わると認証完了とでます。</p>
+
+<p><a href="/images/articles/hatena10/12.png" target="_blank"><img src="/images/articles/hatena10/12.png" alt="認証完了"></a></p>
+
+<p>ちゃんとIDCF DNSのネームサーバーで名前解決できるようになってます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ dig @ns01.idcfcloud.com hogehoge.com
+
+; &lt;&lt;&gt;&gt; DiG 9.8.3-P1 &lt;&lt;&gt;&gt; @ns01.idcfcloud.com hogehoge.com
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 37498
+;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+;; WARNING: recursion requested but not available
+
+;; QUESTION SECTION:
+;hogehoge.com.          IN  A
+
+;; ANSWER SECTION:
+hogehoge.com.       3600    IN  A   1.2.3.4
+
+;; Query time: 9 msec
+;; SERVER: 210.140.183.65#53(210.140.183.65)
+;; WHEN: Sun Aug  9 21:34:00 2015
+;; MSG SIZE  rcvd: 46
+</pre></div></div>
+
+<h1>
+<span id="ネームサーバー切り替え" class="fragment"></span><a href="#%E3%83%8D%E3%83%BC%E3%83%A0%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E5%88%87%E3%82%8A%E6%9B%BF%E3%81%88"><i class="fa fa-link"></i></a>ネームサーバー切り替え</h1>
+
+<p>いよいよ、ネームサーバーを切り替えます。</p>
+
+<p>お名前.comの、「ドメイン設定 &gt; ネームサーバーの変更」を開きます。<br>
+切り替えたいドメインを選択し、「他のネームサーバーを利用」を選びます。</p>
+
+<p><a href="/images/articles/hatena10/13.png" target="_blank"><img src="/images/articles/hatena10/13.png" alt="ネームサーバー変更"></a></p>
+
+<p>IDCF DNSのネームサーバーを入力し、設定します。</p>
+
+<p><a href="/images/articles/hatena10/14.png" target="_blank"><img src="/images/articles/hatena10/14.png" alt="ネームサーバー"></a></p>
+
+<p>これで切り替え完了です。<br>
+digコマンドで確認できます。<br>
+（切り替えに1日〜2日ぐらいかかります）</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+dig bar.hogehoge.com
+
+; &lt;&lt;&gt;&gt; DiG 9.8.3-P1 &lt;&lt;&gt;&gt; bar.hogehoge.com
+;; global options: +cmd
+;; Got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 7938
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 3, ADDITIONAL: 3
+
+;; QUESTION SECTION:
+;bar.hogehoge.com.      IN  A
+
+;; ANSWER SECTION:
+bar.hogehoge.com.   3600    IN  CNAME   foo.hogehoge.com.
+foo.hogehoge.com.   3595    IN  A   5.6.7.8
+
+;; AUTHORITY SECTION:
+hogehoge.com.       3574    IN  NS  ns02.idcfcloud.com.
+hogehoge.com.       3574    IN  NS  ns03.idcfcloud.com.
+hogehoge.com.       3574    IN  NS  ns01.idcfcloud.com.
+
+;; ADDITIONAL SECTION:
+ns01.idcfcloud.com. 570 IN  A   210.140.183.65
+ns02.idcfcloud.com. 570 IN  A   202.234.29.33
+ns03.idcfcloud.com. 570 IN  A   210.152.232.97
+
+;; Query time: 27 msec
+;; SERVER: 192.168.63.100#53(192.168.63.100)
+;; WHEN: Mon Aug 10 23:36:06 2015
+;; MSG SIZE  rcvd: 186
+</pre></div></div>
+
+<h1>
+<span id="おわりに" class="fragment"></span><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>おわりに</h1>
+
+<p>Web UIはシンプルで使いやすくてGoodですね！<br>
+料金がクエリ数に関係ないのも素晴らしい。</p>
+
+<p>ドメイン取得も一括でできたらなぁ。</p>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

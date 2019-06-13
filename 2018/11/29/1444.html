@@ -1,0 +1,119 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | GCP updates  | November 26, 2018</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="GCP updates  | November 26, 2018" property="og:title"><meta content="    DATABASES     Cloud Bigtable now available in all three London (europe-west2) zones: GA     Cloud Bigtable is a massively scalable, fully managed NoSQL database service for large analytical and operational workloads.  Product page       DEVELOPER TOOLS  ..." property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2018/11/29/1444.html" property="og:url"><meta content="    DATABASES     Cloud Bigtable now available in all three London (europe-west2) zones: GA     Cloud Bigtable is a massively scalable, fully managed NoSQL database service for large analytical and operational workloads.  Product page       DEVELOPER TOOLS  ..." property="twitter:description"><meta content="GCP updates  | November 26, 2018" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2018/11/29/1444.html">GCP updates  | November 26, 2018</a></h1><span class="date">Posted on&nbsp;Nov 29, 2018</span></div><div class="body">
+<h1>
+<span id="databases" class="fragment"></span><a href="#databases"><i class="fa fa-link"></i></a>DATABASES</h1>
+
+<h2>
+<span id="cloud-bigtable-now-available-in-all-three-london-europe-west2-zones-ga" class="fragment"></span><a href="#cloud-bigtable-now-available-in-all-three-london-europe-west2-zones-ga"><i class="fa fa-link"></i></a>Cloud Bigtable now available in all three London (europe-west2) zones: GA</h2>
+
+<blockquote>
+<p>Cloud Bigtable is a massively scalable, fully managed NoSQL database service for large analytical and operational workloads. <a href="https://cloud.google.com/bigtable/" rel="nofollow noopener" target="_blank">Product page</a></p>
+</blockquote>
+
+<h1>
+<span id="developer-tools" class="fragment"></span><a href="#developer-tools"><i class="fa fa-link"></i></a>DEVELOPER TOOLS</h1>
+
+<h2>
+<span id="cloud-scheduler-beta" class="fragment"></span><a href="#cloud-scheduler-beta"><i class="fa fa-link"></i></a>Cloud Scheduler: beta</h2>
+
+<blockquote>
+<p>Cloud Scheduler is a fully managed enterprise-grade cron job scheduler. You can schedule nearly any job, including batch and big data, as well as automate manual tasks, such as retries, all in one place. <a href="https://cloud.google.com/scheduler/" rel="nofollow noopener" target="_blank">Product page</a></p>
+</blockquote>
+
+<p>きたーーー！<img class="emoji" title=":tada:" alt=":tada:" src="/images/emoji/unicode/1f389.svg" height="20" width="20" align="absmiddle"><br>
+GCPでcron的なことしようと思ったらGAEのcron機能を使うしかなかったのでGAEでhttpアプリを作る必要がありましたが、Cloud Schedulerで不要になります！<br>
+App EngineにHTTPリクエストを送る、その他にHTTPリクエストを送る、Pub/Subのメッセージを送る、が可能です。</p>
+
+<h1>
+<span id="migration" class="fragment"></span><a href="#migration"><i class="fa fa-link"></i></a>MIGRATION</h1>
+
+<h2>
+<span id="transfer-appliance-now-available-in-the-european-union-beta" class="fragment"></span><a href="#transfer-appliance-now-available-in-the-european-union-beta"><i class="fa fa-link"></i></a>Transfer Appliance now available in the European Union: beta</h2>
+
+<blockquote>
+<p>Transfer Appliance is a hardware appliance that allows you to securely migrate large volumes of data up to a petabyte to Google Cloud Platform without disrupting operations. <a href="https://cloud.google.com/blog/products/storage-data-transfer/introducing-transfer-appliance-in-the-eu-for-cloud-data-migration" rel="nofollow noopener" target="_blank">Blog</a></p>
+</blockquote>
+
+<hr>
+
+<p>Additional Releases</p>
+
+<h1>
+<span id="compute" class="fragment"></span><a href="#compute"><i class="fa fa-link"></i></a>COMPUTE</h1>
+
+<h2>
+<span id="kubernetes-engine--container-optimized-os-with-containerd-beta" class="fragment"></span><a href="#kubernetes-engine--container-optimized-os-with-containerd-beta"><i class="fa fa-link"></i></a>Kubernetes Engine – Container-Optimized OS with containerd: beta</h2>
+
+<blockquote>
+<p>Now you can use containerd, the core runtime component of Docker, as your main container runtime in Kubernetes Engine. You can debug or troubleshoot on the node using crictl, the portable command-line tool, built for Kubernetes container runtimes. <a href="https://cloud.google.com/kubernetes-engine/docs/concepts/node-images#container-optimized_os_with_containerd_cos_containerd" rel="nofollow noopener" target="_blank">Documentation</a> | <a href="https://containerd.io/" rel="nofollow noopener" target="_blank">Website</a></p>
+</blockquote>
+
+<p>Dockerを使わず直接containerdとCRIでやりとりするってやつですかね。リソース節約できてオーバーヘッド減るってやつかな。</p>
+
+<p>kanikoとかともあわせて脱Dockerが進んでいきそうですね。</p>
+
+<h2>
+<span id="compute-engine--detachable-boot-disks-for-vm-instances-beta" class="fragment"></span><a href="#compute-engine--detachable-boot-disks-for-vm-instances-beta"><i class="fa fa-link"></i></a>Compute Engine – detachable boot disks for VM instances: beta</h2>
+
+<blockquote>
+<p>Now you can detach boot disks from VM instances. This allows you to mount a boot disk to another VM instance to simplify the repair process, or replace boot disks without having to recreate an entire VM instance. <a href="https://cloud.google.com/compute/docs/disks/detach-reattach-boot-disk" rel="nofollow noopener" target="_blank">Documentation</a></p>
+</blockquote>
+
+<p>ほー。起動しているVMのブートディスクに他のVMからアタッチできるようになるってことか(read onlyだとは思うけど)。<br>
+インスタンス作り直さざるを得ない変更でもBootディスク引き継げるようになるのはよさそう。<br>
+VM再作成せずにブートディスク入れ替えるってのはメリットがよくわからんな</p>
+
+<h2>
+<span id="compute-engine--private-google-access-for-windows-server-instances-ga" class="fragment"></span><a href="#compute-engine--private-google-access-for-windows-server-instances-ga"><i class="fa fa-link"></i></a>Compute Engine – Private Google Access for Windows Server instances: GA</h2>
+
+<blockquote>
+<p>This launch allows you to create a Windows Server instance that has an internal-only IP address. You must configure the instance to access the kms.windows.googlecloud.com server using Private Google Access. <a href="https://cloud.google.com/compute/docs/instances/windows/creating-managing-windows-instances#internal_ip_activation" rel="nofollow noopener" target="_blank">Documentation</a></p>
+</blockquote>
+
+<h1>
+<span id="data-analytics" class="fragment"></span><a href="#data-analytics"><i class="fa fa-link"></i></a>DATA ANALYTICS</h1>
+
+<h2>
+<span id="bigquery-now-available-in-singapore-ga" class="fragment"></span><a href="#bigquery-now-available-in-singapore-ga"><i class="fa fa-link"></i></a>BigQuery now available in Singapore: GA</h2>
+
+<blockquote>
+<p>BigQuery is now generally available in the asia-southeast1 region. With regional availability, you can run large-scale workloads quickly in the same local Google Cloud regions you already use for storage, compute, and machine learning. <a href="https://cloud.google.com/bigquery/docs/locations" rel="nofollow noopener" target="_blank">Documentation</a></p>
+</blockquote>
+
+<p>着々と広げてますね <img class="emoji" title=":earth_americas:" alt=":earth_americas:" src="/images/emoji/unicode/1f30e.svg" height="20" width="20" align="absmiddle"> </p>
+
+<h1>
+<span id="databases-1" class="fragment"></span><a href="#databases-1"><i class="fa fa-link"></i></a>DATABASES</h1>
+
+<h2>
+<span id="query-statistics-in-cloud-spanner-ga" class="fragment"></span><a href="#query-statistics-in-cloud-spanner-ga"><i class="fa fa-link"></i></a>Query statistics in Cloud Spanner: GA</h2>
+
+<blockquote>
+<p>Now you can view summary statistics for queries that had the highest total CPU usage within a Cloud Spanner database. The statistics include execution count, average latency, average CPU seconds during a recent period of time, and more. <a href="https://cloud.google.com/spanner/docs/query-statistics" rel="nofollow noopener" target="_blank">Documentation</a></p>
+</blockquote>
+
+<p>Spanner使ってみたくて料金調べたけど、個人で使えるような額じゃないですね。。。</p>
+
+<h1>
+<span id="developer-tools-1" class="fragment"></span><a href="#developer-tools-1"><i class="fa fa-link"></i></a>DEVELOPER TOOLS</h1>
+
+<h2>
+<span id="cloud-source-repositories--cloud-pubsub-notifications-ga" class="fragment"></span><a href="#cloud-source-repositories--cloud-pubsub-notifications-ga"><i class="fa fa-link"></i></a>Cloud Source Repositories – Cloud Pub/Sub Notifications: GA</h2>
+
+<blockquote>
+<p>This new feature allows you to set up notifications for when your repository’s state changes, such as when new code is pushed. You can also configure roles and permissions to control how users interact with the Cloud Pub/Sub events that your repository generates. <a href="https://cloud.google.com/source-repositories/docs/pubsub-notifications" rel="nofollow noopener" target="_blank">Documentation</a></p>
+</blockquote>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

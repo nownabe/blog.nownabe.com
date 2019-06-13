@@ -1,0 +1,156 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | GCP updates | August 24, 2017</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="GCP updates | August 24, 2017" property="og:title"><meta content=" 少し遅れました     Compute     ZYNC Render support for Autodesk 3ds Max       The beta release of Google Cloud Platform (GCP) ZYNC Render now supports Autodesk 3ds Max, the 3D modeling and animation software used for gaming, visual effects, animation, and architecture...   " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2017/08/28/1108.html" property="og:url"><meta content=" 少し遅れました     Compute     ZYNC Render support for Autodesk 3ds Max       The beta release of Google Cloud Platform (GCP) ZYNC Render now supports Autodesk 3ds Max, the 3D modeling and animation software used for gaming, visual effects, animation, and architecture...   " property="twitter:description"><meta content="GCP updates | August 24, 2017" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2017/08/28/1108.html">GCP updates | August 24, 2017</a></h1><span class="date">Posted on&nbsp;Aug 28, 2017</span></div><div class="body"><p>少し遅れました</p>
+
+<h1>
+<span id="compute" class="fragment"></span><a href="#compute"><i class="fa fa-link"></i></a>Compute</h1>
+
+<h2>
+<span id="zync-render-support-for-autodesk-3ds-max" class="fragment"></span><a href="#zync-render-support-for-autodesk-3ds-max"><i class="fa fa-link"></i></a><a href="https://www.zyncrender.com/" rel="nofollow noopener" target="_blank">ZYNC Render support for Autodesk 3ds Max</a>
+</h2>
+
+<blockquote>
+<p>The beta release of Google Cloud Platform (GCP) ZYNC Render now supports Autodesk 3ds Max, the 3D modeling and animation software used for gaming, visual effects, animation, and architecture.</p>
+
+<p>GCPのZYNC RenderはAutodesk社の3ds Maxのサポートをベータリリースしました。3ds Maxは3Dモデリングとアニメーションのソフトウェアです。ゲーム、ビジュアルエフェクト、アニメ、建築などに使われます。</p>
+</blockquote>
+
+<p>こんなサービスもあるんですね <img class="emoji" title=":flushed:" alt=":flushed:" src="/images/emoji/unicode/1f633.svg" height="20" width="20" align="absmiddle"> </p>
+
+<h2>
+<span id="ssh-using-internal-ip-address-ingcloud" class="fragment"></span><a href="#ssh-using-internal-ip-address-ingcloud"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/sdk/gcloud/reference/beta/compute/ssh#--internal-ip" rel="nofollow noopener" target="_blank">SSH using internal IP address ingcloud</a>
+</h2>
+
+<blockquote>
+<p>The new feature allows gcloud beta compute SSH to connect to private IP-only instances, giving users a familiar, secure, and consistent mechanism for using SSH.</p>
+
+<p>プライベートIPしかもたないインスタンスにも<code>gcloud beta compute ssh</code>でSSH接続できるようになりました。わかりやすく、セキュアで一貫性のある方法です。</p>
+</blockquote>
+
+<p>こんな感じでプライベートIPを使ってSSHできるようになります。<br>
+SSH鍵を転送する必要がなくなりました。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+gcloud beta compute ssh --internal-ip instance-1
+</pre></div></div>
+
+<h1>
+<span id="big-data" class="fragment"></span><a href="#big-data"><i class="fa fa-link"></i></a>Big Data</h1>
+
+<h2>
+<span id="cloud-dataproc-12" class="fragment"></span><a href="#cloud-dataproc-12"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/dataproc/docs/release-notes/service#july_21_2017" rel="nofollow noopener" target="_blank">Cloud Dataproc 1.2</a>
+</h2>
+
+<blockquote>
+<p>Cloud <a href="https://cloud.google.com/blog/big-data/2017/07/cloud-dataproc-is-now-even-faster-and-easier-to-use-for-running-apache-spark-and-apache-hadoop" rel="nofollow noopener" target="_blank">Dataproc 1.2 becomes the default image</a> version for new clusters and includes updates to OSS, Apache Hadoop 2.8x, and Apache Spark 2.2x, as well as configuration changes.</p>
+
+<p>Cloud Dataprocで新しいクラスタの標準イメージが1.2になります。これは、Apache Hadoop 2.8.x、Apache Spark 2.2.xなどのOSSのアップデートを含みます。</p>
+</blockquote>
+
+<h2>
+<span id="cloud-dataproc-graceful-decommissioning-beta" class="fragment"></span><a href="#cloud-dataproc-graceful-decommissioning-beta"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/dataproc/docs/concepts/scaling-clusters" rel="nofollow noopener" target="_blank">Cloud Dataproc Graceful Decommissioning beta</a>
+</h2>
+
+<blockquote>
+<p>The Cloud Dataproc <a href="https://cloud.google.com/blog/big-data/2017/07/cloud-dataproc-is-now-even-faster-and-easier-to-use-for-running-apache-spark-and-apache-hadoop" rel="nofollow noopener" target="_blank">Graceful Decommissioning feature</a> allows the removal of worker nodes in a cluster without interrupting jobs in progress. This support applies only to Cloud Dataproc image versions 1.2 or later.</p>
+
+<p>Cloud DataprocのGraceful Decommissioning featureは実行中のジョブに影響を与えずにクラスタのワーカーノードを削除できます。この機能はバージョン1.2以降のイメージで利用できます。</p>
+</blockquote>
+
+<h1>
+<span id="machine-learning" class="fragment"></span><a href="#machine-learning"><i class="fa fa-link"></i></a>Machine Learning</h1>
+
+<h2>
+<span id="cloud-natural-language-api-v11-ga" class="fragment"></span><a href="#cloud-natural-language-api-v11-ga"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/natural-language/docs/languages" rel="nofollow noopener" target="_blank">Cloud Natural Language API v1.1 GA</a>
+</h2>
+
+<blockquote>
+<p>Cloud Natural Language API v1.1 offers extended language support for syntax, document-level sentiment, and entity analysis. New languages include German, Italian, French, Korean, Chinese, and Portuguese.</p>
+
+<p>Cloud Natural Language APIのバージョン1．1では、構文解析、感情分析、エンティティ分析の対応言語を拡張しました。新しく、ドイツ語、イタリア語、フランス語、韓国語、中国語、ポルトガル語に対応しました。</p>
+</blockquote>
+
+<p>日本語は前からGAでしたが、ベータだった言語がGAになりました。</p>
+
+<h2>
+<span id="cloud-speech-api-v1---add-timestamp-ga" class="fragment"></span><a href="#cloud-speech-api-v1---add-timestamp-ga"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/speech/docs/async-time-offsets" rel="nofollow noopener" target="_blank">Cloud Speech API v1 - add timestamp GA</a>
+</h2>
+
+<blockquote>
+<p>The Cloud Speech API now provides support for <a href="https://cloudplatform.googleblog.com/2017/08/Cloud-Speech-API-improves-longform-audio-recognition-and-adds-30-new-language-variants.html" rel="nofollow noopener" target="_blank">word-level timestamps</a>, enabling users to jump to the moment in the audio when the text was spoken or display the relevant text while audio is playing.</p>
+
+<p>Cloud Speech APIは単語レベルのタイムスタンプを提供します。あるテキストが喋られている瞬間にジャンプしたり、オーディオが再生中に関連テキストを表示したりできるようになります。</p>
+</blockquote>
+
+<p>単語ごとにタイムスタンプがあると色々おもしろいことができそうですね。</p>
+
+<h2>
+<span id="cloud-speech-api-v1---max-time-limit-increase" class="fragment"></span><a href="#cloud-speech-api-v1---max-time-limit-increase"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/speech/limits" rel="nofollow noopener" target="_blank">Cloud Speech API v1 - max time limit increase</a>
+</h2>
+
+<blockquote>
+<p>To help users with long-form audio needs, <a href="https://cloudplatform.googleblog.com/2017/08/Cloud-Speech-API-improves-longform-audio-recognition-and-adds-30-new-language-variants.html" rel="nofollow noopener" target="_blank">the time limit of the Cloud Speech API has been increased</a> from 80 minutes to 3 hours. Users with files longer than 3 hours can apply for a quota extension through <a href="https://cloud.google.com/support/" rel="nofollow noopener" target="_blank">Cloud Support</a>.</p>
+
+<p>長時間の音声を処理できるように、最大時間制限を80分から3時間に増加しました。サポートに連絡すればさらに長時間の音声の処理も可能です。</p>
+</blockquote>
+
+<h2>
+<span id="cloud-speech-api-v1---expanded-language-coverage" class="fragment"></span><a href="#cloud-speech-api-v1---expanded-language-coverage"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/speech/docs/languages" rel="nofollow noopener" target="_blank">Cloud Speech API v1 - expanded language coverage</a>
+</h2>
+
+<blockquote>
+<p>Cloud Speech API has added support for <a href="https://cloudplatform.googleblog.com/2017/08/Cloud-Speech-API-improves-longform-audio-recognition-and-adds-30-new-language-variants.html" rel="nofollow noopener" target="_blank">30 new languages</a>, giving customers access to more users in more countries for an almost global reach. Check out the complete list of <a href="https://cloud.google.com/speech/docs/languages" rel="nofollow noopener" target="_blank">supported languages</a>.</p>
+
+<p>Cloud Speech APIは30の新しい言語へ対応しました。</p>
+</blockquote>
+
+<p>もはや言語一覧みてもさっぱりわかりませんね。</p>
+
+<h1>
+<span id="identity--security" class="fragment"></span><a href="#identity--security"><i class="fa fa-link"></i></a>Identity &amp; Security</h1>
+
+<h2>
+<span id="organization-policy-service-ga" class="fragment"></span><a href="#organization-policy-service-ga"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/resource-manager/docs/organization-policy/overview" rel="nofollow noopener" target="_blank">Organization Policy service GA</a>
+</h2>
+
+<blockquote>
+<p>The GA release of the Organization Policy service provides centralized control over resource policies, enabling admins to set constraints on GCP services. See the complete list of <a href="https://cloud.google.com/resource-manager/docs/organization-policy/understanding-constraints#available_constraints" rel="nofollow noopener" target="_blank">available constraints</a>.</p>
+
+<p>組織ポリシーサービスのGAではリソースポリシーの集中管理を提供し、管理者がGCPサービスへの制限を設定できるようになりました。</p>
+</blockquote>
+
+<h1>
+<span id="management-tools" class="fragment"></span><a href="#management-tools"><i class="fa fa-link"></i></a>Management Tools</h1>
+
+<h2>
+<span id="stackdriver-trace-ui-non-google-app-engine-log-integration" class="fragment"></span><a href="#stackdriver-trace-ui-non-google-app-engine-log-integration"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/trace/docs/viewing-details#log_entries" rel="nofollow noopener" target="_blank">Stackdriver Trace UI non-Google App Engine log integration</a>
+</h2>
+
+<blockquote>
+<p>Applications not hosted on Google App Engine can now link traces to logs and have those links appear in the Stackdriver Trace UI.</p>
+
+<p>Google App Engineにホストされてないアプリケーションでも、ログへリンクできるようになり、Stackdriver TraceのUIにリンクが表示されるようになりました。</p>
+</blockquote>
+
+<h2>
+<span id="stackdriver-for-nodejs" class="fragment"></span><a href="#stackdriver-for-nodejs"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/nodejs/docs/stackdriver" rel="nofollow noopener" target="_blank">Stackdriver for Node.js</a>
+</h2>
+
+<blockquote>
+<p>The beta release of Stackdriver for Node.js expands its capabilities to include new Stackdriver libraries for Stackdriver Logging, Debugger, Trace, and Error Reporting.</p>
+
+<p>StackdriverのNode.js対応がベータリリースされました。Logging、Debugger、Trace、Error Reportingのライブラリを含んでいます。</p>
+</blockquote>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

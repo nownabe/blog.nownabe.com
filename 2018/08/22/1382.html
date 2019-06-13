@@ -1,0 +1,147 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | GoのKubernetesオブジェクトをYAMLからDeserializeする</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="GoのKubernetesオブジェクトをYAMLからDeserializeする" property="og:title"><meta content=" GoでKubernetesまわりのツールを作るときにYAMLを読んでKubernetesオブジェクトにしたいということがあったので調べました。   コードはGistにアップしました。   https://gist.github.com/nownabe/4345d9b68f323ba30905c9dfe3460006   KubernetesのオブジェクトというのはKubernetesのソースで定義されているstructのことです。こんなやつ。    // A namespace provides a... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2018/08/22/1382.html" property="og:url"><meta content=" GoでKubernetesまわりのツールを作るときにYAMLを読んでKubernetesオブジェクトにしたいということがあったので調べました。   コードはGistにアップしました。   https://gist.github.com/nownabe/4345d9b68f323ba30905c9dfe3460006   KubernetesのオブジェクトというのはKubernetesのソースで定義されているstructのことです。こんなやつ。    // A namespace provides a... " property="twitter:description"><meta content="GoのKubernetesオブジェクトをYAMLからDeserializeする" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2018/08/22/1382.html">GoのKubernetesオブジェクトをYAMLからDeserializeする</a></h1><span class="date">Posted on&nbsp;Aug 22, 2018</span></div><div class="body"><p>GoでKubernetesまわりのツールを作るときにYAMLを読んでKubernetesオブジェクトにしたいということがあったので調べました。</p>
+
+<p>コードはGistにアップしました。<br>
+<a href="https://gist.github.com/nownabe/4345d9b68f323ba30905c9dfe3460006" class="autolink" rel="nofollow noopener" target="_blank">https://gist.github.com/nownabe/4345d9b68f323ba30905c9dfe3460006</a></p>
+
+<p>KubernetesのオブジェクトというのはKubernetesのソースで定義されているstructのことです。こんなやつ。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+// A namespace provides a scope for Names.
+// Use of multiple namespaces is optional
+type Namespace struct {
+    metav1.TypeMeta
+    // +optional
+    metav1.ObjectMeta
+
+    // Spec defines the behavior of the Namespace.
+    // +optional
+    Spec NamespaceSpec
+
+    // Status describes the current status of a Namespace
+    // +optional
+    Status NamespaceStatus
+}
+</pre></div></div>
+
+<p><a href="https://godoc.org/k8s.io/api/core/v1#Namespace" class="autolink" rel="nofollow noopener" target="_blank">https://godoc.org/k8s.io/api/core/v1#Namespace</a></p>
+
+<p>YAMLはこんなやつですね。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-namespace
+</pre></div></div>
+
+<p>このYAMLを上の<code>Namespace</code> structによろしくDeserializeする方法です。</p>
+
+<p>まずはDeserializerを手に入れます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+import (
+    "k8s.io/apimachinery/pkg/runtime"
+    "k8s.io/apimachinery/pkg/runtime/serializer"
+)
+
+func main() {
+    // SerializeとDeserializeの方法を定義するやつ
+    // https://godoc.org/k8s.io/apimachinery/pkg/runtime#Scheme
+    scheme := runtime.NewScheme()
+
+    // Deserializerとかをくれるやつ
+    // https://godoc.org/k8s.io/apimachinery/pkg/runtime/serializer#CodecFactory
+    codecFactory := serializer.NewCodecFactory(scheme)
+
+    // Deserializer
+    // https://godoc.org/k8s.io/apimachinery/pkg/runtime#Decoder
+    deserializer := codecFactory.UniversalDeserializer()
+}
+</pre></div></div>
+
+<p><code>UniversalDeserializer()</code>はJSONとかYAMLとかを<a href="https://github.com/kubernetes/apimachinery/blob/d4e5f596ea6e79f9493060696ad6025c6c82599d/pkg/runtime/serializer/recognizer/recognizer.go#L84-L127" rel="nofollow noopener" target="_blank">自動で認識</a>してDeserializeしてくれるやつをくれます。これを使っておけば問題ないと思いますが、それぞれのシリアライズ形式専用のDeserializerも簡単に手に入ります。<sup id="fnref1"><a href="#fn1" rel="footnote" title="この辺とかこの辺とか">1</a></sup></p>
+
+<p>いずれにしても<code>runtime.Decoder</code>というinterfaceのインスタンスが得られます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+type Decoder interface {
+    Decode(data []byte, defaults *schema.GroupVersionKind, into Object) (Object, *schema.GroupVersionKind, error)
+}
+</pre></div></div>
+
+<p><a href="https://godoc.org/k8s.io/apimachinery/pkg/runtime#Decoder" class="autolink" rel="nofollow noopener" target="_blank">https://godoc.org/k8s.io/apimachinery/pkg/runtime#Decoder</a></p>
+
+<p><code>Decode</code>メソッドでDeserializeするわけですが、それぞれの引数はこんな感じになってます。</p>
+
+<ul>
+<li>
+<code>data []byte</code>: Deserializeしたいデータ。YAMLとか</li>
+<li>
+<code>defaults *schema.GroupVersionKind</code>: <code>nil</code>でよい。よくわからないときに使われるデフォルト値。Group、Version、Kindそれぞれの文字列が入る<a href="https://godoc.org/k8s.io/apimachinery/pkg/runtime/schema#GroupVersionKind" rel="nofollow noopener" target="_blank">構造体</a>
+</li>
+<li>
+<code>into Object</code>: Deserializeしたい<a href="https://godoc.org/k8s.io/apimachinery/pkg/runtime#Object" rel="nofollow noopener" target="_blank">オブジェクト</a>。<code>Namespace</code>とかのstructのポインタがこのinterfaceを実装している。</li>
+</ul>
+
+<p>例えばNamespaceのYAMLを<code>Namespace</code> structにDeserializeするのはこんな感じになります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+package main
+
+import (
+        "fmt"
+        "io/ioutil"
+
+        corev1 "k8s.io/api/core/v1"
+        "k8s.io/apimachinery/pkg/runtime"
+        "k8s.io/apimachinery/pkg/runtime/serializer"
+)
+
+func main() {
+        scheme := runtime.NewScheme()
+        codecFactory := serializer.NewCodecFactory(scheme)
+        deserializer := codecFactory.UniversalDeserializer()
+
+        yaml, err := ioutil.ReadFile("namespace.yaml")
+        if err != nil {
+                panic(err)
+        }
+
+        object, _, err := deserializer.Decode(yaml, nil, &amp;corev1.Namespace{})
+        if err != nil {
+                panic(err)
+        }
+        namespace := object.(*corev1.Namespace)
+        fmt.Printf("Name: %s\n", namespace.ObjectMeta.GetName())
+}
+</pre></div></div>
+
+<p>他のオブジェクトも同様にできます。<a href="https://gist.github.com/nownabe/4345d9b68f323ba30905c9dfe3460006" rel="nofollow noopener" target="_blank">Gistのコード</a>にはDeploymentのサンプルもあります。</p>
+
+<p>オブジェクトについては<a href="https://godoc.org/k8s.io/api" rel="nofollow noopener" target="_blank">k8s.io/apiのgodoc</a>にあります。</p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p><a href="https://github.com/kubernetes/apimachinery/blob/d4e5f596ea6e79f9493060696ad6025c6c82599d/pkg/runtime/serializer/codec_factory.go#L98-L101" rel="nofollow noopener" target="_blank">この辺</a>とか<a href="https://github.com/kubernetes/apimachinery/blob/d4e5f596ea6e79f9493060696ad6025c6c82599d/pkg/runtime/serializer/codec_factory.go#L47-L79" rel="nofollow noopener" target="_blank">この辺</a>とか <a href="#fnref1" rev="footnote">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

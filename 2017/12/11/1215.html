@@ -1,0 +1,365 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | Parcelで使われてるnpmパッケージ調べてた</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="Parcelで使われてるnpmパッケージ調べてた" property="og:title"><meta content=" Parcel が依存しているnpmパッケージを調べてみた。なんとなくこういう用途にこういうパッケージ使うのかーという程度。   新しく作るアプリに今話題の Parcel を使ってみようとしたけどHot module replacementが効かず、Fedoraを使っているのでinotifyに対応してないのでは？ってところから依存パッケージを調べてみた。   HMRが効かない原因は何もわかってない。Nodeには標準でクロスプラットフォームな fs.watch 1 なるものがあるのでそれはなさそう。   きっか... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2017/12/11/1215.html" property="og:url"><meta content=" Parcel が依存しているnpmパッケージを調べてみた。なんとなくこういう用途にこういうパッケージ使うのかーという程度。   新しく作るアプリに今話題の Parcel を使ってみようとしたけどHot module replacementが効かず、Fedoraを使っているのでinotifyに対応してないのでは？ってところから依存パッケージを調べてみた。   HMRが効かない原因は何もわかってない。Nodeには標準でクロスプラットフォームな fs.watch 1 なるものがあるのでそれはなさそう。   きっか... " property="twitter:description"><meta content="Parcelで使われてるnpmパッケージ調べてた" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2017/12/11/1215.html">Parcelで使われてるnpmパッケージ調べてた</a></h1><span class="date">Posted on&nbsp;Dec 10, 2017</span></div><div class="body"><p><a href="https://parceljs.org/" rel="nofollow noopener" target="_blank">Parcel</a>が依存しているnpmパッケージを調べてみた。なんとなくこういう用途にこういうパッケージ使うのかーという程度。</p>
+
+<p>新しく作るアプリに今話題の<a href="https://parceljs.org/" rel="nofollow noopener" target="_blank">Parcel</a>を使ってみようとしたけどHot module replacementが効かず、Fedoraを使っているのでinotifyに対応してないのでは？ってところから依存パッケージを調べてみた。</p>
+
+<p>HMRが効かない原因は何もわかってない。Nodeには標準でクロスプラットフォームな<code>fs.watch</code><sup id="fnref1"><a href="#fn1" rel="footnote" title="File System | Node.js v9.2.1 Documentation">1</a></sup>なるものがあるのでそれはなさそう。</p>
+
+<p>きっかけはそんな感じで、流行りのイケてるパッケージはどういう用途でどういうパッケージを使うのかってのを知っておこうと思ったので一通りみてみた。</p>
+
+<h1>
+<span id="dependencies" class="fragment"></span><a href="#dependencies"><i class="fa fa-link"></i></a>dependencies</h1>
+
+<h2>
+<span id="babel-core" class="fragment"></span><a href="#babel-core"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/babel-core" rel="nofollow noopener" target="_blank">babel-core</a>
+</h2>
+
+<p>Babelのコア。元コードから生成されたコード、ソースマップ、ASTを生成したりする。こいつの提供する関数にオプションとしてpluginとかpresetとかを渡す。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+var res = babel.transform(code, options)
+res.code;
+res.map;
+res.ast;
+</pre></div></div>
+
+<p>Babelまわりはバージョン7でパッケージ名が変わるっぽい。例えばbabel-coreなら<code>@babel/core</code>になる。今は<code>@babel/core</code>を使うと<code>7.0.0-beta.34</code>が手に入る。<br>
+ほかも例えばbabel-preset-reactが<code>@babel/preset-react</code>になったりする。</p>
+
+<blockquote>
+<p>A monorepo, muhahahahahaha. See the <a href="https://github.com/babel/babel/blob/master/doc/design/monorepo.md" rel="nofollow noopener" target="_blank">monorepo design doc</a> for reasoning.</p>
+</blockquote>
+
+<p><a href="https://github.com/babel/babel/tree/master/packages" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/babel/babel/tree/master/packages</a></p>
+
+<p>正直またこんなでっかい変更が…という思いしかないが主要パッケージのバージョンを統一してくれるのは良い。</p>
+
+<h2>
+<span id="babel-generator" class="fragment"></span><a href="#babel-generator"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/babel-generator" rel="nofollow noopener" target="_blank">babel-generator</a>
+</h2>
+
+<p>ASTからコードを生成するやつ。ソースマップもでる。</p>
+
+<h2>
+<span id="babel-plugin-transform-es2015-modules-commonjs" class="fragment"></span><a href="#babel-plugin-transform-es2015-modules-commonjs"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/babel-plugin-transform-es2015-modules-commonjs" rel="nofollow noopener" target="_blank">babel-plugin-transform-es2015-modules-commonjs</a>
+</h2>
+
+<p>Babelのプラグイン。ES ModulesをCommonJS形式に変換するやつ。</p>
+
+<h2>
+<span id="babel-to-estree" class="fragment"></span><a href="#babel-to-estree"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/babel-to-estree" rel="nofollow noopener" target="_blank">babel-to-estree</a>
+</h2>
+
+<p><a href="https://github.com/babel/babylon/blob/master/ast/spec.md" rel="nofollow noopener" target="_blank">Babel AST</a>を<a href="https://github.com/estree/estree" rel="nofollow noopener" target="_blank">ESTree</a>に変換するやつ。</p>
+
+<h2>
+<span id="babylon" class="fragment"></span><a href="#babylon"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/babylon" rel="nofollow noopener" target="_blank">babylon</a>
+</h2>
+
+<p>Babelのパーサ。Babel(Babylon) ASTを吐く。</p>
+
+<h2>
+<span id="babylon-walk" class="fragment"></span><a href="#babylon-walk"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/babylon-walk" rel="nofollow noopener" target="_blank">babylon-walk</a>
+</h2>
+
+<p>Babylon ASTを歩くやつ。</p>
+
+<h2>
+<span id="browser-resolve" class="fragment"></span><a href="#browser-resolve"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/browser-resolve" rel="nofollow noopener" target="_blank">browser-resolve</a>
+</h2>
+
+<blockquote>
+<p>Sadly, this package has no readme. Go write one!</p>
+</blockquote>
+
+<p>Oops!</p>
+
+<p><code>package.json</code>の<code>browser</code>フィールドを解決するやつ？具体的にどう動くのかはよくわかってない。</p>
+
+<h2>
+<span id="chalk" class="fragment"></span><a href="#chalk"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/chalk" rel="nofollow noopener" target="_blank">chalk</a>
+</h2>
+
+<p>コンソールの出力に色つけたりするやつ。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+const chalk = require('chalk');
+console.log(chalk.blue('Hello world!'));
+</pre></div></div>
+
+<h2>
+<span id="chokidar" class="fragment"></span><a href="#chokidar"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/chokidar" rel="nofollow noopener" target="_blank">chokidar</a>
+</h2>
+
+<p><code>fs.watch</code>、<code>fs.watchFile</code>、fseventsのラッパー。環境差異を吸収するやつらしい。</p>
+
+<h2>
+<span id="commander" class="fragment"></span><a href="#commander"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/commander" rel="nofollow noopener" target="_blank">commander</a>
+</h2>
+
+<p>Rubyの<a href="https://github.com/commander-rb/commander" rel="nofollow noopener" target="_blank">commander</a>にインスパイアされたCLIツールを作るやつ。</p>
+
+<h2>
+<span id="cssnano" class="fragment"></span><a href="#cssnano"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/cssnano" rel="nofollow noopener" target="_blank">cssnano</a>
+</h2>
+
+<p>MinifyするPostCSSのプラグイン。</p>
+
+<h2>
+<span id="glob" class="fragment"></span><a href="#glob"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/glob" rel="nofollow noopener" target="_blank">glob</a>
+</h2>
+
+<p>Fileをglobするやつ。</p>
+
+<h2>
+<span id="htmlnano" class="fragment"></span><a href="#htmlnano"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/htmlnano" rel="nofollow noopener" target="_blank">htmlnano</a>
+</h2>
+
+<p>cssnanoにインスパイアされたHTMLをminifyするPostHTMLのプラグイン。</p>
+
+<h2>
+<span id="is-url" class="fragment"></span><a href="#is-url"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/is-url" rel="nofollow noopener" target="_blank">is-url</a>
+</h2>
+
+<p>文字列がURLかどうか調べるやつ。</p>
+
+<h2>
+<span id="js-yaml" class="fragment"></span><a href="#js-yaml"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/js-yaml" rel="nofollow noopener" target="_blank">js-yaml</a>
+</h2>
+
+<p>YAML扱うやつ。</p>
+
+<h2>
+<span id="micromatch" class="fragment"></span><a href="#micromatch"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/micromatch" rel="nofollow noopener" target="_blank">micromatch</a>
+</h2>
+
+<p>globマッチャ。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+console.log(micromatch(['foo', 'bar', 'qux'], ['f*', 'b*'])); 
+//=&gt; ['foo', 'bar']
+</pre></div></div>
+
+<h2>
+<span id="mkdirp" class="fragment"></span><a href="#mkdirp"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/mkdirp" rel="nofollow noopener" target="_blank">mkdirp</a>
+</h2>
+
+<p><code>mkdir -p</code></p>
+
+<h2>
+<span id="node-libs-browser" class="fragment"></span><a href="#node-libs-browser"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/node-libs-browser" rel="nofollow noopener" target="_blank">node-libs-browser</a>
+</h2>
+
+<p>Nodeの機能をブラウザで再現するためのパッケージ群。</p>
+
+<h2>
+<span id="parse-json" class="fragment"></span><a href="#parse-json"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/parse-json" rel="nofollow noopener" target="_blank">parse-json</a>
+</h2>
+
+<p>親切なエラーメッセージを出すJSONパーサ。</p>
+
+<h2>
+<span id="physical-cpu-count" class="fragment"></span><a href="#physical-cpu-count"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/physical-cpu-count" rel="nofollow noopener" target="_blank">physical-cpu-count</a>
+</h2>
+
+<p>物理CPUコアをカウントするやつ。</p>
+
+<h2>
+<span id="postcss" class="fragment"></span><a href="#postcss"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/postcss" rel="nofollow noopener" target="_blank">postcss</a>
+</h2>
+
+<p>PostCSS</p>
+
+<h2>
+<span id="postcss-value-parser" class="fragment"></span><a href="#postcss-value-parser"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/postcss-value-parser" rel="nofollow noopener" target="_blank">postcss-value-parser</a>
+</h2>
+
+<p>CSSの値のパーサ。</p>
+
+<h2>
+<span id="posthtml" class="fragment"></span><a href="#posthtml"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/posthtml" rel="nofollow noopener" target="_blank">posthtml</a>
+</h2>
+
+<p>PostHTML</p>
+
+<h2>
+<span id="resolve" class="fragment"></span><a href="#resolve"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/resolve" rel="nofollow noopener" target="_blank">resolve</a>
+</h2>
+
+<p>Nodeの<code>require.resolve()</code>の実装？<code>require.resolve()</code>は<code>require</code>のパスを解決するやつっぽい。</p>
+
+<h2>
+<span id="serve-static" class="fragment"></span><a href="#serve-static"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/serve-static" rel="nofollow noopener" target="_blank">serve-static</a>
+</h2>
+
+<p>静的ファイルをserveするミドルウェアを作るやつ。ミドルウェアってのはNodeのhttpとかExpressとかで使えるものを指してるらしい。</p>
+
+<h2>
+<span id="uglify-js" class="fragment"></span><a href="#uglify-js"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/uglify-js" rel="nofollow noopener" target="_blank">uglify-js</a>
+</h2>
+
+<p>minifyするやつと思ってたけど、その逆とかパースとかもできるらしい。</p>
+
+<h2>
+<span id="v8-compile-cache" class="fragment"></span><a href="#v8-compile-cache"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/v8-compile-cache" rel="nofollow noopener" target="_blank">v8-compile-cache</a>
+</h2>
+
+<p>コンパイル後のコードをキャッシュしとくやつ？立ち上がりのスピードが早くなるっぽい。</p>
+
+<h2>
+<span id="worker-farm" class="fragment"></span><a href="#worker-farm"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/worker-farm" rel="nofollow noopener" target="_blank">worker-farm</a>
+</h2>
+
+<p>子プロセスを立ち上げてコードを実行するタイプのワーカー。</p>
+
+<h2>
+<span id="ws" class="fragment"></span><a href="#ws"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/ws" rel="nofollow noopener" target="_blank">ws</a>
+</h2>
+
+<p>WebSocketのクライアントとサーバ。</p>
+
+<h1>
+<span id="devdependencies" class="fragment"></span><a href="#devdependencies"><i class="fa fa-link"></i></a>devDependencies</h1>
+
+<h2>
+<span id="babel-cli" class="fragment"></span><a href="#babel-cli"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/babel-cli" rel="nofollow noopener" target="_blank">babel-cli</a>
+</h2>
+
+<p>BabelのCLIツール。</p>
+
+<h2>
+<span id="babel-preset-env" class="fragment"></span><a href="#babel-preset-env"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/babel-preset-env" rel="nofollow noopener" target="_blank">babel-preset-env</a>
+</h2>
+
+<p>Babelのプリセット。対象のブラウザ・ランタイムにあわせて自動でBabelのプラグインとPolyfillを決定する。</p>
+
+<h2>
+<span id="cross-env" class="fragment"></span><a href="#cross-env"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/cross-env" rel="nofollow noopener" target="_blank">cross-env</a>
+</h2>
+
+<p>クロスプラットフォームで動作する環境変数を設定してスクリプトを実行するCLIツール。</p>
+
+<h2>
+<span id="husky" class="fragment"></span><a href="#husky"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/husky" rel="nofollow noopener" target="_blank">husky</a>
+</h2>
+
+<p>Git hookとしてnpm scriptsを実行するように自動で設定するツール。<code>npm install husky</code>すると<code>.git/hooks</code>以下に自動でスクリプトが作成される。</p>
+
+<h2>
+<span id="less" class="fragment"></span><a href="#less"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/less" rel="nofollow noopener" target="_blank">less</a>
+</h2>
+
+<p>CSSプリプロセッサ。</p>
+
+<h2>
+<span id="lint-staged" class="fragment"></span><a href="#lint-staged"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/lint-staged" rel="nofollow noopener" target="_blank">lint-staged</a>
+</h2>
+
+<p>Gitのステージのファイルに対してLintを実行するツール。</p>
+
+<h2>
+<span id="mocha" class="fragment"></span><a href="#mocha"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/mocha" rel="nofollow noopener" target="_blank">mocha</a>
+</h2>
+
+<p>simple, flexible, funなJavaScriptテストフレームワーク。</p>
+
+<h2>
+<span id="ncp" class="fragment"></span><a href="#ncp"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/ncp" rel="nofollow noopener" target="_blank">ncp</a>
+</h2>
+
+<p>高機能な<code>cp -r</code>みたいなやつ。</p>
+
+<h2>
+<span id="nib" class="fragment"></span><a href="#nib"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/nib" rel="nofollow noopener" target="_blank">nib</a>
+</h2>
+
+<p>StylusにMix-inとか様々な機能を追加するやつ。</p>
+
+<h2>
+<span id="node-sass" class="fragment"></span><a href="#node-sass"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/node-sass" rel="nofollow noopener" target="_blank">node-sass</a>
+</h2>
+
+<p>CSSプリプロセッサ。</p>
+
+<h2>
+<span id="nyc" class="fragment"></span><a href="#nyc"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/nyc" rel="nofollow noopener" target="_blank">nyc</a>
+</h2>
+
+<p><a href="https://www.npmjs.com/package/istanbul" rel="nofollow noopener" target="_blank">Istanbul</a>のCLIツール？nyc経由でテストを実行するとカバレッジがとれる。</p>
+
+<h2>
+<span id="postcss-modules" class="fragment"></span><a href="#postcss-modules"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/postcss-modules" rel="nofollow noopener" target="_blank">postcss-modules</a>
+</h2>
+
+<p>CSS Modulesを扱うためのPostCSSのプラグイン。</p>
+
+<h2>
+<span id="posthtml-include" class="fragment"></span><a href="#posthtml-include"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/posthtml-include" rel="nofollow noopener" target="_blank">posthtml-include</a>
+</h2>
+
+<p><code>include</code>タグが使えるようになるPostHTMLのプラグイン。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;index.html&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;include src="component/button/button.html"&gt;&lt;/include&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div></div>
+
+<h2>
+<span id="prettier" class="fragment"></span><a href="#prettier"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/prettier" rel="nofollow noopener" target="_blank">prettier</a>
+</h2>
+
+<p>コードフォーマッタ。</p>
+
+<h2>
+<span id="rimraf" class="fragment"></span><a href="#rimraf"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/rimraf" rel="nofollow noopener" target="_blank">rimraf</a>
+</h2>
+
+<p><code>rm -rf</code></p>
+
+<h2>
+<span id="stylus" class="fragment"></span><a href="#stylus"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/stylus" rel="nofollow noopener" target="_blank">stylus</a>
+</h2>
+
+<p>CSSプリプロセッサ。</p>
+
+<h2>
+<span id="typescript" class="fragment"></span><a href="#typescript"><i class="fa fa-link"></i></a><a href="https://www.npmjs.com/package/typescript" rel="nofollow noopener" target="_blank">typescript</a>
+</h2>
+
+<p>TypeScript。</p>
+
+<h1>
+<span id="おわりに" class="fragment"></span><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>おわりに</h1>
+
+<p>Babelのエコシステムがどんな感じなのかしれたのと、devDependenciesが参考になりそうなのでよかったけど、全部書く必要はなかった。。。 <img class="emoji" title=":tired_face:" alt=":tired_face:" src="/images/emoji/unicode/1f62b.svg" height="20" width="20" align="absmiddle"> </p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p><a href="https://nodejs.org/docs/latest/api/fs.html#fs_fs_watch_filename_options_listener" rel="nofollow noopener" target="_blank">File System | Node.js v9.2.1 Documentation</a> <a href="#fnref1" rev="footnote">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

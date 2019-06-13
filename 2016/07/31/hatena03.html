@@ -1,0 +1,107 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | EasySettingsをSettingslogicの替りにいかがでしょうか</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="EasySettingsをSettingslogicの替りにいかがでしょうか" property="og:title"><meta content=" 今までRailsとかその他諸々のアプリケーションで、定数の管理に Settingslogic を使ってました。  色々不満がありつつ使ってたんですが、この度 EasySettings というGemを新しく作りました。   https://github.com/nownabe/easy_settings   元々はアプリ側でデフォルト値を設定したくて SettingslogicDefault みたいなGemを作ったんですが、色々と限界を感じたのでもう新しいの作ってしまおうと。     初期化いらず    # EasySettings... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2016/07/31/hatena03.html" property="og:url"><meta content=" 今までRailsとかその他諸々のアプリケーションで、定数の管理に Settingslogic を使ってました。  色々不満がありつつ使ってたんですが、この度 EasySettings というGemを新しく作りました。   https://github.com/nownabe/easy_settings   元々はアプリ側でデフォルト値を設定したくて SettingslogicDefault みたいなGemを作ったんですが、色々と限界を感じたのでもう新しいの作ってしまおうと。     初期化いらず    # EasySettings... " property="twitter:description"><meta content="EasySettingsをSettingslogicの替りにいかがでしょうか" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2016/07/31/hatena03.html">EasySettingsをSettingslogicの替りにいかがでしょうか</a></h1><span class="date">Posted on&nbsp;Mar 07, 2015</span></div><div class="body"><p>今までRailsとかその他諸々のアプリケーションで、定数の管理に<a href="https://github.com/settingslogic/settingslogic" rel="nofollow noopener" target="_blank">Settingslogic</a>を使ってました。<br>
+色々不満がありつつ使ってたんですが、この度<a href="https://rubygems.org/gems/easy_settings" rel="nofollow noopener" target="_blank">EasySettings</a>というGemを新しく作りました。</p>
+
+<p><a href="https://github.com/nownabe/easy_settings" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/nownabe/easy_settings</a></p>
+
+<p>元々はアプリ側でデフォルト値を設定したくて<a href="https://rubygems.org/gems/settingslogic_default" rel="nofollow noopener" target="_blank">SettingslogicDefault</a>みたいなGemを作ったんですが、色々と限界を感じたのでもう新しいの作ってしまおうと。</p>
+
+<h2>
+<span id="初期化いらず" class="fragment"></span><a href="#%E5%88%9D%E6%9C%9F%E5%8C%96%E3%81%84%E3%82%89%E3%81%9A"><i class="fa fa-link"></i></a>初期化いらず</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+# EasySettings
+# いらない
+
+# Settingslogic
+class Settings &lt; Settingslogic
+   source Rails.root.join("config/settings.yml").to_s
+end
+</pre></div></div>
+
+<h2>
+<span id="メソッド形式での動的代入ができる" class="fragment"></span><a href="#%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E5%BD%A2%E5%BC%8F%E3%81%A7%E3%81%AE%E5%8B%95%E7%9A%84%E4%BB%A3%E5%85%A5%E3%81%8C%E3%81%A7%E3%81%8D%E3%82%8B"><i class="fa fa-link"></i></a>メソッド形式での動的代入ができる</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+# EasySettings
+&gt; EasySettings.foo ||= "bar"
+=&gt; "bar"
+
+# Settingslogic
+&gt; Settings.foo ||= "bar"
+Settingslogic::MissingSetting: Missing setting 'foo' in settings1.yml
+</pre></div></div>
+
+<h2>
+<span id="ネストされたhashで同じキーが使える" class="fragment"></span><a href="#%E3%83%8D%E3%82%B9%E3%83%88%E3%81%95%E3%82%8C%E3%81%9Fhash%E3%81%A7%E5%90%8C%E3%81%98%E3%82%AD%E3%83%BC%E3%81%8C%E4%BD%BF%E3%81%88%E3%82%8B"><i class="fa fa-link"></i></a>ネストされたHashで同じキーが使える</h2>
+
+<p>というか使えないSettingslogicにびっくり。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+# EasySettings
+&gt; EasySettings["foo"] = {foo: "bar"}
+=&gt; {:foo=&gt;"bar"}
+&gt; EasySettings.foo.foo
+=&gt; "bar"
+
+# Settingslogic
+&gt; Settings["foo"] = {foo: "bar"}
+=&gt; {:foo=&gt;"bar"}
+&gt; Settings.foo.foo
+Settingslogic::MissingSetting: Missing setting 'foo' in settings.yml
+</pre></div></div>
+
+<h2>
+<span id="デフォルト値が設定できる" class="fragment"></span><a href="#%E3%83%87%E3%83%95%E3%82%A9%E3%83%AB%E3%83%88%E5%80%A4%E3%81%8C%E8%A8%AD%E5%AE%9A%E3%81%A7%E3%81%8D%E3%82%8B"><i class="fa fa-link"></i></a>デフォルト値が設定できる</h2>
+
+<p>元々これをやりたかったんですが、あんまりいらない気もする。<br>
+デフォルト値設定を簡潔に書きたくてこういう仕様にしました。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+&gt; EasySettings.foo
+=&gt; nil
+&gt; EasySettings.has_key?(:foo)
+=&gt; false
+&gt; EasySettings.foo("bar")
+=&gt; "bar"
+&gt; EasySettings.foo
+=&gt; "bar"
+&gt; EasySettings.foo("baz")
+=&gt; "bar"
+</pre></div></div>
+
+<p>こんなこともできます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+&gt; EasySettings.foo({}).bar("baz")
+=&gt; "baz"
+&gt; EasySettings.to_h
+=&gt; {"foo"=&gt;{"bar"=&gt;"baz"}}
+</pre></div></div>
+
+<p>Settingslogicだとできない。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+&gt; (Settings[:foo] ||= {})[:bar] ||= "baz"
+=&gt; "baz"
+&gt; Settings[:foo][:bar]
+=&gt; nil
+</pre></div></div>
+
+<p>詳しい使い方はGithubのREADMEに書いてます。</p>
+
+<p>是非、使ってみてください。</p>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

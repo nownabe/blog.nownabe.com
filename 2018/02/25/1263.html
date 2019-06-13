@@ -1,0 +1,296 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | PythonのgRPCサーバのテスト</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="PythonのgRPCサーバのテスト" property="og:title"><meta content="    概要   PythonのgRPCのテストの方法です。  今回のサンプルコードは こちら にあります。     gRPCサーバのテスト   ググるとE2Eテストがひっかかります。 1  つまり実際にサーバを立ち上げて、クライアントからアクセスしてそのレスポンスをチェックする感じです。   gRPCパッケージのテストでそれをやるのは当たり前なんですが、gRPCを使う側としては単体テストでわざわざサーバを立ち上げたくはないですよね。サービスとメッセージを定義したらコードが自動生成されてサービスが受け取るリクエス... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2018/02/25/1263.html" property="og:url"><meta content="    概要   PythonのgRPCのテストの方法です。  今回のサンプルコードは こちら にあります。     gRPCサーバのテスト   ググるとE2Eテストがひっかかります。 1  つまり実際にサーバを立ち上げて、クライアントからアクセスしてそのレスポンスをチェックする感じです。   gRPCパッケージのテストでそれをやるのは当たり前なんですが、gRPCを使う側としては単体テストでわざわざサーバを立ち上げたくはないですよね。サービスとメッセージを定義したらコードが自動生成されてサービスが受け取るリクエス... " property="twitter:description"><meta content="PythonのgRPCサーバのテスト" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2018/02/25/1263.html">PythonのgRPCサーバのテスト</a></h1><span class="date">Posted on&nbsp;Feb 25, 2018</span></div><div class="body">
+<h1>
+<span id="概要" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81"><i class="fa fa-link"></i></a>概要</h1>
+
+<p>PythonのgRPCのテストの方法です。<br>
+今回のサンプルコードは<a href="https://gitlab.com/nownabe/example-gRPC-python-test" rel="nofollow noopener" target="_blank">こちら</a>にあります。</p>
+
+<h1>
+<span id="grpcサーバのテスト" class="fragment"></span><a href="#grpc%E3%82%B5%E3%83%BC%E3%83%90%E3%81%AE%E3%83%86%E3%82%B9%E3%83%88"><i class="fa fa-link"></i></a>gRPCサーバのテスト</h1>
+
+<p>ググるとE2Eテストがひっかかります。<sup id="fnref1"><a href="#fn1" rel="footnote" title="How to write a GRPC python unittest - Stack Overflow">1</a></sup> つまり実際にサーバを立ち上げて、クライアントからアクセスしてそのレスポンスをチェックする感じです。</p>
+
+<p>gRPCパッケージのテストでそれをやるのは当たり前なんですが、gRPCを使う側としては単体テストでわざわざサーバを立ち上げたくはないですよね。サービスとメッセージを定義したらコードが自動生成されてサービスが受け取るリクエストのメッセージは保証されてるはずなので、リクエストに対するサービスの振る舞いのみをテストしたいところです。</p>
+
+<p>雑に図にするとこんな感じです。</p>
+
+<p><a href="/images/2018/02/25/1.png" target="_blank"><img width="903" alt="スクリーンショット 2018-02-25 14.42.56.png (684.8 kB)" src="/images/2018/02/25/1.png"></a></p>
+
+<p>なので、これを実現する方法を紹介します。</p>
+
+<h1>
+<span id="実装" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>実装</h1>
+
+<h2>
+<span id="テストするサービスの定義" class="fragment"></span><a href="#%E3%83%86%E3%82%B9%E3%83%88%E3%81%99%E3%82%8B%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%AE%E5%AE%9A%E7%BE%A9"><i class="fa fa-link"></i></a>テストするサービスの定義</h2>
+
+<p>こんな感じの単純なEchoサービスを考えます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+syntax = "proto3";
+
+service Echo {
+  rpc Echo (Request) returns (Response) {}
+}
+
+message Request {
+  string message = 1;
+}
+
+message Response {
+  string message = 1;
+}
+</pre></div></div>
+
+<p>コードを生成するにはこんな感じです。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+python -m grpc_tools.protoc -I=. --python_out=. --grpc_python_out=. echo.proto
+</pre></div></div>
+
+<h2>
+<span id="サービスの実装" class="fragment"></span><a href="#%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%AE%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>サービスの実装</h2>
+
+<p>サービスの実装はこんな感じです。今回のEchoサービスには禁止ワードの場合エラーを返す機能がついています。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+import grpc
+import echo_pb2
+import echo_pb2_grpc
+
+_BANNED_WORDS = ["unko"]
+
+class Servicer(echo_pb2_grpc.EchoServicer):
+    def __init__(self):
+        pass
+
+    def Echo(self, request, context):
+        if request.message in _BANNED_WORDS:
+            context.set_code(grpc.StatusCode.OUT_OF_RANGE)
+            context.set_details(f"{request.message} is a prohibited word.")
+            raise Exception(f"'{request.message}' is a prohibited word.")
+        return echo_pb2.Response(message=request.message)
+</pre></div></div>
+
+<p>エラーコードが<code>OUT_OF_RANGE</code>なのは気にしないでください。</p>
+
+<p>このサービスのクラスのみを単体テストするのが目標です。</p>
+
+<h2>
+<span id="サーバクライアントの実装" class="fragment"></span><a href="#%E3%82%B5%E3%83%BC%E3%83%90%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E3%81%AE%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>サーバ/クライアントの実装</h2>
+
+<p>サーバとクライアントの実装です。gRPCのサンプルから持ってきただけです。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+from concurrent import futures
+import time
+
+import grpc
+import echo_pb2_grpc
+
+from servicer import Servicer
+
+_ONE_DAY_IN_SECONDS = 60 * 60 * 24
+
+def serve():
+    servicer = Servicer()
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    echo_pb2_grpc.add_EchoServicer_to_server(servicer, server)
+    server.add_insecure_port("[::]:50051")
+    server.start()
+
+    try:
+        while True:
+            time.sleep(_ONE_DAY_IN_SECONDS)
+    except KeyboardInterrupt:
+        server.stop(0)
+
+if __name__ == "__main__":
+    serve()
+</pre></div></div>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+import grpc
+
+import grpc
+import echo_pb2
+import echo_pb2_grpc
+
+def run():
+    channel = grpc.insecure_channel("[::]:50051")
+    stub = echo_pb2_grpc.EchoStub(channel)
+
+    message = "Hello, world!"
+
+    response = stub.Echo(echo_pb2.Request(message=message))
+    print(f"Response: {response.message}")
+
+if __name__ == "__main__":
+    run()
+
+</pre></div></div>
+
+<p>実際に動かすには<code>python server.py</code>でサーバを起動して、別のターミナルなどで<code>python client.py</code>を実行します。こんな感じですね。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ python server.py &amp; sleep 1 &amp;&amp; python client.py
+[1] 76052
+Response: Hello, world!
+</pre></div></div>
+
+<p>これらのサーバとクライアントのコードを単体テストでは<strong>使わない</strong>ことが目標になります。</p>
+
+<h2>
+<span id="サービスの引数" class="fragment"></span><a href="#%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%AE%E5%BC%95%E6%95%B0"><i class="fa fa-link"></i></a>サービスの引数</h2>
+
+<p>再掲しますがサービスの本体はこれです。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+class Servicer(echo_pb2_grpc.EchoServicer):
+
+    def Echo(self, request, context):
+        if request.message in _BANNED_WORDS:
+            context.set_code(grpc.StatusCode.OUT_OF_RANGE)
+            context.set_details(f"{request.message} is a prohibited word.")
+            raise Exception(f"'{request.message}' is a prohibited word.")
+        return echo_pb2.Response(message=request.message)
+</pre></div></div>
+
+<p>サービスのメソッドはprotoで定義されたリクエストメッセージである<code>request</code>と、<code>context</code>を引数として受け取ります。</p>
+
+<p><code>context</code>は<code>grpc.ServicerContext</code><sup id="fnref2"><a href="#fn2" rel="footnote" title="https://grpc.io/grpc/python/grpc.html#grpc.ServicerContext">2</a></sup>のオブジェクトです<sup id="fnref3"><a href="#fn3" rel="footnote" title="https://grpc.io/docs/tutorials/basic/python.html#simple-rpc">3</a></sup>が<code>grpc.ServicerContext</code>は抽象クラスであり、その実装は公開されていません。</p>
+
+<p>メソッド内で<code>context</code>を使う場合は<code>context</code>を渡す必要がありますが、公開されていないので自前で実装するひつようがあります。<a href="https://github.com/grpc/grpc/blob/v1.9.1/src/python/grpcio_testing/grpc_testing/_server/_servicer_context.py" rel="nofollow noopener" target="_blank">本家のテスト</a>でも<code>grpc.ServicerContext</code>を実装したテスト用のクラスを作っています。</p>
+
+<p>また、その場合は<code>grpc.ServicerContext</code>は親抽象クラスの<code>gprc.RpcContext</code><sup id="fnref4"><a href="#fn4" rel="footnote" title="https://grpc.io/grpc/python/grpc.html#grpc.RpcContext">4</a></sup>を継承しているので、そちらのメソッドも実装する必要があります。</p>
+
+<h2>
+<span id="テストの実装" class="fragment"></span><a href="#%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>テストの実装</h2>
+
+<p>以上を踏まえEchoサービスの単体テストを書くとこんな感じになります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+import unittest
+
+import grpc
+import echo_pb2
+
+from servicer import Servicer
+
+class ServicerContext(grpc.ServicerContext):
+    def __init__(self):
+        self.code = None
+        self.details = None
+
+    def add_callback(self):
+        pass
+
+    def cancel(self):
+        pass
+
+    def is_active(self):
+        pass
+
+    def time_remaining(self):
+        pass
+
+    def abort(self, code, details):
+        pass
+
+    def auth_context(self):
+        pass
+
+    def invocation_metadata(self):
+        pass
+
+    def peer(self):
+        pass
+
+    def peer_identities(self):
+        pass
+
+    def peer_identity_key(self):
+        pass
+
+    def send_initial_metadata(self, initial_metadata):
+        pass
+
+    def set_code(self, code):
+        self.code = code
+
+    def set_details(self, details):
+        self.details = details
+
+    def set_trailing_metadata(self, trailing_metadata):
+        pass
+
+
+class TestServicer(unittest.TestCase):
+    def test_Servicer(self):
+        servicer = Servicer()
+        request  = echo_pb2.Request(message="Test Message")
+        context  = ServicerContext()
+
+        response = servicer.Echo(request, context)
+        self.assertEqual(echo_pb2.Response(message="Test Message"), response)
+
+    def test_Servicer_error(self):
+        servicer = Servicer()
+        request  = echo_pb2.Request(message="unko")
+        context  = ServicerContext()
+
+        with self.assertRaises(Exception):
+            servicer.Echo(request, context)
+
+        self.assertEqual(grpc.StatusCode.OUT_OF_RANGE, context.code)
+        self.assertEqual("unko is a prohibited word.", context.details)
+
+if __name__ == "__main__":
+    unittest.main()
+</pre></div></div>
+
+<p><code>ServicerContext</code>は必要に応じてメソッドを実装すればいいと思います。今回は<br>
+<code>set_code</code>と<code>set_details</code>のみを実装して、エラーコードと詳細のテストができるようにしました。</p>
+
+<h1>
+<span id="おわりに" class="fragment"></span><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>おわりに</h1>
+
+<p>なんかごく普通のことを長々と書いてしまった気がしますが、あまり情報がなかったので。gRPCまわりはまだまだ情報が少ないですね。</p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p><a href="https://stackoverflow.com/questions/44718078/how-to-write-a-grpc-python-unittest" rel="nofollow noopener" target="_blank">How to write a GRPC python unittest - Stack Overflow</a> <a href="#fnref1" rev="footnote">↩</a></p>
+</li>
+
+<li id="fn2">
+<p><a href="https://grpc.io/grpc/python/grpc.html#grpc.ServicerContext" class="autolink" rel="nofollow noopener" target="_blank">https://grpc.io/grpc/python/grpc.html#grpc.ServicerContext</a> <a href="#fnref2" rev="footnote">↩</a></p>
+</li>
+
+<li id="fn3">
+<p><a href="https://grpc.io/docs/tutorials/basic/python.html#simple-rpc" class="autolink" rel="nofollow noopener" target="_blank">https://grpc.io/docs/tutorials/basic/python.html#simple-rpc</a> <a href="#fnref3" rev="footnote">↩</a></p>
+</li>
+
+<li id="fn4">
+<p><a href="https://grpc.io/grpc/python/grpc.html#grpc.RpcContext" class="autolink" rel="nofollow noopener" target="_blank">https://grpc.io/grpc/python/grpc.html#grpc.RpcContext</a> <a href="#fnref4" rev="footnote">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

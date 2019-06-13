@@ -1,0 +1,289 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | 統計学入門  第5章 確率変数</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="統計学入門  第5章 確率変数" property="og:title"><meta content=" nownab.log | 統計学入門 第4章 確率         統計学入門 (基礎統計学Ⅰ)     東京大学教養学部統計学教室   東京大学出版会             機械学習勉強会として今は 統計学入門 をやっている。  週一でやっていて、今週から輪読形式で進めてみることになった。   また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。   https://github.com/Wondershake/ml-statistics-intro     今回の内容     第5章 確... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2017/08/10/1081.html" property="og:url"><meta content=" nownab.log | 統計学入門 第4章 確率         統計学入門 (基礎統計学Ⅰ)     東京大学教養学部統計学教室   東京大学出版会             機械学習勉強会として今は 統計学入門 をやっている。  週一でやっていて、今週から輪読形式で進めてみることになった。   また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。   https://github.com/Wondershake/ml-statistics-intro     今回の内容     第5章 確... " property="twitter:description"><meta content="統計学入門  第5章 確率変数" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2017/08/10/1081.html">統計学入門  第5章 確率変数</a></h1><span class="date">Posted on&nbsp;Aug 08, 2017</span></div><div class="body"><p><a href="https://blog.nownabe.com/2017/08/06/1071.html">nownab.log | 統計学入門 第4章 確率</a></p>
+
+<div class="asin">
+<div class="asin-image"><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/" rel="nofollow noopener" target="_blank"><img src="http://images-jp.amazon.com/images/P/4130420658.09._SL160_.jpg" alt="統計学入門 (基礎統計学Ⅰ)" title="統計学入門 (基礎統計学Ⅰ)"></a></div>
+<div class="asin-detail">
+<p><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/" rel="nofollow noopener" target="_blank">統計学入門 (基礎統計学Ⅰ)</a></p>
+<ul>
+<li>東京大学教養学部統計学教室</li>
+<li>東京大学出版会</li>
+</ul>
+</div>
+
+<p></p>
+
+<p></p>
+</div>
+
+<p>機械学習勉強会として今は<a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/" rel="nofollow noopener" target="_blank">統計学入門</a>をやっている。<br>
+週一でやっていて、今週から輪読形式で進めてみることになった。</p>
+
+<p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。<br>
+<a href="https://github.com/Wondershake/ml-statistics-intro" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/Wondershake/ml-statistics-intro</a></p>
+
+<h1>
+<span id="今回の内容" class="fragment"></span><a href="#%E4%BB%8A%E5%9B%9E%E3%81%AE%E5%86%85%E5%AE%B9"><i class="fa fa-link"></i></a>今回の内容</h1>
+
+<h2>
+<span id="第5章-確率変数" class="fragment"></span><a href="#%E7%AC%AC5%E7%AB%A0-%E7%A2%BA%E7%8E%87%E5%A4%89%E6%95%B0"><i class="fa fa-link"></i></a>第5章 確率変数</h2>
+
+<h3>
+<span id="51-確率変数と確率分布" class="fragment"></span><a href="#51-%E7%A2%BA%E7%8E%87%E5%A4%89%E6%95%B0%E3%81%A8%E7%A2%BA%E7%8E%87%E5%88%86%E5%B8%83"><i class="fa fa-link"></i></a>5.1 確率変数と確率分布</h3>
+
+<ul>
+<li>
+<strong>乱数 (random number, random digits)</strong>: 起こる確率が等しいことが理論的に保証されている0から9までの数字</li>
+<li>
+<strong>確率変数 (random variable)</strong>: それがとる各値に対してそれぞれ確率が与えられている変数</li>
+<li>
+<strong>離散型 (discrete type)</strong>: 可算集合 $\{x_1, x_2, \dots\}$の中の値をとる確率変数</li>
+<li>
+<strong>確率分布 (probability distribution)</strong>
+
+<ul>
+<li>確率変数$X$があるとき、$P(X=x_k) = f(x_k)$ で表される$f$を確率分布という</li>
+<li>$f(x_k) \geq 0, (k=1, 2, \dots) かつ \sum_k f(x_k) = 1$を満たす</li>
+<li><strong>離散型の確率分布 (p. d. of discrete type)</strong></li>
+</ul>
+</li>
+<li>
+<strong>連続型 (continuous type)</strong>
+
+<ul>
+<li>連続値をとる確率変数</li>
+<li>$P(a\geq X \geq b) = \int_a^bf(x)dx$で表される</li>
+<li>ただし、$すべてのxに対しf(x)\geq 0 かつ \int_{-\infty}^\infty f(x)dx=1$を満たす</li>
+<li>$f(x)$を$X$の<strong>確率密度関数 (probability density function)</strong>という</li>
+<li>ある一点の確率は$P(X=a) = 0$となる</li>
+</ul>
+</li>
+<li>
+<strong>指数分布 (exponential distribution)</strong>
+
+<ul>
+<li>$x\geq 0$のとき$f(x)=\lambda e^{-\lambda x}$、$x &lt; 0$のとき$f(x) = 0$</li>
+<li>
+<strong>待ち時間</strong>は指数分布に従う
+
+<ul>
+<li>ある災害が起こってから次の災害が起こるまでの時間$X$や、電球が偶発的に切れるまでの寿命$X$など</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<strong>一様分布 (uniform distribution)</strong>
+
+<ul>
+<li>$0 \leq x \leq 1$のとき$f(x)=1$, それ以外のとき$f(x)=0$</li>
+<li>区間$[0, 1]$の任意の値を等しくとる<strong>一様乱数 (uniform random number)</strong>
+</li>
+</ul>
+</li>
+<li>
+<strong>累積分布関数 (cumulative distribution function)</strong>
+
+<ul>
+<li>確率変数$X$に対して$X$が$x$以下の確率</li>
+<li>$F(x)=P(X\leq x)$</li>
+<li>$F(x)=\int_{-\infty}^x f(u) du$</li>
+<li>$F'(x)=f(x)$</li>
+<li>離散型の場合は$F(x)=\sum_{u\leq x}f(u)$</li>
+<li>常に次の3つの性質をもつ
+
+<ul>
+<li>広義単調増加: $x_1 &lt; x_2$ならば$F(x_1) \leq F(x_2)$</li>
+<li>範囲: $x \rightarrow \infty$のとき$F(x)\rightarrow 1$、$x\rightarrow -\infty$のとき$F(x)\rightarrow 0$</li>
+<li>右連続: 各点$x$で$\varepsilon\downarrow 0$のとき$F(x+\varepsilon)\rightarrow F(x)$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<strong>モード (mode)</strong>: $f(x)$を最大にする$x=x_0$</li>
+<li>
+<strong>メディアン (median)</strong>: $P(X\leq x_m)=\frac{1}{2}$となる$x_m$</li>
+</ul>
+
+<h3>
+<span id="52-確率変数の期待値と分散" class="fragment"></span><a href="#52-%E7%A2%BA%E7%8E%87%E5%A4%89%E6%95%B0%E3%81%AE%E6%9C%9F%E5%BE%85%E5%80%A4%E3%81%A8%E5%88%86%E6%95%A3"><i class="fa fa-link"></i></a>5.2 確率変数の期待値と分散</h3>
+
+<ul>
+<li>
+<strong>期待値 (expectation)</strong>
+
+<ul>
+<li>平均、重心</li>
+<li>確率変数$X$の期待値を$E(X)$と書く</li>
+<li>離散型のとき、$E(X)=\sum_x xf(x)$</li>
+<li>連続型のとき、$E(X)=\int_{-\infty}^\infty xf(x) dx$</li>
+<li>$E(X)=\mu$で表すこともある</li>
+</ul>
+</li>
+<li>$X$の関数$\phi(X)$に対する期待値の定義
+
+<ul>
+<li>$E(\phi(X))=\sum_x \phi(x)f(x)$</li>
+<li>$E(\phi(X))=\int_{-\infty}^\infty \phi(x)f(x) dx$</li>
+</ul>
+</li>
+<li>期待値の演算の性質
+
+<ul>
+<li>$E(c)=c$</li>
+<li>$E(X+c)=E(X)+c$</li>
+<li>$E(cX)=cE(X)$</li>
+<li>$E(X+Y)=E(X)+E(Y)$</li>
+</ul>
+</li>
+<li>
+<strong>分散 (variance)</strong>
+
+<ul>
+<li>ばらつき具合</li>
+<li>確率変数$X$の分散を$V(X)$と書く</li>
+<li>$V(X)=E((X-\mu)^2)=E(X^2)-(E(X))^2$</li>
+<li>離散型のとき、$V(X)=\sum_x (x-\mu)^2f(x)$</li>
+<li>連続型のとき、$V(X)=\int_{-\infty}^\infty (x-\mu)^2f(x) dx$</li>
+<li>$V(X)=E(X^2)-(E(X))^2$</li>
+<li>$\sigma^2$と表すことが多い</li>
+</ul>
+</li>
+<li>
+<strong>標準偏差 (standard deviation)</strong>
+
+<ul>
+<li>分散の平方根 $D(X)=\sqrt{V(X)}$</li>
+<li>$\sigma$と表すことが多い</li>
+</ul>
+</li>
+<li>分散の演算の性質
+
+<ul>
+<li>$V(c)=0$</li>
+<li>$V(X+c)=V(X)$</li>
+<li>$V(cX)=c^2V(X)$</li>
+</ul>
+</li>
+<li>
+<strong>標準化</strong>
+
+<ul>
+<li>$Z=\frac{X-E(X)}{\sqrt{V(X)}}$とすると期待値と分散の性質から</li>
+<li>$E(Z)=0$</li>
+<li>$V(Z)=1$</li>
+<li>この変換を標準化といい、$Z$を<strong>標準化変数</strong>という</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="53-モーメントとモーメント母関数" class="fragment"></span><a href="#53-%E3%83%A2%E3%83%BC%E3%83%A1%E3%83%B3%E3%83%88%E3%81%A8%E3%83%A2%E3%83%BC%E3%83%A1%E3%83%B3%E3%83%88%E6%AF%8D%E9%96%A2%E6%95%B0"><i class="fa fa-link"></i></a>5.3 モーメントとモーメント母関数</h3>
+
+<ul>
+<li>
+<strong>歪度 (skewness)</strong>
+
+<ul>
+<li>
+<strong>歪度係数</strong>とも</li>
+<li>確率分布の非対称性の指標</li>
+<li>$\alpha_3 = \frac{E((X-\mu)^3)}{\sigma^3}$</li>
+<li>$\alpha_3&gt;0$ならば右の裾が長い</li>
+<li>$\alpha_3&lt;0$ならば左の裾が長い</li>
+<li>$|\alpha_3|$が程度を表す</li>
+<li>$\beta_3$と書くこともある</li>
+</ul>
+</li>
+<li>
+<strong>尖度 (kurtosis)</strong>
+
+<ul>
+<li><strong>超過係数 (coefficient of excess)</strong></li>
+<li>$\alpha_4=\frac{E((X-\mu)^4)}{\sigma^4}$としたとき、$\alpha_4-3$のことをいう</li>
+<li>正規分布は$\alpha_4=3$</li>
+<li>$\alpha_4 &gt;3$なら正規分布より尖っている</li>
+<li>$\alpha_4 &lt; 3$なら正規分布より丸い</li>
+<li>$\beta_4$と書くこともある</li>
+</ul>
+</li>
+<li>
+<strong>モーメント (moment)</strong>
+
+<ul>
+<li>
+<strong>積率</strong>ともいう</li>
+<li>$\mu_r=E(X^r)$: $X$の(原点のまわりの)$r$次のモーメント</li>
+<li>$\mu'_r=E((X-\mu)^r)$: $X$の期待値のまわりの$r$次のモーメント</li>
+<li>$\alpha_r=E(\{\frac{X-\mu}{\sigma}\}^r)$: $X$の$r$次の標準化モーメント</li>
+</ul>
+</li>
+<li>
+<strong>モーメント母関数 (moment generating function)</strong>
+
+<ul>
+<li>すべての次数のモーメントを生成する</li>
+<li>すべての次数のモーメントが決まれば確率分布は一意に定まる</li>
+<li>$M_X(t)=E(e^{tX})$</li>
+<li>離散型: $M_X(t)=\sum_xe^{tx}f(x)$</li>
+<li>連続型: $M_X(t)=\int_{-\infty}^\infty e^{tx}f(x)dx$</li>
+<li>$M_X^{(r)}(0)=\mu_r$: モーメント母関数の$r$階導関数から$r$次のモーメントが求まる</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="54-チェビシェフの不等式" class="fragment"></span><a href="#54-%E3%83%81%E3%82%A7%E3%83%93%E3%82%B7%E3%82%A7%E3%83%95%E3%81%AE%E4%B8%8D%E7%AD%89%E5%BC%8F"><i class="fa fa-link"></i></a>5.4 チェビシェフの不等式</h3>
+
+<ul>
+<li>
+<strong>チェビシェフの不等式 (Chebyshev's inequality)</strong>
+
+<ul>
+<li>いかなる確率変数$X$に対しても$P(|X-\mu|\geq k\sigma)\leq\frac{1}{k^2}, \;(k&gt;0)$が成り立つ</li>
+<li>確率分布がわからなくても、 期待値と分散さえわかれば確率の値が不等式で得られる</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="55-確率変数の変換" class="fragment"></span><a href="#55-%E7%A2%BA%E7%8E%87%E5%A4%89%E6%95%B0%E3%81%AE%E5%A4%89%E6%8F%9B"><i class="fa fa-link"></i></a>5.5 確率変数の変換</h3>
+
+<h1>
+<span id="練習問題" class="fragment"></span><a href="#%E7%B7%B4%E7%BF%92%E5%95%8F%E9%A1%8C"><i class="fa fa-link"></i></a>練習問題</h1>
+
+<p><a href="https://github.com/Wondershake/ml-statistics-intro/issues/8" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/Wondershake/ml-statistics-intro/issues/8</a></p>
+
+<h1>
+<span id="所感" class="fragment"></span><a href="#%E6%89%80%E6%84%9F"><i class="fa fa-link"></i></a>所感</h1>
+
+<ul>
+<li>自分でちゃんと読んでるからか、教科書がいいのか、昔より理解できてる気がする</li>
+<li>輪読形式はただのもくもくより負荷は強くなるが、その分力にはなってる感じがあるので良い <img class="emoji" title=":muscle:" alt=":muscle:" src="/images/emoji/unicode/1f4aa.svg" height="20" width="20" align="absmiddle">
+</li>
+</ul>
+
+<h1>
+<span id="次回" class="fragment"></span><a href="#%E6%AC%A1%E5%9B%9E"><i class="fa fa-link"></i></a>次回</h1>
+
+<p>第6章 確率分布</p>
+
+<p><a href="https://github.com/Wondershake/ml-statistics-intro/issues/12" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/Wondershake/ml-statistics-intro/issues/12</a></p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+</pre></div></div>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

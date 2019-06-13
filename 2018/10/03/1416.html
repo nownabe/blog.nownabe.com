@@ -1,0 +1,130 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | GCP updates  | October 1, 2018</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="GCP updates  | October 1, 2018" property="og:title"><meta content="    DATABASES     New asia-south1 Cloud Bigtable region added: GA     Cloud Bigtable is now available in the asia-south1 (Mumbai, India) region.  Product page       DATA ANALYTICS     BigQuery – Apache ORC ingestion: GA     This feature adds support for importing...   " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2018/10/03/1416.html" property="og:url"><meta content="    DATABASES     New asia-south1 Cloud Bigtable region added: GA     Cloud Bigtable is now available in the asia-south1 (Mumbai, India) region.  Product page       DATA ANALYTICS     BigQuery – Apache ORC ingestion: GA     This feature adds support for importing...   " property="twitter:description"><meta content="GCP updates  | October 1, 2018" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2018/10/03/1416.html">GCP updates  | October 1, 2018</a></h1><span class="date">Posted on&nbsp;Oct 03, 2018</span></div><div class="body">
+<h1>
+<span id="databases" class="fragment"></span><a href="#databases"><i class="fa fa-link"></i></a>DATABASES</h1>
+
+<h2>
+<span id="new-asia-south1-cloud-bigtable-region-added-ga" class="fragment"></span><a href="#new-asia-south1-cloud-bigtable-region-added-ga"><i class="fa fa-link"></i></a>New asia-south1 Cloud Bigtable region added: GA</h2>
+
+<blockquote>
+<p>Cloud Bigtable is now available in the asia-south1 (Mumbai, India) region. <a href="https://cloud.google.com/bigtable/" rel="nofollow noopener" target="_blank">Product page</a></p>
+</blockquote>
+
+<h1>
+<span id="data-analytics" class="fragment"></span><a href="#data-analytics"><i class="fa fa-link"></i></a>DATA ANALYTICS</h1>
+
+<h2>
+<span id="bigquery--apache-orc-ingestion-ga" class="fragment"></span><a href="#bigquery--apache-orc-ingestion-ga"><i class="fa fa-link"></i></a>BigQuery – Apache ORC ingestion: GA</h2>
+
+<blockquote>
+<p>This feature adds support for importing ORC data from Cloud Storage into BigQuery. You can access it through <a href="https://cloud.google.com/apis/docs/cloud-client-libraries" rel="nofollow noopener" target="_blank">Cloud Client Libraries</a> in any of the seven supported languages. ORC is an open-source, column-oriented data format, widely used in the Apache Hadoop ecosystem. <a href="https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-orc" rel="nofollow noopener" target="_blank">Documentation</a></p>
+</blockquote>
+
+<hr>
+
+<p>Additional releases</p>
+
+<h1>
+<span id="compute" class="fragment"></span><a href="#compute"><i class="fa fa-link"></i></a>COMPUTE</h1>
+
+<h2>
+<span id="containers-on-compute-engine-ga" class="fragment"></span><a href="#containers-on-compute-engine-ga"><i class="fa fa-link"></i></a>Containers on Compute Engine: GA</h2>
+
+<blockquote>
+<p>This release allows you to deploy software to a Compute Engine VM instance or a managed instance group using the Docker container image format in a declarative way. You provide a Docker image name, configure how your container should run, and Compute Engine runs it automatically. <a href="https://cloud.google.com/compute/docs/containers/deploying-containers" rel="nofollow noopener" target="_blank">Documentation</a></p>
+</blockquote>
+
+<p>なんとも中途半端な機能ですがGAになったみたいですね。サーバーレスコンテナのテスト機能感がある。</p>
+
+<h2>
+<span id="zonal-dns-names-for-compute-engine-ga" class="fragment"></span><a href="#zonal-dns-names-for-compute-engine-ga"><i class="fa fa-link"></i></a>Zonal DNS names for Compute Engine: GA</h2>
+
+<blockquote>
+<p>Zonal DNS names let you build more fault-tolerant applications with improved availability and performance. Because they contain the Compute Engine zone that your VM instance resides in, VM instances with zonal DNS names aren’t affected by the health of other locations. <a href="https://cloud.google.com/compute/docs/internal-dns#zonal-dns" rel="nofollow noopener" target="_blank">Documentation</a></p>
+</blockquote>
+
+<p>んー、具体的に何がどうなるんだ？<br>
+VM内からの問い合わせ先がZonalなやつになるってことか？</p>
+
+<h1>
+<span id="data-analytics-1" class="fragment"></span><a href="#data-analytics-1"><i class="fa fa-link"></i></a>DATA ANALYTICS</h1>
+
+<h2>
+<span id="new-site-for-tensorflow-hub-ga" class="fragment"></span><a href="#new-site-for-tensorflow-hub-ga"><i class="fa fa-link"></i></a>New site for TensorFlow Hub: GA</h2>
+
+<blockquote>
+<p>A new web experience for TensorFlow Hub makes it easier for developers to search for and find TensorFlow modules for their use cases. It paves the way to a multipublisher platform. <a href="https://medium.com/tensorflow/a-new-tensorflow-hub-web-experience-c804496e99f3" rel="nofollow noopener" target="_blank">Blog</a></p>
+</blockquote>
+
+<p>GCP Updatesなのか？</p>
+
+<h2>
+<span id="bigquery--scheduled-queries-beta" class="fragment"></span><a href="#bigquery--scheduled-queries-beta"><i class="fa fa-link"></i></a>BigQuery – scheduled queries: beta</h2>
+
+<blockquote>
+<p>This launch makes it possible for you to run parameterized queries on a scheduled basis and organize query results by date and time. You must write scheduled queries in standard SQL, which can include data definition language and data manipulation language statements. <a href="https://cloud.google.com/bigquery/docs/scheduling-queries" rel="nofollow noopener" target="_blank">Documentation</a></p>
+</blockquote>
+
+<p>これはアツいですね！BigQueryだけで定期実行できるようになるやつです。<br>
+Pub/Subやメールでの通知もできるみたいですね。</p>
+
+<h2>
+<span id="bigquery-geographic-information-systems-beta" class="fragment"></span><a href="#bigquery-geographic-information-systems-beta"><i class="fa fa-link"></i></a>BigQuery Geographic Information Systems: beta</h2>
+
+<p>BigQuery GIS enables you to conduct geospatial analyses at any scale, using the power of BigQuery’s cloud MPP architecture. Using standard SQL, your spatial data can now be analyzed precisely using a new geography data type and with common GIS functions. <a href="https://cloud.google.com/bigquery/docs/gis-intro" rel="nofollow noopener" target="_blank">Documentation</a></p>
+
+<h1>
+<span id="security" class="fragment"></span><a href="#security"><i class="fa fa-link"></i></a>SECURITY</h1>
+
+<h2>
+<span id="access-transparency-ga" class="fragment"></span><a href="#access-transparency-ga"><i class="fa fa-link"></i></a>Access Transparency: GA</h2>
+
+<blockquote>
+<p>Access Transparency gives you expanded visibility over your cloud provider, with near real-time logs that show when Google Cloud Platform administrators access your content. <a href="https://cloud.google.com/access-transparency/" rel="nofollow noopener" target="_blank">Product page</a></p>
+</blockquote>
+
+<p>GCPの中の人がなにかしら自分たちのものにアクセスしたときにログが残るってやつですね。</p>
+
+<h1>
+<span id="networking" class="fragment"></span><a href="#networking"><i class="fa fa-link"></i></a>NETWORKING</h1>
+
+<h2>
+<span id="ability-to-enable-and-disable-firewall-rules-ga" class="fragment"></span><a href="#ability-to-enable-and-disable-firewall-rules-ga"><i class="fa fa-link"></i></a>Ability to enable and disable firewall rules: GA</h2>
+
+<blockquote>
+<p>This feature lets you see how your network behaves without firewall rules, making it easy to disable and then quickly re-enable them. <a href="https://cloud.google.com/vpc/docs/firewalls" rel="nofollow noopener" target="_blank">Documentation</a></p>
+</blockquote>
+
+<p>開発とかテストがしやすくなっていいですね！</p>
+
+<h1>
+<span id="media-solutions" class="fragment"></span><a href="#media-solutions"><i class="fa fa-link"></i></a>MEDIA SOLUTIONS</h1>
+
+<h2>
+<span id="zync-render-support-for-chaos-group-v-ray-for-maxon-cinema-4d-beta" class="fragment"></span><a href="#zync-render-support-for-chaos-group-v-ray-for-maxon-cinema-4d-beta"><i class="fa fa-link"></i></a>Zync Render support for Chaos Group V-Ray for MAXON Cinema 4D: beta</h2>
+
+<p>Zync Render now supports V-Ray for Cinema 4D. <a href="https://www.maxon.net/en/products/cinema-4d/overview/" rel="nofollow noopener" target="_blank">Website</a></p>
+
+<h1>
+<span id="databases-1" class="fragment"></span><a href="#databases-1"><i class="fa fa-link"></i></a>DATABASES</h1>
+
+<h2>
+<span id="key-visualizer-for-cloud-bigtable-ga" class="fragment"></span><a href="#key-visualizer-for-cloud-bigtable-ga"><i class="fa fa-link"></i></a>Key Visualizer for Cloud Bigtable: GA</h2>
+
+<blockquote>
+<p>You can now analyze your Cloud Bigtable usage patterns with Key Visualizer, which generates visual reports for your tables that break down your usage based on the row keys that you access. <a href="https://cloud.google.com/bigtable/docs/keyvis-overview" rel="nofollow noopener" target="_blank">Documentation</a></p>
+</blockquote>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | Google App EngineでHello World with Golang</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="Google App EngineでHello World with Golang" property="og:title"><meta content="    はじめに   GAEの Quick Start をやりました。  そのときのメモです。 :memo:        SDKインストール   ここ からダウンロードして、パスを通す。    $ wget https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_darwin_amd64-1.9.40.zip $ unzip -d ~/opt go_appengine_sdk_darwin_amd64-1.9.40.zip ... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2016/10/04/485.html" property="og:url"><meta content="    はじめに   GAEの Quick Start をやりました。  そのときのメモです。 :memo:        SDKインストール   ここ からダウンロードして、パスを通す。    $ wget https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_darwin_amd64-1.9.40.zip $ unzip -d ~/opt go_appengine_sdk_darwin_amd64-1.9.40.zip ... " property="twitter:description"><meta content="Google App EngineでHello World with Golang" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2016/10/04/485.html">Google App EngineでHello World with Golang</a></h1><span class="date">Posted on&nbsp;Oct 04, 2016</span></div><div class="body">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>GAEの<a href="https://cloud.google.com/appengine/docs/go/quickstart?hl=ja" rel="nofollow noopener" target="_blank">Quick Start</a>をやりました。<br>
+そのときのメモです。 :memo: <img class="emoji" title=":sweat_smile:" alt=":sweat_smile:" src="/images/emoji/unicode/1f605.svg" height="20" width="20" align="absmiddle"> </p>
+
+<h1>
+<span id="sdkインストール" class="fragment"></span><a href="#sdk%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>SDKインストール</h1>
+
+<p><a href="https://cloud.google.com/appengine/docs/go/download?hl=ja" rel="nofollow noopener" target="_blank">ここ</a>からダウンロードして、パスを通す。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ wget https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_darwin_amd64-1.9.40.zip
+$ unzip -d ~/opt go_appengine_sdk_darwin_amd64-1.9.40.zip
+$ rm go_appengine_sdk_darwin_amd64-1.9.40.zip
+$ echo 'export PATH="/Users/nownabe/opt/go_appengine:$PATH"' &gt;&gt; .zshrc
+$ exec $SHELL -l
+$ goapp version
+go version go1.6.2 (appengine-1.9.40) darwin/amd64
+</pre></div></div>
+
+<p>pythonは2.7系がインストールしてある必要がある。</p>
+
+<h1>
+<span id="ローカルでhello-world" class="fragment"></span><a href="#%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%81%A7hello-world"><i class="fa fa-link"></i></a>ローカルでHello world</h1>
+
+<p>適当なディレクトリを作って移動しておく。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ mkdir gae-hello
+$ cd gae-hello
+</pre></div></div>
+
+<p>Hello worldするアプリを作る。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+package hello
+
+import (
+    "fmt"
+    "net/http"
+)
+
+func init() {
+    http.HandleFunc("/", handler)
+}
+
+func handler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprint(w, "Hello, world!")
+}
+</pre></div></div>
+
+<p><code>init</code>関数はアプリケーションが開始する前に呼ばれるらしい。<br>
+<code>main</code>関数がないので、これ単体だと起動することはできない。</p>
+
+<p>ローカルでもさっきインストールしたSDKを使って起動する。<br>
+が、その前に<code>app.yaml</code>というのも作ってあげないといけない。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+runtime: go
+api_version: go1
+
+handlers:
+- url: /.*
+  script: _go_app
+</pre></div></div>
+
+<p>これはApp Engine用の設定ファイル。</p>
+
+<p><code>handlers</code>の<code>url</code>にマッチするURLがGoのアプリで処理されるようになる。例えば静的ファイルをここで分岐して処理したりできる。</p>
+
+<p><code>_go_app</code>というのはローカルの開発サーバ用のもので、productionのApp Engineでは無視される。</p>
+
+<p>ここまでやって、ローカルでアプリケーションを起動できるようになる。<br>
+起動にはSDKに含まれている<code>goapp</code>コマンドを使う。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ goapp serve hello.go
+INFO     2016-10-04 13:52:01,869 devappserver2.py:769] Skipping SDK update check.
+WARNING  2016-10-04 13:52:02,014 simple_search_stub.py:1146] Could not read search indexes from /var/folders/cx/93p9j67n1lb9m18x2t3jbnx80000gn/T/appengine.None.nownabe/search_indexes
+INFO     2016-10-04 13:52:02,018 api_server.py:205] Starting API server at: http://localhost:53458
+INFO     2016-10-04 13:52:02,021 dispatcher.py:197] Starting module "default" running at: http://localhost:8080
+INFO     2016-10-04 13:52:02,023 admin_server.py:116] Starting admin server at: http://localhost:8000
+
+</pre></div></div>
+
+<p>pythonが頑張ってる。<br>
+この状態でアクセスすると、<code>Hello, world!</code>が返ってくる。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ curl localhost:8080
+Hello, world!
+</pre></div></div>
+
+<h1>
+<span id="デプロイ" class="fragment"></span><a href="#%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4"><i class="fa fa-link"></i></a>デプロイ</h1>
+
+<p>次はデプロイ。</p>
+
+<p>まずは<a href="https://console.cloud.google.com/project?hl=ja" rel="nofollow noopener" target="_blank">GCPのコンソール</a>で新しいプロジェクトを作る。</p>
+
+<p>作るとプロジェクトIDが発行されるので、それをコピーしとく。<br>
+URLとかみるとわかる。</p>
+
+<p>次のコマンドでデプロイできる。<br>
+Googleアカウントの認証のために勝手にブラウザが開いたりするので、びっくりしないようにする。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ appcfg.py -A ${PROJECT_ID} -V v1 update .
+</pre></div></div>
+
+<p>完了したら、<code>https://${PROJECT_ID}.appspot.com/</code>でアクセスできる。<br>
+HTTPもHTTPSも使えるっぽい。</p>
+
+<h1>
+<span id="消す" class="fragment"></span><a href="#%E6%B6%88%E3%81%99"><i class="fa fa-link"></i></a>消す</h1>
+
+<p>何かの拍子に課金されないように、作ったプロジェクトは削除しておく。<br>
+削除はIAMと管理の<a href="https://console.cloud.google.com/iam-admin/projects?hl=ja" rel="nofollow noopener" target="_blank">すべてのプロジェクト</a>からできる。</p>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

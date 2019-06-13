@@ -1,0 +1,118 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | Angular 2 Tour of Heroes: 1. Introduction</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="Angular 2 Tour of Heroes: 1. Introduction" property="og:title"><meta content="    はじめに   Angular 2のチュートリアル をやろうと思ったので、適当な和訳&amp;メモとして記録していきます。   画像とか全部持ってきてます。     TUTORIAL: TOUR OF HEROES     TypeScriptでAngular Applicationを作るチュートリアルです。       Tour of Heroes: the vision     私達の最終ゴールは、人材派遣会社がヒーローの安定を管理するのに役立つアプリケーションを構築することです。ヒーローたちでさえも仕事を見つける...   " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2016/11/11/522.html" property="og:url"><meta content="    はじめに   Angular 2のチュートリアル をやろうと思ったので、適当な和訳&amp;メモとして記録していきます。   画像とか全部持ってきてます。     TUTORIAL: TOUR OF HEROES     TypeScriptでAngular Applicationを作るチュートリアルです。       Tour of Heroes: the vision     私達の最終ゴールは、人材派遣会社がヒーローの安定を管理するのに役立つアプリケーションを構築することです。ヒーローたちでさえも仕事を見つける...   " property="twitter:description"><meta content="Angular 2 Tour of Heroes: 1. Introduction" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2016/11/11/522.html">Angular 2 Tour of Heroes: 1. Introduction</a></h1><span class="date">Posted on&nbsp;Nov 11, 2016</span></div><div class="body">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p><a href="https://angular.io/docs/ts/latest/tutorial/" rel="nofollow noopener" target="_blank">Angular 2のチュートリアル</a>をやろうと思ったので、適当な和訳&amp;メモとして記録していきます。</p>
+
+<p>画像とか全部持ってきてます。</p>
+
+<h1>
+<span id="tutorial-tour-of-heroes" class="fragment"></span><a href="#tutorial-tour-of-heroes"><i class="fa fa-link"></i></a>TUTORIAL: TOUR OF HEROES</h1>
+
+<blockquote>
+<p>TypeScriptでAngular Applicationを作るチュートリアルです。</p>
+</blockquote>
+
+<h2>
+<span id="tour-of-heroes-the-vision" class="fragment"></span><a href="#tour-of-heroes-the-vision"><i class="fa fa-link"></i></a>Tour of Heroes: the vision</h2>
+
+<blockquote>
+<p>私達の最終ゴールは、人材派遣会社がヒーローの安定を管理するのに役立つアプリケーションを構築することです。ヒーローたちでさえも仕事を見つける必要があります。</p>
+</blockquote>
+
+<p>世知辛い世の中ですね。</p>
+
+<blockquote>
+<p>もちろん、このチュートリアルで私たちは少しだけの進捗を作ります。私たちが作るべきものは多くの機能を持つでしょう。私たちはそれらの特徴を、ヒーローのリストを取得・表示し、選択したヒーローの詳細情報を編集し、様々なヒーローデータ表示をナビゲートするような、本格的でデータドリヴンなアプリケーションの中に見つけることを期待しています。</p>
+
+<p>Tour of HeroesはAngularの主要な基礎をカバーしています。私たちは要素を表示したり隠したり、ヒーローデータのリストを表示するためにビルトインなディレクティブを使うことになります。ヒーローたちの配列やヒーローの詳細を表示するためにコンポーネントを作ります。リードオンリーデータに対しては一方向データバインディングを使います。モデルを更新するために、両方向データバインディングを使って編集可能なフィールドを追加します。コンポーネントのメソッドをキーストロークやクリックのようなユーザイベントにバインドします。マスターリストからのヒーロー選択やそのヒーローの編集を詳細ビューの中で学びます。パイプを使ってデータを整形します。ヒーローを集めるために共有サービスを作ります。異なるビュー間やそのコンポーネント間を移動するためにルーティングを使います。</p>
+
+<p>私たちはAngularが必要なことはなんでもできることを信用するためにAngularの十分なコアを学びます。私たちは多くの入門レベルのことはカバーすることになりますが、さらに深く知るために多くのリンクが各章にあります。</p>
+</blockquote>
+
+<p>普通のチュートリアルってことですね！<br>
+改めてリストにするとこんな感じ？</p>
+
+<ul>
+<li>built-in directives</li>
+<li>components</li>
+<li>one-way / two-way data binding</li>
+<li>user events</li>
+<li>pipes</li>
+<li>shared services</li>
+<li>routing</li>
+</ul>
+
+<blockquote>
+<p><a href="https://angular.io/resources/live-examples/toh-6/ts/plnkr.html" rel="nofollow noopener" target="_blank">サンプル</a>を触ってみてください。</p>
+</blockquote>
+
+<h3>
+<span id="the-end-game" class="fragment"></span><a href="#the-end-game"><i class="fa fa-link"></i></a>The End Game</h3>
+
+<blockquote>
+<p>ここではこのツアーでどこに行けばいいのかを示すビジュアルアイディアを紹介します。まずは、私たちの最も英雄的な英雄を表示するダッシュボードから始めましょう。</p>
+
+<p><a href="/images/2016/11/11/1.png" target="_blank"><img src="/images/2016/11/11/1.png" alt="heroes-dashboard-1.png (14.5 kB)"></a></p>
+
+<p>ダッシュボードには"Dashboard"と"Heroes"という2つのリンクがあります。これらのリンクでDashboardとヒーロービューを行き来できます。</p>
+
+<p>ヒーロー名の"Magneta"をクリックすると、ルーターによってヒーロー名を変更できる"Hero Details"ビューに移動します。</p>
+
+<p><a href="/images/2016/11/11/2.png" target="_blank"><img src="/images/2016/11/11/2.png" alt="hero-details-1.png (13.0 kB)"></a></p>
+
+<p>"Back"ボタンをクリックすると、"Dashboard"に戻ります。上にあるリンクでメインビューのどちらかに移動できます。"Heroes"をクリックすると、"Heroes"のマスターリストビューへ移動します。</p>
+
+<p><a href="/images/2016/11/11/3.png" target="_blank"><img src="/images/2016/11/11/3.png" alt="heroes-list-2.png (24.3 kB)"></a></p>
+
+<p>違うヒーローをクリックすると、リストの下でリードオンリーなミニ詳細が私たちの選択を反映させます。</p>
+
+<p>"View Details"ボタンをクリックすると、選択したヒーローの編集画面に移動します。</p>
+
+<p>次のダイアグラムはすべてのナビゲーションを表しています。</p>
+
+<p><a href="/images/2016/11/11/4.png" target="_blank"><img src="/images/2016/11/11/4.png" alt="nav-diagram.png (39.0 kB)"></a></p>
+
+<p>これは実行中の私たちのアプリです。</p>
+
+<p><a href="/images/2016/11/11/5.gif" target="_blank"><img src="/images/2016/11/11/5.gif" alt="toh-anim.gif (274.8 kB)"></a></p>
+</blockquote>
+
+<h3>
+<span id="up-next" class="fragment"></span><a href="#up-next"><i class="fa fa-link"></i></a>Up Next</h3>
+
+<blockquote>
+<p>私たちはステップバイステップでこのTour of Heroesを一緒に構築していきます。私たちは各ステップをこれまで私たちが数え切れないアプリケーションで出会ってきた要件で動機付けます。全てに理由があります。</p>
+
+<p>そしてこの方法で多くのAngularのコア機能に触れます。</p>
+
+<p><a href="https://angular.io/docs/ts/latest/tutorial/toh-pt1.html" rel="nofollow noopener" target="_blank">さぁ始めましょう！</a></p>
+
+<blockquote>
+
+<h4>
+<span id="next-step" class="fragment"></span><a href="#next-step"><i class="fa fa-link"></i></a>Next Step</h4>
+
+<p><a href="https://angular.io/docs/ts/latest/tutorial/toh-pt1.html" rel="nofollow noopener" target="_blank">The Hero Editor</a></p>
+</blockquote>
+</blockquote>
+
+<h1>
+<span id="所感" class="fragment"></span><a href="#%E6%89%80%E6%84%9F"><i class="fa fa-link"></i></a>所感</h1>
+
+<p>コード書かなかった <img class="emoji" title=":smiley:" alt=":smiley:" src="/images/emoji/unicode/1f603.svg" height="20" width="20" align="absmiddle"> </p>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

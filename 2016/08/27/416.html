@@ -1,0 +1,133 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | jspmでReactなセットアップ</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="jspmでReactなセットアップ" property="og:title"><meta content="    はじめに   jspmを使ったReact開発をするまでの準備です。     プロジェクト作成   適当なディレクトリで npm init    npm init    jspmインストール    npm install --save-dev jspm      jspm初期化   jspmの初期化。適当に答える    $ jspm init Would you like jspm to prefix the jspm package.json properties under jspm? [yes]: Enter... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2016/08/27/416.html" property="og:url"><meta content="    はじめに   jspmを使ったReact開発をするまでの準備です。     プロジェクト作成   適当なディレクトリで npm init    npm init    jspmインストール    npm install --save-dev jspm      jspm初期化   jspmの初期化。適当に答える    $ jspm init Would you like jspm to prefix the jspm package.json properties under jspm? [yes]: Enter... " property="twitter:description"><meta content="jspmでReactなセットアップ" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2016/08/27/416.html">jspmでReactなセットアップ</a></h1><span class="date">Posted on&nbsp;Aug 27, 2016</span></div><div class="body">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>jspmを使ったReact開発をするまでの準備です。</p>
+
+<h1>
+<span id="プロジェクト作成" class="fragment"></span><a href="#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E4%BD%9C%E6%88%90"><i class="fa fa-link"></i></a>プロジェクト作成</h1>
+
+<p>適当なディレクトリで<code>npm init</code></p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+npm init
+</pre></div></div>
+
+<p>jspmインストール</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+npm install --save-dev jspm
+</pre></div></div>
+
+<h1>
+<span id="jspm初期化" class="fragment"></span><a href="#jspm%E5%88%9D%E6%9C%9F%E5%8C%96"><i class="fa fa-link"></i></a>jspm初期化</h1>
+
+<p>jspmの初期化。適当に答える</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ jspm init
+Would you like jspm to prefix the jspm package.json properties under jspm? [yes]:
+Enter server baseURL (public folder path) [./]:
+Enter jspm packages folder [./jspm_packages]:
+Enter config file path [./config.js]:
+Configuration file config.js doesn't exist, create it? [yes]:
+Enter client baseURL (public folder URL) [/]:
+Do you wish to use a transpiler? [yes]:
+Which ES6 transpiler would you like to use, Babel, TypeScript or Traceur? [babel]:
+</pre></div></div>
+
+<h1>
+<span id="indexhtml" class="fragment"></span><a href="#indexhtml"><i class="fa fa-link"></i></a>index.html</h1>
+
+<p>なんの変哲もない<code>index.html</code></p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;title&gt;index&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="app"&gt;&lt;/div&gt;
+    &lt;script src="jspm_packages/system.js"&gt;&lt;/script&gt;
+    &lt;script src="config.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      System.import("src/index.js")
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre></div></div>
+
+<h1>
+<span id="開発用サーバ" class="fragment"></span><a href="#%E9%96%8B%E7%99%BA%E7%94%A8%E3%82%B5%E3%83%BC%E3%83%90"><i class="fa fa-link"></i></a>開発用サーバ</h1>
+
+<p>なんでもいいんですが、今回は開発用のサーバとして<code>live-server</code>を使うことにします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+npm install --save-dev live-server
+</pre></div></div>
+
+<p><code>npm start</code>で起動できるように。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+  "scripts": {
+    "start": "./node_modules/.bin/live-server",
+  },
+</pre></div></div>
+
+<h1>
+<span id="react" class="fragment"></span><a href="#react"><i class="fa fa-link"></i></a>React</h1>
+
+<p>とりあえず何か表示させます。</p>
+
+<p>まずはjspmでパッケージをインストール。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+jspm install npm:react npm:react-dom
+</pre></div></div>
+
+<p><code>src/index.js</code>を作ります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+import React from "react"
+import { render } from "react-dom"
+
+class Hello extends React.Component {
+  render() {
+    return &lt;h1&gt;Hello, world!&lt;/h1&gt;
+  }
+}
+
+render(
+  &lt;Hello /&gt;,
+  document.getElementById("app")
+)
+</pre></div></div>
+
+<p>これでブラウザで表示させることができるようになったので、次のコマンドで確認できます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+npm start
+</pre></div></div>
+
+<h1>
+<span id="おわりに" class="fragment"></span><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>おわりに</h1>
+
+<p>ボイラープレート作っとけって話ですね <img class="emoji" title=":smiley:" alt=":smiley:" src="/images/emoji/unicode/1f603.svg" height="20" width="20" align="absmiddle"> </p>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

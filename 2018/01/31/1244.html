@@ -1,0 +1,169 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | Python機械学習プログラミング  第5章</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="Python機械学習プログラミング  第5章" property="og:title"><meta content="    概要   Python機械学習プログラミングの学習メモです。  勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。   今回は、第5章 次元削減でデータを圧縮する   前回:  nownab.log | Python機械学習プログラミング 第4章     資料     5.1   5.2   5.3       環境   本書の各バージョンは結構古いので、できるだけ新しいバージョンを使うようにしている。     Python 3.6.4   scikit-learn 0.19.1   matplotlib 2.1.1   " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2018/01/31/1244.html" property="og:url"><meta content="    概要   Python機械学習プログラミングの学習メモです。  勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。   今回は、第5章 次元削減でデータを圧縮する   前回:  nownab.log | Python機械学習プログラミング 第4章     資料     5.1   5.2   5.3       環境   本書の各バージョンは結構古いので、できるだけ新しいバージョンを使うようにしている。     Python 3.6.4   scikit-learn 0.19.1   matplotlib 2.1.1   " property="twitter:description"><meta content="Python機械学習プログラミング  第5章" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2018/01/31/1244.html">Python機械学習プログラミング  第5章</a></h1><span class="date">Posted on&nbsp;Jan 29, 2018</span></div><div class="body">
+<h1>
+<span id="概要" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81"><i class="fa fa-link"></i></a>概要</h1>
+
+<p>Python機械学習プログラミングの学習メモです。<br>
+勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。</p>
+
+<p>今回は、第5章 次元削減でデータを圧縮する</p>
+
+<p>前回: <a href="https://blog.nownabe.com/2018/01/24/1242.html">nownab.log | Python機械学習プログラミング 第4章</a></p>
+
+<h1>
+<span id="資料" class="fragment"></span><a href="#%E8%B3%87%E6%96%99"><i class="fa fa-link"></i></a>資料</h1>
+
+<ul>
+<li><a href="">5.1</a></li>
+<li><a href="">5.2</a></li>
+<li><a href="https://nownabe.github.io/slides/20180201-python-ml-ch05/index.html#/" rel="nofollow noopener" target="_blank">5.3</a></li>
+</ul>
+
+<h1>
+<span id="環境" class="fragment"></span><a href="#%E7%92%B0%E5%A2%83"><i class="fa fa-link"></i></a>環境</h1>
+
+<p>本書の各バージョンは結構古いので、できるだけ新しいバージョンを使うようにしている。</p>
+
+<ul>
+<li>Python 3.6.4</li>
+<li>scikit-learn 0.19.1</li>
+<li>matplotlib 2.1.1</li>
+</ul>
+
+<h1>
+<span id="メモ" class="fragment"></span><a href="#%E3%83%A1%E3%83%A2"><i class="fa fa-link"></i></a>メモ</h1>
+
+<h2>
+<span id="51-主成分分析による教師なし次元削減" class="fragment"></span><a href="#51-%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90%E3%81%AB%E3%82%88%E3%82%8B%E6%95%99%E5%B8%AB%E3%81%AA%E3%81%97%E6%AC%A1%E5%85%83%E5%89%8A%E6%B8%9B"><i class="fa fa-link"></i></a>5.1 主成分分析による教師なし次元削減</h2>
+
+<p>急に共分散行列とか固有値が出てきて、は？ってなったけど下の記事がだいぶわかりやすかった。</p>
+
+<p><a href="http://postd.cc/a-beginners-guide-to-eigenvectors-pca-covariance-and-entropy/" rel="nofollow noopener" target="_blank">固有ベクトル、主成分分析、共分散、エントロピー入門 | コンピュータサイエンス | POSTD</a></p>
+
+<h3>
+<span id="511-共分散行列の固有対を求める" class="fragment"></span><a href="#511-%E5%85%B1%E5%88%86%E6%95%A3%E8%A1%8C%E5%88%97%E3%81%AE%E5%9B%BA%E6%9C%89%E5%AF%BE%E3%82%92%E6%B1%82%E3%82%81%E3%82%8B"><i class="fa fa-link"></i></a>5.1.1 共分散行列の固有対を求める</h3>
+
+<h3>
+<span id="512-特徴変換" class="fragment"></span><a href="#512-%E7%89%B9%E5%BE%B4%E5%A4%89%E6%8F%9B"><i class="fa fa-link"></i></a>5.1.2 特徴変換</h3>
+
+<p><code>np.newaxis</code>とはなんぞ。ということで調べてみた。<code>np.newaxis</code>自体はただの<code>None</code>。numpyのsliceに自動でshapeをよろしくやってくれる機能があって、<code>None</code>のかわりに<code>np.newaxis</code>って書くとかっこいいぜってことらしい。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+&gt;&gt;&gt; a = np.array([1, 2, 3])
+&gt;&gt;&gt; b = np.array([4, 5, 6])
+&gt;&gt;&gt; a[:, np.newaxis]
+array([[1],
+       [2],
+       [3]])
+
+# Noneでも同じ
+&gt;&gt;&gt; a[:, None]
+array([[1],
+       [2],
+       [3]])
+
+# reshapeでもできる
+&gt;&gt;&gt; a.reshape(3, 1)
+array([[1],
+       [2],
+       [3]])
+
+# numpyじゃないと効かない
+&gt;&gt;&gt; c = [1, 2, 3]
+&gt;&gt;&gt; c[:, np.newaxis]
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+TypeError: list indices must be integers or slices, not tuple
+</pre></div></div>
+
+<h3>
+<span id="513-scikit-learn-の主成分分析" class="fragment"></span><a href="#513-scikit-learn-%E3%81%AE%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90"><i class="fa fa-link"></i></a>5.1.3 scikit-learn の主成分分析</h3>
+
+<h2>
+<span id="52-線形判別分析による教師ありデータ圧縮" class="fragment"></span><a href="#52-%E7%B7%9A%E5%BD%A2%E5%88%A4%E5%88%A5%E5%88%86%E6%9E%90%E3%81%AB%E3%82%88%E3%82%8B%E6%95%99%E5%B8%AB%E3%81%82%E3%82%8A%E3%83%87%E3%83%BC%E3%82%BF%E5%9C%A7%E7%B8%AE"><i class="fa fa-link"></i></a>5.2 線形判別分析による教師ありデータ圧縮</h2>
+
+<p>ここでのLDAはLinear Discriminant Analysisで、Latent Dirichlet Allocationとは別物</p>
+
+<p>全然関係ないけどなんでnotesにも同じこと書いてあるんだ…？誤植？</p>
+
+<h3>
+<span id="521-変動行列を計算する" class="fragment"></span><a href="#521-%E5%A4%89%E5%8B%95%E8%A1%8C%E5%88%97%E3%82%92%E8%A8%88%E7%AE%97%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>5.2.1 変動行列を計算する</h3>
+
+<h3>
+<span id="522-新しい特徴部分空間の線形判別を選択する" class="fragment"></span><a href="#522-%E6%96%B0%E3%81%97%E3%81%84%E7%89%B9%E5%BE%B4%E9%83%A8%E5%88%86%E7%A9%BA%E9%96%93%E3%81%AE%E7%B7%9A%E5%BD%A2%E5%88%A4%E5%88%A5%E3%82%92%E9%81%B8%E6%8A%9E%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>5.2.2 新しい特徴部分空間の線形判別を選択する</h3>
+
+<h3>
+<span id="523-新しい特徴空間にサンプルを射影する" class="fragment"></span><a href="#523-%E6%96%B0%E3%81%97%E3%81%84%E7%89%B9%E5%BE%B4%E7%A9%BA%E9%96%93%E3%81%AB%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%92%E5%B0%84%E5%BD%B1%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>5.2.3 新しい特徴空間にサンプルを射影する</h3>
+
+<h3>
+<span id="524-scikit-learn-による-lda" class="fragment"></span><a href="#524-scikit-learn-%E3%81%AB%E3%82%88%E3%82%8B-lda"><i class="fa fa-link"></i></a>5.2.4 scikit-learn による LDA</h3>
+
+<p><code>sklearn.lda.LDA</code>はもうなくなってたので、<code>sklearn.discriminant_analysis.LinearDiscriminantAnalysis</code>を使った。<br>
+ディリクレさんのLDAが実装されたのと同じタイミングで名前変わったっぽいから混同しないようにかな。</p>
+
+<h2>
+<span id="53-カーネル主成分分析を使った非線形写像" class="fragment"></span><a href="#53-%E3%82%AB%E3%83%BC%E3%83%8D%E3%83%AB%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E9%9D%9E%E7%B7%9A%E5%BD%A2%E5%86%99%E5%83%8F"><i class="fa fa-link"></i></a>5.3 カーネル主成分分析を使った非線形写像</h2>
+
+<h3>
+<span id="531-カーネル関数とカーネルトリック" class="fragment"></span><a href="#531-%E3%82%AB%E3%83%BC%E3%83%8D%E3%83%AB%E9%96%A2%E6%95%B0%E3%81%A8%E3%82%AB%E3%83%BC%E3%83%8D%E3%83%AB%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF"><i class="fa fa-link"></i></a>5.3.1 カーネル関数とカーネルトリック</h3>
+
+<h3>
+<span id="532-pythonでカーネル主成分分析を実装する" class="fragment"></span><a href="#532-python%E3%81%A7%E3%82%AB%E3%83%BC%E3%83%8D%E3%83%AB%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90%E3%82%92%E5%AE%9F%E8%A3%85%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>5.3.2 Pythonでカーネル主成分分析を実装する</h3>
+
+<p><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.pdist.html" rel="nofollow noopener" target="_blank">scipy.spatial.distance.pdist — SciPy v1.0.0 Reference Guide</a></p>
+
+<p>seuclideanは標準化されたユークリッド距離</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+&gt;&gt;&gt; x = np.array([[1,2,3],[4,5,6],[7,8,9]])
+&gt;&gt;&gt; pdist(x)
+array([ 5.19615242, 10.39230485,  5.19615242])
+</pre></div></div>
+
+<p><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.squareform.html" rel="nofollow noopener" target="_blank">scipy.spatial.distance.squareform — SciPy v1.0.0 Reference Guide</a></p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+&gt;&gt;&gt; sq_dists
+array([ 5.19615242, 10.39230485,  5.19615242])
+&gt;&gt;&gt; squareform(sq_dists)
+array([[ 0.        ,  5.19615242, 10.39230485],
+       [ 5.19615242,  0.        ,  5.19615242],
+       [10.39230485,  5.19615242,  0.        ]])
+</pre></div></div>
+
+<h3>
+<span id="533-新しいデータ点を射影する" class="fragment"></span><a href="#533-%E6%96%B0%E3%81%97%E3%81%84%E3%83%87%E3%83%BC%E3%82%BF%E7%82%B9%E3%82%92%E5%B0%84%E5%BD%B1%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>5.3.3 新しいデータ点を射影する</h3>
+
+<h3>
+<span id="534-scikit-learn-のカーネル主成分分析" class="fragment"></span><a href="#534-scikit-learn-%E3%81%AE%E3%82%AB%E3%83%BC%E3%83%8D%E3%83%AB%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90"><i class="fa fa-link"></i></a>5.3.4 scikit-learn のカーネル主成分分析</h3>
+
+<h1>
+<span id="python機械学習プログラミング" class="fragment"></span><a href="#python%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>Python機械学習プログラミング</h1>
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&amp;bc1=000000&amp;IS2=1&amp;bg1=FFFFFF&amp;fc1=000000&amp;lc1=0000FF&amp;t=nownabe0c-22&amp;o=9&amp;p=8&amp;l=as4&amp;m=amazon&amp;f=ifr&amp;ref=as_ss_li_til&amp;asins=B01HGIPIAK&amp;linkId=ef8aa25f336a01f62b00fce21e6f952a"></iframe>
+
+<h1>
+<span id="機械学習勉強会について" class="fragment"></span><a href="#%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E5%8B%89%E5%BC%B7%E4%BC%9A%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>機械学習勉強会について</h1>
+
+<p>社内で毎週開催している。本書は輪読形式でまわしているが、題材によって形式は柔軟に変えている。<br>
+毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。</p>
+
+<p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。<br>
+<a href="https://github.com/Wondershake/machine-learning-study" rel="nofollow noopener" target="_blank">Wondershake/machine-learning-study: 機械学習勉強会</a></p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+</pre></div></div>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

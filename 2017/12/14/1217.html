@@ -1,0 +1,474 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | Pythonではじめる機械学習  7回目</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="Pythonではじめる機械学習  7回目" property="og:title"><meta content=" nownab.log | Pythonではじめる機械学習 6回目     週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。   また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。   Wondershake/machine-learning-study: 機械学習勉強会   この記事は資料作りの下書き的扱い。     7章 テキストデータの処理     連続値特徴量とカテゴリ特徴量の他に、多くのアプリケーションに現れる第3の特徴...   " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2017/12/14/1217.html" property="og:url"><meta content=" nownab.log | Pythonではじめる機械学習 6回目     週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。   また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。   Wondershake/machine-learning-study: 機械学習勉強会   この記事は資料作りの下書き的扱い。     7章 テキストデータの処理     連続値特徴量とカテゴリ特徴量の他に、多くのアプリケーションに現れる第3の特徴...   " property="twitter:description"><meta content="Pythonではじめる機械学習  7回目" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2017/12/14/1217.html">Pythonではじめる機械学習  7回目</a></h1><span class="date">Posted on&nbsp;Dec 11, 2017</span></div><div class="body"><p><a href="https://blog.nownabe.com/2017/12/08/1206.html">nownab.log | Pythonではじめる機械学習 6回目</a></p>
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&amp;bc1=000000&amp;IS2=1&amp;bg1=FFFFFF&amp;fc1=000000&amp;lc1=0000FF&amp;t=nownabe0c-22&amp;o=9&amp;p=8&amp;l=as4&amp;m=amazon&amp;f=ifr&amp;ref=as_ss_li_til&amp;asins=4873117984&amp;linkId=05656b0761603e4e9f88423f102e42c6"></iframe>
+
+<p>週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。</p>
+
+<p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。<br>
+<a href="https://github.com/Wondershake/machine-learning-study" rel="nofollow noopener" target="_blank">Wondershake/machine-learning-study: 機械学習勉強会</a></p>
+
+<p>この記事は資料作りの下書き的扱い。</p>
+
+<h1>
+<span id="7章-テキストデータの処理" class="fragment"></span><a href="#7%E7%AB%A0-%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E5%87%A6%E7%90%86"><i class="fa fa-link"></i></a>7章 テキストデータの処理</h1>
+
+<ul>
+<li>連続値特徴量とカテゴリ特徴量の他に、多くのアプリケーションに現れる第3の特徴量としてテキストがある</li>
+</ul>
+
+<h2>
+<span id="71-文字列として表現されているデータのタイプ" class="fragment"></span><a href="#71-%E6%96%87%E5%AD%97%E5%88%97%E3%81%A8%E3%81%97%E3%81%A6%E8%A1%A8%E7%8F%BE%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%BF%E3%82%A4%E3%83%97"><i class="fa fa-link"></i></a>7.1 文字列として表現されているデータのタイプ</h2>
+
+<ul>
+<li>文字列データには次の4種がある
+
+<ul>
+<li>カテゴリデータ
+
+<ul>
+<li>色など</li>
+</ul>
+</li>
+<li>意味的にはカテゴリデータだが自由記述な文字列
+
+<ul>
+<li>自由記述で得られた色など</li>
+</ul>
+</li>
+<li>構造化された文字列
+
+<ul>
+<li>住所や人名、電話番号など</li>
+</ul>
+</li>
+<li>テキストデータ
+
+<ul>
+<li>ツイート、レビュー、チャットログなど</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<strong>コーパス (corpus)</strong>
+
+<ul>
+<li>テキスト解析におけるデータセットのこと</li>
+</ul>
+</li>
+<li>
+<strong>文書 (document)</strong>
+
+<ul>
+<li>1つのテキストとして表現されるデータポイント</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<span id="72-例題アプリケーション-映画レビューのセンチメント分析" class="fragment"></span><a href="#72-%E4%BE%8B%E9%A1%8C%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3-%E6%98%A0%E7%94%BB%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%81%AE%E3%82%BB%E3%83%B3%E3%83%81%E3%83%A1%E3%83%B3%E3%83%88%E5%88%86%E6%9E%90"><i class="fa fa-link"></i></a>7.2 例題アプリケーション: 映画レビューのセンチメント分析</h2>
+
+<ul>
+<li>例題としてIMDb (Internet Moview Database)を使う</li>
+<li>scikit-learnの<code>load_files</code>関数はサブディレクトリとラベルを対応付けてデータを読み込む</li>
+<li>テキストのままだと機械学習アルゴリズムは扱えないので変換する必要がある</li>
+</ul>
+
+<h2>
+<span id="73-bag-of-wordsによるテキスト表現" class="fragment"></span><a href="#73-bag-of-words%E3%81%AB%E3%82%88%E3%82%8B%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E8%A1%A8%E7%8F%BE"><i class="fa fa-link"></i></a>7.3 Bag of Wordsによるテキスト表現</h2>
+
+<ul>
+<li>
+<strong>BoW (bag-of-words)</strong>
+
+<ul>
+<li>最も単純で効率がよく、機械学習で広く用いられているテキストデータ表現</li>
+<li>単語の出現回数だけをみる</li>
+<li>語順などテキストの構造は失われる</li>
+</ul>
+</li>
+<li>BoW表現を作る手順
+
+<ul>
+<li>
+<strong>トークン分割 (tokenize)</strong>: 文書を単語に分割する</li>
+<li>
+<strong>ボキャブラリ構築 (vocabulary building)</strong>: 全文書に現れる各単語にユニークな番号を割り当てる</li>
+<li>
+<strong>エンコード</strong>: 各文書に対してボキャブラリの単語の出現回数を数える</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="731-トイデータセットに対するbow" class="fragment"></span><a href="#731-%E3%83%88%E3%82%A4%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%83%E3%83%88%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8Bbow"><i class="fa fa-link"></i></a>7.3.1 トイデータセットに対するBoW</h3>
+
+<ul>
+<li>scikit-learnでは<code>CountVectorizer</code>でBoWに変換できる</li>
+</ul>
+
+<h3>
+<span id="732-映画レビューのbow" class="fragment"></span><a href="#732-%E6%98%A0%E7%94%BB%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%81%AEbow"><i class="fa fa-link"></i></a>7.3.2 映画レビューのBoW</h3>
+
+<ul>
+<li>
+<code>CountVectorizer</code>の<code>get_feature_names</code>でボキャブラリを得られる</li>
+<li>
+<code>CountVectorizer</code>の<code>min_df</code>オプションで文書頻度によるフィルタリングができる</li>
+</ul>
+
+<h2>
+<span id="74-ストップワード" class="fragment"></span><a href="#74-%E3%82%B9%E3%83%88%E3%83%83%E3%83%97%E3%83%AF%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a>7.4 ストップワード</h2>
+
+<ul>
+<li>scikit-learnでは英語のストップワードリストが<code>feature_extraction.text</code>モジュールに用意されている</li>
+</ul>
+
+<h2>
+<span id="75-tf-idfを用いたデータのスケール変換" class="fragment"></span><a href="#75-tf-idf%E3%82%92%E7%94%A8%E3%81%84%E3%81%9F%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%AB%E5%A4%89%E6%8F%9B"><i class="fa fa-link"></i></a>7.5 tf-idfを用いたデータのスケール変換</h2>
+
+<ul>
+<li>
+<strong>tf-idf (term frequency-inverse document frequency)</strong>
+
+<ul>
+<li>$tfidf(w, d) = tf \times \log(\displaystyle \frac{N + 1}{N_w + 1}) + 1$</li>
+</ul>
+</li>
+<li>scikit-learnでは<code>TfidfTransformer</code>と<code>TfidfVectorizer</code>が用意されている</li>
+</ul>
+
+<h2>
+<span id="76-モデル係数の調査" class="fragment"></span><a href="#76-%E3%83%A2%E3%83%87%E3%83%AB%E4%BF%82%E6%95%B0%E3%81%AE%E8%AA%BF%E6%9F%BB"><i class="fa fa-link"></i></a>7.6 モデル係数の調査</h2>
+
+<h2>
+<span id="77-1単語よりも大きい単位のbag-of-words-n-グラム" class="fragment"></span><a href="#77-1%E5%8D%98%E8%AA%9E%E3%82%88%E3%82%8A%E3%82%82%E5%A4%A7%E3%81%8D%E3%81%84%E5%8D%98%E4%BD%8D%E3%81%AEbag-of-words-n-%E3%82%B0%E3%83%A9%E3%83%A0"><i class="fa fa-link"></i></a>7.7 1単語よりも大きい単位のBag-of-Words (n-グラム)</h2>
+
+<ul>
+<li>単語Nグラムを特徴量として加えるとコンテキストを学習できる
+
+<ul>
+<li>
+<strong>バイグラム (bigram)</strong>: 連続する2つのトークン</li>
+<li>
+<strong>トリグラム (trigram)</strong>: 連続する3つのトークン</li>
+</ul>
+</li>
+<li>
+<code>CountVectorizer</code>や<code>TfidfVectorizer</code>の<code>ngram_range</code>オプションで設定できる</li>
+</ul>
+
+<h2>
+<span id="78-より進んだトークン分割語幹処理見出し語化" class="fragment"></span><a href="#78-%E3%82%88%E3%82%8A%E9%80%B2%E3%82%93%E3%81%A0%E3%83%88%E3%83%BC%E3%82%AF%E3%83%B3%E5%88%86%E5%89%B2%E8%AA%9E%E5%B9%B9%E5%87%A6%E7%90%86%E8%A6%8B%E5%87%BA%E3%81%97%E8%AA%9E%E5%8C%96"><i class="fa fa-link"></i></a>7.8 より進んだトークン分割、語幹処理、見出し語化</h2>
+
+<ul>
+<li>
+<strong>語幹処理 (stemming)</strong>
+
+<ul>
+<li>単語を<strong>語幹 (word stem)</strong>を使って表現する</li>
+</ul>
+</li>
+<li>
+<strong>見出し語化 (lemmatization)</strong>
+
+<ul>
+<li>単語を<strong>見出し語 (lemma)</strong> を使って表現する</li>
+</ul>
+</li>
+<li>見出し語化のほうが高度でより良い結果が得られる</li>
+</ul>
+
+<h2>
+<span id="79-トピックモデリングと文書クラスタリング" class="fragment"></span><a href="#79-%E3%83%88%E3%83%94%E3%83%83%E3%82%AF%E3%83%A2%E3%83%87%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%A8%E6%96%87%E6%9B%B8%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>7.9 トピックモデリングと文書クラスタリング</h2>
+
+<ul>
+<li>
+<strong>トピックモデリング (topic modeling)</strong>
+
+<ul>
+<li>テキストデータによく用いられる</li>
+<li>それぞれの文書に1つ以上のトピックを割り当てる</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="791-lda-latent-dirichlet-allocation" class="fragment"></span><a href="#791-lda-latent-dirichlet-allocation"><i class="fa fa-link"></i></a>7.9.1 LDA (Latent Dirichlet Allocation)</h3>
+
+<ul>
+<li>LDAは同時に現れる頻度の高いトピック(単語の集合)を探す</li>
+<li>それぞれの文書をトピックの重み付き和として表現する</li>
+<li>大規模なデータを理解するのに有用</li>
+<li>教師データが少ないときにLDAの結果を教師データありとすると有効</li>
+</ul>
+
+<h2>
+<span id="710-まとめと展望" class="fragment"></span><a href="#710-%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A8%E5%B1%95%E6%9C%9B"><i class="fa fa-link"></i></a>7.10 まとめと展望</h2>
+
+<ul>
+<li>
+<strong>自然言語処理 (NLP: natural language processing)</strong>について、映画レビューのクラス分類を例に説明した</li>
+<li>BoW表現は以下で特に有効
+
+<ul>
+<li>SPAM検出</li>
+<li>詐欺検出</li>
+<li>センチメント分析</li>
+<li>テキストのクラス分類</li>
+</ul>
+</li>
+<li>オライリーの「<a href="http://amzn.to/2z2WNZk" rel="nofollow noopener" target="_blank">入門 自然言語処理</a>」がオススメ</li>
+<li>「<a href="http://amzn.to/2AbQVeh" rel="nofollow noopener" target="_blank">情報検索の基礎</a>」もオススメ</li>
+<li>自然言語処理はword2vecで飛躍的に進展した</li>
+<li>RNN (recurrent neural networks)が勢いある</li>
+</ul>
+
+<h1>
+<span id="8章-おわりに" class="fragment"></span><a href="#8%E7%AB%A0-%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>8章 おわりに</h1>
+
+<h2>
+<span id="81-機械学習問題へのアプローチ" class="fragment"></span><a href="#81-%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E5%95%8F%E9%A1%8C%E3%81%B8%E3%81%AE%E3%82%A2%E3%83%97%E3%83%AD%E3%83%BC%E3%83%81"><i class="fa fa-link"></i></a>8.1 機械学習問題へのアプローチ</h2>
+
+<ul>
+<li>機械学習は大きなデータ解析と意思決定過程のごく一部</li>
+<li>機械学習でゴールを達成したとき月数万ドル稼げるならやってもいい</li>
+<li>ステップ
+
+<ul>
+<li>問題定義</li>
+<li>効果の確認</li>
+<li>成功の測定方法の確認</li>
+<li>データ収集</li>
+<li>プロトタイプ構築</li>
+</ul>
+</li>
+<li>機械学習アプリケーションは本番投入しても大きなフィードバックループからは抜けられない</li>
+</ul>
+
+<h3>
+<span id="811-人間をループに組み込む" class="fragment"></span><a href="#811-%E4%BA%BA%E9%96%93%E3%82%92%E3%83%AB%E3%83%BC%E3%83%97%E3%81%AB%E7%B5%84%E3%81%BF%E8%BE%BC%E3%82%80"><i class="fa fa-link"></i></a>8.1.1 人間をループに組み込む</h3>
+
+<ul>
+<li>簡単なものだけ機械が判断し、難しいものは人間が判断するというようなアプリケーションの設計もある</li>
+</ul>
+
+<h2>
+<span id="82-プロトタイプから運用システムへ" class="fragment"></span><a href="#82-%E3%83%97%E3%83%AD%E3%83%88%E3%82%BF%E3%82%A4%E3%83%97%E3%81%8B%E3%82%89%E9%81%8B%E7%94%A8%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%B8"><i class="fa fa-link"></i></a>8.2 プロトタイプから運用システムへ</h2>
+
+<ul>
+<li>scikit-learnやPythonは解析とプロトタイプ構築に有用だが、運用システムとしても用いられる</li>
+<li>運用システムは別のツールセットで構築することもある</li>
+<li>運用システムには使い捨ての解析スクリプトとは別の性質が要求される</li>
+<li>複雑な機械学習システムを構築するなら<a href="https://research.google.com/pubs/pub43146.html" rel="nofollow noopener" target="_blank">Machine Learning: The High Interest Credit Card of Technical Debt</a>を読め</li>
+</ul>
+
+<h2>
+<span id="83-運用システムのテスト" class="fragment"></span><a href="#83-%E9%81%8B%E7%94%A8%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%AE%E3%83%86%E3%82%B9%E3%83%88"><i class="fa fa-link"></i></a>8.3 運用システムのテスト</h2>
+
+<ul>
+<li>
+<strong>オフライン評価</strong>: 事前に収集したテストセットで評価する方法</li>
+<li>
+<strong>ライブテスト</strong>: アルゴリズムを導入したシステム全体の評価
+
+<ul>
+<li><strong>A/Bテスト</strong></li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<span id="84-独自estimatorの構築" class="fragment"></span><a href="#84-%E7%8B%AC%E8%87%AAestimator%E3%81%AE%E6%A7%8B%E7%AF%89"><i class="fa fa-link"></i></a>8.4 独自Estimatorの構築</h2>
+
+<ul>
+<li>scikit-learnと互換性のあるEstimatorを実装すれば、独自アルゴリズムでもPipelineやGridSearchCVが使える</li>
+<li>前処理
+
+<ul>
+<li>
+<code>BaseEstimator</code>と<code>TransformerMixin</code>を継承</li>
+<li>
+<code>__init__</code>、<code>fit</code>、<code>transform</code>を実装</li>
+</ul>
+</li>
+<li>クラス分類器
+
+<ul>
+<li>
+<code>BaseEstimator</code>と<code>ClassifierMixin</code>を継承</li>
+<li>
+<code>__init__</code>、<code>fit</code>、<code>predict</code>を実装</li>
+</ul>
+</li>
+<li>回帰器
+
+<ul>
+<li>
+<code>BaseEstimator</code>と<code>RegressorMixin</code>を継承</li>
+<li>
+<code>__init__</code>、<code>fit</code>、<code>predict</code>を実装</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<span id="85-ここからどこへ行くのか" class="fragment"></span><a href="#85-%E3%81%93%E3%81%93%E3%81%8B%E3%82%89%E3%81%A9%E3%81%93%E3%81%B8%E8%A1%8C%E3%81%8F%E3%81%AE%E3%81%8B"><i class="fa fa-link"></i></a>8.5 ここからどこへ行くのか</h2>
+
+<h3>
+<span id="851-理論" class="fragment"></span><a href="#851-%E7%90%86%E8%AB%96"><i class="fa fa-link"></i></a>8.5.1 理論</h3>
+
+<ul>
+<li>理論を理解するために
+
+<ul>
+<li><a href="http://amzn.to/2yhgTeK" rel="nofollow noopener" target="_blank">統計的学習の基礎: データマイニング・推論・予測</a></li>
+<li>Machine Learning: An Algorithmic Perspective</li>
+<li><a href="http://amzn.to/2BfsZui" rel="nofollow noopener" target="_blank">パターン認識と機械学習</a></li>
+<li>Machine Learning: A Probabilistic Perspective</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="852-他の機械学習フレームワークとパッケージ" class="fragment"></span><a href="#852-%E4%BB%96%E3%81%AE%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF%E3%81%A8%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8"><i class="fa fa-link"></i></a>8.5.2 他の機械学習フレームワークとパッケージ</h3>
+
+<ul>
+<li>
+<a href="http://www.statsmodels.org/stable/index.html" rel="nofollow noopener" target="_blank">StatsModel</a>
+
+<ul>
+<li>Python製</li>
+<li>統計</li>
+<li>線形モデル</li>
+</ul>
+</li>
+<li>R</li>
+<li>
+<a href="http://hunch.net/%7Evw/" rel="nofollow noopener" target="_blank">Vowpal Wabbit</a>
+
+<ul>
+<li>コマンドラインから利用する</li>
+<li>C++製</li>
+</ul>
+</li>
+<li>
+<a href="https://spark.apache.org/mllib/" rel="nofollow noopener" target="_blank">MLlib</a>
+
+<ul>
+<li>Spark用</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="853-ランキング推薦システムその他の学習" class="fragment"></span><a href="#853-%E3%83%A9%E3%83%B3%E3%82%AD%E3%83%B3%E3%82%B0%E6%8E%A8%E8%96%A6%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E5%AD%A6%E7%BF%92"><i class="fa fa-link"></i></a>8.5.3 ランキング、推薦システム、その他の学習</h3>
+
+<ul>
+<li>本書で紹介しなかった機械学習タスク
+
+<ul>
+<li>ランキング
+
+<ul>
+<li>例えばサーチエンジン</li>
+</ul>
+</li>
+<li>推薦システム</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="854-確率モデル推論確率プログラミング" class="fragment"></span><a href="#854-%E7%A2%BA%E7%8E%87%E3%83%A2%E3%83%87%E3%83%AB%E6%8E%A8%E8%AB%96%E7%A2%BA%E7%8E%87%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>8.5.4 確率モデル、推論、確率プログラミング</h3>
+
+<ul>
+<li>既存のアルゴリズムを使わず、問題に特化したモデルを直接計算する</li>
+<li>確率プログラミング言語
+
+<ul>
+<li><a href="https://github.com/pymc-devs/pymc" rel="nofollow noopener" target="_blank">PyMC</a></li>
+<li><a href="http://mc-stan.org/" rel="nofollow noopener" target="_blank">Stan</a></li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="855-ニューラルネットワーク" class="fragment"></span><a href="#855-%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A9%E3%83%AB%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF"><i class="fa fa-link"></i></a>8.5.5 ニューラルネットワーク</h3>
+
+<ul>
+<li>最近の人工知能技術のブレークスルーはすべてニューラルネットワークによるもの</li>
+</ul>
+
+<h3>
+<span id="856-大規模データセットへのスケール" class="fragment"></span><a href="#856-%E5%A4%A7%E8%A6%8F%E6%A8%A1%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%83%E3%83%88%E3%81%B8%E3%81%AE%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>8.5.6 大規模データセットへのスケール</h3>
+
+<ul>
+<li>メモリが足りない場合の戦略は2つ
+
+<ul>
+<li>
+<strong>アウトオブコア学習</strong>
+
+<ul>
+<li>メインメモリに入り切らないデータを1台の計算機で処理する</li>
+<li>外部記憶装置から1サンプルもしくは複数サンプルずつ学習し、逐次モデルを更新する</li>
+<li>時間がかかる</li>
+<li>実装できないアルゴリズムもある</li>
+</ul>
+</li>
+<li>
+<strong>クラスタ並列化</strong>
+
+<ul>
+<li>Hadoop、Spark</li>
+<li>vw</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="857-名誉を得る" class="fragment"></span><a href="#857-%E5%90%8D%E8%AA%89%E3%82%92%E5%BE%97%E3%82%8B"><i class="fa fa-link"></i></a>8.5.7 名誉を得る</h3>
+
+<ul>
+<li>
+<a href="https://www.kaggle.com/" rel="nofollow noopener" target="_blank">Kaggle</a>いいよ</li>
+</ul>
+
+<h3>
+<span id="86-結論" class="fragment"></span><a href="#86-%E7%B5%90%E8%AB%96"><i class="fa fa-link"></i></a>8.6 結論</h3>
+
+<ul>
+<li>おつ！</li>
+</ul>
+
+<h1>
+<span id="所感" class="fragment"></span><a href="#%E6%89%80%E6%84%9F"><i class="fa fa-link"></i></a>所感</h1>
+
+<ul>
+<li>おわったーーー！！ <img class="emoji" title=":tada:" alt=":tada:" src="/images/emoji/unicode/1f389.svg" height="20" width="20" align="absmiddle">
+</li>
+<li>Scikit-learnの使い方が実践しながら学べてとてもよかった</li>
+<li>理論にはほぼ触れず、実践する方法にフォーカスしてたのも良い</li>
+<li>この本で学びながら同時に業務で活かせてたので良かった</li>
+</ul>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+</pre></div></div>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | Terraform 0.9を使ってみた</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="Terraform 0.9を使ってみた" property="og:title"><meta content="    はじめに   Terraformはあんまり好きではないんですが選択肢がないんで仕方なし、って感じで使ってます。  更新がはやくてちょっと使わないと色々変わってたりしますね。   今回使ったバージョンは0.9.3でした。   ちょっと躓いたのでメモを残しておきます。     状況   対象のクラウドプロバイダはGoogle Cloud Platform。  Terraform使う前にいくつか手動で作ったリソースもあるという状況。   なのでTerraformでリソースを追加するために次の2ステップが必要。 " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2017/04/15/672.html" property="og:url"><meta content="    はじめに   Terraformはあんまり好きではないんですが選択肢がないんで仕方なし、って感じで使ってます。  更新がはやくてちょっと使わないと色々変わってたりしますね。   今回使ったバージョンは0.9.3でした。   ちょっと躓いたのでメモを残しておきます。     状況   対象のクラウドプロバイダはGoogle Cloud Platform。  Terraform使う前にいくつか手動で作ったリソースもあるという状況。   なのでTerraformでリソースを追加するために次の2ステップが必要。 " property="twitter:description"><meta content="Terraform 0.9を使ってみた" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2017/04/15/672.html">Terraform 0.9を使ってみた</a></h1><span class="date">Posted on&nbsp;Apr 15, 2017</span></div><div class="body">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>Terraformはあんまり好きではないんですが選択肢がないんで仕方なし、って感じで使ってます。<br>
+更新がはやくてちょっと使わないと色々変わってたりしますね。</p>
+
+<p>今回使ったバージョンは0.9.3でした。</p>
+
+<p>ちょっと躓いたのでメモを残しておきます。</p>
+
+<h1>
+<span id="状況" class="fragment"></span><a href="#%E7%8A%B6%E6%B3%81"><i class="fa fa-link"></i></a>状況</h1>
+
+<p>対象のクラウドプロバイダはGoogle Cloud Platform。<br>
+Terraform使う前にいくつか手動で作ったリソースもあるという状況。</p>
+
+<p>なのでTerraformでリソースを追加するために次の2ステップが必要。</p>
+
+<ul>
+<li>Stateを既存リソースと同期させる</li>
+<li>新規Resourceを追加する</li>
+</ul>
+
+<h1>
+<span id="インストール" class="fragment"></span><a href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>インストール</h1>
+
+<p>Homebrewでインストール。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+brew install terraform
+</pre></div></div>
+
+<h1>
+<span id="手順" class="fragment"></span><a href="#%E6%89%8B%E9%A0%86"><i class="fa fa-link"></i></a>手順</h1>
+
+<p>手順をまとめるとこんな感じ。</p>
+
+<ul>
+<li>設定ファイルを作る
+
+<ul>
+<li>Provider</li>
+<li>Backend</li>
+</ul>
+</li>
+<li>初期化 <code>terraform init</code>
+</li>
+<li>既存リソースの同期
+
+<ul>
+<li><code>terraform import</code></li>
+<li>手動でごにょごにょ</li>
+<li><code>terraform refresh</code></li>
+</ul>
+</li>
+<li>新規リソースを追加</li>
+</ul>
+
+<h2>
+<span id="設定ファイルを作る" class="fragment"></span><a href="#%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E4%BD%9C%E3%82%8B"><i class="fa fa-link"></i></a>設定ファイルを作る</h2>
+
+<p>ProviderとBackendの設定をtfファイルとして作成する。<br>
+Providerは対象のクラウドプロバイダ、BackendはStateを管理する場所を設定する。Backendを設定することでStateをマシンローカルではなくS3やGCSで管理できる。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+terraform {
+  backend "gcs" {
+    project = "myproject"
+    bucket  = "mybucket"
+    path    = "terraform/terraform.tfstate"
+  }
+}
+
+provider "google" {
+  project     = "myproject"
+  region      = "asia-northeast1"
+}
+</pre></div></div>
+
+<p>なぜかBackendの方はファイルを読み込めず(String interpolationができない)、設定ファイル内でJSONキーを指定することができなかった。環境変数で指定するのがいいっぽい。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+export GOOGLE_CREDENTIALS=credential.json
+</pre></div></div>
+
+<h2>
+<span id="初期化" class="fragment"></span><a href="#%E5%88%9D%E6%9C%9F%E5%8C%96"><i class="fa fa-link"></i></a>初期化</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+terraform init
+</pre></div></div>
+
+<p><code>.terraform/terraform.tfstate</code>というファイルが作成される。tfstateとあるがStateを管理するファイルではない。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+{
+    "version": 3,
+    "serial": 0,
+    "lineage": "1d9b8d9e-f6b3-4078-acfb-52d352f2cb02",
+    "backend": {
+        "type": "gcs",
+        "config": {
+            "bucket": "mybucket",
+            "path": "terraform/terraform.tfstate",
+            "project": "myproject"
+        },
+        "hash": 9958457764213601045
+    },
+    "modules": [
+        {
+            "path": [
+                "root"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        }
+    ]
+}
+</pre></div></div>
+
+<h2>
+<span id="既存リソースの同期" class="fragment"></span><a href="#%E6%97%A2%E5%AD%98%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%AE%E5%90%8C%E6%9C%9F"><i class="fa fa-link"></i></a>既存リソースの同期</h2>
+
+<p>完全に新規でクラウド構築する場合以外はこの手順が一番めんどくさいはず。</p>
+
+<p>Terraformは実行時に実在のResourceを取得して設定ファイルにあるResourceとの差分を計算するわけではなく、手元のStateとResourceを照らし合わせて差分を埋めるという挙動になっている。<br>
+例えば<code>myapp</code>というVMが実在する状態で、<code>myapp</code>というVMを作成するTerraformを書いてしまうと、TerraformはStateに<code>myapp</code>が存在しないのでエラーになったりVMを無理やり再作成したりする。</p>
+
+<p>こういったことを防ぐためにはStateと既存Resourceとを同期する必要がある。</p>
+
+<p>既存ResourceをStateに反映させる公式な手段として<a href="https://www.terraform.io/docs/commands/import.html" rel="nofollow noopener" target="_blank"><code>terraform import</code></a>がある。<br>
+ただし対応してないResourceもある上Resource定義(tfファイル)は出力してくれない。</p>
+
+<p>今回はダミーResourceを定義してapplyし、生成されたダミーResourceのStateを手作業で修正して既存ResourceのStateを作成するという地道な作業を行った。</p>
+
+<p>例えば既存のGCSのバケットをTerraformで管理するまでの手順は次のようになる。<br>
+まずはダミーのResourceを定義する。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+resource "google_storage_bucket" "nownabe-mybucket" {
+  name          = "nownabe-mybucket-dummy"
+  location      = "ASIA-NORTHEAST1"
+  storage_class = "REGIONAL"
+}
+</pre></div></div>
+
+<p>このResouceをapplyする。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ terraform plan
++ google_storage_bucket.nownabe-mybucket
+    force_destroy: "false"
+    location:      "ASIA-NORTHEAST1"
+    name:          "nownabe-mybucket-dummy"
+    self_link:     "&lt;computed&gt;"
+    storage_class: "REGIONAL"
+
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+
+$ terraform apply
+google_storage_bucket.nownabe-mybucket: Creating...
+  force_destroy: "" =&gt; "false"
+  location:      "" =&gt; "ASIA-NORTHEAST1"
+  name:          "" =&gt; "nownabe-mybucket-dummy"
+  self_link:     "" =&gt; "&lt;computed&gt;"
+  storage_class: "" =&gt; "REGIONAL"
+google_storage_bucket.nownabe-mybucket: Creation complete (ID: nownabe-mybucket-dummy)
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+</pre></div></div>
+
+<p>Stateを取得する。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ terraform state pull
+{
+    "version": 3,
+    "terraform_version": "0.9.3",
+    "serial": 0,
+    "lineage": "ceab6126-6537-4726-ad0d-f60243c11f65",
+    "modules": [
+        {
+            "path": [
+                "root"
+            ],
+            "outputs": {},
+            "resources": {
+                "google_storage_bucket.nownabe-mybucket": {
+                    "type": "google_storage_bucket",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "nownabe-mybucket-dummy",
+                        "attributes": {
+                            "force_destroy": "false",
+                            "id": "nownabe-mybucket-dummy",
+                            "location": "ASIA-NORTHEAST1",
+                            "name": "nownabe-mybucket-dummy",
+                            "self_link": "https://www.googleapis.com/storage/v1/b/nownabe-mybucket-dummy",
+                            "storage_class": "REGIONAL"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                }
+            },
+            "depends_on": []
+        }
+    ]
+}
+</pre></div></div>
+
+<p>これをローカルに保存して、ID等を既存の正しいものに書き換える。<br>
+書き換えが終わったらBackendにUploadする。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+terraform state push
+</pre></div></div>
+
+<p>最後にダミーのResourceは忘れずに削除しておく。</p>
+
+<p>こんな感じで地道に既存リソースとStateを同期させていく。</p>
+
+<p><code>terraform refresh</code>という今実在しているResourceを正としてStateを修正してくれるコマンドもあるが今回は必要なかったので使っていない。</p>
+
+<h1>
+<span id="おわりに" class="fragment"></span><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>おわりに</h1>
+
+<p>Terraform、ようやく0.9まできたかという感じでした。</p>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

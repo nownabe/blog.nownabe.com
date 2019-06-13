@@ -1,0 +1,126 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | GCP updates  | November 12, 2018</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="GCP updates  | November 12, 2018" property="og:title"><meta content="    COMPUTE     Compute Engine – logging serial port output to Stackdriver: beta     This feature enables you to configure your VM instances to automatically log serial port output to Stackdriver, allowing it to persist beyond the lifetime of the VMs. Logging...   " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2018/11/28/1442.html" property="og:url"><meta content="    COMPUTE     Compute Engine – logging serial port output to Stackdriver: beta     This feature enables you to configure your VM instances to automatically log serial port output to Stackdriver, allowing it to persist beyond the lifetime of the VMs. Logging...   " property="twitter:description"><meta content="GCP updates  | November 12, 2018" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2018/11/28/1442.html">GCP updates  | November 12, 2018</a></h1><span class="date">Posted on&nbsp;Nov 28, 2018</span></div><div class="body">
+<h1>
+<span id="compute" class="fragment"></span><a href="#compute"><i class="fa fa-link"></i></a>COMPUTE</h1>
+
+<h2>
+<span id="compute-engine--logging-serial-port-output-to-stackdriver-beta" class="fragment"></span><a href="#compute-engine--logging-serial-port-output-to-stackdriver-beta"><i class="fa fa-link"></i></a>Compute Engine – logging serial port output to Stackdriver: beta</h2>
+
+<blockquote>
+<p>This feature enables you to configure your VM instances to automatically log serial port output to Stackdriver, allowing it to persist beyond the lifetime of the VMs. Logging this data to Stackdriver makes it easier for you to analyze and troubleshoot VMs that have crashed or terminated. <a href="https://cloud.google.com/compute/docs/instances/viewing-serial-port-output" rel="nofollow noopener" target="_blank">Documentation</a></p>
+</blockquote>
+
+<p>おもしろいなw<br>
+IaaSレイヤーで凝ったことしてたら必要になってくるんですね。</p>
+
+<h2>
+<span id="compute-engine--mounting-persistent-disks-into-containers-beta" class="fragment"></span><a href="#compute-engine--mounting-persistent-disks-into-containers-beta"><i class="fa fa-link"></i></a>Compute Engine – mounting persistent disks into containers: beta</h2>
+
+<blockquote>
+<p>With Container-Optimized OS 69 or newer, you can now mount persistent disks from a host VM into a container automatically, no coding required. This is similar to using the gcePersistentDisk volume type in Kubernetes. <a href="https://cloud.google.com/compute/docs/containers/configuring-options-to-run-containers#mounting_a_persistent_disk_as_a_data_volume" rel="nofollow noopener" target="_blank">Documentation</a></p>
+</blockquote>
+
+<p>GCEのコンテナを起動できる機能に関して、APIとかコンソール一発でコンテナからPersistent Diskをマウントできるようになったって感じかな。<br>
+コンテナなのにGCEを使うってときはステートフルなあれが多いと思うので、あると嬉しいのかもしれませんね。</p>
+
+<h1>
+<span id="data-analytics" class="fragment"></span><a href="#data-analytics"><i class="fa fa-link"></i></a>DATA ANALYTICS</h1>
+
+<h2>
+<span id="bigquery-sandbox-available-through-firebase-beta" class="fragment"></span><a href="#bigquery-sandbox-available-through-firebase-beta"><i class="fa fa-link"></i></a>BigQuery sandbox available through Firebase: beta</h2>
+
+<blockquote>
+<p>Firebase users on the free Spark plan can now export their project data to a BigQuery sandbox for analysis. You can export to BigQuery without a billable account to access up to 10 GB of active storage and 1 TB of processed query data per month. <a href="https://cloud.google.com/bigquery/docs/sandbox" rel="nofollow noopener" target="_blank">Documentation</a></p>
+</blockquote>
+
+<p>課金してなくてもFirebase -&gt; BigQueryを試せるようになったってことかな。</p>
+
+<h1>
+<span id="networking" class="fragment"></span><a href="#networking"><i class="fa fa-link"></i></a>NETWORKING</h1>
+
+<h2>
+<span id="content-based-https-health-checks-ga" class="fragment"></span><a href="#content-based-https-health-checks-ga"><i class="fa fa-link"></i></a>Content-based HTTPS health checks: GA</h2>
+
+<blockquote>
+<p>Health-checking mechanisms determine whether VM instances are responding properly to traffic. You can now specify the content that should be seen in the response string of an HTTPS health check for Google Cloud Platform load balancers. <a href="https://cloud.google.com/load-balancing/docs/health-check-concepts#content-based_health_checks" rel="nofollow noopener" target="_blank">Documentation</a></p>
+</blockquote>
+
+<p>ふむ。</p>
+
+<h2>
+<span id="cloud-dns--private-dns-zones-beta" class="fragment"></span><a href="#cloud-dns--private-dns-zones-beta"><i class="fa fa-link"></i></a>Cloud DNS – private DNS zones: beta</h2>
+
+<blockquote>
+<p>Private DNS zones provide a simple-to-manage internal DNS solution for your private networks on GCP. This GCP-native and managed private zone capability removes the need to provision and manage additional software and compute resources. <a href="https://cloud.google.com/blog/products/networking/introducing-private-dns-zones-resolve-to-keep-internal-networks-concealed" rel="nofollow noopener" target="_blank">Blog</a></p>
+</blockquote>
+
+<h2>
+<span id="private-google-access-from-on-premises-beta" class="fragment"></span><a href="#private-google-access-from-on-premises-beta"><i class="fa fa-link"></i></a>Private Google Access from on-premises: beta</h2>
+
+<blockquote>
+<p>This feature enables your on-premises hosts to reach Google APIs and services through a Cloud VPN tunnel or Cloud Interconnect connection. <a href="https://cloud.google.com/vpc/docs/configure-private-google-access-hybrid" rel="nofollow noopener" target="_blank">Documentation</a></p>
+</blockquote>
+
+<p>今までできなかったんですね。<br>
+こーゆーオンプレまわりの機能強化って日本企業の要望が強かったりするんだろうか。</p>
+
+<h1>
+<span id="storage" class="fragment"></span><a href="#storage"><i class="fa fa-link"></i></a>STORAGE</h1>
+
+<h2>
+<span id="cloud-firestore-emulator-beta" class="fragment"></span><a href="#cloud-firestore-emulator-beta"><i class="fa fa-link"></i></a>Cloud Firestore emulator: beta</h2>
+
+<blockquote>
+<p>By running a binary of Cloud Firestore within a local environment, you can safely test how code will interact with your apps and check the behavior of your Cloud Firestore Security Rules. <a href="https://cloud.google.com/firestore/docs/security/test-rules-emulator" rel="nofollow noopener" target="_blank">Documentation</a></p>
+</blockquote>
+
+<p>いいですね。Firestoreへの移行が着々と進んでますね。</p>
+
+<h1>
+<span id="identity--security" class="fragment"></span><a href="#identity--security"><i class="fa fa-link"></i></a>IDENTITY &amp; SECURITY</h1>
+
+<h2>
+<span id="compute-engine--new-cloud-identity-and-access-management-features-beta" class="fragment"></span><a href="#compute-engine--new-cloud-identity-and-access-management-features-beta"><i class="fa fa-link"></i></a>Compute Engine – new Cloud Identity and Access Management features: beta</h2>
+
+<blockquote>
+<p>A new resource-level IAM feature allows you to control access by setting policies on individual resources, such as VM instances or disks. And with the new IAM conditions feature you can also grant access based on predefined conditions, such as resource name prefix or time frame. <a href="https://cloud.google.com/blog/products/identity-security/get-more-control-over-your-compute-engine-resources-with-new-cloud-iam-features" rel="nofollow noopener" target="_blank">Blog</a></p>
+</blockquote>
+
+<p>より細かくIAMで権限をコントロールできるようになるみたいですね。<br>
+ブログの例だとリソースタイプとリソースの名前の前方一致という条件でポリシーを設定しています。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+{
+   "policy": {
+     "bindings": [
+      {
+        "role": "roles/compute.instanceAdmin.v1",
+        "members": [
+          "user:dev1@example.com",
+         ]
+        "condition": { 
+          "title": "dev1 prefix",
+          "description": "Role granted only for instances and disks with Name Prefix dev1",
+          "expression": 
+            "(resource.type=="compute.instances"&amp;&amp; resource.name.startsWith("projects/[PROJECT_NAME]/zones/[ZONE_NAME]/instances/dev1"))||(resource.type=="compute.disks"&amp;&amp;resource.name.startsWith("projects/[PROJECT_NAME]/zones/[ZONE_NAME]/disks/dev1"))"
+        }
+      }
+    }
+  }
+</pre></div></div>
+
+<p>もうちょっと細かく権限管理したいなぁと思うことはあったけど、あんまり多用はしたくないですね <img class="emoji" title=":sweat_smile:" alt=":sweat_smile:" src="/images/emoji/unicode/1f605.svg" height="20" width="20" align="absmiddle"> </p>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | 機械学習勉強会 20170629</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="機械学習勉強会 20170629" property="og:title"><meta content="       統計学入門 (基礎統計学Ⅰ)     東京大学教養学部統計学教室   東京大学出版会             今は 統計学入門 。  週一で1時間程度各自でもくもくして、章末問題で同期を取るという方法でやってみている。     今回の内容     第3章 2次元のデータ     3.1 2次元のデータとは       多次元データ (multi-dimensional data)     複数個の変数を観測したデータ   $p$個の変数をとるとき、$p$次元データという   多次元データの統計学は変数間の 関係 (relation) を扱う...       " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2017/07/19/1055.html" property="og:url"><meta content="       統計学入門 (基礎統計学Ⅰ)     東京大学教養学部統計学教室   東京大学出版会             今は 統計学入門 。  週一で1時間程度各自でもくもくして、章末問題で同期を取るという方法でやってみている。     今回の内容     第3章 2次元のデータ     3.1 2次元のデータとは       多次元データ (multi-dimensional data)     複数個の変数を観測したデータ   $p$個の変数をとるとき、$p$次元データという   多次元データの統計学は変数間の 関係 (relation) を扱う...       " property="twitter:description"><meta content="機械学習勉強会 20170629" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2017/07/19/1055.html">機械学習勉強会 20170629</a></h1><span class="date">Posted on&nbsp;Jul 19, 2017</span></div><div class="body"><div class="asin">
+<div class="asin-image"><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/" rel="nofollow noopener" target="_blank"><img src="http://images-jp.amazon.com/images/P/4130420658.09._SL160_.jpg" alt="統計学入門 (基礎統計学Ⅰ)" title="統計学入門 (基礎統計学Ⅰ)"></a></div>
+<div class="asin-detail">
+<p><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/" rel="nofollow noopener" target="_blank">統計学入門 (基礎統計学Ⅰ)</a></p>
+<ul>
+<li>東京大学教養学部統計学教室</li>
+<li>東京大学出版会</li>
+</ul>
+</div>
+
+<p></p>
+
+<p></p>
+</div>
+
+<p>今は<a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/" rel="nofollow noopener" target="_blank">統計学入門</a>。<br>
+週一で1時間程度各自でもくもくして、章末問題で同期を取るという方法でやってみている。</p>
+
+<h1>
+<span id="今回の内容" class="fragment"></span><a href="#%E4%BB%8A%E5%9B%9E%E3%81%AE%E5%86%85%E5%AE%B9"><i class="fa fa-link"></i></a>今回の内容</h1>
+
+<h2>
+<span id="第3章-2次元のデータ" class="fragment"></span><a href="#%E7%AC%AC3%E7%AB%A0-2%E6%AC%A1%E5%85%83%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF"><i class="fa fa-link"></i></a>第3章 2次元のデータ</h2>
+
+<h3>
+<span id="31-2次元のデータとは" class="fragment"></span><a href="#31-2%E6%AC%A1%E5%85%83%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>3.1 2次元のデータとは</h3>
+
+<ul>
+<li>
+<strong>多次元データ (multi-dimensional data)</strong>
+
+<ul>
+<li>複数個の変数を観測したデータ</li>
+<li>$p$個の変数をとるとき、$p$次元データという</li>
+<li>多次元データの統計学は変数間の<strong>関係 (relation)</strong>を扱うもので、1次元のデータの分析を$p$回繰り返すものではない</li>
+</ul>
+</li>
+<li>
+<strong>相関 (correlation)</strong>: $x$と$y$を対等に見る見方や方法。$x$と$y$の間の相互関係を扱う</li>
+<li>
+<strong>回帰 (regression)</strong>: $x$から$y$を見る。$x$から$y$が決定される様子や程度を扱う</li>
+</ul>
+
+<h3>
+<span id="32-散布図と分割表" class="fragment"></span><a href="#32-%E6%95%A3%E5%B8%83%E5%9B%B3%E3%81%A8%E5%88%86%E5%89%B2%E8%A1%A8"><i class="fa fa-link"></i></a>3.2 散布図と分割表</h3>
+
+<ul>
+<li>
+<strong>散布図 (scattergram)</strong>
+
+<ul>
+<li>$(x_i, y_i)$のデータの両方が量的データである場合、横軸に$x$、縦軸に$y$をとってプロットした図</li>
+</ul>
+</li>
+<li>
+<strong>相関関係</strong>: 2つの変数間の関係
+
+<ul>
+<li>散布図で直線関係に近い傾向があるとき「相関関係がある」という</li>
+<li>単調増加的な傾向は「正の相関関係がある」。単調減少的な傾向は「負の相関関係がある」</li>
+<li>直線度合いが強いと「強い相関関係がある」。広がりがあると「弱い相関関係がある」</li>
+</ul>
+</li>
+<li>
+<strong>分割表 (contingency table)</strong>
+
+<ul>
+<li>片方あるいは両方が質的データの場合に使う</li>
+<li>
+<strong>クロス表 (cross table)</strong>とも呼ばれる</li>
+<li>片方が量的データの場合は適当な階級に分ける</li>
+<li>両方が量的データで階級に分けて表にしたものは<strong>相関表</strong>と呼ばれる</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="33-相関係数" class="fragment"></span><a href="#33-%E7%9B%B8%E9%96%A2%E4%BF%82%E6%95%B0"><i class="fa fa-link"></i></a>3.3 相関係数</h3>
+
+<h4>
+<span id="331-積率相関係数" class="fragment"></span><a href="#331-%E7%A9%8D%E7%8E%87%E7%9B%B8%E9%96%A2%E4%BF%82%E6%95%B0"><i class="fa fa-link"></i></a>3.3.1 積率相関係数</h4>
+
+<ul>
+<li>
+<strong>相関係数 (correlation coefficient)</strong>: 相関の程度を示す指標</li>
+<li>ピアソンの<strong>積率相関係数 (product-moment correlation coefficient)</strong>
+
+<ul>
+<li>$r_{xy}=\frac{\sum(x_i-\overline{x})(y_i-\overline{y})/n}{\sqrt{\sum(x_i-\overline{x})^2/n}\sqrt{\sum(y_i-\overline{y})^2/n}}=\frac{\sum(x_i-\overline{x})(y_i-\overline{y})}{\sqrt{\sum(x_i-\overline{x})^2}\sqrt{\sum(y_i-\overline{y})^2}}$</li>
+<li>常に$-1\leq r_{xy}\leq1$</li>
+<li>
+<strong>共分散 (covariance)</strong>: 偏差積の平均$C_{xy}=\sum(x_i-\overline{x})(y_i-\overline{y})/n$</li>
+<li>$r_{xy}=\pm1$をとるのは$(x_i, y_i)$がすべて$y_i=\pm\frac{S_y}{S_x}(x_i-\overline{x})+\overline{y}$の直線にのるとき</li>
+<li>
+<strong>正の完全相関</strong>: $r_{xy}=+1$のとき</li>
+<li>
+<strong>負の完全相関</strong>: $r_{xy}=-1$のとき</li>
+</ul>
+</li>
+</ul>
+
+<h4>
+<span id="332-相関関係と因果関係" class="fragment"></span><a href="#332-%E7%9B%B8%E9%96%A2%E9%96%A2%E4%BF%82%E3%81%A8%E5%9B%A0%E6%9E%9C%E9%96%A2%E4%BF%82"><i class="fa fa-link"></i></a>3.3.2 相関関係と因果関係</h4>
+
+<ul>
+<li>
+<strong>因果関係 (causality)</strong>
+
+<ul>
+<li>相関係数が高いと強い相関関係があるということだが、必ずしも因果関係があるということではない</li>
+<li>因果関係であっても相関関係にない場合もある</li>
+</ul>
+</li>
+</ul>
+
+<h4>
+<span id="333-みかけ上の相関と偏相関係数" class="fragment"></span><a href="#333-%E3%81%BF%E3%81%8B%E3%81%91%E4%B8%8A%E3%81%AE%E7%9B%B8%E9%96%A2%E3%81%A8%E5%81%8F%E7%9B%B8%E9%96%A2%E4%BF%82%E6%95%B0"><i class="fa fa-link"></i></a>3.3.3 みかけ上の相関と偏相関係数</h4>
+
+<ul>
+<li>
+<strong>みかけ上の相関 (spurious correlation)</strong>
+
+<ul>
+<li>昼間人口をはさんで飲食店数と金融機関店舗数の間に生じるような相関関係</li>
+</ul>
+</li>
+<li>
+<strong>偏相関係数 (partial correlation coefficient)</strong>
+
+<ul>
+<li>変数が3つあるとき、1つの変数を除いたあとの残りの変数間の相関係数</li>
+<li>$r_{12\cdot3}=\frac{r_{12}-r_{13}r_{23}}{\sqrt{1-r_{13}^2}\sqrt{1-r_{23}^2}}$</li>
+</ul>
+</li>
+</ul>
+
+<h4>
+<span id="334-層別と相関" class="fragment"></span><a href="#334-%E5%B1%A4%E5%88%A5%E3%81%A8%E7%9B%B8%E9%96%A2"><i class="fa fa-link"></i></a>3.3.4 層別と相関</h4>
+
+<ul>
+<li>
+<strong>層別 (stratification)</strong>: データをグループ分けすること
+
+<ul>
+<li>層別したら相関が現れることがある</li>
+</ul>
+</li>
+</ul>
+
+<h4>
+<span id="335-順位相関係数" class="fragment"></span><a href="#335-%E9%A0%86%E4%BD%8D%E7%9B%B8%E9%96%A2%E4%BF%82%E6%95%B0"><i class="fa fa-link"></i></a>3.3.5 順位相関係数</h4>
+
+<ul>
+<li>
+<strong>順位相関係数 (rank correlation coefficient)</strong>
+
+<ul>
+<li>2つの大小関係がある質的変数間の相関を示す指標</li>
+<li>
+<strong>スピアマン (C.Spearman)</strong>の順位相関係数</li>
+<li>
+<strong>ケンドール (M. G. Kendall)</strong>の順位相関係数</li>
+</ul>
+</li>
+</ul>
+
+<h4>
+<span id="336-時系列と自己相関" class="fragment"></span><a href="#336-%E6%99%82%E7%B3%BB%E5%88%97%E3%81%A8%E8%87%AA%E5%B7%B1%E7%9B%B8%E9%96%A2"><i class="fa fa-link"></i></a>3.3.6 時系列と自己相関</h4>
+
+<ul>
+<li>
+<strong>時系列 (time series)</strong>
+
+<ul>
+<li>時間的に観測されたデータ $x_1, x_2, \dots, x_n$</li>
+</ul>
+</li>
+<li>
+<strong>自己相関係数 (auto-correlation coefficient)</strong>、<strong>系列相関係数 (serial correlation coefficient)</strong>
+
+<ul>
+<li>系列の異時点間の相関関係を示す指標</li>
+<li>
+<strong>遅れ (lag)</strong> 1の自己相関係数: $r_1=\frac{\sum_{i=1}^{n-1}(x_i-\overline{x})(x_{i+1}-\overline{x})/(n-1)}{\sum_{i=1}^n(x_i-\overline{x})^2}$</li>
+<li>$r_1&lt;0$なら各時点の傾向は1時点先には反転する様子が見られることを示す</li>
+<li>遅れ$h$の自己相関係数は: $r_h=\frac{\sum_{i=1}^{n-h}(x_i-\overline{x})(x_{i+h}-\overline{x})/(n-h)}{\sum_{i=1}^n(x_i-\overline{x})^2}$</li>
+<li>
+<strong>コレログラム (correlogram)</strong>: 自己相関係数をグラフにしたもの</li>
+</ul>
+</li>
+</ul>
+
+<h1>
+<span id="所感" class="fragment"></span><a href="#%E6%89%80%E6%84%9F"><i class="fa fa-link"></i></a>所感</h1>
+
+<ul>
+<li>TeXが久しぶりで楽しくて書きすぎた感が <img class="emoji" title=":scream:" alt=":scream:" src="/images/emoji/unicode/1f631.svg" height="20" width="20" align="absmiddle">
+</li>
+</ul>
+
+<h1>
+<span id="次回" class="fragment"></span><a href="#%E6%AC%A1%E5%9B%9E"><i class="fa fa-link"></i></a>次回</h1>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+</pre></div></div>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

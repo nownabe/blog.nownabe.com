@@ -1,0 +1,243 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | GitHub PagesをReact + CSS Modulesで</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="GitHub PagesをReact + CSS Modulesで" property="og:title"><meta content=" 個人用の名刺を作ったのでついでに ポートフォリオ を作ってみました    その際React + CSS Modulesな感じで作ったので、その雑感とやり方です :memo:     雑感     静的ページをReactで作ることについて   GitHub Pagesなので静的ページです。なかなか良かったです      生のHTMLをそのまま書くのはだるいのであり得ない。けどRuby使ったりJadeも違うなーって感じでReactでした。   ヌルヌル動かしたりするなら別かもしれませんが、     部品をコンポーネント...   " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2016/09/23/474.html" property="og:url"><meta content=" 個人用の名刺を作ったのでついでに ポートフォリオ を作ってみました    その際React + CSS Modulesな感じで作ったので、その雑感とやり方です :memo:     雑感     静的ページをReactで作ることについて   GitHub Pagesなので静的ページです。なかなか良かったです      生のHTMLをそのまま書くのはだるいのであり得ない。けどRuby使ったりJadeも違うなーって感じでReactでした。   ヌルヌル動かしたりするなら別かもしれませんが、     部品をコンポーネント...   " property="twitter:description"><meta content="GitHub PagesをReact + CSS Modulesで" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2016/09/23/474.html">GitHub PagesをReact + CSS Modulesで</a></h1><span class="date">Posted on&nbsp;Sep 23, 2016</span></div><div class="body"><p>個人用の名刺を作ったのでついでに<a href="https://nownabe.github.io/" rel="nofollow noopener" target="_blank">ポートフォリオ</a>を作ってみました <img class="emoji" title=":muscle:" alt=":muscle:" src="/images/emoji/unicode/1f4aa.svg" height="20" width="20" align="absmiddle"></p>
+
+<p>その際React + CSS Modulesな感じで作ったので、その雑感とやり方です :memo:</p>
+
+<h1>
+<span id="雑感" class="fragment"></span><a href="#%E9%9B%91%E6%84%9F"><i class="fa fa-link"></i></a>雑感</h1>
+
+<h2>
+<span id="静的ページをreactで作ることについて" class="fragment"></span><a href="#%E9%9D%99%E7%9A%84%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92react%E3%81%A7%E4%BD%9C%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>静的ページをReactで作ることについて</h2>
+
+<p>GitHub Pagesなので静的ページです。なかなか良かったです <img class="emoji" title=":blush:" alt=":blush:" src="/images/emoji/unicode/1f60a.svg" height="20" width="20" align="absmiddle"> </p>
+
+<p>生のHTMLをそのまま書くのはだるいのであり得ない。けどRuby使ったりJadeも違うなーって感じでReactでした。</p>
+
+<p>ヌルヌル動かしたりするなら別かもしれませんが、</p>
+
+<ul>
+<li>部品をコンポーネントとして再利用できる</li>
+<li>繰り返しとか楽ちん</li>
+<li>プログラミング楽しい</li>
+</ul>
+
+<p>らへんがよかったです。</p>
+
+<h2>
+<span id="css-modulesについて" class="fragment"></span><a href="#css-modules%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>CSS Modulesについて</h2>
+
+<p>今回デザインは、Atomic Designを意識してCSS Modulesを使って組みました。<br>
+CSS Modulesよかったです <img class="emoji" title=":sparkles:" alt=":sparkles:" src="/images/emoji/unicode/2728.svg" height="20" width="20" align="absmiddle"> </p>
+
+<ul>
+<li>普通のCSSで書ける</li>
+<li>コンポーネントで閉じている</li>
+</ul>
+
+<p>っていうのがよかったです。わかりやすくてシンプルになるので、脳みその負担を減らせる感じでした。</p>
+
+<p>ただもっと込み入ったもの作ろうとすると<code>composes</code>使ったりしないといけないだろうし、コンポーネントの設計にもっと力入れないといけないんだろうと思います。</p>
+
+<h2>
+<span id="atomic-designについて" class="fragment"></span><a href="#atomic-design%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>Atomic Designについて</h2>
+
+<p>React使ってるとコンポーネントがどんどん増えていくので整理する方法として、Atomic Designの考え方を取り入れようとしました。<br>
+結論としては、Atomic Designの考え方そのままでReactのコンポーネントをわけるのはやめた方がいい、ってのがわかりました <img class="emoji" title=":disappointed:" alt=":disappointed:" src="/images/emoji/unicode/1f61e.svg" height="20" width="20" align="absmiddle"> </p>
+
+<p>Atomic Designは大雑把に言えば最小単位のAtomsからMolecules、Organismsを構成してそれを組み合わせてTemplatesを作り、コンテンツを流し込んでPagesを完成させる、って考え方です。<br>
+これでReactを構成しようとすると次のような課題にぶつかりました。</p>
+
+<ul>
+<li>Templates以下の要素はコンテンツを持つべきではないので、すべてのコンテンツをRootコンポーネントに持たせる必要がある</li>
+<li>MoleculesとOrganismsを分ける明確な基準がわからん <sup id="fnref1"><a href="#fn1" rel="footnote" title="ただ勉強不足なだけだと思います">1</a></sup>
+</li>
+</ul>
+
+<p>で、最終的にこんな感じに落ち着きました。</p>
+
+<ul>
+<li>Atoms: それ以上分割できない再利用可能なコンポーネント</li>
+<li>Organisms: コンテンツを持たない再利用可能なコンポーネント</li>
+<li>Parts: コンテンツを持ち、AtomsやOrganismsで構成されるコンポーネント</li>
+</ul>
+
+<p>Partsの名前は気に入ってないんですが、いいのが思い浮かばず…。ReactでAtomic Designやってるとこのベストプラクティスが知りたいです。</p>
+
+<h1>
+<span id="how-to" class="fragment"></span><a href="#how-to"><i class="fa fa-link"></i></a>How to</h1>
+
+<p>React + CSS Modulesで静的ページを作るまで with Webpackです。<br>
+ボイラープレートを<a href="https://github.com/nownabe/skel-static_website" rel="nofollow noopener" target="_blank">nownabe/skel-static_website</a>に用意しました。</p>
+
+<h2>
+<span id="ディレクトリ構造" class="fragment"></span><a href="#%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E6%A7%8B%E9%80%A0"><i class="fa fa-link"></i></a>ディレクトリ構造</h2>
+
+<p>最終的なディレクトリ構造はこのようになります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ tree .
+.
+├── bundle.js
+├── index.html
+├── package.json
+├── src
+│   ├── index.css
+│   └── index.js
+└── webpack.config.js
+</pre></div></div>
+
+<p>ローカルでビルドして、直接masterブランチにPushしていく感じです。</p>
+
+<h2>
+<span id="セットアップ" class="fragment"></span><a href="#%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97"><i class="fa fa-link"></i></a>セットアップ</h2>
+
+<p>まずは適当なディレクトリを作って<code>npm init</code>で<code>package.json</code>を作ります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+mkdir my-website
+cd my-website
+npm init
+</pre></div></div>
+
+<p>必要なパッケージをインストールします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+npm install --save react react-dom
+npm install --save-dev webpack style-loader css-loader babel-loader babel-preset-es2015 babel-preset-react browser-sync-webpack-plugin browser-sync
+</pre></div></div>
+
+<h2>
+<span id="webpack" class="fragment"></span><a href="#webpack"><i class="fa fa-link"></i></a>Webpack</h2>
+
+<p>Webpackを設定します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+var BrowserSyncPlugin = require("browser-sync-webpack-plugin")
+
+module.exports = {
+  entry: {
+    javascript: "./src/index.js"
+  },
+  output: {
+    filename: "bundle.js"
+  },
+  devtool: "inline-source-map",
+  module: {
+    loaders: [
+      { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
+      { test: /\.css$/, loaders: ["style", "css?modules"] }
+    ]
+  },
+  resolve: {
+    extentions: ["", ".js"]
+  },
+  plugins: [
+    new BrowserSyncPlugin({
+      host: "localhost",
+      port: 3000,
+      server: { baseDir: ["."] }
+    })
+  ]
+}
+</pre></div></div>
+
+<p>これで、<code>webpack --watch</code>コマンドでいい感じに開発できるようになります。<br>
+ついでに<code>npm start</code>で起動できるように<code>package.json</code>を修正しておきます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+  // ...
+  "scripts": {
+    "start": "node_modules/.bin/webpack --watch"
+  },
+  // ...
+</pre></div></div>
+
+<h2>
+<span id="babelrc" class="fragment"></span><a href="#babelrc"><i class="fa fa-link"></i></a>.babelrc</h2>
+
+<p>バベる設定。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+{
+  "presets": ["es2015", "react"]
+}
+</pre></div></div>
+
+<h2>
+<span id="indexhtml" class="fragment"></span><a href="#indexhtml"><i class="fa fa-link"></i></a>index.html</h2>
+
+<p><code>index.html</code>は何の変哲もない感じで。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;title&gt;website&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="app"&gt;&lt;/div&gt;
+    &lt;script src="bundle.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre></div></div>
+
+<h2>
+<span id="react--css-modules" class="fragment"></span><a href="#react--css-modules"><i class="fa fa-link"></i></a>React / CSS Modules</h2>
+
+<p>最後にReactとCSS Modulesです。</p>
+
+<p>こんな感じで、javascript内でCSSを読み込んであげることで、適当なクラス名に変換されます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+import React from "react"
+import { render } from "react-dom"
+
+import styles from "./index.css"
+
+render(
+  &lt;h1 className={styles.hello}&gt;
+    Hello, world!
+  &lt;/h1&gt;,
+  document.getElementById("app")
+)
+</pre></div></div>
+
+<p>CSSは普通に書きます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+.hello {
+  font-size: 5rem;
+}
+</pre></div></div>
+
+<h1>
+<span id="おわりに" class="fragment"></span><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>おわりに</h1>
+
+<p>すぐに目で確認できるフロントのコーディングは楽しいですね <img class="emoji" title=":relaxed:" alt=":relaxed:" src="/images/emoji/unicode/263a-fe0f.svg" height="20" width="20" align="absmiddle"> </p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>ただ勉強不足なだけだと思います <a href="#fnref1" rev="footnote">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

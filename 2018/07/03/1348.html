@@ -1,0 +1,208 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | GCP updates  |  July 2, 2018</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="GCP updates  |  July 2, 2018" property="og:title"><meta content=" GCPのメルマガの雑な翻訳です。   nownab.log | GCP updates | June 6, 2018     Account Services     Finnish Google Cloud Platform region now open       The Finnish region, europe-north1, offering compute, storage, big data, and networking services, is now generally available...   " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2018/07/03/1348.html" property="og:url"><meta content=" GCPのメルマガの雑な翻訳です。   nownab.log | GCP updates | June 6, 2018     Account Services     Finnish Google Cloud Platform region now open       The Finnish region, europe-north1, offering compute, storage, big data, and networking services, is now generally available...   " property="twitter:description"><meta content="GCP updates  |  July 2, 2018" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2018/07/03/1348.html">GCP updates  |  July 2, 2018</a></h1><span class="date">Posted on&nbsp;Jul 03, 2018</span></div><div class="body"><p>GCPのメルマガの雑な翻訳です。</p>
+
+<p><a href="https://blog.nownabe.com/2018/06/08/1327.html">nownab.log | GCP updates | June 6, 2018</a></p>
+
+<h1>
+<span id="account-services" class="fragment"></span><a href="#account-services"><i class="fa fa-link"></i></a>Account Services</h1>
+
+<h2>
+<span id="finnish-google-cloud-platform-region-now-open" class="fragment"></span><a href="#finnish-google-cloud-platform-region-now-open"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/about/locations/finland/" rel="nofollow noopener" target="_blank">Finnish Google Cloud Platform region now open</a>
+</h2>
+
+<blockquote>
+<p>The Finnish region, europe-north1, offering compute, storage, big data, and networking services, is now generally available. Users in the Nordics can reduce latency by up to 65%, those in Eastern Europe by up to 88%.</p>
+
+<p>フィンランドのeurope-north1リージョンがオープンしました。Compute、Storage、Big Data、 Networkサービスが使えます。北欧ユーザは最大65%のレイテンシ削減、東欧ユーザは最大88%のレイテンシ削減ができます。</p>
+</blockquote>
+
+<p>ヨーロッパの地理全然把握してなかったけど、東欧はドイツよりフィンランドのほうが近いんですね。</p>
+
+<h1>
+<span id="compute" class="fragment"></span><a href="#compute"><i class="fa fa-link"></i></a>Compute</h1>
+
+<h2>
+<span id="support-for-nodejs-in-app-engine-standard-environment" class="fragment"></span><a href="#support-for-nodejs-in-app-engine-standard-environment"><i class="fa fa-link"></i></a><a href="https://cloudplatform.googleblog.com/2018/06/Now-you-can-deploy-your-Node-js-app-to-App-Engine-standard-environment.html" rel="nofollow noopener" target="_blank">Support for Node.js in App Engine standard environment</a>
+</h2>
+
+<blockquote>
+<p>The beta release for Node.js on App Engine standard environment offers an idiomatic developer experience, fast deployment, autoscaling, and one-click certificate generation for custom domains.</p>
+
+<p>App Engine standard environmentのNode.jsベータリリースでは親しみのある開発体験、素早いデプロイ、オートスケーリング、ワンクリックでのカスタムドメインへの証明書生成が提供されます。</p>
+</blockquote>
+
+<h2>
+<span id="attach-gpus-to-preemptible-vm-instances" class="fragment"></span><a href="#attach-gpus-to-preemptible-vm-instances"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/compute/docs/instances/preemptible" rel="nofollow noopener" target="_blank">Attach GPUs to preemptible VM instances</a>
+</h2>
+
+<blockquote>
+<p>This GA release allows users to add GPUs to preemptible virtual machine instances that function like standard GPUs but persist only for the life of the instance – at a cost of up to 70% less than on-demand GPUs.</p>
+
+<p>このGAリリースでユーザはPreemptible VMにGPUを追加できるようになります。標準のGPUと同じように使えますが、寿命はインスタンスとおなじです。オンデマンドGPUに比べて最大70%のコスト削減になります。</p>
+</blockquote>
+
+<h2>
+<span id="cloud-functions-adds-three-new-regions" class="fragment"></span><a href="#cloud-functions-adds-three-new-regions"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/functions/docs/locations" rel="nofollow noopener" target="_blank">Cloud Functions adds three new regions</a>
+</h2>
+
+<blockquote>
+<p>Three new regions for Cloud Functions are available in beta: asia-northeast1, europe-west1, and us-east1.<br>
+Cloud Functionsが新しくasia-northeast1、europe-west1、us-east1で使えるようになりました。</p>
+</blockquote>
+
+<p>やった！</p>
+
+<h2>
+<span id="compute-engine-trusted-images-policy" class="fragment"></span><a href="#compute-engine-trusted-images-policy"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/compute/docs/images/restricting-image-access" rel="nofollow noopener" target="_blank">Compute Engine Trusted Images Policy</a>
+</h2>
+
+<blockquote>
+<p>The Trusted Image Projects Organization Policy allows an organization to create images that meet quality and security criteria, share images securely, and ensure users do not use unapproved images. Now generally available. </p>
+
+<p>Trusted Image Projects Organization Policyはオーガニゼーションにおいてクオリティやセキュリティ基準を満たすイメージを作成し、安全に共有し、ユーザが許可されないイメージを使わないようにできます。すでにGAです。</p>
+</blockquote>
+
+<h2>
+<span id="sole-tenant-nodes" class="fragment"></span><a href="#sole-tenant-nodes"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/compute/docs/nodes/" rel="nofollow noopener" target="_blank">Sole-tenant nodes</a>
+</h2>
+
+<blockquote>
+<p>Normally, VM instances run on physical hosts shared by many. With sole-tenant nodes, users get the added security of having a VM instance and server dedicated solely to them. </p>
+
+<p>通常はVMインスタンスは多くのユーザによって共有される物理ホスト上で実行されます。Sole-tenantノードでは物理ホストをユーザが専有できます。</p>
+</blockquote>
+
+<h2>
+<span id="managed-ssl-certification-for-custom-domains" class="fragment"></span><a href="#managed-ssl-certification-for-custom-domains"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/appengine/docs/standard/python/securing-custom-domains-with-ssl" rel="nofollow noopener" target="_blank">Managed SSL certification for custom domains</a>
+</h2>
+
+<blockquote>
+<p>Managed SSL support for custom domains automatically provisions SSL certificates for App Engine apps and renews them before they expire, allowing you to securely serve apps to a worldwide audience. Now generally available.</p>
+
+<p>Managed SSLはApp Engineアプリのための独自ドメインのSSL証明書を自動で提供します。期限前に更新し、ワールドワイドなエンドユーザに対してセキュアにアプリケーションを提供できます。現在GAです。</p>
+</blockquote>
+
+<h1>
+<span id="storage--databases" class="fragment"></span><a href="#storage--databases"><i class="fa fa-link"></i></a>Storage &amp; Databases</h1>
+
+<h2>
+<span id="cloud-spanner-struct-object-support" class="fragment"></span><a href="#cloud-spanner-struct-object-support"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/spanner/docs/structs" rel="nofollow noopener" target="_blank">Cloud Spanner STRUCT object support</a>
+</h2>
+
+<blockquote>
+<p>Cloud Spanner allows users to create STRUCT objects from data and use them as bound parameters when running an SQL query with Cloud Spanner client libraries. Now generally available.</p>
+
+<p>Cloud SpannerでSTRUCT型のオブジェクトが扱えるようになりました。クライアントライブラリでSQLクエリのパラメータとして使うことができます。現在GAです。</p>
+</blockquote>
+
+<p>はー、おもしろい。JSON型みたいに使えるのかなー。<br>
+<a href="https://cloud.google.com/spanner/docs/data-types#struct-type" rel="nofollow noopener" target="_blank">Data Types  |  Cloud Spanner Documentation  |  Google Cloud</a></p>
+
+<h1>
+<span id="management-tools" class="fragment"></span><a href="#management-tools"><i class="fa fa-link"></i></a>Management Tools</h1>
+
+<h2>
+<span id="configure-audit-logs-in-gcp-console" class="fragment"></span><a href="#configure-audit-logs-in-gcp-console"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/logging/docs/audit/configure-data-access" rel="nofollow noopener" target="_blank">Configure audit logs in GCP Console</a>
+</h2>
+
+<blockquote>
+<p>In this beta release, users can configure Data Access audit logs directly from the GCP Console without having to edit their Identity and Access Management policies.</p>
+
+<p>このベータリリースで、IAMポリシーを編集しなくてもGCPコンソールから直接Data Access監査ログを設定できるようになります。</p>
+</blockquote>
+
+<h1>
+<span id="networking" class="fragment"></span><a href="#networking"><i class="fa fa-link"></i></a>Networking</h1>
+
+<h2>
+<span id="quic-support-for-https-load-balancing" class="fragment"></span><a href="#quic-support-for-https-load-balancing"><i class="fa fa-link"></i></a><a href="https://cloudplatform.googleblog.com/2018/06/Introducing-QUIC-support-for-HTTPS-load-balancing.html" rel="nofollow noopener" target="_blank">QUIC support for HTTP(S) load balancing</a>
+</h2>
+
+<blockquote>
+<p>QUIC support for HTTP(S) load balancing is now generally available. QUIC is a UDP-based encrypted transport protocol optimized for HTTP(S) and features faster connections, stream-based multiplexing, and improved loss recovery.</p>
+
+<p>HTTP(S) LBのQUICサポートがGAになりました。QUICはHTTP(S)に最適化されたUDPベースの暗号化転送プロトコルで高速な接続、ストリームベースの多重化、損失回復の改善が特徴です。</p>
+</blockquote>
+
+<p>ほぼ設定いらずでLBがよろしくやってくれんのは便利ですねー。</p>
+
+<h2>
+<span id="cloud-interconnect-options" class="fragment"></span><a href="#cloud-interconnect-options"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/interconnect/" rel="nofollow noopener" target="_blank">Cloud Interconnect options</a>
+</h2>
+
+<blockquote>
+<p>Cloud Interconnect provides options to connect on-premises infrastructure to GCP, including Dedicated Interconnect, Partner Interconnect, and IPsec VPN. Now generally available.</p>
+
+<p>Cloud InterconnectはオンプレとGCPの接続を提供します。Dedicated Interconnect、Partner Interconnect、IPsec VPNがあります。現在GAです。</p>
+</blockquote>
+
+<h1>
+<span id="big-data" class="fragment"></span><a href="#big-data"><i class="fa fa-link"></i></a>Big Data</h1>
+
+<h2>
+<span id="apache-parquet-and-apache-orc-ingestion-into-bigquery" class="fragment"></span><a href="#apache-parquet-and-apache-orc-ingestion-into-bigquery"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-parquet" rel="nofollow noopener" target="_blank">Apache Parquet and Apache ORC ingestion into BigQuery</a>
+</h2>
+
+<blockquote>
+<p>Native support for loading Parquet data from Cloud Storage into BigQuery is now generally available. And native support for loading ORC files into BigQuery is now in beta.</p>
+
+<p>Cloud StorageからParquet形式でのBigQueryへのデータロードのサポートはGAです。ORC形式のサポートはベータです。</p>
+</blockquote>
+
+<h2>
+<span id="cloud-dataflows-streaming-engine" class="fragment"></span><a href="#cloud-dataflows-streaming-engine"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/dataflow/service/dataflow-service-desc#dataflow-streaming-engine" rel="nofollow noopener" target="_blank">Cloud Dataflow's Streaming Engine</a>
+</h2>
+
+<blockquote>
+<p>Cloud Dataflow's Streaming Engine moves time window and shuffle storage from worker virtual machines to the Cloud Dataflow service backend. Benefits include more responsive autoscaling in streaming pipelines and better supportability. Now in beta.</p>
+
+<p>Cloud Dataflowのストリーミングエンジンは時間ウィンドウとシャッフルストレージをワーカーVMではなくCloud Dataflowのバックエンドで処理します。ストリーミングパイプラインにおいて応答性の高いオートスケーリングやサポート性の向上がメリットです。現在ベータです。</p>
+</blockquote>
+
+<h2>
+<span id="custom-service-accounts-for-cloud-dataflow" class="fragment"></span><a href="#custom-service-accounts-for-cloud-dataflow"><i class="fa fa-link"></i></a><a href="">Custom service accounts for Cloud Dataflow</a>
+</h2>
+
+<blockquote>
+<p>To enhance security, Cloud Dataflow users can now specify a custom service account instead of using the default service account by using the service account pipeline option. Now generally available.</p>
+
+<p>セキュリティを高めるため、Cloud Dataflowではデフォルトのサービスアカウントではなく独自のサービスアカウントを使うことができます。現在GAです。</p>
+</blockquote>
+
+<h1>
+<span id="developer-tools" class="fragment"></span><a href="#developer-tools"><i class="fa fa-link"></i></a>Developer Tools</h1>
+
+<h2>
+<span id="cloud-pubsub-notifications-for-cloud-source-repositories" class="fragment"></span><a href="#cloud-pubsub-notifications-for-cloud-source-repositories"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/source-repositories/docs/quickstart-adding-pubsub-notifications" rel="nofollow noopener" target="_blank">Cloud Pub/Sub notifications for Cloud Source Repositories</a>
+</h2>
+
+<blockquote>
+<p>This beta release lets users add Cloud Pub/Sub event notifications to Cloud Source Repositories projects or repositories using the gcloud command-line tool.</p>
+
+<p>このベータリリースで、gcloudによってCloud Source RepositoriesのイベントをCloud Pub/Subに流すことができるようになります。</p>
+</blockquote>
+
+<h2>
+<span id="cloud-source-repositories-private-security-key-detection" class="fragment"></span><a href="#cloud-source-repositories-private-security-key-detection"><i class="fa fa-link"></i></a><a href="https://cloud.google.com/source-repositories/docs/detecting-security-keys" rel="nofollow noopener" target="_blank">Cloud Source Repositories private security key detection</a>
+</h2>
+
+<blockquote>
+<p>This beta release of pushblock for Cloud Source Repositories prevents users from storing security keys in Cloud Source Repositories by checking for GCP service account credentials and PEM-encoded private keys. <br>
+このベータリリースでCloud Source RepositoryはGCPのサービスアカウントのクレデンシャルとPEM形式の秘密鍵をチェックし、レポジトリにPushされるのを防ぎます。</p>
+</blockquote>
+
+<p>Pushを防いでくれるのめっちゃいいですね。</p>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

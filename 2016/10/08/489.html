@@ -1,0 +1,137 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | GitHubでコミットにVerifiedバッジをつけたい</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="GitHubでコミットにVerifiedバッジをつけたい" property="og:title"><meta content="    はじめに   GitHubのコミットに署名するとVerifiedというバッジが表示されます。   基本的にGitHubに書いてあるとおりにやってます。   https://help.github.com/categories/gpg/   MacのEl Capitanでやってみました。     準備する   必要なものをインストール    brew install gnupg2 gpg-agent pinentry-mac      GPG鍵を作る   鍵を作る。最後にパスフレーズを入力する。    $ gpg... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2016/10/08/489.html" property="og:url"><meta content="    はじめに   GitHubのコミットに署名するとVerifiedというバッジが表示されます。   基本的にGitHubに書いてあるとおりにやってます。   https://help.github.com/categories/gpg/   MacのEl Capitanでやってみました。     準備する   必要なものをインストール    brew install gnupg2 gpg-agent pinentry-mac      GPG鍵を作る   鍵を作る。最後にパスフレーズを入力する。    $ gpg... " property="twitter:description"><meta content="GitHubでコミットにVerifiedバッジをつけたい" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2016/10/08/489.html">GitHubでコミットにVerifiedバッジをつけたい</a></h1><span class="date">Posted on&nbsp;Oct 08, 2016</span></div><div class="body">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>GitHubのコミットに署名するとVerifiedというバッジが表示されます。</p>
+
+<p>基本的にGitHubに書いてあるとおりにやってます。<br>
+<a href="https://help.github.com/categories/gpg/" class="autolink" rel="nofollow noopener" target="_blank">https://help.github.com/categories/gpg/</a></p>
+
+<p>MacのEl Capitanでやってみました。</p>
+
+<h1>
+<span id="準備する" class="fragment"></span><a href="#%E6%BA%96%E5%82%99%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>準備する</h1>
+
+<p>必要なものをインストール</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+brew install gnupg2 gpg-agent pinentry-mac
+</pre></div></div>
+
+<h1>
+<span id="gpg鍵を作る" class="fragment"></span><a href="#gpg%E9%8D%B5%E3%82%92%E4%BD%9C%E3%82%8B"><i class="fa fa-link"></i></a>GPG鍵を作る</h1>
+
+<p>鍵を作る。最後にパスフレーズを入力する。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ gpg --gen-key
+gpg (GnuPG) 2.0.30; Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Please select what kind of key you want:
+   (1) RSA and RSA (default)
+   (2) DSA and Elgamal
+   (3) DSA (sign only)
+   (4) RSA (sign only)
+Your selection? 1
+RSA keys may be between 1024 and 4096 bits long.
+What keysize do you want? (2048) 4096
+Requested keysize is 4096 bits
+Please specify how long the key should be valid.
+         0 = key does not expire
+      &lt;n&gt;  = key expires in n days
+      &lt;n&gt;w = key expires in n weeks
+      &lt;n&gt;m = key expires in n months
+      &lt;n&gt;y = key expires in n years
+Key is valid for? (0)
+Key does not expire at all
+Is this correct? (y/N) y
+
+GnuPG needs to construct a user ID to identify your key.
+
+Real name: onamae
+Email address: onamae@example.com
+Comment: for GitHub
+You selected this USER-ID:
+    "onamae (for GitHub) &lt;onamae@example.com&gt;"
+
+Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
+</pre></div></div>
+
+<p>鍵がどこにあるかは次のコマンドで確認できる。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ gpg --list-keys --keyid-format LONG
+/Users/hubot/.gnupg/secring.gpg
+------------------------------------
+pub   4096R/3AA5C34371567BD2 2016-03-10 [expires: 2017-03-10]
+uid                          Hubot 
+sub   4096R/42B317FD4BA89E7A 2016-03-10
+</pre></div></div>
+
+<p>この<code>pub</code>のとこの<code>3AA5C34371567BD2</code>ってのがGPG鍵のID。</p>
+
+<h1>
+<span id="githubに登録する" class="fragment"></span><a href="#github%E3%81%AB%E7%99%BB%E9%8C%B2%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>GitHubに登録する</h1>
+
+<p>GitHubにGPG鍵を登録する。</p>
+
+<p>次のコマンドで公開鍵をエクスポートできるので、コピペして<a href="https://github.com/settings/keys" rel="nofollow noopener" target="_blank">GitHubに登録</a>する。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+gpg --armor --export 3AA5C34371567BD2
+</pre></div></div>
+
+<h1>
+<span id="gitに登録する" class="fragment"></span><a href="#git%E3%81%AB%E7%99%BB%E9%8C%B2%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Gitに登録する</h1>
+
+<p>Gitに署名用として作ったGPG鍵を登録する。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+git config --global user.signingkey 3AA5C34371567BD2
+</pre></div></div>
+
+<p>次のコマンドで、自動でコミットに署名するようになる。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+git config --global commit.gpgSign true
+</pre></div></div>
+
+<p><code>push.gpgSign</code>ですべてのpushに署名するのもあった。</p>
+
+<h1>
+<span id="mac用の設定をする" class="fragment"></span><a href="#mac%E7%94%A8%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%82%92%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Mac用の設定をする</h1>
+
+<p>パスフレーズをKeyChainとよろしくやってくれる感じっぽい。</p>
+
+<p><code>.gnupg/gpg.conf</code>の<code>user-agent</code>のコメントを外す。</p>
+
+<p><code>.gnupg/gpg-agent.conf</code>というファイルを次の内容で作る。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+use-standard-socket
+pinentry-program /usr/local/bin/pinentry-mac
+</pre></div></div>
+
+<h1>
+<span id="できた" class="fragment"></span><a href="#%E3%81%A7%E3%81%8D%E3%81%9F"><i class="fa fa-link"></i></a>できた</h1>
+
+<p>こんな感じ</p>
+
+<p><a href="/images/2016/10/08/1.png" target="_blank"><img width="1008" alt="スクリーンショット 2016-10-08 21.17.15.png (94.5 kB)" src="/images/2016/10/08/1.png"></a></p>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>

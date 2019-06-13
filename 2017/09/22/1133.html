@@ -1,0 +1,358 @@
+<!DOCTYPE html><html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1" name="viewport"><title>nownab.log | Ruby Hack Challengeに参加した</title><link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><link href="/styles/ress.min.css" rel="stylesheet"><link href="/styles/font-awesome.min.css" rel="stylesheet"><link href="/styles/index.css" rel="stylesheet"><link href="/styles/highlight.css" rel="stylesheet"><link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.ico"><meta content="nownab.log" property="og:site_name"><meta content="article" property="og:type"><meta content="summary" property="twitter:card"><meta content="@nownabe" property="twitter:site"><meta content="@nownabe" property="twitter:creator"><meta content="https://blog.nownabe.com/images/nownabe.png" property="twitter:image"><meta content="1775541316016693" property="fb:app_id"><meta content="Ruby Hack Challengeに参加した" property="og:title"><meta content=" Cookpad Ruby Hack Challenge に参加したのでイベントの様子と後日談を。   イベント自体は8月に開催されたが、イベントで取り組んだ課題をその後もほそぼそと続けていてある程度使えるようになったので記事にしておく。イベント直後にブログ書くのを忘れていたわけではない。   Ruby Hack ChallengeはRubyインタプリタをHackする方法をRuby開発者の笹田さんがまる二日かけて無料で教えてくださるというなんとも太っ腹なイベント。もともとRubyのVMに興味があっ... " property="og:description"><meta content="https://blog.nownabe.com/images/nownabe.png" property="og:image"><meta content="https://blog.nownabe.com/2017/09/22/1133.html" property="og:url"><meta content=" Cookpad Ruby Hack Challenge に参加したのでイベントの様子と後日談を。   イベント自体は8月に開催されたが、イベントで取り組んだ課題をその後もほそぼそと続けていてある程度使えるようになったので記事にしておく。イベント直後にブログ書くのを忘れていたわけではない。   Ruby Hack ChallengeはRubyインタプリタをHackする方法をRuby開発者の笹田さんがまる二日かけて無料で教えてくださるというなんとも太っ腹なイベント。もともとRubyのVMに興味があっ... " property="twitter:description"><meta content="Ruby Hack Challengeに参加した" property="twitter:title"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37580164-4', 'auto');
+ga('send', 'pageview');</script></head><body><div id="site-container"><div id="header-container"><header class="container" role="banner"><h1><a href="/"><img alt="now" src="/images/nownabe.svg">nownab.log</a></h1><p>nownab.log is the life log of nownabe</p></header></div><div id="content-container"><div class="container" id="content" role="main"><article><div class="title"><h1><a href="/2017/09/22/1133.html">Ruby Hack Challengeに参加した</a></h1><span class="date">Posted on&nbsp;Sep 22, 2017</span></div><div class="body"><p><a href="Cookpad%20Ruby%20Hack%20Challenge">Cookpad Ruby Hack Challenge</a>に参加したのでイベントの様子と後日談を。</p>
+
+<p>イベント自体は8月に開催されたが、イベントで取り組んだ課題をその後もほそぼそと続けていてある程度使えるようになったので記事にしておく。イベント直後にブログ書くのを忘れていたわけではない。</p>
+
+<p>Ruby Hack ChallengeはRubyインタプリタをHackする方法をRuby開発者の笹田さんがまる二日かけて無料で教えてくださるというなんとも太っ腹なイベント。もともとRubyのVMに興味があったので応募してみたら運良く当選した。</p>
+
+<p>イベントの教材やアンケートは<a href="https://github.com/ko1/rubyhackchallenge" rel="nofollow noopener" target="_blank">ko1/rubyhackchallenge</a>で公開されているので、興味がある人は眺めてみると楽しいと思う。</p>
+
+<h1>
+<span id="感想" class="fragment"></span><a href="#%E6%84%9F%E6%83%B3"><i class="fa fa-link"></i></a>感想</h1>
+
+<p>まず感想。参加して非常によかった。良かった理由は次の3つ</p>
+
+<ul>
+<li>Ruby開発の流れを知ることができた</li>
+<li>RubyVMの話を聞くことができた</li>
+<li>取り組んだ課題を継続できていて楽しい</li>
+</ul>
+
+<p>前者のRuby開発はもちろんRubyを使った開発ではなくRuby本体の開発のこと。どのようにCのソースコードを編集して、どのようにテストを書いて、どのようにテストするかという流れを知ることができてよかった。共通課題として<code>Array</code>にメソッドを追加してテストをするといった課題がいくつか用意されていて実際に流れを体験できた。また、Rubyソースコードの構造、開発で使うコマンドとともに共通課題のその辺りの流れが丁寧に資料にまとまっていて、それも非常に良かった。</p>
+
+<p>当日はRubyのVMを開発した笹田さんがいらっしゃったのでVMの話を直接聞くことができた。YARVについては<a href="http://magazine.rubyist.net/?0006-YarvManiacs" rel="nofollow noopener" target="_blank">Rubyist Magazine</a>で連載があったり<a href="http://www.atdot.net/yarv/yarvarch.ja.html" rel="nofollow noopener" target="_blank">設計メモ(解説サイト)</a>があったり<a href="https://ipsj.ixsq.nii.ac.jp/ej/?action=pages_view_main&amp;active_action=repository_view_main_item_detail&amp;item_id=16575&amp;item_no=1&amp;page_id=13&amp;block_id=8" rel="nofollow noopener" target="_blank">論文</a>が公開されてたりWebでもいろいろな情報が手に入るが、読んでも理解できなかったことや<code>yield</code>より<code>block.call</code>が遅い理由やこれを作るのに時間がかかったという苦労話を直接聞けたのが非常に楽しかった。</p>
+
+<p>課題については後述する。</p>
+
+<h1>
+<span id="イベントスケジュール" class="fragment"></span><a href="#%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>イベントスケジュール</h1>
+
+<p>イベントは次のスケジュールで進行した。</p>
+
+<ul>
+<li>1日目
+
+<ul>
+<li>10:00 オープニング</li>
+<li>10:30 ハックに必要となる事前知識の講義</li>
+<li>12:00 ランチ</li>
+<li>13:00 共通課題</li>
+<li>16:00 発展課題の紹介</li>
+</ul>
+</li>
+<li>2日目
+
+<ul>
+<li>10:00 発展課題の開始</li>
+<li>11:30 まつもとゆきひろ氏　特別講演</li>
+<li>12:00 Ruby開発者を交えてのランチ</li>
+<li>13:00 Ruby開発者との Q&amp;A セッション</li>
+<li>14:00 発展課題の再開</li>
+<li>18:30 打ち上げパーティー</li>
+</ul>
+</li>
+</ul>
+
+<p>多くの時間は共通課題、発展課題へもくもく取り組むという時間で、質問があれば質問するという形だった。</p>
+
+<h1>
+<span id="イベントの様子" class="fragment"></span><a href="#%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%81%AE%E6%A7%98%E5%AD%90"><i class="fa fa-link"></i></a>イベントの様子</h1>
+
+<p>2日ともCookpad社の会議室の一室で講義を受けもくもくするという形だった。</p>
+
+<p>参加者は学生が多く社会人の方が少ないぐらいの印象だった。元々は学生が対象のつもりだったらしい。</p>
+
+<p>1日目はまず事前知識の講義があり、その後共通課題に取り組んだ。</p>
+
+<p>2日目にはMatzの講演があったり、Rubyコミッタの方たちとのランチがあったり、ミニ<a href="http://rubykaigi.org/2017/presentations/rubylangorg.html" rel="nofollow noopener" target="_blank">Ruby Committers vs the World</a><sup id="fnref1"><a href="#fn1" rel="footnote" title="RubyKaigi恒例のRubyコミッタの方々へのQ&amp;Aセッション">1</a></sup>があったりした。また、取材も入っていてちょいちょいカメラマンが写真を撮っていたりもした。</p>
+
+<p>イベントの裏でRuby開発者会議をやっていて、ランチ、Q&amp;Aセッション、打ち上げには結構多くのコミッタの方が参加されていた。打ち上げでは発展課題を発表する場もあり、そこで議論が深まったり有益なフィードバックがあったりもした。</p>
+
+<p>参加者、講師、サポート陣はイベントを通してGitterでコミュニケーションを取っていて課題を報告したり気軽に質問したりしていた。</p>
+
+<h1>
+<span id="発展課題" class="fragment"></span><a href="#%E7%99%BA%E5%B1%95%E8%AA%B2%E9%A1%8C"><i class="fa fa-link"></i></a>発展課題</h1>
+
+<p>発展課題は自分の好きなテーマでRubyをHackしてみようというものだった。いくつか用意されている課題もあり自分はその中の1つに取り組んだ。</p>
+
+<p>取り組んだ課題は「<a href="https://github.com/ko1/rubyhackchallenge/blob/master/tasks.md#%E3%83%93%E3%83%AB%E3%83%89%E3%81%97%E3%81%9F-ruby-%E3%81%A7%E3%81%AE-gem-%E3%81%AE%E3%83%86%E3%82%B9%E3%83%88" rel="nofollow noopener" target="_blank">ビルドしたRubyでのGemテスト</a>」で説明文はこんな感じ(なぜか途中で切れている)。</p>
+
+<blockquote>
+<p>現在、ビルドした Ruby で Gem など、外部ライブラリを、ビルドした Ruby で、他の影響を与えないで適切にテストする方法がありません。 というのも、Gem の場合、Gem のテストのために他の Gem を利用したりする必要があるためです。 区切られた環境（サンドボックス）を用いることで</p>
+</blockquote>
+
+<p>はじめはCIでテストできればいいのでは？という考えからDockerをサンドボックスとしてテストする仕組みを作ったり、インストール先を<code>./configure --prefix</code>で指定してそこをサンドボックスにしたテスト環境を作ったりした。</p>
+
+<p>しかし、話を聞くとそれらでは要件を満たせず不充分だったのでイベント後も継続して取り組んでいる。よくよく考えると説明に書いてあるのだが、前提知識不足や理解不足があって要件を完全に理解できていなかった。推測も含まれているので間違っている部分もあるかもしれないが、前提知識をまとめるとこんな感じになる。</p>
+
+<ul>
+<li>Ruby開発者はRubyを修正してテストプログラムを実行するというサイクルを短期間でまわす</li>
+<li>修正したコードはできるだけちゃちゃっとテストしたい</li>
+<li>修正したコードで主要なGemが動作するかをテストしたいことがある</li>
+<li>今現在<code>make install</code>しないでGemをテストする手段がない</li>
+<li>普段の開発では<code>make install</code>しない</li>
+<li>
+<code>make install</code>するとローカルのシステムに影響を与える可能性があるのでやりたくない</li>
+<li>
+<code>make install</code>したとしても簡単にGemをそのRuby環境でテストする仕組みがあるわけではない</li>
+</ul>
+
+<p>以上の前提を踏まえて「修正したRubyで<code>make install</code>せずに手軽にGemをテストする仕組み」というのがこの課題の要件になる。</p>
+
+<p>要件を整理できたところで作ったものを紹介する。</p>
+
+<h1>
+<span id="gemtester" class="fragment"></span><a href="#gemtester"><i class="fa fa-link"></i></a>GemTester</h1>
+
+<p>ここでは技術的な解説はせず使い方を説明する。</p>
+
+<p>作業はGitHubの<a href="https://github.com/ruby/ruby" rel="nofollow noopener" target="_blank">ruby/ruby</a>をForkした<a href="https://github.com/nownabe/ruby" rel="nofollow noopener" target="_blank">nownabe/ruby</a>のgem_tester-2.4.2ブランチとtestgemブランチでやっている(まだ整理できていない)。</p>
+
+<p>ビルドされたRubyでのGemのテストを<code>make test-gems</code>で実行できる。これを実行するクラスには<code>GemTester</code>と名づけた。現在GemTesterには次の機能がある。</p>
+
+<ul>
+<li>ビルドしたRubyを使ったサンドボックスの提供</li>
+<li>GemTesterに登録されたGemまたは指定したGemのテスト
+
+<ul>
+<li>Gemのソースコードのダウンロード (レポジトリをclone)</li>
+<li>依存パッケージのインストール</li>
+<li>テストコマンドの実行</li>
+</ul>
+</li>
+</ul>
+
+<p>GemTesterには予め主要なGem<sup id="fnref2"><a href="#fn2" rel="footnote" title="BestGemsのTop100のうちインストール済みのRuby 2.4.2でテストが通るもの">2</a></sup>が登録されていて<a href="https://github.com/nownabe/ruby/blob/gem_tester-2.4.2/tool/gem_tester/conditions.yaml" rel="nofollow noopener" target="_blank">conditions.yaml</a>で確認することができる。GemTesterはテストするGemが指定されなかった場合は<code>conditions.yaml</code>に登録されているすべてのGemをテストする。また、通常はgemspecのメタ情報などからレポジトリを推測するが、推測できないGemのレポジトリやテストコマンドも<code>conditions.yaml</code>が持っている。推測できる場合は<code>conditions.yaml</code>に登録がなくてもテストができる。</p>
+
+<p>GemTesterを実行するにはRubyのビルドに必要なパッケージの他、各Gemをビルド・テストするために必要なパッケージを予めインストールしておく必要がある。Ubuntu 16.04<sup id="fnref3"><a href="#fn3" rel="footnote" title="GCEでテスト">3</a></sup>では次の操作でGemTesterを実行できる。GemTesterに登録されているGemすべてをテストするにはそれなりの時間がかかるので注意して欲しい(cloneが走るので初回は特に)。</p>
+
+<p>準備:</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+# Rubyのビルドに必要なパッケージをインストール
+sudo apt-get install -y \
+  git ruby autoconf bison gcc make zlib1g-dev libffi-dev \
+  libreadline-dev libgdbm-dev libssl-dev
+
+# 登録されているGemをテストするのに必要なパッケージをインストール
+sudo apt-get install -y \
+  g++ libncurses5-dev ragel libxml2-dev libpq-dev libsqlite3-dev \
+  libfcgi-dev libmysqlclient-dev libidn11-dev libcurl4-gnutls-dev \
+  nodejs libtool cmake
+
+# 作業ディレクトリを作成
+mkdir gemtester
+cd gemtester
+
+# Rubyのソースコードをclone
+git clone https://github.com/nownabe/ruby.git -b gem_tester-2.4.2
+
+# Rubyをビルド
+cd ruby
+autoconf
+cd ..
+mkdir build
+cd build
+../ruby/configure --prefix=`pwd`/../install --enable-shared
+make -j
+</pre></div></div>
+
+<p>GemTesterの実行:</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ make test-gems
+./miniruby -I../ruby/lib -I. -I.ext/common  ../ruby/tool/runruby.rb --extout=.ext  ../ruby/tool/test_gems.rb  
+Installing bundler
+Fetching: bundler-1.15.4.gem (100%)
+
+* Gem Test: arel (branch or tag: )
+- Installing arel
+Fetching: arel-8.0.0.gem (100%)
+- Cloning repository from https://github.com/rails/arel.git to /home/nownabe/gemtester/build/gems/repos/github.com/rails/arel
+- Updating repository /home/nownabe/gemtester/build/gems/repos/github.com/rails/arel
+- Installing dependencies
+- Executing command: `rake`
+- Succeeded!
+
+...
+
+* Gem Test: unf_ext (branch or tag: )
+- Installing unf_ext
+- Cloning repository from https://github.com/knu/ruby-unf_ext.git to /home/nownabe/gemtester/build/gems/repos/github.com/knu/ruby-unf_ext
+- Updating repository /home/nownabe/gemtester/build/gems/repos/github.com/knu/ruby-unf_ext
+- Installing dependencies
+- Executing command: `rake compile`
+- Executing command: `rake`
+- Succeeded!
+
+Total: 70, Success: 70, Failure: 0
+</pre></div></div>
+
+<p>これで70個の主要なGemをテストすることができる。</p>
+
+<p>毎回すべてのGemをテストしていると時間がかかるので特定のGemだけをテストできるようにもなっている。特定のGemをテストするには次のようにする。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+make test-gems GEMS="activesupport,benchmark_driver"
+</pre></div></div>
+
+<p>Gemのブランチやタグを指定したいときは次のようにする。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+make test-gems GEMS="activesupport:v4.2.9"
+</pre></div></div>
+
+<p>また、MacでHomebrewを使用している場合は次のようなコマンドになる<sup id="fnref4"><a href="#fn4" rel="footnote" title="まだ全部テストできてないので多分どこかでこける">4</a></sup>。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+# configure
+../ruby/configure \
+  --prefix=`pwd`/../install \
+  --enable-shared \
+  --with-openssl-dir="$(brew --prefix openssl)" \
+  --with-readline-dir="$(brew --prefix readline)" \
+  --disable-libedit
+
+# GemTester
+make test-gems OPTIONS="--with-homebrew"
+</pre></div></div>
+
+<p>実際に効果があるのか確かめるために<code>String#capitalize</code>が小文字を返すように変更してGemTesterを実行してみる。<code>string.c</code>の<code>rb_str_capitalize</code>を次のように変更する。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+static VALUE
+rb_str_capitalize(int argc, VALUE *argv, VALUE str)
+{
+  return rb_str_dup(str);
+}
+</pre></div></div>
+
+<p>次に<code>make run</code>で確認する。まずは<code>test.rb</code>を作成する。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+puts "hello, world!".capitalize
+</pre></div></div>
+
+<p>これを実行する。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ make run
+compiling ../ruby/string.c
+linking miniruby
+./miniruby -I../ruby/lib -I. -I.ext/common   ../ruby/test.rb 
+hello, world!
+</pre></div></div>
+
+<p>小文字になっている。この状態でGemをテストすればいくつかのGemのテストが失敗することが期待される。実際にGemTesterでテストしてみる。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ make test-gems
+
+...
+
+Total: 70, Success: 34, Failure: 36
+Failed gems:
+  - arel
+  - actionmailer
+  - actionpack
+  - actionview
+  - activejob
+  - activemodel
+  - activeresource
+  - activesupport
+  - aws-sdk
+  - coffee-rails
+  - excon
+  - faraday
+  - globalid
+  - highline
+  - httparty
+  - jbuilder
+  - mail
+  - mini_portile
+  - mini_portile2
+  - multi_json
+  - net-ssh
+  - rack
+  - rack-test
+  - redis
+  - rdoc
+  - rest-client
+  - rspec-core
+  - rspec-expectations
+  - rspec-mocks
+  - sass
+  - sinatra
+  - slop
+  - sprockets-rails
+  - thor
+  - thread_safe
+  - treetop
+</pre></div></div>
+
+<p>70個中36個のGemのテストが失敗している。</p>
+
+<h1>
+<span id="今後" class="fragment"></span><a href="#%E4%BB%8A%E5%BE%8C"><i class="fa fa-link"></i></a>今後</h1>
+
+<p>なんとなく動くようにはなったものの技術的な部分や進め方で課題がある。</p>
+
+<ul>
+<li>そもそも方向性はこれでいいのかわかってない</li>
+<li>インストールされたRuby 2.4.2環境下だとテストがパスするのに、GemTester環境下だとテストがパスしないGemがわずかにある</li>
+<li>自分の環境でしか実行できていないので環境の差異によって実行できないケースが考えられる</li>
+<li>今は手動でCheckoutしてビルドして<code>make test-gems</code>コマンドを打つということをやっているのでCI的な仕組みの構築をしたい</li>
+<li>CI的な仕組みを構築してさらに多くの環境でテストをしたい</li>
+<li>オプションで<code>--depth 1</code>でcloneするなどして実行時間の短縮をしたい</li>
+<li>(Linux|Mac)でしか動かないGemなど特定の環境でしかテストできないGemを特定の条件下でのみテストするようにしたい</li>
+<li>継続的にGemのテスト手順などの変更に追従する必要がある</li>
+<li>継続的にRubyの変更に追従する必要がある</li>
+<li>継続的な開発が必要になるのでどの段階でPull Requestを出すか</li>
+<li>(そもそもテストがちゃんと動かないGemのテストの修正)</li>
+</ul>
+
+<p>楽しいので続けていたが、せっかくならRuby本体にマージされると嬉しいので今後はいろいろ調整しつつ開発を続けていきたい。今年は残念ながらRubyKaigiに参加できなかったので開発者の方々と話はできなかったが、Ruby Hack ChallengeのIssueで引き続きサポートしていただいているので相談していきたい。</p>
+
+<h1>
+<span id="おわりに" class="fragment"></span><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>おわりに</h1>
+
+<p>笹田さん、サポート陣の皆様、Rubyコミッタの皆様、Cookpad社、ありがとうございました。勉強になりました。</p>
+
+<p>発展課題はこんなに続けるとは思っていなかったが、思えばこういう仕組みを整備するみたいなことは好きなので自分に向いている課題だったのかもしれない。</p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p><a href="http://rubykaigi.org/2017/" rel="nofollow noopener" target="_blank">RubyKaigi</a>恒例のRubyコミッタの方々へのQ&amp;Aセッション <a href="#fnref1" rev="footnote">↩</a></p>
+</li>
+
+<li id="fn2">
+<p><a href="http://bestgems.org/total" rel="nofollow noopener" target="_blank">BestGems</a>のTop100のうちインストール済みのRuby 2.4.2でテストが通るもの <a href="#fnref2" rev="footnote">↩</a></p>
+</li>
+
+<li id="fn3">
+<p>GCEでテスト <a href="#fnref3" rev="footnote">↩</a></p>
+</li>
+
+<li id="fn4">
+<p>まだ全部テストできてないので多分どこかでこける <a href="#fnref4" rev="footnote">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div><div class="sns-buttons"><ul><li><div class="twitter-button"><a class="twitter-share-button" data-related="nownabe" data-via="nownabe" href="https://twitter.com/share">Tweet</a></div></li><li><div class="fb-like" data-action="like" data-layout="button_count" data-share="true" data-show-faces="false" data-size="small"></div></li><li><a class="tumblr-share-button" href="https://www.tumblr.com/share"></a></li><li><a class="hatena-bookmark-button" data-hatena-bookmark-lang="ja" data-hatena-bookmark-layout="standard-balloon" href="http://b.hatena.ne.jp/entry/" title="このエントリーをはてなブックマークに追加"><img alt="このエントリーをはてなブックマークに追加" height="20" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" style="border: none;" width="20"></a></li><li><a class="pocket-btn" data-lang="en" data-pocket-count="horizontal" data-pocket-label="pocket"></a></li></ul></div></article></div></div><div id="footer-container"><footer class="container"><p class="copyright">Copyright &copy; 2016<img alt="now" src="/images/nownabe.svg">nownabe All Right Reserved.</p></footer><aside class="container" id="information"><ul id="links"><li><a href="https://nownabe.github.io"><img alt="nownabe.github.io" src="/images/nownabe.svg"></a></li><li><a href="https://github.com/nownabe"><img alt="github.com/nownabe" src="/images/github.svg"></a></li><li><a href="https://qiita.com/nownabe"><img alt="qiita.com/nownabe" src="/images/qiita.svg"></a></li><li><a href="https://twitter.com/nownabe"><img alt="twitter.com/nownabe" src="/images/twitter.svg"></a></li><li><a href="https://www.facebook.com/nownabe"><img alt="www.facebook.com/nownabe" src="/images/facebook.png"></a></li></ul></aside><div class="container"><p>今が最高</p></div></div><div id="fb-root"></div></div><script>// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><script>// Facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><script>// Pocket
+!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><script async="async" charset="utf-8" src="https://b.st-hatena.com/js/bookmark_button.js"></script></body></html>
