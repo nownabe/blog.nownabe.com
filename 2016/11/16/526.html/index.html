@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>RubyVMの様子を観察したい - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2016/11/16/526.html/">
+  <meta property="og:title" content="RubyVMの様子を観察したい - nownab.log">
+  <meta property="og:description" content="はじめに Rubyのプログラムは内部的にはコンパイルされてバイトコードとなり、RubyVM上で実行されます。 RubyVMはスタックマシンという">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="RubyVMの様子を観察したい - nownab.log">
+  <meta property="twitter:description" content="はじめに Rubyのプログラムは内部的にはコンパイルされてバイトコードとなり、RubyVM上で実行されます。 RubyVMはスタックマシンという">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2016/11/16/526.html/">RubyVMの様子を観察したい</a></h1>
+    <span class="date">Posted on Nov 16, 2016</span>
+  </div>
+  <div class="body">
+    
+
+<h1 id="はじめに">はじめに</h1>
+
+<p>Rubyのプログラムは内部的にはコンパイルされてバイトコードとなり、RubyVM上で実行されます。
+RubyVMはスタックマシンというタイプのVMで、オブジェクトをスタックに積み上げて演算を行っています。</p>
+
+<p>諸事情によりスタックの様子を観察しながらRubyVMの命令単位でRubyプログラムを実行したかったのでやってみました。</p>
+
+<p>いい記事があったのでこちらの記事を参考にさせていただきました。
+<a href="http://www.callcc.net/diary/20121216.html">RubyプログラムをVM命令単位で実行する</a></p>
+
+<p>環境はMacです。</p>
+
+<h1 id="gdbセットアップ">gdbセットアップ</h1>
+
+<p>gdbというデバッグツールを使います。</p>
+
+<p>まずはHomebrewでインストールします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew install gdb</code></pre></div>
+<p>Macだとgdbにコード署名とやらをする必要があります。次の記事を参考に署名しました。
+<a href="http://qiita.com/takahashim/items/204ffa698afe09bd4e28">OS XでGDBを使う（ためにコード署名をする）</a></p>
+
+<p>taskgatedの再起動とありますが、プロセスをkillしてやればOKです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo pkill taskgated</code></pre></div>
+<p>最後に署名します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">codesign -s gdb-cert <span class="k">$(</span>which gdb<span class="k">)</span></code></pre></div>
+<h1 id="rubyをビルド">Rubyをビルド</h1>
+
+<p>Rubyのソースコードを持ってきて、ちょろっとデバッグ用のコードを追加します。
+今回は<a href="https://github.com/nownabe/ruby/tree/2.3.2_trace">2.3.2にパッチをあてたもの</a>をGitHubにコミットしています。 (<a href="https://github.com/nownabe/ruby/commit/d21082f0d183f8770b17afd37bdcd508d685be8a">diff</a>)</p>
+
+<p>このパッチはかんたんに言うと、<code>tool/instructions.rb</code>という<code>insns.def</code>からRubyVMの命令の実体を自動生成するツールを修正して、各命令の先頭に<code>rb_vmdebug_stack_dump_raw_current()</code>の実行と、命令名の出力を追加しています。</p>
+
+<p>今回はこれを使います。まずはcloneします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git clone git://github.com/nownabe/ruby.git -b <span class="m">2</span>.3.2_trace --depth <span class="m">1</span>
+<span class="nb">cd</span> ruby</code></pre></div>
+<p><code>configure</code>を作ります。<code>autoconf</code>コマンドが入ってなければ<code>brew install autoconf</code>でインストールできます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">autoconf</code></pre></div>
+<p>configureします。ここでデバッグ情報を付与してコンパイルされるように指定します。rubyのREADMEに</p>
+
+<blockquote>
+<p>Some C compiler flags may be added by default depending on your environment. Specify <code>optflags=..</code> and <code>warnflags=..</code> as necessary to override them.</p>
+</blockquote>
+
+<p>とあったので<code>optflags</code>を使うのがいいみたいです。<code>--enable-debug-env</code>で<code>debug.c</code>もビルドされてデバッグが便利な感じになります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">./configure --enable-debug-env <span class="nv">optflags</span><span class="o">=</span><span class="s2">&#34;-g -O0&#34;</span></code></pre></div>
+<p>makeします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">make -j8</code></pre></div>
+<h1 id="試す">試す</h1>
+
+<p>実際にRubyのプログラムを実行してみます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">ENABLE_TRAP</span><span class="o">=</span><span class="nb">true</span> gdb --args ./ruby --disable-gems -e <span class="s1">&#39;puts &#34;Hello, gdb&#34;&#39;</span></code></pre></div>
+<p>実行するとこんな感じになります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nv">ENABLE_TRAP</span><span class="o">=</span><span class="nb">true</span> gdb --args ./ruby --disable-gems -e <span class="s1">&#39;puts &#34;Hello, gdb&#34;&#39;</span>
+GNU gdb <span class="o">(</span>GDB<span class="o">)</span> <span class="m">7</span>.12
+Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2016</span> Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version <span class="m">3</span> or later &lt;http://gnu.org/licenses/gpl.html&gt;
+<span class="c1"># ...省略...</span>
+Reading symbols from ./ruby...done.
+<span class="o">(</span>gdb<span class="o">)</span></code></pre></div>
+<p><code>(gdb)</code>ってところで指示を待ってます。</p>
+
+<p><code>r</code>を入力してRubyプログラムを開始すると、スタックと次に実行されるRubyVMの命令が表示されます。</p>
+
+<pre><code>(gdb) r
+Starting program: /Users/nownabe/src/github.com/nownabe/ruby/ruby --disable-gems -e puts\ \&quot;Hello,\ gdb\&quot;
+-- stack frame ------------
+0000 (0x101100000): 10187f300
+0001 (0x101100008): 10187f2d8
+0002 (0x101100010): 00000000
+0003 (0x101100018): 10185fa28
+-- Control frame information -----------------------------------------------
+c:0002 p:0000 s:0004 E:001070 EVAL   -e:1 [FINISH]
+c:0001 p:0000 s:0002 E:0023f0 (none) [FINISH]
+
+### Next: trace ########################
+[New Thread 0x1333 of process 40014]
+
+Thread 1 received signal SIGTRAP, Trace/breakpoint trap.
+0x00007fff9386c8ea in __kill () from /usr/lib/system/libsystem_kernel.dylib
+(gdb)
+</code></pre>
+
+<p>RubyVMのスタックとコントロールフレーム、次の命令が表示されています。
+<code>c</code>で次の命令を実行できます。</p>
+
+<pre><code>(gdb) c
+Continuing.
+-- stack frame ------------
+0000 (0x101100000): 10187f300
+0001 (0x101100008): 10187f2d8
+0002 (0x101100010): 00000000
+0003 (0x101100018): 10185fa28
+-- Control frame information -----------------------------------------------
+c:0002 p:0002 s:0004 E:001070 EVAL   -e:1 [FINISH]
+c:0001 p:0000 s:0002 E:0023f0 (none) [FINISH]
+
+### Next: putself ########################
+
+Thread 1 received signal SIGTRAP, Trace/breakpoint trap.
+0x00007fff9386c8ea in __kill () from /usr/lib/system/libsystem_kernel.dylib
+(gdb)
+</code></pre>
+
+<p><code>trace</code>命令が実行されました。もう一度<code>c</code>で進んでみます。</p>
+
+<pre><code>(gdb) c
+Continuing.
+-- stack frame ------------
+0000 (0x101100000): 10187f300
+0001 (0x101100008): 10187f2d8
+0002 (0x101100010): 00000000
+0003 (0x101100018): 10185fa28
+0004 (0x101100020): 1018d6628
+-- Control frame information -----------------------------------------------
+c:0002 p:0003 s:0005 E:001070 EVAL   -e:1 [FINISH]
+c:0001 p:0000 s:0002 E:0023f0 (none) [FINISH]
+
+### Next: putstring ########################
+
+Thread 1 received signal SIGTRAP, Trace/breakpoint trap.
+0x00007fff9386c8ea in __kill () from /usr/lib/system/libsystem_kernel.dylib
+(gdb)
+</code></pre>
+
+<p><code>putself</code>命令が実行されて、スタックに何か積まれました。
+これが何かを確かめてみましょう。スタックの値を使い、<code>rb_p 0x1018d6628</code>と入力してみます。
+<code>rb_p</code>はいわゆるRubyの<code>p</code>メソッドです。</p>
+
+<pre><code>(gdb) rb_p 0x1018d6628
+main
+(gdb)
+</code></pre>
+
+<p><code>main</code>と表示されました。<code>putself</code>命令で<code>main</code>が積まれたことがわかります。</p>
+
+<p><code>putstring</code>を実行してみましょう。</p>
+
+<pre><code>(gdb) c
+Continuing.
+-- stack frame ------------
+0000 (0x101100000): 10187f300
+0001 (0x101100008): 10187f2d8
+0002 (0x101100010): 00000000
+0003 (0x101100018): 10185fa28
+0004 (0x101100020): 1018d6628
+0005 (0x101100028): 10185f988
+-- Control frame information -----------------------------------------------
+c:0002 p:0005 s:0006 E:001070 EVAL   -e:1 [FINISH]
+c:0001 p:0000 s:0002 E:0023f0 (none) [FINISH]
+
+### Next: opt_send_without_block ########################
+
+Thread 1 received signal SIGTRAP, Trace/breakpoint trap.
+0x00007fff9386c8ea in __kill () from /usr/lib/system/libsystem_kernel.dylib
+</code></pre>
+
+<p>さらにスタックに積まれました。これを確認してみると、文字列を確認できます。</p>
+
+<pre><code>(gdb) rb_p 0x10185f988
+&quot;Hello, gdb&quot;
+(gdb)
+</code></pre>
+
+<p><img src="/images/2016/11/16/1.gif" alt="tty.gif (878.7 kB)" /></p>
+
+<h1 id="おわりに">おわりに</h1>
+
+<p>これでいろいろ捗りそうです！</p>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

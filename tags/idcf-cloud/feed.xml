@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>idcf cloud on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/idcf-cloud/</link>
+    <description>Recent content in idcf cloud on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Mon, 10 Aug 2015 23:46:12 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/idcf-cloud/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>お名前.comからIDCF DNSに移行した話</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena10.html/</link>
+      <pubDate>Mon, 10 Aug 2015 23:46:12 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena10.html/</guid>
+      <description>ネームサーバーをお名前.comからIDCF DNSに移行しました。 IDCF DNSは1ドメイン50円で100レコードまでなら使い放題です（クエリ数に関</description>
+    </item>
+    
+    <item>
+      <title>超簡単にサーバのデータをIDCFオブストに定期バックアップするItamaeプラグイン</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena08.html/</link>
+      <pubDate>Thu, 21 May 2015 00:47:50 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena08.html/</guid>
+      <description>はじめに サーバのあるディレクトリ内のファイルをIDCFのオブジェクトストレージに定期バックアップするItamaeプラグインを作ったので紹介し</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>golang on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/golang/</link>
+    <description>Recent content in golang on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Mon, 27 Aug 2018 17:23:59 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/golang/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>KubernetsのSecretのYAMLを暗号化したりするツールを作った</title>
+      <link>https://blog.nownabe.com/2018/08/27/1385.html/</link>
+      <pubDate>Mon, 27 Aug 2018 17:23:59 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/08/27/1385.html/</guid>
+      <description>KubernetesのSecretのYAMLを暗号化したり、暗号化されたYAMLを編集したりするsekretというツールを作りました。 nownabe/sekret Ku</description>
+    </item>
+    
+    <item>
+      <title>GoのKubernetesオブジェクトをYAMLからDeserializeする</title>
+      <link>https://blog.nownabe.com/2018/08/22/1382.html/</link>
+      <pubDate>Wed, 22 Aug 2018 23:09:06 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/08/22/1382.html/</guid>
+      <description>GoでKubernetesまわりのツールを作るときにYAMLを読んでKubernetesオブジェクトにしたいということがあったので調べました</description>
+    </item>
+    
+    <item>
+      <title>Google Cloud Endpoints for gRPCの認証まわり</title>
+      <link>https://blog.nownabe.com/2018/02/05/1248.html/</link>
+      <pubDate>Mon, 05 Feb 2018 15:49:43 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/02/05/1248.html/</guid>
+      <description>はじめに Cloud Endpoints for gRPCの認証まわりでちょっと引っかかったので整理しました。 GCPのドキュメントは大元の英語版であっても間違ってる箇所が多いの</description>
+    </item>
+    
+    <item>
+      <title>goenvを使うようにした</title>
+      <link>https://blog.nownabe.com/2017/12/27/1232.html/</link>
+      <pubDate>Wed, 27 Dec 2017 11:14:19 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/12/27/1232.html/</guid>
+      <description>HomebrewではなくgoenvでGoを管理するようにしました。 Vimからgocodeを使おうとしてgocode panickedというエラ</description>
+    </item>
+    
+    <item>
+      <title>GolangでNEologdでMeCab</title>
+      <link>https://blog.nownabe.com/2017/12/25/1228.html/</link>
+      <pubDate>Mon, 25 Dec 2017 16:41:47 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/12/25/1228.html/</guid>
+      <description>Goで形態素解析APIを作りたくて、GoでMeCabをNEologdで使う方法を調べました。 ライブラリ いくつかあります。 github.com/yukihir0/mecab-go bitbucket.org/rerofumi/mecab github.com/bluele/mecab-golang github.com/shogo82148/go-mecab MeCabで</description>
+    </item>
+    
+    <item>
+      <title>誰でもBrainf*ckっぽい言語が作れる？ツール作った</title>
+      <link>https://blog.nownabe.com/2017/03/25/660.html/</link>
+      <pubDate>Sat, 25 Mar 2017 13:46:53 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/03/25/660.html/</guid>
+      <description>はじめに なぜかbrainf*ckを実装した。 ついでに誰でもオリジナルなbrainf*ckっぽいプログラムを実行できるようにしてみた 💡 https://github.com/nownabe/brainfuck-go 使い方</description>
+    </item>
+    
+    <item>
+      <title>GolangのEchoにコントリビュートした</title>
+      <link>https://blog.nownabe.com/2017/03/19/649.html/</link>
+      <pubDate>Sun, 19 Mar 2017 13:29:20 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/03/19/649.html/</guid>
+      <description>最近Golangを始めて、ちょっとしたものなら書けるようになってきた。 仕事ではGolangで新しいAPIサーバを書いてたり、プライベートでは</description>
+    </item>
+    
+    <item>
+      <title>Goでファイルを暗号化するCLIツール作った</title>
+      <link>https://blog.nownabe.com/2017/03/15/647.html/</link>
+      <pubDate>Wed, 15 Mar 2017 22:00:19 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/03/15/647.html/</guid>
+      <description>はじめに Goで暗号化まわりのプログラムを書いてて、同じアルゴリズムで手軽に暗号化/復号する方法がなかった(見つからなかった)ので作りました。</description>
+    </item>
+    
+    <item>
+      <title>Golangの標準sqlパッケージ</title>
+      <link>https://blog.nownabe.com/2017/01/16/570.html/</link>
+      <pubDate>Thu, 12 Jan 2017 17:56:02 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/01/16/570.html/</guid>
+      <description>http://go-database-sql.org/index.html を読んだ。のでまとめてみた 😃 内容はちょっと古いっぽい。 Overview sql.DBはDB connectionではない sql.DBはインターフェイスの抽象</description>
+    </item>
+    
+    <item>
+      <title>Google App Engineでフォーム入力</title>
+      <link>https://blog.nownabe.com/2016/10/05/487.html/</link>
+      <pubDate>Wed, 05 Oct 2016 23:23:52 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/10/05/487.html/</guid>
+      <description>はじめに 次のお題はこちらです 🌞 https://github.com/GoogleCloudPlatform/appengine-guestbook-go/blob/part3-handlingforms/hello.go hello.go package hello import ( &amp;#34;fmt&amp;#34; &amp;#34;html/template&amp;#34; &amp;#34;net/http&amp;#34; ) func init() { http.HandleFunc(&amp;#34;/&amp;#34;, root) http.HandleFunc(&amp;#34;/sign&amp;#34;, sign) } func root(w http.ResponseWriter, r *http.Request) { fmt.Fprint(w, guestbookForm) } const guestbookForm = ` &amp;lt;html&amp;gt; &amp;lt;body&amp;gt; &amp;lt;form action=&amp;#34;/sign&amp;#34; method=&amp;#34;post&amp;#34;&amp;gt; &amp;lt;div&amp;gt;&amp;lt;textarea name=&amp;#34;content&amp;#34; rows=&amp;#34;3&amp;#34; cols=&amp;#34;60&amp;#34;&amp;gt;&amp;lt;/textarea&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;&amp;lt;input type=&amp;#34;submit&amp;#34; value=&amp;#34;Sign Guestbook&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;/form&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; ` func sign(w http.ResponseWriter, r *http.Request) { err</description>
+    </item>
+    
+    <item>
+      <title>Google App EngineでGoogle認証</title>
+      <link>https://blog.nownabe.com/2016/10/05/486.html/</link>
+      <pubDate>Wed, 05 Oct 2016 21:49:05 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/10/05/486.html/</guid>
+      <description>はじめに 前回の続きでGoogle認証をさせるアプリを作るチュートリアルをやりました 💪 hello.go package hello import ( &amp;#34;fmt&amp;#34; &amp;#34;net/http&amp;#34; &amp;#34;appengine&amp;#34; &amp;#34;appengine/user&amp;#34; ) func init() { http.HandleFunc(&amp;#34;/&amp;#34;, handler) } func handler(w http.ResponseWriter, r *http.Request) { c := appengine.NewContext(r) u := user.Current(c)</description>
+    </item>
+    
+    <item>
+      <title>Google App EngineでHello World with Golang</title>
+      <link>https://blog.nownabe.com/2016/10/04/485.html/</link>
+      <pubDate>Tue, 04 Oct 2016 22:32:31 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/10/04/485.html/</guid>
+      <description>はじめに GAEのQuick Startをやりました。 そのときのメモです。 📝 😅 SDKインストール ここからダウンロードして、パスを通す。 $ wget https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_darwin_amd64-1.9.40.zip $ unzip</description>
+    </item>
+    
+  </channel>
+</rss>

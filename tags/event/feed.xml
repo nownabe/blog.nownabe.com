@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>event on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/event/</link>
+    <description>Recent content in event on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Fri, 22 Jul 2016 00:47:58 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/event/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>プログラミングのための確率統計読み始めた</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena14.html/</link>
+      <pubDate>Fri, 22 Jul 2016 00:47:58 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena14.html/</guid>
+      <description>プログラミングのための確率統計 平岡 和幸, 堀 玄オーム社 機械学習勉強会はエクストリームリーディングでやってみようということになり、まず選んだのが</description>
+    </item>
+    
+    <item>
+      <title>機械学習勉強会というものを始めた</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena13.html/</link>
+      <pubDate>Fri, 22 Jul 2016 00:44:19 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena13.html/</guid>
+      <description>最近、機械学習をちゃんと学ぼうと思って機械学習勉強会というものを始めました。 学生時代にも少しかじったことはあるんですが、もう色々忘れてるし数</description>
+    </item>
+    
+    <item>
+      <title>tokyo.ex</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena12.html/</link>
+      <pubDate>Tue, 24 May 2016 00:36:44 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena12.html/</guid>
+      <description>tokyo.exに参加してきました。Elixir初心者なので全部の話が面白かった 🤗 セッション Phoenixを使った案件でリリースまでに起きた</description>
+    </item>
+    
+    <item>
+      <title>サバフェス始まりました</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena05.html/</link>
+      <pubDate>Sat, 14 Mar 2015 04:04:43 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena05.html/</guid>
+      <description>今日（昨日？）から始まったサバフェスというイベントに参加してます。 https://2015spring.serverfesta.info/ ISUCONとかと似たようなイベントですが、インフラに特化しています。 第</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>App Engineのdev_appserver.pyが起動しなかった - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2017/07/29/1057.html/">
+  <meta property="og:title" content="App Engineのdev_appserver.pyが起動しなかった - nownab.log">
+  <meta property="og:description" content="はじめに Quick StartのTest the applicationでこんな感じでエラーがでたのでこんな感じで対処していった。 ModuleNotFoundError: No module named &lsquo;setup&rsquo; Download the SDK for App Engi">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="App Engineのdev_appserver.pyが起動しなかった - nownab.log">
+  <meta property="twitter:description" content="はじめに Quick StartのTest the applicationでこんな感じでエラーがでたのでこんな感じで対処していった。 ModuleNotFoundError: No module named &lsquo;setup&rsquo; Download the SDK for App Engi">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2017/07/29/1057.html/">App Engineのdev_appserver.pyが起動しなかった</a></h1>
+    <span class="date">Posted on Jul 29, 2017</span>
+  </div>
+  <div class="body">
+    
+
+<h1 id="はじめに">はじめに</h1>
+
+<p><a href="https://cloud.google.com/appengine/docs/standard/go/quickstart">Quick Start</a>のTest the applicationでこんな感じでエラーがでたのでこんな感じで対処していった。</p>
+
+<h1 id="modulenotfounderror-no-module-named-setup">ModuleNotFoundError: No module named &lsquo;setup&rsquo;</h1>
+
+<p><a href="https://cloud.google.com/appengine/docs/standard/go/download">Download the SDK for App Engine</a>をやれという話でした。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ dev_appserver.py app.yaml
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">&#34;/home/nownabe/tmp/google-cloud-sdk/bin/dev_appserver.py&#34;</span>, line <span class="m">11</span>, in &lt;module&gt;
+    import bootstrapping.bootstrapping as bootstrapping
+  File <span class="s2">&#34;/home/nownabe/tmp/google-cloud-sdk/bin/bootstrapping/bootstrapping.py&#34;</span>, line <span class="m">9</span>, in &lt;module&gt;
+    import setup
+ModuleNotFoundError: No module named <span class="s1">&#39;setup&#39;</span>
+
+$ gcloud components install app-engine-go
+pyenv: python2: <span class="nb">command</span> not found
+
+The <span class="sb">`</span>python2<span class="err">&#39;</span> <span class="nb">command</span> exists in these Python versions:
+  <span class="m">2</span>.7.13
+
+$ dev_appserver.py app.yaml 
+
+
+Updates are available <span class="k">for</span> some Cloud SDK components.  To install them,
+please run:
+  $ gcloud components update
+
+This action requires the installation of components: <span class="o">[</span>app-engine-
+python, app-engine-go<span class="o">]</span>
+
+
+Your current Cloud SDK version is: <span class="m">145</span>.0.0
+Installing components from version: <span class="m">145</span>.0.0
+
+┌────────────────────────────────────────────────────┐
+│        These components will be installed.         │
+├───────────────────────────────┬─────────┬──────────┤
+│              Name             │ Version │   Size   │
+├───────────────────────────────┼─────────┼──────────┤
+│ App Engine Go <span class="o">(</span>Linux, x86_64<span class="o">)</span> │  <span class="m">1</span>.9.50 │ <span class="m">47</span>.9 MiB │
+│ App Engine Go Extensions      │         │          │
+│ gcloud app Python Extensions  │  <span class="m">1</span>.9.50 │  <span class="m">7</span>.2 MiB │
+└───────────────────────────────┴─────────┴──────────┘
+
+For the latest full release notes, please visit:
+  https://cloud.google.com/sdk/release_notes
+
+Do you want to <span class="k">continue</span> <span class="o">(</span>Y/n<span class="o">)</span>?  
+
+╔════════════════════════════════════════════════════════════╗
+╠═ Creating update staging area                             ═╣
+╠════════════════════════════════════════════════════════════╣
+╠═ Installing: App Engine Go <span class="o">(</span>Linux, x86_64<span class="o">)</span>                ═╣
+╠════════════════════════════════════════════════════════════╣
+╠═ Installing: App Engine Go Extensions                     ═╣
+╠════════════════════════════════════════════════════════════╣
+╠═ Installing: gcloud app Python Extensions                 ═╣
+╠════════════════════════════════════════════════════════════╣
+╠═ Creating backup and activating new installation          ═╣
+╚════════════════════════════════════════════════════════════╝
+
+Performing post processing steps...done.                                        
+
+Update <span class="k">done</span>!
+
+Restarting command:
+  $ dev_appserver.py app.yaml
+
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">&#34;/home/nownabe/tmp/google-cloud-sdk/platform/google_appengine/dev_appserver.py&#34;</span>, line <span class="m">101</span>, in &lt;module&gt;
+    _run_file<span class="o">(</span>__file__, globals<span class="o">())</span>
+  File <span class="s2">&#34;/home/nownabe/tmp/google-cloud-sdk/platform/google_appengine/dev_appserver.py&#34;</span>, line <span class="m">97</span>, in _run_file
+    execfile<span class="o">(</span>_PATHS.script_file<span class="o">(</span>script_name<span class="o">)</span>, globals_<span class="o">)</span>
+  File <span class="s2">&#34;/home/nownabe/tmp/google-cloud-sdk/platform/google_appengine/google/appengine/tools/devappserver2/devappserver2.py&#34;</span>, line <span class="m">35</span>, in &lt;module&gt;
+    from google.appengine.tools.devappserver2 import api_server
+  File <span class="s2">&#34;/home/nownabe/tmp/google-cloud-sdk/platform/google_appengine/google/appengine/tools/devappserver2/api_server.py&#34;</span>, line <span class="m">47</span>, in &lt;module&gt;
+    from google.appengine.api.logservice import logservice_stub
+  File <span class="s2">&#34;/home/nownabe/tmp/google-cloud-sdk/platform/google_appengine/google/appengine/api/logservice/logservice_stub.py&#34;</span>, line <span class="m">24</span>, in &lt;module&gt;
+    import sqlite3
+  File <span class="s2">&#34;/home/nownabe/.anyenv/envs/pyenv/versions/2.7.13/lib/python2.7/sqlite3/__init__.py&#34;</span>, line <span class="m">24</span>, in &lt;module&gt;
+    from dbapi2 import *
+  File <span class="s2">&#34;/home/nownabe/.anyenv/envs/pyenv/versions/2.7.13/lib/python2.7/sqlite3/dbapi2.py&#34;</span>, line <span class="m">28</span>, in &lt;module&gt;
+    from _sqlite3 import *
+ImportError: No module named _sqlite3</code></pre></div>
+<h1 id="importerror-no-module-named-sqlite3">ImportError: No module named _sqlite3</h1>
+
+<p>SQLite3のモジュールがないとだめらしい。
+sqliteをいれて、Pythonをインストールし直す。
+pyenvを使っているのでこんな感じ。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ pyenv uninstall <span class="m">2</span>.7.13
+$ sudo dnf install -y sqlite-devel
+$ pyenv install <span class="m">2</span>.7.13</code></pre></div>
+<h1 id="できた">できた</h1>
+
+<p>起動した。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ dev_appserver.py app.yaml
+INFO     <span class="m">2017</span>-07-29 <span class="m">10</span>:27:38,793 devappserver2.py:764<span class="o">]</span> Skipping SDK update check.
+INFO     <span class="m">2017</span>-07-29 <span class="m">10</span>:27:38,845 api_server.py:268<span class="o">]</span> Starting API server at: http://localhost:40061
+INFO     <span class="m">2017</span>-07-29 <span class="m">10</span>:27:38,937 dispatcher.py:199<span class="o">]</span> Starting module <span class="s2">&#34;default&#34;</span> running at: http://localhost:8080
+INFO     <span class="m">2017</span>-07-29 <span class="m">10</span>:27:38,938 admin_server.py:116<span class="o">]</span> Starting admin server at: http://localhost:8000
+INFO     <span class="m">2017</span>-07-29 <span class="m">10</span>:28:30,900 module.py:806<span class="o">]</span> default: <span class="s2">&#34;GET / HTTP/1.1&#34;</span> <span class="m">200</span> <span class="m">13</span>
+INFO     <span class="m">2017</span>-07-29 <span class="m">10</span>:28:31,087 module.py:806<span class="o">]</span> default: <span class="s2">&#34;GET /favicon.ico HTTP/1.1&#34;</span> <span class="m">200</span> <span class="m">13</span></code></pre></div>
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

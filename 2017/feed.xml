@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2017s on nownab.log</title>
+    <link>https://blog.nownabe.com/2017/</link>
+    <description>Recent content in 2017s on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Sat, 30 Dec 2017 13:50:41 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/2017/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>2017年振り返り</title>
+      <link>https://blog.nownabe.com/2017/12/31/1234.html/</link>
+      <pubDate>Sat, 30 Dec 2017 13:50:41 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/12/31/1234.html/</guid>
+      <description>2017年ももう終わりですね。2017年はイベントてんこもりで今までの人生の中でもトップクラスでハードな1年でした。1年を振り返ってみます。</description>
+    </item>
+    
+    <item>
+      <title>goenvを使うようにした</title>
+      <link>https://blog.nownabe.com/2017/12/27/1232.html/</link>
+      <pubDate>Wed, 27 Dec 2017 11:14:19 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/12/27/1232.html/</guid>
+      <description>HomebrewではなくgoenvでGoを管理するようにしました。 Vimからgocodeを使おうとしてgocode panickedというエラ</description>
+    </item>
+    
+    <item>
+      <title>GolangでNEologdでMeCab</title>
+      <link>https://blog.nownabe.com/2017/12/25/1228.html/</link>
+      <pubDate>Mon, 25 Dec 2017 16:41:47 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/12/25/1228.html/</guid>
+      <description>Goで形態素解析APIを作りたくて、GoでMeCabをNEologdで使う方法を調べました。 ライブラリ いくつかあります。 github.com/yukihir0/mecab-go bitbucket.org/rerofumi/mecab github.com/bluele/mecab-golang github.com/shogo82148/go-mecab MeCabで</description>
+    </item>
+    
+    <item>
+      <title>Cloud Endpoints with gRPCで複数パッケージを使う</title>
+      <link>https://blog.nownabe.com/2017/12/19/1224.html/</link>
+      <pubDate>Mon, 18 Dec 2017 11:33:32 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/12/19/1224.html/</guid>
+      <description>Cloud Endpoints with gRPCで1つのエンドポイントに複数のパッケージ1を使おうとしてちょっと躓いたのでそのメモです。 問題 まず、普通に複数の名前空間を使って</description>
+    </item>
+    
+    <item>
+      <title>Pythonではじめる機械学習  7回目</title>
+      <link>https://blog.nownabe.com/2017/12/14/1217.html/</link>
+      <pubDate>Mon, 11 Dec 2017 14:48:59 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/12/14/1217.html/</guid>
+      <description>nownab.log | Pythonではじめる機械学習 6回目 週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。 また、勉強会で書</description>
+    </item>
+    
+    <item>
+      <title>Parcelで使われてるnpmパッケージ調べてた</title>
+      <link>https://blog.nownabe.com/2017/12/11/1215.html/</link>
+      <pubDate>Sun, 10 Dec 2017 01:51:53 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/12/11/1215.html/</guid>
+      <description>Parcelが依存しているnpmパッケージを調べてみた。なんとなくこういう用途にこういうパッケージ使うのかーという程度。 新しく作るアプリに今</description>
+    </item>
+    
+    <item>
+      <title>Pythonではじめる機械学習  6回目</title>
+      <link>https://blog.nownabe.com/2017/12/08/1206.html/</link>
+      <pubDate>Mon, 04 Dec 2017 17:37:06 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/12/08/1206.html/</guid>
+      <description>nownab.log | Pythonではじめる機械学習 5回目 週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。 また、勉強会で書</description>
+    </item>
+    
+    <item>
+      <title>nownabe release note v2017.12</title>
+      <link>https://blog.nownabe.com/2017/12/02/1205.html/</link>
+      <pubDate>Sat, 02 Dec 2017 12:15:16 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/12/02/1205.html/</guid>
+      <description>a-knowさんがやってて振り返りにいいなぁと思ったので真似してみた。 Tech 10〜11月のアップデート。 GAE/Goのアプリをいくつかデプロイし</description>
+    </item>
+    
+    <item>
+      <title>Pythonではじめる機械学習  5回目</title>
+      <link>https://blog.nownabe.com/2017/12/08/1200.html/</link>
+      <pubDate>Mon, 27 Nov 2017 18:42:31 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/12/08/1200.html/</guid>
+      <description>nownab.log | Pythonではじめる機械学習 4回目 週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。 また、勉強会で書</description>
+    </item>
+    
+    <item>
+      <title>Pythonではじめる機械学習  4回目</title>
+      <link>https://blog.nownabe.com/2017/12/08/1199.html/</link>
+      <pubDate>Mon, 27 Nov 2017 16:55:33 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/12/08/1199.html/</guid>
+      <description>nownab.log | Pythonではじめる機械学習 3回目 週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。 また、勉強会で書</description>
+    </item>
+    
+    <item>
+      <title>Pythonではじめる機械学習  3回目</title>
+      <link>https://blog.nownabe.com/2017/11/19/1185.html/</link>
+      <pubDate>Wed, 15 Nov 2017 19:12:04 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/11/19/1185.html/</guid>
+      <description>nownab.log | Pythonではじめる機械学習 2回目 週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。 また、勉強会で書</description>
+    </item>
+    
+    <item>
+      <title>CloudGarageのDev Assist Programの無償VM使ってみた</title>
+      <link>https://blog.nownabe.com/2017/11/06/1176.html/</link>
+      <pubDate>Mon, 06 Nov 2017 21:30:43 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/11/06/1176.html/</guid>
+      <description>a-knowさんの記事を読んで知ったCloudGarageのDevAssistProgramに応募してみたら、審査に通ったので早速触ってみた</description>
+    </item>
+    
+    <item>
+      <title>Pythonではじめる機械学習  2回目</title>
+      <link>https://blog.nownabe.com/2017/11/08/1174.html/</link>
+      <pubDate>Mon, 06 Nov 2017 17:35:01 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/11/08/1174.html/</guid>
+      <description>機械学習勉強会の続き。前回は統計学入門だった。 週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。 また、勉強</description>
+    </item>
+    
+    <item>
+      <title>統計学入門  第12章 仮説検定</title>
+      <link>https://blog.nownabe.com/2017/10/25/1165.html/</link>
+      <pubDate>Tue, 24 Oct 2017 19:29:04 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/10/25/1165.html/</guid>
+      <description>nownab.log | 統計学入門 第11章 推定 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門をやっている。</description>
+    </item>
+    
+    <item>
+      <title>GCP updates | October 16, 2017</title>
+      <link>https://blog.nownabe.com/2017/10/17/1158.html/</link>
+      <pubDate>Tue, 17 Oct 2017 13:49:31 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/10/17/1158.html/</guid>
+      <description>Compute Google Container Engine CPU platform beta A new GCE feature now in beta allows users to specify a minimum CPU platform when creating a GKE cluster or node pool. ベータの新しいGCE機能ではGKEクラスタ又はノードプールを作成するとき最小CP</description>
+    </item>
+    
+    <item>
+      <title>GCP updates | October 2, 2017</title>
+      <link>https://blog.nownabe.com/2017/10/17/1157.html/</link>
+      <pubDate>Tue, 17 Oct 2017 12:53:27 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/10/17/1157.html/</guid>
+      <description>Compute App Engine - managed SSL certificates Beta Safeguard sensitive information with managed SSL certificates for GAE applications, now in beta and available at no charge. GAEアプリケーションでマネージドSSL証明書を使って機密情報を守りましょう。ベータとし</description>
+    </item>
+    
+    <item>
+      <title>統計学入門  第13章 回帰分析</title>
+      <link>https://blog.nownabe.com/2017/10/25/1155.html/</link>
+      <pubDate>Tue, 17 Oct 2017 00:29:41 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/10/25/1155.html/</guid>
+      <description>nownab.log | 統計学入門 第12章 仮説検定 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門をやってい</description>
+    </item>
+    
+    <item>
+      <title>Linuxでepubを読む</title>
+      <link>https://blog.nownabe.com/2017/10/10/1149.html/</link>
+      <pubDate>Tue, 10 Oct 2017 00:15:55 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/10/10/1149.html/</guid>
+      <description>Fedoraでepubを読むのにReadiumというChrome Extensionを使った。 電子書籍を買ってPDFとepubがついてきて、最</description>
+    </item>
+    
+    <item>
+      <title>GCP updates | September 19, 2017</title>
+      <link>https://blog.nownabe.com/2017/10/04/1146.html/</link>
+      <pubDate>Wed, 04 Oct 2017 15:12:51 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/10/04/1146.html/</guid>
+      <description>すっかり遅れましたが Storage &amp;amp; Databases Cloud Datastore: Managed Export and Import via Admin API Beta The Beta release of the Admin API for the Google Cloud Datastore now lets you export data to Cloud Storage and import data into Cloud Datastore. betaリリースとしてCloud Datas</description>
+    </item>
+    
+    <item>
+      <title>統計学入門  第11章 推定</title>
+      <link>https://blog.nownabe.com/2017/10/16/1142.html/</link>
+      <pubDate>Mon, 02 Oct 2017 13:58:35 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/10/16/1142.html/</guid>
+      <description>nownab.log | 統計学入門 第10章 正規分布からの標本 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門</description>
+    </item>
+    
+    <item>
+      <title>統計学入門  第10章 正規分布からの標本</title>
+      <link>https://blog.nownabe.com/2017/10/02/1136.html/</link>
+      <pubDate>Mon, 25 Sep 2017 10:07:12 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/10/02/1136.html/</guid>
+      <description>nownab.log | 統計学入門 第9章 標本分布 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門をやっている</description>
+    </item>
+    
+    <item>
+      <title>Ruby Hack Challengeに参加した</title>
+      <link>https://blog.nownabe.com/2017/09/22/1133.html/</link>
+      <pubDate>Fri, 22 Sep 2017 04:08:42 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/09/22/1133.html/</guid>
+      <description>Cookpad Ruby Hack Challengeに参加したのでイベントの様子と後日談を。 イベント自体は8月に開催されたが、イベントで取り組んだ課題をその後もほそぼそ</description>
+    </item>
+    
+    <item>
+      <title>統計学入門  第9章 標本分布</title>
+      <link>https://blog.nownabe.com/2017/09/22/1126.html/</link>
+      <pubDate>Sun, 10 Sep 2017 17:27:31 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/09/22/1126.html/</guid>
+      <description>nownab.log | 統計学入門 第8章 大数の法則と中心極限定理 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学</description>
+    </item>
+    
+    <item>
+      <title>GCP updates | September 6, 2017</title>
+      <link>https://blog.nownabe.com/2017/09/08/1124.html/</link>
+      <pubDate>Fri, 08 Sep 2017 15:19:53 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/09/08/1124.html/</guid>
+      <description>Compute GCE creates images from running or stopped VM instances A new flag in the GCE API allows customers to create images from disks attached to a running or stopped VM instance through the use of a single API call or action, eliminating the need for workarounds. 新しいGCE APIのフラグを使えば起動中または</description>
+    </item>
+    
+    <item>
+      <title>GCP updates | August 24, 2017</title>
+      <link>https://blog.nownabe.com/2017/08/28/1108.html/</link>
+      <pubDate>Mon, 28 Aug 2017 17:24:40 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/08/28/1108.html/</guid>
+      <description>少し遅れました Compute ZYNC Render support for Autodesk 3ds Max The beta release of Google Cloud Platform (GCP) ZYNC Render now supports Autodesk 3ds Max, the 3D modeling and animation software used for gaming, visual effects, animation, and architecture. GCPのZYNC RenderはAutodesk社の3</description>
+    </item>
+    
+    <item>
+      <title>統計学入門  第8章 大数の法則と中心極限定理</title>
+      <link>https://blog.nownabe.com/2017/09/10/1105.html/</link>
+      <pubDate>Fri, 25 Aug 2017 18:44:10 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/09/10/1105.html/</guid>
+      <description>nownab.log | 統計学入門 第7章 多次元の確率分布 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門をや</description>
+    </item>
+    
+    <item>
+      <title>統計学入門  第7章 多次元の確率分布</title>
+      <link>https://blog.nownabe.com/2017/08/25/1097.html/</link>
+      <pubDate>Mon, 21 Aug 2017 19:23:28 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/08/25/1097.html/</guid>
+      <description>nownab.log | 統計学入門 第6章 確率変数 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門をやっている</description>
+    </item>
+    
+    <item>
+      <title>できるだけシンプルにFlake8でPython修行</title>
+      <link>https://blog.nownabe.com/2017/08/15/1096.html/</link>
+      <pubDate>Tue, 15 Aug 2017 13:14:37 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/08/15/1096.html/</guid>
+      <description>はじめに この記事ではPythonの良い書き方を身につけるためにVimからLintツールを使う方法を紹介する。 Pythonは前から使う必要があ</description>
+    </item>
+    
+    <item>
+      <title>統計学入門  第6章 確率分布</title>
+      <link>https://blog.nownabe.com/2017/08/18/1095.html/</link>
+      <pubDate>Mon, 14 Aug 2017 17:40:26 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/08/18/1095.html/</guid>
+      <description>nownab.log | 統計学入門 第5章 確率変数 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門をやっている</description>
+    </item>
+    
+    <item>
+      <title>GCP updates | August 8, 2017</title>
+      <link>https://blog.nownabe.com/2017/08/14/1093.html/</link>
+      <pubDate>Mon, 14 Aug 2017 12:38:59 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/08/14/1093.html/</guid>
+      <description>Compute Workload-related views in the GKE Cloud Console UI Beta launch of Google Container Engine (GKE) Cloud Console UI adds views and management of workloads running within the cluster. Customers will see integration of the Kubernetes dashboard UI with the GKE Cloud Console UI. GKEのクラスタ内で実行中のワークロードを見るための</description>
+    </item>
+    
+    <item>
+      <title>統計学入門  第5章 確率変数</title>
+      <link>https://blog.nownabe.com/2017/08/10/1081.html/</link>
+      <pubDate>Tue, 08 Aug 2017 16:06:42 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/08/10/1081.html/</guid>
+      <description>nownab.log | 統計学入門 第4章 確率 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門をやっている。 週</description>
+    </item>
+    
+    <item>
+      <title>統計学入門  第4章 確率</title>
+      <link>https://blog.nownabe.com/2017/08/06/1071.html/</link>
+      <pubDate>Sun, 06 Aug 2017 16:13:05 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/08/06/1071.html/</guid>
+      <description>統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 今は統計学入門。 週一で1時間程度各自でもくもくして、章末問題で同期を取ると</description>
+    </item>
+    
+    <item>
+      <title>git cloneが--depth 50で日付がバグってた</title>
+      <link>https://blog.nownabe.com/2017/08/05/1070.html/</link>
+      <pubDate>Sat, 05 Aug 2017 01:43:54 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/08/05/1070.html/</guid>
+      <description>昨日までブログの記事の日付がおかしくなってたので修正した。2017年2月以前の記事がすべて2017年2月のある日付でポストされたことになると</description>
+    </item>
+    
+    <item>
+      <title>ブログにCategory機能をつけた</title>
+      <link>https://blog.nownabe.com/2017/08/04/1069.html/</link>
+      <pubDate>Fri, 04 Aug 2017 20:18:51 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/08/04/1069.html/</guid>
+      <description>ブログの記事をカテゴリでわけるようにした。 技術に関係ないことも書いていきたいけどブログ分けるのもあれだし、けど技術的なストック記事みたいなの</description>
+    </item>
+    
+    <item>
+      <title>App Engineのdev_appserver.pyが起動しなかった</title>
+      <link>https://blog.nownabe.com/2017/07/29/1057.html/</link>
+      <pubDate>Sat, 29 Jul 2017 19:29:50 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/07/29/1057.html/</guid>
+      <description>はじめに Quick StartのTest the applicationでこんな感じでエラーがでたのでこんな感じで対処していった。 ModuleNotFoundError: No module named &amp;lsquo;setup&amp;rsquo; Download the SDK for App Engi</description>
+    </item>
+    
+    <item>
+      <title>機械学習勉強会 20170706</title>
+      <link>https://blog.nownabe.com/2017/07/20/1056.html/</link>
+      <pubDate>Wed, 19 Jul 2017 23:41:11 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/07/20/1056.html/</guid>
+      <description>統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 今は統計学入門。 週一で1時間程度各自でもくもくして、章末問題で同期を取ると</description>
+    </item>
+    
+    <item>
+      <title>機械学習勉強会 20170629</title>
+      <link>https://blog.nownabe.com/2017/07/19/1055.html/</link>
+      <pubDate>Wed, 19 Jul 2017 21:44:52 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/07/19/1055.html/</guid>
+      <description>統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 今は統計学入門。 週一で1時間程度各自でもくもくして、章末問題で同期を取ると</description>
+    </item>
+    
+    <item>
+      <title>機械学習勉強会 20170622</title>
+      <link>https://blog.nownabe.com/2017/07/19/1054.html/</link>
+      <pubDate>Wed, 19 Jul 2017 18:17:43 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/07/19/1054.html/</guid>
+      <description>統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 今は統計学入門。 週一で1時間程度各自でもくもくして、章末問題で同期を取ると</description>
+    </item>
+    
+    <item>
+      <title>Spacemacsを使い始めた</title>
+      <link>https://blog.nownabe.com/2017/07/14/1050.html/</link>
+      <pubDate>Fri, 14 Jul 2017 14:08:31 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/07/14/1050.html/</guid>
+      <description>はじめに Spacemacsを使い始めた。 今、エディタはTypeScriptはVisual Studio Code、JavaはIntelliJ IDEA、その</description>
+    </item>
+    
+    <item>
+      <title>読書記録 - 遅読家のための読書術</title>
+      <link>https://blog.nownabe.com/2017/06/12/724.html/</link>
+      <pubDate>Mon, 12 Jun 2017 02:20:32 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/06/12/724.html/</guid>
+      <description>遅読家のための読書術――情報洪水でも疲れない「フロー・リーディング」の習慣 印南 敦史 ダイヤモンド社 概要 遅読家のための読書術――情報洪水でも疲れ</description>
+    </item>
+    
+    <item>
+      <title>機械学習勉強会 20170602</title>
+      <link>https://blog.nownabe.com/2017/06/02/712.html/</link>
+      <pubDate>Fri, 02 Jun 2017 01:32:45 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/06/02/712.html/</guid>
+      <description>統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 今は統計学入門。 週一で1時間程度各自でもくもくして、章末問題で同期を取ると</description>
+    </item>
+    
+    <item>
+      <title>機械学習勉強会 20170525</title>
+      <link>https://blog.nownabe.com/2017/05/26/709.html/</link>
+      <pubDate>Fri, 26 May 2017 00:11:48 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/05/26/709.html/</guid>
+      <description>統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 今日から統計学入門のもくもくを始めた。 この本は週一で1時間程度各自でもくも</description>
+    </item>
+    
+    <item>
+      <title>機械学習勉強会 20170511</title>
+      <link>https://blog.nownabe.com/2017/05/25/708.html/</link>
+      <pubDate>Thu, 25 May 2017 20:43:17 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/05/25/708.html/</guid>
+      <description>ゼロから作るDeep Learning ―Pythonで学ぶディープラーニングの理論と実装 斎藤 康毅 オライリージャパン 今日の内容 8章 ディープラーニング 8.5 ディープ</description>
+    </item>
+    
+    <item>
+      <title>Private Docker Registry比較</title>
+      <link>https://blog.nownabe.com/2017/04/23/681.html/</link>
+      <pubDate>Sun, 23 Apr 2017 17:07:31 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/04/23/681.html/</guid>
+      <description>PrivateなDocker Registryが欲しい時、昔は自分で建ててたけど今回はGoogle Container Registryを使った。 楽ちんでした。 Private</description>
+    </item>
+    
+    <item>
+      <title>機械学習勉強会 20170420</title>
+      <link>https://blog.nownabe.com/2017/04/20/680.html/</link>
+      <pubDate>Thu, 20 Apr 2017 23:54:58 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/04/20/680.html/</guid>
+      <description>ゼロから作るDeep Learning ―Pythonで学ぶディープラーニングの理論と実装 斎藤 康毅 オライリージャパン 今日の内容 7章 畳み込みニューラルネットワー</description>
+    </item>
+    
+    <item>
+      <title>Docker for Macのホストにアクセスする</title>
+      <link>https://blog.nownabe.com/2017/04/18/677.html/</link>
+      <pubDate>Tue, 18 Apr 2017 14:21:02 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/04/18/677.html/</guid>
+      <description>たまに必要になるのでメモ。 screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty このコマンドを実行して、1回エンターを打つとrootのコンソールが表示される。 今回はホストと時刻を同期させるた</description>
+    </item>
+    
+    <item>
+      <title>Terraform 0.9を使ってみた</title>
+      <link>https://blog.nownabe.com/2017/04/15/672.html/</link>
+      <pubDate>Sat, 15 Apr 2017 23:49:35 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/04/15/672.html/</guid>
+      <description>はじめに Terraformはあんまり好きではないんですが選択肢がないんで仕方なし、って感じで使ってます。 更新がはやくてちょっと使わないと色々</description>
+    </item>
+    
+    <item>
+      <title>Weekly English Learnings</title>
+      <link>https://blog.nownabe.com/2017/04/02/663.html/</link>
+      <pubDate>Sun, 02 Apr 2017 01:27:54 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/04/02/663.html/</guid>
+      <description>3週間分ぐらい 😅 Word Definitions http://www.ldoceonline.com/ chit-chat conversation about things that are not very important critique to say how good or bad a book, play, painting, or set of ideas is nurse someone whose job is to look after people who are ill or injured, usually in a hospital radiology the study and medical use of radiation committee a group of people chosen to do</description>
+    </item>
+    
+    <item>
+      <title>機械学習勉強会 20170330</title>
+      <link>https://blog.nownabe.com/2017/03/31/662.html/</link>
+      <pubDate>Fri, 31 Mar 2017 00:20:01 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/03/31/662.html/</guid>
+      <description>ゼロから作るDeep Learning ―Pythonで学ぶディープラーニングの理論と実装 斎藤 康毅 オライリージャパン 今日の内容 5章 誤差逆伝播法 5.6 Affin / Softm</description>
+    </item>
+    
+    <item>
+      <title>Strengths Finderやった</title>
+      <link>https://blog.nownabe.com/2017/03/28/661.html/</link>
+      <pubDate>Tue, 28 Mar 2017 21:06:41 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/03/28/661.html/</guid>
+      <description>はじめに Twitterでプチ流行してたのでやってみました。 Strength Finder をやってみた！ - FAKELOG Strengths Finderをやってみた - pblog 意外と面白かったです。 1500</description>
+    </item>
+    
+    <item>
+      <title>誰でもBrainf*ckっぽい言語が作れる？ツール作った</title>
+      <link>https://blog.nownabe.com/2017/03/25/660.html/</link>
+      <pubDate>Sat, 25 Mar 2017 13:46:53 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/03/25/660.html/</guid>
+      <description>はじめに なぜかbrainf*ckを実装した。 ついでに誰でもオリジナルなbrainf*ckっぽいプログラムを実行できるようにしてみた 💡 https://github.com/nownabe/brainfuck-go 使い方</description>
+    </item>
+    
+    <item>
+      <title>GCPにコントリビュートした</title>
+      <link>https://blog.nownabe.com/2017/03/24/657.html/</link>
+      <pubDate>Fri, 24 Mar 2017 08:51:47 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/03/24/657.html/</guid>
+      <description>はじめに といってもPR自体は全然たいしたものではないんだけど、他の多くのOSSと違っておもしろかった点があった 😳 コントリビュートしたのはGo</description>
+    </item>
+    
+    <item>
+      <title>GolangのEchoにコントリビュートした</title>
+      <link>https://blog.nownabe.com/2017/03/19/649.html/</link>
+      <pubDate>Sun, 19 Mar 2017 13:29:20 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/03/19/649.html/</guid>
+      <description>最近Golangを始めて、ちょっとしたものなら書けるようになってきた。 仕事ではGolangで新しいAPIサーバを書いてたり、プライベートでは</description>
+    </item>
+    
+    <item>
+      <title>機械学習勉強会 20170316</title>
+      <link>https://blog.nownabe.com/2017/03/16/648.html/</link>
+      <pubDate>Thu, 16 Mar 2017 23:39:31 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/03/16/648.html/</guid>
+      <description>ゼロから作るDeep Learning ―Pythonで学ぶディープラーニングの理論と実装 斎藤 康毅 オライリージャパン 今日の内容 5章 誤差逆伝播法 5.1 計算グラフ 5.2 連</description>
+    </item>
+    
+    <item>
+      <title>Goでファイルを暗号化するCLIツール作った</title>
+      <link>https://blog.nownabe.com/2017/03/15/647.html/</link>
+      <pubDate>Wed, 15 Mar 2017 22:00:19 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/03/15/647.html/</guid>
+      <description>はじめに Goで暗号化まわりのプログラムを書いてて、同じアルゴリズムで手軽に暗号化/復号する方法がなかった(見つからなかった)ので作りました。</description>
+    </item>
+    
+    <item>
+      <title>Blogのタイムスタンプをごにょごにょした</title>
+      <link>https://blog.nownabe.com/2017/03/12/639.html/</link>
+      <pubDate>Sun, 12 Mar 2017 16:52:36 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/03/12/639.html/</guid>
+      <description>弊blog 弊blogはesaで記事を書き、esaのGitHub WebhookでGitHubにPushしてMiddlemanでHTML化してい</description>
+    </item>
+    
+    <item>
+      <title>Weekly English Learnings</title>
+      <link>https://blog.nownabe.com/2017/03/12/638.html/</link>
+      <pubDate>Sun, 12 Mar 2017 15:22:18 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/03/12/638.html/</guid>
+      <description>Weeklyにしてみた Word Definitions http://www.ldoceonline.com/ slightly a little persuade to make someone decide to do something, especially by giving them reasons why they should do it, or asking them many times to do it qualification if you have a qualification, you have passed an examination or course to show you have a particular level of skill or knowledge in a subject</description>
+    </item>
+    
+    <item>
+      <title>機械学習勉強会 20170302</title>
+      <link>https://blog.nownabe.com/2017/03/03/628.html/</link>
+      <pubDate>Fri, 03 Mar 2017 01:03:44 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/03/03/628.html/</guid>
+      <description>ゼロから作るDeep Learning ―Pythonで学ぶディープラーニングの理論と実装 斎藤 康毅 オライリージャパン 今日の内容 4章 ニューラルネットワークの学習</description>
+    </item>
+    
+    <item>
+      <title>Today&#39;s English Learnings 20170302</title>
+      <link>https://blog.nownabe.com/2017/03/03/627.html/</link>
+      <pubDate>Fri, 03 Mar 2017 01:00:30 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/03/03/627.html/</guid>
+      <description>Word Definitions http://www.ldoceonline.com/ indispensable someone or something that is indispensable is so important or useful that it is impossible to manage without them crucial something that is crucial is extremely important, because everything else depends on it detriment harm or damage expeditiously (expeditious) in a quick and effective way momentous a momentous event, change, or decision is very important because it will have a great influence on the future ethical</description>
+    </item>
+    
+    <item>
+      <title>Today&#39;s English Learnings 20170301</title>
+      <link>https://blog.nownabe.com/2017/03/01/626.html/</link>
+      <pubDate>Wed, 01 Mar 2017 22:57:48 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/03/01/626.html/</guid>
+      <description>今日あたりに学んだ英語 Word Definitions http://www.ldoceonline.com/ logistics the practical arrangements that are needed in order to make a plan that involves a lot of people and equipment successful ideally used to describe the way you would like things to be, even though this may not be possible differentiation the process of showing or seeing that one thing is different from something else</description>
+    </item>
+    
+    <item>
+      <title>RAID1なbtrfsでストレージ組んだ</title>
+      <link>https://blog.nownabe.com/2017/02/25/624.html/</link>
+      <pubDate>Sat, 25 Feb 2017 17:48:05 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/02/25/624.html/</guid>
+      <description>自宅サーバをリプレースしたので、ストレージ用に2TB x 2のHDDを使ってRAID1なbtrfsを組んでみました。 なぜ 最初はRAID1 + LVM + &amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>機械学習勉強会 20170223</title>
+      <link>https://blog.nownabe.com/2017/02/23/622.html/</link>
+      <pubDate>Thu, 23 Feb 2017 23:50:04 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/02/23/622.html/</guid>
+      <description>ゼロから作るDeep Learning ―Pythonで学ぶディープラーニングの理論と実装 斎藤 康毅 オライリージャパン 今日の内容 3章 ニューラルネットワーク 3.5 出力</description>
+    </item>
+    
+    <item>
+      <title>Today&#39;s English Learnings 20170223</title>
+      <link>https://blog.nownabe.com/2017/02/23/621.html/</link>
+      <pubDate>Thu, 23 Feb 2017 23:38:29 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/02/23/621.html/</guid>
+      <description>今日学んだ英語 Word Definitions http://www.ldoceonline.com/ inherent a quality that is inherent in something is a natural part of it and cannot be separated from it composite made up of different parts or materials preserving to save something or someone from being harmed or destroyed Pronunciation s / z ʃ / ʒ p / b / m t / d / n k / g /</description>
+    </item>
+    
+    <item>
+      <title>Today&#39;s English Learnings 20170222</title>
+      <link>https://blog.nownabe.com/2017/02/22/618.html/</link>
+      <pubDate>Wed, 22 Feb 2017 23:28:34 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/02/22/618.html/</guid>
+      <description>今日学んだ英語 Word Definitions http://www.ldoceonline.com/ facilitate to make it easier for a process or activity to happen especially used to emphasize that something is more important or happens more with one particular thing than with others be tantamount to something if an action, suggestion, plan etc is tantamount to something bad, it has the same effect or is almost as bad thereby with the result</description>
+    </item>
+    
+    <item>
+      <title>Today&#39;s English Learnings 20170221</title>
+      <link>https://blog.nownabe.com/2017/02/22/616.html/</link>
+      <pubDate>Tue, 21 Feb 2017 15:45:25 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/02/22/616.html/</guid>
+      <description>今日学んだ英語 Word Definitions predictably if something or someone is predictable, you know what will happen or what they will do – sometimes used to show disapproval confident sure that you have the ability to do things well or deal with situations successfully eventually after a long time, or after a lot of things have happened annoy to make someone feel slightly angry and unhappy</description>
+    </item>
+    
+    <item>
+      <title>Today&#39;s English Learnings 20170220</title>
+      <link>https://blog.nownabe.com/2017/02/21/615.html/</link>
+      <pubDate>Tue, 21 Feb 2017 00:20:39 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/02/21/615.html/</guid>
+      <description>今日学んだ英語 Word Definitions http://www.ldoceonline.com/ cost to have a particular price less fair many shops trolley something which does not cost a lot change the money you get back when you have paid for something with more money than it costs basic necessity something that you need to have in order to live groceries food and other goods that are sold by a grocer or</description>
+    </item>
+    
+    <item>
+      <title>機械学習勉強会 20170216</title>
+      <link>https://blog.nownabe.com/2017/02/16/609.html/</link>
+      <pubDate>Thu, 16 Feb 2017 23:49:27 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/02/16/609.html/</guid>
+      <description>今年に入ってからは『ゼロから作るDeep Learning』をやってます 📖 評判通り、めっちゃいい本な予感 ✨ まだ全部読んでないからわからんけど、</description>
+    </item>
+    
+    <item>
+      <title>Golangの標準sqlパッケージ</title>
+      <link>https://blog.nownabe.com/2017/01/16/570.html/</link>
+      <pubDate>Thu, 12 Jan 2017 17:56:02 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/01/16/570.html/</guid>
+      <description>http://go-database-sql.org/index.html を読んだ。のでまとめてみた 😃 内容はちょっと古いっぽい。 Overview sql.DBはDB connectionではない sql.DBはインターフェイスの抽象</description>
+    </item>
+    
+    <item>
+      <title>ngx_mrubyのビルド</title>
+      <link>https://blog.nownabe.com/2017/01/05/560.html/</link>
+      <pubDate>Thu, 05 Jan 2017 18:25:29 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/01/05/560.html/</guid>
+      <description>はじめに Dockerでngx_mrubyが入ったNginxのイメージが欲しかったのでビルドした。 公式？のmatsumotory/ngx-mr</description>
+    </item>
+    
+    <item>
+      <title>2016年と2017年</title>
+      <link>https://blog.nownabe.com/2017/01/02/558.html/</link>
+      <pubDate>Mon, 02 Jan 2017 02:00:07 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/01/02/558.html/</guid>
+      <description>2016年は変化することに力を費やした年でした。 2017年は成長の年にしたい。 仕事もプライベートも混ざってごちゃごちゃしてます。 2016年振</description>
+    </item>
+    
+  </channel>
+</rss>

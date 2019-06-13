@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>raspberry pi on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/raspberry-pi/</link>
+    <description>Recent content in raspberry pi on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Sun, 09 Aug 2015 00:21:18 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/raspberry-pi/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>今更Raspberry PiでLチカやってみた</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena09.html/</link>
+      <pubDate>Sun, 09 Aug 2015 00:21:18 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena09.html/</guid>
+      <description>流行りにのってRaspberry PiでLチカやってみました！（だいぶ乗り遅れてる） Raspberry Piはサバフェスの賞品でもらったまま眠ってたのがあったの</description>
+    </item>
+    
+  </channel>
+</rss>

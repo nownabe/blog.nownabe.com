@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ruboty on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/ruboty/</link>
+    <description>Recent content in ruboty on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Sun, 07 Aug 2016 16:21:12 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/ruboty/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>RubotyのbrainをJSONでファイルに保存するruboty-json作った</title>
+      <link>https://blog.nownabe.com/2016/08/07/403.html/</link>
+      <pubDate>Sun, 07 Aug 2016 16:21:12 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/08/07/403.html/</guid>
+      <description>概要 以前、RubotyのデータをLevelDBに保存するためのruboty-leveldbというGemを作りました。 自前のサーバでRubot</description>
+    </item>
+    
+    <item>
+      <title>RubotyのデータをLevelDBで永続化するruboty-leveldbというGemを作った</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena02.html/</link>
+      <pubDate>Sun, 01 Mar 2015 19:10:15 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena02.html/</guid>
+      <description>経緯 会社でチャットボットとしてRubotyを使ってます。 Rubotyはデータの永続化にプラグインを使わないといけないんですが、今はRedis</description>
+    </item>
+    
+  </channel>
+</rss>

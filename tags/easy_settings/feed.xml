@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>easy_settings on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/easy_settings/</link>
+    <description>Recent content in easy_settings on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Sat, 07 Mar 2015 02:15:01 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/easy_settings/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>EasySettingsをSettingslogicの替りにいかがでしょうか</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena03.html/</link>
+      <pubDate>Sat, 07 Mar 2015 02:15:01 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena03.html/</guid>
+      <description>今までRailsとかその他諸々のアプリケーションで、定数の管理にSettingslogicを使ってました。 色々不満がありつつ使ってたんですが</description>
+    </item>
+    
+  </channel>
+</rss>

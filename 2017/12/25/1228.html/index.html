@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>GolangでNEologdでMeCab - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2017/12/25/1228.html/">
+  <meta property="og:title" content="GolangでNEologdでMeCab - nownab.log">
+  <meta property="og:description" content="Goで形態素解析APIを作りたくて、GoでMeCabをNEologdで使う方法を調べました。 ライブラリ いくつかあります。 github.com/yukihir0/mecab-go bitbucket.org/rerofumi/mecab github.com/bluele/mecab-golang github.com/shogo82148/go-mecab MeCabで">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="GolangでNEologdでMeCab - nownab.log">
+  <meta property="twitter:description" content="Goで形態素解析APIを作りたくて、GoでMeCabをNEologdで使う方法を調べました。 ライブラリ いくつかあります。 github.com/yukihir0/mecab-go bitbucket.org/rerofumi/mecab github.com/bluele/mecab-golang github.com/shogo82148/go-mecab MeCabで">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2017/12/25/1228.html/">GolangでNEologdでMeCab</a></h1>
+    <span class="date">Posted on Dec 25, 2017</span>
+  </div>
+  <div class="body">
+    
+
+<p>Goで形態素解析APIを作りたくて、GoでMeCabをNEologdで使う方法を調べました。</p>
+
+<h1 id="ライブラリ">ライブラリ</h1>
+
+<p>いくつかあります。</p>
+
+<ul>
+<li><a href="https://github.com/yukihir0/mecab-go">github.com/yukihir0/mecab-go</a></li>
+<li><a href="https://bitbucket.org/rerofumi/mecab">bitbucket.org/rerofumi/mecab</a></li>
+<li><a href="https://github.com/bluele/mecab-golang">github.com/bluele/mecab-golang</a></li>
+<li><a href="https://github.com/shogo82148/go-mecab">github.com/shogo82148/go-mecab</a></li>
+</ul>
+
+<p>MeCabではないけどPure Goな形態素解析器もありました。</p>
+
+<ul>
+<li><a href="https://qiita.com/ikawaha/items/ff27ac03e22b7f36811b">Pure Go で辞書同梱な形態素解析器 kagome を公開してみました - Qiita</a></li>
+</ul>
+
+<p>今回は、使いやすそうでメモリ管理がしっかりしていると書かれている<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup><a href="https://github.com/shogo82148/go-mecab">github.com/shogo82148/go-mecab</a>を選びました。</p>
+
+<h1 id="インストール">インストール</h1>
+
+<p>MeCab、mecab-config、NEologdのインストールは省略します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">CGO_LDFLAGS</span><span class="o">=</span><span class="s2">&#34;`mecab-config --libs`&#34;</span>
+<span class="nb">export</span> <span class="nv">CGO_CFLAGS</span><span class="o">=</span><span class="s2">&#34;-I`mecab-config --inc-dir`&#34;</span>
+go get github.com/shogo82148/go-mecab</code></pre></div>
+<h1 id="使い方">使い方</h1>
+
+<p>NEologdを使う場合と使わない場合です。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go:main.go" data-lang="go:main.go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+        <span class="s">&#34;fmt&#34;</span>
+
+        <span class="nx">mecab</span> <span class="s">&#34;github.com/shogo82148/go-mecab&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">const</span> <span class="p">(</span>
+        <span class="nx">ipadic</span> <span class="p">=</span> <span class="s">&#34;/usr/local/lib/mecab/dic/mecab-ipadic-neologd&#34;</span>
+        <span class="nx">text</span>   <span class="p">=</span> <span class="s">&#34;10日放送の「中居正広のミになる図書館」（テレビ朝日系）で、SMAPの中居正広が、篠原信一の過去の勘違いを明かす一幕があった。&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">parse</span><span class="p">(</span><span class="nx">args</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">mecab</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">mecab</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="k">defer</span> <span class="nx">mecab</span><span class="p">.</span><span class="nf">Destroy</span><span class="p">()</span>
+
+        <span class="nx">node</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">mecab</span><span class="p">.</span><span class="nf">ParseToNode</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="p">;</span> <span class="p">!</span><span class="nx">node</span><span class="p">.</span><span class="nf">IsZero</span><span class="p">();</span> <span class="nx">node</span> <span class="p">=</span> <span class="nx">node</span><span class="p">.</span><span class="nf">Next</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%s\t%s\n&#34;</span><span class="p">,</span> <span class="nx">node</span><span class="p">.</span><span class="nf">Surface</span><span class="p">(),</span> <span class="nx">node</span><span class="p">.</span><span class="nf">Feature</span><span class="p">())</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;# ipadic&#34;</span><span class="p">)</span>
+        <span class="nf">parse</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{})</span>
+
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;\n# NEologd&#34;</span><span class="p">)</span>
+        <span class="nf">parse</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;dicdir&#34;</span><span class="p">:</span> <span class="nx">ipadic</span><span class="p">})</span>
+<span class="p">}</span></code></pre></div>
+<p><code>mecab.New</code>の引数としてMeCabのオプションを渡せばいいみたいです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mecab --help
+MeCab: Yet Another Part-of-Speech and Morphological Analyzer
+
+Copyright<span class="o">(</span>C<span class="o">)</span> <span class="m">2001</span>-2012 Taku Kudo
+Copyright<span class="o">(</span>C<span class="o">)</span> <span class="m">2004</span>-2008 Nippon Telegraph and Telephone Corporation
+
+Usage: mecab <span class="o">[</span>options<span class="o">]</span> files
+ -r, --rcfile<span class="o">=</span>FILE              use FILE as resource file
+ -d, --dicdir<span class="o">=</span>DIR               <span class="nb">set</span> DIR  as a system dicdir
+ -u, --userdic<span class="o">=</span>FILE             use FILE as a user dictionary
+ -l, --lattice-level<span class="o">=</span>INT        lattice information level <span class="o">(</span>DEPRECATED<span class="o">)</span>
+ -D, --dictionary-info          show dictionary information and <span class="nb">exit</span>
+ -O, --output-format-type<span class="o">=</span>TYPE  <span class="nb">set</span> output format <span class="nb">type</span> <span class="o">(</span>wakati,none,...<span class="o">)</span>
+ -a, --all-morphs               output all morphs<span class="o">(</span>default <span class="nb">false</span><span class="o">)</span>
+ -N, --nbest<span class="o">=</span>INT                output N best results <span class="o">(</span>default <span class="m">1</span><span class="o">)</span>
+ -p, --partial                  partial parsing mode <span class="o">(</span>default <span class="nb">false</span><span class="o">)</span>
+ -m, --marginal                 output marginal probability <span class="o">(</span>default <span class="nb">false</span><span class="o">)</span>
+ -M, --max-grouping-size<span class="o">=</span>INT    maximum grouping size <span class="k">for</span> unknown words <span class="o">(</span>default <span class="m">24</span><span class="o">)</span>
+ -F, --node-format<span class="o">=</span>STR          use STR as the user-defined node format
+ -U, --unk-format<span class="o">=</span>STR           use STR as the user-defined unknown node format
+ -B, --bos-format<span class="o">=</span>STR           use STR as the user-defined beginning-of-sentence format
+ -E, --eos-format<span class="o">=</span>STR           use STR as the user-defined end-of-sentence format
+ -S, --eon-format<span class="o">=</span>STR           use STR as the user-defined end-of-NBest format
+ -x, --unk-feature<span class="o">=</span>STR          use STR as the feature <span class="k">for</span> unknown word
+ -b, --input-buffer-size<span class="o">=</span>INT    <span class="nb">set</span> input buffer size <span class="o">(</span>default <span class="m">8192</span><span class="o">)</span>
+ -P, --dump-config              dump MeCab parameters
+ -C, --allocate-sentence        allocate new memory <span class="k">for</span> input sentence
+ -t, --theta<span class="o">=</span>FLOAT              <span class="nb">set</span> temparature parameter theta <span class="o">(</span>default <span class="m">0</span>.75<span class="o">)</span>
+ -c, --cost-factor<span class="o">=</span>INT          <span class="nb">set</span> cost factor <span class="o">(</span>default <span class="m">700</span><span class="o">)</span>
+ -o, --output<span class="o">=</span>FILE              <span class="nb">set</span> the output file name
+ -v, --version                  show the version and exit.
+ -h, --help                     show this <span class="nb">help</span> and exit.</code></pre></div>
+<p>結果はこんな感じです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go run main.go
+<span class="c1"># ipadic</span>
+        BOS/EOS,*,*,*,*,*,*,*,*
+<span class="m">10</span>      名詞,数,*,*,*,*,*
+日      名詞,接尾,助数詞,*,*,*,日,ニチ,ニチ
+放送    名詞,サ変接続,*,*,*,*,放送,ホウソウ,ホーソー
+の      助詞,連体化,*,*,*,*,の,ノ,ノ
+「      記号,括弧開,*,*,*,*,「,「,「
+中居    名詞,固有名詞,人名,姓,*,*,中居,ナカイ,ナカイ
+正広    名詞,固有名詞,人名,名,*,*,正広,マサヒロ,マサヒロ
+の      助詞,連体化,*,*,*,*,の,ノ,ノ
+ミ      名詞,一般,*,*,*,*,ミ,ミ,ミ
+に      助詞,格助詞,一般,*,*,*,に,ニ,ニ
+なる    動詞,自立,*,*,五段・ラ行,基本形,なる,ナル,ナル
+図書館  名詞,一般,*,*,*,*,図書館,トショカン,トショカン
+」      記号,括弧閉,*,*,*,*,」,」,」
+（      記号,括弧開,*,*,*,*,（,（,（
+テレビ朝日      名詞,固有名詞,組織,*,*,*,テレビ朝日,テレビアサヒ,テレビアサヒ
+系      名詞,接尾,一般,*,*,*,系,ケイ,ケイ
+）      記号,括弧閉,*,*,*,*,）,）,）
+で      助詞,格助詞,一般,*,*,*,で,デ,デ
+、      記号,読点,*,*,*,*,、,、,、
+SMAP    名詞,固有名詞,組織,*,*,*,*
+の      助詞,連体化,*,*,*,*,の,ノ,ノ
+中居    名詞,固有名詞,人名,姓,*,*,中居,ナカイ,ナカイ
+正広    名詞,固有名詞,人名,名,*,*,正広,マサヒロ,マサヒロ
+が      助詞,格助詞,一般,*,*,*,が,ガ,ガ
+、      記号,読点,*,*,*,*,、,、,、
+篠原    名詞,固有名詞,人名,姓,*,*,篠原,シノハラ,シノハラ
+信一    名詞,固有名詞,人名,名,*,*,信一,シンイチ,シンイチ
+の      助詞,連体化,*,*,*,*,の,ノ,ノ
+過去    名詞,副詞可能,*,*,*,*,過去,カコ,カコ
+の      助詞,連体化,*,*,*,*,の,ノ,ノ
+勘違い  名詞,サ変接続,*,*,*,*,勘違い,カンチガイ,カンチガイ
+を      助詞,格助詞,一般,*,*,*,を,ヲ,ヲ
+明かす  動詞,自立,*,*,五段・サ行,基本形,明かす,アカス,アカス
+一幕    名詞,一般,*,*,*,*,一幕,ヒトマク,ヒトマク
+が      助詞,格助詞,一般,*,*,*,が,ガ,ガ
+あっ    動詞,自立,*,*,五段・ラ行,連用タ接続,ある,アッ,アッ
+た      助動詞,*,*,*,特殊・タ,基本形,た,タ,タ
+。      記号,句点,*,*,*,*,。,。,。
+        BOS/EOS,*,*,*,*,*,*,*,*
+
+<span class="c1"># NEologd</span>
+        BOS/EOS,*,*,*,*,*,*,*,*
+10日    名詞,固有名詞,一般,*,*,*,10日,トオカ,トオカ
+放送    名詞,サ変接続,*,*,*,*,放送,ホウソウ,ホーソー
+の      助詞,連体化,*,*,*,*,の,ノ,ノ
+「      記号,括弧開,*,*,*,*,「,「,「
+中居正広のミになる図書館        名詞,固有名詞,一般,*,*,*,中居正広のミになる図書館,ナカイマサヒロノミニナルトショカン,ナカイマサヒロノミニナルトショカン
+」      記号,括弧閉,*,*,*,*,」,」,」
+（      記号,括弧開,*,*,*,*,（,（,（
+テレビ朝日      名詞,固有名詞,組織,*,*,*,テレビ朝日,テレビアサヒ,テレビアサヒ
+系      名詞,接尾,一般,*,*,*,系,ケイ,ケイ
+）      記号,括弧閉,*,*,*,*,）,）,）
+で      助詞,格助詞,一般,*,*,*,で,デ,デ
+、      記号,読点,*,*,*,*,、,、,、
+SMAP    名詞,固有名詞,人名,一般,*,*,SMAP,スマップ,スマップ
+の      助詞,連体化,*,*,*,*,の,ノ,ノ
+中居正広        名詞,固有名詞,人名,一般,*,*,中居正広,ナカイマサヒロ,ナカイマサヒロ
+が      助詞,格助詞,一般,*,*,*,が,ガ,ガ
+、      記号,読点,*,*,*,*,、,、,、
+篠原信一        名詞,固有名詞,人名,一般,*,*,篠原信一,シノハラシンイチ,シノハラシンイチ
+の      助詞,連体化,*,*,*,*,の,ノ,ノ
+過去    名詞,副詞可能,*,*,*,*,過去,カコ,カコ
+の      助詞,連体化,*,*,*,*,の,ノ,ノ
+勘違い  名詞,サ変接続,*,*,*,*,勘違い,カンチガイ,カンチガイ
+を      助詞,格助詞,一般,*,*,*,を,ヲ,ヲ
+明かす  動詞,自立,*,*,五段・サ行,基本形,明かす,アカス,アカス
+一幕    名詞,一般,*,*,*,*,一幕,ヒトマク,ヒトマク
+が      助詞,格助詞,一般,*,*,*,が,ガ,ガ
+あっ    動詞,自立,*,*,五段・ラ行,連用タ接続,ある,アッ,アッ
+た      助動詞,*,*,*,特殊・タ,基本形,た,タ,タ
+。      記号,句点,*,*,*,*,。,。,。
+        BOS/EOS,*,*,*,*,*,*,*,*</code></pre></div>
+<p>ちゃんとNEologd使えてますね 😉</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1"><a href="https://shogo82148.github.io/blog/2016/02/11/golang-mecab-binding/">MeCabのGolangバインディングを書いてみた - Shogo&rsquo;s Blog</a>
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

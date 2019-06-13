@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>お名前.comからIDCF DNSに移行した話 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2016/07/31/hatena10.html/">
+  <meta property="og:title" content="お名前.comからIDCF DNSに移行した話 - nownab.log">
+  <meta property="og:description" content="ネームサーバーをお名前.comからIDCF DNSに移行しました。 IDCF DNSは1ドメイン50円で100レコードまでなら使い放題です（クエリ数に関">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="お名前.comからIDCF DNSに移行した話 - nownab.log">
+  <meta property="twitter:description" content="ネームサーバーをお名前.comからIDCF DNSに移行しました。 IDCF DNSは1ドメイン50円で100レコードまでなら使い放題です（クエリ数に関">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2016/07/31/hatena10.html/">お名前.comからIDCF DNSに移行した話</a></h1>
+    <span class="date">Posted on Aug 10, 2015</span>
+  </div>
+  <div class="body">
+    
+
+<p>ネームサーバーをお名前.comからIDCF DNSに移行しました。</p>
+
+<p>IDCF DNSは1ドメイン50円で100レコードまでなら使い放題です（クエリ数に関係ない）。
+お名前.comはドメイン取得のおまけで無料なので、50円余分に払わないといけません。
+とはいえまあ50円です笑</p>
+
+<p>APIで操作できるので動的にレコードが変化するようなドメインのDNSとしてはよさそうです。
+ということでなけなしの50円を払いお名前.comから移行することにしました。</p>
+
+<h1 id="流れ">流れ</h1>
+
+<p>移行の流れとしては、次のようになります。</p>
+
+<ol>
+<li>IDCF DNSに登録する</li>
+<li>IDCF DNSにゾーンを作成する</li>
+<li>IDCF DNSにレコードを登録する</li>
+<li>IDCF DNSでドメインを認証する</li>
+<li>ネームサーバーを切り替える</li>
+</ol>
+
+<h1 id="idcf-dnsに登録する">IDCF DNSに登録する</h1>
+
+<p>こちらにアクセスします。
+<a href="https://console.idcfcloud.com/dns/">https://console.idcfcloud.com/dns/</a></p>
+
+<p>多分登録画面とかログイン画面とか出てくるはず。。。</p>
+
+<h1 id="idcf-dnsにゾーン作成">IDCF DNSにゾーン作成</h1>
+
+<p>無事にログインできるとこんな画面が出るので、「ゾーン作成」をクリックします。</p>
+
+<p><img src="/images/articles/hatena10/01.png" alt="ゾーン作成1" /></p>
+
+<p>作成画面が出てくるので、ドメインやメールアドレスを入力します。
+ドメインがそのままゾーン名となります。hogehoge.comみたいな感じです。</p>
+
+<p><img src="/images/articles/hatena10/02.png" alt="ゾーン作成2" /></p>
+
+<p>これでゾーンが作成されました。</p>
+
+<h1 id="idcf-dnsにレコード登録">IDCF DNSにレコード登録</h1>
+
+<p>次はレコードを登録していきます。</p>
+
+<p>ゾーンが作成されると、このようにゾーン一覧に新しいゾーンが表示されます。</p>
+
+<p><img src="/images/articles/hatena10/03.png" alt="ゾーン一覧" /></p>
+
+<p>ゾーン名をクリックすると、SOAレコードやNSレコードが登録されていることがわかります。
+右上の「レコード登録」から今登録してあるレコードを登録していきます。</p>
+
+<p><img src="/images/articles/hatena10/04.png" alt="レコード登録1" /></p>
+
+<p>今のところ登録できるレコードはA、CNAME、AAAA、MX、TXT、SRVのみです。</p>
+
+<p><img src="/images/articles/hatena10/05.png" alt="レコード登録2" /></p>
+
+<p>こんな感じで、お名前.comと差異がないようにします。</p>
+
+<p><img src="/images/articles/hatena10/06.png" alt="レコード比較 IDCF" /></p>
+
+<p><img src="/images/articles/hatena10/07.png" alt="レコード比較 onamae" /></p>
+
+<h1 id="idcd-dnsでドメイン認証">IDCD DNSでドメイン認証</h1>
+
+<p>ドメインの所有者であるということを確認するため、ドメインの認証が必要になっています。</p>
+
+<p>IDCF DNSのゾーンページの、「認証する」をクリックします。</p>
+
+<p><img src="/images/articles/hatena10/08.png" alt="認証する" /></p>
+
+<p>すると、このような認証方法が書かれたモーダルが表示されます。</p>
+
+<p><img src="/images/articles/hatena10/09.png" alt="認証モーダル" /></p>
+
+<p>モザイクばかりでわかりにくいですが、、、今回は新規ドメインではないので1番の方法を使用します。
+よくあるTXTレコードに認証文字列を登録する方法です。</p>
+
+<p>お名前.comの方で、TXTレコードを登録します。</p>
+
+<p><img src="/images/articles/hatena10/10.png" alt="TXTレコード" /></p>
+
+<p>digコマンドでTXTレコードが確認できたら、準備完了です。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ dig @157.7.32.53 hogehoge.com. TXT
+
+<span class="p">;</span> &lt;&lt;&gt;&gt; DiG <span class="m">9</span>.8.3-P1 &lt;&lt;&gt;&gt; @157.7.32.53 hogehoge.com. TXT
+<span class="p">;</span> <span class="o">(</span><span class="m">1</span> server found<span class="o">)</span>
+<span class="p">;;</span> global options: +cmd
+<span class="p">;;</span> Got answer:
+<span class="p">;;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">53710</span>
+<span class="p">;;</span> flags: qr aa rd<span class="p">;</span> QUERY: <span class="m">1</span>, ANSWER: <span class="m">1</span>, AUTHORITY: <span class="m">4</span>, ADDITIONAL: <span class="m">6</span>
+<span class="p">;;</span> WARNING: recursion requested but not available
+
+<span class="p">;;</span> QUESTION SECTION:
+<span class="p">;</span>hogehoge.com.			IN	TXT
+
+<span class="p">;;</span> ANSWER SECTION:
+hogehoge.com.		<span class="m">3600</span>	IN	TXT	<span class="s2">&#34;idcf-dns-token=xxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
+
+<span class="p">;;</span> AUTHORITY SECTION:
+hogehoge.com.		<span class="m">86400</span>	IN	NS	<span class="m">02</span>.dnsv.jp.
+hogehoge.com.		<span class="m">86400</span>	IN	NS	<span class="m">01</span>.dnsv.jp.
+hogehoge.com.		<span class="m">86400</span>	IN	NS	<span class="m">03</span>.dnsv.jp.
+hogehoge.com.		<span class="m">86400</span>	IN	NS	<span class="m">04</span>.dnsv.jp.
+
+<span class="p">;;</span> ADDITIONAL SECTION:
+<span class="m">01</span>.dnsv.jp.		<span class="m">86400</span>	IN	A	<span class="m">157</span>.7.32.53
+<span class="m">02</span>.dnsv.jp.		<span class="m">86400</span>	IN	A	<span class="m">157</span>.7.33.53
+<span class="m">03</span>.dnsv.jp.		<span class="m">86400</span>	IN	A	<span class="m">157</span>.7.32.35
+<span class="m">03</span>.dnsv.jp.		<span class="m">86400</span>	IN	AAAA	<span class="m">2400</span>:8500:3000::53
+<span class="m">04</span>.dnsv.jp.		<span class="m">86400</span>	IN	A	<span class="m">157</span>.7.33.35
+<span class="m">04</span>.dnsv.jp.		<span class="m">86400</span>	IN	AAAA	<span class="m">2400</span>:8500:3fff::53
+
+<span class="p">;;</span> Query time: <span class="m">6</span> msec
+<span class="p">;;</span> SERVER: <span class="m">157</span>.7.32.53#53<span class="o">(</span><span class="m">157</span>.7.32.53<span class="o">)</span>
+<span class="p">;;</span> WHEN: Sun Aug  <span class="m">9</span> <span class="m">21</span>:26:58 <span class="m">2015</span>
+<span class="p">;;</span> MSG SIZE  rcvd: <span class="m">285</span></code></pre></div>
+<p>準備ができたら、認証しましょう。</p>
+
+<p><img src="/images/articles/hatena10/11.png" alt="認証モーダル2" /></p>
+
+<p>無事に終わると認証完了とでます。</p>
+
+<p><img src="/images/articles/hatena10/12.png" alt="認証完了" /></p>
+
+<p>ちゃんとIDCF DNSのネームサーバーで名前解決できるようになってます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ dig @ns01.idcfcloud.com hogehoge.com
+
+<span class="p">;</span> &lt;&lt;&gt;&gt; DiG <span class="m">9</span>.8.3-P1 &lt;&lt;&gt;&gt; @ns01.idcfcloud.com hogehoge.com
+<span class="p">;</span> <span class="o">(</span><span class="m">1</span> server found<span class="o">)</span>
+<span class="p">;;</span> global options: +cmd
+<span class="p">;;</span> Got answer:
+<span class="p">;;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">37498</span>
+<span class="p">;;</span> flags: qr aa rd<span class="p">;</span> QUERY: <span class="m">1</span>, ANSWER: <span class="m">1</span>, AUTHORITY: <span class="m">0</span>, ADDITIONAL: <span class="m">0</span>
+<span class="p">;;</span> WARNING: recursion requested but not available
+
+<span class="p">;;</span> QUESTION SECTION:
+<span class="p">;</span>hogehoge.com.			IN	A
+
+<span class="p">;;</span> ANSWER SECTION:
+hogehoge.com.		<span class="m">3600</span>	IN	A	<span class="m">1</span>.2.3.4
+
+<span class="p">;;</span> Query time: <span class="m">9</span> msec
+<span class="p">;;</span> SERVER: <span class="m">210</span>.140.183.65#53<span class="o">(</span><span class="m">210</span>.140.183.65<span class="o">)</span>
+<span class="p">;;</span> WHEN: Sun Aug  <span class="m">9</span> <span class="m">21</span>:34:00 <span class="m">2015</span>
+<span class="p">;;</span> MSG SIZE  rcvd: <span class="m">46</span></code></pre></div>
+<h1 id="ネームサーバー切り替え">ネームサーバー切り替え</h1>
+
+<p>いよいよ、ネームサーバーを切り替えます。</p>
+
+<p>お名前.comの、「ドメイン設定 &gt; ネームサーバーの変更」を開きます。
+切り替えたいドメインを選択し、「他のネームサーバーを利用」を選びます。</p>
+
+<p><img src="/images/articles/hatena10/13.png" alt="ネームサーバー変更" /></p>
+
+<p>IDCF DNSのネームサーバーを入力し、設定します。</p>
+
+<p><img src="/images/articles/hatena10/14.png" alt="ネームサーバー" /></p>
+
+<p>これで切り替え完了です。
+digコマンドで確認できます。
+（切り替えに1日〜2日ぐらいかかります）</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">dig bar.hogehoge.com
+
+<span class="p">;</span> &lt;&lt;&gt;&gt; DiG <span class="m">9</span>.8.3-P1 &lt;&lt;&gt;&gt; bar.hogehoge.com
+<span class="p">;;</span> global options: +cmd
+<span class="p">;;</span> Got answer:
+<span class="p">;;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">7938</span>
+<span class="p">;;</span> flags: qr rd ra<span class="p">;</span> QUERY: <span class="m">1</span>, ANSWER: <span class="m">2</span>, AUTHORITY: <span class="m">3</span>, ADDITIONAL: <span class="m">3</span>
+
+<span class="p">;;</span> QUESTION SECTION:
+<span class="p">;</span>bar.hogehoge.com.		IN	A
+
+<span class="p">;;</span> ANSWER SECTION:
+bar.hogehoge.com.	<span class="m">3600</span>	IN	CNAME	foo.hogehoge.com.
+foo.hogehoge.com.	<span class="m">3595</span>	IN	A	<span class="m">5</span>.6.7.8
+
+<span class="p">;;</span> AUTHORITY SECTION:
+hogehoge.com.		<span class="m">3574</span>	IN	NS	ns02.idcfcloud.com.
+hogehoge.com.		<span class="m">3574</span>	IN	NS	ns03.idcfcloud.com.
+hogehoge.com.		<span class="m">3574</span>	IN	NS	ns01.idcfcloud.com.
+
+<span class="p">;;</span> ADDITIONAL SECTION:
+ns01.idcfcloud.com.	<span class="m">570</span>	IN	A	<span class="m">210</span>.140.183.65
+ns02.idcfcloud.com.	<span class="m">570</span>	IN	A	<span class="m">202</span>.234.29.33
+ns03.idcfcloud.com.	<span class="m">570</span>	IN	A	<span class="m">210</span>.152.232.97
+
+<span class="p">;;</span> Query time: <span class="m">27</span> msec
+<span class="p">;;</span> SERVER: <span class="m">192</span>.168.63.100#53<span class="o">(</span><span class="m">192</span>.168.63.100<span class="o">)</span>
+<span class="p">;;</span> WHEN: Mon Aug <span class="m">10</span> <span class="m">23</span>:36:06 <span class="m">2015</span>
+<span class="p">;;</span> MSG SIZE  rcvd: <span class="m">186</span></code></pre></div>
+<h1 id="おわりに">おわりに</h1>
+
+<p>Web UIはシンプルで使いやすくてGoodですね！
+料金がクエリ数に関係ないのも素晴らしい。</p>
+
+<p>ドメイン取得も一括でできたらなぁ。</p>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

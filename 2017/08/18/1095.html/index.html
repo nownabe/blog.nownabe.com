@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>統計学入門  第6章 確率分布 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2017/08/18/1095.html/">
+  <meta property="og:title" content="統計学入門  第6章 確率分布 - nownab.log">
+  <meta property="og:description" content="nownab.log | 統計学入門 第5章 確率変数 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門をやっている">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="統計学入門  第6章 確率分布 - nownab.log">
+  <meta property="twitter:description" content="nownab.log | 統計学入門 第5章 確率変数 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門をやっている">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2017/08/18/1095.html/">統計学入門  第6章 確率分布</a></h1>
+    <span class="date">Posted on Aug 14, 2017</span>
+  </div>
+  <div class="body">
+    
+
+<p><a href="https://blog.nownabe.com/2017/08/10/1081.html">nownab.log | 統計学入門 第5章 確率変数</a></p>
+
+<div class="asin">
+<div class="asin-image"><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/" rel="nofollow noopener" target="_blank"><img src="http://images-jp.amazon.com/images/P/4130420658.09._SL160_.jpg" alt="統計学入門 (基礎統計学Ⅰ)" title="統計学入門 (基礎統計学Ⅰ)"></a></div>
+<div class="asin-detail">
+<p><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/" rel="nofollow noopener" target="_blank">統計学入門 (基礎統計学Ⅰ)</a></p>
+<ul>
+<li>東京大学教養学部統計学教室</li>
+<li>東京大学出版会</li>
+</ul>
+</div>
+
+<p><p></p>
+</div></p>
+
+<p>機械学習勉強会として今は<a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/">統計学入門</a>をやっている。
+週一でやっていて、今週から輪読形式で進めてみることになった。</p>
+
+<p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。
+<a href="https://github.com/Wondershake/ml-statistics-intro">https://github.com/Wondershake/ml-statistics-intro</a></p>
+
+<h1 id="今回の内容">今回の内容</h1>
+
+<h2 id="第6章-確率分布">第6章 確率分布</h2>
+
+<p>様々な現象にあてはまる確率分布を紹介する。</p>
+
+<h3 id="6-1-超幾何分布">6.1 超幾何分布</h3>
+
+<ul>
+<li><strong>超幾何分布 (hypergeometric distribution)</strong>
+
+<ul>
+<li>Aが$M$個、Bが$N-M$個の2種類からなる$N$個の集団があるとき</li>
+<li>この集団から$n$個取り出したときにAが$x$個、Bが$n-x$個であるとする</li>
+<li>$f(x)=\frac{{}_MC<em>x\cdot{}</em>{N-M}C_{n-x}}{{}_NC_n}$</li>
+<li>$x=\max(0, n-(N-M)),\dots, \min(n, M)$</li>
+<li>確率変数$X$が超幾何分布に従うとき、
+
+<ul>
+<li>期待値: $E(X)=n\frac{M}{N}$</li>
+<li>分散: $V(X)=n\frac{M(N-M)}{N^x}\frac{N-n}{N-1}$</li>
+<li>$N$が無限に大きければ$V(X)\rightarrow1$</li>
+</ul></li>
+</ul></li>
+<li><strong>捕獲再捕獲法 (capture-recapture method)</strong>
+
+<ul>
+<li>資源調査に使われる</li>
+<li>$N:M=n:x$が成立するとき$f(x)$が最大になる性質を利用して未知の$N$を推定する</li>
+</ul></li>
+<li><strong>非復元 (without replacement)</strong>: $x$個のものを取り出すとき、1個ずつ元に戻さずに取り出す</li>
+<li><strong>復元 (with replacement)</strong>: 1個ずつ元に戻す</li>
+<li>超幾何分布は非復元の場合</li>
+<li>復元の場合は$\frac{M}{N}=p$とした二項分布に従う</li>
+</ul>
+
+<h3 id="6-2-二項分布とベルヌーイ分布">6.2 二項分布とベルヌーイ分布</h3>
+
+<ul>
+<li><strong>ベルヌーイ試行 (Bernoulli trials)</strong>
+
+<ul>
+<li>2種類の可能な結果(成功、失敗)を生じる実験があり、それぞれの確率を$p, 1-p$とする</li>
+<li>この実験を同じ条件かつ独立に$n$回繰り返す試行のことをベルヌーイ試行という</li>
+</ul></li>
+<li><strong>二項分布 (binomial distribution)</strong>
+
+<ul>
+<li>ベルヌーイ試行で成功が$x$回、失敗が$n-x$回生じるとする</li>
+<li>その確率は$f(x)={}_nC_xp^x(1-p)^{n-x}$</li>
+<li>$x=0, 1, \dots, n$</li>
+<li>$Bi(n, p)$で表す</li>
+<li>$Bi(1, p)$を<strong>ベルヌーイ分布 (Bernoulli distribution)</strong>という</li>
+<li>期待値: $E(X)=np$</li>
+<li>分散: $V(X)=np(1-p)$</li>
+</ul></li>
+</ul>
+
+<h3 id="6-3-ポアソン分布">6.3 ポアソン分布</h3>
+
+<ul>
+<li><strong>ポアソンの小数の法則 (Poisson&rsquo;s law of small numbers)</strong>
+
+<ul>
+<li>二項分布において$n$が大きく$p$が小さい場合</li>
+<li>$np\rightarrow\lambda$となるように$n\rightarrow\infty, p\rightarrow0$となる極限で</li>
+<li>${}_nC_xp^x(1-p)^{n-x}\rightarrow \frac{e^{-\lambda}\lambda^x}{x!}$</li>
+</ul></li>
+<li><strong>ポアソン分布 (Poisson distribution)</strong>
+
+<ul>
+<li>$\lambda&gt;0$として</li>
+<li>$f(x)=\frac{e^{-\lambda}\lambda^x}{x!}$</li>
+<li>$x=0, 1, 2, \dots$</li>
+<li>$P_o(\lambda)$で表す</li>
+<li>期待値: $E(X)=\lambda$</li>
+<li>分散: $V(X)=\lambda$</li>
+</ul></li>
+</ul>
+
+<h3 id="6-4-幾何分布と負の二項分布">6.4 幾何分布と負の二項分布</h3>
+
+<ul>
+<li><strong>幾何分布 (geometric distribution)</strong>
+
+<ul>
+<li>ベルヌーイ試行と同じ問題で</li>
+<li>試行回数を決めないで最初に成功が得られるまでの回数を$x$とする</li>
+<li>$q=1-p$とする</li>
+<li>$f(x)=pq^{x-1}$</li>
+<li>$x=1, 2, \dots$</li>
+<li>期待値: $E(X)=\frac{1}{p}$</li>
+<li>分散: $V(X)=\frac{1-p}{p^2}$</li>
+<li>離散的な<strong>待ち時間分布 (waiting time distribution)</strong>と呼ばれる</li>
+</ul></li>
+<li><strong>負の二項分布 (negative binomial distribution)</strong>
+
+<ul>
+<li>幾何分布の一般化</li>
+<li>$k$回目の成功を得るまでの失敗の回数を$x$とする</li>
+<li>$f(x)={}_{k+x-1}C_xp^kq^x$</li>
+<li><strong>パスカル分布</strong>ともいう</li>
+<li>$k=1$のとき幾何分布</li>
+<li>期待値: $E(X)=\frac{kq}{p}$</li>
+<li>分散: $V(X)=\frac{kq}{p^2}$</li>
+</ul></li>
+</ul>
+
+<h3 id="6-5-一様分布">6.5 一様分布</h3>
+
+<ul>
+<li><strong>離散一様分布 (uniform distribution of descrete type)</strong>
+
+<ul>
+<li>$N$面さいころを振ったときに出る目を$X$</li>
+<li>$f(x)=\frac{1}{N}$</li>
+<li>$x=1,2,\dots,N$</li>
+<li>期待値: $E(X)=\frac{N+1}{2}$</li>
+<li>分散: $V(X)=\frac{N^2-1}{12}$</li>
+</ul></li>
+</ul>
+
+<h3 id="6-6-正規分布">6.6 正規分布</h3>
+
+<ul>
+<li><strong>正規分布 (normal distribution)</strong>
+
+<ul>
+<li>非常に重要な連続型の確率分布
+
+<ul>
+<li>例えば測定誤差は正規分布に従って生じるとされている</li>
+</ul></li>
+<li><strong>ガウス分布 (Gaussian distribution)</strong>とも</li>
+<li>$f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\frac{-(x-\mu)^2}{2\sigma^2}$</li>
+<li>$-\infty&lt;x&lt;\infty$</li>
+<li>$E(X)=\mu$</li>
+<li>$V(X)=\sigma^2$</li>
+<li>${\rm N}(\mu,\sigma)$で表す</li>
+<li>著しい特徴
+
+<ul>
+<li>$X$が$N(\mu,\sigma^2)$に従っているとき、$Y=aX+b$は$N(a\mu+b,a^2\sigma^2)$に従う</li>
+<li>標準化変数$Z=\frac{X-\mu}{\sigma}$は$N(0,1)$に従う。これを<strong>標準正規分布 (standard normal distribution)</strong>という</li>
+</ul></li>
+</ul></li>
+<li><strong>中心極限定理 (central limit theorem)</strong>
+
+<ul>
+<li>同一の確率分布$f(x)$をもつ$n$個の独立な確率変数の和$X_1+X_2+\dots+X_n$は$n$が大きいとき正規分布に従っていると仮定してよい</li>
+</ul></li>
+</ul>
+
+<h3 id="6-7-指数分布">6.7 指数分布</h3>
+
+<ul>
+<li><strong>指数分布 (exponential distribution)</strong>
+
+<ul>
+<li>$x\geq0$のとき$f(x)=\lambda e^{-\lambda x}$</li>
+<li>$x&lt;0$のとき$f(x)=0$</li>
+<li>本書では$Ex(\lambda)$</li>
+<li>$x\geq0$のとき$F(x)=P(X\leq x)=1-e^{-\lambda x}$</li>
+<li>$x&lt;0$のとき$F(x)=0$</li>
+<li>待ち時間分布の性質を持つ</li>
+<li>$E(X)=\frac{1}{\lambda}$</li>
+<li>$V(X)=\frac{1}{\lambda^2}$</li>
+<li>$P(X&gt;x)=e^{-\lambda x}\; (x\geq0), 1\;(x&lt;0)$</li>
+</ul></li>
+</ul>
+
+<h3 id="6-8-ガンマ分布">6.8 ガンマ分布</h3>
+
+<ul>
+<li><strong>ガンマ分布 (Gamma distribution)</strong>
+
+<ul>
+<li>指数分布の一般形</li>
+<li>$x\geq0$のとき$f(x)=\frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}$</li>
+<li>$x&lt;0$のとき$f(x)=0$</li>
+<li>$\Gamma(\alpha)=\int_0^\infty x^{\alpha-1}e^{-x}dx$</li>
+<li>$E(X)=\frac{\alpha}{\lambda}$</li>
+<li>$V(X)=\frac{\alpha}{\lambda^2}$</li>
+<li>$Ga(\alpha,\lambda)$で表す</li>
+<li>$Ga(1, \lambda)=Ex(\lambda)$</li>
+</ul></li>
+<li>確率変数$X_1,X<em>2,\dots,X</em>\alpha$が独立で$Ex(\lambda)$に従うとき、$X_1+X<em>2+\dots+X</em>\alpha$は$Ga(\alpha,\lambda)$に従う</li>
+<li>確率変数$X$が${\rm N}(0,1)$に従うとき、$X^2$は$Ga(\frac{1}{2},\frac{1}{2})$に従う</li>
+<li><strong>$\chi^2$(カイ二乗)分布</strong>: $Ga(\frac{n}{2}, \frac{1}{2})$を自由度$n$の$\chi^2$分布という</li>
+</ul>
+
+<h3 id="6-9-ベータ分布と一様分布">6.9 ベータ分布と一様分布</h3>
+
+<ul>
+<li><strong>ベータ分布 (Beta distribution)</strong>
+
+<ul>
+<li>$0&lt;x&lt;1$のとき$f(x)=\frac{x^{\alpha-1}(1-x)^{\beta-1}}{B(\alpha,\beta)}$</li>
+<li>それ以外では$f(x)=0$</li>
+<li>ただし、$\alpha&gt;0, \beta&gt;0$</li>
+<li>$B(\alpha,\beta)=\int_0^1x^{\alpha-1}(1-x)^{\beta-1}dx=\frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha+\beta)}$</li>
+<li>$E(X)=\frac{\alpha}{\alpha+\beta}$</li>
+<li>$V(X)=\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$</li>
+<li>$Be(\alpha, \beta)$で表す</li>
+<li>$\alpha=\beta=1$のとき一様分布</li>
+</ul></li>
+</ul>
+
+<h3 id="6-10-コーシー分布">6.10 コーシー分布</h3>
+
+<ul>
+<li><strong>コーシー分布 (Cauchy distribution)</strong>
+
+<ul>
+<li>$f(x)=\frac{\alpha}{\pi\{\alpha^2+(x-\lambda)^2\}} \; (\alpha&gt;0)$</li>
+<li>期待値、分散、モーメント母関数が存在しない</li>
+</ul></li>
+</ul>
+
+<h3 id="6-11-対数正規分布">6.11 対数正規分布</h3>
+
+<ul>
+<li><strong>対数正規分布 (log-normal distribution)</strong>
+
+<ul>
+<li>$x&gt;0$のとき$f(x)=\frac{1}{\sqrt{2\pi}\sigma x}\exp(-\frac{(\ln(x)-\mu)^2}{2\sigma^2})$</li>
+<li>$x\leq0$のとき$f(x)=0$</li>
+<li>$\ln X$が正規分布に従うとき、$X$は対数正規分布に従う</li>
+<li>$E(X)=\exp(\mu+\frac{\sigma^2}{2})$</li>
+<li>$V(X)=\exp(2\mu+2\sigma^2)-\exp(2\mu+\sigma^2)$</li>
+<li>所得分布で有名</li>
+</ul></li>
+</ul>
+
+<h3 id="6-12-パレート分布">6.12 パレート分布</h3>
+
+<ul>
+<li><strong>パレート分布 (Pareto distribution)</strong>
+
+<ul>
+<li>$x\geq x_0$のとき$f(x)=\frac{a}{x_0}(\frac{x_0}{x})^{a+1}$</li>
+<li>$x&lt;x_0$のとき$0$</li>
+<li>$E(X)=\frac{ax_0}{a-1}\;(a&gt;1)$</li>
+<li>$V(X)=\frac{ax_0^2}{a-2}-(\frac{ax_0}{a-1})^2\;(a&gt;2)$</li>
+<li>高額所得者の所得分布</li>
+<li>$x_0$以上の所得の確率</li>
+</ul></li>
+</ul>
+
+<h3 id="6-13-ワイブル分布">6.13 ワイブル分布</h3>
+
+<ul>
+<li><strong>ワイブル分布 (Weibul distribution)</strong>
+
+<ul>
+<li>センター試験の得点分布</li>
+</ul></li>
+</ul>
+
+<h1 id="練習問題">練習問題</h1>
+
+<p><a href="https://github.com/Wondershake/ml-statistics-intro/issues/12">https://github.com/Wondershake/ml-statistics-intro/issues/12</a></p>
+
+<p>正解かどうかはわからん 😅</p>
+
+<h2 id="6-1">6.1</h2>
+
+<p>教科書(p.130)にまるまる載ってる</p>
+
+<h2 id="6-2">6.2</h2>
+
+<p><img src="/images/2017/08/18/1.jpg" alt="FullSizeRender.jpg (1.6 MB)" /></p>
+
+<h2 id="6-3">6.3</h2>
+
+<p><img src="/images/2017/08/18/2.jpg" alt="29404094-2426527c-8375-11e7-91bc-e137df3776a8.jpg (1.5 MB)" /></p>
+
+<h2 id="6-4">6.4</h2>
+
+<p><img src="/images/2017/08/18/3.jpg" alt="29401473-48e21c26-836c-11e7-913e-02334d5ad0b4.jpg (1.6 MB)" /></p>
+
+<h2 id="6-5">6.5</h2>
+
+<p><img src="/images/2017/08/18/4.jpg" alt="29401677-22106520-836d-11e7-95b8-284f82752363.jpg (1.5 MB)" />
+<img src="/images/2017/08/18/5.jpg" alt="29401687-2db4806e-836d-11e7-9b34-3b058a442df4.jpg (1.5 MB)" /></p>
+
+<h2 id="6-6">6.6</h2>
+
+<p><img src="/images/2017/08/18/6.jpg" alt="29401717-4e5af8b6-836d-11e7-901a-5af2252fc093.jpg (1.6 MB)" /></p>
+
+<h2 id="6-7">6.7</h2>
+
+<p><img src="/images/2017/08/18/7.jpg" alt="29401729-58a4c298-836d-11e7-9ce4-90ca1e4d4243.jpg (1.3 MB)" /></p>
+
+<h2 id="6-8">6.8</h2>
+
+<p><img src="/images/2017/08/18/8.jpg" alt="29401757-6fe88b56-836d-11e7-8f9d-e0d714c3245e.jpg (1.4 MB)" /></p>
+
+<h2 id="6-9">6.9</h2>
+
+<p><img src="/images/2017/08/18/9.jpg" alt="29401771-7b1f2b92-836d-11e7-93f8-d46c8b41a513.jpg (1.4 MB)" /></p>
+
+<h2 id="6-10">6.10</h2>
+
+<p><img src="/images/2017/08/18/10.jpg" alt="FullSizeRender 2.jpg (1.8 MB)" /></p>
+
+<h1 id="所感">所感</h1>
+
+<ul>
+<li>輪読形式でやるとまじめに勉強せざるを得ないので良い</li>
+<li>確率統計にはかなりの苦手意識があったけど、時間をかけてちゃんと勉強すればある程度わかった感が得られているので良い</li>
+<li>学生時代はできていたはずの微分積分力ができなくて辛い</li>
+<li>練習問題時間かかって辛い</li>
+</ul>
+
+<h1 id="次回">次回</h1>
+
+<p>第7章 多次元の確率分布</p>
+<div class="highlight"><pre class="chroma"><code class="language-math" data-lang="math"></code></pre></div>
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

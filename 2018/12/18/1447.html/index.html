@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>GCP updates | December 17, 2018 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2018/12/18/1447.html/">
+  <meta property="og:title" content="GCP updates | December 17, 2018 - nownab.log">
+  <meta property="og:description" content="SECURITY Cloud Security Command Center: beta Monitor your cloud resources and quickly mitigate threats to them from a single, centralized dashboard. Track your cloud asset inventory, scan storage systems for sensitive data, detect common web vulnerabilities, and review access rights to your critical resources. Product page beta期間は無料とのことで使ってみました。SC">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="GCP updates | December 17, 2018 - nownab.log">
+  <meta property="twitter:description" content="SECURITY Cloud Security Command Center: beta Monitor your cloud resources and quickly mitigate threats to them from a single, centralized dashboard. Track your cloud asset inventory, scan storage systems for sensitive data, detect common web vulnerabilities, and review access rights to your critical resources. Product page beta期間は無料とのことで使ってみました。SC">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2018/12/18/1447.html/">GCP updates | December 17, 2018</a></h1>
+    <span class="date">Posted on Dec 18, 2018</span>
+  </div>
+  <div class="body">
+    
+
+<h1 id="security">SECURITY</h1>
+
+<h2 id="cloud-security-command-center-beta">Cloud Security Command Center: beta</h2>
+
+<blockquote>
+<p>Monitor your cloud resources and quickly mitigate threats to them from a single, centralized dashboard. Track your cloud asset inventory, scan storage systems for sensitive data, detect common web vulnerabilities, and review access rights to your critical resources. <a href="https://cloud.google.com/security-command-center/">Product page</a></p>
+</blockquote>
+
+<p>beta期間は無料とのことで使ってみました。SCC自体に何か特別な機能があるってわけではなくて、セキュリティ関連の機能のダッシュボード的なサービスみたいですね。</p>
+
+<hr />
+
+<p>Additional Releases</p>
+
+<h1 id="compute">COMPUTE</h1>
+
+<h2 id="cloud-functions-per-function-identities-beta">Cloud Functions – per-function identities: beta</h2>
+
+<blockquote>
+<p>This feature allows you to set service accounts on a per-function basis, so that each function is assigned the appropriate level of access. This helps you more easily manage permissions when multiple functions are accessing different resources. <a href="https://cloud.google.com/functions/docs/securing/function-identity#per-function_identity">Documentation</a></p>
+</blockquote>
+
+<p>Cloud FunctionsのFunctionごとにサービスアカウントを割り当てられるやつ。ありがたい。</p>
+
+<h2 id="kubernetes-engine-usage-metering-beta">Kubernetes Engine – usage metering: beta</h2>
+
+<blockquote>
+<p>You can now break down Kubernetes Engine cluster usage by namespace, label, or a combination of both. This helps you more easily manage multitenant clusters by tying usage to individual teams or business units within your organization. <a href="https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-usage-metering">Documentation</a></p>
+</blockquote>
+
+<p>GCP内のマネージドサービスのみでこういった情報が楽に見れるのは助かりますね。</p>
+
+<h2 id="cloud-functions-environment-variables-ga">Cloud Functions – environment variables: GA</h2>
+
+<blockquote>
+<p>Environment variables allow you to specify arbitrary key-value pairs during deployment, which will surface as literal environment variables accessible by your code at runtime. Environment variables are stored in the Cloud Functions backend and are bound to a single function. <a href="https://cloud.google.com/functions/docs/env-var">Documentation</a></p>
+</blockquote>
+
+<p>🎉</p>
+
+<h1 id="data-analytics">DATA ANALYTICS</h1>
+
+<h2 id="cloud-composer-for-python-3-ga">Cloud Composer for Python 3: GA</h2>
+
+<blockquote>
+<p>Cloud Composer, a fully managed workflow orchestration service, based on Apache Airflow, now supports Python 3. You can create reliable Python 3–based Cloud Composer environments, then write new Python 3 workflows or lift and shift existing Python 3 workflows from local environments to Cloud Composer. <a href="https://cloud.google.com/composer/docs/concepts/python-version">Documentation</a></p>
+</blockquote>
+
+<p>🐍 🐍 🐍</p>
+
+<h1 id="api-management">API MANAGEMENT</h1>
+
+<h2 id="apigee-edge-api-client-library-for-php-ga">Apigee Edge API Client Library for PHP: GA</h2>
+
+<blockquote>
+<p>Build your own fully customized developer portal with the Apigee Edge Client Library for PHP. Used in conjunction with your Apigee Edge module for Drupal 8, this allows your portal and your API management platform to communicate and keep your data synced. <a href="https://docs.apigee.com/release/notes/18112700-apigee-developer-portal-release-notes">Documentation</a></p>
+</blockquote>
+
+<h2 id="apigee-edge-drupal-8-open-source-module-beta">Apigee Edge – Drupal 8 open-source module: beta</h2>
+
+<blockquote>
+<p>Drupal 8 provides a reliable open-source, enterprise-level content management system. This module allows you to build a fully customizable developer portal that includes API key management, role-based access control, and API documentation rendering. <a href="https://docs.apigee.com/api-platform/publish/drupal/open-source-drupal-8">Documentation</a></p>
+</blockquote>
+
+<p>ApigeeもGCPのマネージドサービスとして出てくるっぽいので見たほうがよさそうだなー。</p>
+
+<h1 id="developer-tools">DEVELOPER TOOLS</h1>
+
+<h2 id="cloud-source-repositories-new-user-interface-ga">Cloud Source Repositories – new user interface: GA</h2>
+
+<blockquote>
+<p>Cloud Source Repositories provides a place for teams to store, manage, and track code. This second release offers an updated UI, additional features, and private Git repositories hosted on Google Cloud Platform. <a href="https://cloud.google.com/source-repositories/docs/">Documentation</a></p>
+</blockquote>
+
+<p>新ダッシュボード出たばっかりのときはGitHubのミラー作れなかったりいろいろ不便だったけど、今はできるようになってますね。よかった。</p>
+
+<h1 id="internet-of-things">INTERNET OF THINGS</h1>
+
+<h2 id="cloud-iot-core-commands-ga">Cloud IoT Core – commands: GA</h2>
+
+<blockquote>
+<p>Now you can use Cloud IoT Core to send commands to devices. Commands are transitory, one-time directives sent to devices that are connected to Cloud IoT Core and subscribed to the commands topic. <a href="https://cloud.google.com/iot/docs/how-tos/commands">Documentation</a> | <a href="https://cloud.google.com/blog/products/iot-devices/introducing-cloud-iot-core-commands-increased-flexibility-to-control-your-fleet-of-embedded-devices">Blog</a></p>
+</blockquote>
+
+<h2 id="cloud-iot-core-device-logging-ga">Cloud IoT Core – device logging: GA</h2>
+
+<blockquote>
+<p>Cloud IoT Core now includes device logging to aid in troubleshooting and help you find information about device connections, errors, and other lifecycle events. The logs are configurable for use with millions of devices. <a href="https://cloud.google.com/iot/docs/how-tos/logging-monitoring">Documentation</a></p>
+</blockquote>
+
+<h1 id="google-cloud-platform-support">GOOGLE CLOUD PLATFORM SUPPORT</h1>
+
+<h2 id="google-cloud-platform-support-for-firebase-beta">Google Cloud Platform – support for Firebase: beta</h2>
+
+<blockquote>
+<p>Firebase support is now available through the GCP support console. When this graduates to general availability, it will include target response times, technical account management for the enterprise tier, and more. <a href="https://cloud.google.com/support/">Product page</a></p>
+</blockquote>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

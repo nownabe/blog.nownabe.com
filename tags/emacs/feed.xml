@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>emacs on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/emacs/</link>
+    <description>Recent content in emacs on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Fri, 14 Jul 2017 14:08:31 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/emacs/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Spacemacsを使い始めた</title>
+      <link>https://blog.nownabe.com/2017/07/14/1050.html/</link>
+      <pubDate>Fri, 14 Jul 2017 14:08:31 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/07/14/1050.html/</guid>
+      <description>はじめに Spacemacsを使い始めた。 今、エディタはTypeScriptはVisual Studio Code、JavaはIntelliJ IDEA、その</description>
+    </item>
+    
+  </channel>
+</rss>

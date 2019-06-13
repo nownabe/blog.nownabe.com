@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>fedora on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/fedora/</link>
+    <description>Recent content in fedora on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Tue, 10 Oct 2017 00:15:55 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/fedora/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Linuxでepubを読む</title>
+      <link>https://blog.nownabe.com/2017/10/10/1149.html/</link>
+      <pubDate>Tue, 10 Oct 2017 00:15:55 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/10/10/1149.html/</guid>
+      <description>Fedoraでepubを読むのにReadiumというChrome Extensionを使った。 電子書籍を買ってPDFとepubがついてきて、最</description>
+    </item>
+    
+  </channel>
+</rss>

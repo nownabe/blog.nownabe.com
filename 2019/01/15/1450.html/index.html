@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>GCP updates  | January 7, 2019 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2019/01/15/1450.html/">
+  <meta property="og:title" content="GCP updates  | January 7, 2019 - nownab.log">
+  <meta property="og:description" content="MANAGEMENT TOOLS Istio on Kubernetes Engine: beta Get one-click Istio deployment on Kubernetes Engine – or add Istio to an existing Kubernetes Engine cluster. Quickly create all the components you need to run an open-source service mesh to connect, manage, and secure microservices in a uniform way. Documentation GKEにマネージドのIstioをデプロイでき">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="GCP updates  | January 7, 2019 - nownab.log">
+  <meta property="twitter:description" content="MANAGEMENT TOOLS Istio on Kubernetes Engine: beta Get one-click Istio deployment on Kubernetes Engine – or add Istio to an existing Kubernetes Engine cluster. Quickly create all the components you need to run an open-source service mesh to connect, manage, and secure microservices in a uniform way. Documentation GKEにマネージドのIstioをデプロイでき">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2019/01/15/1450.html/">GCP updates  | January 7, 2019</a></h1>
+    <span class="date">Posted on Jan 15, 2019</span>
+  </div>
+  <div class="body">
+    
+
+<h1 id="management-tools">MANAGEMENT TOOLS</h1>
+
+<h2 id="istio-on-kubernetes-engine-beta">Istio on Kubernetes Engine: beta</h2>
+
+<blockquote>
+<p>Get one-click Istio deployment on Kubernetes Engine – or add Istio to an existing Kubernetes Engine cluster. Quickly create all the components you need to run an open-source service mesh to connect, manage, and secure microservices in a uniform way. <a href="https://cloud.google.com/istio/docs/istio-on-gke/overview">Documentation</a></p>
+</blockquote>
+
+<p>GKEにマネージドのIstioをデプロイできるようになったってやつです。いいですね！！ 🎉
+既存のクラスタにも追加できて、AddonにIstioがあるのでそれをEnableにするだけです。</p>
+
+<hr />
+
+<p>Additional Releases</p>
+
+<h1 id="compute">COMPUTE</h1>
+
+<h2 id="kubernetes-engine-flexible-pod-cidr">Kubernetes Engine: flexible Pod CIDR</h2>
+
+<blockquote>
+<p>Optimize IP utilization by controlling the use of Pod CIDR ranges across nodes by allowing users to specify the maximum number of Pods per node that they want to run. This feature allows for a more efficient allocation of Pod CIDR ranges from cluster-level CIDR for containers, and it helps reduce IP utilization. <a href="https://cloud.google.com/kubernetes-engine/docs/how-to/flexible-pod-cidr">Documentation</a></p>
+</blockquote>
+
+<p>各Nodeに割り当てるCIDRブロックを変更できる機能です。デフォルトでは<code>/24</code>を割り当て、Pod数は上限110ですがこれを<code>/28</code>まで減らせる感じです。</p>
+
+<h2 id="app-engine-standard-environment-python-3-7-ga">App Engine standard environment – Python 3.7: GA</h2>
+
+<blockquote>
+<p>Use the latest versions of popular libraries with Python 3 on Titanium. Features include the ability to access the file system and install third-party packages and dependencies that rely on native code – all with reduced cost and latency, and improved code portability. <a href="https://cloud.google.com/appengine/docs/standard/python3/">Documentation</a></p>
+</blockquote>
+
+<p>filesystemやネイティブコードが動くのはgVisorの恩恵ですね。</p>
+
+<h2 id="compute-engine-control-the-location-of-persistent-disk-snapshots-beta">Compute Engine – control the location of Persistent Disk snapshots: beta</h2>
+
+<blockquote>
+<p>Gain a greater level of control over your Persistent Disk snapshots by specifying their storage location down to regional and multi-regional Cloud Storage locations. This feature can help you meet data-residency, regulatory, and compliance requirements. <a href="https://cloud.google.com/blog/products/storage-data-transfer/new-in-compute-engine-control-the-storage-location-of-your-snapshots">Blog</a> | <a href="https://cloud.google.com/storage/docs/locations">Storage locations</a></p>
+</blockquote>
+
+<h2 id="app-engine-standard-environment-node-js-8-ga">App Engine standard environment – Node.js 8: GA</h2>
+
+<blockquote>
+<p>The Node.js 8 runtime is now ready to use for your App Engine standard environment projects. <a href="https://cloud.google.com/appengine/docs/standard/nodejs/">Documentation</a></p>
+</blockquote>
+
+<h1 id="databases">DATABASES</h1>
+
+<h2 id="cloud-bigtable-tables-list-ga">Cloud Bigtable – tables list: GA</h2>
+
+<blockquote>
+<p>Use the Google Cloud Platform Console to display a list of all your tables in Cloud Bigtable. The new tables-list feature also shows the size and replication status of each table, along with monitoring metrics. <a href="https://cloud.google.com/bigtable/docs/managing-tables#viewing_a_list_of_tables">Documentation</a></p>
+</blockquote>
+
+<h1 id="networking">NETWORKING</h1>
+
+<h2 id="cloud-dns-dns-forwarding-open-beta">Cloud DNS – DNS forwarding: open beta</h2>
+
+<blockquote>
+<p>Link your cloud and on-premises environments with bidirectional forwarding zones between your name servers and internal GCP name servers – and use the same DNS service for all your workloads and resources. <a href="https://cloud.google.com/blog/products/networking/announcing-cloud-dns-forwarding-unifying-hybrid-cloud-naming">Blog</a></p>
+</blockquote>
+
+<h1 id="management-tools-1">MANAGEMENT TOOLS</h1>
+
+<h2 id="cloud-billing-reconcile-billing-export-to-the-invoice">Cloud Billing – reconcile billing export to the invoice</h2>
+
+<blockquote>
+<p>Export your billing data to BigQuery to view a broad range of new data fields – and see all invoice-level costs. To reconcile your invoice to the penny, see the “cost_type” field. Or to query costs by folder, see the “project.ancestry_numbers” field. <a href="https://cloud.google.com/billing/docs/how-to/export-data-bigquery#billing_data_in">Documentation</a> | <a href="https://cloud.google.com/billing/docs/how-to/bq-examples">Example queries</a></p>
+</blockquote>
+
+<h1 id="security">SECURITY</h1>
+
+<h2 id="access-transparency-beta">Access Transparency: beta</h2>
+
+<blockquote>
+<p>Access Transparency logs actions taken by Google staff when accessing your data. This helps you confirm that your data is being accessed only for valid business reasons, such as addressing a support issue. <a href="https://cloud.google.com/logging/docs/audit/access-transparency-overview">Documentation</a></p>
+</blockquote>
+
+<h2 id="vpc-service-controls-beta">VPC Service Controls: beta</h2>
+
+<blockquote>
+<p>Define security perimeters for sensitive data in GCP services and establish virtual security perimeters for API-based services. VPC Service Controls lets you keep data private and mitigate data exfiltration risks, while maintaining your access to fully managed services on GCP. <a href="https://cloud.google.com/vpc-service-controls/docs/">Documentation</a></p>
+</blockquote>
+
+<h2 id="cloud-identity-for-customers-and-partners-beta">Cloud Identity for Customers and Partners: beta</h2>
+
+<blockquote>
+<p>Add identity and access management functionality to your applications, protect user accounts, and easily scale on Google Cloud with Cloud Identity for Customers and Partners, our new identity and access management platform. <a href="https://cloud.google.com/identity-cp/">Product page</a> | <a href="https://cloud.google.com/identity-cp/docs/">Documentation</a></p>
+</blockquote>
+
+<p>いろいろカスタマイズできるAuthentication as a Serviceらしいです。</p>
+
+<h1 id="internet-of-things">INTERNET OF THINGS</h1>
+
+<h2 id="cloud-iot-core-gateways-beta">Cloud IoT Core – gateways: beta</h2>
+
+<blockquote>
+<p>This feature introduces gateways as a new device type to Cloud IoT Core. A gateway is a hub or proxy device that connects Cloud IoT Core services to devices that cannot natively connect to Cloud IoT Core. <a href="https://cloud.google.com/iot/docs/how-tos/gateways/">Documentation</a></p>
+</blockquote>
+
+<h1 id="ai-machine-learning">AI &amp; MACHINE LEARNING</h1>
+
+<h2 id="cloud-vision-api-handwriting-ocr-ga">Cloud Vision API – Handwriting OCR: GA</h2>
+
+<blockquote>
+<p>Add the ability to detect and decipher handwritten text to your apps with the optical character recognition features in the Cloud Vision API. <a href="https://cloud.google.com/vision/docs/handwriting">Documentation</a></p>
+</blockquote>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

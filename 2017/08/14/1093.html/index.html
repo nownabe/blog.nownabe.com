@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>GCP updates | August 8, 2017 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2017/08/14/1093.html/">
+  <meta property="og:title" content="GCP updates | August 8, 2017 - nownab.log">
+  <meta property="og:description" content="Compute Workload-related views in the GKE Cloud Console UI Beta launch of Google Container Engine (GKE) Cloud Console UI adds views and management of workloads running within the cluster. Customers will see integration of the Kubernetes dashboard UI with the GKE Cloud Console UI. GKEのクラスタ内で実行中のワークロードを見るための">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="GCP updates | August 8, 2017 - nownab.log">
+  <meta property="twitter:description" content="Compute Workload-related views in the GKE Cloud Console UI Beta launch of Google Container Engine (GKE) Cloud Console UI adds views and management of workloads running within the cluster. Customers will see integration of the Kubernetes dashboard UI with the GKE Cloud Console UI. GKEのクラスタ内で実行中のワークロードを見るための">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2017/08/14/1093.html/">GCP updates | August 8, 2017</a></h1>
+    <span class="date">Posted on Aug 14, 2017</span>
+  </div>
+  <div class="body">
+    
+
+<h1 id="compute">Compute</h1>
+
+<h2 id="workload-related-views-in-the-gke-cloud-console-ui-https-console-cloud-google-com-kubernetes-workload-project-wgorisa-misc"><a href="https://console.cloud.google.com/kubernetes/workload?project=wgorisa-misc">Workload-related views in the GKE Cloud Console UI</a></h2>
+
+<blockquote>
+<p>Beta launch of Google Container Engine (GKE) Cloud Console UI adds views and management of workloads running within the cluster. Customers will see integration of the Kubernetes dashboard UI with the GKE Cloud Console UI.</p>
+
+<p>GKEのクラスタ内で実行中のワークロードを見るためのUIをベータリリースしました。
+GKEのクラウドコンソールUIに統合されたKubernetesダッシュボードを見ることができます。</p>
+</blockquote>
+
+<p>こんな感じでWebコンソールでKubernetesダッシュボードと同等のビューが追加されています。</p>
+
+<p><img src="/images/2017/08/14/1.png" alt="スクリーンショット 2017-08-14 11.59.23.png (104.3 kB)" />
+<img src="/images/2017/08/14/2.png" alt="スクリーンショット 2017-08-14 12.01.32.png (102.3 kB)" /></p>
+
+<p>ちょっと見ない間にService、Secret、ConfigMap、Storageなんかもここで確認できるようになってたんですね。
+ワークロードと一緒に追加されたんでしょうか。</p>
+
+<h2 id="compute-engine-gce-extended-memory-ga-https-cloud-google-com-compute-docs-instances-creating-instance-with-custom-machine-type-extendedmemory"><a href="https://cloud.google.com/compute/docs/instances/creating-instance-with-custom-machine-type#extendedmemory">Compute Engine (GCE) extended memory GA</a></h2>
+
+<blockquote>
+<p>GCE extended memory allows customers to add memory beyond the 6.5 GB limit on custom machines. Customers can specify extended memory per vCPU in 256 MB increments, up to 455 GB. This feature is available through the GCE API, SDK, and Cloud Console.</p>
+
+<p>GCEの拡張メモリはカスタムマシンのメモリ上限である6.5GBを超えたメモリ追加を許します。vCPUあたり256MB単位で455GBまでメモリを追加することができます。GCE API、SDK、クラウドコンソールから利用可能です。</p>
+</blockquote>
+
+<p>通常の制限はvCPUあたり6.5GBで拡張メモリを使うとVMあたり455GBまで拡張できます。
+日本語ドキュメントではまだベータ機能になってますね。</p>
+
+<h2 id="gke-authorized-networks-for-kubernetes-master-https-cloud-google-com-container-engine-docs-authorized-networks"><a href="https://cloud.google.com/container-engine/docs/authorized-networks">GKE authorized networks for Kubernetes master</a></h2>
+
+<blockquote>
+<p>Beta of GKE authorized networks for Kubernetes master improves the ability to restrict access to the Kubernetes API server by specifying allowed CIDR address ranges.</p>
+
+<p>GKEのKubernetes masterに対するAuthorized Network (ベータ)がKubernetes APIサーバへのアクセスを許可するCIDRを指定して制限できるようになりました。</p>
+</blockquote>
+
+<p>既存のクラスタに設定するには次のコマンドを実行すればいいみたいです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gcloud container clusters update example-cluster --enable-master-authorized-networks --master-authorized-networks<span class="o">=</span><span class="m">8</span>.8.8.8/32,8.8.8.0/24</code></pre></div>
+<p>ファイアウォールで頑張るしかなかったので便利ですね。</p>
+
+<h1 id="storage-databases">Storage &amp; Databases</h1>
+
+<h2 id="transfer-appliance-beta-https-cloud-google-com-data-transfer-docs-introduction"><a href="https://cloud.google.com/data-transfer/docs/introduction">Transfer Appliance beta</a></h2>
+
+<blockquote>
+<p>Transfer Appliance is a <a href="https://cloudplatform.googleblog.com/2017/07/introducing-Transfer-Appliance-Sneakernet-for-the-cloud-era.html">hardware appliance</a> you can use to securely migrate large volumes of data (from hundreds of terabytes up to 1 petabyte) to Google Cloud Platform (GCP) without disrupting network and business operations.</p>
+
+<p>Transfer Applianceはネットワークやビジネスに影響を与えずに、数百テラバイトから1ペタバイトまでのでかいサイズのデータをセキュアにGCPにマイグレートできるハードウェアアプライアンスです。</p>
+</blockquote>
+
+<p>読んでませんがブログの方に詳細があるようです。面白い試みですね。</p>
+
+<h2 id="cloud-spanner-public-launch-in-oregon-https-cloud-google-com-spanner-docs-instance-configuration-configuration"><a href="https://cloud.google.com/spanner/docs/instance-configuration#configuration">Cloud Spanner public launch in Oregon</a></h2>
+
+<blockquote>
+<p>Cloud Spanner regional instances are now publicly available in the Oregon region (us-west1). List of available regions for Cloud Spanner includes Iowa, Belgium, Taiwan, Japan, and now Oregon.</p>
+
+<p>オレゴンリージョン (us-west1)にCloud Spannerのインスタンスを作成できるようになりました。現在有効なリージョンはアイオワ、ベルギー、台湾、日本、オレゴンです。</p>
+</blockquote>
+
+<h1 id="networking">Networking</h1>
+
+<h2 id="shared-virtual-private-cloud-networking-ga-https-cloud-google-com-compute-docs-shared-vpc"><a href="https://cloud.google.com/compute/docs/shared-vpc/">Shared Virtual Private Cloud networking GA</a></h2>
+
+<blockquote>
+<p>Customers can share GCP Virtual Private Cloud (VPC) networks across projects in a Cloud Organization. Permission can be given for multiple projects to use a single, shared VPC network and corresponding networking resources.</p>
+
+<p>Cloud Organization内のプロジェクト間でVPCを共有できます。</p>
+</blockquote>
+
+<h2 id="vm-instances-with-network-interfaces-beta-https-cloud-google-com-compute-docs-multiple-interfaces-concepts"><a href="https://cloud.google.com/compute/docs/multiple-interfaces-concepts">VM instances with network interfaces beta</a></h2>
+
+<blockquote>
+<p>Multi-NIC functionality allows a single VM to have multiple interfaces, each attached to one of the virtual networks already offered by GCP.</p>
+
+<p>マルチNIC機能で1つのVMが複数のインタフェースを持てます。それぞれGCPが提供する仮想ネットワークに接続されます。</p>
+</blockquote>
+
+<p>構成の幅が広がりますね 😃</p>
+
+<h2 id="vpc-network-peering-ga-https-cloud-google-com-compute-docs-vpc-vpc-peering"><a href="https://cloud.google.com/compute/docs/vpc/vpc-peering">VPC Network Peering GA</a></h2>
+
+<blockquote>
+<p>Virtual Private Cloud (VPC) Network Peering allows private RFC1918 connectivity across two VPC networks regardless of whether or not they belong to the same project or the same organization.</p>
+
+<p>VPC Network Peeringで2つのVPC間でプライベートIPによるアクセスが可能になります。</p>
+</blockquote>
+
+<h1 id="big-data">Big Data</h1>
+
+<h2 id="cloud-dataflow-error-reporting-https-cloud-google-com-dataflow-pipelines-dataflow-monitoring-intf-error-reporting"><a href="https://cloud.google.com/dataflow/pipelines/dataflow-monitoring-intf#error-reporting">Cloud Dataflow—error reporting</a></h2>
+
+<blockquote>
+<p>Integration with Stackdriver Error Reporting makes it easier for Cloud Dataflow users to identify errors in their pipelines. GA launch applies to all Dataflow pipelines.</p>
+
+<p>Stackdriver Error Reportingとの統合はパイプラインでのエラー確認を簡単にします。
+GAになりすべてのパイプラインに適用されます。</p>
+</blockquote>
+
+<p>何の設定もなしにError Reportingに統合されます。ログが従来より見やすくなってたり、グラフが見れたりとグラフィカルに表示されてめっちゃ便利でした。</p>
+
+<h1 id="service-based-cloud-dataflow-shuffle-https-cloud-google-com-dataflow-service-dataflow-service-desc-shuffle-optimization"><a href="https://cloud.google.com/dataflow/service/dataflow-service-desc#shuffle-optimization">Service-based Cloud Dataflow Shuffle</a></h1>
+
+<blockquote>
+<p>New service-based Cloud Dataflow Shuffle implementation is now beta. It improves the performance and scalability of shuffle operations by moving them out of the worker VMs and into the Cloud Dataflow service backend. Available for batch Dataflow pipelines using the 1.9x/2.0x Java SDKs.</p>
+</blockquote>
+
+<p>詳細は理解してませんが、バッチパイプラインでのみ有効になる最適化です。今までパイプラインのVM内で実行されていたShuffleという基本操作をVMではなくバックエンドのサービスとして実行するもののようです。多くのジョブで高速化され、CPU、メモリ、ディスクの消費も節約できます。</p>
+
+<p>次のオプションによって有効化されます。また、Dataflowが最適なゾーンを選択するので<code>--zone</code>オプションとは一緒に使えません。</p>
+
+<pre><code>--experiments=shuffle_mode=service
+</code></pre>
+
+<p>実際の効果は測定してませんが、なかなか嬉しい最適化ですね ✨</p>
+
+<h1 id="identity-security">Identity &amp; Security</h1>
+
+<h2 id="cloud-folders-ga-https-cloud-google-com-resource-manager-reference-rest-v2-folders"><a href="https://cloud.google.com/resource-manager/reference/rest/v2/folders">Cloud Folders GA</a></h2>
+
+<blockquote>
+<p>Cloud Folders allow users to group Projects under a Cloud Organization in a hierarchical arrangement. Distinct access and configuration policies can be applied to each node (for example, Folder) in the hierarchy.</p>
+
+<p>Cloud FoldersはCloud Organization下でプロジェクトをグルーピングできます。Cloud Folderの階層にアクセス権を設定できます。</p>
+</blockquote>
+
+<h1 id="management-tools">Management Tools</h1>
+
+<h2 id="web-editor-in-cloud-shell-editor-plus-shell-beta-https-cloud-google-com-shell-docs"><a href="https://cloud.google.com/shell/docs/">Web editor in Cloud Shell (Editor plus Shell beta)</a></h2>
+
+<blockquote>
+<p>Simply click on the editor icon to open a tab for easier coding and the ability to run commands from the command-line interface (CLI).</p>
+</blockquote>
+
+<p>Cloud Shellにブラウザで動作するのテキストエディタが追加されました。Eclipse Orionがベースになっています。</p>
+
+<p>少し触ってみましたが予想以上に軽快で便利です。本格的なアプリケーションを書くにはまだ辛いと思いますが、ちょっとしたものならCloud Shellだけで完結するようになるのでイイですね。</p>
+
+<p>参考: <a href="https://cloudplatform-jp.googleblog.com/2016/10/cloud-shell.html">Google Cloud Platform Japan 公式ブログ: Cloud Shell に追加された新しいコード エディタの使い方</a></p>
+
+<h2 id="genomics-reporting-audit-logs-beta-https-cloud-google-com-logging-docs-audit"><a href="https://cloud.google.com/logging/docs/audit/">Genomics reporting audit logs beta</a></h2>
+
+<blockquote>
+<p>Track who did what, where, and when with Genomics reporting audit logs beta.</p>
+
+<p>Google Genomicsでのaudit logがベータ提供されます。いつ誰がどこで何をしたか記録されます。</p>
+</blockquote>
+
+<h2 id="cloud-deployment-manager-labels-for-deployments-ga-https-cloud-google-com-deployment-manager-docs-deployments-add-labels-deployments"><a href="https://cloud.google.com/deployment-manager/docs/deployments/add-labels-deployments">Cloud Deployment Manager labels for deployments GA</a></h2>
+
+<blockquote>
+<p>Cloud Deployment Manager allows customers to add labels to a deployment. Using labels when performing filtered searches makes it easier to find resources.</p>
+
+<p>Cloud Deploy Managerではデプロイにラベルを追加できます。ラベルを使えばリソースを探すのが楽になります。</p>
+</blockquote>
+
+<h1 id="account-services">Account Services</h1>
+
+<h2 id="gcp-region-expansion-london-https-cloudplatform-googleblog-com-2017-07-google-cloud-platform-now-open-in-london-html"><a href="https://cloudplatform.googleblog.com/2017/07/Google-Cloud-Platform-now-open-in-London.html">GCP region expansion–London</a></h2>
+
+<blockquote>
+<p>The newest GCP region launches in London (europe-west2), giving customers the ability to build applications and store data in London. See the full list of <a href="https://cloudplatform.googleblog.com/2017/07/Google-Cloud-Platform-now-open-in-London.html">available products</a>.</p>
+
+<p>ロンドンに新しいリージョンがローンチしました (europe-west2)</p>
+</blockquote>
+
+<p>ブログに詳細があります。ゾーンは3つあり、利用可能なサービスは次の通りです。</p>
+
+<p><img src="/images/2017/08/14/3.png" alt="london-region-2.png (47.3 kB)" /></p>
+
+<p>出展: <a href="https://cloudplatform.googleblog.com/2017/07/Google-Cloud-Platform-now-open-in-London.html">Google Cloud Platform Blog: Google Cloud Platform now open in London</a></p>
+
+<h2 id="geo-expansion-sydney-gcp-region-public-launch-for-app-engine-and-datasre-https-cloud-google-com-about-locations"><a href="https://cloud.google.com/about/locations/">Geo expansion—Sydney GCP region—public launch for App Engine and Datasre</a></h2>
+
+<blockquote>
+<p>App Engine and Cloud Datastore are now available in the Sydney region, offering significantly reduced latency for Australian customers. This follows the public launch of the region this past June.</p>
+
+<p>シドニーリージョンでApp EngineとCloud Datastoreが有効になりました。</p>
+</blockquote>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

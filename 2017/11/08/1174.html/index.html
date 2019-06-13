@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>Pythonではじめる機械学習  2回目 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2017/11/08/1174.html/">
+  <meta property="og:title" content="Pythonではじめる機械学習  2回目 - nownab.log">
+  <meta property="og:description" content="機械学習勉強会の続き。前回は統計学入門だった。 週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。 また、勉強">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="Pythonではじめる機械学習  2回目 - nownab.log">
+  <meta property="twitter:description" content="機械学習勉強会の続き。前回は統計学入門だった。 週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。 また、勉強">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2017/11/08/1174.html/">Pythonではじめる機械学習  2回目</a></h1>
+    <span class="date">Posted on Nov 6, 2017</span>
+  </div>
+  <div class="body">
+    
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=4873117984&linkId=05656b0761603e4e9f88423f102e42c6"></iframe>
+
+<p>機械学習勉強会の続き。前回は<a href="https://blog.nownabe.com/2017/10/25/1155.html">統計学入門</a>だった。</p>
+
+<p>週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。</p>
+
+<p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。
+<a href="https://github.com/Wondershake/machine-learning-study">Wondershake/machine-learning-study: 機械学習勉強会</a></p>
+
+<p>この記事は資料作りの下書き的扱い。</p>
+
+<h1 id="2章-教師あり学習">2章 教師あり学習</h1>
+
+<h2 id="2-3-教師あり機械学習アルゴリズム">2.3 教師あり機械学習アルゴリズム</h2>
+
+<h3 id="2-3-4-ナイーブベイズクラス分類気">2.3.4 ナイーブベイズクラス分類気</h3>
+
+<ul>
+<li>ナイーブベイズクラス分類器は線形モデルによく似たクラス分類器の一種</li>
+<li>訓練が線形モデルより高速</li>
+<li>汎化性能はロジスティック回帰や線形SVMに劣る場合が多い</li>
+<li>scikit-learnには3種ある
+
+<ul>
+<li>GaussianNB</li>
+<li>BernoulliNB</li>
+<li>MultinomialNB</li>
+</ul></li>
+</ul>
+
+<h4 id="2-3-4-1-利点-欠点-パラメータ">2.3.4.1 利点、欠点、パラメータ</h4>
+
+<ul>
+<li>MultinomialNBとBernoulliNBには複雑さを制御するパラメータalphaがある
+
+<ul>
+<li>alphaを大きくすると複雑さは減少しスムーズになる</li>
+<li>alphaの値でそんなに性能は変わらないが、いくらか精度をあげることができる</li>
+</ul></li>
+<li>GaussianNBは多くの場合高次元データに対して用いられる</li>
+<li>他の2つは疎なカウントデータに対して用いられる</li>
+<li>多くの場合MultinomialNBのほうがBernoulliNBよりも若干性能が高い
+
+<ul>
+<li>特に、比較的多数の非ゼロ特徴量がある場合にMultinomialNBは有効</li>
+</ul></li>
+<li>ナイーブベイズモデルは線形モデルですら時間がかかりすぎるようなデータセットに対するベースラインモデルとして有用</li>
+</ul>
+
+<h3 id="2-3-5-決定木">2.3.5 決定木</h3>
+
+<ul>
+<li>決定木はクラス分類と会期に広く用いられるモデル</li>
+<li>Yes/Noで答えられる質問で構成された階層的な木構造を学習する</li>
+</ul>
+
+<h4 id="2-3-5-1-決定木の構築">2.3.5.1 決定木の構築</h4>
+
+<ul>
+<li>質問はtestという</li>
+<li>すべての可能なテストの中から目的変数に対して最も情報量の多いものを選ぶ
+
+<ul>
+<li>これを再帰的に繰り返して決定木を構築する</li>
+<li>対象領域に1つの対象値(1つのクラスまたは1つの回帰値)しか含まれなくなるまで繰り返す</li>
+<li>1つの対象値のデータポイントしか含まないような決定木の葉を純粋(pure)と呼ぶ</li>
+</ul></li>
+<li>葉に属するデータポイントの平均値を用いることで回帰になる</li>
+</ul>
+
+<h4 id="2-3-5-2-決定木の複雑さの制御">2.3.5.2 決定木の複雑さの制御</h4>
+
+<ul>
+<li>上記の方法では過学習になる
+
+<ul>
+<li>訓練データに対して100%の精度</li>
+<li>深さに制約を与えないと決定木はいくらでも深く、複雑になる</li>
+</ul></li>
+<li>過学習を防ぐ戦略
+
+<ul>
+<li>事前枝刈り (pre-pruning) : 決定木の構築を早めに止める</li>
+<li>事後枝刈り (post-pruning) : 構築後、情報の少ないノードを削除する</li>
+</ul></li>
+<li>scikit-learnには事前枝刈りしか実装されていない</li>
+</ul>
+
+<h4 id="2-3-5-3-決定木の解析">2.3.5.3 決定木の解析</h4>
+
+<ul>
+<li><code>export_graphviz</code>関数で決定木を可視化できる</li>
+</ul>
+
+<h4 id="2-3-5-4-決定木の特徴量の重要性">2.3.5.4 決定木の特徴量の重要性</h4>
+
+<ul>
+<li>特徴量の重要度: 決定木が行う判断にとって個々の特徴量がどの程度重要かを示す割合
+
+<ul>
+<li>0: まったく使われていない</li>
+<li>1: 完全に予想できる</li>
+<li>特徴量の重要度の和は1になる</li>
+<li>特徴量の重要度はあくまでもその決定木の判断にどれだけ貢献しているか
+
+<ul>
+<li>特徴量の情報の量はわからない</li>
+<li>重要度の高い特徴量のみで判断できるわけではない</li>
+</ul></li>
+</ul></li>
+<li>決定木による回帰は外挿ができない
+
+<ul>
+<li>訓練データの範囲外の値は予測できない</li>
+</ul></li>
+</ul>
+
+<h4 id="2-3-5-5-長所-短所-パラメータ">2.3.5.5 長所、短所、パラメータ</h4>
+
+<ul>
+<li>パラメータは事前枝刈りパラメータ
+
+<ul>
+<li>max_depth, max_leaf, nodes, min_samples_leaf</li>
+</ul></li>
+<li>長所
+
+<ul>
+<li>モデルが容易に可視化可能</li>
+<li>データのスケールに対して完全に不変
+
+<ul>
+<li>個々の特徴量は独立に処理されるから正規化や標準化が必要ない</li>
+<li>様々な種類の特徴量が混ざっていても問題なく機能する</li>
+</ul></li>
+</ul></li>
+<li>短所
+
+<ul>
+<li>最大の問題点は、事前枝刈りをしたとしても過剰適合しやすく汎化性能が低い傾向があること</li>
+</ul></li>
+</ul>
+
+<h3 id="2-3-6-決定木のアンサンブル法">2.3.6 決定木のアンサンブル法</h3>
+
+<ul>
+<li>アンサンブル法は複数の機械学習モデルを組み合わせる手法</li>
+<li>ランダムフォレストと勾配ブースティング決定木</li>
+</ul>
+
+<h4 id="2-3-6-1-ランダムフォレスト">2.3.6.1 ランダムフォレスト</h4>
+
+<ul>
+<li>ランダムフォレストとは少しずつ異なる決定木をたくさん集めたもの
+
+<ul>
+<li>それぞれ異なった方向に過剰適合した決定木を作り、結果の平均を取り全体として過剰適合を防ぐ</li>
+</ul></li>
+<li>データをブートストラップサンプリングし個々のノードでは特徴量のサブセットをランダムに選びその中から最適な特徴量を選択し決定木を構築する
+
+<ul>
+<li>ブートストラップサンプリングは復元抽出で元のデータセットから同じ大きさのデータを作る</li>
+</ul></li>
+<li>回帰でもクラス分類でも最も広く使われている機械学習手法
+
+<ul>
+<li>パラメータチューニングもほぼいらないしもスケール変換も必要ない</li>
+</ul></li>
+<li>長所
+
+<ul>
+<li>学習の並列化が容易</li>
+<li>非常に大きなデータセットでも機能する</li>
+</ul></li>
+<li>短所
+
+<ul>
+<li>大きいデータセットに対しては学習に時間がかかる</li>
+<li>乱数シードを変更すると構築されるモデルが大きく変わる可能性がある</li>
+<li>テキストデータなどの高次元で疎なデータに対してはうまく機能しない傾向にある</li>
+<li>線形モデルよりも多くのメモリを消費する</li>
+<li>訓練も予測も遅い</li>
+</ul></li>
+<li>パラメータ
+
+<ul>
+<li>決定木の数、各ノードが使う特徴量サブセットの特徴量の数、事前枝刈りのパラメータ</li>
+<li>決定木の数は大きければ大きいほど良い (時間とメモリのある限り大きくする)</li>
+<li>ほかはデフォルト値を使うのが一般的</li>
+<li>枝刈りで訓練や予測の時間を短縮できる</li>
+</ul></li>
+</ul>
+
+<h4 id="2-3-6-2-勾配ブースティング回帰木">2.3.6.2 勾配ブースティング回帰木</h4>
+
+<ul>
+<li>回帰にもクラス分類にも使える</li>
+<li>1つ前の決定木の誤りを次の決定木が修正するようにして順に決定木を構築する</li>
+<li>デフォルトではランダム性はない</li>
+<li>強力な事前枝刈りを用い、深さ1から5ぐらいの浅い決定木を組み合わせる
+
+<ul>
+<li>弱学習器</li>
+<li>使用メモリが小さくなり予測が速くなる</li>
+</ul></li>
+<li>ランダムフォレストに比べるとパラメータ設定の影響を受けやすい
+
+<ul>
+<li>パラメータさえ正しく設定すればランダムフォレストより性能はいい</li>
+</ul></li>
+<li>learning_rate 学習率という重要なパラメータがある
+
+<ul>
+<li>個々の決定木がそれまでの決定木の過ちをどれぐらい強く補正しようとするか</li>
+<li>学習率を大きくするとモデルは複雑になる</li>
+</ul></li>
+<li>決定木の数を増やしてもモデルは複雑になる</li>
+<li>勾配ブースティングとランダムフォレストが得意なデータは同じ
+
+<ul>
+<li>先に頑健なランダムフォレストを試す</li>
+<li>予測時間や1%の性能が重要な場合は勾配ブースティングを試す</li>
+</ul></li>
+<li>勾配ブースティングはscikit-learnよりxgboostのほうがおすすめ</li>
+<li>長所
+
+<ul>
+<li>特徴量のスケール変換が必要ない</li>
+<li>様々な種類の特徴量が混ざっていても機能する</li>
+</ul></li>
+<li>短所
+
+<ul>
+<li>パラメータチューニングに最新の注意が必要</li>
+<li>訓練時間が長い</li>
+<li>高次元で疎なデータに弱い</li>
+</ul></li>
+<li>パラメータ
+
+<ul>
+<li>決定木の数
+
+<ul>
+<li>ランダムフォレストと違い、多すぎると過学習する</li>
+</ul></li>
+<li>誤り補正の度合い (学習率)</li>
+<li>事前枝刈り</li>
+</ul></li>
+</ul>
+
+<h3 id="2-3-7-カーネル法を用いたサポートベクタマシン">2.3.7 カーネル法を用いたサポートベクタマシン</h3>
+
+<ul>
+<li>複雑なモデルを可能にするため線形SVMを拡張したもの</li>
+<li>クラス分類にも回帰にも利用できる</li>
+</ul>
+
+<h4 id="2-3-7-1-線形モデルと非線形特徴量">2.3.7.1 線形モデルと非線形特徴量</h4>
+
+<ul>
+<li>線形モデルで分離できないようなデータセットに非線形な特徴量を加えることで線形モデルが協力に効くようになる</li>
+<li>どのように特徴量を加えるかという問題がある</li>
+<li>カーネルトリック: 特徴量を増やさず高次元空間へマッピングする数学的トリック
+
+<ul>
+<li>多項式カーネル (polynomial kernel): もとの特徴量の特定の次数までのすべての多項式を計算する</li>
+<li>放射基底関数 (radial basis function : RBF) カーネル</li>
+<li>ガウシアンカーネル</li>
+</ul></li>
+</ul>
+
+<h4 id="2-3-7-2-svmを理解する">2.3.7.2 SVMを理解する</h4>
+
+<ul>
+<li>サポートベクタ: 境界を決定するごく一部のデータポイント</li>
+<li>予測を行うとき、サポートベクタとデータポイントとの距離とサポートベクタの重要性によってクラスが決定される</li>
+</ul>
+
+<h4 id="2-3-7-4-svmパラメータの調整">2.3.7.4 SVMパラメータの調整</h4>
+
+<ul>
+<li>gamma: ガウシアンカーネルの幅を調整する
+
+<ul>
+<li>点が近いということを意味するスケールを決定する</li>
+<li>gammaが小さいと、多くの点を近いと判断するようになる</li>
+<li>gammaが小さいと、複雑さは小さくなる</li>
+</ul></li>
+<li>C: 線形モデルと同様の正則化パラメータ
+
+<ul>
+<li>小さいと正則化が強い</li>
+<li>小さいと複雑さは小さくなる</li>
+</ul></li>
+<li>SVMはパラメータの設定とデータのスケールに敏感
+
+<ul>
+<li>すべての特徴量の変位が同じスケールであることを要求する</li>
+</ul></li>
+</ul>
+
+<h4 id="2-3-7-5-svmのためのデータの前処理">2.3.7.5 SVMのためのデータの前処理</h4>
+
+<ul>
+<li>すべての特徴量が0から1の間になるようにスケールを変換する</li>
+</ul>
+
+<h4 id="2-3-7-6-利点-欠点-パラメータ">2.3.7.6 利点、欠点、パラメータ</h4>
+
+<ul>
+<li>利点
+
+<ul>
+<li>さまざまなデータセットに上手く機能する</li>
+<li>データに僅かな特徴量しかない場合でも複雑な決定境界を生成できる</li>
+<li>低次元でも高次元でもうまく機能する</li>
+</ul></li>
+<li>欠点
+
+<ul>
+<li>サンプル数が大きくなるとうまく機能しない
+
+<ul>
+<li>10,000個ぐらいまでならうまく機能するが100,000個ぐらいになると実行時間やメモリ消費量で難しくなる</li>
+</ul></li>
+<li>データの前処理とパラメータ調整を注意深く行う必要がある</li>
+<li>検証が難しい</li>
+</ul></li>
+<li>パラメータ
+
+<ul>
+<li>正則化パラメータC</li>
+<li>カーネルの種類</li>
+<li>カーネルのパラメータ</li>
+</ul></li>
+</ul>
+
+<h3 id="2-3-8-ニューラルネットワーク-ディープラーニング">2.3.8 ニューラルネットワーク (ディープラーニング)</h3>
+
+<h4 id="2-3-8-1-ニューラルネットワークモデル">2.3.8.1 ニューラルネットワークモデル</h4>
+
+<ul>
+<li>多層パーセプトロン (multilayer perceptron : MLP) は線形モデルを一般化し、決定までに複数のステージで計算するものと見ることができる</li>
+<li>隠層で重み付き和にrelu(rectified linear unit: 正規化線形関数)やtanh (hyperblic tangent : 双極正接関数)などの非線形関数を適用することで、線形モデルよりも強力にする</li>
+</ul>
+
+<h4 id="2-3-8-2-ニューラルネットワークのチューニング">2.3.8.2 ニューラルネットワークのチューニング</h4>
+
+<ul>
+<li>隠れ層のユニット数を増やせば複雑になる</li>
+<li>隠れ層の数を増やせば複雑になる</li>
+<li>正則化パラメータalphaを大きくすれば正則化が強くなる</li>
+<li>多くのパラメータがある</li>
+<li>学習の初期値を乱数で割り当てるので、乱数値がモデルに影響を与える</li>
+<li>ニューラルネットワークもSVMと同様にすべての特徴量が同じスケールであることを前提としている
+
+<ul>
+<li>理想は平均が0で分散が1</li>
+</ul></li>
+<li>より柔軟な、もしくはより大きなモデルを使いたいならscikit-learnではなくディープラーニングのライブラリを使うべき
+
+<ul>
+<li>keras, lasagna, tensor-flow</li>
+</ul></li>
+</ul>
+
+<h4 id="2-3-8-3-長所-短所-パラメータ">2.3.8.3 長所、短所、パラメータ</h4>
+
+<ul>
+<li>長所
+
+<ul>
+<li>大量のデータを利用して複雑なモデルを構築できる</li>
+<li>十分な計算時間、データがあり慎重にパラメータ調整すれば他のアルゴリズムに勝てることが多い</li>
+</ul></li>
+<li>短所
+
+<ul>
+<li>訓練に時間がかかる</li>
+<li>データを慎重に前処理する必要がある</li>
+</ul></li>
+<li>パラメータ
+
+<ul>
+<li>最も重要なのは隠れ層の数とユニット数
+
+<ul>
+<li>隠れ層は1つか2つから始める</li>
+<li>ユニット数は入力層と同じぐらいにすることが多いが、数千より大きくなることはあまりない</li>
+</ul></li>
+<li>最初は過剰適合できるように大きなネットワークを作って、訓練データを学習できるか確かめる
+
+<ul>
+<li>ネットワークを小さくするか正則化を強くして汎化性能をあげる</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h2 id="2-4-クラス分類器の不確実性推定">2.4 クラス分類器の不確実性推定</h2>
+
+<ul>
+<li>scikit-learnにはクラス分類器の予測に対する不確実性推定機能がある</li>
+</ul>
+
+<h3 id="2-4-1-決定関数-decision-function">2.4.1 決定関数 (Decision Function)</h3>
+
+<ul>
+<li>モデルがデータポイントが陽性/陰性だとどれぐらい信じているかという度合いを出す関数</li>
+</ul>
+
+<h3 id="2-4-2-確率の予測">2.4.2 確率の予測</h3>
+
+<ul>
+<li>各クラスへの分類の予測確率</li>
+<li>確信度が実際の正答率と一致している場合、較正されているという</li>
+</ul>
+
+<h3 id="2-4-3-他クラス分類の不確実性">2.4.3 他クラス分類の不確実性</h3>
+
+<ul>
+<li>確信度が最も大きいクラスが予測として選ばれる</li>
+</ul>
+
+<h2 id="2-5-まとめと展望">2.5 まとめと展望</h2>
+
+<ul>
+<li>モデルの複雑さと汎化</li>
+<li>適合不足と過剰適合</li>
+<li>性能を出すには適切なパラメータが必要</li>
+<li>特徴量のスケールに注意</li>
+<li>アルゴリズム
+
+<ul>
+<li>最近傍法
+
+<ul>
+<li>小さいデータに関しては良いベースラインになる</li>
+<li>説明が容易</li>
+</ul></li>
+<li>線形モデル
+
+<ul>
+<li>高速</li>
+<li>最初に試すべきアルゴリズム</li>
+<li>大きなデータセットに適する</li>
+<li>高次元データに適する</li>
+</ul></li>
+<li>ナイーブベイズ
+
+<ul>
+<li>クラス分類のみ</li>
+<li>線形モデルより高速</li>
+<li>大きなデータセットに適する</li>
+<li>高次元データに適する</li>
+<li>線形モデルより精度が劣る</li>
+</ul></li>
+<li>決定木
+
+<ul>
+<li>非常に高速</li>
+<li>特徴量のスケールを考慮する必要がない</li>
+<li>可視化が可能</li>
+</ul></li>
+<li>ランダムフォレスト
+
+<ul>
+<li>単一の決定木より高速、頑健、強力</li>
+<li>特徴量のスケールを考慮する必要がない</li>
+<li>高次元で疎なデータには適さない</li>
+</ul></li>
+<li>勾配ブースティング決定木
+
+<ul>
+<li>ランダムフォレストより少し精度が高い</li>
+<li>ランダムフォレストより訓練に時間がかかるが、予測は速い</li>
+<li>ランダムフォレストよりメモリ使用量が小さい</li>
+<li>パラメータに敏感</li>
+</ul></li>
+<li>SVM
+
+<ul>
+<li>同じような意味を持つ特徴量からなる中規模データセットに対して強力</li>
+<li>特徴量のスケールを調整する必要がある</li>
+<li>パラメータに敏感</li>
+</ul></li>
+<li>ニューラルネットワーク
+
+<ul>
+<li>非常に複雑なモデルを構築できる</li>
+<li>大きなデータセットに有効</li>
+<li>特徴量のスケールを調整する必要がある</li>
+<li>パラメータに敏感</li>
+<li>訓練に時間がかかる</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h1 id="所感">所感</h1>
+
+<ul>
+<li>いろんな種類のアルゴリズムを比較してこれはこうでこれに向いているみたいなのはやったことがなかったので、とても参考になった</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-math" data-lang="math"></code></pre></div>
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

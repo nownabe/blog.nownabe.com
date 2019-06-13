@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>KubernetsのSecretのYAMLを暗号化したりするツールを作った - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2018/08/27/1385.html/">
+  <meta property="og:title" content="KubernetsのSecretのYAMLを暗号化したりするツールを作った - nownab.log">
+  <meta property="og:description" content="KubernetesのSecretのYAMLを暗号化したり、暗号化されたYAMLを編集したりするsekretというツールを作りました。 nownabe/sekret Ku">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="KubernetsのSecretのYAMLを暗号化したりするツールを作った - nownab.log">
+  <meta property="twitter:description" content="KubernetesのSecretのYAMLを暗号化したり、暗号化されたYAMLを編集したりするsekretというツールを作りました。 nownabe/sekret Ku">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2018/08/27/1385.html/">KubernetsのSecretのYAMLを暗号化したりするツールを作った</a></h1>
+    <span class="date">Posted on Aug 27, 2018</span>
+  </div>
+  <div class="body">
+    
+
+<p>KubernetesのSecretのYAMLを暗号化したり、暗号化されたYAMLを編集したりするsekretというツールを作りました。</p>
+
+<p><a href="https://github.com/nownabe/sekret">nownabe/sekret</a></p>
+
+<p>Kubernetes側のSecret暗号化の話ではなく、あくまでもYAMLの暗号化の話です。</p>
+
+<h1 id="モチベーション">モチベーション</h1>
+
+<ul>
+<li>Secretも他のリソースと同じようにYAMLでバージョン管理したい</li>
+<li>暗号化してコミットしたい</li>
+<li>暗号化されたYAMLを手軽に編集したい</li>
+<li>簡単に復号して<code>kubectl apply -f</code>したい</li>
+</ul>
+
+<h1 id="できること">できること</h1>
+
+<ul>
+<li>既存のYAMLを暗号化する</li>
+<li>暗号化されたYAMLを復号する</li>
+<li>新しく暗号化YAMLを作成する</li>
+<li>暗号化YAMLを編集する</li>
+</ul>
+
+<h1 id="デモ">デモ</h1>
+
+<script src="https://asciinema.org/a/MyvxqcN0oMbmGc8xAaJh4U2Fz.js" id="asciicast-MyvxqcN0oMbmGc8xAaJh4U2Fz" async></script>
+
+<h1 id="インストール">インストール</h1>
+
+<p><code>go get</code>かGitHubリリースからバイナリをダウンロードする感じです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go get github.com/nownabe/sekret</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">curl -sSL -o /path/to/sekret https://github.com/nownabe/sekret/releases/download/v1.1.0/sekret_linux_amd64
+chmod +x /path/to/sekret</code></pre></div>
+<h1 id="使い方">使い方</h1>
+
+<p>こんな感じの<code>sekret</code>コマンドを実行します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sekret <span class="nb">command</span> <span class="o">[</span>options<span class="o">]</span> file</code></pre></div>
+<p>サブコマンドとしてenc/dec/new/editがあります。</p>
+
+<p>全コマンド共通で<code>ENCRYPTION_KEY</code>環境変数で暗号キーを指定します。
+newとeditは<code>EDITOR</code>環境変数でエディタを指定します。</p>
+
+<p>これらはオプションでも指定できます。</p>
+
+<p>暗号キーは16バイト又は32バイトです。</p>
+
+<h2 id="暗号化">暗号化</h2>
+
+<p>暗号化してコミットするときはこんな感じです。<code>enc</code>コマンドを使います。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">ENCRYPTION_KEY</span><span class="o">=</span><span class="k">$(</span>cat /dev/urandom <span class="p">|</span> base64 <span class="p">|</span> fold -32 <span class="p">|</span> head -1<span class="k">)</span>
+sekret enc secret.yaml &gt; secret.yaml.enc
+git add secret.yaml.enc
+git commit</code></pre></div>
+<h2 id="復号">復号</h2>
+
+<p>復号してapplyするときはこんな感じです。<code>dec</code>コマンドを使います。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sekret dec secret.yaml.enc <span class="p">|</span> kubectl apply -f -</code></pre></div>
+<h2 id="新規作成">新規作成</h2>
+
+<p>新しく暗号化されたSecretのYAMLを作成するときは<code>new</code>コマンドを使います。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">EDITOR</span><span class="o">=</span>vim
+sekret new secret.yaml.enc</code></pre></div>
+<p>指定したエディタが開き、こんな感じのテンプレートが表示されます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span>data<span class="p">:</span><span class="w">
+</span><span class="w">  </span>Key<span class="p">:</span><span class="w"> </span>Value<span class="w">
+</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Secret<span class="w">
+</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
+</span><span class="w">  </span>creationTimestamp<span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>new-secret<span class="w">
+</span><span class="w"></span>type<span class="p">:</span><span class="w"> </span>Opaque</code></pre></div>
+<p>Secretの<code>data</code>の値はBase64でエンコードされている必要がありますが、sekretが自動でやってくれるので編集時は普通に書けばOKです。
+値がバイナリとかでBase64で編集したい場合は<code>--decode-base64=false</code>オプションをつけます。</p>
+
+<p>保存前にSecretが正しいかどうかのValidationを行うので、InvalidなYAMLだった場合は保存しません。</p>
+
+<h2 id="編集">編集</h2>
+
+<p>暗号化YAMLを復号せず<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>に編集するには<code>edit</code>コマンドを使います。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sekret edit secret.yaml.enc</code></pre></div>
+<p>復号されBase64デコードされたSecretのYAMLが指定したエディタで開きます。
+エディタを閉じれば再度Base64エンコード、暗号化を行い保存されます。
+保存前に<code>new</code>と同様にvalidationも行われます。</p>
+
+<h1 id="おわりに">おわりに</h1>
+
+<p>必要最低限という感じですが、GitでSecretを管理してCIまわすのには十分だと思います。</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">もちろん内部では復号しています。
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

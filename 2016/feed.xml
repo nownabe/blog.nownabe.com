@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2016s on nownab.log</title>
+    <link>https://blog.nownabe.com/2016/</link>
+    <description>Recent content in 2016s on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Sat, 19 Nov 2016 01:25:30 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/2016/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>RubyVM: メソッド呼び出し</title>
+      <link>https://blog.nownabe.com/2016/11/19/531.html/</link>
+      <pubDate>Sat, 19 Nov 2016 01:25:30 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/11/19/531.html/</guid>
+      <description>はじめに メソッド呼び出し時のRubyVMの動作を調べました。 というのも、どうやら巷に存在しているYARVの記事は古いらしく、現在のRubyの</description>
+    </item>
+    
+    <item>
+      <title>RubyVMの最適化を無効にする</title>
+      <link>https://blog.nownabe.com/2016/11/17/528.html/</link>
+      <pubDate>Thu, 17 Nov 2016 23:32:47 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/11/17/528.html/</guid>
+      <description>はじめに RubyVMの様子を観察したいではRubyVMのスタックを表示させつつ命令単位でステップ実行する方法を紹介しました。 これらの命令列は</description>
+    </item>
+    
+    <item>
+      <title>RubyVMの様子を観察したい</title>
+      <link>https://blog.nownabe.com/2016/11/16/526.html/</link>
+      <pubDate>Wed, 16 Nov 2016 15:23:45 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/11/16/526.html/</guid>
+      <description>はじめに Rubyのプログラムは内部的にはコンパイルされてバイトコードとなり、RubyVM上で実行されます。 RubyVMはスタックマシンという</description>
+    </item>
+    
+    <item>
+      <title>Angular 2 Tour of Heroes: 1. Introduction</title>
+      <link>https://blog.nownabe.com/2016/11/11/522.html/</link>
+      <pubDate>Fri, 11 Nov 2016 10:01:25 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/11/11/522.html/</guid>
+      <description>はじめに Angular 2のチュートリアルをやろうと思ったので、適当な和訳&amp;amp;メモとして記録していきます。 画像とか全部持ってきてます。 TUTORIAL: TOUR OF HEROES Typ</description>
+    </item>
+    
+    <item>
+      <title>機械学習勉強会 14回目 『プログラミングのための確率統計』おわった</title>
+      <link>https://blog.nownabe.com/2016/11/10/521.html/</link>
+      <pubDate>Thu, 10 Nov 2016 22:57:08 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/11/10/521.html/</guid>
+      <description>プログラミングのための確率統計 平岡和幸・堀玄 オーム社 7月終わりあたりから週一でやり始めた『プログラミングのための確率統計』をやり終えました。</description>
+    </item>
+    
+    <item>
+      <title>fluentdのoutputプラグインのパラメータを眺める</title>
+      <link>https://blog.nownabe.com/2016/11/04/516.html/</link>
+      <pubDate>Fri, 04 Nov 2016 15:46:48 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/11/04/516.html/</guid>
+      <description>はじめに なんかバージョンアップでいろいろ変わってるっぽいので、一通り眺めてみました。 お題はfluent-plugin-bigqueryです。</description>
+    </item>
+    
+    <item>
+      <title>GitHubでコミットにVerifiedバッジをつけたい</title>
+      <link>https://blog.nownabe.com/2016/10/08/489.html/</link>
+      <pubDate>Sat, 08 Oct 2016 21:18:31 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/10/08/489.html/</guid>
+      <description>はじめに GitHubのコミットに署名するとVerifiedというバッジが表示されます。 基本的にGitHubに書いてあるとおりにやってます。 https://help.github.com/categories/gpg/</description>
+    </item>
+    
+    <item>
+      <title>Google App Engineでフォーム入力</title>
+      <link>https://blog.nownabe.com/2016/10/05/487.html/</link>
+      <pubDate>Wed, 05 Oct 2016 23:23:52 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/10/05/487.html/</guid>
+      <description>はじめに 次のお題はこちらです 🌞 https://github.com/GoogleCloudPlatform/appengine-guestbook-go/blob/part3-handlingforms/hello.go hello.go package hello import ( &amp;#34;fmt&amp;#34; &amp;#34;html/template&amp;#34; &amp;#34;net/http&amp;#34; ) func init() { http.HandleFunc(&amp;#34;/&amp;#34;, root) http.HandleFunc(&amp;#34;/sign&amp;#34;, sign) } func root(w http.ResponseWriter, r *http.Request) { fmt.Fprint(w, guestbookForm) } const guestbookForm = ` &amp;lt;html&amp;gt; &amp;lt;body&amp;gt; &amp;lt;form action=&amp;#34;/sign&amp;#34; method=&amp;#34;post&amp;#34;&amp;gt; &amp;lt;div&amp;gt;&amp;lt;textarea name=&amp;#34;content&amp;#34; rows=&amp;#34;3&amp;#34; cols=&amp;#34;60&amp;#34;&amp;gt;&amp;lt;/textarea&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;&amp;lt;input type=&amp;#34;submit&amp;#34; value=&amp;#34;Sign Guestbook&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;/form&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; ` func sign(w http.ResponseWriter, r *http.Request) { err</description>
+    </item>
+    
+    <item>
+      <title>Google App EngineでGoogle認証</title>
+      <link>https://blog.nownabe.com/2016/10/05/486.html/</link>
+      <pubDate>Wed, 05 Oct 2016 21:49:05 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/10/05/486.html/</guid>
+      <description>はじめに 前回の続きでGoogle認証をさせるアプリを作るチュートリアルをやりました 💪 hello.go package hello import ( &amp;#34;fmt&amp;#34; &amp;#34;net/http&amp;#34; &amp;#34;appengine&amp;#34; &amp;#34;appengine/user&amp;#34; ) func init() { http.HandleFunc(&amp;#34;/&amp;#34;, handler) } func handler(w http.ResponseWriter, r *http.Request) { c := appengine.NewContext(r) u := user.Current(c)</description>
+    </item>
+    
+    <item>
+      <title>Google App EngineでHello World with Golang</title>
+      <link>https://blog.nownabe.com/2016/10/04/485.html/</link>
+      <pubDate>Tue, 04 Oct 2016 22:32:31 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/10/04/485.html/</guid>
+      <description>はじめに GAEのQuick Startをやりました。 そのときのメモです。 📝 😅 SDKインストール ここからダウンロードして、パスを通す。 $ wget https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_darwin_amd64-1.9.40.zip $ unzip</description>
+    </item>
+    
+    <item>
+      <title>GitHub PagesをReact &#43; CSS Modulesで</title>
+      <link>https://blog.nownabe.com/2016/09/23/474.html/</link>
+      <pubDate>Fri, 23 Sep 2016 03:49:30 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/09/23/474.html/</guid>
+      <description>個人用の名刺を作ったのでついでにポートフォリオを作ってみました 💪 その際React + CSS Modulesな感じで作ったので、その雑感とやり方です 📝</description>
+    </item>
+    
+    <item>
+      <title>機械学習勉強会 8回目</title>
+      <link>https://blog.nownabe.com/2016/09/15/462.html/</link>
+      <pubDate>Thu, 15 Sep 2016 22:57:04 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/09/15/462.html/</guid>
+      <description>プログラミングのための確率統計 平岡和幸・堀玄オーム社 プログラミングのための確率統計 第4章 連続値の確率分布 4.2 確率ゼロ 4.3 確率密度関数 4.4 同時分布・</description>
+    </item>
+    
+    <item>
+      <title>100 repositories</title>
+      <link>https://blog.nownabe.com/2016/09/15/461.html/</link>
+      <pubDate>Thu, 15 Sep 2016 22:36:04 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/09/15/461.html/</guid>
+      <description>GitHubのレポジトリが100個になってた 😁</description>
+    </item>
+    
+    <item>
+      <title>ReactとReduxでx86のエミュレータを作った</title>
+      <link>https://blog.nownabe.com/2016/09/13/457.html/</link>
+      <pubDate>Tue, 13 Sep 2016 21:16:35 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/09/13/457.html/</guid>
+      <description>はじめに こちらです。herokuの無料プランなので、起動に時間がかかる場合があります。 https://x86-emulator.nownabe.com/ レポジトリはこちらです。 https://github.com/nownabe/x86-emulator-js この記事はこいつの紹介記事</description>
+    </item>
+    
+    <item>
+      <title>Mac OS Xで逆アセンブル</title>
+      <link>https://blog.nownabe.com/2016/08/30/420.html/</link>
+      <pubDate>Tue, 30 Aug 2016 00:09:29 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/08/30/420.html/</guid>
+      <description>objdump Linuxで有名なobjdumpというツールが使えます。 objdumpは objdump - display information from object files. とありますが、逆アセンブルもしてくれます。 インストー</description>
+    </item>
+    
+    <item>
+      <title>jspmでReactなセットアップ</title>
+      <link>https://blog.nownabe.com/2016/08/27/416.html/</link>
+      <pubDate>Sat, 27 Aug 2016 19:33:54 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/08/27/416.html/</guid>
+      <description>はじめに jspmを使ったReact開発をするまでの準備です。 プロジェクト作成 適当なディレクトリでnpm init npm init jspmインストール npm install --save-dev jspm js</description>
+    </item>
+    
+    <item>
+      <title>Mac OS Xでアセンブリ</title>
+      <link>https://blog.nownabe.com/2016/08/24/415.html/</link>
+      <pubDate>Wed, 24 Aug 2016 21:13:57 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/08/24/415.html/</guid>
+      <description>はじめに Mac OS Xでの、 アセンブラのインストール アセンブリを実行形式まで です。 アセンブラインストール まずはアセンブラをインストールします。 今回は</description>
+    </item>
+    
+    <item>
+      <title>OpenSSH形式のRSA鍵をopensslで扱える形式に変換する</title>
+      <link>https://blog.nownabe.com/2016/08/23/413.html/</link>
+      <pubDate>Tue, 23 Aug 2016 22:06:51 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/08/23/413.html/</guid>
+      <description>はじめに OpenSSHの公開鍵といえば、 ssh-keygen -t rsa -b 4096 -N &amp;#39;&amp;#39; -f id_rsa といったコマンドで作成できます。 これで作成した鍵で別のものをopensslコマンド</description>
+    </item>
+    
+    <item>
+      <title>RustをRubyから呼び出したら爆速</title>
+      <link>https://blog.nownabe.com/2016/08/16/408.html/</link>
+      <pubDate>Tue, 16 Aug 2016 00:33:58 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/08/16/408.html/</guid>
+      <description>なぜかRustのドキュメントの日本語版だけに英語で存在しているRust Inside Other Languagesという章に、FFIを使ってRubyの並列処理を高</description>
+    </item>
+    
+    <item>
+      <title>RubotyのbrainをJSONでファイルに保存するruboty-json作った</title>
+      <link>https://blog.nownabe.com/2016/08/07/403.html/</link>
+      <pubDate>Sun, 07 Aug 2016 16:21:12 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/08/07/403.html/</guid>
+      <description>概要 以前、RubotyのデータをLevelDBに保存するためのruboty-leveldbというGemを作りました。 自前のサーバでRubot</description>
+    </item>
+    
+    <item>
+      <title>Rustはじめました</title>
+      <link>https://blog.nownabe.com/2016/08/05/401.html/</link>
+      <pubDate>Fri, 05 Aug 2016 00:48:39 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/08/05/401.html/</guid>
+      <description>最近また新しい言語触りたい欲がふつふつと湧いてきたので、Rustはじめました。 https://github.com/nownabe/do-rust-book とりあえず公式のチュートリアルっぽいのに沿ってやってます。 https://doc.rust-lang.org/book/</description>
+    </item>
+    
+    <item>
+      <title>Hatena BlogからGitHub Pagesに移行しました</title>
+      <link>https://blog.nownabe.com/2016/08/03/400.html/</link>
+      <pubDate>Wed, 03 Aug 2016 00:37:51 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/08/03/400.html/</guid>
+      <description>ブログを移行しました！！！やったーーーー！！！🎉✨ TL; DR Hatena BlogでホストしていたブログをGitHub Pagesに移行しました esa + Middleman + Wercker + GitHub Pages</description>
+    </item>
+    
+    <item>
+      <title>qiita-markdownをMiddlemanで使えるようにするGemを作った</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena16.html/</link>
+      <pubDate>Tue, 26 Jul 2016 23:57:51 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena16.html/</guid>
+      <description>github pagesでblogを公開しようと思ってゆるりと構築中なんですが、静的ジェネレータとしてMiddlemanを使うことにしました。 esa.i</description>
+    </item>
+    
+    <item>
+      <title>PostgreSQLの更新でRails 5が動かなくなった</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena15.html/</link>
+      <pubDate>Sun, 24 Jul 2016 15:31:39 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena15.html/</guid>
+      <description>CentOS 7です。 Rails 5のアプリがある日こんなメッセージを出して動かなくなってました。 An unhandled lowlevel error occurred. The application logs may have details. puma_error.logをみてみると、</description>
+    </item>
+    
+    <item>
+      <title>プログラミングのための確率統計読み始めた</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena14.html/</link>
+      <pubDate>Fri, 22 Jul 2016 00:47:58 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena14.html/</guid>
+      <description>プログラミングのための確率統計 平岡 和幸, 堀 玄オーム社 機械学習勉強会はエクストリームリーディングでやってみようということになり、まず選んだのが</description>
+    </item>
+    
+    <item>
+      <title>機械学習勉強会というものを始めた</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena13.html/</link>
+      <pubDate>Fri, 22 Jul 2016 00:44:19 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena13.html/</guid>
+      <description>最近、機械学習をちゃんと学ぼうと思って機械学習勉強会というものを始めました。 学生時代にも少しかじったことはあるんですが、もう色々忘れてるし数</description>
+    </item>
+    
+    <item>
+      <title>tokyo.ex</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena12.html/</link>
+      <pubDate>Tue, 24 May 2016 00:36:44 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena12.html/</guid>
+      <description>tokyo.exに参加してきました。Elixir初心者なので全部の話が面白かった 🤗 セッション Phoenixを使った案件でリリースまでに起きた</description>
+    </item>
+    
+    <item>
+      <title>Gem in a Boxの冗長化</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena11.html/</link>
+      <pubDate>Mon, 31 Aug 2015 01:11:48 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena11.html/</guid>
+      <description>Gem in a Box冗長化の情報があんまりない気がしたのでQiitaに記事を書きました。 みんなどうやってるんだろう。（そもそも同期とか冗長化とかいら</description>
+    </item>
+    
+    <item>
+      <title>お名前.comからIDCF DNSに移行した話</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena10.html/</link>
+      <pubDate>Mon, 10 Aug 2015 23:46:12 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena10.html/</guid>
+      <description>ネームサーバーをお名前.comからIDCF DNSに移行しました。 IDCF DNSは1ドメイン50円で100レコードまでなら使い放題です（クエリ数に関</description>
+    </item>
+    
+    <item>
+      <title>今更Raspberry PiでLチカやってみた</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena09.html/</link>
+      <pubDate>Sun, 09 Aug 2015 00:21:18 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena09.html/</guid>
+      <description>流行りにのってRaspberry PiでLチカやってみました！（だいぶ乗り遅れてる） Raspberry Piはサバフェスの賞品でもらったまま眠ってたのがあったの</description>
+    </item>
+    
+    <item>
+      <title>超簡単にサーバのデータをIDCFオブストに定期バックアップするItamaeプラグイン</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena08.html/</link>
+      <pubDate>Thu, 21 May 2015 00:47:50 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena08.html/</guid>
+      <description>はじめに サーバのあるディレクトリ内のファイルをIDCFのオブジェクトストレージに定期バックアップするItamaeプラグインを作ったので紹介し</description>
+    </item>
+    
+    <item>
+      <title>Gem in a Boxに簡単にリリースできるGem作ったけどいっぱいあったのでまとめ</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena07.html/</link>
+      <pubDate>Wed, 20 May 2015 00:53:44 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena07.html/</guid>
+      <description>はじめに プライベートなGem Serverというか、Gem in a Boxに手軽にGemをリリースできるようにするgeminabox-rake_ta</description>
+    </item>
+    
+    <item>
+      <title>Github Pagesが便利すぎてイイ</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena06.html/</link>
+      <pubDate>Sun, 19 Apr 2015 23:55:16 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena06.html/</guid>
+      <description>見事に三日坊主になってしまってました。 久しぶりに更新します。 GWに企画してるライブのイベントサイトをGithub Pagesで公開してます。 サ</description>
+    </item>
+    
+    <item>
+      <title>サバフェス始まりました</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena05.html/</link>
+      <pubDate>Sat, 14 Mar 2015 04:04:43 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena05.html/</guid>
+      <description>今日（昨日？）から始まったサバフェスというイベントに参加してます。 https://2015spring.serverfesta.info/ ISUCONとかと似たようなイベントですが、インフラに特化しています。 第</description>
+    </item>
+    
+    <item>
+      <title>OSS活動初心者になりました</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena04.html/</link>
+      <pubDate>Sun, 08 Mar 2015 02:02:14 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena04.html/</guid>
+      <description>ついこないだまでOSS活動にあんまり興味がなかった。 必要がなければ他人のコードも読まないし、自分のコードは自分で建てたGitサーバにプッシュ</description>
+    </item>
+    
+    <item>
+      <title>EasySettingsをSettingslogicの替りにいかがでしょうか</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena03.html/</link>
+      <pubDate>Sat, 07 Mar 2015 02:15:01 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena03.html/</guid>
+      <description>今までRailsとかその他諸々のアプリケーションで、定数の管理にSettingslogicを使ってました。 色々不満がありつつ使ってたんですが</description>
+    </item>
+    
+    <item>
+      <title>RubotyのデータをLevelDBで永続化するruboty-leveldbというGemを作った</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena02.html/</link>
+      <pubDate>Sun, 01 Mar 2015 19:10:15 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena02.html/</guid>
+      <description>経緯 会社でチャットボットとしてRubotyを使ってます。 Rubotyはデータの永続化にプラグインを使わないといけないんですが、今はRedis</description>
+    </item>
+    
+    <item>
+      <title>ブログはじめよう</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena01.html/</link>
+      <pubDate>Sun, 01 Mar 2015 00:46:24 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena01.html/</guid>
+      <description>だいぶ前に箱だけ作って全然投稿してなかったけど、こっちにも書いていこうと思います。 SNSとかいろんなのがあってみんな使い分けどうしてるんでし</description>
+    </item>
+    
+  </channel>
+</rss>

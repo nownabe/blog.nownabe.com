@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>RustをRubyから呼び出したら爆速 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2016/08/16/408.html/">
+  <meta property="og:title" content="RustをRubyから呼び出したら爆速 - nownab.log">
+  <meta property="og:description" content="なぜかRustのドキュメントの日本語版だけに英語で存在しているRust Inside Other Languagesという章に、FFIを使ってRubyの並列処理を高">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="RustをRubyから呼び出したら爆速 - nownab.log">
+  <meta property="twitter:description" content="なぜかRustのドキュメントの日本語版だけに英語で存在しているRust Inside Other Languagesという章に、FFIを使ってRubyの並列処理を高">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2016/08/16/408.html/">RustをRubyから呼び出したら爆速</a></h1>
+    <span class="date">Posted on Aug 16, 2016</span>
+  </div>
+  <div class="body">
+    
+
+<p>なぜかRustのドキュメントの日本語版だけに英語で存在している<a href="https://rust-lang-ja.github.io/the-rust-programming-language-ja/1.6/book/rust-inside-other-languages.html">Rust Inside Other Languages</a>という章に、FFIを使ってRubyの並列処理を高速化するというのがあったのでやってみたら爆速でした 🚀</p>
+
+<p>この記事タイトルも雑ですが内容も雑です。説明する気はない感じになってます 🙏
+雰囲気を感じていただければ 😉</p>
+
+<h1 id="元のrubyコード">元のRubyコード</h1>
+
+<p>単純に10スレッド立ち上げて1スレッド毎に5百万回カウントするという処理です。</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">threads</span> <span class="o">=</span> <span class="o">[]</span>
+
+<span class="mi">10</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
+  <span class="n">threads</span> <span class="o">&lt;&lt;</span> <span class="no">Thread</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="mi">5_000_000</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
+      <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">end</span>
+    <span class="n">count</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">threads</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="s2">&#34;Thread finished with count=</span><span class="si">#{</span><span class="n">t</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&#34;</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="s2">&#34;done!&#34;</span></code></pre></div>
+<p>なんとこれだけでもマイMac Book Proだと2秒以上かかりました。</p>
+
+<pre><code>$ time ruby pure_ruby.rb
+Thread finished with count=5000000
+Thread finished with count=5000000
+Thread finished with count=5000000
+Thread finished with count=5000000
+Thread finished with count=5000000
+Thread finished with count=5000000
+Thread finished with count=5000000
+Thread finished with count=5000000
+Thread finished with count=5000000
+Thread finished with count=5000000
+done!
+ruby pure_ruby.rb  2.52s user 0.05s system 99% cpu 2.593 total
+</code></pre>
+
+<p>RubyにはGIL (Global Interpreter Lock)という仕組みがあってCPUを1コアしか使えてません 😭</p>
+
+<p>なのでCPUぶん回すような並列処理はだいぶ遅いです。
+<code>top</code>コマンドとかで1コアしか使えてないのを確認することができます。</p>
+
+<h1 id="rustで書く">Rustで書く</h1>
+
+<p>というわけで、並列化の部分をRustに外出ししてみます。
+Rustは所有権とかいう難しいあれのおかげで、並列処理も安全かつ高速にいい感じにやってくれます ✨</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">thread</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="cp">#[no_mangle]</span><span class="w">
+</span><span class="w"></span><span class="k">pub</span><span class="w"> </span><span class="k">extern</span><span class="w"> </span><span class="k">fn</span> <span class="nf">process</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">handles</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">..</span><span class="mi">10</span><span class="p">).</span><span class="n">map</span><span class="p">(</span><span class="o">|</span><span class="n">_</span><span class="o">|</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">        </span><span class="n">thread</span>::<span class="n">spawn</span><span class="p">(</span><span class="o">||</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">0</span><span class="p">..</span><span class="mi">5_000_000</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">                </span><span class="n">x</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="w">            </span><span class="p">}</span><span class="w">
+</span><span class="w">            </span><span class="n">x</span><span class="w">
+</span><span class="w">        </span><span class="p">})</span><span class="w">
+</span><span class="w">    </span><span class="p">}).</span><span class="n">collect</span><span class="p">();</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">handles</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">        </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;Thread finished with count={}&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">                 </span><span class="n">h</span><span class="p">.</span><span class="n">join</span><span class="p">().</span><span class="n">map_err</span><span class="p">(</span><span class="o">|</span><span class="n">_</span><span class="o">|</span><span class="w"> </span><span class="s">&#34;Could not a join thread!&#34;</span><span class="p">).</span><span class="n">unwrap</span><span class="p">());</span><span class="w">
+</span><span class="w">    </span><span class="p">}</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>詳しくはドキュメントを読んでいただければわかると思います。
+とにかくRust側でスレッドを使って同じ処理をしています。</p>
+
+<p>これをコンパイルすると、<code>libembed.dylib</code>というファイルができます。
+これをRubyで使えるようにします。</p>
+
+<h1 id="ffiする">FFIする</h1>
+
+<p>RubyからRustの関数を呼ぶにはFFI(Foreign Function Interface)という仕組みを使います。
+まずはGemをインストールします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gem install ffi</code></pre></div>
+<p>Rubyのコードは次のようになります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-rb" data-lang="rb"><span class="nb">require</span> <span class="s2">&#34;ffi&#34;</span>
+
+<span class="k">module</span> <span class="nn">Hello</span>
+  <span class="kp">extend</span> <span class="no">FFI</span><span class="o">::</span><span class="no">Library</span>
+  <span class="n">ffi_lib</span> <span class="s2">&#34;embed/target/release/libembed.dylib&#34;</span>
+  <span class="n">attach_function</span> <span class="ss">:process</span><span class="p">,</span> <span class="o">[]</span><span class="p">,</span> <span class="ss">:void</span>
+<span class="k">end</span>
+
+<span class="no">Hello</span><span class="o">.</span><span class="n">process</span>
+
+<span class="nb">puts</span> <span class="s2">&#34;done!&#34;</span></code></pre></div>
+<p>なんとなく感じはわかります。
+<code>ffi_lib &quot;embed/target/release/libembed.dylib&quot;</code>という行でRustをコンパイルしたライブラリを<code>Hello</code>モジュールに読み込んでます。
+<code>attach_function</code>はライブラリの関数をRubyのメソッドとして割り当てるメソッドです。
+第2引数が関数の引数の型で、第3引数が返り値の型です。</p>
+
+<h1 id="実行してみる">実行してみる</h1>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">time</span> ruby embed.rb
+Thread finished with <span class="nv">count</span><span class="o">=</span><span class="m">5000000</span>
+Thread finished with <span class="nv">count</span><span class="o">=</span><span class="m">5000000</span>
+Thread finished with <span class="nv">count</span><span class="o">=</span><span class="m">5000000</span>
+Thread finished with <span class="nv">count</span><span class="o">=</span><span class="m">5000000</span>
+Thread finished with <span class="nv">count</span><span class="o">=</span><span class="m">5000000</span>
+Thread finished with <span class="nv">count</span><span class="o">=</span><span class="m">5000000</span>
+Thread finished with <span class="nv">count</span><span class="o">=</span><span class="m">5000000</span>
+Thread finished with <span class="nv">count</span><span class="o">=</span><span class="m">5000000</span>
+Thread finished with <span class="nv">count</span><span class="o">=</span><span class="m">5000000</span>
+Thread finished with <span class="nv">count</span><span class="o">=</span><span class="m">5000000</span>
+<span class="k">done</span>!
+ruby embed.rb  <span class="m">0</span>.09s user <span class="m">0</span>.05s system <span class="m">98</span>% cpu <span class="m">0</span>.144 total</code></pre></div>
+<p>爆速！！！ 🔥🚀</p>
+
+<h1 id="おわりに">おわりに</h1>
+
+<p>今仕事でパフォーマンスチューニングとかもやってるので、チャンスがあれば使ってみたいなー 😍
+(無理に使おうとは思わない 😅  )</p>
+
+<p>WebAssemblyへコンパイルする実装とかも<a href="https://github.com/brson/mir2wasm">未完成ながらある</a>っぽいので、フロントエンドとかでも使えるかもしれない 💪
+WebAssemblyはMozillaも絡んでるし！</p>
+
+<p>Rustの波が来てる！！(マイブーム)</p>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

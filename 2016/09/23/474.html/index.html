@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>GitHub PagesをReact &#43; CSS Modulesで - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2016/09/23/474.html/">
+  <meta property="og:title" content="GitHub PagesをReact &#43; CSS Modulesで - nownab.log">
+  <meta property="og:description" content="個人用の名刺を作ったのでついでにポートフォリオを作ってみました 💪 その際React &#43; CSS Modulesな感じで作ったので、その雑感とやり方です 📝">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="GitHub PagesをReact &#43; CSS Modulesで - nownab.log">
+  <meta property="twitter:description" content="個人用の名刺を作ったのでついでにポートフォリオを作ってみました 💪 その際React &#43; CSS Modulesな感じで作ったので、その雑感とやり方です 📝">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2016/09/23/474.html/">GitHub PagesをReact &#43; CSS Modulesで</a></h1>
+    <span class="date">Posted on Sep 23, 2016</span>
+  </div>
+  <div class="body">
+    
+
+<p>個人用の名刺を作ったのでついでに<a href="https://nownabe.github.io/">ポートフォリオ</a>を作ってみました 💪</p>
+
+<p>その際React + CSS Modulesな感じで作ったので、その雑感とやり方です 📝</p>
+
+<h1 id="雑感">雑感</h1>
+
+<h2 id="静的ページをreactで作ることについて">静的ページをReactで作ることについて</h2>
+
+<p>GitHub Pagesなので静的ページです。なかなか良かったです 😊</p>
+
+<p>生のHTMLをそのまま書くのはだるいのであり得ない。けどRuby使ったりJadeも違うなーって感じでReactでした。</p>
+
+<p>ヌルヌル動かしたりするなら別かもしれませんが、</p>
+
+<ul>
+<li>部品をコンポーネントとして再利用できる</li>
+<li>繰り返しとか楽ちん</li>
+<li>プログラミング楽しい</li>
+</ul>
+
+<p>らへんがよかったです。</p>
+
+<h2 id="css-modulesについて">CSS Modulesについて</h2>
+
+<p>今回デザインは、Atomic Designを意識してCSS Modulesを使って組みました。
+CSS Modulesよかったです ✨</p>
+
+<ul>
+<li>普通のCSSで書ける</li>
+<li>コンポーネントで閉じている</li>
+</ul>
+
+<p>っていうのがよかったです。わかりやすくてシンプルになるので、脳みその負担を減らせる感じでした。</p>
+
+<p>ただもっと込み入ったもの作ろうとすると<code>composes</code>使ったりしないといけないだろうし、コンポーネントの設計にもっと力入れないといけないんだろうと思います。</p>
+
+<h2 id="atomic-designについて">Atomic Designについて</h2>
+
+<p>React使ってるとコンポーネントがどんどん増えていくので整理する方法として、Atomic Designの考え方を取り入れようとしました。
+結論としては、Atomic Designの考え方そのままでReactのコンポーネントをわけるのはやめた方がいい、ってのがわかりました 😞</p>
+
+<p>Atomic Designは大雑把に言えば最小単位のAtomsからMolecules、Organismsを構成してそれを組み合わせてTemplatesを作り、コンテンツを流し込んでPagesを完成させる、って考え方です。
+これでReactを構成しようとすると次のような課題にぶつかりました。</p>
+
+<ul>
+<li>Templates以下の要素はコンテンツを持つべきではないので、すべてのコンテンツをRootコンポーネントに持たせる必要がある</li>
+<li>MoleculesとOrganismsを分ける明確な基準がわからん <sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></li>
+</ul>
+
+<p>で、最終的にこんな感じに落ち着きました。</p>
+
+<ul>
+<li>Atoms: それ以上分割できない再利用可能なコンポーネント</li>
+<li>Organisms: コンテンツを持たない再利用可能なコンポーネント</li>
+<li>Parts: コンテンツを持ち、AtomsやOrganismsで構成されるコンポーネント</li>
+</ul>
+
+<p>Partsの名前は気に入ってないんですが、いいのが思い浮かばず…。ReactでAtomic Designやってるとこのベストプラクティスが知りたいです。</p>
+
+<h1 id="how-to">How to</h1>
+
+<p>React + CSS Modulesで静的ページを作るまで with Webpackです。
+ボイラープレートを<a href="https://github.com/nownabe/skel-static_website">nownabe/skel-static_website</a>に用意しました。</p>
+
+<h2 id="ディレクトリ構造">ディレクトリ構造</h2>
+
+<p>最終的なディレクトリ構造はこのようになります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ tree .
+.
+├── bundle.js
+├── index.html
+├── package.json
+├── src
+│   ├── index.css
+│   └── index.js
+└── webpack.config.js</code></pre></div>
+<p>ローカルでビルドして、直接masterブランチにPushしていく感じです。</p>
+
+<h2 id="セットアップ">セットアップ</h2>
+
+<p>まずは適当なディレクトリを作って<code>npm init</code>で<code>package.json</code>を作ります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir my-website
+<span class="nb">cd</span> my-website
+npm init</code></pre></div>
+<p>必要なパッケージをインストールします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm install --save react react-dom
+npm install --save-dev webpack style-loader css-loader babel-loader babel-preset-es2015 babel-preset-react browser-sync-webpack-plugin browser-sync</code></pre></div>
+<h2 id="webpack">Webpack</h2>
+
+<p>Webpackを設定します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript:webpack.config.js" data-lang="javascript:webpack.config.js"><span class="kd">var</span> <span class="nx">BrowserSyncPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;browser-sync-webpack-plugin&#34;</span><span class="p">)</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">entry</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">javascript</span><span class="o">:</span> <span class="s2">&#34;./src/index.js&#34;</span>
+  <span class="p">},</span>
+  <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">filename</span><span class="o">:</span> <span class="s2">&#34;bundle.js&#34;</span>
+  <span class="p">},</span>
+  <span class="nx">devtool</span><span class="o">:</span> <span class="s2">&#34;inline-source-map&#34;</span><span class="p">,</span>
+  <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">loaders</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span> <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.js$/</span><span class="p">,</span> <span class="nx">exclude</span><span class="o">:</span> <span class="sr">/node_modules/</span><span class="p">,</span> <span class="nx">loader</span><span class="o">:</span> <span class="s2">&#34;babel-loader&#34;</span> <span class="p">},</span>
+      <span class="p">{</span> <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.css$/</span><span class="p">,</span> <span class="nx">loaders</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;style&#34;</span><span class="p">,</span> <span class="s2">&#34;css?modules&#34;</span><span class="p">]</span> <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="nx">resolve</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">extentions</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="s2">&#34;.js&#34;</span><span class="p">]</span>
+  <span class="p">},</span>
+  <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+    <span class="k">new</span> <span class="nx">BrowserSyncPlugin</span><span class="p">({</span>
+      <span class="nx">host</span><span class="o">:</span> <span class="s2">&#34;localhost&#34;</span><span class="p">,</span>
+      <span class="nx">port</span><span class="o">:</span> <span class="mi">3000</span><span class="p">,</span>
+      <span class="nx">server</span><span class="o">:</span> <span class="p">{</span> <span class="nx">baseDir</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;.&#34;</span><span class="p">]</span> <span class="p">}</span>
+    <span class="p">})</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>これで、<code>webpack --watch</code>コマンドでいい感じに開発できるようになります。
+ついでに<code>npm start</code>で起動できるように<code>package.json</code>を修正しておきます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript:package.json" data-lang="javascript:package.json">  <span class="err">//</span> <span class="err">...</span>
+  <span class="s2">&#34;scripts&#34;</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">&#34;start&#34;</span><span class="p">:</span> <span class="s2">&#34;node_modules/.bin/webpack --watch&#34;</span>
+  <span class="p">}</span><span class="err">,</span>
+  <span class="err">//</span> <span class="err">...</span></code></pre></div>
+<h2 id="babelrc">.babelrc</h2>
+
+<p>バベる設定。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript:.babelrc" data-lang="javascript:.babelrc">{
+  &#34;presets&#34;: [&#34;es2015&#34;, &#34;react&#34;]
+}</code></pre></div>
+<h2 id="index-html">index.html</h2>
+
+<p><code>index.html</code>は何の変哲もない感じで。</p>
+<div class="highlight"><pre class="chroma"><code class="language-html:index.html" data-lang="html:index.html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width, initial-scale=1&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>website<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;bundle.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></code></pre></div>
+<h2 id="react-css-modules">React / CSS Modules</h2>
+
+<p>最後にReactとCSS Modulesです。</p>
+
+<p>こんな感じで、javascript内でCSSを読み込んであげることで、適当なクラス名に変換されます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-js:src/index.js" data-lang="js:src/index.js"><span class="k">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&#34;react&#34;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;react-dom&#34;</span>
+
+<span class="k">import</span> <span class="nx">styles</span> <span class="nx">from</span> <span class="s2">&#34;./index.css&#34;</span>
+
+<span class="nx">render</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="nx">h1</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">hello</span><span class="p">}</span><span class="o">&gt;</span>
+    <span class="nx">Hello</span><span class="p">,</span> <span class="nx">world</span><span class="o">!</span>
+  <span class="o">&lt;</span><span class="err">/h1&gt;,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;app&#34;</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>CSSは普通に書きます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-css:src/index.css" data-lang="css:src/index.css"><span class="p">.</span><span class="nc">hello</span> <span class="p">{</span>
+  <span class="k">font-size</span><span class="p">:</span> <span class="mi">5</span><span class="kt">rem</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+<h1 id="おわりに">おわりに</h1>
+
+<p>すぐに目で確認できるフロントのコーディングは楽しいですね ☺️</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">ただ勉強不足なだけだと思います
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

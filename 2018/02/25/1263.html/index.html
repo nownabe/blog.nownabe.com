@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>PythonのgRPCサーバのテスト - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2018/02/25/1263.html/">
+  <meta property="og:title" content="PythonのgRPCサーバのテスト - nownab.log">
+  <meta property="og:description" content="概要 PythonのgRPCのテストの方法です。 今回のサンプルコードはこちらにあります。 gRPCサーバのテスト ググるとE2Eテストがひっかかり">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="PythonのgRPCサーバのテスト - nownab.log">
+  <meta property="twitter:description" content="概要 PythonのgRPCのテストの方法です。 今回のサンプルコードはこちらにあります。 gRPCサーバのテスト ググるとE2Eテストがひっかかり">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2018/02/25/1263.html/">PythonのgRPCサーバのテスト</a></h1>
+    <span class="date">Posted on Feb 25, 2018</span>
+  </div>
+  <div class="body">
+    
+
+<h1 id="概要">概要</h1>
+
+<p>PythonのgRPCのテストの方法です。
+今回のサンプルコードは<a href="https://gitlab.com/nownabe/example-gRPC-python-test">こちら</a>にあります。</p>
+
+<h1 id="grpcサーバのテスト">gRPCサーバのテスト</h1>
+
+<p>ググるとE2Eテストがひっかかります。<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup> つまり実際にサーバを立ち上げて、クライアントからアクセスしてそのレスポンスをチェックする感じです。</p>
+
+<p>gRPCパッケージのテストでそれをやるのは当たり前なんですが、gRPCを使う側としては単体テストでわざわざサーバを立ち上げたくはないですよね。サービスとメッセージを定義したらコードが自動生成されてサービスが受け取るリクエストのメッセージは保証されてるはずなので、リクエストに対するサービスの振る舞いのみをテストしたいところです。</p>
+
+<p>雑に図にするとこんな感じです。</p>
+
+<p><img width="903" alt="スクリーンショット 2018-02-25 14.42.56.png (684.8 kB)" src="/images/2018/02/25/1.png"></p>
+
+<p>なので、これを実現する方法を紹介します。</p>
+
+<h1 id="実装">実装</h1>
+
+<h2 id="テストするサービスの定義">テストするサービスの定義</h2>
+
+<p>こんな感じの単純なEchoサービスを考えます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-proto:echo.proto" data-lang="proto:echo.proto"><span class="n">syntax</span> <span class="o">=</span> <span class="s">&#34;proto3&#34;</span><span class="p">;</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="kd">service</span> <span class="n">Echo</span> <span class="p">{</span><span class="err">
+</span><span class="err"></span>  <span class="k">rpc</span> <span class="n">Echo</span> <span class="p">(</span><span class="n">Request</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">Response</span><span class="p">)</span> <span class="p">{}</span><span class="err">
+</span><span class="err"></span><span class="p">}</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="kd">message</span> <span class="nc">Request</span> <span class="p">{</span><span class="err">
+</span><span class="err"></span>  <span class="kt">string</span> <span class="kd">message</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="err">
+</span><span class="err"></span><span class="p">}</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="kd">message</span> <span class="nc">Response</span> <span class="p">{</span><span class="err">
+</span><span class="err"></span>  <span class="kt">string</span> <span class="kd">message</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="err">
+</span><span class="err"></span><span class="p">}</span></code></pre></div>
+<p>コードを生成するにはこんな感じです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">python -m grpc_tools.protoc -I<span class="o">=</span>. --python_out<span class="o">=</span>. --grpc_python_out<span class="o">=</span>. echo.proto</code></pre></div>
+<h2 id="サービスの実装">サービスの実装</h2>
+
+<p>サービスの実装はこんな感じです。今回のEchoサービスには禁止ワードの場合エラーを返す機能がついています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python:servicer.py" data-lang="python:servicer.py"><span class="kn">import</span> <span class="nn">grpc</span>
+<span class="kn">import</span> <span class="nn">echo_pb2</span>
+<span class="kn">import</span> <span class="nn">echo_pb2_grpc</span>
+
+<span class="n">_BANNED_WORDS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;unko&#34;</span><span class="p">]</span>
+
+<span class="k">class</span> <span class="nc">Servicer</span><span class="p">(</span><span class="n">echo_pb2_grpc</span><span class="o">.</span><span class="n">EchoServicer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">Echo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">message</span> <span class="ow">in</span> <span class="n">_BANNED_WORDS</span><span class="p">:</span>
+            <span class="n">context</span><span class="o">.</span><span class="n">set_code</span><span class="p">(</span><span class="n">grpc</span><span class="o">.</span><span class="n">StatusCode</span><span class="o">.</span><span class="n">OUT_OF_RANGE</span><span class="p">)</span>
+            <span class="n">context</span><span class="o">.</span><span class="n">set_details</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;{request.message} is a prohibited word.&#34;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;&#39;{request.message}&#39; is a prohibited word.&#34;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">echo_pb2</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">message</span><span class="p">)</span></code></pre></div>
+<p>エラーコードが<code>OUT_OF_RANGE</code>なのは気にしないでください。</p>
+
+<p>このサービスのクラスのみを単体テストするのが目標です。</p>
+
+<h2 id="サーバ-クライアントの実装">サーバ/クライアントの実装</h2>
+
+<p>サーバとクライアントの実装です。gRPCのサンプルから持ってきただけです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python:server.py" data-lang="python:server.py"><span class="kn">from</span> <span class="nn">concurrent</span> <span class="kn">import</span> <span class="n">futures</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">import</span> <span class="nn">grpc</span>
+<span class="kn">import</span> <span class="nn">echo_pb2_grpc</span>
+
+<span class="kn">from</span> <span class="nn">servicer</span> <span class="kn">import</span> <span class="n">Servicer</span>
+
+<span class="n">_ONE_DAY_IN_SECONDS</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span>
+
+<span class="k">def</span> <span class="nf">serve</span><span class="p">():</span>
+    <span class="n">servicer</span> <span class="o">=</span> <span class="n">Servicer</span><span class="p">()</span>
+    <span class="n">server</span> <span class="o">=</span> <span class="n">grpc</span><span class="o">.</span><span class="n">server</span><span class="p">(</span><span class="n">futures</span><span class="o">.</span><span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+    <span class="n">echo_pb2_grpc</span><span class="o">.</span><span class="n">add_EchoServicer_to_server</span><span class="p">(</span><span class="n">servicer</span><span class="p">,</span> <span class="n">server</span><span class="p">)</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">add_insecure_port</span><span class="p">(</span><span class="s2">&#34;[::]:50051&#34;</span><span class="p">)</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">_ONE_DAY_IN_SECONDS</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="n">server</span><span class="o">.</span><span class="n">stop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="n">serve</span><span class="p">()</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python:client.py" data-lang="python:client.py"><span class="kn">import</span> <span class="nn">grpc</span>
+
+<span class="kn">import</span> <span class="nn">grpc</span>
+<span class="kn">import</span> <span class="nn">echo_pb2</span>
+<span class="kn">import</span> <span class="nn">echo_pb2_grpc</span>
+
+<span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
+    <span class="n">channel</span> <span class="o">=</span> <span class="n">grpc</span><span class="o">.</span><span class="n">insecure_channel</span><span class="p">(</span><span class="s2">&#34;[::]:50051&#34;</span><span class="p">)</span>
+    <span class="n">stub</span> <span class="o">=</span> <span class="n">echo_pb2_grpc</span><span class="o">.</span><span class="n">EchoStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&#34;Hello, world!&#34;</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">stub</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span><span class="n">echo_pb2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;Response: {response.message}&#34;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="n">run</span><span class="p">()</span></code></pre></div>
+<p>実際に動かすには<code>python server.py</code>でサーバを起動して、別のターミナルなどで<code>python client.py</code>を実行します。こんな感じですね。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ python server.py <span class="p">&amp;</span> sleep <span class="m">1</span> <span class="o">&amp;&amp;</span> python client.py
+<span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="m">76052</span>
+Response: Hello, world!</code></pre></div>
+<p>これらのサーバとクライアントのコードを単体テストでは<strong>使わない</strong>ことが目標になります。</p>
+
+<h2 id="サービスの引数">サービスの引数</h2>
+
+<p>再掲しますがサービスの本体はこれです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Servicer</span><span class="p">(</span><span class="n">echo_pb2_grpc</span><span class="o">.</span><span class="n">EchoServicer</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">Echo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">message</span> <span class="ow">in</span> <span class="n">_BANNED_WORDS</span><span class="p">:</span>
+            <span class="n">context</span><span class="o">.</span><span class="n">set_code</span><span class="p">(</span><span class="n">grpc</span><span class="o">.</span><span class="n">StatusCode</span><span class="o">.</span><span class="n">OUT_OF_RANGE</span><span class="p">)</span>
+            <span class="n">context</span><span class="o">.</span><span class="n">set_details</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;{request.message} is a prohibited word.&#34;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;&#39;{request.message}&#39; is a prohibited word.&#34;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">echo_pb2</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">message</span><span class="p">)</span></code></pre></div>
+<p>サービスのメソッドはprotoで定義されたリクエストメッセージである<code>request</code>と、<code>context</code>を引数として受け取ります。</p>
+
+<p><code>context</code>は<code>grpc.ServicerContext</code><sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>のオブジェクトです<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup>が<code>grpc.ServicerContext</code>は抽象クラスであり、その実装は公開されていません。</p>
+
+<p>メソッド内で<code>context</code>を使う場合は<code>context</code>を渡す必要がありますが、公開されていないので自前で実装するひつようがあります。<a href="https://github.com/grpc/grpc/blob/v1.9.1/src/python/grpcio_testing/grpc_testing/_server/_servicer_context.py">本家のテスト</a>でも<code>grpc.ServicerContext</code>を実装したテスト用のクラスを作っています。</p>
+
+<p>また、その場合は<code>grpc.ServicerContext</code>は親抽象クラスの<code>gprc.RpcContext</code><sup class="footnote-ref" id="fnref:4"><a href="#fn:4">4</a></sup>を継承しているので、そちらのメソッドも実装する必要があります。</p>
+
+<h2 id="テストの実装">テストの実装</h2>
+
+<p>以上を踏まえEchoサービスの単体テストを書くとこんな感じになります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python:tests/test_servicer.py" data-lang="python:tests/test_servicer.py"><span class="kn">import</span> <span class="nn">unittest</span>
+
+<span class="kn">import</span> <span class="nn">grpc</span>
+<span class="kn">import</span> <span class="nn">echo_pb2</span>
+
+<span class="kn">from</span> <span class="nn">servicer</span> <span class="kn">import</span> <span class="n">Servicer</span>
+
+<span class="k">class</span> <span class="nc">ServicerContext</span><span class="p">(</span><span class="n">grpc</span><span class="o">.</span><span class="n">ServicerContext</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">details</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">add_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">cancel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">is_active</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">time_remaining</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">abort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">details</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">auth_context</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">invocation_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">peer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">peer_identities</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">peer_identity_key</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">send_initial_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_metadata</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">set_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">code</span>
+
+    <span class="k">def</span> <span class="nf">set_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">details</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">details</span> <span class="o">=</span> <span class="n">details</span>
+
+    <span class="k">def</span> <span class="nf">set_trailing_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trailing_metadata</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">TestServicer</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_Servicer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">servicer</span> <span class="o">=</span> <span class="n">Servicer</span><span class="p">()</span>
+        <span class="n">request</span>  <span class="o">=</span> <span class="n">echo_pb2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&#34;Test Message&#34;</span><span class="p">)</span>
+        <span class="n">context</span>  <span class="o">=</span> <span class="n">ServicerContext</span><span class="p">()</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">servicer</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">echo_pb2</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&#34;Test Message&#34;</span><span class="p">),</span> <span class="n">response</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_Servicer_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">servicer</span> <span class="o">=</span> <span class="n">Servicer</span><span class="p">()</span>
+        <span class="n">request</span>  <span class="o">=</span> <span class="n">echo_pb2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&#34;unko&#34;</span><span class="p">)</span>
+        <span class="n">context</span>  <span class="o">=</span> <span class="n">ServicerContext</span><span class="p">()</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="n">servicer</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">grpc</span><span class="o">.</span><span class="n">StatusCode</span><span class="o">.</span><span class="n">OUT_OF_RANGE</span><span class="p">,</span> <span class="n">context</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="s2">&#34;unko is a prohibited word.&#34;</span><span class="p">,</span> <span class="n">context</span><span class="o">.</span><span class="n">details</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span></code></pre></div>
+<p><code>ServicerContext</code>は必要に応じてメソッドを実装すればいいと思います。今回は
+<code>set_code</code>と<code>set_details</code>のみを実装して、エラーコードと詳細のテストができるようにしました。</p>
+
+<h1 id="おわりに">おわりに</h1>
+
+<p>なんかごく普通のことを長々と書いてしまった気がしますが、あまり情報がなかったので。gRPCまわりはまだまだ情報が少ないですね。</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1"><a href="https://stackoverflow.com/questions/44718078/how-to-write-a-grpc-python-unittest">How to write a GRPC python unittest - Stack Overflow</a>
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:2"><a href="https://grpc.io/grpc/python/grpc.html#grpc.ServicerContext">https://grpc.io/grpc/python/grpc.html#grpc.ServicerContext</a>
+ <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:3"><a href="https://grpc.io/docs/tutorials/basic/python.html#simple-rpc">https://grpc.io/docs/tutorials/basic/python.html#simple-rpc</a>
+ <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
+<li id="fn:4"><a href="https://grpc.io/grpc/python/grpc.html#grpc.RpcContext">https://grpc.io/grpc/python/grpc.html#grpc.RpcContext</a>
+ <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

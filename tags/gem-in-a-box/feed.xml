@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gem in a box on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/gem-in-a-box/</link>
+    <description>Recent content in gem in a box on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Mon, 31 Aug 2015 01:11:48 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/gem-in-a-box/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Gem in a Boxの冗長化</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena11.html/</link>
+      <pubDate>Mon, 31 Aug 2015 01:11:48 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena11.html/</guid>
+      <description>Gem in a Box冗長化の情報があんまりない気がしたのでQiitaに記事を書きました。 みんなどうやってるんだろう。（そもそも同期とか冗長化とかいら</description>
+    </item>
+    
+    <item>
+      <title>Gem in a Boxに簡単にリリースできるGem作ったけどいっぱいあったのでまとめ</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena07.html/</link>
+      <pubDate>Wed, 20 May 2015 00:53:44 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena07.html/</guid>
+      <description>はじめに プライベートなGem Serverというか、Gem in a Boxに手軽にGemをリリースできるようにするgeminabox-rake_ta</description>
+    </item>
+    
+  </channel>
+</rss>

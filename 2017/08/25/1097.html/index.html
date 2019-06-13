@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>統計学入門  第7章 多次元の確率分布 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2017/08/25/1097.html/">
+  <meta property="og:title" content="統計学入門  第7章 多次元の確率分布 - nownab.log">
+  <meta property="og:description" content="nownab.log | 統計学入門 第6章 確率変数 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門をやっている">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="統計学入門  第7章 多次元の確率分布 - nownab.log">
+  <meta property="twitter:description" content="nownab.log | 統計学入門 第6章 確率変数 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門をやっている">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2017/08/25/1097.html/">統計学入門  第7章 多次元の確率分布</a></h1>
+    <span class="date">Posted on Aug 21, 2017</span>
+  </div>
+  <div class="body">
+    
+
+<p><a href="https://blog.nownabe.com/2017/08/18/1095.html">nownab.log | 統計学入門 第6章 確率変数</a></p>
+
+<div class="asin">
+<div class="asin-image"><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/" rel="nofollow noopener" target="_blank"><img src="http://images-jp.amazon.com/images/P/4130420658.09._SL160_.jpg" alt="統計学入門 (基礎統計学Ⅰ)" title="統計学入門 (基礎統計学Ⅰ)"></a></div>
+<div class="asin-detail">
+<p><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/" rel="nofollow noopener" target="_blank">統計学入門 (基礎統計学Ⅰ)</a></p>
+<ul>
+<li>東京大学教養学部統計学教室</li>
+<li>東京大学出版会</li>
+</ul>
+</div>
+
+<p><p></p>
+</div></p>
+
+<p>機械学習勉強会として今は<a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/">統計学入門</a>をやっている。
+週一でやっていて、今週から輪読形式で進めてみることになった。</p>
+
+<p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。
+<a href="https://github.com/Wondershake/ml-statistics-intro">Wondershake/ml-statistics-intro: 基礎統計学 I 統計学入門 (東京大学出版会)</a></p>
+
+<h1 id="今回の内容">今回の内容</h1>
+
+<h2 id="7-1-同時確率分布と周辺確率分布">7.1 同時確率分布と周辺確率分布</h2>
+
+<ul>
+<li><strong>同時確率分布 (joint probability distribution)</strong>
+
+<ul>
+<li>離散型の確率変数$X, Y$があるとき、$X=x$であり同時に$Y=y$である確率</li>
+<li>$P(X=x, Y=y) = f(x,y)$</li>
+<li>次を満たす
+
+<ul>
+<li>$f(x, y) \geq 0$</li>
+<li>$\sum_x\sum_yf(x,y)=1$</li>
+</ul></li>
+</ul></li>
+<li>2次元の確率変数の場合、自称は$(x,y)$が集まったある部分集合
+
+<ul>
+<li>事象$A$の確率は$P((X, Y)\in A)={\sum\sum}_A\;f(x,y)$</li>
+</ul></li>
+<li><strong>同時確率密度関数 (joint probability density function)</strong>
+
+<ul>
+<li>連続型の確率変数$X, Y$</li>
+<li>次を満たす
+
+<ul>
+<li>$f(x,y)\geq0$</li>
+<li>$\int\int_S\;f(x,y)dxdy=1$
+
+<ul>
+<li>$S$は<strong>標本空間 (sample space)</strong>、2次元ユークリッド平面の全範囲</li>
+</ul></li>
+</ul></li>
+<li>事象$A$($S$の部分集合)の確率は$P((X,Y)\in A)=\int\int_A\;f(x,y)dxdy$</li>
+<li>$A$が区間ならば$P(a\leq X\leq b, c\leq Y\leq d)=\int_c^d\int_a^b f(x, y)dxdy$</li>
+</ul></li>
+<li><strong>周辺確率分布 (marginal probability distribution)</strong>
+
+<ul>
+<li>同時確率分布から、$X, Y$単独の確率分布</li>
+<li>$g(x)=\sum_y f(x,y)$</li>
+<li>$h(y)=\sum_x f(x,y)$</li>
+</ul></li>
+<li><strong>周辺確率密度関数 (marginal probability density function)</strong>
+
+<ul>
+<li>$g(x)=\int_{-\infty}^{\infty}f(x,y)dy$</li>
+<li>$h(y)=\int_{-\infty}^{\infty}f(x,y)dx$</li>
+</ul></li>
+<li>周辺確率分布は同時確率分布から導かれる</li>
+<li><strong>共分散 (covariance)</strong>
+
+<ul>
+<li>$Cov(X, Y)=E\{(X-\mu_X)(Y-\mu_Y)\}=E(XY)-\mu_X\mu_Y$</li>
+<li>$X, Y$に関連があるとき、$Cov(X,Y)\ne0$</li>
+<li>$Cov(X,Y)&gt;0$なら$X,Y$は大小が同傾向、$Cov(X,Y)&lt;0$なら反対傾向</li>
+<li>$V(X+Y)=V(X)+V(Y)+2Cov(X,Y)$</li>
+</ul></li>
+<li><strong>相関係数 (correlation coefficient)</strong>
+
+<ul>
+<li>確率変数$X,Y$の関係の強さ</li>
+<li>$\rho_{XY}=\frac{Cov(X,Y)}{\sqrt{V(X)}\cdot\sqrt{V(Y)}}$</li>
+<li>$-1\leq\rho_{XY}\leq 1$</li>
+<li>$\rho=\pm 1$のとき、$X,Y$には1次式の関係が成り立つ
+
+<ul>
+<li>$Y=aX+b$</li>
+<li>$a$と$\rho$の符号は同じ</li>
+</ul></li>
+</ul></li>
+<li><strong>無相関 (uncorrelated)</strong>: $\rho=0$つまり$Cov(X, Y)=0$のとき$X, Y$は<strong>無相関</strong>であるという</li>
+</ul>
+
+<h2 id="7-2-条件付き確率分布と独立な確率変数">7.2 条件付き確率分布と独立な確率変数</h2>
+
+<ul>
+<li><strong>条件付確率密度関数 (conditional probability density function)</strong>
+
+<ul>
+<li>$Y=y$のときの$X$の条件付確率密度関数: $P(X=x|Y=y)=\frac{P(X=x, Y=y)}{P(Y=y)}$</li>
+<li><strong>条件付期待値 (conditional expectation)</strong></li>
+<li><strong>条件付分散 (conditional variance)</strong></li>
+</ul></li>
+<li><strong>独立 (independent)</strong>
+
+<ul>
+<li>同時確率分布において、あらゆる$x, y$について$f(x,y)=g(x)\cdot h(y)$が成り立つとき、$X,Y$は互いに<strong>独立</strong>であるという</li>
+<li>$f(x,y)=g(x|y)\cdot h(y) = h(y|x)\cdot g(x)$</li>
+<li>$n$個の確率変数$X_1, X_2, \dots, X_n$に対しても$f(x_1, x_2, \dots, x_n)=f_1(x_1)f_2(x_2)\dots f_n(x_n)$が成り立つとき、$X_1, X_2, \dots, X_n$は独立</li>
+<li>$X, Y$が独立のとき、$E(XY)=E(X)E(Y)$</li>
+<li>$X, Y$が独立のとき、無相関となる
+
+<ul>
+<li>$\rho=Cov(X,Y)=E(XY)-E(X)E(Y)=0$</li>
+</ul></li>
+<li>$X, Y$が独立のとき、$M_{X+Y}(t)=M_X(t)M_Y(t)$</li>
+</ul></li>
+</ul>
+
+<h2 id="7-3-多次元正規分布">7.3 多次元正規分布</h2>
+
+<h2 id="7-4-独立な確率変数の和">7.4 独立な確率変数の和</h2>
+
+<ul>
+<li><strong>分散の加法性</strong>
+
+<ul>
+<li>確率変数$X, Y$について常に次が成り立つ
+
+<ul>
+<li>$E(X+Y)=E(X)+E(Y)$</li>
+</ul></li>
+<li>確率変数$X, Y$が独立のとき次が成り立つ(無相関のときも)
+
+<ul>
+<li>$V(X\pm Y)=V(X)+V(Y)$</li>
+</ul></li>
+<li>確率変数$X_1, X_2, \dots, X_n$に対しても次が成り立つ
+
+<ul>
+<li>$E(X_1+X_2+\dots+X_n)=E(X_1)+E(X_2)+\dots+E(X_n)$</li>
+<li>独立のとき, $V(X_1+X_2+\dots+X_n)=V(X_1)+V(X_2)+\dots+V(X_n)$</li>
+</ul></li>
+</ul></li>
+<li>$X_1, X_2, \dots, X_n$が同一の確率分布に従うとき、
+
+<ul>
+<li>$E(X_1+X_2+\dots+X_n)=n\mu$</li>
+<li>$V(X_1+X_2+\dots+X_n)=n\sigma^2$</li>
+<li>$D(X_1+X_2+\dots+X_n)=\sqrt{n}\sigma$</li>
+<li>$\bar{X}=\frac{X_1, X_2, \dots, X_n}{n}$とすると、
+
+<ul>
+<li>$E(\bar{X})=\mu$</li>
+<li>$V(\bar{X})=\frac{\sigma^2}{n}$</li>
+</ul></li>
+</ul></li>
+<li><strong>たたみこみ (convolution)</strong>
+
+<ul>
+<li>確率変数$X, Y$が独立で、確率分布を$g(x), h(y)$とするとき
+
+<ul>
+<li>$k(z)=\sum_xg(x)h(z-x)$</li>
+<li>$k(z)=\int_{-\infty}^{\infty}g(x)h(z-x)dx$</li>
+</ul></li>
+<li>これを<strong>たたみこみ</strong>といい、$k=g*h$とかく</li>
+<li>確率変数$X, Y$が独立で、確率分布を$g(x), h(y)$とするとき、和$X+Y$の確率分布$k(x)$を考える
+
+<ul>
+<li>$P(X+Y=z)$なので、$X=x, Y=z-x$を同時に満たすすべての組み合わせ</li>
+</ul></li>
+<li>二項分布: $X, Y$が独立でそれぞれ$Bi(n, p), Bi(m, p)$に従うとき、$X+Y$は$Bi(n, p)*Bi(m, p)=Bi(n+m, p)$に従う</li>
+<li>ポアソン分布: $X, Y$が独立でそれぞれ$P_0(\lambda), P_0(\mu)$に従うとき、$X+Y$は$P_0(\lambda)*P_0(\mu)=P_0(\lambda+\mu)$に従う</li>
+<li>正規分布: $X, Y$が独立でそれぞれ$N(\mu_1, \sigma_1^2), N(\mu_2, \sigma_2^2)$に従うとき、$X+Y$は$N(\mu_1+\mu_2, \sigma_1^2+\sigma_2^2)$に従う</li>
+</ul></li>
+<li>たたみこみの結果、同一種類の確率分布(確率分布族)が得られる時、確率分布族は<strong>再生的 (reproductive)</strong>であるという</li>
+<li>正規分布の再生性
+
+<ul>
+<li>$X_1, X_2, \dots, X_n$が独立でそれぞれ正規分布$N(\mu_1, \sigma_1^2), N(\mu_2, \sigma_2^2), \dots, N(\mu_n, \sigma_n^2)$に従うとき
+
+<ul>
+<li>$X_1+X_2+\dots+X_n$は$N(\mu_1+\mu_2+\dots+\mu_n, \sigma_1^2+\sigma_2^2+\dots+\sigma_n^2)$に従う</li>
+<li>$c_1X_1+c_2X_2+\dots+c_nX_n$は$N(c_1\mu_1+c_2\mu_2+\dots+c_n\mu_n, c_1^2\sigma_1^2+c_2^2\sigma_2^2+\dots+c_n^2\sigma_n^2)$に従う</li>
+</ul></li>
+<li>とくに$X_1, X_2, \dots, X_n$がすべて正規分布$N(\mu, \sigma^2)$に従うとき
+
+<ul>
+<li>$X_1+X_2+\dots+X_n$は$N(n\mu, n\sigma^2)$に従う</li>
+<li>$\bar{X}=\frac{X_1, X_2, \dots, X_n}{n}$は$N(\mu, \frac{\sigma^2}{n})$に従う</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h1 id="練習問題">練習問題</h1>
+
+<p><a href="https://github.com/Wondershake/ml-statistics-intro/issues/13">第7章 多次元の確率分布 · Issue #13 · Wondershake/ml-statistics-intro</a></p>
+
+<h1 id="所感">所感</h1>
+
+<ul>
+<li>まだEとかVとかをこねくり回してる感じなのでなんとか</li>
+</ul>
+
+<h1 id="次回">次回</h1>
+
+<p>第8章 大数の法則と中心極限定理</p>
+<div class="highlight"><pre class="chroma"><code class="language-math" data-lang="math"></code></pre></div>
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

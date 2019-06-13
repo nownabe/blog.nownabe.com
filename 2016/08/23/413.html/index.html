@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>OpenSSH形式のRSA鍵をopensslで扱える形式に変換する - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2016/08/23/413.html/">
+  <meta property="og:title" content="OpenSSH形式のRSA鍵をopensslで扱える形式に変換する - nownab.log">
+  <meta property="og:description" content="はじめに OpenSSHの公開鍵といえば、 ssh-keygen -t rsa -b 4096 -N &#39;&#39; -f id_rsa といったコマンドで作成できます。 これで作成した鍵で別のものをopensslコマンド">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="OpenSSH形式のRSA鍵をopensslで扱える形式に変換する - nownab.log">
+  <meta property="twitter:description" content="はじめに OpenSSHの公開鍵といえば、 ssh-keygen -t rsa -b 4096 -N &#39;&#39; -f id_rsa といったコマンドで作成できます。 これで作成した鍵で別のものをopensslコマンド">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2016/08/23/413.html/">OpenSSH形式のRSA鍵をopensslで扱える形式に変換する</a></h1>
+    <span class="date">Posted on Aug 23, 2016</span>
+  </div>
+  <div class="body">
+    
+
+<h1 id="はじめに">はじめに</h1>
+
+<p>OpenSSHの公開鍵といえば、</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ssh-keygen -t rsa -b <span class="m">4096</span> -N <span class="s1">&#39;&#39;</span> -f id_rsa</code></pre></div>
+<p>といったコマンドで作成できます。
+これで作成した鍵で別のものを<code>openssl</code>コマンドを使って暗号化したくて変換する必要があったので調べました。</p>
+
+<p>以下の内容はMac OS X &amp; Homebrewで普通にコマンドを揃えたときの話です 😺</p>
+
+<h1 id="公開鍵">公開鍵</h1>
+
+<p>OpenSSHの公開鍵は<code>~/.ssh/authorized_keys</code>において使うことが多いと思いますが、こんな形になっています。</p>
+
+<pre><code>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC77LdFUQeT2/YiNveZKe6fANforzJ9C6q+XETRqgegmeP/Yv4ep3H45XafK2Fax+ACJc9bh0DH0j/UPgRLauHzr9Y4LhngvMf/tjjX0P5cuQfuZjY7kKVn1bXCiRjLSNpdMnBwEgnRfDC7JrseAACAgIj8EnBmmxk46qYjIkVW9n2Phh/EwHTvPuSyCsnTQjsKzWVIwI5z+RYLN+3PqPxihf99ttW+VmnSfG6fTHww4SiZrj1YsAJjY4TicZVEg5moe9B7Gncj2ZjiJmw0sagWMXq/kjjB5nxlWycZm4C/1T4tNV7Sg+xI9fRIzJpiyo82xNy6BWDrgv3vWbrG932KFHDWoB55jByyOPHSd30ZAuv67f4JdzX76LAp73mQdJTwAuOJaXhC8Gy22PTObXUKtcOJQFXR1sBOmeNspd61FukXZRzI7JZHa1Z3tXGiAZyCRPKhlwxWPD80FPZ6yStjmjsGfG+dh7W021u2PUXQM8epV7e+vh3jLnHrM2k4A0cATQ5NAPf6yUNmtjL78M0KdRuzY8Q2+YckTp0NCT/hfvQoDoAlCtBxEVPwzKBI55KDa34SzZDQZnWmyONQ1syPKvsFICyL04hCSoCNME0wsVXgGlyLdN4TMdsmfmFfVPusEjLCMGw7gUrtk9YzDv0TjrrwXsiWhLA3ZZ2twnr8bQ== nownabe demo
+</code></pre>
+
+<p>ところが公開鍵暗号方式の暗号化キーとして用いられるのはこういう形式(PEM)が多いです。</p>
+
+<pre><code>-----BEGIN PUBLIC KEY-----
+MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAw7Vc9YJ9zw0VjRTdcX3b
+hzhLD47WKwiiYoA4DxfrhczyxQBkCF/UBAfi/FsguLSyzTShnsU486yijseHPVAJ
+tbl9DfqHw0dXxyJY7MuRsjtj5ULYM0m0TIx3RIJvEb1lX57f8QUvRSEtUIbfRJwb
++8ZNgDpTjqOQs+FbagvO+TnFvxMUsZFTd2QHjRjHQcrkBTU1ya60nCMOdkhxQYnE
+K62hCvNYrbSkagYFNpcysz7E/D/Tzo7PYjGt1qTNfTac58YzpkSZ+MUA5l0zSbUd
+QrmBtJG/YgAS7GO3xFW7hnNNG11i/aFWgIqmzkYMS+vubz1C80fBuKXqjvdGZmbc
+zM1hOEPkBwJWh2ix6Hmvjo0xPfBCw5OlYA7YWer4zq/PSrYwRhyHUDMRPOMKJLf/
+2PsFV02hn5RojMliaX8Dz4WsDA6LMJtyD/Bf3rE2NdKDpu3P6mDMxIxTuSUBdr65
+TRJq4YSBZkN4HN5yHOqm2DEuT8bHZvFxEXwnN9aKR59Y4hlYkpU/ABaHWIugR48H
+tjqUK/2E6MpugfC/2FQTJWXlfVwCP2R0x6QcKPMy4BdpPlEo9VaFYDTNjXfKPi/G
+fYC4PyQ+DPdQZ/ftV46tSAMwwsR71O/petUSz7bo+/wfQx9zfAD+MLaF5mcPaosX
+jOCcNogzMejl7cEpdh2vaCMCAwEAAQ==
+-----END PUBLIC KEY-----
+</code></pre>
+
+<p><code>openssl</code>コマンドを使うと非常に簡単に公開鍵暗号が実現できますが、扱えるのは後者なのでOpenSSH形式の公開鍵を使うには後者の形式に変換してやる必要があります。</p>
+
+<h1 id="変換">変換</h1>
+
+<p>変換するには次のコマンドを使います。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ssh-keygen -f id_rsa.pub -e -m PKCS8 &gt; id_rsa.pub.pem</code></pre></div>
+<p>詳しく調べてませんが、<code>-m</code>オプションには<code>PEM</code>ではなく<code>PKCS8</code>を指定してやる必要があります。</p>
+
+<h1 id="暗号化">暗号化</h1>
+
+<p>変換できれば、暗号化は簡単にできます 🔑
+(暗号化の結果はバイナリになるのでBase64で符号化してます)</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">echo</span> <span class="s2">&#34;password&#34;</span> <span class="p">|</span> openssl rsautl -encrypt -pubin -inkey id_rsa.pub.pem <span class="p">|</span> base64
+sL+YgyAQ8O4CS7UHYy/h++P++fqZ21X0YInO/I27GmsOIrVtCX5ZZgoobLeIxZz3nXpPe6L4SSxcsUs0mW77m5ChvkCCj4d5fHuZyn0F0spa/0nrrR/ypue5PPbFEhNZHRI6YoWlG+4f5rRe3tyqcWpae9V2Bp8W9JHKrqil2DztBx/SpEhbtrkttyKm9DDANaiJBhTrPa0TMopdoZ3tOHhcjkcCskgzpLMPdxB/gNyO9cwa/fOtyGUcZ5asm+Om2e9UqUUlXGfloaIbGF7AynmKVbfwPVI19cgXLsT4W2pWeywhKcko2d83G77rOxTMyilPj/wZq2GpZobt8HHhTvB8X1imP7a92WCywLmOD1mEXL6Tz7ybra3RxPw9QjllBLq7Yvp0JCwdrncuWUZ33CasWgWfzG5P3Jbc3hmcqAblwTzff0d26pjCPoLqcjfDGmGsm+Bz5s9kCh+XPzvkwmh3zx/gV4/orajzY4As6XTyu7QP3AVGKkc9Cdwlu1pVqnelbG86HxTbqMtdC4LjbHvsoKasOXKAbjUXCyMo7LdMjoVuYElKRODc7XFDnuAy8ChNrs2nW7K9qYhJsOAPi7vEFbiqtdeTcmQCKhxieEA4/eLsAbz2IOTQrTAulHZ25Ny6D3YGC6ncG/Lme58J0hoHfckizV6NE1FlSITQKeY<span class="o">=</span></code></pre></div>
+<p>ちなみに復号するのはこんな感じです。
+秘密鍵は<code>ssh-keygen</code>のものでも変換なしに使えます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">echo</span> <span class="s2">&#34;password&#34;</span> <span class="p">|</span> openssl rsautl -encrypt -pubin -inkey id_rsa.pub.pem <span class="p">|</span> base64 <span class="p">|</span> base64 -D <span class="p">|</span> openssl rsautl -decrypt -inkey id_rsa
+password</code></pre></div>
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

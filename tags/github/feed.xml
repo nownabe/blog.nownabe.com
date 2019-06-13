@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GitHub on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/github/</link>
+    <description>Recent content in GitHub on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Tue, 08 Jan 2019 10:22:02 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/github/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GitHubの有料プランを解約した</title>
+      <link>https://blog.nownabe.com/2019/01/08/1448.html/</link>
+      <pubDate>Tue, 08 Jan 2019 10:22:02 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2019/01/08/1448.html/</guid>
+      <description>GitHubのプランが刷新されて無料で無制限のプライベートレポジトリが使えるようになりましたね 🎉 というわけでGitHubの有料プランを解約し</description>
+    </item>
+    
+    <item>
+      <title>GitHubでコミットにVerifiedバッジをつけたい</title>
+      <link>https://blog.nownabe.com/2016/10/08/489.html/</link>
+      <pubDate>Sat, 08 Oct 2016 21:18:31 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/10/08/489.html/</guid>
+      <description>はじめに GitHubのコミットに署名するとVerifiedというバッジが表示されます。 基本的にGitHubに書いてあるとおりにやってます。 https://help.github.com/categories/gpg/</description>
+    </item>
+    
+    <item>
+      <title>Hatena BlogからGitHub Pagesに移行しました</title>
+      <link>https://blog.nownabe.com/2016/08/03/400.html/</link>
+      <pubDate>Wed, 03 Aug 2016 00:37:51 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/08/03/400.html/</guid>
+      <description>ブログを移行しました！！！やったーーーー！！！🎉✨ TL; DR Hatena BlogでホストしていたブログをGitHub Pagesに移行しました esa + Middleman + Wercker + GitHub Pages</description>
+    </item>
+    
+  </channel>
+</rss>

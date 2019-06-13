@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>idcf on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/idcf/</link>
+    <description>Recent content in idcf on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Mon, 02 Jul 2018 09:18:28 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/idcf/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>RDB as a Serviceのベンチマーク</title>
+      <link>https://blog.nownabe.com/2018/07/02/1346.html/</link>
+      <pubDate>Mon, 02 Jul 2018 09:18:28 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/07/02/1346.html/</guid>
+      <description>はじめに 最近古くなったWebアプリケーションインフラの刷新プロジェクトをやっていて、AWSとGCPそれぞれのパフォーマンスが気になっていたと</description>
+    </item>
+    
+  </channel>
+</rss>

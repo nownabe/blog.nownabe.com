@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ruby on Rails on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/ruby-on-rails/</link>
+    <description>Recent content in Ruby on Rails on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Tue, 21 May 2019 00:00:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/ruby-on-rails/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>よくしらんRailsアプリとかをAWSのレガシーシステムからGCPのイケイケシステムに移行した話</title>
+      <link>https://blog.nownabe.com/2019/05/21/migration-to-gcp.html/</link>
+      <pubDate>Tue, 21 May 2019 00:00:00 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2019/05/21/migration-to-gcp.html/</guid>
+      <description>はじめに Railsアプリケーションを中心とするシステムをAWSからGCPに移行しました。本記事ではその過程をできるだけ赤裸々に公開します。 本</description>
+    </item>
+    
+  </channel>
+</rss>

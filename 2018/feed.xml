@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2018s on nownab.log</title>
+    <link>https://blog.nownabe.com/2018/</link>
+    <description>Recent content in 2018s on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Tue, 18 Dec 2018 10:17:06 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/2018/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GCP updates | December 17, 2018</title>
+      <link>https://blog.nownabe.com/2018/12/18/1447.html/</link>
+      <pubDate>Tue, 18 Dec 2018 10:17:06 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/12/18/1447.html/</guid>
+      <description>SECURITY Cloud Security Command Center: beta Monitor your cloud resources and quickly mitigate threats to them from a single, centralized dashboard. Track your cloud asset inventory, scan storage systems for sensitive data, detect common web vulnerabilities, and review access rights to your critical resources. Product page beta期間は無料とのことで使ってみました。SC</description>
+    </item>
+    
+    <item>
+      <title>LB配下にメンテナンスサーバをNginxで構築する</title>
+      <link>https://blog.nownabe.com/2018/12/17/1446.html/</link>
+      <pubDate>Mon, 17 Dec 2018 13:39:17 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/12/17/1446.html/</guid>
+      <description>概要 既存のアプリケーションサーバをファイル等でメンテナンスモードに切り替えるのではなく、メンテナンスモード専用のサーバを構築する方法です。い</description>
+    </item>
+    
+    <item>
+      <title>ゼロから作るDeep Learning 2 自然言語処理編 を読んだ</title>
+      <link>https://blog.nownabe.com/2018/12/08/1445.html/</link>
+      <pubDate>Sat, 08 Dec 2018 21:11:06 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/12/08/1445.html/</guid>
+      <description>ゼロから作るDeep Learning 2 自然言語処理編を読んだ。Deep Learningをある程度中身まで理解したいという入門者に対しては前作とともにめちゃ</description>
+    </item>
+    
+    <item>
+      <title>GCP updates  | November 26, 2018</title>
+      <link>https://blog.nownabe.com/2018/11/29/1444.html/</link>
+      <pubDate>Thu, 29 Nov 2018 20:08:25 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/11/29/1444.html/</guid>
+      <description>DATABASES Cloud Bigtable now available in all three London (europe-west2) zones: GA Cloud Bigtable is a massively scalable, fully managed NoSQL database service for large analytical and operational workloads. Product page DEVELOPER TOOLS Cloud Scheduler: beta Cloud Scheduler is a fully managed enterprise-grade cron job scheduler. You can schedule nearly any job, including batch and big data, as well as automate manual tasks, such as retries, all in one place.</description>
+    </item>
+    
+    <item>
+      <title>Beautiful Soup 4でうまくパースできなかった</title>
+      <link>https://blog.nownabe.com/2018/11/29/1443.html/</link>
+      <pubDate>Thu, 29 Nov 2018 19:47:33 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/11/29/1443.html/</guid>
+      <description>Beautiful Soupでhtml.parserを使うのはやめましょう 😇 Beautiful Soupでスクレイピングしてると、tbody要素がなかったことになってたり、同じ</description>
+    </item>
+    
+    <item>
+      <title>GCP updates  | November 12, 2018</title>
+      <link>https://blog.nownabe.com/2018/11/28/1442.html/</link>
+      <pubDate>Wed, 28 Nov 2018 18:59:08 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/11/28/1442.html/</guid>
+      <description>COMPUTE Compute Engine – logging serial port output to Stackdriver: beta This feature enables you to configure your VM instances to automatically log serial port output to Stackdriver, allowing it to persist beyond the lifetime of the VMs. Logging this data to Stackdriver makes it easier for you to analyze and troubleshoot VMs that have crashed or terminated. Documentation おもしろいなw IaaS</description>
+    </item>
+    
+    <item>
+      <title>Ubuntuでapt-get updateができなくなった</title>
+      <link>https://blog.nownabe.com/2018/11/07/1434.html/</link>
+      <pubDate>Wed, 07 Nov 2018 23:34:27 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/11/07/1434.html/</guid>
+      <description>こんなかんじ。 $ sudo apt-get update Hit:1 http://archive.ubuntulinux.jp/ubuntu bionic InRelease Hit:2 http://archive.ubuntulinux.jp/ubuntu-ja-non-free bionic InRelease Get:3 https://nvidia.github.io/libnvidia-container/ubuntu18.04/amd64 InRelease [1,139 B] Get:4 https://nvidia.github.io/nvidia-container-runtime/ubuntu18.04/amd64 InRelease [1,136 B] Hit:5 http://jp.archive.ubuntu.com/ubuntu bionic InRelease Get:6 https://nvidia.github.io/nvidia-docker/ubuntu18.04/amd64 InRelease [1,129 B] Ign:7 http://dl.google.com/linux/chrome/deb stable InRelease Hit:8 http://jp.archive.ubuntu.com/ubuntu bionic-updates InRelease Hit:9 http://jp.archive.ubuntu.com/ubuntu bionic-backports InRelease Get:10 http://dl.google.com/linux/chrome/deb stable Release [943 B] Err:3 https://nvidia.github.io/libnvidia-container/ubuntu18.04/amd64 InRelease The following signatures were invalid: EXPKEYSIG C45B1676A04EA552 NVIDIA CORPORATION (Open Source</description>
+    </item>
+    
+    <item>
+      <title>GCP updates  | October 29, 2018</title>
+      <link>https://blog.nownabe.com/2018/11/28/1432.html/</link>
+      <pubDate>Wed, 31 Oct 2018 12:01:31 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/11/28/1432.html/</guid>
+      <description>DATA ANALYTICS BigQuery now available in the London region: GA BigQuery is now generally available in the europe-west2 region. With regional availability, you can run large-scale workloads quickly in the same local Google Cloud regions you already use for storage, compute, and machine learning. Documentation | Blog DATABASES Cloud Spanner DML: GA Now you can use insert, update, and delete data manipulation language (DML) SQL statements in Cloud Spanner databases.</description>
+    </item>
+    
+    <item>
+      <title>GCP updates  | October 15, 2018</title>
+      <link>https://blog.nownabe.com/2018/10/30/1431.html/</link>
+      <pubDate>Tue, 30 Oct 2018 19:34:04 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/10/30/1431.html/</guid>
+      <description>見逃してた 😎 DATABASES Cloud Bigtable added to australia-southeast1 region: GA Cloud Bigtable is now available in the australia-southeast1 (Sydney, Australia) region. Product page COMPUTE Cloud Tasks: beta Make apps more responsive for your users, allow apps to scale independently, and make your infrastructure more resilient with Cloud Tasks, an asynchronous task-execution service that lets you decouple services and offload long-running background tasks. Documentation | Blog ち</description>
+    </item>
+    
+    <item>
+      <title>Google CloudのRubyクライアントのRailsログを無効化する</title>
+      <link>https://blog.nownabe.com/2018/10/09/1419.html/</link>
+      <pubDate>Tue, 09 Oct 2018 10:18:58 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/10/09/1419.html/</guid>
+      <description>RailsのRakeタスクでGoogle Cloud Storageを操作するバッチを動かしてたら頼んでもないのにRailsのログ (log/develo</description>
+    </item>
+    
+    <item>
+      <title>GCP updates  | October 1, 2018</title>
+      <link>https://blog.nownabe.com/2018/10/03/1416.html/</link>
+      <pubDate>Wed, 03 Oct 2018 09:49:00 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/10/03/1416.html/</guid>
+      <description>DATABASES New asia-south1 Cloud Bigtable region added: GA Cloud Bigtable is now available in the asia-south1 (Mumbai, India) region. Product page DATA ANALYTICS BigQuery – Apache ORC ingestion: GA This feature adds support for importing ORC data from Cloud Storage into BigQuery. You can access it through Cloud Client Libraries in any of the seven supported languages. ORC is an open-source, column-oriented data format, widely used in the Apache Hadoop</description>
+    </item>
+    
+    <item>
+      <title>ジオシティーズありがとう</title>
+      <link>https://blog.nownabe.com/2018/10/01/1414.html/</link>
+      <pubDate>Mon, 01 Oct 2018 23:08:09 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/10/01/1414.html/</guid>
+      <description>ポエムです。 Yahoo! ジオシティーズが2019年3月でサービス終了するそうです。 サービス終了のお知らせ - Yahoo!ジオシティーズ ジオシティーズは、</description>
+    </item>
+    
+    <item>
+      <title>ゼロから作るDeep Learning 2 第6回</title>
+      <link>https://blog.nownabe.com/2018/09/26/1411.html/</link>
+      <pubDate>Wed, 26 Sep 2018 15:04:13 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/09/26/1411.html/</guid>
+      <description>nownab.log | ゼロから作るDeep Learning 2 第5回 この本から1章ずつPull Requestにしてて、メモとか所感とかそっちに書けばいいなーってことで、次回か</description>
+    </item>
+    
+    <item>
+      <title>GCP updates  | September 17, 2018</title>
+      <link>https://blog.nownabe.com/2018/09/18/1403.html/</link>
+      <pubDate>Tue, 18 Sep 2018 11:01:01 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/09/18/1403.html/</guid>
+      <description>ACCOUNT SERVICES Google Cloud Platform arrives in the Nordics with a new region in Finland The Finland GCP region, europe-north1, is the first Nordic cloud region from a major public cloud provider. Hosting applications in the new region can reduce latency by up to 65% for end users in the Nordics, and by up to 88% for end users in Eastern Europe, compared to hosting them in what was previously</description>
+    </item>
+    
+    <item>
+      <title>ゼロから作るDeep Learning 2 第5回</title>
+      <link>https://blog.nownabe.com/2018/09/14/1401.html/</link>
+      <pubDate>Fri, 14 Sep 2018 16:33:08 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/09/14/1401.html/</guid>
+      <description>nownab.log | ゼロから作るDeep Learning 2 第4回 概要 機械学習勉強会でもくもくしてるゼロから作るDeep Learning 2 自然言語処理編の学習メモです。 書いたコードのリポ</description>
+    </item>
+    
+    <item>
+      <title>ゼロから作るDeep Learning 2 第4回</title>
+      <link>https://blog.nownabe.com/2018/09/13/1396.html/</link>
+      <pubDate>Fri, 07 Sep 2018 22:33:40 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/09/13/1396.html/</guid>
+      <description>nownab.log | ゼロから作るDeep Learning 2 第3回 概要 機械学習勉強会でもくもくしてるゼロから作るDeep Learning 2 自然言語処理編の学習メモです。 書いたコードのリポ</description>
+    </item>
+    
+    <item>
+      <title>GCP updates  | September 4, 2018</title>
+      <link>https://blog.nownabe.com/2018/09/05/1394.html/</link>
+      <pubDate>Wed, 05 Sep 2018 10:45:19 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/09/05/1394.html/</guid>
+      <description>COMPUTE NVIDIA Tesla P4 GPUs for Compute Engine: beta Compute Engine now offers NVIDIA Tesla P4 GPUs for 3D visualization, deep learning, video transcoding, and high-performance computing. NVIDIA Tesla P4 GPUs offer up to 5.5 teraflops of single-precision performance and 22 tera operations per second of INT8 performance. Blog | Product page DATABASES Cloud Firestore: beta Cloud Firestore, our serverless, NoSQL document database, is in the process of adding new</description>
+    </item>
+    
+    <item>
+      <title>ゼロから作るDeep Learning 2用のDockerイメージ</title>
+      <link>https://blog.nownabe.com/2018/09/01/1390.html/</link>
+      <pubDate>Sat, 01 Sep 2018 21:14:57 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/09/01/1390.html/</guid>
+      <description>ゼロから作るDeep Learning 2 自然言語処理編のコードを実行できるDockerイメージを作りました。 Dockerコンテナからmatplotlibでグ</description>
+    </item>
+    
+    <item>
+      <title>ゼロから作るDeep Learning 2 第3回</title>
+      <link>https://blog.nownabe.com/2018/08/30/1389.html/</link>
+      <pubDate>Thu, 30 Aug 2018 16:56:27 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/08/30/1389.html/</guid>
+      <description>nownab.log | ゼロから作るDeep Learning 2 第2回 概要 機械学習勉強会でもくもくしてるゼロから作るDeep Learning 2 自然言語処理編の学習メモです。 書いたコードのリポ</description>
+    </item>
+    
+    <item>
+      <title>KubernetsのSecretのYAMLを暗号化したりするツールを作った</title>
+      <link>https://blog.nownabe.com/2018/08/27/1385.html/</link>
+      <pubDate>Mon, 27 Aug 2018 17:23:59 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/08/27/1385.html/</guid>
+      <description>KubernetesのSecretのYAMLを暗号化したり、暗号化されたYAMLを編集したりするsekretというツールを作りました。 nownabe/sekret Ku</description>
+    </item>
+    
+    <item>
+      <title>GoのKubernetesオブジェクトをYAMLからDeserializeする</title>
+      <link>https://blog.nownabe.com/2018/08/22/1382.html/</link>
+      <pubDate>Wed, 22 Aug 2018 23:09:06 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/08/22/1382.html/</guid>
+      <description>GoでKubernetesまわりのツールを作るときにYAMLを読んでKubernetesオブジェクトにしたいということがあったので調べました</description>
+    </item>
+    
+    <item>
+      <title>GCP updates  | August 20, 2018</title>
+      <link>https://blog.nownabe.com/2018/08/21/1378.html/</link>
+      <pubDate>Tue, 21 Aug 2018 13:00:04 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/08/21/1378.html/</guid>
+      <description>うすうす感じてたんですが翻訳は意味なさそうなのでやめました。気になったものへの感想だけ。 COMPUTE Knative: GA Knative is a Kubernetes-based platform for building, deploying, and managing serverless workloads. It offers a set of middleware components for building source-centric and</description>
+    </item>
+    
+    <item>
+      <title>ゼロから作るDeep Learning 2 第2回</title>
+      <link>https://blog.nownabe.com/2018/08/18/1375.html/</link>
+      <pubDate>Sat, 18 Aug 2018 01:31:05 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/08/18/1375.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第22回 概要 機械学習勉強会でもくもくしてるゼロから作るDeep Learning 2 自然言語処理編の学習メモです。 書いたコード</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第22回</title>
+      <link>https://blog.nownabe.com/2018/08/02/1370.html/</link>
+      <pubDate>Thu, 02 Aug 2018 11:02:35 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/08/02/1370.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第18回 概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこ</description>
+    </item>
+    
+    <item>
+      <title>入門 Kubernetesを読んだ</title>
+      <link>https://blog.nownabe.com/2018/07/12/1357.html/</link>
+      <pubDate>Thu, 12 Jul 2018 08:55:45 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/07/12/1357.html/</guid>
+      <description>はじめに 入門 Kubernetesを読みました。 今からKubernetesを始める人、Kubernetesがなんなのかザッと知っておきたい人に</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第18回</title>
+      <link>https://blog.nownabe.com/2018/07/05/1351.html/</link>
+      <pubDate>Thu, 05 Jul 2018 15:01:18 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/07/05/1351.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第16回 概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこ</description>
+    </item>
+    
+    <item>
+      <title>GCP updates  |  July 2, 2018</title>
+      <link>https://blog.nownabe.com/2018/07/03/1348.html/</link>
+      <pubDate>Tue, 03 Jul 2018 12:09:34 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/07/03/1348.html/</guid>
+      <description>GCPのメルマガの雑な翻訳です。 nownab.log | GCP updates | June 6, 2018 Account Services Finnish Google Cloud Platform region now open The Finnish region, europe-north1, offering compute, storage, big data, and networking services, is now generally available. Users in the Nordics can reduce latency by up to 65%, those in Eastern Europe by up to 88%. フィ</description>
+    </item>
+    
+    <item>
+      <title>RDB as a Serviceのベンチマーク</title>
+      <link>https://blog.nownabe.com/2018/07/02/1346.html/</link>
+      <pubDate>Mon, 02 Jul 2018 09:18:28 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/07/02/1346.html/</guid>
+      <description>はじめに 最近古くなったWebアプリケーションインフラの刷新プロジェクトをやっていて、AWSとGCPそれぞれのパフォーマンスが気になっていたと</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第16回</title>
+      <link>https://blog.nownabe.com/2018/06/21/1334.html/</link>
+      <pubDate>Tue, 19 Jun 2018 12:46:24 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/06/21/1334.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第14回 概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこ</description>
+    </item>
+    
+    <item>
+      <title>リビングの棚をDIYした</title>
+      <link>https://blog.nownabe.com/2018/06/09/1328.html/</link>
+      <pubDate>Fri, 08 Jun 2018 16:04:12 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/06/09/1328.html/</guid>
+      <description>リビングの棚をDIYしました。 これです。 ディアウォールとか言われてる棚ですね。DIY界隈ではメジャーっぽいです。 壁に穴開けたくなかったし、ち</description>
+    </item>
+    
+    <item>
+      <title>GCP updates  |  June 6, 2018</title>
+      <link>https://blog.nownabe.com/2018/06/08/1327.html/</link>
+      <pubDate>Fri, 08 Jun 2018 10:40:53 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/06/08/1327.html/</guid>
+      <description>GCPのメルマガの雑な翻訳です。 nownab.log | GCP updates | June 6, 2018 Compute Regional Persistent Disks for Google Kubernetes Engine Now in beta, Regional Persistent Disks replicate data between two zones in one region, enabling high availability for stateful workloads. In the event of a zonal outage, failover is automatically handled by the other zone. β機能</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第14回</title>
+      <link>https://blog.nownabe.com/2018/06/06/1322.html/</link>
+      <pubDate>Wed, 06 Jun 2018 19:40:14 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/06/06/1322.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第13回 概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこ</description>
+    </item>
+    
+    <item>
+      <title>Dockerの実行ユーザ</title>
+      <link>https://blog.nownabe.com/2018/06/05/1321.html/</link>
+      <pubDate>Tue, 05 Jun 2018 18:37:49 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/06/05/1321.html/</guid>
+      <description>Dockerでコンテナを起動するとき、rootユーザでプロセスを起動してしまうと危険です。 参考: Dockerコンテナを本番環境で使うためのセ</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第13回</title>
+      <link>https://blog.nownabe.com/2018/05/30/1315.html/</link>
+      <pubDate>Wed, 30 May 2018 19:35:40 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/05/30/1315.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第11回 概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこ</description>
+    </item>
+    
+    <item>
+      <title>Product updates | May 23, 2018</title>
+      <link>https://blog.nownabe.com/2018/05/24/1304.html/</link>
+      <pubDate>Thu, 24 May 2018 17:36:33 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/05/24/1304.html/</guid>
+      <description>GCPのメルマガの雑な翻訳です。日本語は信用しないでください。 BIG DATA Cloud Composer: Managed Apache Airflow on GCP Author, schedule, and monitor pipelines across cloud and on-premise environments with Cloud Composer. Built on open source Apache Airflow, Cloud Composer simplifies workflow orchestration and avoids vendor lock-in. Cloud C</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第11回</title>
+      <link>https://blog.nownabe.com/2018/05/16/1298.html/</link>
+      <pubDate>Wed, 16 May 2018 15:18:23 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/05/16/1298.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第10回 概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこ</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第10回</title>
+      <link>https://blog.nownabe.com/2018/05/16/1297.html/</link>
+      <pubDate>Wed, 16 May 2018 13:40:21 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/05/16/1297.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第9回 概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこち</description>
+    </item>
+    
+    <item>
+      <title>Product updates | May 7, 2018</title>
+      <link>https://blog.nownabe.com/2018/05/08/1293.html/</link>
+      <pubDate>Tue, 08 May 2018 09:49:35 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/05/08/1293.html/</guid>
+      <description>Product updates | May 7, 2018 STORAGE &amp;amp; DATABASES Cloud Bigtable zone in Iowa A new Cloud Bigtable zone, us-central1-a, has launched in Iowa. アイオワでCloud Bigtableの新しいゾーンus-central1-aを提供開始しまし</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第9回</title>
+      <link>https://blog.nownabe.com/2018/04/25/1289.html/</link>
+      <pubDate>Wed, 25 Apr 2018 12:04:05 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/04/25/1289.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第8回 概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこち</description>
+    </item>
+    
+    <item>
+      <title>Product updates | April 23, 2018</title>
+      <link>https://blog.nownabe.com/2018/04/24/1288.html/</link>
+      <pubDate>Tue, 24 Apr 2018 11:23:26 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/04/24/1288.html/</guid>
+      <description>Product updates | April 23, 2018 COMPUTE QUIC with HTTPS load balancing. With this beta release, HTTPS load balancing now supports the QUIC transport in connections to clients, improving performance by providing enhanced congestion control and security. このベータリリースで, HTTPSロードバランサはクライアントとの通</description>
+    </item>
+    
+    <item>
+      <title>Product updates | April 9, 2018</title>
+      <link>https://blog.nownabe.com/2018/04/20/1286.html/</link>
+      <pubDate>Fri, 20 Apr 2018 14:11:59 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/04/20/1286.html/</guid>
+      <description>気が向いたときにやるスタイル IDENTITY &amp;amp; SECURITY Access Transparency Now in beta, Access Transparency gives customers near real-time logs when Google Cloud Platform admins access their content. This further helps customers gain visibility over what happens to their data on Google Cloud. beta機能のAccess Trans</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第8回</title>
+      <link>https://blog.nownabe.com/2018/04/09/1281.html/</link>
+      <pubDate>Mon, 09 Apr 2018 14:43:15 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/04/09/1281.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第7回 概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこち</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第7回</title>
+      <link>https://blog.nownabe.com/2018/04/03/1277.html/</link>
+      <pubDate>Tue, 03 Apr 2018 14:09:15 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/04/03/1277.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第4回 概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこち</description>
+    </item>
+    
+    <item>
+      <title>GCP updates | March 12, 2018</title>
+      <link>https://blog.nownabe.com/2018/03/16/1272.html/</link>
+      <pubDate>Fri, 16 Mar 2018 16:33:24 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/03/16/1272.html/</guid>
+      <description>復活しました。 NETWORKING Cloud Bigtable region launches in Singapore The Cloud Bigtable region asia-southeast1 has now launched in Singapore. Cloud Bigtableでシンガポールの新リージョンasia-southeast1がローンチした。</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第4回</title>
+      <link>https://blog.nownabe.com/2018/03/14/1271.html/</link>
+      <pubDate>Tue, 13 Mar 2018 14:34:59 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/03/14/1271.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第1回 第2回、第3回は自分の担当じゃなかったのでブログさぼりました。 概要 機械学習勉強会で輪読してる言語処理の</description>
+    </item>
+    
+    <item>
+      <title>Reactをやめた</title>
+      <link>https://blog.nownabe.com/2018/03/04/1267.html/</link>
+      <pubDate>Sun, 04 Mar 2018 22:10:05 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/03/04/1267.html/</guid>
+      <description>自分の個人のサイトをリニューアルしてReactを排除しました。 https://nownabe.github.io/ これ作ったときはちょうどReactにはまってる時期で、どんな妄想が働いたのか</description>
+    </item>
+    
+    <item>
+      <title>PythonのgRPCサーバのテスト</title>
+      <link>https://blog.nownabe.com/2018/02/25/1263.html/</link>
+      <pubDate>Sun, 25 Feb 2018 16:01:56 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/02/25/1263.html/</guid>
+      <description>概要 PythonのgRPCのテストの方法です。 今回のサンプルコードはこちらにあります。 gRPCサーバのテスト ググるとE2Eテストがひっかかり</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第1回</title>
+      <link>https://blog.nownabe.com/2018/02/21/1260.html/</link>
+      <pubDate>Mon, 19 Feb 2018 20:22:06 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/02/21/1260.html/</guid>
+      <description>概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。 範囲</description>
+    </item>
+    
+    <item>
+      <title>Dockerイメージの公開にGitLabが最高</title>
+      <link>https://blog.nownabe.com/2018/02/17/1259.html/</link>
+      <pubDate>Sat, 17 Feb 2018 17:01:53 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/02/17/1259.html/</guid>
+      <description>Dockerイメージを公開するのにGitLabが最⭐️高だったので紹介します。GitHubとDockerHubを使うより遥かに良いです。 以前</description>
+    </item>
+    
+    <item>
+      <title>GitLabを使うぞ</title>
+      <link>https://blog.nownabe.com/2018/02/07/1252.html/</link>
+      <pubDate>Wed, 07 Feb 2018 18:23:56 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/02/07/1252.html/</guid>
+      <description>自分でサーバ立ててなら使ったことあったけど、SaaS版のGitLabにも登録してみた。 https://gitlab.com/nownabe GitHubのレポジトリが増えてノイズが多いなぁと感</description>
+    </item>
+    
+    <item>
+      <title>Python機械学習プログラミング  第9章</title>
+      <link>https://blog.nownabe.com/2018/02/06/1251.html/</link>
+      <pubDate>Tue, 06 Feb 2018 16:51:22 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/02/06/1251.html/</guid>
+      <description>概要 Python機械学習プログラミングの学習メモです。 勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。 今回は、第9章 機械学習の</description>
+    </item>
+    
+    <item>
+      <title>Python機械学習プログラミング  第8章</title>
+      <link>https://blog.nownabe.com/2018/02/06/1250.html/</link>
+      <pubDate>Tue, 06 Feb 2018 14:08:01 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/02/06/1250.html/</guid>
+      <description>概要 Python機械学習プログラミングの学習メモです。 勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。 今回は、第8章 機械学習の</description>
+    </item>
+    
+    <item>
+      <title>Google Cloud Endpoints for gRPCの認証まわり</title>
+      <link>https://blog.nownabe.com/2018/02/05/1248.html/</link>
+      <pubDate>Mon, 05 Feb 2018 15:49:43 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/02/05/1248.html/</guid>
+      <description>はじめに Cloud Endpoints for gRPCの認証まわりでちょっと引っかかったので整理しました。 GCPのドキュメントは大元の英語版であっても間違ってる箇所が多いの</description>
+    </item>
+    
+    <item>
+      <title>ふりかえり v2018.2</title>
+      <link>https://blog.nownabe.com/2018/02/04/1246.html/</link>
+      <pubDate>Sun, 04 Feb 2018 12:13:32 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/02/04/1246.html/</guid>
+      <description>先月さぼったので12月、1月の分。 Tech gRPC、KubernetesでMicroservicesを作っている 言語はGolangとPython g</description>
+    </item>
+    
+    <item>
+      <title>Python機械学習プログラミング  第5章</title>
+      <link>https://blog.nownabe.com/2018/01/31/1244.html/</link>
+      <pubDate>Mon, 29 Jan 2018 17:56:06 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/01/31/1244.html/</guid>
+      <description>概要 Python機械学習プログラミングの学習メモです。 勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。 今回は、第5章 次元削減で</description>
+    </item>
+    
+    <item>
+      <title>Python機械学習プログラミング  第4章</title>
+      <link>https://blog.nownabe.com/2018/01/24/1242.html/</link>
+      <pubDate>Mon, 22 Jan 2018 17:51:33 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/01/24/1242.html/</guid>
+      <description>概要 Python機械学習プログラミングの学習メモです。 勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。 今回は、第4章 データ前処</description>
+    </item>
+    
+    <item>
+      <title>Python機械学習プログラミング  第3章</title>
+      <link>https://blog.nownabe.com/2018/01/17/1240.html/</link>
+      <pubDate>Mon, 15 Jan 2018 00:53:58 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/01/17/1240.html/</guid>
+      <description>概要 Python機械学習プログラミングの学習メモです。 勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。 今回は、第3章 分類問題 -</description>
+    </item>
+    
+    <item>
+      <title>暗号通貨のレポジトリ調べてみた</title>
+      <link>https://blog.nownabe.com/2018/01/14/1239.html/</link>
+      <pubDate>Sun, 14 Jan 2018 01:36:46 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/01/14/1239.html/</guid>
+      <description>最近暗号通貨が楽しい1のでオープンソースな暗号通貨のレポジトリを調べてみました。 今回調べたのはbitFlyer、coincheckで取り扱っ</description>
+    </item>
+    
+    <item>
+      <title>Python機械学習プログラミング  第2章</title>
+      <link>https://blog.nownabe.com/2018/01/12/1238.html/</link>
+      <pubDate>Fri, 12 Jan 2018 17:08:41 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/01/12/1238.html/</guid>
+      <description>概要 Python機械学習プログラミングの学習メモです。 勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。 資料 2.1-2.4 2.5-2.6 メモ 2.1 人工ニュー</description>
+    </item>
+    
+  </channel>
+</rss>

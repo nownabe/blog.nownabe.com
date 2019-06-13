@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>terraform on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/terraform/</link>
+    <description>Recent content in terraform on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Sat, 15 Apr 2017 23:49:35 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/terraform/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Terraform 0.9を使ってみた</title>
+      <link>https://blog.nownabe.com/2017/04/15/672.html/</link>
+      <pubDate>Sat, 15 Apr 2017 23:49:35 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/04/15/672.html/</guid>
+      <description>はじめに Terraformはあんまり好きではないんですが選択肢がないんで仕方なし、って感じで使ってます。 更新がはやくてちょっと使わないと色々</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gae on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/gae/</link>
+    <description>Recent content in gae on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Sat, 29 Jul 2017 19:29:50 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/gae/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>App Engineのdev_appserver.pyが起動しなかった</title>
+      <link>https://blog.nownabe.com/2017/07/29/1057.html/</link>
+      <pubDate>Sat, 29 Jul 2017 19:29:50 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/07/29/1057.html/</guid>
+      <description>はじめに Quick StartのTest the applicationでこんな感じでエラーがでたのでこんな感じで対処していった。 ModuleNotFoundError: No module named &amp;lsquo;setup&amp;rsquo; Download the SDK for App Engi</description>
+    </item>
+    
+    <item>
+      <title>Google App Engineでフォーム入力</title>
+      <link>https://blog.nownabe.com/2016/10/05/487.html/</link>
+      <pubDate>Wed, 05 Oct 2016 23:23:52 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/10/05/487.html/</guid>
+      <description>はじめに 次のお題はこちらです 🌞 https://github.com/GoogleCloudPlatform/appengine-guestbook-go/blob/part3-handlingforms/hello.go hello.go package hello import ( &amp;#34;fmt&amp;#34; &amp;#34;html/template&amp;#34; &amp;#34;net/http&amp;#34; ) func init() { http.HandleFunc(&amp;#34;/&amp;#34;, root) http.HandleFunc(&amp;#34;/sign&amp;#34;, sign) } func root(w http.ResponseWriter, r *http.Request) { fmt.Fprint(w, guestbookForm) } const guestbookForm = ` &amp;lt;html&amp;gt; &amp;lt;body&amp;gt; &amp;lt;form action=&amp;#34;/sign&amp;#34; method=&amp;#34;post&amp;#34;&amp;gt; &amp;lt;div&amp;gt;&amp;lt;textarea name=&amp;#34;content&amp;#34; rows=&amp;#34;3&amp;#34; cols=&amp;#34;60&amp;#34;&amp;gt;&amp;lt;/textarea&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;&amp;lt;input type=&amp;#34;submit&amp;#34; value=&amp;#34;Sign Guestbook&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;/form&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; ` func sign(w http.ResponseWriter, r *http.Request) { err</description>
+    </item>
+    
+    <item>
+      <title>Google App EngineでGoogle認証</title>
+      <link>https://blog.nownabe.com/2016/10/05/486.html/</link>
+      <pubDate>Wed, 05 Oct 2016 21:49:05 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/10/05/486.html/</guid>
+      <description>はじめに 前回の続きでGoogle認証をさせるアプリを作るチュートリアルをやりました 💪 hello.go package hello import ( &amp;#34;fmt&amp;#34; &amp;#34;net/http&amp;#34; &amp;#34;appengine&amp;#34; &amp;#34;appengine/user&amp;#34; ) func init() { http.HandleFunc(&amp;#34;/&amp;#34;, handler) } func handler(w http.ResponseWriter, r *http.Request) { c := appengine.NewContext(r) u := user.Current(c)</description>
+    </item>
+    
+    <item>
+      <title>Google App EngineでHello World with Golang</title>
+      <link>https://blog.nownabe.com/2016/10/04/485.html/</link>
+      <pubDate>Tue, 04 Oct 2016 22:32:31 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/10/04/485.html/</guid>
+      <description>はじめに GAEのQuick Startをやりました。 そのときのメモです。 📝 😅 SDKインストール ここからダウンロードして、パスを通す。 $ wget https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_darwin_amd64-1.9.40.zip $ unzip</description>
+    </item>
+    
+  </channel>
+</rss>

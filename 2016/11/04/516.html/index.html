@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>fluentdのoutputプラグインのパラメータを眺める - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2016/11/04/516.html/">
+  <meta property="og:title" content="fluentdのoutputプラグインのパラメータを眺める - nownab.log">
+  <meta property="og:description" content="はじめに なんかバージョンアップでいろいろ変わってるっぽいので、一通り眺めてみました。 お題はfluent-plugin-bigqueryです。">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="fluentdのoutputプラグインのパラメータを眺める - nownab.log">
+  <meta property="twitter:description" content="はじめに なんかバージョンアップでいろいろ変わってるっぽいので、一通り眺めてみました。 お題はfluent-plugin-bigqueryです。">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2016/11/04/516.html/">fluentdのoutputプラグインのパラメータを眺める</a></h1>
+    <span class="date">Posted on Nov 4, 2016</span>
+  </div>
+  <div class="body">
+    
+
+<h1 id="はじめに">はじめに</h1>
+
+<p>なんかバージョンアップでいろいろ変わってるっぽいので、一通り眺めてみました。
+お題は<a href="https://github.com/kaizenplatform/fluent-plugin-bigquery">fluent-plugin-bigquery</a>です。(あんま関係ないけど)</p>
+
+<p>こちらの記事がとても参考になりました。
+<a href="http://qiita.com/tatsu-yam/items/bd7006e483f3b3c64309">BufferedOutput pluginの代表的なoptionについて</a></p>
+
+<p>かなり適当なので、詳しくはソースコードを参照してください。</p>
+
+<h1 id="サンプル">サンプル</h1>
+
+<p>fluent-plugin-bigqueryのREADMEにのってるloadのサンプルはこんな感じ。</p>
+
+<pre><code>&lt;match bigquery&gt;
+  @type bigquery
+
+  method load
+  buffer_type file
+  buffer_path bigquery.*.buffer
+  flush_interval 1800
+  flush_at_shutdown true
+  try_flush_interval 1
+  utc
+
+  auth_method json_key
+  json_key json_key_path.json
+
+  time_format %s
+  time_field  time
+
+  project yourproject_id
+  dataset yourdataset_id
+  auto_create_table true
+  table yourtable%{time_slice}
+  schema_path bq_schema.json
+&lt;/match&gt;
+</code></pre>
+
+<h1 id="継承関係">継承関係</h1>
+
+<p>fluentdのプラグインのパラメータはクラスの継承ツリーの中にあるそれぞれのクラスで定義されているので、理解しやすいようにそれぞれのクラスごとにパラメータをみていきたいと思います。
+そのために、まずは継承関係を整理します。</p>
+
+<h2 id="outputプラグインの継承関係">outputプラグインの継承関係</h2>
+
+<pre><code>Fluent::BigQueryOutput &lt; Fluent::Compat::TimeSlicedOutput &lt; Fluent::Plugin::Output &lt; Fluent::Plugin::Base
+</code></pre>
+
+<h2 id="bufferの継承関係">bufferの継承関係</h2>
+
+<p>今回はfile bufferについて。</p>
+
+<pre><code>Fluent::Plugin::FileBuffer &lt; Fluent::Plugin::Buffer &lt; Fluent::Plugin::Base
+</code></pre>
+
+<h1 id="パラメータ">パラメータ</h1>
+
+<p>型についてはこちらを参照してください。
+<a href="http://docs.fluentd.org/articles/config-file#supported-data-types-for-values">http://docs.fluentd.org/articles/config-file#supported-data-types-for-values</a></p>
+
+<h2 id="outputプラグイン">outputプラグイン</h2>
+
+<h3 id="fluent-bigqueryoutput">Fluent::BigQueryOutput</h3>
+
+<p>まぁここは適当に。</p>
+
+<ul>
+<li><code>time_format</code>: timeのformat</li>
+<li><code>time_field</code>: timestampとして使うフィールド</li>
+<li><code>method</code>: ストリーミングインサート<code>insert</code> or <code>load</code></li>
+<li><code>utc</code>: UTC</li>
+<li><code>auth_method</code>: 認証方法</li>
+<li><code>json_key</code>: JSON Keyのパス</li>
+<li><code>project</code>: BigQueryのload先project</li>
+<li><code>dataset</code>: BigQueryのload先dataset</li>
+<li><code>table</code>: BigQueryのload先table</li>
+<li><code>schema_path</code>: schemaファイルのパス</li>
+</ul>
+
+<h3 id="fluent-compat-timeslicedoutput">Fluent::Compat::TimeSlicedOutput</h3>
+
+<p><a href="https://github.com/fluent/fluentd/blob/master/lib/fluent/compat/output.rb">https://github.com/fluent/fluentd/blob/master/lib/fluent/compat/output.rb</a></p>
+
+<p>ここでは、ほとんどdefault値の書き換えぐらいしかやってないっぽい。
+カッコでくくってあるパラメータ名は新しい名前で、<a href="https://github.com/fluent/fluentd/blob/master/lib/fluent/plugin_helper/compat_parameters.rb">こちら</a>でエイリアスが張ってあります。
+旧パラメータ名でソースコード探しても見つかりません 😭</p>
+
+<table>
+<thead>
+<tr>
+<th>パラメータ</th>
+<th>型</th>
+<th>default</th>
+<th>説明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>buffer_type</code></td>
+<td>string</td>
+<td><code>&quot;file&quot;</code></td>
+<td>使うbufferのタイプ</td>
+</tr>
+
+<tr>
+<td><code>flush_interval</code></td>
+<td>time</td>
+<td><code>nil</code></td>
+<td>buffer chunkをflushする間隔</td>
+</tr>
+
+<tr>
+<td><code>try_flush_interval</code> (<code>flush_thread_interval</code>)</td>
+<td>float</td>
+<td><code>1</code></td>
+<td><code>try_flush</code>する間隔</td>
+</tr>
+
+<tr>
+<td><code>disable_retry_limit</code> (<code>retry_forever</code>)</td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>永遠にretryする</td>
+</tr>
+
+<tr>
+<td><code>retry_limit</code> (<code>retry_max_times</code>`)</td>
+<td>integer</td>
+<td><code>17</code></td>
+<td>リトライする回数</td>
+</tr>
+
+<tr>
+<td><code>retry_wait</code></td>
+<td>time</td>
+<td><code>1.0</code></td>
+<td>最初のリトライ間隔 (リトライするたびにどんどん長くなる)</td>
+</tr>
+
+<tr>
+<td><code>max_retry_wait</code> (<code>retry_max_interval</code>)</td>
+<td>time</td>
+<td><code>nil</code></td>
+<td>リトライ間隔の最大値</td>
+</tr>
+
+<tr>
+<td><code>num_threads</code> (<code>flush_thread_count</code>)</td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>バッファをflushするスレッドの数</td>
+</tr>
+
+<tr>
+<td><code>queued_chunk_flush_interval</code> (<code>flush_thread_burst_interval</code>)</td>
+<td>time</td>
+<td><code>1</code></td>
+<td>queued chunkをflushする間隔</td>
+</tr>
+
+<tr>
+<td><code>time_slice_format</code></td>
+<td>string</td>
+<td><code>&quot;%Y%m%d&quot;</code></td>
+<td>ファイル名の一部として使う</td>
+</tr>
+
+<tr>
+<td><code>time_slice_wait</code> (<code>timekey_wait</code>)</td>
+<td>time</td>
+<td><code>10 * 60</code></td>
+<td>古いログが届くのを待つ時間</td>
+</tr>
+
+<tr>
+<td><code>timezone</code> (<code>timekey_zone</code>)</td>
+<td>string</td>
+<td><code>nil</code></td>
+<td>特定のtimezoneで時間をparseする</td>
+</tr>
+
+<tr>
+<td><code>buffer_chunk_limit</code> (<code>chunk_limit_size</code>)</td>
+<td>size</td>
+<td><code>256 * 1024 * 1024</code></td>
+<td>各buffer chunkのサイズ</td>
+</tr>
+
+<tr>
+<td><code>buffer_queue_limit</code> (<code>queue_length_limit</code>)</td>
+<td>integer</td>
+<td><code>256</code></td>
+<td>chunk queueの長さの上限</td>
+</tr>
+
+<tr>
+<td><code>buffer_queue_full_action</code> (<code>overflow_action</code>)</td>
+<td>enum</td>
+<td><code>:exception</code></td>
+<td>buffer queueが<code>buffer_queue_limit</code>を超えた時の動作<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></td>
+</tr>
+
+<tr>
+<td><code>flush_at_shutdown</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>shutdown直前にflushする</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="fluent-plugin-output">Fluent::Plugin::Output</h3>
+
+<p><a href="https://github.com/fluent/fluentd/blob/master/lib/fluent/plugin/output.rb">https://github.com/fluent/fluentd/blob/master/lib/fluent/plugin/output.rb</a></p>
+
+<p><code>TimeSlicedOutput</code>の方で別名が設定されてるところをみると、このクラスで用意されてるパラメータはprivateな感じなのかもしれません。
+普段使うときはあまり意識しなくてもよさそうです。
+説明も適当です 😇 多分ソース読んだ方が早いと思います。</p>
+
+<table>
+<thead>
+<tr>
+<th>パラメータ</th>
+<th>型</th>
+<th>default</th>
+<th>説明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>timekey</code></td>
+<td>time</td>
+<td><code>nil</code></td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>timekey_wait</code></td>
+<td>time</td>
+<td><code>nil</code></td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>timekey_use_utc</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>デフォルトはlocaltime</td>
+</tr>
+
+<tr>
+<td><code>timekey_zone</code></td>
+<td>string</td>
+<td><code>Time.now.strftime(&quot;%z&quot;)</code></td>
+<td>タイムゾーン</td>
+</tr>
+
+<tr>
+<td><code>flush_at_shutdown</code></td>
+<td>bool</td>
+<td><code>nil</code></td>
+<td>シャットダウン直前にflushを試みる</td>
+</tr>
+
+<tr>
+<td><code>flush_mode</code></td>
+<td>enum</td>
+<td><code>:default</code></td>
+<td><sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup></td>
+</tr>
+
+<tr>
+<td><code>flush_interval</code></td>
+<td>time</td>
+<td><code>60</code></td>
+<td>buffer chunkをflushする間隔</td>
+</tr>
+
+<tr>
+<td><code>flush_thread_count</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>bufferをflushするthreadの数</td>
+</tr>
+
+<tr>
+<td><code>flush_thread_interval</code></td>
+<td>float</td>
+<td><code>1.0</code></td>
+<td><code>try_flush</code>する間隔</td>
+</tr>
+
+<tr>
+<td><code>flush_thread_burst_interval</code></td>
+<td>float</td>
+<td><code>1.0</code></td>
+<td>多くのbuffer chunkがqueueされているときのflush間隔</td>
+</tr>
+
+<tr>
+<td><code>delayed_commit_timeout</code></td>
+<td>time</td>
+<td><code>60</code></td>
+<td>buffer chunkがpluginにコミットされるときのタイムアウト？</td>
+</tr>
+
+<tr>
+<td><code>overflow_action</code></td>
+<td>enum</td>
+<td><code>:throw_exception</code></td>
+<td>bufferがあふれたときの動作<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup></td>
+</tr>
+
+<tr>
+<td><code>retry_forever</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td><code>retry_timeout</code>と<code>retry_max_times</code>を無視して永遠にretryする</td>
+</tr>
+
+<tr>
+<td><code>retry_timeout</code></td>
+<td>time</td>
+<td><code>72 * 60 * 60</code></td>
+<td>リトライのタイムアウト</td>
+</tr>
+
+<tr>
+<td><code>retry_max_times</code></td>
+<td>integer</td>
+<td><code>nil</code></td>
+<td>最大リトライ回数</td>
+</tr>
+
+<tr>
+<td><code>retry_secondary_threshold</code></td>
+<td>float</td>
+<td><code>0.8</code></td>
+<td>secondaryを使うようになるretry_timeoutの割合？</td>
+</tr>
+
+<tr>
+<td><code>retry_type</code></td>
+<td>enum</td>
+<td><code>:exponential_backoff</code></td>
+<td>次のリトライまでの間隔をどう決めるか<sup class="footnote-ref" id="fnref:4"><a href="#fn:4">4</a></sup></td>
+</tr>
+
+<tr>
+<td><code>retry_wait</code></td>
+<td>time</td>
+<td><code>1</code></td>
+<td>リトライ間隔の計算に使われる</td>
+</tr>
+
+<tr>
+<td><code>retry_exponential_backoff_base</code></td>
+<td>float</td>
+<td><code>2</code></td>
+<td>リトライ間隔の計算に使われる</td>
+</tr>
+
+<tr>
+<td><code>retry_max_interval</code></td>
+<td>time</td>
+<td><code>nil</code></td>
+<td>リトライ間隔の最大値</td>
+</tr>
+
+<tr>
+<td><code>retry_randomize</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>ランダム間隔でリトライする</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="bufferプラグイン">bufferプラグイン</h2>
+
+<h3 id="fluent-plugin-filebuffer">Fluent::Plugin::FileBuffer</h3>
+
+<p><a href="https://github.com/fluent/fluentd/blob/master/lib/fluent/plugin/buf_file.rb">https://github.com/fluent/fluentd/blob/master/lib/fluent/plugin/buf_file.rb</a></p>
+
+<table>
+<thead>
+<tr>
+<th>パラメータ</th>
+<th>型</th>
+<th>default</th>
+<th>説明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>buffer_path</code></td>
+<td>string</td>
+<td></td>
+<td>bufferのファイルパス</td>
+</tr>
+
+<tr>
+<td><code>buffer_chunk_limit_size</code></td>
+<td></td>
+<td><code>256 * 1024 * 1024</code></td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>buffer_total_limit_size</code></td>
+<td></td>
+<td><code>64 * 1024 * 1024 * 1024</code></td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>buffer_file_permission</code></td>
+<td>string</td>
+<td><code>nil</code></td>
+<td>bufferファイルのパーミッション</td>
+</tr>
+
+<tr>
+<td><code>buffer_dir_permission</code></td>
+<td>string</td>
+<td><code>nil</code></td>
+<td>bufferディレクトリのパーミッション</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="fluent-plugin-buffer">Fluent::Plugin::Buffer</h3>
+
+<p><a href="https://github.com/fluent/fluentd/blob/master/lib/fluent/plugin/buffer.rb">https://github.com/fluent/fluentd/blob/master/lib/fluent/plugin/buffer.rb</a></p>
+
+<table>
+<thead>
+<tr>
+<th>パラメータ</th>
+<th>型</th>
+<th>default</th>
+<th>説明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>buffer_chunk_limit_size</code></td>
+<td>size</td>
+<td><code>8 * 1024 * 1024</code></td>
+<td>chunkの最大サイズ</td>
+</tr>
+
+<tr>
+<td><code>buffer_total_limit_size</code></td>
+<td>size</td>
+<td><code>512 * 1024 * 1024</code></td>
+<td>buffer合計の最大サイズ</td>
+</tr>
+
+<tr>
+<td><code>buffer_queue_length_limit</code></td>
+<td>integer</td>
+<td><code>nil</code></td>
+<td>queueの長さ<sup class="footnote-ref" id="fnref:5"><a href="#fn:5">5</a></sup></td>
+</tr>
+
+<tr>
+<td><code>buffer_chunk_records_limit</code></td>
+<td>integer</td>
+<td><code>nil</code></td>
+<td>chunk内のレコード数の上限？</td>
+</tr>
+
+<tr>
+<td><code>buffer_chunk_full_threshold</code></td>
+<td>float</td>
+<td><code>0.95</code></td>
+<td>chunk sizeかrecord数がこのthreshold%をこえるとenqueueされる</td>
+</tr>
+
+<tr>
+<td><code>buffer_compress</code></td>
+<td>enum</td>
+<td><code>:text</code></td>
+<td>圧縮するかどうか<sup class="footnote-ref" id="fnref:6"><a href="#fn:6">6</a></sup></td>
+</tr>
+</tbody>
+</table>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1"><code>list: [:exception, :block, :drop_oldest_chunk]</code>
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:2"><code>list: [:default, :lazy, :interval, :immediate]</code>. How to enqueue chunks to be flushed. &ldquo;interval&rdquo; flushes per flush_interval, &ldquo;immediate&rdquo; flushes just after event arrival.
+ <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:3"><code>list: [:throw_exception, :block, :drop_oldest_chunk]</code>
+ <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
+<li id="fn:4"><a href="https://github.com/fluent/fluentd/blob/master/lib/fluent/plugin/output.rb#L81">https://github.com/fluent/fluentd/blob/master/lib/fluent/plugin/output.rb#L81</a>
+ <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
+<li id="fn:5">If user specify this value and (chunk_size * queue_length) is smaller than total_size, then total_size is automatically configured to that value
+ <a class="footnote-return" href="#fnref:5"><sup>[return]</sup></a></li>
+<li id="fn:6"><code>list: [:text, :gzip]</code>
+ <a class="footnote-return" href="#fnref:6"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

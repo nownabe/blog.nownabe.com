@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>npm on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/npm/</link>
+    <description>Recent content in npm on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Sun, 10 Dec 2017 01:51:53 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/npm/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Parcelで使われてるnpmパッケージ調べてた</title>
+      <link>https://blog.nownabe.com/2017/12/11/1215.html/</link>
+      <pubDate>Sun, 10 Dec 2017 01:51:53 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/12/11/1215.html/</guid>
+      <description>Parcelが依存しているnpmパッケージを調べてみた。なんとなくこういう用途にこういうパッケージ使うのかーという程度。 新しく作るアプリに今</description>
+    </item>
+    
+  </channel>
+</rss>

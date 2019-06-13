@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>GCP updates  | October 1, 2018 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2018/10/03/1416.html/">
+  <meta property="og:title" content="GCP updates  | October 1, 2018 - nownab.log">
+  <meta property="og:description" content="DATABASES New asia-south1 Cloud Bigtable region added: GA Cloud Bigtable is now available in the asia-south1 (Mumbai, India) region. Product page DATA ANALYTICS BigQuery – Apache ORC ingestion: GA This feature adds support for importing ORC data from Cloud Storage into BigQuery. You can access it through Cloud Client Libraries in any of the seven supported languages. ORC is an open-source, column-oriented data format, widely used in the Apache Hadoop">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="GCP updates  | October 1, 2018 - nownab.log">
+  <meta property="twitter:description" content="DATABASES New asia-south1 Cloud Bigtable region added: GA Cloud Bigtable is now available in the asia-south1 (Mumbai, India) region. Product page DATA ANALYTICS BigQuery – Apache ORC ingestion: GA This feature adds support for importing ORC data from Cloud Storage into BigQuery. You can access it through Cloud Client Libraries in any of the seven supported languages. ORC is an open-source, column-oriented data format, widely used in the Apache Hadoop">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2018/10/03/1416.html/">GCP updates  | October 1, 2018</a></h1>
+    <span class="date">Posted on Oct 3, 2018</span>
+  </div>
+  <div class="body">
+    
+
+<h1 id="databases">DATABASES</h1>
+
+<h2 id="new-asia-south1-cloud-bigtable-region-added-ga">New asia-south1 Cloud Bigtable region added: GA</h2>
+
+<blockquote>
+<p>Cloud Bigtable is now available in the asia-south1 (Mumbai, India) region. <a href="https://cloud.google.com/bigtable/">Product page</a></p>
+</blockquote>
+
+<h1 id="data-analytics">DATA ANALYTICS</h1>
+
+<h2 id="bigquery-apache-orc-ingestion-ga">BigQuery – Apache ORC ingestion: GA</h2>
+
+<blockquote>
+<p>This feature adds support for importing ORC data from Cloud Storage into BigQuery. You can access it through <a href="https://cloud.google.com/apis/docs/cloud-client-libraries">Cloud Client Libraries</a> in any of the seven supported languages. ORC is an open-source, column-oriented data format, widely used in the Apache Hadoop ecosystem. <a href="https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-orc">Documentation</a></p>
+</blockquote>
+
+<hr />
+
+<p>Additional releases</p>
+
+<h1 id="compute">COMPUTE</h1>
+
+<h2 id="containers-on-compute-engine-ga">Containers on Compute Engine: GA</h2>
+
+<blockquote>
+<p>This release allows you to deploy software to a Compute Engine VM instance or a managed instance group using the Docker container image format in a declarative way. You provide a Docker image name, configure how your container should run, and Compute Engine runs it automatically. <a href="https://cloud.google.com/compute/docs/containers/deploying-containers">Documentation</a></p>
+</blockquote>
+
+<p>なんとも中途半端な機能ですがGAになったみたいですね。サーバーレスコンテナのテスト機能感がある。</p>
+
+<h2 id="zonal-dns-names-for-compute-engine-ga">Zonal DNS names for Compute Engine: GA</h2>
+
+<blockquote>
+<p>Zonal DNS names let you build more fault-tolerant applications with improved availability and performance. Because they contain the Compute Engine zone that your VM instance resides in, VM instances with zonal DNS names aren’t affected by the health of other locations. <a href="https://cloud.google.com/compute/docs/internal-dns#zonal-dns">Documentation</a></p>
+</blockquote>
+
+<p>んー、具体的に何がどうなるんだ？
+VM内からの問い合わせ先がZonalなやつになるってことか？</p>
+
+<h1 id="data-analytics-1">DATA ANALYTICS</h1>
+
+<h2 id="new-site-for-tensorflow-hub-ga">New site for TensorFlow Hub: GA</h2>
+
+<blockquote>
+<p>A new web experience for TensorFlow Hub makes it easier for developers to search for and find TensorFlow modules for their use cases. It paves the way to a multipublisher platform. <a href="https://medium.com/tensorflow/a-new-tensorflow-hub-web-experience-c804496e99f3">Blog</a></p>
+</blockquote>
+
+<p>GCP Updatesなのか？</p>
+
+<h2 id="bigquery-scheduled-queries-beta">BigQuery – scheduled queries: beta</h2>
+
+<blockquote>
+<p>This launch makes it possible for you to run parameterized queries on a scheduled basis and organize query results by date and time. You must write scheduled queries in standard SQL, which can include data definition language and data manipulation language statements. <a href="https://cloud.google.com/bigquery/docs/scheduling-queries">Documentation</a></p>
+</blockquote>
+
+<p>これはアツいですね！BigQueryだけで定期実行できるようになるやつです。
+Pub/Subやメールでの通知もできるみたいですね。</p>
+
+<h2 id="bigquery-geographic-information-systems-beta">BigQuery Geographic Information Systems: beta</h2>
+
+<p>BigQuery GIS enables you to conduct geospatial analyses at any scale, using the power of BigQuery’s cloud MPP architecture. Using standard SQL, your spatial data can now be analyzed precisely using a new geography data type and with common GIS functions. <a href="https://cloud.google.com/bigquery/docs/gis-intro">Documentation</a></p>
+
+<h1 id="security">SECURITY</h1>
+
+<h2 id="access-transparency-ga">Access Transparency: GA</h2>
+
+<blockquote>
+<p>Access Transparency gives you expanded visibility over your cloud provider, with near real-time logs that show when Google Cloud Platform administrators access your content. <a href="https://cloud.google.com/access-transparency/">Product page</a></p>
+</blockquote>
+
+<p>GCPの中の人がなにかしら自分たちのものにアクセスしたときにログが残るってやつですね。</p>
+
+<h1 id="networking">NETWORKING</h1>
+
+<h2 id="ability-to-enable-and-disable-firewall-rules-ga">Ability to enable and disable firewall rules: GA</h2>
+
+<blockquote>
+<p>This feature lets you see how your network behaves without firewall rules, making it easy to disable and then quickly re-enable them. <a href="https://cloud.google.com/vpc/docs/firewalls">Documentation</a></p>
+</blockquote>
+
+<p>開発とかテストがしやすくなっていいですね！</p>
+
+<h1 id="media-solutions">MEDIA SOLUTIONS</h1>
+
+<h2 id="zync-render-support-for-chaos-group-v-ray-for-maxon-cinema-4d-beta">Zync Render support for Chaos Group V-Ray for MAXON Cinema 4D: beta</h2>
+
+<p>Zync Render now supports V-Ray for Cinema 4D. <a href="https://www.maxon.net/en/products/cinema-4d/overview/">Website</a></p>
+
+<h1 id="databases-1">DATABASES</h1>
+
+<h2 id="key-visualizer-for-cloud-bigtable-ga">Key Visualizer for Cloud Bigtable: GA</h2>
+
+<blockquote>
+<p>You can now analyze your Cloud Bigtable usage patterns with Key Visualizer, which generates visual reports for your tables that break down your usage based on the row keys that you access. <a href="https://cloud.google.com/bigtable/docs/keyvis-overview">Documentation</a></p>
+</blockquote>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

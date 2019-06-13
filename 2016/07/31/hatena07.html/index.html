@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>Gem in a Boxに簡単にリリースできるGem作ったけどいっぱいあったのでまとめ - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2016/07/31/hatena07.html/">
+  <meta property="og:title" content="Gem in a Boxに簡単にリリースできるGem作ったけどいっぱいあったのでまとめ - nownab.log">
+  <meta property="og:description" content="はじめに プライベートなGem Serverというか、Gem in a Boxに手軽にGemをリリースできるようにするgeminabox-rake_ta">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="Gem in a Boxに簡単にリリースできるGem作ったけどいっぱいあったのでまとめ - nownab.log">
+  <meta property="twitter:description" content="はじめに プライベートなGem Serverというか、Gem in a Boxに手軽にGemをリリースできるようにするgeminabox-rake_ta">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2016/07/31/hatena07.html/">Gem in a Boxに簡単にリリースできるGem作ったけどいっぱいあったのでまとめ</a></h1>
+    <span class="date">Posted on May 20, 2015</span>
+  </div>
+  <div class="body">
+    
+
+<h1 id="はじめに">はじめに</h1>
+
+<p>プライベートなGem Serverというか、<a href="https://github.com/geminabox/geminabox">Gem in a Box</a>に手軽にGemをリリースできるようにする<a href="https://github.com/nownabe/geminabox-rake_tasks">geminabox-rake_tasks</a>というGemを作りました。</p>
+
+<p><a href="https://github.com/nownabe/geminabox-rake_tasks">https://github.com/nownabe/geminabox-rake_tasks</a></p>
+
+<p>このGemを使うと、次の2点が実現できます。</p>
+
+<ul>
+<li>Rubygems.orgにリリースできない</li>
+<li>通常のrakeタスクと同じコマンドでGem in a Boxサーバにリリースできる</li>
+</ul>
+
+<p>社内でプライベートなGem ServerをGem in a Boxで構築してる場合など手軽でいいんじゃないかと思います。</p>
+
+<h1 id="使い方">使い方</h1>
+
+<p>まず、gemspecファイルに次の行を追加します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">spec</span><span class="o">.</span><span class="n">add_development_dependency</span> <span class="s2">&#34;geminabox-rake_tasks&#34;</span></code></pre></div>
+<p>お決まりのbundle installしてください。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ bundle</code></pre></div>
+<p>Rakefileの<code>require &quot;bundler/gem_tasks&quot;</code>を削除して、次の行を追加します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s2">&#34;geminabox/rake_tasks&#34;</span></code></pre></div>
+<p>リリースする前に、Gem in a Boxサーバの設定が必要になります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ bundle <span class="nb">exec</span> gem inabox -c
+Enter the root url <span class="k">for</span> your personal geminabox instance <span class="o">(</span>e.g. http://gems/<span class="o">)</span>.
+Host:  http://yourgeminabox/</code></pre></div>
+<p>このコマンドで、<code>./gem/geminabox</code>が設定されます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cat ~/.gem/geminabox
+---
+:host: http://yourgeminabox/</code></pre></div>
+<p>これでリリースできるようになってます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ bundle <span class="nb">exec</span> rake release
+testgem <span class="m">0</span>.1.0 built to pkg/testgem-0.1.0.gem.
+Tagged v0.1.0.
+Pushed git commits and tags.
+Pushed testgem <span class="m">0</span>.1.0</code></pre></div>
+<p><img src="/images/articles/hatena07/01.png" alt="01" /></p>
+
+<p>他にも、<code>bundler/gem_tasks</code>と同じタスクが使えます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ bundle <span class="nb">exec</span> rake -T
+rake build          <span class="c1"># Build testgem-0.1.0.gem into the pkg directory</span>
+rake install        <span class="c1"># Build and install testgem-0.1.0.gem into system gems</span>
+rake install:local  <span class="c1"># Build and install testgem-0.1.0.gem into system gems without network access</span>
+rake release        <span class="c1"># Create tag v0.1.0 and build and push testgem-0.1.0.gem to your gem in a box server</span></code></pre></div>
+<h1 id="競合">競合</h1>
+
+<p>よく調べもせずに作ったので、同じようなのがいっぱいありました。</p>
+
+<h2 id="geminabox-release">geminabox-release</h2>
+
+<p><a href="https://github.com/dfherr/geminabox-release">https://github.com/dfherr/geminabox-release</a></p>
+
+<p>Rakefile:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s2">&#34;geminabox-release&#34;</span>
+<span class="no">GeminaboxRelease</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="ss">use_config</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span>
+
+<span class="c1"># か、 GeminaboxRelease.path(host: &#34;http://yourgeminabox/&#34;)</span></code></pre></div>
+<p>Rake Tasks:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ bundle <span class="nb">exec</span> rake -T
+rake build             <span class="c1"># Build testgem-0.1.0.gem into the pkg directory</span>
+rake inabox:forcepush  <span class="c1"># Build &amp; push testgem-0.1.0.gem overwriting same version to http://localhost:8080</span>
+rake inabox:push       <span class="c1"># Build &amp; push testgem-0.1.0.gem to http://localhost:8080</span>
+rake inabox:release    <span class="c1"># Create tag v0.1.0 and build and push testgem-0.1.0.gem to http://localhost:8080</span>
+rake install           <span class="c1"># Build and install testgem-0.1.0.gem into system gems</span>
+rake install:local     <span class="c1"># Build and install testgem-0.1.0.gem into system gems without network access</span>
+rake release           <span class="c1"># Create tag v0.1.0 and build and push testgem-0.1.0.gem to Rubygems</span></code></pre></div>
+<h2 id="geminabox-rake">geminabox-rake</h2>
+
+<p><a href="https://github.com/jgraichen/geminabox-rake">https://github.com/jgraichen/geminabox-rake</a></p>
+
+<p>Rakefile:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s2">&#34;geminabox/rake&#34;</span>
+<span class="no">GeminaboxRake</span><span class="o">.</span><span class="n">install</span></code></pre></div>
+<p>Rake Tasks:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ bundle <span class="nb">exec</span> rake -T
+rake geminabox:build          <span class="c1"># Build testgem-0.1.0.gem into the pkg directory</span>
+rake geminabox:install        <span class="c1"># Build and install testgem-0.1.0.gem into system gems</span>
+rake geminabox:install:local  <span class="c1"># Build and install testgem-0.1.0.gem into system gems without network access</span>
+rake geminabox:release        <span class="c1"># Create tag v0.1.0 and build and push testgem-0.1.0.gem to Rubygems</span></code></pre></div>
+<h2 id="bundler-geminabox">bundler-geminabox</h2>
+
+<p><a href="https://github.com/sonots/bundler-geminabox">https://github.com/sonots/bundler-geminabox</a></p>
+
+<p>Rakefile:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s2">&#34;bundler/geminabox/gem_tasks&#34;</span></code></pre></div>
+<p>Rake Tasks:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ bundle <span class="nb">exec</span> rake -T
+rake build              <span class="c1"># Build testgem-0.1.0.gem into the pkg directory</span>
+rake geminabox_release  <span class="c1"># Create tag v0.1.0 and build and push testgem-0.1.0.gem to https://your.rubygems.org</span>
+rake install            <span class="c1"># Build and install testgem-0.1.0.gem into system gems</span>
+rake install:local      <span class="c1"># Build and install testgem-0.1.0.gem into system gems without network access</span>
+rake release            <span class="c1"># [WARN] Release to rubygems.org is prohibited, use rake geminabox_release</span></code></pre></div>
+<p>このGemは<code>bundle gem</code>の所から面倒みてくれるみたいです。
+こっちのほうがうっかりrubygems.orgにリリースすることはないかもしれません。</p>
+
+<p>というかこのGemでいいような気がしてきました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">GEMINABOX</span><span class="o">=</span>https://your.rubygems.org bundle-geminabox gem foo
+      create  foo/Gemfile
+      create  foo/.gitignore
+      create  foo/lib/foo.rb
+      create  foo/lib/foo/version.rb
+      create  foo/LICENSE.txt
+      create  foo/foo.gemspec
+      create  foo/.consolerc
+      create  foo/Rakefile
+      create  foo/README.md
+       force  foo/Gemfile
+       force  foo/Rakefile</code></pre></div>
+<h2 id="bundler-geminabox-1">bundler_geminabox</h2>
+
+<p><a href="https://github.com/joshkrueger/bundler_geminabox">https://github.com/joshkrueger/bundler_geminabox</a></p>
+
+<p>Rakefile:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s2">&#34;bundler_geminabox/gem_tasks&#34;</span></code></pre></div>
+<p>Rake Tasks:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ bundle <span class="nb">exec</span> rake -T
+rake build          <span class="c1"># Build testgem-0.1.0.gem into the pkg directory</span>
+rake install        <span class="c1"># Build and install testgem-0.1.0.gem into system gems</span>
+rake install:local  <span class="c1"># Build and install testgem-0.1.0.gem into system gems without network access</span>
+rake release        <span class="c1"># Create tag v0.1.0 and build and push testgem-0.1.0.gem to your geminabox server</span></code></pre></div>
+<p>ほぼ同じでした。</p>
+
+<h1 id="おわりに">おわりに</h1>
+
+<p>急いでたのでろくに調べずに作ってしまったんですが、まあ普通に考えたら誰か作りますよねw</p>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

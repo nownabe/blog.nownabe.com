@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ruby on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/ruby/</link>
+    <description>Recent content in ruby on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Tue, 09 Oct 2018 10:18:58 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/ruby/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Google CloudのRubyクライアントのRailsログを無効化する</title>
+      <link>https://blog.nownabe.com/2018/10/09/1419.html/</link>
+      <pubDate>Tue, 09 Oct 2018 10:18:58 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/10/09/1419.html/</guid>
+      <description>RailsのRakeタスクでGoogle Cloud Storageを操作するバッチを動かしてたら頼んでもないのにRailsのログ (log/develo</description>
+    </item>
+    
+    <item>
+      <title>Ruby Hack Challengeに参加した</title>
+      <link>https://blog.nownabe.com/2017/09/22/1133.html/</link>
+      <pubDate>Fri, 22 Sep 2017 04:08:42 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/09/22/1133.html/</guid>
+      <description>Cookpad Ruby Hack Challengeに参加したのでイベントの様子と後日談を。 イベント自体は8月に開催されたが、イベントで取り組んだ課題をその後もほそぼそ</description>
+    </item>
+    
+    <item>
+      <title>RubyVM: メソッド呼び出し</title>
+      <link>https://blog.nownabe.com/2016/11/19/531.html/</link>
+      <pubDate>Sat, 19 Nov 2016 01:25:30 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/11/19/531.html/</guid>
+      <description>はじめに メソッド呼び出し時のRubyVMの動作を調べました。 というのも、どうやら巷に存在しているYARVの記事は古いらしく、現在のRubyの</description>
+    </item>
+    
+    <item>
+      <title>RubyVMの最適化を無効にする</title>
+      <link>https://blog.nownabe.com/2016/11/17/528.html/</link>
+      <pubDate>Thu, 17 Nov 2016 23:32:47 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/11/17/528.html/</guid>
+      <description>はじめに RubyVMの様子を観察したいではRubyVMのスタックを表示させつつ命令単位でステップ実行する方法を紹介しました。 これらの命令列は</description>
+    </item>
+    
+    <item>
+      <title>RubyVMの様子を観察したい</title>
+      <link>https://blog.nownabe.com/2016/11/16/526.html/</link>
+      <pubDate>Wed, 16 Nov 2016 15:23:45 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/11/16/526.html/</guid>
+      <description>はじめに Rubyのプログラムは内部的にはコンパイルされてバイトコードとなり、RubyVM上で実行されます。 RubyVMはスタックマシンという</description>
+    </item>
+    
+    <item>
+      <title>RustをRubyから呼び出したら爆速</title>
+      <link>https://blog.nownabe.com/2016/08/16/408.html/</link>
+      <pubDate>Tue, 16 Aug 2016 00:33:58 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/08/16/408.html/</guid>
+      <description>なぜかRustのドキュメントの日本語版だけに英語で存在しているRust Inside Other Languagesという章に、FFIを使ってRubyの並列処理を高</description>
+    </item>
+    
+    <item>
+      <title>RubotyのbrainをJSONでファイルに保存するruboty-json作った</title>
+      <link>https://blog.nownabe.com/2016/08/07/403.html/</link>
+      <pubDate>Sun, 07 Aug 2016 16:21:12 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/08/07/403.html/</guid>
+      <description>概要 以前、RubotyのデータをLevelDBに保存するためのruboty-leveldbというGemを作りました。 自前のサーバでRubot</description>
+    </item>
+    
+    <item>
+      <title>qiita-markdownをMiddlemanで使えるようにするGemを作った</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena16.html/</link>
+      <pubDate>Tue, 26 Jul 2016 23:57:51 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena16.html/</guid>
+      <description>github pagesでblogを公開しようと思ってゆるりと構築中なんですが、静的ジェネレータとしてMiddlemanを使うことにしました。 esa.i</description>
+    </item>
+    
+    <item>
+      <title>PostgreSQLの更新でRails 5が動かなくなった</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena15.html/</link>
+      <pubDate>Sun, 24 Jul 2016 15:31:39 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena15.html/</guid>
+      <description>CentOS 7です。 Rails 5のアプリがある日こんなメッセージを出して動かなくなってました。 An unhandled lowlevel error occurred. The application logs may have details. puma_error.logをみてみると、</description>
+    </item>
+    
+    <item>
+      <title>Gem in a Boxの冗長化</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena11.html/</link>
+      <pubDate>Mon, 31 Aug 2015 01:11:48 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena11.html/</guid>
+      <description>Gem in a Box冗長化の情報があんまりない気がしたのでQiitaに記事を書きました。 みんなどうやってるんだろう。（そもそも同期とか冗長化とかいら</description>
+    </item>
+    
+    <item>
+      <title>Gem in a Boxに簡単にリリースできるGem作ったけどいっぱいあったのでまとめ</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena07.html/</link>
+      <pubDate>Wed, 20 May 2015 00:53:44 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena07.html/</guid>
+      <description>はじめに プライベートなGem Serverというか、Gem in a Boxに手軽にGemをリリースできるようにするgeminabox-rake_ta</description>
+    </item>
+    
+    <item>
+      <title>EasySettingsをSettingslogicの替りにいかがでしょうか</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena03.html/</link>
+      <pubDate>Sat, 07 Mar 2015 02:15:01 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena03.html/</guid>
+      <description>今までRailsとかその他諸々のアプリケーションで、定数の管理にSettingslogicを使ってました。 色々不満がありつつ使ってたんですが</description>
+    </item>
+    
+    <item>
+      <title>RubotyのデータをLevelDBで永続化するruboty-leveldbというGemを作った</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena02.html/</link>
+      <pubDate>Sun, 01 Mar 2015 19:10:15 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena02.html/</guid>
+      <description>経緯 会社でチャットボットとしてRubotyを使ってます。 Rubotyはデータの永続化にプラグインを使わないといけないんですが、今はRedis</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>itamae on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/itamae/</link>
+    <description>Recent content in itamae on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Thu, 21 May 2015 00:47:50 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/itamae/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>超簡単にサーバのデータをIDCFオブストに定期バックアップするItamaeプラグイン</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena08.html/</link>
+      <pubDate>Thu, 21 May 2015 00:47:50 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena08.html/</guid>
+      <description>はじめに サーバのあるディレクトリ内のファイルをIDCFのオブジェクトストレージに定期バックアップするItamaeプラグインを作ったので紹介し</description>
+    </item>
+    
+  </channel>
+</rss>

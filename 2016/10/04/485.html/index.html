@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>Google App EngineでHello World with Golang - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2016/10/04/485.html/">
+  <meta property="og:title" content="Google App EngineでHello World with Golang - nownab.log">
+  <meta property="og:description" content="はじめに GAEのQuick Startをやりました。 そのときのメモです。 📝 😅 SDKインストール ここからダウンロードして、パスを通す。 $ wget https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_darwin_amd64-1.9.40.zip $ unzip">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="Google App EngineでHello World with Golang - nownab.log">
+  <meta property="twitter:description" content="はじめに GAEのQuick Startをやりました。 そのときのメモです。 📝 😅 SDKインストール ここからダウンロードして、パスを通す。 $ wget https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_darwin_amd64-1.9.40.zip $ unzip">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2016/10/04/485.html/">Google App EngineでHello World with Golang</a></h1>
+    <span class="date">Posted on Oct 4, 2016</span>
+  </div>
+  <div class="body">
+    
+
+<h1 id="はじめに">はじめに</h1>
+
+<p>GAEの<a href="https://cloud.google.com/appengine/docs/go/quickstart?hl=ja">Quick Start</a>をやりました。
+そのときのメモです。 📝 😅</p>
+
+<h1 id="sdkインストール">SDKインストール</h1>
+
+<p><a href="https://cloud.google.com/appengine/docs/go/download?hl=ja">ここ</a>からダウンロードして、パスを通す。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ wget https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_darwin_amd64-1.9.40.zip
+$ unzip -d ~/opt go_appengine_sdk_darwin_amd64-1.9.40.zip
+$ rm go_appengine_sdk_darwin_amd64-1.9.40.zip
+$ <span class="nb">echo</span> <span class="s1">&#39;export PATH=&#34;/Users/nownabe/opt/go_appengine:$PATH&#34;&#39;</span> &gt;&gt; .zshrc
+$ <span class="nb">exec</span> <span class="nv">$SHELL</span> -l
+$ goapp version
+go version go1.6.2 <span class="o">(</span>appengine-1.9.40<span class="o">)</span> darwin/amd64</code></pre></div>
+<p>pythonは2.7系がインストールしてある必要がある。</p>
+
+<h1 id="ローカルでhello-world">ローカルでHello world</h1>
+
+<p>適当なディレクトリを作って移動しておく。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir gae-hello
+$ <span class="nb">cd</span> gae-hello</code></pre></div>
+<p>Hello worldするアプリを作る。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go:hello.go" data-lang="go:hello.go"><span class="kn">package</span> <span class="nx">hello</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;fmt&#34;</span>
+    <span class="s">&#34;net/http&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">handler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprint</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Hello, world!&#34;</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<p><code>init</code>関数はアプリケーションが開始する前に呼ばれるらしい。
+<code>main</code>関数がないので、これ単体だと起動することはできない。</p>
+
+<p>ローカルでもさっきインストールしたSDKを使って起動する。
+が、その前に<code>app.yaml</code>というのも作ってあげないといけない。</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml:app.yaml" data-lang="yaml:app.yaml">runtime<span class="p">:</span><span class="w"> </span>go<span class="w">
+</span><span class="w"></span>api_version<span class="p">:</span><span class="w"> </span>go1<span class="w">
+</span><span class="w">
+</span><span class="w"></span>handlers<span class="p">:</span><span class="w">
+</span><span class="w"></span>-<span class="w"> </span>url<span class="p">:</span><span class="w"> </span>/.*<span class="w">
+</span><span class="w">  </span>script<span class="p">:</span><span class="w"> </span>_go_app</code></pre></div>
+<p>これはApp Engine用の設定ファイル。</p>
+
+<p><code>handlers</code>の<code>url</code>にマッチするURLがGoのアプリで処理されるようになる。例えば静的ファイルをここで分岐して処理したりできる。</p>
+
+<p><code>_go_app</code>というのはローカルの開発サーバ用のもので、productionのApp Engineでは無視される。</p>
+
+<p>ここまでやって、ローカルでアプリケーションを起動できるようになる。
+起動にはSDKに含まれている<code>goapp</code>コマンドを使う。</p>
+
+<pre><code>$ goapp serve hello.go
+INFO     2016-10-04 13:52:01,869 devappserver2.py:769] Skipping SDK update check.
+WARNING  2016-10-04 13:52:02,014 simple_search_stub.py:1146] Could not read search indexes from /var/folders/cx/93p9j67n1lb9m18x2t3jbnx80000gn/T/appengine.None.nownabe/search_indexes
+INFO     2016-10-04 13:52:02,018 api_server.py:205] Starting API server at: http://localhost:53458
+INFO     2016-10-04 13:52:02,021 dispatcher.py:197] Starting module &quot;default&quot; running at: http://localhost:8080
+INFO     2016-10-04 13:52:02,023 admin_server.py:116] Starting admin server at: http://localhost:8000
+
+</code></pre>
+
+<p>pythonが頑張ってる。
+この状態でアクセスすると、<code>Hello, world!</code>が返ってくる。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ curl localhost:8080
+Hello, world!</code></pre></div>
+<h1 id="デプロイ">デプロイ</h1>
+
+<p>次はデプロイ。</p>
+
+<p>まずは<a href="https://console.cloud.google.com/project?hl=ja">GCPのコンソール</a>で新しいプロジェクトを作る。</p>
+
+<p>作るとプロジェクトIDが発行されるので、それをコピーしとく。
+URLとかみるとわかる。</p>
+
+<p>次のコマンドでデプロイできる。
+Googleアカウントの認証のために勝手にブラウザが開いたりするので、びっくりしないようにする。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ appcfg.py -A <span class="si">${</span><span class="nv">PROJECT_ID</span><span class="si">}</span> -V v1 update .</code></pre></div>
+<p>完了したら、<code>https://${PROJECT_ID}.appspot.com/</code>でアクセスできる。
+HTTPもHTTPSも使えるっぽい。</p>
+
+<h1 id="消す">消す</h1>
+
+<p>何かの拍子に課金されないように、作ったプロジェクトは削除しておく。
+削除はIAMと管理の<a href="https://console.cloud.google.com/iam-admin/projects?hl=ja">すべてのプロジェクト</a>からできる。</p>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

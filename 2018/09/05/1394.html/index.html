@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>GCP updates  | September 4, 2018 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2018/09/05/1394.html/">
+  <meta property="og:title" content="GCP updates  | September 4, 2018 - nownab.log">
+  <meta property="og:description" content="COMPUTE NVIDIA Tesla P4 GPUs for Compute Engine: beta Compute Engine now offers NVIDIA Tesla P4 GPUs for 3D visualization, deep learning, video transcoding, and high-performance computing. NVIDIA Tesla P4 GPUs offer up to 5.5 teraflops of single-precision performance and 22 tera operations per second of INT8 performance. Blog | Product page DATABASES Cloud Firestore: beta Cloud Firestore, our serverless, NoSQL document database, is in the process of adding new">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="GCP updates  | September 4, 2018 - nownab.log">
+  <meta property="twitter:description" content="COMPUTE NVIDIA Tesla P4 GPUs for Compute Engine: beta Compute Engine now offers NVIDIA Tesla P4 GPUs for 3D visualization, deep learning, video transcoding, and high-performance computing. NVIDIA Tesla P4 GPUs offer up to 5.5 teraflops of single-precision performance and 22 tera operations per second of INT8 performance. Blog | Product page DATABASES Cloud Firestore: beta Cloud Firestore, our serverless, NoSQL document database, is in the process of adding new">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2018/09/05/1394.html/">GCP updates  | September 4, 2018</a></h1>
+    <span class="date">Posted on Sep 5, 2018</span>
+  </div>
+  <div class="body">
+    
+
+<h1 id="compute">COMPUTE</h1>
+
+<h2 id="nvidia-tesla-p4-gpus-for-compute-engine-beta">NVIDIA Tesla P4 GPUs for Compute Engine: beta</h2>
+
+<blockquote>
+<p>Compute Engine now offers NVIDIA Tesla P4 GPUs for 3D visualization, deep learning, video transcoding, and high-performance computing. NVIDIA Tesla P4 GPUs offer up to 5.5 teraflops of single-precision performance and 22 tera operations per second of INT8 performance. <a href="https://cloud.google.com/blog/products/gcp/introducing-nvidia-tesla-p4-gpus-accelerating-virtual-workstations-and-ml-inference-compute-engine">Blog</a> | <a href="https://cloud.google.com/gpu/">Product page</a></p>
+</blockquote>
+
+<h1 id="databases">DATABASES</h1>
+
+<h2 id="cloud-firestore-beta">Cloud Firestore: beta</h2>
+
+<blockquote>
+<p>Cloud Firestore, our serverless, NoSQL document database, is in the process of adding new hosting locations and is now available in the Google Cloud Platform Console. Current Cloud Firestore beta users will see their projects in consoles for both Firebase and GCP. <a href="https://cloud.google.com/blog/products/gcp/expanding-the-cloud-firestore-beta-to-more-users">Blog</a> | <a href="https://www.youtube.com/watch?v=jXlYaPS1Mzk">Video</a></p>
+</blockquote>
+
+<p>FirebaseとしてではなくGCPの一部として使えるようになったという話ですね。</p>
+
+<p>Firestoreを使おうとするとこんな比較表が表示されてデータベースサービスを選べるようになっています。</p>
+
+<p><img src="/images/2018/09/05/1.png" alt="Screenshot from 2018-09-05 09-52-07.png (57.3 kB)" /></p>
+
+<p>Firestoreは次世代のDatastoreで、FirestoreがGAになれば現在のDatastoreは自動でFirestoreに置き換わるそうです。</p>
+
+<hr />
+
+<p>Additional releases</p>
+
+<h1 id="compute-1">COMPUTE</h1>
+
+<h2 id="compute-engine-sole-tenant-nodes-ga">Compute Engine sole-tenant nodes: GA</h2>
+
+<blockquote>
+<p>Sole-tenant nodes are physical Compute Engine servers that offer you the same machine types and options as regular compute instances – including custom machine shapes and transparent maintenance – but on servers dedicated to a single user. <a href="https://cloud.google.com/compute/docs/nodes/">Documentation</a></p>
+</blockquote>
+
+<p>専有ノード (1ユーザ、複数VM) がGAに。</p>
+
+<h2 id="app-engine-standard-environment-python-3-7-beta">App Engine standard environment – Python 3.7: beta</h2>
+
+<blockquote>
+<p>Python 3.7 runtime on App Engine standard environment gives you the latest versions of popular libraries, an unrestricted runtime environment, reduced cost latency, and code that’s more portable and easier to maintain. <a href="https://cloud.google.com/blog/products/gcp/introducing-app-engine-second-generation-runtimes-and-python-3-7">Blog</a></p>
+</blockquote>
+
+<p>一時期FlexibleがでてStandardは終わるんじゃないかみたいな話もあったけど、順調にアップデートきてていいですね。Knativeとかも出てきたしFlexibleの方が微妙な立ち位置になっていく気がする。</p>
+
+<h1 id="identity-security">IDENTITY &amp; SECURITY</h1>
+
+<h2 id="binary-authorization-beta">Binary Authorization: beta</h2>
+
+<blockquote>
+<p>Binary Authorization is a deploy-time security control that allows you to define policies, ensuring only trusted containers are deployed to your environments on Kubernetes Engine. Binary Authorization supports both image signing as well as image whitelisting. <a href="https://cloud.google.com/blog/products/identity-security/deploy-only-what-you-trust-introducing-binary-authorization-for-google-kubernetes-engine">Product overview</a> | <a href="https://cloud.google.com/binary-authorization/docs/">Documentation</a></p>
+</blockquote>
+
+<p>こんな感じでPolicy設定したりPod作成時にDigestつけたりするみたいです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">admissionWhitelistPatterns<span class="p">:</span><span class="w">
+</span><span class="w"></span>-<span class="w"> </span>namePattern<span class="p">:</span><span class="w"> </span>gcr.io/google_containers/*<span class="w">
+</span><span class="w"></span>-<span class="w"> </span>namePattern<span class="p">:</span><span class="w"> </span>gcr.io/google-containers/*<span class="w">
+</span><span class="w"></span>-<span class="w"> </span>namePattern<span class="p">:</span><span class="w"> </span>k8s.gcr.io/*<span class="w">
+</span><span class="w"></span>defaultAdmissionRule<span class="p">:</span><span class="w">
+</span><span class="w">  </span>evaluationMode<span class="p">:</span><span class="w"> </span>ALWAYS_ALLOW<span class="w">
+</span><span class="w">  </span>enforcementMode<span class="p">:</span><span class="w"> </span>ENFORCED_BLOCK_AND_AUDIT_LOG<span class="w">
+</span><span class="w"></span>name<span class="p">:</span><span class="w"> </span>projects/${PROJECT_ID}/policy</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Pod<span class="w">
+</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
+</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>pod-name<span class="w">
+</span><span class="w">  </span>annotations<span class="p">:</span><span class="w">
+</span><span class="w">    </span>alpha.image-policy.k8s.io/break-glass<span class="p">:</span><span class="w"> </span><span class="s2">&#34;true&#34;</span><span class="w">
+</span><span class="w"></span>spec<span class="p">:</span><span class="w">
+</span><span class="w">  </span>containers<span class="p">:</span><span class="w">
+</span><span class="w">  </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>container-name<span class="w">
+</span><span class="w">    </span>image<span class="p">:</span><span class="w"> </span>gcr.io/google-samples/hello-app@sha256<span class="p">:</span>c62ead5b8c15c231f9e786250b07909daf6c266d0fcddd93fea882eb722c3be4</code></pre></div>
+<h2 id="cloud-data-loss-prevention-api-stored-custom-dictionary-detector-ga">Cloud Data Loss Prevention API stored custom dictionary detector: GA</h2>
+
+<blockquote>
+<p>Large dictionary detectors enable customers to create a custom detector that can search tens of millions of words or phrases. Common uses include discovery and classification, or redaction of sensitive data. <a href="https://cloud.google.com/dlp/docs/creating-stored-infotypes">Documentation</a></p>
+</blockquote>
+
+<h1 id="databases-1">DATABASES</h1>
+
+<h2 id="cloud-firestore-managed-export-and-import-service-beta">Cloud Firestore managed export and import service: beta</h2>
+
+<blockquote>
+<p>Use the Cloud Firestore managed export and import service to recover from accidental deletion of data, and to export data for offline processing. Import and export all documents at once, or just specific collections. <a href="https://cloud.google.com/firestore/docs/manage-data/export-import">Documentation</a></p>
+</blockquote>
+
+<p>BigQueryにもloadできるんですね。いいですね。</p>
+
+<h2 id="cloud-datastore-read-only-index-apis-ga">Cloud Datastore – read-only index APIs: GA</h2>
+
+<blockquote>
+<p>REST and gRPC APIs are now available in the Cloud Datastore API to let you read a list of composite indexes for a given project, as well as information related to in-process builds within those indexes. <a href="https://cloud.google.com/datastore/docs/reference/admin/rest/">REST documentation</a> | <a href="https://cloud.google.com/datastore/docs/reference/admin/rpc/">gRPC documentation</a></p>
+</blockquote>
+
+<h1 id="api-management">API MANAGEMENT</h1>
+
+<h2 id="apigee-edge-customer-self-service-identity-provider-management-for-developer-portals-beta">Apigee Edge customer self-service identity provider management for developer portals: beta</h2>
+
+<blockquote>
+<p>API consumer-developers can now self-manage their accounts for Apigee’s integrated developer portals, and API providers can view and manage those users, configure automatic or manual approval, and add custom account registration fields. <a href="https://docs-new.apigee.com/whats-new#identity-service">Documentation</a></p>
+</blockquote>
+
+<h2 id="apigee-edge-integrated-developer-portal-smartdocs-api-beta">Apigee Edge integrated developer portal – SmartDocs API: beta</h2>
+
+<blockquote>
+<p>SmartDocs API reference documentation is now part of the integrated developer portal. With its three-pane approach, the left pane helps you navigate between areas of the API, the center gives detailed documentation for a given operation, and the right pane enables you to make API requests directly from the docs. <a href="https://apigee.com/about/blog/api-technology/announcing-enhancements-apigee-integrated-developer-portal">Documentation</a></p>
+</blockquote>
+
+<p>Apigee謎だ…。力が働いてる雰囲気を感じる。</p>
+
+<h1 id="management-tools">MANAGEMENT TOOLS</h1>
+
+<h2 id="cloud-audit-logging-system-event-logs-ga">Cloud Audit Logging – System Event logs: GA</h2>
+
+<blockquote>
+<p>Cloud Audit Logging maintains three audit logs for each project and organization: Admin Activity, Data Access, and now System Events. This new audit log type tracks Compute Engine system maintenance events, such as live migrations. <a href="https://cloud.google.com/logging/docs/audit/">Documentation</a></p>
+</blockquote>
+
+<p>こういうのが充実してるのはとてもいいですね。</p>
+
+<h1 id="developer-tools">DEVELOPER TOOLS</h1>
+
+<h2 id="cloud-console-out-of-box-experience-flow-and-cloud-shell-for-mobile-ga">Cloud Console out-of-box experience flow and Cloud Shell for mobile: GA</h2>
+
+<blockquote>
+<p>You can now access Cloud Shell features from the <a href="https://cloud.google.com/console-app/">Google Cloud Console mobile app</a>. Cloud Shell is an interactive shell environment for Google Cloud Platform that makes it easy for you to manage your projects and resources without having to install the Cloud SDK. <a href="https://cloud.google.com/shell/docs/features">Documentation</a></p>
+</blockquote>
+
+<p>これはアツい！やってみたけど普通につながりました ✨</p>
+
+<p><img src="/images/2018/09/05/2.PNG" height="400"></p>
+
+<h2 id="cloud-identity-aware-proxy-per-resource-policies-beta">Cloud Identity-Aware Proxy Per-Resource Policies: beta</h2>
+
+<blockquote>
+<p>You can now set Cloud IAP policies on a per-resource basis. This allows you to have multiple apps with different access policies within a project, including Compute Engine, Kubernetes Engine, and App Engine apps. <a href="https://cloud.google.com/iap/docs/managing-access">Documentation</a></p>
+</blockquote>
+
+<p>こないだ久しぶりに触ったけど、便利になってました 😃</p>
+
+<h1 id="support">SUPPORT</h1>
+
+<h2 id="gcp-role-based-support-ga">GCP Role-Based Support: GA</h2>
+
+<blockquote>
+<p>The per-seat pricing model of Role-Based Support lets you pay a flat fee per user per month instead of a variable percentage based on platform usage. It also lets you interact with support directly from your Cloud Console instead of the Cloud Support Center. <a href="https://cloud.google.com/support/">Documentation</a></p>
+</blockquote>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

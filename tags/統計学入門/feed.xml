@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>統計学入門 on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/%E7%B5%B1%E8%A8%88%E5%AD%A6%E5%85%A5%E9%96%80/</link>
+    <description>Recent content in 統計学入門 on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Mon, 11 Dec 2017 14:48:59 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/%E7%B5%B1%E8%A8%88%E5%AD%A6%E5%85%A5%E9%96%80/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Pythonではじめる機械学習  7回目</title>
+      <link>https://blog.nownabe.com/2017/12/14/1217.html/</link>
+      <pubDate>Mon, 11 Dec 2017 14:48:59 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/12/14/1217.html/</guid>
+      <description>nownab.log | Pythonではじめる機械学習 6回目 週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。 また、勉強会で書</description>
+    </item>
+    
+    <item>
+      <title>Pythonではじめる機械学習  6回目</title>
+      <link>https://blog.nownabe.com/2017/12/08/1206.html/</link>
+      <pubDate>Mon, 04 Dec 2017 17:37:06 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/12/08/1206.html/</guid>
+      <description>nownab.log | Pythonではじめる機械学習 5回目 週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。 また、勉強会で書</description>
+    </item>
+    
+    <item>
+      <title>Pythonではじめる機械学習  5回目</title>
+      <link>https://blog.nownabe.com/2017/12/08/1200.html/</link>
+      <pubDate>Mon, 27 Nov 2017 18:42:31 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/12/08/1200.html/</guid>
+      <description>nownab.log | Pythonではじめる機械学習 4回目 週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。 また、勉強会で書</description>
+    </item>
+    
+    <item>
+      <title>Pythonではじめる機械学習  4回目</title>
+      <link>https://blog.nownabe.com/2017/12/08/1199.html/</link>
+      <pubDate>Mon, 27 Nov 2017 16:55:33 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/12/08/1199.html/</guid>
+      <description>nownab.log | Pythonではじめる機械学習 3回目 週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。 また、勉強会で書</description>
+    </item>
+    
+    <item>
+      <title>Pythonではじめる機械学習  3回目</title>
+      <link>https://blog.nownabe.com/2017/11/19/1185.html/</link>
+      <pubDate>Wed, 15 Nov 2017 19:12:04 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/11/19/1185.html/</guid>
+      <description>nownab.log | Pythonではじめる機械学習 2回目 週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。 また、勉強会で書</description>
+    </item>
+    
+    <item>
+      <title>Pythonではじめる機械学習  2回目</title>
+      <link>https://blog.nownabe.com/2017/11/08/1174.html/</link>
+      <pubDate>Mon, 06 Nov 2017 17:35:01 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/11/08/1174.html/</guid>
+      <description>機械学習勉強会の続き。前回は統計学入門だった。 週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。 また、勉強</description>
+    </item>
+    
+    <item>
+      <title>統計学入門  第12章 仮説検定</title>
+      <link>https://blog.nownabe.com/2017/10/25/1165.html/</link>
+      <pubDate>Tue, 24 Oct 2017 19:29:04 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/10/25/1165.html/</guid>
+      <description>nownab.log | 統計学入門 第11章 推定 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門をやっている。</description>
+    </item>
+    
+    <item>
+      <title>統計学入門  第13章 回帰分析</title>
+      <link>https://blog.nownabe.com/2017/10/25/1155.html/</link>
+      <pubDate>Tue, 17 Oct 2017 00:29:41 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/10/25/1155.html/</guid>
+      <description>nownab.log | 統計学入門 第12章 仮説検定 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門をやってい</description>
+    </item>
+    
+    <item>
+      <title>統計学入門  第11章 推定</title>
+      <link>https://blog.nownabe.com/2017/10/16/1142.html/</link>
+      <pubDate>Mon, 02 Oct 2017 13:58:35 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/10/16/1142.html/</guid>
+      <description>nownab.log | 統計学入門 第10章 正規分布からの標本 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門</description>
+    </item>
+    
+    <item>
+      <title>統計学入門  第10章 正規分布からの標本</title>
+      <link>https://blog.nownabe.com/2017/10/02/1136.html/</link>
+      <pubDate>Mon, 25 Sep 2017 10:07:12 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/10/02/1136.html/</guid>
+      <description>nownab.log | 統計学入門 第9章 標本分布 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門をやっている</description>
+    </item>
+    
+    <item>
+      <title>統計学入門  第9章 標本分布</title>
+      <link>https://blog.nownabe.com/2017/09/22/1126.html/</link>
+      <pubDate>Sun, 10 Sep 2017 17:27:31 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/09/22/1126.html/</guid>
+      <description>nownab.log | 統計学入門 第8章 大数の法則と中心極限定理 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学</description>
+    </item>
+    
+    <item>
+      <title>統計学入門  第8章 大数の法則と中心極限定理</title>
+      <link>https://blog.nownabe.com/2017/09/10/1105.html/</link>
+      <pubDate>Fri, 25 Aug 2017 18:44:10 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/09/10/1105.html/</guid>
+      <description>nownab.log | 統計学入門 第7章 多次元の確率分布 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門をや</description>
+    </item>
+    
+    <item>
+      <title>統計学入門  第7章 多次元の確率分布</title>
+      <link>https://blog.nownabe.com/2017/08/25/1097.html/</link>
+      <pubDate>Mon, 21 Aug 2017 19:23:28 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/08/25/1097.html/</guid>
+      <description>nownab.log | 統計学入門 第6章 確率変数 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門をやっている</description>
+    </item>
+    
+    <item>
+      <title>統計学入門  第6章 確率分布</title>
+      <link>https://blog.nownabe.com/2017/08/18/1095.html/</link>
+      <pubDate>Mon, 14 Aug 2017 17:40:26 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/08/18/1095.html/</guid>
+      <description>nownab.log | 統計学入門 第5章 確率変数 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門をやっている</description>
+    </item>
+    
+    <item>
+      <title>統計学入門  第5章 確率変数</title>
+      <link>https://blog.nownabe.com/2017/08/10/1081.html/</link>
+      <pubDate>Tue, 08 Aug 2017 16:06:42 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/08/10/1081.html/</guid>
+      <description>nownab.log | 統計学入門 第4章 確率 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門をやっている。 週</description>
+    </item>
+    
+    <item>
+      <title>統計学入門  第4章 確率</title>
+      <link>https://blog.nownabe.com/2017/08/06/1071.html/</link>
+      <pubDate>Sun, 06 Aug 2017 16:13:05 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/08/06/1071.html/</guid>
+      <description>統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 今は統計学入門。 週一で1時間程度各自でもくもくして、章末問題で同期を取ると</description>
+    </item>
+    
+    <item>
+      <title>機械学習勉強会 20170706</title>
+      <link>https://blog.nownabe.com/2017/07/20/1056.html/</link>
+      <pubDate>Wed, 19 Jul 2017 23:41:11 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/07/20/1056.html/</guid>
+      <description>統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 今は統計学入門。 週一で1時間程度各自でもくもくして、章末問題で同期を取ると</description>
+    </item>
+    
+    <item>
+      <title>機械学習勉強会 20170629</title>
+      <link>https://blog.nownabe.com/2017/07/19/1055.html/</link>
+      <pubDate>Wed, 19 Jul 2017 21:44:52 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/07/19/1055.html/</guid>
+      <description>統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 今は統計学入門。 週一で1時間程度各自でもくもくして、章末問題で同期を取ると</description>
+    </item>
+    
+    <item>
+      <title>機械学習勉強会 20170622</title>
+      <link>https://blog.nownabe.com/2017/07/19/1054.html/</link>
+      <pubDate>Wed, 19 Jul 2017 18:17:43 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/07/19/1054.html/</guid>
+      <description>統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 今は統計学入門。 週一で1時間程度各自でもくもくして、章末問題で同期を取ると</description>
+    </item>
+    
+    <item>
+      <title>機械学習勉強会 20170602</title>
+      <link>https://blog.nownabe.com/2017/06/02/712.html/</link>
+      <pubDate>Fri, 02 Jun 2017 01:32:45 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/06/02/712.html/</guid>
+      <description>統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 今は統計学入門。 週一で1時間程度各自でもくもくして、章末問題で同期を取ると</description>
+    </item>
+    
+    <item>
+      <title>機械学習勉強会 20170525</title>
+      <link>https://blog.nownabe.com/2017/05/26/709.html/</link>
+      <pubDate>Fri, 26 May 2017 00:11:48 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/05/26/709.html/</guid>
+      <description>統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 今日から統計学入門のもくもくを始めた。 この本は週一で1時間程度各自でもくも</description>
+    </item>
+    
+  </channel>
+</rss>

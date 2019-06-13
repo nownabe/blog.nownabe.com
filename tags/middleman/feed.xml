@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>middleman on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/middleman/</link>
+    <description>Recent content in middleman on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Sun, 12 Mar 2017 16:52:36 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/middleman/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Blogのタイムスタンプをごにょごにょした</title>
+      <link>https://blog.nownabe.com/2017/03/12/639.html/</link>
+      <pubDate>Sun, 12 Mar 2017 16:52:36 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2017/03/12/639.html/</guid>
+      <description>弊blog 弊blogはesaで記事を書き、esaのGitHub WebhookでGitHubにPushしてMiddlemanでHTML化してい</description>
+    </item>
+    
+    <item>
+      <title>Hatena BlogからGitHub Pagesに移行しました</title>
+      <link>https://blog.nownabe.com/2016/08/03/400.html/</link>
+      <pubDate>Wed, 03 Aug 2016 00:37:51 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/08/03/400.html/</guid>
+      <description>ブログを移行しました！！！やったーーーー！！！🎉✨ TL; DR Hatena BlogでホストしていたブログをGitHub Pagesに移行しました esa + Middleman + Wercker + GitHub Pages</description>
+    </item>
+    
+    <item>
+      <title>qiita-markdownをMiddlemanで使えるようにするGemを作った</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena16.html/</link>
+      <pubDate>Tue, 26 Jul 2016 23:57:51 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena16.html/</guid>
+      <description>github pagesでblogを公開しようと思ってゆるりと構築中なんですが、静的ジェネレータとしてMiddlemanを使うことにしました。 esa.i</description>
+    </item>
+    
+  </channel>
+</rss>

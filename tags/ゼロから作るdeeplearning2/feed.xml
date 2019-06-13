@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ゼロから作るDeepLearning2 on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/%E3%82%BC%E3%83%AD%E3%81%8B%E3%82%89%E4%BD%9C%E3%82%8Bdeeplearning2/</link>
+    <description>Recent content in ゼロから作るDeepLearning2 on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Wed, 26 Sep 2018 15:04:13 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/%E3%82%BC%E3%83%AD%E3%81%8B%E3%82%89%E4%BD%9C%E3%82%8Bdeeplearning2/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ゼロから作るDeep Learning 2 第6回</title>
+      <link>https://blog.nownabe.com/2018/09/26/1411.html/</link>
+      <pubDate>Wed, 26 Sep 2018 15:04:13 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/09/26/1411.html/</guid>
+      <description>nownab.log | ゼロから作るDeep Learning 2 第5回 この本から1章ずつPull Requestにしてて、メモとか所感とかそっちに書けばいいなーってことで、次回か</description>
+    </item>
+    
+    <item>
+      <title>ゼロから作るDeep Learning 2 第5回</title>
+      <link>https://blog.nownabe.com/2018/09/14/1401.html/</link>
+      <pubDate>Fri, 14 Sep 2018 16:33:08 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/09/14/1401.html/</guid>
+      <description>nownab.log | ゼロから作るDeep Learning 2 第4回 概要 機械学習勉強会でもくもくしてるゼロから作るDeep Learning 2 自然言語処理編の学習メモです。 書いたコードのリポ</description>
+    </item>
+    
+    <item>
+      <title>ゼロから作るDeep Learning 2 第4回</title>
+      <link>https://blog.nownabe.com/2018/09/13/1396.html/</link>
+      <pubDate>Fri, 07 Sep 2018 22:33:40 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/09/13/1396.html/</guid>
+      <description>nownab.log | ゼロから作るDeep Learning 2 第3回 概要 機械学習勉強会でもくもくしてるゼロから作るDeep Learning 2 自然言語処理編の学習メモです。 書いたコードのリポ</description>
+    </item>
+    
+    <item>
+      <title>ゼロから作るDeep Learning 2用のDockerイメージ</title>
+      <link>https://blog.nownabe.com/2018/09/01/1390.html/</link>
+      <pubDate>Sat, 01 Sep 2018 21:14:57 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/09/01/1390.html/</guid>
+      <description>ゼロから作るDeep Learning 2 自然言語処理編のコードを実行できるDockerイメージを作りました。 Dockerコンテナからmatplotlibでグ</description>
+    </item>
+    
+    <item>
+      <title>ゼロから作るDeep Learning 2 第3回</title>
+      <link>https://blog.nownabe.com/2018/08/30/1389.html/</link>
+      <pubDate>Thu, 30 Aug 2018 16:56:27 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/08/30/1389.html/</guid>
+      <description>nownab.log | ゼロから作るDeep Learning 2 第2回 概要 機械学習勉強会でもくもくしてるゼロから作るDeep Learning 2 自然言語処理編の学習メモです。 書いたコードのリポ</description>
+    </item>
+    
+    <item>
+      <title>ゼロから作るDeep Learning 2 第2回</title>
+      <link>https://blog.nownabe.com/2018/08/18/1375.html/</link>
+      <pubDate>Sat, 18 Aug 2018 01:31:05 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/08/18/1375.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第22回 概要 機械学習勉強会でもくもくしてるゼロから作るDeep Learning 2 自然言語処理編の学習メモです。 書いたコード</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>ゼロから作るDeep Learning 2 第3回 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2018/08/30/1389.html/">
+  <meta property="og:title" content="ゼロから作るDeep Learning 2 第3回 - nownab.log">
+  <meta property="og:description" content="nownab.log | ゼロから作るDeep Learning 2 第2回 概要 機械学習勉強会でもくもくしてるゼロから作るDeep Learning 2 自然言語処理編の学習メモです。 書いたコードのリポ">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="ゼロから作るDeep Learning 2 第3回 - nownab.log">
+  <meta property="twitter:description" content="nownab.log | ゼロから作るDeep Learning 2 第2回 概要 機械学習勉強会でもくもくしてるゼロから作るDeep Learning 2 自然言語処理編の学習メモです。 書いたコードのリポ">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2018/08/30/1389.html/">ゼロから作るDeep Learning 2 第3回</a></h1>
+    <span class="date">Posted on Aug 30, 2018</span>
+  </div>
+  <div class="body">
+    
+
+<p><a href="https://blog.nownabe.com/2018/08/18/1375.html">nownab.log | ゼロから作るDeep Learning 2 第2回</a></p>
+
+<h1 id="概要">概要</h1>
+
+<p>機械学習勉強会でもくもくしてる<a href="https://amzn.to/2MqPxy3">ゼロから作るDeep Learning 2 自然言語処理編</a>の学習メモです。</p>
+
+<p>書いたコードのリポジトリはこちら。
+<a href="https://github.com/nownabe/DeepLearningFromScratch2">https://github.com/nownabe/DeepLearningFromScratch2</a></p>
+
+<h1 id="資料置き場">資料置き場</h1>
+
+<p>今回のコードはこちら。
+<a href="https://github.com/nownabe/DeepLearningFromScratch2/pull/2">https://github.com/nownabe/DeepLearningFromScratch2/pull/2</a></p>
+
+<h1 id="範囲">範囲</h1>
+
+<ul>
+<li>1章 ニューラルネットワークの復習
+
+<ul>
+<li>1.4 ニューラルネットワークで問題を解く</li>
+<li>1.5 計算の高速化</li>
+<li>1.6 まとめ</li>
+</ul></li>
+</ul>
+
+<h1 id="1章-ニューラルネットワークの復習">1章 ニューラルネットワークの復習</h1>
+
+<h2 id="1-4-ニューラルネットワークで問題を解く">1.4 ニューラルネットワークで問題を解く</h2>
+
+<h3 id="1-4-1-スパイラル-データセット">1.4.1 スパイラル・データセット</h3>
+
+<h3 id="1-4-2-ニューラルネットワークの実装">1.4.2 ニューラルネットワークの実装</h3>
+
+<h3 id="1-4-3-学習用のソースコード">1.4.3 学習用のソースコード</h3>
+
+<p>グラフは次の節のコードを実行すると表示される。</p>
+
+<p>非線形のデータがきれいに分類できてて感動した 😳</p>
+
+<h3 id="1-4-4-trainer-クラス">1.4.4 Trainer クラス</h3>
+
+<h2 id="1-5-計算の高速化">1.5 計算の高速化</h2>
+
+<h3 id="1-5-1-ビット精度">1.5.1 ビット精度</h3>
+
+<h3 id="1-5-2-gpu-cupy">1.5.2 GPU (CuPy)</h3>
+
+<p>実行可能なコードは4章から登場とのことだったが、せっかくなので早く試したくて1章のコードもGPU対応して実行してみた。</p>
+
+<p>対応のコミットはこれ。
+<a href="https://github.com/nownabe/DeepLearningFromScratch2/pull/2/commits/534aa1487251dd33ac7aa423c6478e95389e25f5">https://github.com/nownabe/DeepLearningFromScratch2/pull/2/commits/534aa1487251dd33ac7aa423c6478e95389e25f5</a></p>
+
+<p>結果と実行速度はこんな感じ。この章の学習だとCPUの方が10倍ぐらい速い。</p>
+
+<h3 id="cpu">CPU</h3>
+
+<pre><code>real    0m0.655s
+user    0m0.770s
+sys     0m0.650s
+</code></pre>
+
+<p><img src="/images/2018/08/30/1.png" alt="cpu.png (33.8 kB)" /></p>
+
+<h3 id="gpu">GPU</h3>
+
+<pre><code>real    0m6.779s
+user    0m6.709s
+sys     0m0.792s
+</code></pre>
+
+<p><img src="/images/2018/08/30/2.png" alt="gpu.png (33.7 kB)" /></p>
+
+<h2 id="1-6-まとめ">1.6 まとめ</h2>
+
+<h1 id="所感">所感</h1>
+
+<ul>
+<li>ビット精度のことをきちんと説明してあったりして素晴らしい</li>
+<li>グラフがカラーで見やすい</li>
+<li>CuPyでの実行を試せてよかった
+
+<ul>
+<li>そのままだと実行できないが、簡単な変更で対応できた</li>
+</ul></li>
+</ul>
+
+<h1 id="ゼロから作るdeep-learning-2-自然言語処理編">ゼロから作るDeep Learning 2 自然言語処理編</h1>
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&language=ja_JP&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=4873118360&linkId=d14125aa558825386ea0429a369ee855"></iframe>
+
+<h1 id="機械学習勉強会について">機械学習勉強会について</h1>
+
+<p>有志で毎週開催している。本書はもくもく形式だが、題材によって形式は柔軟に変えている。
+毎週読む範囲を決めてもくもくして、終わらなかったら次の週までにやってくるという形。</p>
+
+<p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。
+<a href="https://github.com/Wondershake/machine-learning-study">Wondershake/machine-learning-study: 機械学習勉強会</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-math" data-lang="math"></code></pre></div>
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

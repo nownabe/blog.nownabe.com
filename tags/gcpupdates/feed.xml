@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gcpupdates on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/gcpupdates/</link>
+    <description>Recent content in gcpupdates on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Tue, 15 Jan 2019 13:38:23 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/gcpupdates/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GCP updates  | January 7, 2019</title>
+      <link>https://blog.nownabe.com/2019/01/15/1450.html/</link>
+      <pubDate>Tue, 15 Jan 2019 13:38:23 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2019/01/15/1450.html/</guid>
+      <description>MANAGEMENT TOOLS Istio on Kubernetes Engine: beta Get one-click Istio deployment on Kubernetes Engine – or add Istio to an existing Kubernetes Engine cluster. Quickly create all the components you need to run an open-source service mesh to connect, manage, and secure microservices in a uniform way. Documentation GKEにマネージドのIstioをデプロイでき</description>
+    </item>
+    
+    <item>
+      <title>GCP updates | December 17, 2018</title>
+      <link>https://blog.nownabe.com/2018/12/18/1447.html/</link>
+      <pubDate>Tue, 18 Dec 2018 10:17:06 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/12/18/1447.html/</guid>
+      <description>SECURITY Cloud Security Command Center: beta Monitor your cloud resources and quickly mitigate threats to them from a single, centralized dashboard. Track your cloud asset inventory, scan storage systems for sensitive data, detect common web vulnerabilities, and review access rights to your critical resources. Product page beta期間は無料とのことで使ってみました。SC</description>
+    </item>
+    
+    <item>
+      <title>GCP updates  | November 26, 2018</title>
+      <link>https://blog.nownabe.com/2018/11/29/1444.html/</link>
+      <pubDate>Thu, 29 Nov 2018 20:08:25 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/11/29/1444.html/</guid>
+      <description>DATABASES Cloud Bigtable now available in all three London (europe-west2) zones: GA Cloud Bigtable is a massively scalable, fully managed NoSQL database service for large analytical and operational workloads. Product page DEVELOPER TOOLS Cloud Scheduler: beta Cloud Scheduler is a fully managed enterprise-grade cron job scheduler. You can schedule nearly any job, including batch and big data, as well as automate manual tasks, such as retries, all in one place.</description>
+    </item>
+    
+    <item>
+      <title>GCP updates  | November 12, 2018</title>
+      <link>https://blog.nownabe.com/2018/11/28/1442.html/</link>
+      <pubDate>Wed, 28 Nov 2018 18:59:08 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/11/28/1442.html/</guid>
+      <description>COMPUTE Compute Engine – logging serial port output to Stackdriver: beta This feature enables you to configure your VM instances to automatically log serial port output to Stackdriver, allowing it to persist beyond the lifetime of the VMs. Logging this data to Stackdriver makes it easier for you to analyze and troubleshoot VMs that have crashed or terminated. Documentation おもしろいなw IaaS</description>
+    </item>
+    
+    <item>
+      <title>GCP updates  | October 29, 2018</title>
+      <link>https://blog.nownabe.com/2018/11/28/1432.html/</link>
+      <pubDate>Wed, 31 Oct 2018 12:01:31 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/11/28/1432.html/</guid>
+      <description>DATA ANALYTICS BigQuery now available in the London region: GA BigQuery is now generally available in the europe-west2 region. With regional availability, you can run large-scale workloads quickly in the same local Google Cloud regions you already use for storage, compute, and machine learning. Documentation | Blog DATABASES Cloud Spanner DML: GA Now you can use insert, update, and delete data manipulation language (DML) SQL statements in Cloud Spanner databases.</description>
+    </item>
+    
+    <item>
+      <title>GCP updates  | October 15, 2018</title>
+      <link>https://blog.nownabe.com/2018/10/30/1431.html/</link>
+      <pubDate>Tue, 30 Oct 2018 19:34:04 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/10/30/1431.html/</guid>
+      <description>見逃してた 😎 DATABASES Cloud Bigtable added to australia-southeast1 region: GA Cloud Bigtable is now available in the australia-southeast1 (Sydney, Australia) region. Product page COMPUTE Cloud Tasks: beta Make apps more responsive for your users, allow apps to scale independently, and make your infrastructure more resilient with Cloud Tasks, an asynchronous task-execution service that lets you decouple services and offload long-running background tasks. Documentation | Blog ち</description>
+    </item>
+    
+    <item>
+      <title>GCP updates  | October 1, 2018</title>
+      <link>https://blog.nownabe.com/2018/10/03/1416.html/</link>
+      <pubDate>Wed, 03 Oct 2018 09:49:00 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/10/03/1416.html/</guid>
+      <description>DATABASES New asia-south1 Cloud Bigtable region added: GA Cloud Bigtable is now available in the asia-south1 (Mumbai, India) region. Product page DATA ANALYTICS BigQuery – Apache ORC ingestion: GA This feature adds support for importing ORC data from Cloud Storage into BigQuery. You can access it through Cloud Client Libraries in any of the seven supported languages. ORC is an open-source, column-oriented data format, widely used in the Apache Hadoop</description>
+    </item>
+    
+    <item>
+      <title>GCP updates  | September 17, 2018</title>
+      <link>https://blog.nownabe.com/2018/09/18/1403.html/</link>
+      <pubDate>Tue, 18 Sep 2018 11:01:01 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/09/18/1403.html/</guid>
+      <description>ACCOUNT SERVICES Google Cloud Platform arrives in the Nordics with a new region in Finland The Finland GCP region, europe-north1, is the first Nordic cloud region from a major public cloud provider. Hosting applications in the new region can reduce latency by up to 65% for end users in the Nordics, and by up to 88% for end users in Eastern Europe, compared to hosting them in what was previously</description>
+    </item>
+    
+    <item>
+      <title>GCP updates  | September 4, 2018</title>
+      <link>https://blog.nownabe.com/2018/09/05/1394.html/</link>
+      <pubDate>Wed, 05 Sep 2018 10:45:19 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/09/05/1394.html/</guid>
+      <description>COMPUTE NVIDIA Tesla P4 GPUs for Compute Engine: beta Compute Engine now offers NVIDIA Tesla P4 GPUs for 3D visualization, deep learning, video transcoding, and high-performance computing. NVIDIA Tesla P4 GPUs offer up to 5.5 teraflops of single-precision performance and 22 tera operations per second of INT8 performance. Blog | Product page DATABASES Cloud Firestore: beta Cloud Firestore, our serverless, NoSQL document database, is in the process of adding new</description>
+    </item>
+    
+  </channel>
+</rss>

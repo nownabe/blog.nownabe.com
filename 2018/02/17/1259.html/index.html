@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>Dockerイメージの公開にGitLabが最高 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2018/02/17/1259.html/">
+  <meta property="og:title" content="Dockerイメージの公開にGitLabが最高 - nownab.log">
+  <meta property="og:description" content="Dockerイメージを公開するのにGitLabが最⭐️高だったので紹介します。GitHubとDockerHubを使うより遥かに良いです。 以前">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="Dockerイメージの公開にGitLabが最高 - nownab.log">
+  <meta property="twitter:description" content="Dockerイメージを公開するのにGitLabが最⭐️高だったので紹介します。GitHubとDockerHubを使うより遥かに良いです。 以前">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2018/02/17/1259.html/">Dockerイメージの公開にGitLabが最高</a></h1>
+    <span class="date">Posted on Feb 17, 2018</span>
+  </div>
+  <div class="body">
+    
+
+<p>Dockerイメージを公開するのにGitLabが最⭐️高だったので紹介します。GitHubとDockerHubを使うより遥かに良いです。</p>
+
+<p>以前GitLabを使っていくと言ったんですがその続報です。</p>
+
+<p><a href="https://blog.nownabe.com/2018/02/07/1252.html">nownab.log | GitLabを使うぞ</a></p>
+
+<p>この記事のGitLabという言葉はだいたいSaaS版の<a href="https://gitlab.com/">GitLab.com</a>を指しています。</p>
+
+<h1 id="なにがいいの">なにがいいの</h1>
+
+<p>特にいいと感じているのはこの2つです。</p>
+
+<ul>
+<li>とにかく簡単 ✨</li>
+<li>とにかく速い 🚀</li>
+</ul>
+
+<p>もう2つ大きいのは次の2つです。</p>
+
+<ul>
+<li>GitLabだけで完結する</li>
+<li>無料で無制限</li>
+</ul>
+
+<p>ってところです。</p>
+
+<h1 id="どれぐらい簡単なの">どれぐらい簡単なの</h1>
+
+<p>簡単なサンプルを用意しました。</p>
+
+<p><a href="https://gitlab.com/nownabe/docker-sample-app">nownabe / docker-sample-app · GitLab</a></p>
+
+<p>GitLabでDockerイメージを公開する場合、このように<code>Dockerfile</code>と<code>.gitlab-ci.yml</code>を用意するだけです。他にはProject<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>を作ったぐらいで、設定もなにもしてません。</p>
+
+<p><code>.gitlab-ci.yml</code>も凝ったことしなければ同じYAMLが使いまわせます。</p>
+
+<p>GitHub + DockerHubだと、公開したことある人はわかると思いますが結構めんどくさいです。GitHubにレポジトリ作って、DockerHubにAutomatedBuildのレジストリ作って、ビルドの設定して、みたいなことをする必要があります。他のCIサービスでビルドする場合は追加でCIの設定して、認証の設定してみたいな感じです。</p>
+
+<h1 id="速い">速い！！ 🚀</h1>
+
+<p>ソースコードをPushしてからイメージが公開されるまでがめちゃくちゃ速いです。サンプルで試したときは、ローカルからPushして、どれどれCIはちゃんと動いてるかなーとブラウザ開くともうイメージが公開されてました 😳 爆速です。</p>
+
+<p>他のCIサービスやDockerHubでビルドすると早くても数分、10分以上かかることも珍しくありません。特にDockerHubは遅くて、数時間たっても終わらないことも多いのでこれはありがたいですね。</p>
+
+<h1 id="gitlab-ci-cd">GitLab CI/CD</h1>
+
+<p>GitLabにはTravisCIのようなCIが組み込まれています。使い始めるには<code>.gitlab-ci.yml</code>をコミットするだけです。他に設定はいりません。</p>
+
+<p>GitLab CI/CDで検索すると自分でGitLabを運用するためのドキュメント等がでてきて難しそうですが、SaaS版使うには関係ないので無視しましょう。GitLab Runnerという単語が見えたら無視して良いドキュメントです。</p>
+
+<p>先程のサンプルだと<code>.gitlab-ci.yml</code>はこんな感じになってます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml:.gitlab-ci.yml" data-lang="yaml:.gitlab-ci.yml">image<span class="p">:</span><span class="w"> </span>docker<span class="p">:</span>latest<span class="w">
+</span><span class="w"></span>services<span class="p">:</span><span class="w">
+</span><span class="w">  </span>-<span class="w"> </span>docker<span class="p">:</span>dind<span class="w">
+</span><span class="w">
+</span><span class="w"></span>variables<span class="p">:</span><span class="w">
+</span><span class="w">  </span>IMAGE_TAG<span class="p">:</span><span class="w"> </span>$CI_REGISTRY_IMAGE<span class="p">:</span>$CI_COMMIT_REF_NAME<span class="w">
+</span><span class="w">
+</span><span class="w"></span>before_script<span class="p">:</span><span class="w">
+</span><span class="w">  </span>-<span class="w"> </span>docker<span class="w"> </span>login<span class="w"> </span>-u<span class="w"> </span>$CI_REGISTRY_USER<span class="w"> </span>-p<span class="w"> </span>$CI_REGISTRY_PASSWORD<span class="w"> </span>$CI_REGISTRY<span class="w">
+</span><span class="w">
+</span><span class="w"></span>build<span class="p">:</span><span class="w">
+</span><span class="w">  </span>script<span class="p">:</span><span class="w">
+</span><span class="w">    </span>-<span class="w"> </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>$IMAGE_TAG<span class="w"> </span>.<span class="w">
+</span><span class="w">    </span>-<span class="w"> </span>docker<span class="w"> </span>push<span class="w"> </span>$IMAGE_TAG</code></pre></div>
+<p>特にTravisCIを使ったことがある人はすんなり読めるかなーと思います。シンプルですね。</p>
+
+<h1 id="gitlab-container-registry">GitLab Container Registry</h1>
+
+<p>GitLabにはDockerイメージのRegistryも組み込まれています。ホスト名は<code>registry.gitlab.com</code>でイメージ名はProject名と一致します。なので、さっきのサンプルを実行するには次のようにします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run registry.gitlab.com/nownabe/docker-sample-app:latest</code></pre></div>
+<p>非公開イメージのPullやイメージのPushには認証が必要です。他のRegistryと同じく<code>docker login</code>コマンドを使います。</p>
+
+<h1 id="gitlab-ci-cd-container-registry">GitLab Ci/CD + Container Registry</h1>
+
+<p>CIとRegistryの連携も非常に簡単になるようにできています。</p>
+
+<p>ビルドしたイメージのPushにはRegistryへのログインが必要になりますが、これがまた非常に簡単にできるようになっています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker login -u <span class="nv">$CI_REGISTRY_USER</span> -p <span class="nv">$CI_REGISTRY_PASSWORD</span> <span class="nv">$CI_REGISTRY</span></code></pre></div>
+<p>また、<code>CI_REGISTRY_IMAGE</code>という環境変数にはRegistryにおけるDockerイメージ名が格納されており、イメージタグの指定がとても簡単にできます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">variables<span class="p">:</span><span class="w">
+</span><span class="w">  </span>IMAGE_TAG<span class="p">:</span><span class="w"> </span>$CI_REGISTRY_IMAGE<span class="p">:</span>$CI_COMMIT_REF_NAME<span class="w">
+</span><span class="w">
+</span><span class="w"></span>build<span class="p">:</span><span class="w">
+</span><span class="w">  </span>script<span class="p">:</span><span class="w">
+</span><span class="w">    </span>-<span class="w"> </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>$IMAGE_TAG<span class="w"> </span>.<span class="w">
+</span><span class="w">    </span>-<span class="w"> </span>docker<span class="w"> </span>push<span class="w"> </span>$IMAGE_TAG</code></pre></div>
+<p><code>CI_COMMIT_REF_NAME</code>にはGitのブランチ名かタグ名が格納されています。なので、こうしておけば次のような運用が簡単にできます。</p>
+
+<ul>
+<li>Merge Request<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>を出したらそれがすぐDockerイメージとして使える状態になるので、簡単にテスト環境にデプロイしたりできる</li>
+<li>複数バージョンを公開しときたいイメージなんかはGitタグを切っておけば、それに従ってDockerイメージも複数バージョン公開される</li>
+</ul>
+
+<p>他のCIサービスで頑張って認証の設定したり、DockerHubでGitHubのブランチとDockerHubのタグを頑張って対応付けたりする必要がないので素晴らしく楽です。</p>
+
+<p>これはGitレポジトリ、CI、Dockerレジストリが統合されてないと実現できない強みですね。</p>
+
+<h1 id="感想">感想</h1>
+
+<p>GitLabはものすごいスピードで機能が増えてるのは知ってて、多機能ゆえに使いづらいんじゃないかと思ってましたが全然そんなことはありませんでした。多くの機能を簡単に使えるように工夫されていてとても好感触です。</p>
+
+<p>まだ触ってない機能もいっぱいあるっぽいし、他に罠があるか、なんか制限があるか、とかもこれからで知らないことは多いですがより積極的に使っていきたいです。</p>
+
+<p>とりあえずDockerイメージを公開するときはGitLab一択ですね 😘</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">GitHubでいうレポジトリ
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:2">GitHubでいうPull Request
+ <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

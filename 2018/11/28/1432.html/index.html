@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>GCP updates  | October 29, 2018 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2018/11/28/1432.html/">
+  <meta property="og:title" content="GCP updates  | October 29, 2018 - nownab.log">
+  <meta property="og:description" content="DATA ANALYTICS BigQuery now available in the London region: GA BigQuery is now generally available in the europe-west2 region. With regional availability, you can run large-scale workloads quickly in the same local Google Cloud regions you already use for storage, compute, and machine learning. Documentation | Blog DATABASES Cloud Spanner DML: GA Now you can use insert, update, and delete data manipulation language (DML) SQL statements in Cloud Spanner databases.">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="GCP updates  | October 29, 2018 - nownab.log">
+  <meta property="twitter:description" content="DATA ANALYTICS BigQuery now available in the London region: GA BigQuery is now generally available in the europe-west2 region. With regional availability, you can run large-scale workloads quickly in the same local Google Cloud regions you already use for storage, compute, and machine learning. Documentation | Blog DATABASES Cloud Spanner DML: GA Now you can use insert, update, and delete data manipulation language (DML) SQL statements in Cloud Spanner databases.">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2018/11/28/1432.html/">GCP updates  | October 29, 2018</a></h1>
+    <span class="date">Posted on Oct 31, 2018</span>
+  </div>
+  <div class="body">
+    
+
+<h1 id="data-analytics">DATA ANALYTICS</h1>
+
+<h2 id="bigquery-now-available-in-the-london-region-ga">BigQuery now available in the London region: GA</h2>
+
+<blockquote>
+<p>BigQuery is now generally available in the europe-west2 region. With regional availability, you can run large-scale workloads quickly in the same local Google Cloud regions you already use for storage, compute, and machine learning. <a href="https://cloud.google.com/bigquery/docs/locations">Documentation</a> | <a href="https://cloud.google.com/blog/products/data-analytics/bigquery-arrives-in-the-london-region-with-more-regions-to-come">Blog</a></p>
+</blockquote>
+
+<h1 id="databases">DATABASES</h1>
+
+<h2 id="cloud-spanner-dml-ga">Cloud Spanner DML: GA</h2>
+
+<blockquote>
+<p>Now you can use insert, update, and delete data manipulation language (DML) SQL statements in Cloud Spanner databases. A new read and write JDBC driver is included with this feature, making it easier for app developers to use standard tooling like object-relational mappers with their applications. <a href="https://cloud.google.com/blog/products/databases/develop-and-deploy-apps-more-easily-with-cloud-spanner-and-cloud-bigtable-updates">Blog</a> | <a href="https://cloud.google.com/spanner/docs/dml-syntax">Documentation</a></p>
+</blockquote>
+
+<p>SpannerをSQLで操作できるやつですね。まだSpanner使ったことないから使ってみたいなー。</p>
+
+<hr />
+
+<p>Additional Releases</p>
+
+<h1 id="compute">COMPUTE</h1>
+
+<h2 id="node-auto-upgrades-ga">Node auto-upgrades: GA</h2>
+
+<blockquote>
+<p>Now, node auto-updates are enabled by default for new clusters and node pools created with the Google Cloud Platform Console UI, making it easier to keep your clusters current and more secure. <a href="https://cloud.google.com/kubernetes-engine/docs/how-to/node-auto-upgrades">Documentation</a></p>
+</blockquote>
+
+<p>GKEのノード自動更新ですね。</p>
+
+<h2 id="cloud-nat-beta">Cloud NAT: beta</h2>
+
+<blockquote>
+<p>Fully managed, software-defined network address translation support is now available for GCP. <a href="https://cloud.google.com/nat/docs/">Documentation</a></p>
+</blockquote>
+
+<p>NATインスタンスではなくGoogleのネットワークでNATをやってくれるってやつですね。</p>
+
+<h2 id="go-1-11-runtime-for-app-engine-beta">Go 1.11 runtime for App Engine: beta</h2>
+
+<blockquote>
+<p>This release updates to the latest version of Go and introduces new capabilities. You can organize your code idiomatically, add vendor dependencies, use Go modules, import any Go package or web framework, and incorporate Cloud Client Libraries for Go.<a href="https://cloud.google.com/appengine/docs/standard/go/">Documentation</a> | <a href="https://cloud.google.com/blog/products/application-development/go-1-11-is-now-available-on-app-engine">Blog</a></p>
+</blockquote>
+
+<p>1.9がFirst Generation、1.11がSecond Generationという表記もみられます。Second GenerationはgVisorを使ってるやつですね。</p>
+
+<p><a href="https://cloud.google.com/appengine/docs/standard/appengine-generation">https://cloud.google.com/appengine/docs/standard/appengine-generation</a></p>
+
+<p>馴染みのapp.yamlの項目がDeprecatedになったり、Go Modulesが使えたりmain関数を使うようになったり変更点が多いです。</p>
+
+<h1 id="data-analytics-1">DATA ANALYTICS</h1>
+
+<h2 id="bigquery-column-based-time-partitioning-ga">BigQuery column-based time partitioning: GA</h2>
+
+<blockquote>
+<p>BigQuery support for partitioning columns on date or timestamp types is now available. Queries over partitioned tables are automatically optimized to scan just the data in the relevant partitions, drastically improving performance and reducing costs. <a href="https://cloud.google.com/bigquery/docs/creating-column-partitions">Documentation</a></p>
+</blockquote>
+
+<p>特定のカラムでpartitioned tableを作るやつですね。</p>
+
+<h1 id="networking">NETWORKING</h1>
+
+<h2 id="managed-certificates-for-load-balancers-beta">Managed certificates for load balancers: beta</h2>
+
+<blockquote>
+<p>Self-managed and Google-managed SSL certificates are now available for L7 load balancers. Google-managed SSL certificates are domain validation certificates only, while self-managed certificates can be domain, organization, or extended validation certificates. <a href="https://cloud.google.com/load-balancing/docs/ssl-certificates">Documentation</a></p>
+</blockquote>
+
+<p>うおおおおおおおおおおお。
+今まで証明書まわりはLet&rsquo;s Encryptでゴリ押しという感じだったのでありがたい。</p>
+
+<p>Activationに10分弱かかりましたが、L7LBを作ってDNSレコードを設定するだけで証明書取得できました。
+取得にL7LBを作成する必要はありますが、最高ですね。</p>
+
+<h1 id="ai-and-machine-learning">AI AND MACHINE LEARNING</h1>
+
+<h2 id="preemptible-cloud-tpu-ga">Preemptible Cloud TPU: GA</h2>
+
+<blockquote>
+<p>Now you can create and run Cloud TPUs at a lower cost. A preemptible Cloud TPU is 70% less expensive than an on-demand instance. The TensorFlow TPUEstimator API takes care of saving and restoring model checkpoints for you when your VM instance or TPU is preempted. <a href="https://cloud.google.com/tpu/docs/preemptible">Documentation</a></p>
+</blockquote>
+
+<p>PreemptibleなTPUですね。</p>
+
+<h2 id="cloud-tpu-v3-on-compute-engine-beta">Cloud TPU v3 on Compute Engine: beta</h2>
+
+<blockquote>
+<p>Cloud TPU, an ASIC designed for machine learning, is now available in v3. Cloud TPU v3 has 420 teraflops and double the memory of v2, improving performance and enabling support for more model classes, including deeper residual networks and larger images with RetinaNet. <a href="https://cloud.google.com/tpu/docs/">Documentation</a></p>
+</blockquote>
+
+<h1 id="api-platform-and-ecosystems">API PLATFORM AND ECOSYSTEMS</h1>
+
+<h2 id="informatica-integration-cloud-extension-ga">Informatica Integration Cloud extension: GA</h2>
+
+<blockquote>
+<p>This new extension allows you to run Informatica business and integration processes within an API proxy, connect to services and applications from Apigee Edge, and publish business integration processes as managed APIs from Informatica Integration Cloud to Apigee Edge. <a href="https://docs.apigee.com/api-platform/reference/extensions/informatica-integration-extension">Documentation</a></p>
+</blockquote>
+
+<h2 id="new-apigee-edge-extensions-ga">New Apigee Edge extensions: GA</h2>
+
+<blockquote>
+<p>Easily access and connect with Google Cloud services like Cloud Firestore, Cloud Pub/Sub, Cloud Storage, and Cloud Spanner from the Apigee Edge user interface. API developers can simply pick and use these services from a policy palette. Once configured, these can be reused across all API proxies.<a href="https://docs.apigee.com/api-platform/extensions/extensions-overview">Documentation</a> | <a href="https://cloud.google.com/blog/products/gcp/introducing-new-apigee-capabilities-deliver-business-impact-apis">Blog</a></p>
+</blockquote>
+
+<h2 id="apigee-edge-hosted-targets-ga">Apigee Edge Hosted Targets: GA</h2>
+
+<blockquote>
+<p>Hosted Targets lets enterprises run Node.js applications in a native runtime environment. This means enterprises can deploy applications in a native, secure, scalable, and isolated environment where Apigee Edge API proxies can call them as target services. <a href="https://docs.apigee.com/api-platform/hosted-targets/hosted-targets-overview">Documentation</a></p>
+</blockquote>
+
+<h2 id="apigee-api-monitoring-ga">Apigee API Monitoring: GA</h2>
+
+<blockquote>
+<p>You can now increase the availability and performance of your API with proactive monitoring. Use contextual insights to quickly identify root causes and reduce mean time to diagnosis. <a href="https://docs.apigee.com/api-monitoring">Documentation</a></p>
+</blockquote>
+
+<h1 id="internet-of-things">INTERNET OF THINGS</h1>
+
+<h2 id="cloud-iot-core-device-commands-beta">Cloud IoT Core – Device Commands: beta</h2>
+
+<blockquote>
+<p>Now you can use Cloud IoT Core to send commands to devices. Commands are fast, can be sent frequently, and are independent of other Cloud IoT Core features. Commands are delivered instantly to devices connected to the Cloud IoT Core MQTT bridge. <a href="https://cloud.google.com/iot/docs/how-tos/commands">Documentation</a></p>
+</blockquote>
+
+<p>GCPのAPIでMQTTを経由してデバイスにメッセージ送信できるってことですかね。</p>
+
+<h2 id="cloud-iot-core-device-logging-beta">Cloud IoT Core – Device Logging: beta</h2>
+
+<blockquote>
+<p>Now you can configure Cloud IoT Core to log device information to <a href="https://cloud.google.com/logging/">Stackdriver Logging</a>. Logs are configurable so they can be used with large device fleets, and will include connection attempts, errors, and other lifecycle events for each device. <a href="https://cloud.google.com/iot/docs/how-tos/device-logs">Documentation</a></p>
+</blockquote>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

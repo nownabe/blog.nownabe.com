@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>統計学入門  第11章 推定 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2017/10/16/1142.html/">
+  <meta property="og:title" content="統計学入門  第11章 推定 - nownab.log">
+  <meta property="og:description" content="nownab.log | 統計学入門 第10章 正規分布からの標本 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="統計学入門  第11章 推定 - nownab.log">
+  <meta property="twitter:description" content="nownab.log | 統計学入門 第10章 正規分布からの標本 統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 機械学習勉強会として今は統計学入門">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2017/10/16/1142.html/">統計学入門  第11章 推定</a></h1>
+    <span class="date">Posted on Oct 2, 2017</span>
+  </div>
+  <div class="body">
+    
+
+<p><a href="https://blog.nownabe.com/2017/10/02/1136.html">nownab.log | 統計学入門 第10章 正規分布からの標本</a></p>
+
+<div class="asin">
+<div class="asin-image"><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/" rel="nofollow noopener" target="_blank"><img src="http://images-jp.amazon.com/images/P/4130420658.09._SL160_.jpg" alt="統計学入門 (基礎統計学Ⅰ)" title="統計学入門 (基礎統計学Ⅰ)"></a></div>
+<div class="asin-detail">
+<p><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/" rel="nofollow noopener" target="_blank">統計学入門 (基礎統計学Ⅰ)</a></p>
+<ul>
+<li>東京大学教養学部統計学教室</li>
+<li>東京大学出版会</li>
+</ul>
+</div>
+
+<p><p></p>
+</div></p>
+
+<p>機械学習勉強会として今は<a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/">統計学入門</a>をやっている。
+週一でやっていて、今週から輪読形式で進めてみることになった。</p>
+
+<p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。
+<a href="https://github.com/Wondershake/ml-statistics-intro">Wondershake/ml-statistics-intro: 基礎統計学 I 統計学入門 (東京大学出版会)</a></p>
+
+<h1 id="今回の内容">今回の内容</h1>
+
+<ul>
+<li>統計学と確率論の大きな違いの1つは、母数を推定するかしないか
+
+<ul>
+<li><strong>母数 (parameter)</strong>: 母集団の確率分布(母集団分布)を決めている定数</li>
+</ul></li>
+<li><strong>推定 (estimation)</strong>: 母数を標本から定めること</li>
+<li><strong>推定量 (estimator)</strong>: 母数を推定するために標本から求めた統計量</li>
+<li>推定しようとするパラメータを$\theta$、推定量を$\hat{\theta}$と表す</li>
+<li>$\hat{\theta}$は標本の関数</li>
+</ul>
+
+<h2 id="11-1-点推定と区間推定">11.1 点推定と区間推定</h2>
+
+<ul>
+<li><strong>点推定 (point estimation)</strong>: $\theta$をある1つの値$\hat{\theta}$で推定する方法</li>
+<li><strong>区間推定 (interval estimation)</strong>: $P(L\leq\theta\leq U)\geq 1-\alpha$となるような$L, U$を推定する方法</li>
+</ul>
+
+<h2 id="11-2-点推定の考え方とその手順">11.2 点推定の考え方とその手順</h2>
+
+<h3 id="11-2-1-推定量と推定値">11.2.1 推定量と推定値</h3>
+
+<ul>
+<li><strong>推定値 (estimate)</strong>: $n$個の観測値が与えられた場合に推定量(標本の関数)から得られる実際の値</li>
+</ul>
+
+<h3 id="11-2-2-点推定の手順">11.2.2 点推定の手順</h3>
+
+<ul>
+<li><strong>モーメント法 (method of moments)</strong>
+
+<ul>
+<li>標本モーメントを次のように定義する
+
+<ul>
+<li>1次標本モーメント $\hat{\mu}_1=\sum\frac{X_i}{n}$</li>
+<li>2次標本モーメント $\hat{\mu}_2=\sum\frac{X_i^2}{n}$</li>
+<li>k次標本モーメント $\hat{\mu}_k=\sum\frac{X_i^k}{n}$</li>
+</ul></li>
+<li>母モーメントが標本モーメントと等しいとおく
+
+<ul>
+<li>$\mu_1=\hat{\mu}_1$</li>
+<li>$\mu_2=\hat{\mu}_2$</li>
+<li>$\mu_k=\hat{\mu}_k$</li>
+</ul></li>
+</ul></li>
+<li><strong>最尤法 (maximum likelihood method)</strong>
+
+<ul>
+<li>尤度関数を母数空間で最大にするものを推定値や推定量とする方法</li>
+<li><strong>母数空間 (parameter space)</strong>: 母数が取り得る値の集合。$\Theta$で表す</li>
+<li><strong>最尤原理 (principle of maximum likelihood)</strong>: 「現実の標本は確率最大のものが実現した」という仮定</li>
+<li><strong>尤度 (likelihood)</strong>: 母数空間でのその値のもっともらしさ</li>
+<li><strong>尤度関数 (likelihood function)</strong>: 尤度を表す関数
+
+<ul>
+<li>$X_1, \dots, X_n$の同時確率分布を$\theta$の関数とみなしたもの</li>
+<li>$X_i$の確率分布を$f(x,\theta)$とすると尤度関数は$L(\theta)=f(x_1, \theta)\cdot f(x_2, \theta) \cdot\cdots\cdot f(x_n, \theta)$</li>
+<li>母数が複数ある場合は$L(\theta_1, \dots, \theta<em>k)=\prod</em>{i=1}^n f(x_i; \theta_1, \dots, \theta_k)$</li>
+</ul></li>
+<li><strong>最尤推定値 (maximum likelihood estimate)</strong>: 尤度関数を最大にする値</li>
+<li><strong>最尤推定量 (maximum likelihood estimator)</strong>: 尤度関数を最大にする関数</li>
+<li><strong>対数尤度</strong>: 尤度関数は積で扱いにくいので対数をとったものを扱うのが普通
+
+<ul>
+<li>$\log L(\theta)=\sum_{i=1}^n \log f(x_i, \theta)$</li>
+<li>$\displaystyle \frac{\partial \log L(\theta)}{\partial \theta}=0$ の解を求める</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h2 id="11-3-点推定の基準">11.3 点推定の基準</h2>
+
+<ul>
+<li><strong>不偏性</strong>
+
+<ul>
+<li>$E(\hat{\theta})=\theta$となる性質</li>
+<li>これを満たす推定量を<strong>不偏推定量 (unbiased estimator)</strong>とよぶ</li>
+</ul></li>
+<li><strong>一致性</strong>
+
+<ul>
+<li>すべての$\epsilon&gt;0$に対して$n\rightarrow\infty$のとき$P(|\hat\theta_n-\theta|&gt;\epsilon)\rightarrow0$となる性質</li>
+<li>$n$が大きくなれば真の母数に近づく性質</li>
+<li>これを満たす推定量を<strong>一致推定量 (consistent estimator)</strong>とよぶ</li>
+</ul></li>
+<li><strong>漸近正規性 (asymptotic normality)</strong>
+
+<ul>
+<li>漸近分布 ($n\rightarrow\infty$における分布)が正規分布である性質</li>
+<li>これを満たす推定量を<strong>漸近正規推定量 (asymptotically normal estimator)</strong>とよぶ</li>
+</ul></li>
+<li><strong>有効性</strong>
+
+<ul>
+<li>いかなる不偏推定量よりも分散が小さいという性質</li>
+<li>これを満たす不偏推定量を<strong>有効推定量 (efficient estimator)</strong>または<strong>最小分散不偏推定量 (minimum variance unbiased estimator)</strong>とよぶ</li>
+<li><strong>漸近有効性 (asymptotic efficiency)</strong>: 漸近分布が正規分布となる推定量のうち、その漸近分散が最小となる性質</li>
+</ul></li>
+</ul>
+
+<h2 id="11-4-点推定の例">11.4 点推定の例</h2>
+
+<ul>
+<li>正規分布に関する推定</li>
+<li>二項分布に関する推定</li>
+<li>ポアソン分布に対する推定</li>
+<li>一様分布に関する推定</li>
+<li>ノンパラメトリックの場合
+
+<ul>
+<li>モーメント法を使う</li>
+</ul></li>
+</ul>
+
+<h2 id="11-5-区間推定">11.5 区間推定</h2>
+
+<ul>
+<li>$P(L\leq\theta\leq U)\geq 1-\alpha$となる確率変数$L, U$を求める</li>
+<li>$L, U$はそれぞれ<strong>下側信頼限界 (lower confidence limit)</strong>、<strong>上側信頼限界 (upper confidence limit)</strong>という</li>
+<li><strong>信頼係数 (confidence coefficient)</strong>: $1-\alpha$</li>
+<li><strong>信頼区間 (confidence interval)</strong>: 区間$[L, U]$</li>
+<li>$1-\alpha$は目的に応じて選ぶが、$0.99$や$0.95$に設定されることが多い</li>
+<li>信頼区間の幅は標本の大きさ$n$が大きくなるに従って$\frac{1}{\sqrt{n}}$のオーダーで0に近づく</li>
+</ul>
+
+<h3 id="11-5-1-正規母集団の母平均-母分散の区間推定">11.5.1 正規母集団の母平均、母分散の区間推定</h3>
+
+<ul>
+<li>母平均の信頼区間</li>
+<li>母分散の信頼区間</li>
+</ul>
+
+<h3 id="11-5-2-二つの正規母集団の母平均の差-母分散の比の区間推定">11.5.2 二つの正規母集団の母平均の差、母分散の比の区間推定</h3>
+
+<ul>
+<li>母平均の差の信頼区間</li>
+<li>母分散の比の信頼区間</li>
+</ul>
+
+<h3 id="11-5-3-二項-ポアソン母集団の各母数の信頼区間">11.5.3 二項、ポアソン母集団の各母数の信頼区間</h3>
+
+<h1 id="練習問題">練習問題</h1>
+
+<p><a href="https://github.com/Wondershake/ml-statistics-intro/issues/21">第11章 推定 · Issue #21 · Wondershake/ml-statistics-intro</a></p>
+
+<h1 id="所感">所感</h1>
+
+<ul>
+<li>最尤法が理解できてよかった</li>
+</ul>
+
+<h1 id="次回">次回</h1>
+
+<p>第12章 仮説検定</p>
+<div class="highlight"><pre class="chroma"><code class="language-math" data-lang="math"></code></pre></div>
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

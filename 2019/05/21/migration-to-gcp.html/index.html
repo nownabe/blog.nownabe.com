@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>よくしらんRailsアプリとかをAWSのレガシーシステムからGCPのイケイケシステムに移行した話 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2019/05/21/migration-to-gcp.html/">
+  <meta property="og:title" content="よくしらんRailsアプリとかをAWSのレガシーシステムからGCPのイケイケシステムに移行した話 - nownab.log">
+  <meta property="og:description" content="はじめに Railsアプリケーションを中心とするシステムをAWSからGCPに移行しました。本記事ではその過程をできるだけ赤裸々に公開します。 本">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="よくしらんRailsアプリとかをAWSのレガシーシステムからGCPのイケイケシステムに移行した話 - nownab.log">
+  <meta property="twitter:description" content="はじめに Railsアプリケーションを中心とするシステムをAWSからGCPに移行しました。本記事ではその過程をできるだけ赤裸々に公開します。 本">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2019/05/21/migration-to-gcp.html/">よくしらんRailsアプリとかをAWSのレガシーシステムからGCPのイケイケシステムに移行した話</a></h1>
+    <span class="date">Posted on May 21, 2019</span>
+  </div>
+  <div class="body">
+    
+
+<h1 id="はじめに">はじめに</h1>
+
+<p>Railsアプリケーションを中心とするシステムをAWSからGCPに移行しました。本記事ではその過程をできるだけ赤裸々に公開します。</p>
+
+<p>本プロジェクトではインフラ移行と同時にアーキテクチャも刷新しました。AWSがレガシーでGCPがイケイケという意味ではなく、移行対象システムのアーキテクチャがレガシーからイケイケになったという意味です。</p>
+
+<p>技術的な内容については詳細は省いて概要の説明にとどめています。AWS、GCP、Docker、Kubernetesあたりの知識があるとスッと読めると思います。</p>
+
+<p>書きたいこと書いたので長い記事になってますがぜひお付き合いください。</p>
+
+<h1 id="目次">目次</h1>
+
+<ul>
+<li><a href="#レガシーシステムとイケイケシステム">レガシーシステムとイケイケシステム</a></li>
+<li><a href="#なぜ移行したのか">なぜ移行したのか</a></li>
+<li><a href="#プロジェクトについて">プロジェクトについて</a></li>
+<li><a href="#技術調査">技術調査</a></li>
+<li><a href="#根回しとか稟議的なアレ">根回しとか稟議的なアレ</a></li>
+<li><a href="#terraform整備">Terraform整備</a></li>
+<li><a href="#kubernetesクラスタの設定">Kubernetesクラスタの設定</a></li>
+<li><a href="#railsアプリの移行準備">Railsアプリの移行準備</a></li>
+<li><a href="#docker化">Docker化</a></li>
+<li><a href="#kubernetes化">Kubernetes化</a></li>
+<li><a href="#ci整備">CI整備</a></li>
+<li><a href="#動画変換機能のgcp対応">動画変換機能のGCP対応</a></li>
+<li><a href="#メンテナンスサーバ構築">メンテナンスサーバ構築</a></li>
+<li><a href="#移行手順書作成">移行手順書作成</a></li>
+<li><a href="#移行リハーサル">移行リハーサル</a></li>
+<li><a href="#負荷テスト">負荷テスト</a></li>
+<li><a href="#qaテスト">QAテスト</a></li>
+<li><a href="#移行作業">移行作業</a></li>
+<li><a href="#移行後">移行後</a></li>
+<li><a href="#良かった点と反省点">良かった点と反省点</a></li>
+<li><a href="#今後">今後</a></li>
+<li><a href="#終わりに">終わりに</a></li>
+</ul>
+
+<h1 id="レガシーシステムとイケイケシステム">レガシーシステムとイケイケシステム</h1>
+
+<p>まず、移行前のレガシーシステムと移行後のイケイケシステムについて軽く説明します。</p>
+
+<p>タイトルをキャッチーにするためこうしましたが、特別レガシーでもイケイケでもないのでご了承ください。ちょっと前と今の普通のアーキテクチャという感じです。</p>
+
+<h2 id="ざっくり全体像">ざっくり全体像</h2>
+
+<p>移行前のシステムのざっくりとした全体像はこんな感じです。</p>
+
+<p><img src="https://i.imgur.com/exakOsX.png" alt="" /></p>
+
+<ul>
+<li>基本はモノリシックなRailsアプリ</li>
+<li>クライアントとしてAndroidアプリ、iOSアプリがあり、それらはRailsのAPIを叩いている</li>
+<li>WebはRailsでHTMLを出力している</li>
+<li>管理画面も同じRailsアプリで実装している</li>
+<li>モノリシックなRailsアプリ以外にも周辺にいくつかアプリケーションが存在する</li>
+<li>多くの外部サービスに依存している</li>
+</ul>
+
+<h2 id="レガシーシステム">レガシーシステム</h2>
+
+<p>モノリシックなRailsアプリケーションを中心としてAWS上に構築されたシステムです。6年間開発されていてそれなりに負債もたまっています。</p>
+
+<p>EC2-ClassicのVMインスタンスにOpsWorksのChefでプロビジョニングを行い、OpsWorksでデプロイしていました。データベースやストレージはRDS(MySQL)、ElastiCache(Redis、Memcached)、DynamoDB、S3、CloudSearchなどを使用していました。</p>
+
+<p>Railsアプリ以外にも、EC2-VPCにデプロイされたGoのアプリケーション、LambdaやAWS Batchで動作するアプリケーションなどが存在しました。</p>
+
+<h2 id="イケイケシステム">イケイケシステム</h2>
+
+<p>同じくモノリシックなRailsアプリケーションを中心としてGCP上に構築されたシステムです。</p>
+
+<p>各アプリケーションはコンテナ化され、GKEのKubernetes上で動作しています。データベースやストレージも一部を除きGCPのサービスを使用しています。</p>
+
+<p>DynamoDBやCloudSearchなど引き続き使用しているAWSのサービスもあります。</p>
+
+<h1 id="なぜ移行したのか">なぜ移行したのか</h1>
+
+<p>本プロジェクトではアーキテクチャ刷新とインフラ移行を同時に行いました。本記事のアーキテクチャという言葉はシステムのインフラ構成ぐらいの意味で使っています。</p>
+
+<p>アーキテクチャ刷新の目的としては4つありました。</p>
+
+<ul>
+<li>運用コスト削減</li>
+<li>セキュリティ向上</li>
+<li>開発効率向上</li>
+<li>今後のビジネス展開の準備</li>
+</ul>
+
+<p>インフラ移行の目的としては3つありました。</p>
+
+<ul>
+<li>新アーキテクチャの構築</li>
+<li>セキュリティ向上</li>
+<li>インフラコスト削減</li>
+</ul>
+
+<p>それぞれについて説明します。</p>
+
+<h2 id="アーキテクチャ刷新の目的">アーキテクチャ刷新の目的</h2>
+
+<h3 id="運用コスト削減">運用コスト削減</h3>
+
+<p>旧システムは急ごしらえで構築され、現在ではインフラ担当者もおらずほぼ放置で長年運用されていたためかなりガタがきていました。運用のコストも馬鹿にならなかったのでそれを改善する目的がありました。</p>
+
+<p>旧システムのガタとしてはこんな感じでした。</p>
+
+<ul>
+<li>アラート頻発</li>
+<li>デプロイに30分から1時間かかる</li>
+<li>デプロイするたびに障害発生</li>
+<li>Chefのコードは不要なコードだらけのコピペ祭りだし一部はエラーで実行不可能</li>
+<li>RubyのバージョンアップはVMにSSHでログインして頑張る</li>
+<li>インフラ構築した人はすでにおらずInfra as Codeもされていないので構築意図がまったくわからず何か起こるたびに困る</li>
+<li>などなど</li>
+</ul>
+
+<p>高頻度で様々な障害対応が発生するけど誰にも聞けずに辛みが深いし、インフラを改善しようにもほぼコード化されてないし部分的にコード化されてるChefもリファクタリングが必要とかいうレベルではない上にそもそもエラーで実行できない箇所があるという状況でした。</p>
+
+<p>こういった状況を抜本的に改善するために、アーキテクチャを刷新するという選択をしました。</p>
+
+<h3 id="セキュリティ向上">セキュリティ向上</h3>
+
+<p>今までのインフラはセキュリティ意識が低く構築されていました。</p>
+
+<ul>
+<li>OpsWorksとChefコードの制約からめっちゃ古いOSを使い続けている
+
+<ul>
+<li>Kernelもミドルウェアも古い</li>
+<li>新しい脆弱性に対するセキュリティパッチがない</li>
+</ul></li>
+<li>SSHの鍵はDropboxで広く共有されている</li>
+<li>MySQLのrootパスワードが誰かの名前</li>
+<li>IAMの権限がめっちゃ強い</li>
+<li>などなど</li>
+</ul>
+
+<p>という具合です。脆弱性など致命的な部分は都度対応しているものの、それしかできていない状態でした。</p>
+
+<p>セキュリティに関しても抜本的に作り直したほうが早く改善できるという判断でした。</p>
+
+<h3 id="開発効率向上">開発効率向上</h3>
+
+<p>次のような施策によって開発効率の向上を目指しました。</p>
+
+<ul>
+<li>インフラまわりの単純化</li>
+<li>徹底的なInfra as a Code</li>
+<li>コンテナ化</li>
+<li>Kubernetes化</li>
+</ul>
+
+<p>新システムではインフラまわりを単純化することで理解しやすくして開発効率向上を目指しました。旧システムは歴史的経緯なのかそもそもの設計が悪いのかわかりませんが無駄な複雑さが多くありました。そういった複雑な依存や機能をひとつひとつ紐解きシンプルに構築しなおすことで理解しやすくしました。</p>
+
+<p>新システムではほぼすべてをTerraformで構築しました。Terraformでカバーできない範囲もコード化しCI/CDするようにしました。旧システムでは誰が何を意図して作ったかもよくわからないインスタンスや設定が多々あるし、Chefのレシピがあったとしても実はエラーで実行されなかったり、実際の設定は手動で変更されてたりするので期待される正しい状態がわからないという状況でした。そういったことがないように構成管理はTerraformに一任し、コードはGitでバージョン管理するようにしました。</p>
+
+<p>コンテナ化によってアプリケーションの実行環境に対してアプリ開発者が責任を持てるようにしました。新しいライブラリが必要になったりRubyのバージョンアップしたくなったりしてもDockerfileを修正するだけで済みます。</p>
+
+<p>Kubernetesを採用することでインフラの単純化、インフラのコード化、実行環境に対する権限の移譲をシンプルに実現しました。Kubernetes自体がシンプルかどうかは様々な観点で議論があると思いますが、アプリ開発者がアプリケーションを継続的に運用するという点では一からAWSで同じものを構築するより簡単に実現できます<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>。Kubernetesはとてもよくインフラを抽象化していて、理解すれば様々なことを標準機能<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>で実現できます。標準機能でできるということが大切で、Kubernetes採用にあたっては標準機能でできないことはしないということに気をつけました。</p>
+
+<h3 id="今後のビジネス展開の準備">今後のビジネス展開の準備</h3>
+
+<p>今後のビジネス展開として新しいサービスを開発していくための準備という目的がありました。「サービスを新規開発していくからマイクロサービスができるようによろしくやっといてくれ」みたいなことを言われていました。サービスの新規開発とMicroservicesとはまったく別の話ですが、新しいアプリケーションを構築する際にも統一的なインフラ基盤があったほうが開発・運用の効率がいいことは間違いないのでそれに備えるという目的がありました。</p>
+
+<h2 id="インフラ移行の目的">インフラ移行の目的</h2>
+
+<p>なぜAWSでアーキテクチャを刷新せずにGCPに移行したか、という話です。これは簡単で、Kubernetesを使うためです。</p>
+
+<p>技術選定をしたときにマネージドKubernetesを使おうと思ったらGKE一択だったのでGCP以外に選択肢は考えていませんでした。また、BigQueryを使うためにデータ分析基盤がGCPに構築されており、今後のデータ活用を考えるとGCPに統一した方が転送量等のコストも抑えられるし開発運用がやりやすいというのも理由です。</p>
+
+<p>他にも値段あたりのVM性能が良かったり、セキュリティへの安心感<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup>があったりという理由もありました。</p>
+
+<h1 id="プロジェクトについて">プロジェクトについて</h1>
+
+<p>プロジェクトについて、社内やチームの状況、全体の流れなどを説明します。</p>
+
+<h2 id="状況">状況</h2>
+
+<p>なかなか特殊な状況だったので、まずそれを説明します。状況が異なればプロジェクトの進め方等も異なってくると思います。</p>
+
+<h3 id="自分について">自分について</h3>
+
+<p>会社には数ヶ月の業務委託を経て入社しました。業務委託期間を含めて移行プロジェクトを始めるまではCTOの傭兵のような立ち位置で次のようなことを行っていました。</p>
+
+<ul>
+<li>データ・機械学習系
+
+<ul>
+<li>ログ分析基盤構築</li>
+<li>類似画像検索エンジン開発</li>
+<li>画像置換システム開発</li>
+<li>記事カテゴリ分類API開発</li>
+<li>機械学習チーム立ち上げ</li>
+</ul></li>
+<li>インフラ系
+
+<ul>
+<li>障害対応</li>
+<li>パフォーマンスチューニング</li>
+<li>セキュリティ対応</li>
+<li>調査とか掃除とか</li>
+</ul></li>
+<li>Railsのパフォーマンスチューニング</li>
+<li>勉強会の主催</li>
+<li>などなど</li>
+</ul>
+
+<p>機械学習寄りでいろいろやりつつ、他にできる人がいないのでインフラまわりも最低限は面倒をみていました。Railsに関しては、アプリケーションの機能開発にはまったく関わらず、使用Gemのせいでめちゃくちゃ遅くなっていた部分に関して泣く泣くRailsにパッチをあてたり、CIを高速化したりと裏方的なところをやっていました。</p>
+
+<p>そんな中で、インフラやべーからなんとかしないと、という話がずっとありました。あるタイミングでCTOとバックエンドのリードエンジニアと、いつかはやらないといけないしインフラ移行やろう、という話をして自分がやることになりました。</p>
+
+<p>自分はRailsアプリの機能開発は一切していなかったので、ドメインは全然詳しくないし、コードベースもほぼ触ってないし、インフラは一番詳しいかもしれないけどまだまだ闇は深い、という状況でプロジェクトが開始しました。何かあればCTOとリードエンジニアと相談しつつ進めようという感じでした。</p>
+
+<h3 id="開発チームについて">開発チームについて</h3>
+
+<p>本プロジェクト開始と同時期に会社がごたついて全社的な退職のビッグウェーブが来てしまい、開発チームもCTO含めRailsエンジニアが全員退職しました。以前は業務委託等でもっと多かったみたいですが、本プロジェクト開始とほぼ同時にサービスのRails開発者がゼロになりました。</p>
+
+<p>CTOは事業責任者も兼任していて、サービスのProduct Management、Project Management、技術チームのリードなどなどかなり広範囲のことをやっていたし、その後の会社の対応もよくなくて社内はまあ荒れました。詳しくは大人の事情で割愛します。</p>
+
+<p>その後、クローズが決まった他サービスを開発していたRailsエンジニアが開発チームにジョインしましたが、もちろんドメインには詳しくないしコードベースには触っていないというところからでした。</p>
+
+<p>そんな感じで、誰も何も知らないし何も決められないという状況でプロジェクトを進めることになりました。</p>
+
+<h2 id="プロジェクトチーム">プロジェクトチーム</h2>
+
+<p>本プロジェクトのチームについて説明します。</p>
+
+<p>といっても自分一人でした。前述のような状況だったので、プロジェクトマネジメントや実作業を1人でやっていました。本プロジェクト以外にも通常の運用業務やRails含むバックエンドの技術的なケア、その他の割り込み開発、機械学習チームのリードをやりつつ、という感じでした。</p>
+
+<p>後半はいろいろあって機械学習チームが自然消滅した<sup class="footnote-ref" id="fnref:4"><a href="#fn:4">4</a></sup>のでメンバーの1人には週2で移行プロジェクトを手伝ってもらいました。移行当日の深夜作業も手伝ってもらったり、彼なしでは途中で心が折れてプロジェクトを完遂できなかったと思います。圧倒的感謝です 🙏 🙏 🙏</p>
+
+<p>また、他サービスからジョインしたRailsエンジニアにもコードレビューしてもらったり、確認のタスクをやってもらったりしました。🙏</p>
+
+<p>最後のQAテストではPMやiOS、Androidのエンジニアにも手伝ってもらい、不具合を修正することができました 🙏</p>
+
+<p>また、後半のメンテナンス等の調整はPMにやっていただきました 🙏</p>
+
+<p>謝辞みたいになってしまいましたがそんな感じでした。基本的には1人で、他にケツ持つ人もおらず、相談相手もいないという状況でした。</p>
+
+<h2 id="プロジェクト全体の流れ">プロジェクト全体の流れ</h2>
+
+<p>プロジェクトの流れはこんな感じでした。単純にひとつずつこなしていったというわけでもないので、多少の前後はあります。また、以降で説明するものに絞って列挙しています。</p>
+
+<ul>
+<li>技術調査</li>
+<li>根回しとか稟議的なアレ</li>
+<li>Terraform整備</li>
+<li>Kubernetesクラスタの設定</li>
+<li>Railsアプリの準備</li>
+<li>Docker化</li>
+<li>Kubernetes化</li>
+<li>CI整備</li>
+<li>動画変換機能のGCP対応</li>
+<li>メンテナンスサーバ構築</li>
+<li>移行手順書作成</li>
+<li>移行リハーサル</li>
+<li>負荷試験</li>
+<li>QAテスト</li>
+<li>移行作業</li>
+</ul>
+
+<h1 id="技術調査">技術調査</h1>
+
+<p>最初に新しいシステムをどういう技術スタックで構成するかを決定するために調査・検討しました。</p>
+
+<p>例として次のような判断がありました。補足として選定理由やコメントも付け加えています。</p>
+
+<ul>
+<li>Dockerでいこう
+
+<ul>
+<li>コンテナで動かしてまずいワークロードはなかった</li>
+</ul></li>
+<li>Kubernetes/GKEでいこう
+
+<ul>
+<li>マネージドで考えるとECSもあったがKubernetes on AWSの噂もありわざわざプロプライエタリなECSを学習したくなかった</li>
+<li>Kubernetesの経験があったし好きだった</li>
+</ul></li>
+<li>Cloud SQLでいこう
+
+<ul>
+<li>メンテナンスは許容できる</li>
+<li>RDSを使っているが、Cloud SQLでも性能は問題なさそう</li>
+</ul></li>
+<li>RedisはHA構成でKubernetesクラスタにデプロイしよう
+
+<ul>
+<li>選定当時Memorystoreがなかった</li>
+<li>セキュリティめんどくさくなるしパフォーマンスの観点からElastiCacheは使いたくなかった</li>
+<li>HA構成Redisの構築・運用経験があった</li>
+<li>→ 選定後に東京リージョンにMemorystoreが追加されたので最終的にはそっちを使った</li>
+</ul></li>
+<li>MemcachedはKubernetesクラスタにデプロイしよう
+
+<ul>
+<li>キャッシュだし</li>
+</ul></li>
+<li>DynamoDBは使い続けよう
+
+<ul>
+<li>DynamoDBと密結合してる部分があった</li>
+<li>レイテンシは問題なかった</li>
+</ul></li>
+<li>Kubernetesのクラスタは1つでいこう
+
+<ul>
+<li>本番環境、ステージング環境を同じクラスタに同居させる</li>
+<li>1人で複数クラスタの面倒をみつつ移行作業するのは負担がでかいと判断した</li>
+<li>→ 移行後、本番環境専用のクラスタとそれ以外の開発クラスタに分割した</li>
+</ul></li>
+<li>Spinnakerはやめておこう
+
+<ul>
+<li>検証はしたが必要なかった</li>
+<li>運用つらそう、ルール作りつらそう、コードで管理できない</li>
+<li>デプロイするためにKubernetesに加えてSpinnakerの知識が必要となってしまう。開発者の学習コストを抑えたかった</li>
+</ul></li>
+<li>CronJobでいこう
+
+<ul>
+<li>Jobを高可用、スケーラブルにできる</li>
+<li>それまではwhenever gemを使って1つのVMで定期バッチをすべて実行していたが問題が多かった</li>
+</ul></li>
+<li>証明書は<a href="https://github.com/jetstack/cert-manager">cert-manager</a>で取得しよう
+
+<ul>
+<li>ACMで取得していた証明書の代替が可能</li>
+<li>多少バグがあったりしたが問題なかった</li>
+</ul></li>
+</ul>
+
+<h1 id="根回しとか稟議的なアレ">根回しとか稟議的なアレ</h1>
+
+<p>根回しというか、技術的な部分以外でプロジェクトを始めるまでにやったことと理由やコメントです。</p>
+
+<ul>
+<li>Googleの営業チームとミーティング
+
+<ul>
+<li>プロジェクト初期は定期的にやっていた</li>
+<li>社内へのGoogleさんと一緒にやってますよというアピールの意味合いが強かった</li>
+<li>今後リリースされるサービスのクローズドな情報を教えてもらえてよかった</li>
+<li>GCPを使う上での注意点など教えてもらえてよかった</li>
+<li>技術的な質問などはドキュメントに書かれている以上の回答は得られなかった</li>
+<li>社内で技術的な話ができる人はいなかったので、Googleのエンジニアと同じレベル感で話せてコメントがもらえるのがよかった</li>
+<li>Googleオフィスに行くのは楽しかった ☺️</li>
+<li>ミーティングの内容自体は、今回みたいな小規模システムかつ自分で調査・検証できる人であれば必要ないと思う</li>
+</ul></li>
+<li>Googleのエンジニアによるハンズオン
+
+<ul>
+<li>弊社にきてもらって技術ハンズオンしてもらった</li>
+<li>これも社内へのアピールのため</li>
+<li>内容は要望と異なるものだった</li>
+<li>社内のエンジニアはDockerに詳しくないのでDocker/Kubernetesとはなにか、どういうメリットがあるのかが理解できる入門的な内容がいいと依頼したが、アプリケーションのDockerイメージをCloud BuildでビルドしてSpinnakerでKubernetesにデプロイするというものを短時間に書いてある手順をただこなすだけのハンズオンで、Docker/Kubernetesの理解にはつながらなかった</li>
+</ul></li>
+<li>弊社とGoogleの偉い人同士のミーティング
+
+<ul>
+<li>Googleの偉い人にきてもらって、弊社の偉い人に話をしてもらった</li>
+</ul></li>
+<li>新しい事業責任者にプロジェクトを説明
+
+<ul>
+<li>社内の話</li>
+<li>プロジェクトのゴーサインを責任者にもらうため</li>
+<li>何をするのか、なぜ必要なのかを説明</li>
+<li>ダウンタイムが発生するということも説明</li>
+</ul></li>
+<li>その他
+
+<ul>
+<li>CTO/事業責任者がいなくなってたので、ある程度偉い人にちょいちょい移行しますよ、よろしく。という話をしたりしてた</li>
+</ul></li>
+</ul>
+
+<p>率直な感想を書きましたが、最初のGoogleチームが丁寧に対応してくれていなかったらプロジェクトが開始できていなかったかもしれないので感謝しています 🙏</p>
+
+<h1 id="terraform整備">Terraform整備</h1>
+
+<p>新しいインフラの構築にはTerraformを使いました。GCPだけでなく新システムに必要なAWSやCDNのリソースもTerraform化しました。</p>
+
+<p>移行時のTerraform運用は単純で、Pull Requestを作ると<code>terraform plan</code>の結果がコメントされ、masterブランチにマージされると<code>terraform apply</code>されるというものでした。通知やコメントには<a href="https://github.com/mercari/tfnotify">mercari/tfnotify</a>を使っています。</p>
+
+<p>コード構成も単純で、アプリケーションごとにmoduleとしてディレクトリを分割していました。ここでいうアプリケーションはRailsアプリケーション、Goの広告配信アプリケーション、機械学習による記事カテゴリ分類API、といった粒度です。TerraformのWorkspaceは使わず本番環境やステージング環境のコードが重複して存在していました。</p>
+
+<p>最初期はアプリケーションごとに<code>terraform apply</code>するように実装しましたが、まだ必要無いと判断してスピードを出せるようにこのような構成にしました。Workspaceを使わなかったのも同じ理由です。</p>
+
+<p>移行後は一段落したので安全に運用できるようにTerraformのコードと運用を構築し直しました。アプリケーションごとにplan/applyできるようにして影響範囲を抑えplan結果を見やすくして高速化しました。また、Workspaceも導入して本番環境とそれ以外の環境を分離しました。</p>
+
+<h2 id="gcpのproject構成">GCPのProject構成</h2>
+
+<p>GCPでは上述のアプリケーションごとにプロジェクトを作るようにしています。そうすることで、IAMでの権限管理がしやすくなります。</p>
+
+<h1 id="kubernetesクラスタの設定">Kubernetesクラスタの設定</h1>
+
+<p>KubernetesクラスタはTerraformでデプロイしましたが、その他のクラスタに対する設定は専用のリポジトリでマニフェストYAMLを<code>kubectl apply</code>でデプロイするようにしています。Terraformで一元して管理したかったのですが当時はKubernetesプロバイダがまだ充実していませんでした。</p>
+
+<p>次のようなものをYAMLで管理しています。</p>
+
+<ul>
+<li>ClusterRole</li>
+<li>ClusterRoleBinding</li>
+<li>StorageClass</li>
+<li>PodSecurityPolicy</li>
+<li>DaemonSetとそれに関わるNamespaceやRole、Secretなど</li>
+<li>Helm関係</li>
+</ul>
+
+<p>このリポジトリもTerraformと同様に、Pull Requestでdry runしてmasterブランチにマージするとデプロイされるようにしました。</p>
+
+<h1 id="railsアプリの移行準備">Railsアプリの移行準備</h1>
+
+<p>当初はアプリケーションコードにはあまり変更を加えずにインフラ移行・アーキテクチャ刷新をするという方針でしたが、結果的にはそれなりに手を加えることになりました。</p>
+
+<p>以下の点について大きく修正しました。</p>
+
+<ul>
+<li>コンフィグ整理</li>
+<li>バグ潰し</li>
+<li>リファクタリング</li>
+<li>SMTPの廃止</li>
+<li>fluentdの廃止</li>
+<li>オブジェクトストレージ整理</li>
+</ul>
+
+<p>それぞれについて説明します。</p>
+
+<h2 id="コンフィグ整理">コンフィグ整理</h2>
+
+<p>まずはじめにコンフィグの整理をしました。これには次の2つの目的がありました。</p>
+
+<ul>
+<li>アプリケーションを知る
+
+<ul>
+<li>どのような環境依存動作があるのか</li>
+<li>どのような外部依存があるのか</li>
+<li>コンフィグ周辺の機能やドメイン、コードの把握</li>
+</ul></li>
+<li>移行中に必要となる様々な環境で動作するようにする
+
+<ul>
+<li>AWSのproduction/staging環境</li>
+<li>GCPのproduction/staging環境</li>
+<li>AWS用で今までどおり開発している開発者のローカル環境</li>
+<li>GCPの移行準備をしている開発者のローカル環境</li>
+</ul></li>
+</ul>
+
+<p>コンフィグと言っているのは主に環境ごとに異なる次のような定数のことです。また、<code>Rails.env</code>をみて動作を変えるような分岐もここでのコンフィグに含みます。</p>
+
+<ul>
+<li>各種APIキーやパスワードなどの認証情報</li>
+<li>データベースや外部サービスの接続先</li>
+<li>オブジェクトストレージのバケットやパス</li>
+<li>データベースなどのprefixや名前空間</li>
+<li>ホスト名やポート番号</li>
+<li>HTTP or HTTPS</li>
+<li>などなど</li>
+</ul>
+
+<p>それまで各種コンフィグは様々な場所に散らばっていました。</p>
+
+<ul>
+<li><code>config/application.rb</code></li>
+<li><code>config/database.yml</code></li>
+<li><code>config/environments/*.rb</code></li>
+<li><code>config/initializers/*.rb</code></li>
+<li><code>config/secrets.yml</code></li>
+<li><code>app/</code>や<code>lib/</code>の中の定数やクラス変数</li>
+</ul>
+
+<p>つまりあらゆる場所にありました。これらを次のように整理しました。</p>
+
+<ul>
+<li>コンフィグは環境変数で設定する
+
+<ul>
+<li>The Twelve-Factor App</li>
+<li>Kubernetes環境で簡単に設定可能</li>
+<li>本番環境、ステージング環境のコンフィグはKubernetesのConfigMapまたはSecretで管理する</li>
+</ul></li>
+<li>環境変数は<code>config/my_app.rb</code>で一元管理する
+
+<ul>
+<li><code>config/my_app.rb</code>を見ればすべてのコンフィグを確認できる</li>
+<li>コンフィグを抽象化するため</li>
+</ul></li>
+<li>アプリケーション側では<code>ENV['NAME']</code>のように直接環境変数を見ずに<code>MyApp.config.key</code>のようにアクセスする
+
+<ul>
+<li>アプリケーション側が直接環境変数の面倒をみなくてよくする</li>
+<li>Boolean、Hash、Arrayなどを扱える</li>
+</ul></li>
+<li>APIキーやパスワードなどの秘匿情報は暗号化してコミットする
+
+<ul>
+<li>今までは平文でコミットされていた</li>
+<li>本番環境、ステージング環境の秘匿情報はKubernetesのSecretのYAMLを暗号化してコミットしている</li>
+</ul></li>
+<li>Credentialsを導入し全環境共通の秘匿情報は<code>config/credentials.yml.enc</code>で管理する
+
+<ul>
+<li>ここでの<code>RAILS_MASTER_KEY</code>はSecretの暗号化の暗号キーとしても用いている</li>
+</ul></li>
+</ul>
+
+<p><code>MyApp.config</code>を実現するために、要件を満たして最もシンプルだった<a href="https://github.com/dry-rb/dry-configurable">dry-configurable</a>を導入しました。また、Credentialsを使うためにRailsを5.2にアップデートしました。</p>
+
+<p>環境ごとに異なる動作をするようなコードは移行で必要になる様々な環境を考慮するとif文が非常に複雑になってしまうため、<code>ENABLE_MYFUNC</code>のような環境変数を用意して分岐するようにしました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># 修正前</span>
+<span class="n">do_myfunc</span> <span class="k">if</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">production?</span>
+
+<span class="c1"># 修正後</span>
+<span class="n">do_myfunc</span> <span class="k">if</span> <span class="no">MyApp</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">enabled_myfunc?</span></code></pre></div>
+<p>今まで環境変数によるコンフィグ管理はしていなかったので、ローカル開発環境用のコンフィグは<a href="https://github.com/direnv/direnv">direnv</a>で管理して、移行が終わるまでのAWSの本番環境、ステージング環境のコンフィグは<a href="https://github.com/bkeepers/dotenv">dotenv</a>を使って<code>.env.production</code>/<code>.env.staging</code>で管理するようにしました。</p>
+
+<p>このコンフィグ整理でアプリケーションについて多くのことを知れたのと、設定が楽になり移行がスムーズにできたので最初に取り組んで正解でした。</p>
+
+<h2 id="バグ潰し">バグ潰し</h2>
+
+<p>バグ潰しをしました。それまでは常にSentryに数百のIssueが溜まっている状態だったので、GCP環境でエラーが出ても埋もれて気づかないといったことを避けるためです。</p>
+
+<p>コンフィグ整理と同じく、バグを修正することでアプリケーションを知るという目的もありました。</p>
+
+<p>ただし、こちらはあまりにも数が多く、一筋縄ではいかないようなものもあり、さらに作業中も新しいIssueがどんどん増えるのである程度減らしたところで終了しました。</p>
+
+<h2 id="リファクタリング">リファクタリング</h2>
+
+<p>前述のコンフィグ整理、バグ潰しはボーイスカウトになりきって作業しました。もう誰も知らない触らない部分も多かったので良い機会だとガツガツとリファクタリングしました。気づいたそのときにリファクタリングしないとコードはどんどん魔物化していくので重要なことです。</p>
+
+<h2 id="smtpの廃止">SMTPの廃止</h2>
+
+<p>それまではRailsからSMTPでメールを送信していましたが、GCEでは基本的にSMTPが使えないのでSendgridのAPIでメールを送信するようにしました。これについてはAWSで動作しているときに切り替えました。</p>
+
+<h2 id="fluentdの廃止">fluentdの廃止</h2>
+
+<p>旧システムではfluentdで様々なログを収集していましたが、新システムでは欲しいログは特になにもしなくてもStackdriver Loggingに集約されるので、設定の管理コストや運用コストをなくすためにfluentdを廃止することにしました。</p>
+
+<p>Railsアプリにも<a href="https://github.com/fluent/fluent-logger-ruby">fluent-logger</a>で送信しているログがあったので、これをStackdriver Loggingに直接送信するように修正しました。こんな感じです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># TODO(GCP): Remove fluentd</span>
+<span class="k">if</span> <span class="no">MyApp</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">enabled_fluentd?</span>
+  <span class="no">Fluent</span><span class="o">::</span><span class="no">Logger</span><span class="o">.</span><span class="n">post_with_time</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="k">if</span> <span class="no">MyApp</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">enabled_stackdriver?</span>
+  <span class="no">StackdriverLogger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+    <span class="no">MyApp</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">stackdriver_log_name</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="ss">timestamp</span><span class="p">:</span> <span class="n">timestamp</span><span class="o">.</span><span class="n">utc</span><span class="o">.</span><span class="n">iso8601</span><span class="p">),</span>
+  <span class="p">)</span>
+<span class="k">end</span></code></pre></div>
+<p>このとき、<a href="https://github.com/googleapis/google-cloud-ruby/tree/master/google-cloud-logging">google-cloud-logging gem</a>でStackdriver Loggingにログを送信しようとするとSegmentation faultで落ちるという問題が発生しました。結論としてはPumaのCluster Modeで<code>preload_app!</code>するとgrpcがセグフォする、というバグでした<sup class="footnote-ref" id="fnref:5"><a href="#fn:5">5</a></sup>。メモリ効率は悪くなりますがCluster Modeをやめることで対応しました。</p>
+
+<h2 id="オブジェクトストレージ整理">オブジェクトストレージ整理</h2>
+
+<p>Railsのアセットファイル、ユーザーにアップロードされたファイル、それ以外のロゴ画像などの静的ファイルはS3にアップロードして配信していました。今回のプロジェクトではせっかくダウンタイムがあるし、オブジェクトストレージも同時に移行しようということでS3からGCSに移行しました。そのとき、オブジェクトストレージまわりでこれは美しくなさすぎて見過ごせないという以下の点を見つけたので修正しました。</p>
+
+<ul>
+<li>全環境で1つのS3バケットを使っている</li>
+<li>環境のprefixがバラバラ
+
+<ul>
+<li>例えばproduction環境のファイルのprefixには<code>s3.myapp.com/web/images/p/</code>や<code>s3.myapp.com/assets/production/</code>といったものがある</li>
+</ul></li>
+<li>バケット内のprefixを見てもどういう種類のファイルかわからない
+
+<ul>
+<li>CarrierWaveでアップロードされたものなのか？誰かが直接アップロードしたものなのか？</li>
+</ul></li>
+<li>人手で直接S3にアップロードされたもの、<code>app/assets</code>にあるもの、<code>public/</code>にあるものが明確な基準がなく混在している</li>
+</ul>
+
+<p>これを新システムでは次の方針で整理しました。</p>
+
+<ul>
+<li>環境ごとにバケットはわける
+
+<ul>
+<li>s.myapp.com</li>
+<li>s.staging.myapp.com</li>
+<li>s.development.myapp.com</li>
+</ul></li>
+<li>prefixでどういう種類のファイルかわかるようにする
+
+<ul>
+<li>CarrierWaveでアップロードされたもの: <code>s.myapp.com/upload/</code></li>
+<li>そうでないもの: <code>s.myapp.com/static/</code></li>
+</ul></li>
+<li><code>s.myapp.com/static/</code>にアップロードするファイルはすべてGitで<code>public/static/</code>にコミットする</li>
+<li>assets、packsはGCSにはアップロードしない
+
+<ul>
+<li>アプリケーションサーバから配信してCDNでキャッシュする</li>
+</ul></li>
+</ul>
+
+<p>これを実現するためにはS3からGCSへのデータ転送とそれぞれのファイルのパス変更が必要になります。移行時にこの2つを一気にやろうとすると非常に時間がかかるので、移行まで日次で以下の処理を行うバッチを実行するようにしました。</p>
+
+<ul>
+<li>GCPのStorage Transfer Serviceを使ってS3からGCSの中間バケットに全ファイルを転送する</li>
+<li>prefixマッピングテーブルに従って中間バケットからGCSの各環境用バケットにファイルをコピーする
+
+<ul>
+<li>このとき各ファイルで更新時間を比較し、更新がなければコピーしない</li>
+</ul></li>
+</ul>
+
+<p>このバッチスクリプトははじめはRubyで実装していましたが、数日経っても終了しないのでGoで実装しなおしたところ数時間でおわるようになりました。</p>
+
+<p>日次で実行しても新しいprefixへのマッピングは約50M個のファイルをすべてチェックする必要があるので6時間強必要でした。S3からGCSへの1日分のファイルの転送は30分程度なので、合計7時間程度処理にかかっていました。</p>
+
+<p>実はオブジェクトストレージの移行はやるかどうかかなり悩みました。というか最初はやらないつもりでした。アプリケーションサーバはGCPでもそのままS3を使うことはできたし、汚いままGCSに移行することもできたからです。移行することで工数はガツッと増えるし、移行で気にすることが増えるため、「移行」プロジェクトとして考えたときには大きいデメリットがありました。しかし、まだ続いていくサービスとしてはやったほうがいいことは明らかでした。</p>
+
+<p>結局、ダウンタイムなしでこれを実現するにはアプリケーション側で頑張らないといけないけど頑張る人はいなくなったし、今やらないと今後永久にできないだろうということで、これ以上エンジニアのSAN値を削らずサービスを存続させるためにもこのプロジェクトでやることに決めました。男気のある良い決断だったと思います。</p>
+
+<h1 id="docker化">Docker化</h1>
+
+<p>RailsアプリについてはそれまでもDocker化しようという試みはありDockerfileは存在したのですが、CentOS 6にrvmでRubyをインストールしてNginxやらNodeやらを詰め込んでmonitを起動するというVM用のChefをそのまま移植したみたいな代物でした。さすがにそれを使うわけにはいかないので一から作り直しました。</p>
+
+<p>どのアプリケーションのDockerfileも特殊なことはせず、こんな感じになっています。</p>
+
+<ul>
+<li>Railsアプリ
+
+<ul>
+<li>Baseイメージはruby:x.x.x-slim-stretch</li>
+<li>Multi-stageビルドのビルドステージで次のことをしている
+
+<ul>
+<li><code>bundle install</code></li>
+<li><code>yarn install</code></li>
+<li><code>rake assets:precompile</code></li>
+</ul></li>
+</ul></li>
+<li>Goアプリ
+
+<ul>
+<li>Baseイメージはなし(scratch)</li>
+<li>Multi-stageビルドのビルドステージでビルド</li>
+</ul></li>
+</ul>
+
+<p>また、この2種以外にもDockerイメージはあり、すべてのDockerfileで統一したユーザを作ってそのユーザを使うようにしています。<sup class="footnote-ref" id="fnref:6"><a href="#fn:6">6</a></sup></p>
+
+<h1 id="kubernetes化">Kubernetes化</h1>
+
+<p>Dockerコンテナとして起動できるようにした後、Kubernetesで動作するようにしました。移行時は1つのクラスタに18個のNamespaceがあり、7個のアプリケーションの本番環境とステージング環境が稼働していました。アプリケーションによってKubernetesでの構成要素やデプロイ方法が多少変わりますが、ここではメインとなるRailsアプリのみ説明します。</p>
+
+<h2 id="リソース構成">リソース構成</h2>
+
+<p>Railsアプリを構成するKubernetesのリソース一覧です。</p>
+
+<ul>
+<li>Namespace
+
+<ul>
+<li>本番環境Railsアプリ</li>
+<li>ステージング環境Railsアプリ</li>
+</ul></li>
+<li>Deployment
+
+<ul>
+<li>Puma</li>
+<li>Sidekiq</li>
+<li>Memcached</li>
+<li>Console
+
+<ul>
+<li>移行時にログインして作業するため</li>
+</ul></li>
+</ul></li>
+<li>Service
+
+<ul>
+<li>Puma
+
+<ul>
+<li>Ingressを使うためNodePort</li>
+</ul></li>
+<li>Memcached
+
+<ul>
+<li>外には公開しないのでClusterIP</li>
+</ul></li>
+</ul></li>
+<li>Ingress
+
+<ul>
+<li>Puma</li>
+</ul></li>
+<li>Job
+
+<ul>
+<li>デプロイ時の<code>db:migrate</code>や初期構築時の<code>db:create</code>などのRakeタスクたち</li>
+</ul></li>
+<li>CronJob
+
+<ul>
+<li>Wheneverで管理していた定期実行のRakeタスクたち</li>
+</ul></li>
+<li>ConfigMap
+
+<ul>
+<li>Rails環境変数
+
+<ul>
+<li>環境変数でRailsアプリを設定できるようにしたのでConfigMapにすべてまとめて<code>envFrom</code>で設定している</li>
+</ul></li>
+<li>その他いろいろ</li>
+</ul></li>
+<li>Secret
+
+<ul>
+<li>Rails環境変数
+
+<ul>
+<li>ConfigMapと同じ</li>
+</ul></li>
+<li>その他いろいろ
+
+<ul>
+<li>Cloud SQL Proxyやcert-manager用のService AccountのCredentials JSONなど</li>
+</ul></li>
+</ul></li>
+<li>HorizontalPodAutoscaler
+
+<ul>
+<li>Puma</li>
+<li>Sidekiq</li>
+</ul></li>
+<li>RoleBinding
+
+<ul>
+<li>開発者
+
+<ul>
+<li>ステージング環境にadmin権限を与える</li>
+</ul></li>
+<li>運用者
+
+<ul>
+<li>本番環境にadmin権限を与える</li>
+</ul></li>
+<li>PodSecurityPolicy用
+
+<ul>
+<li>default ServiceAccountにPodSecurityPolicyのuse権限を与える</li>
+</ul></li>
+</ul></li>
+<li>LimitRange
+
+<ul>
+<li>default
+
+<ul>
+<li>意図しないkill等を防ぐため</li>
+</ul></li>
+</ul></li>
+<li>Certificate (cert-manager)
+
+<ul>
+<li>Puma Ingress用</li>
+</ul></li>
+<li>Issuer (cert-manager)</li>
+</ul>
+
+<h2 id="デプロイ方法">デプロイ方法</h2>
+
+<p>デプロイはCircleCIでデプロイ用のBashスクリプトを実行しています。ブランチモデルはgit-flowの簡易版で、featureブランチをdevelopブランチにマージしたらステージング環境にデプロイ、developブランチをmasterブランチにマージしたら本番環境にデプロイするという運用になっています。</p>
+
+<p>スクリプトはこんな感じです。Namespaceが存在しない場合は初期構築の手順が追加されますが、ここでは省略しています。</p>
+
+<ul>
+<li>gcloud等をインストール</li>
+<li>gcloud、kubectlの認証</li>
+<li>ブランチ名から適切なKubernetesのNamespaceを設定
+
+<ul>
+<li>develop -&gt; <code>export NAMESPACE=myapp-staging</code></li>
+<li>master -&gt; <code>export NAMESPACE=myapp-production</code></li>
+</ul></li>
+<li>Namespace用の変数を設定
+
+<ul>
+<li>後述する<code>--build-arg</code>やReplica数などConfigMapで設定できないもの</li>
+<li><code>source k8s/namespaces/${NAMESPACE}/config.sh</code></li>
+</ul></li>
+<li>Dockerイメージのbuild、push
+
+<ul>
+<li>このときWebpack(<code>assets:precompile</code>)用の環境変数を<code>--build-arg</code>で設定する</li>
+</ul></li>
+<li>RakeタスクでERBテンプレートからDeploymentやJobのYAMLを生成する</li>
+<li>Namespaceの各種リソースを<code>kubectl apply</code>する
+
+<ul>
+<li><code>kubectl apply -f k8s/namespaces/${NAMESPACE}/*.yaml</code></li>
+</ul></li>
+<li>NamespaceのSecretを復号してデプロイする</li>
+<li><code>db:migrate</code>のJobをapplyし、終了するまで待つ</li>
+<li>CronJobを<code>kubectl apply --prune</code>する</li>
+<li>Sidekiq、PumaのDeploymentを<code>kubectl apply</code>する</li>
+</ul>
+
+<h2 id="マニフェストyaml生成">マニフェストYAML生成</h2>
+
+<p>KubernetesのマニフェストYAMLは3種類の方法で管理しています。</p>
+
+<ul>
+<li>普通のYAML</li>
+<li>暗号化されたYAML</li>
+<li>ERBテンプレート</li>
+</ul>
+
+<p>Dockerイメージの指定が必要ないマニフェストに関しては普通にYAMLでコミットして、SecretはYAMLを暗号化してコミットしています。</p>
+
+<p>CIでDockerイメージをビルドするとき、Gitのコミットハッシュをタグに使っています。そして、デプロイではDeploymentやJobのERBテンプレートにコミットハッシュを埋め込んでYAMLを生成するRakeタスクを実行して、生成されたYAMLを<code>kubectl apply</code>しています。ERBやRakeを採用したのはRailsとの親和性が高くRails開発者が触りやすいからです。</p>
+
+<p>また、Rakeタスク実行用のJobやCronJobに関してはタスク名も埋め込めるようにしています。CronJobに関してはスケジュールとタスク名を定義する<code>config/schedule.yaml</code>というファイルから自動生成しています。<code>config/schedule.yaml</code>はRails開発者がKubernetesを意識せず気軽に変更できるため、CronJobのみ<code>kubectl apply --prune</code>で削除にも対応しています。その他のリソースは手動で削除しています。</p>
+
+<h2 id="secret管理">Secret管理</h2>
+
+<p>前述のとおりSecretは暗号化してコミットしています。そのために<a href="https://github.com/nownabe/sekret">Sekret</a>という簡単なコマンドラインツールを開発しました。<code>sekret (new|edit|show|encrypte|decrypt) foobar.yaml.enc</code>のように簡単に暗号化ファイルを扱えて、Secretのバリデーションもやってくれます。</p>
+
+<p>Railsのcredentialsで使われている<code>ActiveSupport::EncryptedFile</code>や<code>rails encrypted:edit</code>を使うことも考えましたが、以下の理由で採用を見送りました。</p>
+
+<ul>
+<li>ただYAMLを修正したいだけなのにRailsなので起動が遅い</li>
+<li>Railsが動くまで環境構築しないとYAMLを修正できない</li>
+<li>暗号化してコミットしてしまうので編集時にスキーマのバリデーションをしたいができない</li>
+</ul>
+
+<p>そんなわけで、お手軽に暗号化YAMLを扱えてスキーマチェックしてくれてCIで使いやすいワンバイナリなSekretを作りました。</p>
+
+<p>ぜひ使ってみてください(宣伝)。</p>
+
+<h2 id="railsアセット配信方法の変遷">Railsアセット配信方法の変遷</h2>
+
+<p><code>assets:precompile</code>で生成されるアセットを配信する方法は紆余曲折ありました。</p>
+
+<p>一番最初はアセットを<a href="https://github.com/AssetSync/asset_sync">asset_sync</a>でGCSにアップロードしてアプリケーションとは別ドメインで配信していました。これは旧アーキテクチャがそうなっていて、プロジェクト初期段階でとりあえずGKEで動かすためにこうしていました。細かい手順としては、CIでPuma Deploymentのapply前に<code>assets:precompile assets:sync</code>をJobとして実行し、Puma DeploymentのInit Containerでemptyボリュームに<code>manifest.json</code>をダウンロードする、という感じです。</p>
+
+<p>asset_syncによる方法は最初から変更するつもりでした。アプリケーションサーバ(Puma)の前段にもCDNがいるのでGCSにアップロードせず直接Pumaから配信して複雑性を減らしたかったからです。</p>
+
+<p>Pumaからアセットを配信するときにPumaコンテナがアセットを持っておく必要があります。その場合、いつ<code>assets:precompile</code>して、どこに持つかということが問題になります。以下のような選択肢があります。</p>
+
+<ul>
+<li>いつ<code>assets:precompile</code>するか
+
+<ul>
+<li>Pumaコンテナ起動時 (<code>bundle exec puma</code>の直前)</li>
+<li>Puma Pod起動時 (Init Container)</li>
+<li>デプロイ時</li>
+<li>Dockerイメージビルド時</li>
+</ul></li>
+<li>どこに持つか
+
+<ul>
+<li><del>オブジェクトストレージ</del></li>
+<li>外部永続ディスク</li>
+<li>その他ボリューム (<code>emptyDir</code>や<code>hostPath</code>など)</li>
+<li>起動後のコンテナ</li>
+<li>Dockerイメージ内</li>
+</ul></li>
+</ul>
+
+<p>2つ目の方法は、CIでPuma Deploymentのapply前にアセット用のRegional Persistent DiskをReadWriteOnceでマウントしたJobで<code>assets:precompile</code>を実行し、DeploymentはReadOnlyManyでそのDiskをマウントするという方法でした。この方法は</p>
+
+<ul>
+<li>Dockerイメージビルドがはやく、イメージが軽くなる</li>
+<li><code>assets:precompile</code>が1回で済む</li>
+<li>Podの起動がはやい</li>
+<li>Webpackに渡す環境変数をConfigMapやSecretで管理できる</li>
+</ul>
+
+<p>というメリットがあり、なによりGKEっぽいイケイケな感じで本来やりたい方法でした。</p>
+
+<p>ところがこの方法もあとから問題が発覚しました。ボリューム関係のエラーでPodが起動しないということが続き、調べるとRegional Persistent DiskはそもそもReadOnlyManyをサポートしておらず、レプリケーションも2つのゾーン間のみということがわかりました。完全に調査不足でした 😭</p>
+
+<p>最終的に、Dockerイメージビルド時に<code>assets:precompile</code>するという方法に落ち着きました。Podの起動時間を犠牲にせず、最もシンプルな方法ということで採用しました。</p>
+
+<p>最終的な方法ではイメージビルドが遅くなったり、イメージサイズが大きくなったり、Webpack用の環境変数がConfigMapで管理できないという課題があります。GKEにおいてそれなりのサイズのボリュームをマルチゾーンにPodで共有する方法がない<sup class="footnote-ref" id="fnref:7"><a href="#fn:7">7</a></sup>以上、アセットは各Podでそれぞれ持つしかありません。そうするとイメージに含める以外だと各PodでダウンロードするかコンパイルするかになるのでPodの起動時間が大幅に長くなってしまいます。なので、イメージサイズについては諦めています。環境変数についてはKubernetes上でkanikoなどを使ってイメージをビルドすることでConfigMapやSecretで管理できそうなのでそのうち試してみたいと考えています。</p>
+
+<p>ここに関してはまだ改善できると感じているのでいい方法を模索していきたいです。</p>
+
+<h2 id="connection-refused問題">Connection refused問題</h2>
+
+<p>デプロイしたときや、CronJobで稀にMySQLのConnection refusedエラーが発生するという問題がありました。Rails側からMySQLへリクエストするときにSidecarのCloud SQL Proxyが起動していないことが原因でした。これはPodの起動時と停止時どちらにも発生し得るので、Rails起動前にSleepを入れることと停止時にCloud SQL ProxyのpreStopでsleepすることで対応しました。</p>
+
+<h1 id="ci整備">CI整備</h1>
+
+<p>Kubernetesで動くようにした後はCIを整備しました。スムーズに移行できるように旧システムへのデプロイと並行して、developブランチでステージング環境用のNamespaceに、masterブランチで本番環境用のNamespaceにデプロイするようにしました。移行プロジェクト中盤までは通常の開発に影響しないようにKubernetesへのデプロイが失敗してもCIはパスするようにしていました。</p>
+
+<h1 id="動画変換機能のgcp対応">動画変換機能のGCP対応</h1>
+
+<p>システムの中でAWSの機能に依存していてGCPでは代替が難しいものがいくつかあり、その中でも動画変換機能がAWSとGCPをうまく連携させてKubernetesの恩恵を感じられたので紹介します。</p>
+
+<p>動画変換機能はユーザがS3にアップロードした動画をAWSのElastic Transcoderで変換してS3に保存するというものでした。Elastic Transcoderが変換後の動画を配信用S3バケットに保存してくれるのでAWSで完結していれば非常に単純な仕組みです。図にするとこんな感じです。</p>
+
+<p><img src="https://i.imgur.com/dKT0yfD.png" alt="" /></p>
+
+<ul>
+<li>ユーザがS3に動画をアップロード</li>
+<li>S3オブジェクト作成イベントをトリガーにLambda関数を実行し、Elastic Transcoderの動画変換ジョブを作成</li>
+<li>Elastic Transcoderはアップロードされた動画を変換して配信用S3バケットに保存し、終了をSNSで通知</li>
+<li>SNSから動画変換終了をHTTPSでRailsアプリに通知</li>
+<li>Railsアプリは通知を受け取ったらデータベースの動画ステータスを更新</li>
+</ul>
+
+<p>新システムでは変換後の動画をS3ではなくGCSに保存する必要があります。S3から配信することもできましたが、それまでの配信用のURLをGCPに向けるためドメインを変える必要があることや、動画だけAWSから配信されるという複雑な状況を避けるためにGCSから配信することにしました。</p>
+
+<p>次の図が新システムでのアーキテクチャです。HTTPSでRailsアプリに直接通知せず、SQS経由で動画転送アプリを通してRailsアプリに通知するようにしました。</p>
+
+<p><img src="https://i.imgur.com/fj7OAdK.png" alt="" /></p>
+
+<ul>
+<li>SNSから動画変換終了をSQSに通知</li>
+<li>SQSをポーリングしている動画転送アプリが通知を受信</li>
+<li>動画転送アプリはGCPのStorage Transfer Serviceの転送ジョブを作成し動画をGCSに転送</li>
+<li>転送が終了したらHTTPSでRailsアプリにSNS互換の通知を送信</li>
+<li>Railsアプリは通知を受け取ったらデータベースの動画ステータスを更新</li>
+</ul>
+
+<p>動画転送アプリからRailsアプリへの通知はSNS互換としました。これには2つ理由があります。1つ目はRailsアプリへの変更が不要だからです。2つ目はRailsアプリを気にせず動画変換機能単体で移行ができるからです。</p>
+
+<p><img src="https://i.imgur.com/nJzc3nG.png" alt="" /></p>
+
+<p>動画変換機能の移行作業中はこのように従来通りSNSからRailsアプリに通知を送りつつ、動画転送アプリも稼働させていました。Webhookのエンドポイントは冪等だったので、動画転送アプリがうまく動作していることが確認できたら動画転送アプリからもRailsアプリに通知を送るようにしました。そして最後にSNSからの通知を切りました。こうすることで、バツッと切替えるみたいにドキドキすることなく移行が完了しました。また、この機能はAWSで旧システムを運用している段階で移行して、本移行作業では無視できるようにしました。</p>
+
+<p>動画転送アプリは独立したアプリとしてGoで実装しました。Railsアプリに依存がなく、Railsだけでやろうとするとエンドポイントを増やしたりインフラの構成要素を増やしたりSidekiqのスレッドを長く専有したりする必要があったからです。Kubernetesを採用したことで気軽にこのような選択肢を取ることができました。</p>
+
+<h1 id="メンテナンスサーバ構築">メンテナンスサーバ構築</h1>
+
+<p>移行作業中にメンテナンスページを表示するためのメンテナンスサーバを構築しました。「もう少し待ってね」というHTMLを503で返すだけのページです。何かをトリガーにしてメンテナンスモードになるようなものではなく、あくまでも本プロジェクトの移行作業のために構築しました。</p>
+
+<p>また、それまでメンテナンスモードがなかったのでモバイルアプリには新しく503が返ってきたらメンテナンス表示がでるようにしました。</p>
+
+<h1 id="移行手順書作成">移行手順書作成</h1>
+
+<p>移行前に手順書を作成しました。手順書はMarkdownで書きGitHubのリポジトリにコミットしました。作業当日に実行した手順をチェックできるように、手順一つ一つにチェックボックスをつけるようにしました。こんな感じです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-markdown" data-lang="markdown">02 停止手順書
+===========
+
+<span class="gh"># Webサーバインスタンス停止
+</span><span class="gh"></span>
+<span class="k">* [ ]</span> myapp-webのオートスケールスケジュールを設定する
+
+aws --region us-east-1 opsworks describe-instances \
+  --layer-id ${myapp_web_layer_id} \
+  | jq -r ...
+
+<span class="k">* [ ]</span> myapp-webインスタンスを停止する
+
+aws --region us-east-1 opsworks describe-instance \
+  --layer-id ${myapp_web_layer_id} \
+  | jq -r ...</code></pre></div>
+<p>GitHubのWebだとコミットされているファイルのチェックボックスにはチェックできないので、作業当日は手順書をIssueにコピーしてチェックしていきました。Issueにしておけばコメントで作業ログも残せるし、1つの手順書が完了するとクローズできてテンションあがるのでいい方法でした。</p>
+
+<p>ファイルとしては次の6つを用意しました。</p>
+
+<ul>
+<li>準備手順書: 移行作業当日までの準備のTODO</li>
+<li>停止手順書: AWSの旧システムを停止する手順書</li>
+<li>転送手順書: MySQLやオブジェクトストレージのデータを転送する手順書</li>
+<li>起動手順書: GCPの新システムを起動する手順書</li>
+<li>起動後手順書: 新システムが起動したあと、周辺システムなどを新システムへ切替える手順書</li>
+<li>ロールバック手順書: 作業途中で問題が発生したときにAWSの旧システムを復旧させる手順書</li>
+</ul>
+
+<p>だいたいの手順はチェックボックス1つにつき1つのコマンドとなっていましたが、関連した一連のコマンドを実行して長時間待って終わったらSlackに通知、のような作業は1つのBashスクリプトにまとめたりもしました。</p>
+
+<p>また、手順書のコマンドを実行するための作業サーバを構築しました。ローカルの意図しない影響が入らないようにするためと、ネットワーク切断や電源が落ちる等のトラブルを避けるためです。作業サーバではscreenを使って作業しました。作業サーバ構築もスクリプトで自動化して、何かあったときすぐ再構築できるようにしました。</p>
+
+<h1 id="移行リハーサル">移行リハーサル</h1>
+
+<p>旧システムを停止してから新システムを起動するまで迅速に作業できるように、転送手順書、起動手順書のリハーサルを行いました。これには負荷テストやQAテストのために本番環境のリアルデータを新システムにコピーするという目的もありました。</p>
+
+<p>リハーサルでは各作業の時間を計測しながら実行し、手順書にミスがあれば修正してコミットしました。</p>
+
+<h1 id="負荷テスト">負荷テスト</h1>
+
+<p>新システムが負荷に耐えられるか確認するため負荷テストを行いました。</p>
+
+<p>今回のプロジェクトではシステムにかかる負荷が予めわかっていたので目標設定は簡単でした。</p>
+
+<ul>
+<li>シナリオは高負荷時に実際のスマホアプリから発生するリクエスト群</li>
+<li>最高負荷時の倍のリクエスト (rps) をさばける</li>
+<li>レイテンシは旧システムより良い値を維持できる</li>
+</ul>
+
+<p>負荷テストツールには<a href="https://locust.io/">Locust</a>を使いました。選定理由は以下のとおりです。</p>
+
+<ul>
+<li>上記のように目標が明らかで詳細な分析が不要だった</li>
+<li>Locust単体でWebでグラフ表示できる</li>
+<li>シナリオをXMLじゃない言語で書けてGitで管理できる</li>
+<li>分散負荷テストが可能</li>
+</ul>
+
+<p>インフラとしてはGCPにMaster 1台とSlave 5台のVMを用意しました。</p>
+
+<p>最初はクライアント数が増えるとリクエストをさばけずにコンテナが再起動してしまっていたので、コンテナ内外の仮で設定した値をチューニングしました。</p>
+
+<ul>
+<li>PumaのWorker数やThread数やメモリ制限</li>
+<li>コンテナのCPU、メモリ</li>
+<li>DeploymentのReplica数</li>
+<li>Horizontal Pod Autoscaler</li>
+</ul>
+
+<p>HPAはスパイク時にはまったく追いつかないことがわかったので、高負荷時のために予めPod数を増やしておくようにしました。</p>
+
+<p>通常なら負荷テストはもっと早い段階でやっておきたいところですが、今回はシステムの改修後に実データでやりたかったのでここで実施しました。そんなに負荷がかかるサービスでもないのでまあ大丈夫だろうと予想していて、技術調査の段階でもパフォーマンスのボトルネックになりそうなCloud SQLの負荷テストは実施していました。</p>
+
+<h1 id="qaテスト">QAテスト</h1>
+
+<p>プロジェクトの最終チェックとしてQAテストを行いました。自分は普段サービスを開発していないので、実作業は主にRailsエンジニアやアプリエンジニアなど他のエンジニアにやってもらいました。</p>
+
+<p>対応漏れや、GCP移行対応をしたあとにGCPを考慮せず追加された部分が見つかり修正しました。</p>
+
+<p>しっかりチェックしてもらい非常に助かりました。</p>
+
+<h1 id="移行作業">移行作業</h1>
+
+<p>土曜の夜から日曜の朝にかけて移行作業を行いました。業務委託で移行プロジェクトを手伝ってくれていたエンジニアと2人で作業しました。</p>
+
+<p>その週はデプロイ禁止にして、最終的な確認・調整やAWSからGCPに切替えるPull Requestを準備しました。また、作業開始から1時間程度前に集合して手順書、作業の流れ、分担を確認しました。</p>
+
+<p>23時から作業開始で最初にトラフィックをすべてメンテナンスサーバに向けるという作業があったのですが、ここでいきなりトラブルが発生しました 😱
+切り替え作業をやったにもかかわらずメンテナンスサーバが表示されずにCDNのエラーメッセージが表示されていました。そのトラブルも2つの原因が重なっていて、作業開始早々いきなりの緊急事態発生でした。本プロジェクトで最もアツかった時間でした 😤 🔥
+原因はメンテナンスサーバがHTTPSに対応できてなかったことと、Nginxの設定の不備だったので手分けして対応しました。ELBを作成しACMで証明書を取得してHTTPSに対応し、Nginxの設定は直接サーバで設定を書き換えました。すぐにメンテナンスページを表示するはずが表示まで50分ほどかかってしまいました。</p>
+
+<p>初っ端で躓いたもののそれ以降は特にトラブルもなく旧システムを停止し、仮眠などしつつデータ転送が終わるのを待ちました。</p>
+
+<p>4時半頃にMySQLのデータ転送が終了したので新システムの起動を開始しました。7時半頃にはオブジェクトストレージのデータ転送も終了し、公開作業を開始しました。</p>
+
+<p>8時頃公開作業が完了し、待機してくれていた他のエンジニアが動作確認を開始しました。その動作確認でQAテストで漏れていた問題が見つかったり、HTTPからHTTPSに統一したことによる問題が見つかりましたがすぐに修正して9時前に公式にメンテナンス終了のアナウンスをしました。</p>
+
+<p>その後諸々の確認や残タスクをこなし、15時頃に移行作業を完全に終えました。</p>
+
+<h1 id="移行後">移行後</h1>
+
+<p>移行後は大きな問題はなく運用できています。問題と言えばSidekiqのキューが詰まりスレッド数とコンテナ数を調整したぐらいです。</p>
+
+<p>インフラ費用は安くなり、デプロイのたびに心の準備をしなくてよくなり、30分から1時間かかっていたデプロイは8〜15分で終わるようになり、Rubyのバージョンアップができるようになり、同じ構成のステージング環境ができて、今の所いいことばかりです。</p>
+
+<p>移行前後の2ヶ月をPingdomで比較したところダウンタイムは30分から14分に減り、レスンポンスタイムは約500msはやくなりました。<sup class="footnote-ref" id="fnref:8"><a href="#fn:8">8</a></sup></p>
+
+<p><img src="https://i.imgur.com/GZc7vJO.png" alt="" /></p>
+
+<h1 id="良かった点と反省点">良かった点と反省点</h1>
+
+<p>良かった点は、なんと言っても移行後ほぼ問題なく運用できていることです。ただインフラを移行するだけでなくアーキテクチャやアプリケーションコードをガッツリ変更したにも関わらず、トラブルがなく運用できているのは素晴らしい成果だと思います。また、かなりスムーズに移行作業ができたのも非常に良かった点です。準備が長くて嫌にもなりましたが、しっかり準備をしたおかげですね。</p>
+
+<p>プロジェクトの進行もうまくいったと思います。1人でスケジュール管理してタスク管理していろんなリポジトリを行ったりきたりして目が回りましたが、それほど手戻りもなくスケジュールどおりに進めることができました。</p>
+
+<p>反省点ですが、そもそも1人でやるようなプロジェクトではありませんでした。移行プロジェクトにフルコミットしてくれるエンジニアを探したり、PMをお願いしたりしたほうがよかったかもしれません。時間もかかったし、やりたかったけどできてないことも多々あります。一斉退職があった時点でプロジェクトを諦めたり会社を辞めたりという選択肢もありましたが、自分にとって今までにない挑戦だしいい経験になると思いやりました。</p>
+
+<p>あと、メンテナンスサーバについては反省しかないですね 😂
+他と比べて簡単な部分だったので気が抜けていました。</p>
+
+<h1 id="今後">今後</h1>
+
+<p>まだまだやりたいことはいろいろあります。例をざっとあげるとこんな感じです。</p>
+
+<ul>
+<li>Service Mesh
+
+<ul>
+<li>すでにいくつかMicroservices的なものがあり、Envoyあったらな〜的なことがあるので何かしらやりたい</li>
+</ul></li>
+<li>分散トレーシング
+
+<ul>
+<li>すでにいくつかMicroservices的なものがあり、このエラーどこがどうなった的なことがあるのでほしい</li>
+</ul></li>
+<li>One-shotなジョブを実行する仕組み
+
+<ul>
+<li>Rakeタスクとか。今はコンテナに入って実行する感じ</li>
+</ul></li>
+<li>Horizontal Pod AutoscalerのCustom metrics利用
+
+<ul>
+<li>Sidekiqをキューに溜まってるジョブ数でスケールするとか</li>
+</ul></li>
+<li>NetworkPolicy
+
+<ul>
+<li>Namespace間で通信を制限したい</li>
+</ul></li>
+<li>ヘルスチェック用エンドポイント
+
+<ul>
+<li>今はRackが起動してるかどうかなので、ちゃんとreadiness probeできるエンドポイントがほしい</li>
+</ul></li>
+<li>監視の充実
+
+<ul>
+<li>今は最低限の監視しかないので充実させたい</li>
+</ul></li>
+<li>などなど</li>
+</ul>
+
+<h1 id="終わりに">終わりに</h1>
+
+<p>今までも新規開発でエンジニア1人というプロジェクトの経験はありましたが、6年続いている既存のシステムに関するプロジェクトでエンジニアどころかPMはおろか社内に相談相手すらおらず本当に1人で長期間走るのは(精神的に)大変でした。前半はごたごたのおかげでプロジェクト外のストレスも多かったですが、後半は週2日といえども頼りになるエンジニアが手伝ってくれたのと会社に行かずリモートワークとフレックスで様々なストレスをシャットアウトできたのがよかったんだと思います 😃 💭</p>
+
+<p>プロジェクト自体は大成功と言っても良い結果となったので良かったです。</p>
+
+<p>いろいろ知見や経験も得られたので、今後ひとつずつ何かしらの形で公開していきたいです。</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">簡単さの比較に関してはもちろん組み立て方次第なんですが、なんとなく雰囲気を感じ取っていただければ幸いです。参考: <a href="https://amsy810.hateblo.jp/entry/2019/04/03/071858">Kubernetes は辛いのか？ - @amsy810&rsquo;s Blog</a>
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:2">GKEのようなマネージドサービスの機能も含む
+ <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:3">GCPはかなりセキュリティに力を入れてるし、例えばコンテナまわりの脆弱性が発表されたときにGKEのContainer-Optimized OSの場合は対応不要ということも多かった。
+ <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
+<li id="fn:4">語り尽くせない出来事がいろいろあったりしたのですが、本筋と関係ないので泣く泣く割愛します。
+ <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
+<li id="fn:5">Googleのエンジニアにも伝え、grpc/grpcにも<a href="https://github.com/grpc/grpc/issues/16013">Issue</a>をあげたけどまだ未解決っぽい
+ <a class="footnote-return" href="#fnref:5"><sup>[return]</sup></a></li>
+<li id="fn:6">参考 <a href="https://dev.to/nownabe/secure-user-in-docker-1b5m">Secure User in Docker - DEV Community 👩‍💻👨‍💻</a>
+ <a class="footnote-return" href="#fnref:6"><sup>[return]</sup></a></li>
+<li id="fn:7">正確にはないことはないが、ないと言っていいぐらい面倒な方法しかないはず。簡単な方法があったら教えてください。
+ <a class="footnote-return" href="#fnref:7"><sup>[return]</sup></a></li>
+<li id="fn:8">あくまでもPingdomのレスンポンスタイム
+ <a class="footnote-return" href="#fnref:8"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

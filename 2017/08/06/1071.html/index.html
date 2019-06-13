@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>統計学入門  第4章 確率 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2017/08/06/1071.html/">
+  <meta property="og:title" content="統計学入門  第4章 確率 - nownab.log">
+  <meta property="og:description" content="統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 今は統計学入門。 週一で1時間程度各自でもくもくして、章末問題で同期を取ると">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="統計学入門  第4章 確率 - nownab.log">
+  <meta property="twitter:description" content="統計学入門 (基礎統計学Ⅰ) 東京大学教養学部統計学教室 東京大学出版会 今は統計学入門。 週一で1時間程度各自でもくもくして、章末問題で同期を取ると">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2017/08/06/1071.html/">統計学入門  第4章 確率</a></h1>
+    <span class="date">Posted on Aug 6, 2017</span>
+  </div>
+  <div class="body">
+    
+
+<div class="asin">
+<div class="asin-image"><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/" rel="nofollow noopener" target="_blank"><img src="http://images-jp.amazon.com/images/P/4130420658.09._SL160_.jpg" alt="統計学入門 (基礎統計学Ⅰ)" title="統計学入門 (基礎統計学Ⅰ)"></a></div>
+<div class="asin-detail">
+<p><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/" rel="nofollow noopener" target="_blank">統計学入門 (基礎統計学Ⅰ)</a></p>
+<ul>
+<li>東京大学教養学部統計学教室</li>
+<li>東京大学出版会</li>
+</ul>
+</div>
+
+<p><p></p>
+</div></p>
+
+<p>今は<a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/">統計学入門</a>。
+週一で1時間程度各自でもくもくして、章末問題で同期を取るという方法でやってみている。</p>
+
+<h1 id="今回の内容">今回の内容</h1>
+
+<h2 id="第4章-確率">第4章 確率</h2>
+
+<h3 id="4-1-ランダムネスと確率">4.1 ランダムネスと確率</h3>
+
+<ul>
+<li><strong>ランダムネス (randomness)</strong>: 何が次に起こるか確率的に予想できないこと</li>
+<li><strong>ランダムネスの法則 (law of randomness)</strong>: 確率論が扱うもの</li>
+</ul>
+
+<h3 id="4-2-標本空間と事象">4.2 標本空間と事象</h3>
+
+<ul>
+<li><strong>標本点 (sample point)</strong> $\omega$
+
+<ul>
+<li><strong>可能な結果 (possible outcomes)</strong></li>
+<li>さいころを1回投げた場合であれば、$1, 2, 3, 4, 5, 6$</li>
+</ul></li>
+<li><strong>標本空間 (sample space)</strong> $\Omega$
+
+<ul>
+<li>標本点全体の集合。全事象</li>
+<li>さいころを2回投げたときの目の標本空間は36の標本点からなる $(1, 1) (1,2) &hellip; (6, 6)$</li>
+<li>無限個の点からなる標本空間もある</li>
+</ul></li>
+<li><strong>事象 (event)</strong>
+
+<ul>
+<li>標本空間の <strong>部分集合 (subset)</strong></li>
+<li>事象 $A = \{\omega_1, \omega_2, \dots, \omega_n\}$</li>
+</ul></li>
+<li><strong>空事象 (empty event)</strong> $\phi$: 標本点を1つも含まない事象</li>
+<li><strong>根元事象 (elementary event)</strong>: ただ1つの標本点からなり分解できない事象</li>
+<li><strong>複合事象</strong>: 2つ以上の根元事象に分解可能な事象</li>
+<li><strong>順列の数 (permutation)</strong>: ${}_nP_r=\frac{n!}{(n-r)!}$</li>
+<li><strong>組み合わせの数 (combination)</strong>
+
+<ul>
+<li>${}_nC_r=\frac{n!}{r!(n-r)!}$</li>
+<li><strong>二項係数 (binomial coefficient)</strong></li>
+</ul></li>
+<li><strong>スターリングの公式 (Stirling&rsquo;s formula)</strong>: 二項係数の近似値</li>
+<li><strong>ベン図 (Venn diagram)</strong></li>
+<li><strong>和事象 (union of events)</strong>: $A\cup B$</li>
+<li><strong>積事象 (intersection of events)</strong>: $A \cap B$</li>
+<li><strong>背反事象 (disjoint events)</strong>: 事象$A$と事象$B$が共通部分を持たない場合、$A$と$B$は背反事象</li>
+<li><strong>分配法則 (distributive law)</strong>:
+
+<ul>
+<li>$(A\cup B)\cap C=(A\cap C)\cup(B\cap C)$</li>
+<li>$(A\cap B)\cup C=(A\cup C)\cap(B\cup C)$</li>
+<li>四則演算と異なり$\cup$も$\cap$も成り立つ</li>
+</ul></li>
+<li><strong>補事象 (complementary event)</strong>: 事象$A$が起らないという事象を$A$の補事象</li>
+<li><strong>ド・モルガンの法則 (de Morgan&rsquo;s law)</strong>
+
+<ul>
+<li>$(A\cup B)^c = A^c\cap B^c$</li>
+<li>$(A\cap B)^c = A^c\cup B^c$</li>
+</ul></li>
+</ul>
+
+<h3 id="4-3-確率の定義">4.3 確率の定義</h3>
+
+<ul>
+<li><strong>確率 (probability)</strong>
+
+<ul>
+<li>事象の起こりやすさを定量的に示すもの</li>
+<li>事象$A$の確率 ${\rm P}(A)$</li>
+</ul></li>
+</ul>
+
+<h4 id="4-3-1-ラプラスの定義">4.3.1 ラプラスの定義</h4>
+
+<ul>
+<li>${\rm P}(A) = \frac{R}{N}$
+
+<ul>
+<li>$N$: 試行の根元事象すべての数。<strong>同程度に確からしい (equally likely)</strong>とする</li>
+<li>$R$: 事象$A$の起こるような根元事象の数</li>
+</ul></li>
+<li><strong>理由不充分の原則 (principle of insufficient reason)</strong>
+
+<ul>
+<li>例えばさいころが、他に反対の十分な理由がない限りは1から6まで同程度の確かさで出現すると信じる</li>
+</ul></li>
+</ul>
+
+<h4 id="4-3-2-頻度による確率の定義">4.3.2 頻度による確率の定義</h4>
+
+<ul>
+<li><strong>頻度説 (frequency theory)</strong>
+
+<ul>
+<li>各標本点が同程度に確からしく起らないときにも使える</li>
+<li>$n$回試行したときに事象$A$が$n<em>A$回でるとするとき、${\rm P}(A) = \lim</em>{n \to \infty}\frac{n_A}{n}$</li>
+</ul></li>
+</ul>
+
+<h4 id="4-3-3-確率の公理主義的定義">4.3.3 確率の公理主義的定義</h4>
+
+<ul>
+<li>確率の<strong>公理主義的定義 (axiomatic definition)</strong>
+
+<ul>
+<li>すべての事象$A$に対して$0\leq {\rm P}(A) \leq 1$</li>
+<li>${\rm P}(\Omega)=1$</li>
+<li>互いに排反な事象$A_1, A_2, A_3, \dots$に対して${\rm P}(A_1\cup A_2\cup A_3\cup\dots={\rm P}(A_1)+{\rm P}(A_2)+{\rm P}(A_3)+\dots$</li>
+</ul></li>
+</ul>
+
+<h4 id="4-3-4-主観確率">4.3.4 主観確率</h4>
+
+<ul>
+<li><strong>客観説</strong>の立場 (objective view): 確率が客観的に決定される求め方</li>
+<li><strong>主観説</strong>の立場 (subjective probability)
+
+<ul>
+<li><strong>主観確率 (subjective probability)</strong>を与えて分析を行う</li>
+</ul></li>
+<li><strong>ベイズ統計学 (Bayesian statistics)</strong>: 主観説の立場で行う統計分析</li>
+</ul>
+
+<h3 id="4-4-加法定理">4.4 加法定理</h3>
+
+<ul>
+<li><strong>加法定理</strong>
+
+<ul>
+<li>${\rm P}(A\cup B)={\rm P}(A)+{\rm P}(B)-{\rm P}(A\cap B)$</li>
+<li>$A\cap B=\phi$のとき、${\rm P}(A\cup B)={\rm P}(A)+{\rm P}(B)$</li>
+</ul></li>
+</ul>
+
+<h3 id="4-5-条件付確率と独立性">4.5 条件付確率と独立性</h3>
+
+<h4 id="4-5-1-条件付確率">4.5.1 条件付確率</h4>
+
+<ul>
+<li><strong>条件付確率 (conditional probability)</strong> ${\rm P}(A|B)$
+
+<ul>
+<li>事象$B$が起こったときの事象$A$が起こる確率</li>
+<li>${\rm P}(A|B)=\frac{{\rm P}(A\cap B)}{{\rm P}(B)}$</li>
+</ul></li>
+</ul>
+
+<h4 id="4-5-2-独立性">4.5.2 独立性</h4>
+
+<ul>
+<li>${\rm P}(A)  = {\rm P}(A|B)$のとき、<strong>独立 (independent)</strong>であるという
+
+<ul>
+<li>${\rm P}(A\cap B)={\rm P}(A)\cdot {\rm P}(B)$</li>
+</ul></li>
+</ul>
+
+<h4 id="4-5-3-ベイズの定理">4.5.3 ベイズの定理</h4>
+
+<ul>
+<li><strong>ベイズの定理 (Bayes&rsquo; theorem)</strong>
+
+<ul>
+<li>$A$を得られた結果の原因$H_1, H_2, \dots, H_k$</li>
+<li>$A$が起こったとき原因が$H_i$である確率</li>
+<li>${\rm P}(H_i|A)=\frac{{\rm P}(H_i)\cdot{\rm P}(A|H_i)}{{\rm P}(A)}=\frac{{\rm P}(H_i)\cdot{\rm P}(A|H_i)}{\sum{\rm P}(H_j)\cdot{\rm P}(A|H_j)}$</li>
+<li>${\rm P}(H_i)$: $H_i$の<strong>事前確率 (prior probability)</strong></li>
+<li>${\rm P}(H_i|A)$: <strong>事後確率 (posterior probability)</strong></li>
+</ul></li>
+</ul>
+
+<h1 id="練習問題">練習問題</h1>
+
+<p><a href="https://github.com/Wondershake/ml-statistics-intro/issues/7">https://github.com/Wondershake/ml-statistics-intro/issues/7</a></p>
+
+<h1 id="所感">所感</h1>
+
+<ul>
+<li>公理をはじめて(?)認識した 😳</li>
+</ul>
+
+<h1 id="次回">次回</h1>
+
+<p>第5章 (p.87-108)</p>
+
+<p>次回から輪読形式。</p>
+
+<p><a href="https://github.com/Wondershake/ml-statistics-intro/issues/8">https://github.com/Wondershake/ml-statistics-intro/issues/8</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-math" data-lang="math"></code></pre></div>
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

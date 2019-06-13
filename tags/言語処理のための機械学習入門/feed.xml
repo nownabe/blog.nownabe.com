@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>言語処理のための機械学習入門 on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/%E8%A8%80%E8%AA%9E%E5%87%A6%E7%90%86%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E5%85%A5%E9%96%80/</link>
+    <description>Recent content in 言語処理のための機械学習入門 on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Thu, 02 Aug 2018 11:02:35 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/%E8%A8%80%E8%AA%9E%E5%87%A6%E7%90%86%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E5%85%A5%E9%96%80/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>言語処理のための機械学習入門 第22回</title>
+      <link>https://blog.nownabe.com/2018/08/02/1370.html/</link>
+      <pubDate>Thu, 02 Aug 2018 11:02:35 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/08/02/1370.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第18回 概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこ</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第18回</title>
+      <link>https://blog.nownabe.com/2018/07/05/1351.html/</link>
+      <pubDate>Thu, 05 Jul 2018 15:01:18 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/07/05/1351.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第16回 概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこ</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第16回</title>
+      <link>https://blog.nownabe.com/2018/06/21/1334.html/</link>
+      <pubDate>Tue, 19 Jun 2018 12:46:24 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/06/21/1334.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第14回 概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこ</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第14回</title>
+      <link>https://blog.nownabe.com/2018/06/06/1322.html/</link>
+      <pubDate>Wed, 06 Jun 2018 19:40:14 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/06/06/1322.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第13回 概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこ</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第13回</title>
+      <link>https://blog.nownabe.com/2018/05/30/1315.html/</link>
+      <pubDate>Wed, 30 May 2018 19:35:40 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/05/30/1315.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第11回 概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこ</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第11回</title>
+      <link>https://blog.nownabe.com/2018/05/16/1298.html/</link>
+      <pubDate>Wed, 16 May 2018 15:18:23 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/05/16/1298.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第10回 概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこ</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第10回</title>
+      <link>https://blog.nownabe.com/2018/05/16/1297.html/</link>
+      <pubDate>Wed, 16 May 2018 13:40:21 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/05/16/1297.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第9回 概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこち</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第9回</title>
+      <link>https://blog.nownabe.com/2018/04/25/1289.html/</link>
+      <pubDate>Wed, 25 Apr 2018 12:04:05 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/04/25/1289.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第8回 概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこち</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第8回</title>
+      <link>https://blog.nownabe.com/2018/04/09/1281.html/</link>
+      <pubDate>Mon, 09 Apr 2018 14:43:15 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/04/09/1281.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第7回 概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこち</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第7回</title>
+      <link>https://blog.nownabe.com/2018/04/03/1277.html/</link>
+      <pubDate>Tue, 03 Apr 2018 14:09:15 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/04/03/1277.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第4回 概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこち</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第4回</title>
+      <link>https://blog.nownabe.com/2018/03/14/1271.html/</link>
+      <pubDate>Tue, 13 Mar 2018 14:34:59 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/03/14/1271.html/</guid>
+      <description>nownab.log | 言語処理のための機械学習入門 第1回 第2回、第3回は自分の担当じゃなかったのでブログさぼりました。 概要 機械学習勉強会で輪読してる言語処理の</description>
+    </item>
+    
+    <item>
+      <title>言語処理のための機械学習入門 第1回</title>
+      <link>https://blog.nownabe.com/2018/02/21/1260.html/</link>
+      <pubDate>Mon, 19 Feb 2018 20:22:06 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/02/21/1260.html/</guid>
+      <description>概要 機械学習勉強会で輪読してる言語処理のための機械学習入門の学習メモです。 勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。 範囲</description>
+    </item>
+    
+  </channel>
+</rss>

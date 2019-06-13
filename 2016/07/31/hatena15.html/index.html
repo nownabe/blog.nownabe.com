@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>PostgreSQLの更新でRails 5が動かなくなった - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2016/07/31/hatena15.html/">
+  <meta property="og:title" content="PostgreSQLの更新でRails 5が動かなくなった - nownab.log">
+  <meta property="og:description" content="CentOS 7です。 Rails 5のアプリがある日こんなメッセージを出して動かなくなってました。 An unhandled lowlevel error occurred. The application logs may have details. puma_error.logをみてみると、">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="PostgreSQLの更新でRails 5が動かなくなった - nownab.log">
+  <meta property="twitter:description" content="CentOS 7です。 Rails 5のアプリがある日こんなメッセージを出して動かなくなってました。 An unhandled lowlevel error occurred. The application logs may have details. puma_error.logをみてみると、">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2016/07/31/hatena15.html/">PostgreSQLの更新でRails 5が動かなくなった</a></h1>
+    <span class="date">Posted on Jul 24, 2016</span>
+  </div>
+  <div class="body">
+    <p>CentOS 7です。</p>
+
+<p>Rails 5のアプリがある日こんなメッセージを出して動かなくなってました。</p>
+
+<pre><code>An unhandled lowlevel error occurred. The application logs may have details.
+</code></pre>
+
+<p><code>puma_error.log</code>をみてみると、</p>
+
+<pre><code>2016-07-24 14:42:22 +0900: Rack app error: #&lt;PG::ConnectionBad: could not connect to server: No such file or directory
+</code></pre>
+
+<p>とでていて、systemctlでstatusみてみると、</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@bots ~<span class="o">]</span><span class="c1"># systemctl status postgresql-9.6</span>
+● postgresql-9.6.service - PostgreSQL <span class="m">9</span>.6 database server
+   Loaded: loaded <span class="o">(</span>/usr/lib/systemd/system/postgresql-9.6.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset: disabled<span class="o">)</span>
+   Active: failed <span class="o">(</span>Result: exit-code<span class="o">)</span> since 日 <span class="m">2016</span>-07-24 <span class="m">14</span>:38:40 JST<span class="p">;</span> 5min ago
+ Main PID: <span class="m">33354</span> <span class="o">(</span><span class="nv">code</span><span class="o">=</span>exited, <span class="nv">status</span><span class="o">=</span><span class="m">0</span>/SUCCESS<span class="o">)</span>
+
+ 7月 <span class="m">24</span> <span class="m">14</span>:38:39 bots systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Starting PostgreSQL <span class="m">9</span>.6 database server...
+ 7月 <span class="m">24</span> <span class="m">14</span>:38:39 bots pg_ctl<span class="o">[</span><span class="m">10853</span><span class="o">]</span>: &lt; <span class="m">2016</span>-07-24 <span class="m">14</span>:38:39.049 JST &gt;FATAL:  データベースファイルがサーバと互換性がありません
+ 7月 <span class="m">24</span> <span class="m">14</span>:38:39 bots pg_ctl<span class="o">[</span><span class="m">10853</span><span class="o">]</span>: &lt; <span class="m">2016</span>-07-24 <span class="m">14</span>:38:39.049 JST &gt;詳細:  データベースクラスタはPG_CONTROL_VERSION <span class="m">942</span> で初期化されましたが、サーバは PG_CONTROL_VERSION <span class="m">960</span> でコンパイルされています。
+ 7月 <span class="m">24</span> <span class="m">14</span>:38:39 bots pg_ctl<span class="o">[</span><span class="m">10853</span><span class="o">]</span>: &lt; <span class="m">2016</span>-07-24 <span class="m">14</span>:38:39.049 JST &gt;ヒント:  initdbが必要のようです
+ 7月 <span class="m">24</span> <span class="m">14</span>:38:39 bots pg_ctl<span class="o">[</span><span class="m">10853</span><span class="o">]</span>: &lt; <span class="m">2016</span>-07-24 <span class="m">14</span>:38:39.050 JST &gt;LOG:  データベースシステムはシャットダウンしました
+ 7月 <span class="m">24</span> <span class="m">14</span>:38:40 bots systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: postgresql-9.6.service: control process exited, <span class="nv">code</span><span class="o">=</span>exited <span class="nv">status</span><span class="o">=</span><span class="m">1</span>
+ 7月 <span class="m">24</span> <span class="m">14</span>:38:40 bots systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Failed to start PostgreSQL <span class="m">9</span>.6 database server.
+ 7月 <span class="m">24</span> <span class="m">14</span>:38:40 bots systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Unit postgresql-9.6.service entered failed state.
+ 7月 <span class="m">24</span> <span class="m">14</span>:38:40 bots systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: postgresql-9.6.service failed.</code></pre></div>
+<p>とこんな感じ。
+どうやらyum-cronで更新されたらしい。</p>
+
+<p>動いてた時のやつ:</p>
+
+<pre><code>Jul 13 00:53:13 Installed: postgresql96-libs-9.6beta2-2PGDG.rhel7.x86_64
+Jul 13 00:53:19 Installed: postgresql96-9.6beta2-2PGDG.rhel7.x86_64
+Jul 13 00:53:27 Installed: postgresql96-server-9.6beta2-2PGDG.rhel7.x86_64
+Jul 13 00:53:33 Installed: libxslt-1.1.28-5.el7.x86_64
+Jul 13 00:53:33 Installed: postgresql96-contrib-9.6beta2-2PGDG.rhel7.x86_64
+Jul 13 00:53:40 Installed: postgresql96-devel-9.6beta2-2PGDG.rhel7.x86_64
+</code></pre>
+
+<p>今:</p>
+
+<pre><code>Jul 22 05:50:17 更新: postgresql96-libs.x86_64 9.6beta3-1PGDG.rhel7
+Jul 22 05:50:17 更新: postgresql96.x86_64 9.6beta3-1PGDG.rhel7
+Jul 22 05:50:17 更新: postgresql96-contrib.x86_64 9.6beta3-1PGDG.rhel7
+Jul 22 05:50:18 更新: postgresql96-server.x86_64 9.6beta3-1PGDG.rhel7
+Jul 22 05:50:18 更新: postgresql96-devel.x86_64 9.6beta3-1PGDG.rhel7
+</code></pre>
+
+<p>beta2からbeta3になってデータファイルの互換性がなくなったのか…。さすがβ版 😱</p>
+
+<p>beta3のリリースノートみたらちゃんと書いてあった。</p>
+
+<blockquote>
+<p>Due to changes in system catalogs, a pg_upgrade or dump and restore will be required for users migrating databases from earlier betas.</p>
+</blockquote>
+
+<p><a href="https://www.postgresql.org/about/news/1686/">PostgreSQL: PostgreSQL 9.6 Beta 3 Released</a></p>
+
+<p>というわけで、pg_upgradeしたら動きました。以下、そのときの手順です。</p>
+
+<p>pg_upgradeでは新旧のバイナリと旧データが必要になります。
+yum-cronで新しいバイナリしか残ってないので、古いバイナリを入手します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir /tmp/psql_migrate
+$ <span class="nb">cd</span> tmp/psql_migrate
+$ wget http://yum.postgresql.org/9.6/redhat/rhel-7.3-x86_64/postgresql96-server-9.6beta2-1PGDG.rhel7.x86_64.rpm
+
+<span class="c1"># rpmをインストールせずに展開します</span>
+$ rpm2cpio postgresql96-server-9.6beta2-1PGDG.rhel7.x86_64.rpm <span class="p">|</span> cpio -idv
+
+<span class="c1"># 古いバイナリが揃いました</span>
+$ ls /tmp/psql_migrate/usr/pgsql-9.6/bin/
+initdb  pg_controldata  pg_ctl  pg_resetxlog  postgres  postgresql96-check-db-dir  postgresql96-setup  postmaster</code></pre></div>
+<p>古いデータを別の場所に移して、新しい用のデータを初期化しておきます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo mv /var/lib/pgsql/9.6/data /var/lib/pgsql/9.6/data-beta2
+$ sudo mkdir /var/lib/pgsql/9.6/data
+$ sudo chown postgres. /var/lib/pgsql/9.6/data
+$ sudo -u postgres /usr/pgsql-9.6/bin/initdb -D /var/lib/pgsql/9.6/data</code></pre></div>
+<p>pg_upgradeを実行します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># postgresユーザでカレントディレクトリにログを吐くため移動する</span>
+$ <span class="nb">cd</span> /var/lib/pgsql/9.6
+
+<span class="c1"># 実行する</span>
+$ sudo -u postgres /usr/pgsql-9.6/bin/pg_upgrade <span class="se">\
+</span><span class="se"></span>&gt;     -b /tmp/psql_migrate/usr/pgsql-9.6/bin <span class="se">\
+</span><span class="se"></span>&gt;     -B /usr/pgsql-9.6/bin <span class="se">\
+</span><span class="se"></span>&gt;     -d /var/lib/pgsql/9.6/data-beta2 <span class="se">\
+</span><span class="se"></span>&gt;     -D /var/lib/pgsql/9.6/data
+Performing Consistency Checks
+-----------------------------
+Checking cluster versions                                   ok
+Checking database user is the install user                  ok
+Checking database connection settings                       ok
+Checking <span class="k">for</span> prepared transactions                          ok
+Checking <span class="k">for</span> reg* system OID user data types                ok
+Checking <span class="k">for</span> contrib/isn with bigint-passing mismatch       ok
+Creating dump of global objects                             ok
+Creating dump of database schemas
+                                                            ok
+Checking <span class="k">for</span> presence of required libraries                 ok
+Checking database user is the install user                  ok
+Checking <span class="k">for</span> prepared transactions                          ok
+
+If pg_upgrade fails after this point, you must re-initdb the
+new cluster before continuing.
+
+Performing Upgrade
+------------------
+Analyzing all rows in the new cluster                       ok
+Freezing all rows on the new cluster                        ok
+Deleting files from new pg_clog                             ok
+Copying old pg_clog to new server                           ok
+Setting next transaction ID and epoch <span class="k">for</span> new cluster       ok
+Deleting files from new pg_multixact/offsets                ok
+Copying old pg_multixact/offsets to new server              ok
+Deleting files from new pg_multixact/members                ok
+Copying old pg_multixact/members to new server              ok
+Setting next multixact ID and offset <span class="k">for</span> new cluster        ok
+Resetting WAL archives                                      ok
+Setting frozenxid and minmxid counters in new cluster       ok
+Restoring global objects in the new cluster                 ok
+Restoring database schemas in the new cluster
+                                                            ok
+Copying user relation files
+                                                            ok
+Setting next OID <span class="k">for</span> new cluster                            ok
+Sync data directory to disk                                 ok
+Creating script to analyze new cluster                      ok
+Creating script to delete old cluster                       ok
+
+Upgrade Complete
+----------------
+Optimizer statistics are not transferred by pg_upgrade so,
+once you start the new server, consider running:
+    ./analyze_new_cluster.sh
+
+Running this script will delete the old cluster<span class="err">&#39;</span>s data files:
+    ./delete_old_cluster.sh</code></pre></div>
+<p>pg_upgradeが作ったスクリプトを実行しろと言われるので、実行します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ systemctl start postgresql-9.6
+$ sudo -u postgres ./analyze_new_cluster.sh
+This script will generate minimal optimizer statistics rapidly
+so your system is usable, and <span class="k">then</span> gather statistics twice more
+with increasing accuracy.  When it is <span class="k">done</span>, your system will
+have the default level of optimizer statistics.
+
+If you have used ALTER TABLE to modify the statistics target <span class="k">for</span>
+any tables, you might want to remove them and restore them after
+running this script because they will delay fast statistics generation.
+
+If you would like default statistics as quickly as possible, cancel
+this script and run:
+    <span class="s2">&#34;/usr/pgsql-9.6/bin/vacuumdb&#34;</span> --all --analyze-only
+
+vacuumdb: processing database <span class="s2">&#34;postgres&#34;</span>: Generating minimal optimizer statistics <span class="o">(</span><span class="m">1</span> target<span class="o">)</span>
+vacuumdb: processing database <span class="s2">&#34;template1&#34;</span>: Generating minimal optimizer statistics <span class="o">(</span><span class="m">1</span> target<span class="o">)</span>
+vacuumdb: processing database <span class="s2">&#34;postgres&#34;</span>: Generating medium optimizer statistics <span class="o">(</span><span class="m">10</span> targets<span class="o">)</span>
+vacuumdb: processing database <span class="s2">&#34;template1&#34;</span>: Generating medium optimizer statistics <span class="o">(</span><span class="m">10</span> targets<span class="o">)</span>
+vacuumdb: processing database <span class="s2">&#34;postgres&#34;</span>: Generating default <span class="o">(</span>full<span class="o">)</span> optimizer statistics
+vacuumdb: processing database <span class="s2">&#34;template1&#34;</span>: Generating default <span class="o">(</span>full<span class="o">)</span> optimizer statistics
+
+Done</code></pre></div>
+<p>実際は自分が使ってるデータベースも対象になるはずです。</p>
+
+<p>最後に古いデータとかを削除します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo -u postgres ./delete_old_cluster.sh
+$ sudo rm analyze_new_cluster.sh delete_old_cluster.sh
+$ rm -rf /tmp/psql_migrate/</code></pre></div>
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

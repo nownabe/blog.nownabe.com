@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>Mac OS Xで逆アセンブル - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2016/08/30/420.html/">
+  <meta property="og:title" content="Mac OS Xで逆アセンブル - nownab.log">
+  <meta property="og:description" content="objdump Linuxで有名なobjdumpというツールが使えます。 objdumpは objdump - display information from object files. とありますが、逆アセンブルもしてくれます。 インストー">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="Mac OS Xで逆アセンブル - nownab.log">
+  <meta property="twitter:description" content="objdump Linuxで有名なobjdumpというツールが使えます。 objdumpは objdump - display information from object files. とありますが、逆アセンブルもしてくれます。 インストー">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2016/08/30/420.html/">Mac OS Xで逆アセンブル</a></h1>
+    <span class="date">Posted on Aug 30, 2016</span>
+  </div>
+  <div class="body">
+    
+
+<h1 id="objdump">objdump</h1>
+
+<p>Linuxで有名なobjdumpというツールが使えます。
+objdumpは</p>
+
+<pre><code>objdump - display information from object files.
+</code></pre>
+
+<p>とありますが、逆アセンブルもしてくれます。</p>
+
+<h1 id="インストール">インストール</h1>
+
+<p>Homebrewでいれます。<code>binutils</code>というパッケージに含まれています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew install binutils</code></pre></div>
+<p>コマンドは<code>gobjdump</code>になります。</p>
+
+<pre><code>$ gobjdump -v
+GNU objdump (GNU Binutils) 2.26.1
+Copyright (C) 2015 Free Software Foundation, Inc.
+This program is free software; you may redistribute it under the terms of
+the GNU General Public License version 3 or (at your option) any later version.
+This program has absolutely no warranty.
+</code></pre>
+
+<h1 id="使い方">使い方</h1>
+
+<p>適当なプログラムを作って逆アセンブルしてみます。
+ただ終了するだけのプログラムです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c:exit0.c" data-lang="c:exit0.c"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+<p>コンパイルします。<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gcc-6 exit0.c -o exit0</code></pre></div>
+<p>objdumpで逆アセンブルします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gobjdump -d -M intel exit0
+
+exit0:     ファイル形式 mach-o-x86-64
+
+
+セクション .text の逆アセンブル:
+
+0000000100000fa5 &lt;_main&gt;:
+   100000fa5:	<span class="m">55</span>                   	push   rbp
+   100000fa6:	<span class="m">48</span> <span class="m">89</span> e5             	mov    rbp,rsp
+   100000fa9:	b8 <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>       	mov    eax,0x0
+   100000fae:	5d                   	pop    rbp
+   100000faf:	c3                   	ret</code></pre></div>
+<p>いい感じですね！</p>
+
+<h1 id="c-アセンブリ">C =&gt; アセンブリ</h1>
+
+<p>Cからアセンブリに直接変換もできます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gcc -S exit0.c
+$ cat exit0.s
+	.section	__TEXT,__text,regular,pure_instructions
+	.macosx_version_min <span class="m">10</span>, <span class="m">11</span>
+	.globl	_main
+	.align	<span class="m">4</span>, 0x90
+_main:                                  <span class="c1">## @main</span>
+	.cfi_startproc
+<span class="c1">## BB#0:</span>
+	pushq	%rbp
+Ltmp0:
+	.cfi_def_cfa_offset <span class="m">16</span>
+Ltmp1:
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+Ltmp2:
+	.cfi_def_cfa_register %rbp
+	xorl	%eax, %eax
+	movl	<span class="nv">$0</span>, -4<span class="o">(</span>%rbp<span class="o">)</span>
+	popq	%rbp
+	retq
+	.cfi_endproc
+
+
+.subsections_via_symbols</code></pre></div>
+<h1 id="ソースコードに対応するアセンブリ">ソースコードに対応するアセンブリ</h1>
+
+<p>C言語のソースコードと、対応するアセンブリをわかりやすく表示することもできます。</p>
+
+<p>まずコンパイルします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gcc -c -g exit0.c</code></pre></div>
+<p><code>-c</code>はリンクしないオプション、<code>-g</code>はデバッグ情報を付与します。</p>
+
+<p><code>gobjdump</code>で表示します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gobjdump -d -S -M intel exit0.o
+exit0.o:     ファイル形式 mach-o-x86-64
+
+
+セクション .text の逆アセンブル:
+
+<span class="m">0000000000000000</span> &lt;_main&gt;:
+int main<span class="o">()</span> <span class="o">{</span>
+   <span class="m">0</span>:	<span class="m">55</span>                   	push   rbp
+   <span class="m">1</span>:	<span class="m">48</span> <span class="m">89</span> e5             	mov    rbp,rsp
+  <span class="k">return</span> <span class="m">0</span><span class="p">;</span>
+   <span class="m">4</span>:	b8 <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>       	mov    eax,0x0
+<span class="o">}</span>
+   <span class="m">9</span>:	5d                   	pop    rbp
+   a:	c3                   	ret</code></pre></div>
+<p>いい感じですね 😁</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">Macだと<code>gcc</code>が<code>clang</code>になってしまってるので、<code>gcc-6</code>というコマンドでgccを使ってます。
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

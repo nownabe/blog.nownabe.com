@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>Product updates | April 23, 2018 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2018/04/24/1288.html/">
+  <meta property="og:title" content="Product updates | April 23, 2018 - nownab.log">
+  <meta property="og:description" content="Product updates | April 23, 2018 COMPUTE QUIC with HTTPS load balancing. With this beta release, HTTPS load balancing now supports the QUIC transport in connections to clients, improving performance by providing enhanced congestion control and security. このベータリリースで, HTTPSロードバランサはクライアントとの通">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="Product updates | April 23, 2018 - nownab.log">
+  <meta property="twitter:description" content="Product updates | April 23, 2018 COMPUTE QUIC with HTTPS load balancing. With this beta release, HTTPS load balancing now supports the QUIC transport in connections to clients, improving performance by providing enhanced congestion control and security. このベータリリースで, HTTPSロードバランサはクライアントとの通">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2018/04/24/1288.html/">Product updates | April 23, 2018</a></h1>
+    <span class="date">Posted on Apr 24, 2018</span>
+  </div>
+  <div class="body">
+    
+
+<p>Product updates | April 23, 2018</p>
+
+<h1 id="compute">COMPUTE</h1>
+
+<h2 id="quic-with-https-load-balancing-https-cloud-google-com-compute-docs-load-balancing-http"><a href="https://cloud.google.com/compute/docs/load-balancing/http/">QUIC with HTTPS load balancing.</a></h2>
+
+<blockquote>
+<p>With this beta release, HTTPS load balancing now supports the QUIC transport in connections to clients, improving performance by providing enhanced congestion control and security.</p>
+
+<p>このベータリリースで, HTTPSロードバランサはクライアントとの通信にQUICプロトコルをサポートします. 強化された輻輳制御とセキュリティによりパフォーマンスが向上します.</p>
+</blockquote>
+
+<h2 id="user-defined-request-headers-https-cloud-google-com-compute-docs-load-balancing-http-backend-service"><a href="https://cloud.google.com/compute/docs/load-balancing/http/backend-service">User-defined request headers.</a></h2>
+
+<blockquote>
+<p>In this beta release, customers can now specify additional headers that the Google Cloud Load Balancer can add to requests, helping improve the client experience and simplifying backend implementation.</p>
+
+<p>このベータリリースでロードバランサは指定された追加ヘッダをリクエストに付加できるようになりました. クライアントの体験を向上させ, バックエンドの実装を単純化します.</p>
+</blockquote>
+
+<p>例を見るとはやいですが, L7LBでクライアントからのリクエストに次のようなヘッダを追加できるようです.</p>
+
+<pre><code>X-Client-Geo-Location:{client_region},{client_city}
+</code></pre>
+
+<p>ベンダーロックインされる機能ではありますがこれだけ簡単にユーザの属性取れるのは胸アツですね.
+詳しくはリンク先にあります.</p>
+
+<h2 id="creating-a-gce-vm-instance-with-an-existing-instance-template-https-cloud-google-com-compute-docs-instances-create-vm-from-instance-template"><a href="https://cloud.google.com/compute/docs/instances/create-vm-from-instance-template">Creating a GCE VM instance with an existing instance template.</a></h2>
+
+<blockquote>
+<p>With this GA release, Google Compute Engine customers can now create a VM instance based on an existing instance template with the ability to override certain instance-template fields.</p>
+
+<p>GCEで既存のインスタンステンプレートにいくらかのフィールドを上書きしてVMインスタンスを作成する機能がGAになりました.</p>
+</blockquote>
+
+<h1 id="cloud-ai">CLOUD AI</h1>
+
+<h2 id="cloud-ml-engine-xgboost-and-scikit-learn-support-https-cloud-google-com-blog-big-data-2018-04-serving-real-time-scikit-learn-and-xgboost-predictions"><a href="https://cloud.google.com/blog/big-data/2018/04/serving-real-time-scikit-learn-and-xgboost-predictions">Cloud ML Engine – XGBoost and scikit-learn support.</a></h2>
+
+<blockquote>
+<p>With this beta release, customers can <a href="https://cloud.google.com/blog/big-data/2018/04/serving-real-time-scikit-learn-and-xgboost-predictions">now serve trained scikit-learn and XGBoost models</a> on Cloud Machine Learning Engine, using its online prediction service to support scalable prediction requests against their trained models.</p>
+
+<p>ベータ機能として, scikit-learnとXGBoostの学習済みモデルをCloud Machine Learning Engineで扱うことができるようになりました. スケーラブルな予測リクエストをサポートします.</p>
+</blockquote>
+
+<p>まだ試せてませんがPickle等のモデルをGCSにアップロードするだけでscikit-learnとXGBoostの学習済みモデルによる予測APIを提供できるようになるみたいですね. これはアツい！</p>
+
+<h1 id="management-tools">MANAGEMENT TOOLS</h1>
+
+<h2 id="structured-data-from-stackdriver-logging-agent-https-cloud-google-com-logging-docs-structured-logging"><a href="https://cloud.google.com/logging/docs/structured-logging">Structured data from Stackdriver Logging agent.</a></h2>
+
+<blockquote>
+<p>Customers can now use the Stackdriver Logging agent to convert their logs to a structured JSON format for many common log types with this GA release.</p>
+
+<p>Stackdriver Loggingエージェントで一般的な多くのログ形式を構造化されたJSONに変換する機能がGAになりました.</p>
+</blockquote>
+
+<h1 id="networking">NETWORKING</h1>
+
+<h2 id="vpc-flow-logs-for-cloud-network-monitor-https-cloudplatform-googleblog-com-2018-04-introducing-vpc-flow-logs-network-transparency-in-near-real-time-html"><a href="https://cloudplatform.googleblog.com/2018/04/introducing-VPC-Flow-Logs-network-transparency-in-near-real-time.html">VPC Flow Logs for cloud network monitor.</a></h2>
+
+<blockquote>
+<p>Now in beta, <a href="https://cloudplatform.googleblog.com/2018/04/introducing-VPC-Flow-Logs-network-transparency-in-near-real-time.html">VPC Flow Logs for cloud network monitor</a> increases transparency into your network and allows you to track network flows all the way down to an individual virtual interface in near real time.</p>
+
+<p>クラウドネットワークモニターのためのVPC Flow Logsはあなたのネットワークに対し透明性を高めました. ほぼリアルタイムで個別の仮想インタフェースまでネットワークフローを追跡できます.</p>
+</blockquote>
+
+<h1 id="api-platform-amp-ecosystems">API PLATFORM &amp; ECOSYSTEMS</h1>
+
+<h2 id="apigee-compliance-with-gdpr-requirements-https-docs-apigee-com-api-platform-faq-privacy-security-settings"><a href="https://docs.apigee.com/api-platform/faq/privacy-security-settings">Apigee compliance with GDPR requirements.</a></h2>
+
+<blockquote>
+<p>Apigee Edge has been updated to comply with the EU General Data Protection Regulation, allowing customers to disable Apigee Support from being able to trace their proxy traffic, among other changes.</p>
+
+<p>Apigee EdgeはEU一般データ保護規則に従うようにアップデートされました. ユーザーはApigee Supportがプロキシトラフィックを追跡できないようにすることができます.</p>
+</blockquote>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

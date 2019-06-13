@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>RDB as a Serviceのベンチマーク - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2018/07/02/1346.html/">
+  <meta property="og:title" content="RDB as a Serviceのベンチマーク - nownab.log">
+  <meta property="og:description" content="はじめに 最近古くなったWebアプリケーションインフラの刷新プロジェクトをやっていて、AWSとGCPそれぞれのパフォーマンスが気になっていたと">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="RDB as a Serviceのベンチマーク - nownab.log">
+  <meta property="twitter:description" content="はじめに 最近古くなったWebアプリケーションインフラの刷新プロジェクトをやっていて、AWSとGCPそれぞれのパフォーマンスが気になっていたと">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2018/07/02/1346.html/">RDB as a Serviceのベンチマーク</a></h1>
+    <span class="date">Posted on Jul 2, 2018</span>
+  </div>
+  <div class="body">
+    
+
+<h1 id="はじめに">はじめに</h1>
+
+<p>最近古くなったWebアプリケーションインフラの刷新プロジェクトをやっていて、AWSとGCPそれぞれのパフォーマンスが気になっていたところにIDCFのRDBサービスがリリースされたのでベンチマークを取ってみました。</p>
+
+<p>ベンチマークしたのサービスは以下の4つで、すべてMySQL互換です。</p>
+
+<ul>
+<li><a href="https://aws.amazon.com/jp/rds/aurora/">Amazon Aurora</a></li>
+<li><a href="https://aws.amazon.com/jp/rds/">Amazon RDS</a></li>
+<li><a href="https://cloud.google.com/sql/">Cloud SQL</a></li>
+<li><a href="https://www.idcf.jp/cloud/rdb/">IDCFクラウド RDB</a></li>
+</ul>
+
+<p>ベンチマークログ、Terraformのコードは次のレポジトリにあります。</p>
+
+<p><a href="https://gitlab.com/nownabe/rdb-bench">https://gitlab.com/nownabe/rdb-bench</a></p>
+
+<h1 id="tl-dr">TL; DR</h1>
+
+<p>おおむね、</p>
+
+<p>IDCF &gt; Aurora &gt; Cloud SQL &gt; RDS</p>
+
+<p>でした。IDCFはやい。</p>
+
+<h1 id="ベンチマーク方法">ベンチマーク方法</h1>
+
+<p>ベンチマークツールはtpcc-mysqlとsysbenchを使いました。MySQLのパラメータはすべてサービスのデフォルトのままです。また、それぞれ計測は1回のみとなります。</p>
+
+<h2 id="構築">構築</h2>
+
+<p>それぞれのクラウドでRDBのインスタンスとベンチマークをかけるクライアントとなるVMインスタンスを立ち上げました。</p>
+
+<p>AWSとGCPの構築はTerraformで自動化してあります。</p>
+
+<p><a href="https://gitlab.com/nownabe/rdb-bench/tree/master/terraform">https://gitlab.com/nownabe/rdb-bench/tree/master/terraform</a></p>
+
+<h2 id="tpcc-mysql">tpcc-mysql</h2>
+
+<p><a href="https://github.com/Percona-Lab/tpcc-mysql">tpcc-mysql</a>はPerconaが提供しているベンチマークツールで、TPC-Cというベンチマーク仕様の実装です。<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></p>
+
+<p>tpcc-mysqlでは以下の設定で計測をしました。</p>
+
+<ul>
+<li>Warehouseは50, 100</li>
+<li>同時接続数は20, 40, 60, 80, 100</li>
+<li>ウォーミングアップ時間は300秒</li>
+<li>計測時間は600秒</li>
+</ul>
+
+<p><a href="https://gitlab.com/nownabe/rdb-bench/blob/master/run-tpcc.sh">https://gitlab.com/nownabe/rdb-bench/blob/master/run-tpcc.sh</a></p>
+
+<h2 id="sysbench">sysbench</h2>
+
+<p><a href="https://github.com/akopytov/sysbench">sysbench</a>はLuaスクリプトでベンチマークを定義できるベンチマークツールです。CPUやメモリなどに加えて、MySQLとPostgreSQLの性能も計測できます。</p>
+
+<p>sysbenchでは以下の設定で計測をしました。</p>
+
+<ul>
+<li>シナリオはoltp_read_write.lua</li>
+<li>Table sizeは10k, 100k, 1m</li>
+<li>Threadsは2, 4, 8, 16, 32, 64, 128, 256</li>
+<li>計測時間は300秒</li>
+</ul>
+
+<p><a href="https://gitlab.com/nownabe/rdb-bench/blob/master/run-sysbench.sh">https://gitlab.com/nownabe/rdb-bench/blob/master/run-sysbench.sh</a></p>
+
+<h1 id="結果">結果</h1>
+
+<p>細かい結果が気になる方はレポジトリにログが全部あるので見てみてください。</p>
+
+<h2 id="インスタンスタイプ">インスタンスタイプ</h2>
+
+<p>それぞれのサービスで次の表のインスタンスタイプを使いました。</p>
+
+<table>
+<thead>
+<tr>
+<th>サービス</th>
+<th>タイプ</th>
+<th>vCPU</th>
+<th>Memory</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>RDS</td>
+<td>db.r4.2xlarge</td>
+<td>8</td>
+<td>61</td>
+</tr>
+
+<tr>
+<td>Aurora</td>
+<td>db.r4.2xlarge</td>
+<td>8</td>
+<td>61</td>
+</tr>
+
+<tr>
+<td>Cloud SQL</td>
+<td>db-n1-highmem-8</td>
+<td>8</td>
+<td>52</td>
+</tr>
+
+<tr>
+<td>IDCF RDB</td>
+<td>highmem.XL64</td>
+<td>8</td>
+<td>64</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="tpcc-mysql-1">tpcc-mysql</h2>
+
+<p><img src="/images/2018/07/02/1.png" alt="tpcc-mysql-50.png (15.3 kB)" /></p>
+
+<p><img src="/images/2018/07/02/2.png" alt="tpcc-mysql-100.png (13.4 kB)" /></p>
+
+<p>RDSはデータのロードがおそすぎて待ち時間がやばかったのでWarehouse = 100は計測してません。</p>
+
+<h2 id="sysbench-1">sysbench</h2>
+
+<p><img src="/images/2018/07/02/3.png" alt="oltp_read_write-10k.png (18.3 kB)" /></p>
+
+<p><img src="/images/2018/07/02/4.png" alt="oltp_read_write-100k.png (18.8 kB)" /></p>
+
+<p><img src="/images/2018/07/02/5.png" alt="oltp_read_write-1m.png (17.4 kB)" /></p>
+
+<p>IDCFはデフォルトで<code>max_connections</code>が151だったのでThreads = 256は計測できていません。ちなみに、RDSは5100、Auroraは3000、Cloud SQLは4000でした。</p>
+
+<h1 id="まとめ">まとめ</h1>
+
+<p>IDCFめっちゃ速いですね。
+Auroraもさすがという感じで、ある程度トラフィックがあるようなサービスだとコスパ的にもわざわざAWSでRDSを選択する意味はあまりなさそうです。
+Cloud SQLは概ねRDSよりはやくて、特にデータが多くて同時接続数が多いときが得意そうです。</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">厳密ではないらしい
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

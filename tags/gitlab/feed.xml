@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gitlab on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/gitlab/</link>
+    <description>Recent content in gitlab on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Sat, 17 Feb 2018 17:01:53 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/gitlab/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Dockerイメージの公開にGitLabが最高</title>
+      <link>https://blog.nownabe.com/2018/02/17/1259.html/</link>
+      <pubDate>Sat, 17 Feb 2018 17:01:53 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/02/17/1259.html/</guid>
+      <description>Dockerイメージを公開するのにGitLabが最⭐️高だったので紹介します。GitHubとDockerHubを使うより遥かに良いです。 以前</description>
+    </item>
+    
+    <item>
+      <title>GitLabを使うぞ</title>
+      <link>https://blog.nownabe.com/2018/02/07/1252.html/</link>
+      <pubDate>Wed, 07 Feb 2018 18:23:56 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2018/02/07/1252.html/</guid>
+      <description>自分でサーバ立ててなら使ったことあったけど、SaaS版のGitLabにも登録してみた。 https://gitlab.com/nownabe GitHubのレポジトリが増えてノイズが多いなぁと感</description>
+    </item>
+    
+  </channel>
+</rss>

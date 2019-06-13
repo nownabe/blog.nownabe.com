@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>GCP updates  | August 20, 2018 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/chroma.css">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2018/08/21/1378.html/">
+  <meta property="og:title" content="GCP updates  | August 20, 2018 - nownab.log">
+  <meta property="og:description" content="うすうす感じてたんですが翻訳は意味なさそうなのでやめました。気になったものへの感想だけ。 COMPUTE Knative: GA Knative is a Kubernetes-based platform for building, deploying, and managing serverless workloads. It offers a set of middleware components for building source-centric and">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="GCP updates  | August 20, 2018 - nownab.log">
+  <meta property="twitter:description" content="うすうす感じてたんですが翻訳は意味なさそうなのでやめました。気になったものへの感想だけ。 COMPUTE Knative: GA Knative is a Kubernetes-based platform for building, deploying, and managing serverless workloads. It offers a set of middleware components for building source-centric and">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container" role="banner">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h1><a href="https://blog.nownabe.com/2018/08/21/1378.html/">GCP updates  | August 20, 2018</a></h1>
+    <span class="date">Posted on Aug 21, 2018</span>
+  </div>
+  <div class="body">
+    
+
+<p>うすうす感じてたんですが翻訳は意味なさそうなのでやめました。気になったものへの感想だけ。</p>
+
+<h1 id="compute">COMPUTE</h1>
+
+<h2 id="knative-ga">Knative: GA</h2>
+
+<blockquote>
+<p>Knative is a Kubernetes-based platform for building, deploying, and managing serverless workloads. It offers a set of middleware components for building source-centric and container-based applications that can run anywhere.
+<a href="https://cloud.google.com/knative/">Product page</a></p>
+</blockquote>
+
+<p>KnativeもうGAなんですね。GKEにアドオンとして入れるにはEarly Accessのリクエストが必要みたいです。</p>
+
+<p><a href="https://docs.google.com/forms/d/e/1FAIpQLSdG5cCIiHhkW7srw9MWvdiLEsLXwJES1R3lnKgAn-opy3_iuQ/viewform">Serverless add-on for Google Kubernetes Engine early access request</a></p>
+
+<h1 id="ai-machine-learning">AI &amp; MACHINE LEARNING</h1>
+
+<h2 id="automl-vision-beta">AutoML Vision: beta</h2>
+
+<blockquote>
+<p>AutoML Vision enables you to train machine learning models to classify your images according to your own defined labels. Train models from labeled images, evaluate their performance, then register them for serving through the AutoML API.
+<a href="https://cloud.google.com/vision/automl/docs/">Documentation</a></p>
+</blockquote>
+
+<p>まだベータだったんですね。</p>
+
+<h1 id="data-analytics">DATA ANALYTICS</h1>
+
+<h2 id="bigquery-ml-beta">BigQuery ML: beta</h2>
+
+<blockquote>
+<p>BigQuery ML enables users without a deep knowledge of machine learning to rapidly create and execute ML models using standard SQL queries and without moving data.
+<a href="https://cloud.google.com/bigquery/docs/bigqueryml-intro">Documentation</a></p>
+</blockquote>
+
+<p>これ面白いですよねー。こんな感じのクエリで機械学習モデルを学習できる機能です。評価や予測もできます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="n">MODEL</span> <span class="o">`</span><span class="n">bqml_tutorial</span><span class="p">.</span><span class="n">sample_model</span><span class="o">`</span>
+<span class="k">OPTIONS</span><span class="p">(</span><span class="n">model_type</span><span class="o">=</span><span class="s1">&#39;logistic_reg&#39;</span><span class="p">)</span> <span class="k">AS</span>
+<span class="k">SELECT</span>
+  <span class="k">IF</span><span class="p">(</span><span class="n">totals</span><span class="p">.</span><span class="n">transactions</span> <span class="k">IS</span> <span class="k">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">AS</span> <span class="n">label</span><span class="p">,</span>
+  <span class="n">IFNULL</span><span class="p">(</span><span class="n">device</span><span class="p">.</span><span class="n">operatingSystem</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">os</span><span class="p">,</span>
+  <span class="n">device</span><span class="p">.</span><span class="n">isMobile</span> <span class="k">AS</span> <span class="n">is_mobile</span><span class="p">,</span>
+  <span class="n">IFNULL</span><span class="p">(</span><span class="n">geoNetwork</span><span class="p">.</span><span class="n">country</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">country</span><span class="p">,</span>
+  <span class="n">IFNULL</span><span class="p">(</span><span class="n">totals</span><span class="p">.</span><span class="n">pageviews</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">AS</span> <span class="n">pageviews</span>
+<span class="k">FROM</span>
+  <span class="o">`</span><span class="n">bigquery</span><span class="o">-</span><span class="k">public</span><span class="o">-</span><span class="k">data</span><span class="p">.</span><span class="n">google_analytics_sample</span><span class="p">.</span><span class="n">ga_sessions_</span><span class="o">*`</span>
+<span class="k">WHERE</span>
+  <span class="n">_TABLE_SUFFIX</span> <span class="k">BETWEEN</span> <span class="s1">&#39;20160801&#39;</span> <span class="k">AND</span> <span class="s1">&#39;20170630&#39;</span></code></pre></div>
+<p>今は線形回帰と2値ロジスティック回帰だけみたいですが、いろいろできること増えそう。</p>
+
+<h1 id="developer-tools">DEVELOPER TOOLS</h1>
+
+<h2 id="cloud-build-ga">Cloud Build: GA</h2>
+
+<blockquote>
+<p>Cloud Build (formerly Container Builder) lets you quickly build software using any language. Users can define custom workflows to build, test, and deploy across multiple environments, including VM instances, serverless, Kubernetes, and Firebase.
+<a href="https://cloud.google.com/cloud-build/">Product page</a></p>
+</blockquote>
+
+<p>最近力いれてる感ありますね。CircleCIがめんどくさいので乗り換えようか検討中です。</p>
+
+<hr />
+
+<h1 id="compute-1">COMPUTE</h1>
+
+<h2 id="compute-engine-n1-megamem-96-machine-type-ga">Compute Engine n1-megamem-96 machine type: GA</h2>
+
+<blockquote>
+<p>The n1-megamem-96, a memory-optimized, predefined machine type with 96 vCPUs and 1.4 TB of system memory, is now available for in-memory databases and in-memory analytics tasks, like SAP Hana workloads, genomics analysis, and SQL analysis services.
+<a href="https://cloud.google.com/compute/docs/machine-types#megamem">Documentation</a></p>
+</blockquote>
+
+<p>名前がいいですよね。メガメム。Memory-optimizedなマシンタイプでもうひとつultramemってのがあるけど命名が気になる。。。</p>
+
+<h2 id="shielded-vm-beta">Shielded VM: beta</h2>
+
+<blockquote>
+<p>Through the use of Secure Boot, Measured Boot, and integrity monitoring, Shielded VM offers verifiable integrity of your Compute Engine VM instances to ensure they haven’t been compromised by boot- or kernel-level malware or rootkits.
+<a href="https://cloud.google.com/security/shielded-cloud/shielded-vm">Documentation</a> | <a href="https://cloud.google.com/blog/products/gcp/security-in-plaintext-use-shielded-vms-to-harden-your-gcp-workloads">Blog</a></p>
+</blockquote>
+
+<p>ブート前にチェックしてくれるのは気が利いてますね。VM作成時にShieldedにできるみたいです。</p>
+
+<h2 id="cloud-tpu-support-in-kubernetes-engine-beta">Cloud TPU support in Kubernetes Engine: beta</h2>
+
+<blockquote>
+<p>TPUs are hardware accelerators for machine learning that increase the speed and reduce the cost of training and running advanced machine learning models. This release provides support for Cloud TPU nodes in Kubernetes Engine.
+<a href="https://cloud.google.com/kubernetes-engine/docs/concepts/tpus">Documentation</a></p>
+</blockquote>
+
+<p>これだけで使えるようになるって書いてあるけど、それは便利だ。(試してない)</p>
+
+<pre><code>kind: Pod
+spec:
+  containers:
+  - name: example-container
+    resources:
+      limits:
+        cloud-tpus.google.com/v2: 8
+</code></pre>
+
+<h2 id="node-js-8-and-python-3-support-on-cloud-functions-beta">Node.js 8 and Python 3 support on Cloud Functions: beta</h2>
+
+<blockquote>
+<p>Cloud Functions has added support for the Node.js 8 and Python 3 runtimes.
+<a href="https://cloud.google.com/functions/docs/concepts/nodejs-8-runtime">Node.js 8</a> | <a href="https://cloud.google.com/functions/docs/concepts/python-runtime">Python 3</a></p>
+</blockquote>
+
+<p>うおーーー 🎉
+Goも頼む。</p>
+
+<h2 id="regional-managed-instance-groups-zone-selection-ga">Regional managed instance groups zone selection: GA</h2>
+
+<blockquote>
+<p>Zone selection lets you select specific zones instead of the default three-zone configuration. This can be helpful when you need products that are available only in certain zones – such as GPUs and persistent disks – or you want to select zones for VM instances.
+<a href="https://cloud.google.com/compute/docs/instance-groups/distributing-instances-with-regional-instance-groups#selectingzones">Documentation</a></p>
+</blockquote>
+
+<h1 id="identity-security">IDENTITY &amp; SECURITY</h1>
+
+<h2 id="organization-onboarding-beta">Organization onboarding: beta</h2>
+
+<blockquote>
+<p>The Organization setup wizard provides simple tools that help you take control and manage your resources centrally. You can delegate administrative and critical Cloud Identity and Access Management roles, and import existing projects and billing accounts into your organization.
+<a href="https://cloud.google.com/resource-manager/docs/organization-setup">Documentation</a></p>
+</blockquote>
+
+<h1 id="databases">DATABASES</h1>
+
+<h2 id="replication-for-cloud-bigtable-ga">Replication for Cloud Bigtable: GA</h2>
+
+<blockquote>
+<p>Regional replication for Cloud Bigtable increases the availability and durability of your data by continuously replicating it between two clusters in the same region. It also allows you to isolate workloads by routing different types of requests to different clusters.
+<a href="https://cloud.google.com/bigtable/docs/replication-overview">Documentation</a></p>
+</blockquote>
+
+<p>Datastoreとかはどうなってんだろ 🤔</p>
+
+<h1 id="networking">NETWORKING</h1>
+
+<h2 id="listing-available-subnets-in-shared-vpc-ga">Listing available subnets in Shared VPC: GA</h2>
+
+<blockquote>
+<p>This launch enables Service Project Admins to list the subnetworks on which they have permission to create VM instances in Shared VPC.
+<a href="https://cloud.google.com/vpc/docs/provisioning-shared-vpc">Documentation</a></p>
+</blockquote>
+
+<h1 id="data-analytics-1">DATA ANALYTICS</h1>
+
+<h2 id="bigquery-data-definition-language-ga">BigQuery data definition language: GA</h2>
+
+<blockquote>
+<p>Data definition language statements in BigQuery enable you to create, modify, and drop tables and views using standard SQL query syntax.
+<a href="https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language">Documentation</a></p>
+</blockquote>
+
+<p>便利ですねこれ。</p>
+
+<h1 id="api-management">API MANAGEMENT</h1>
+
+<h2 id="apigee-edge-extensions-support-beta">Apigee Edge extensions support: beta</h2>
+
+<blockquote>
+<p>Apigee Edge now supports extensions, which allow API proxies to securely connect with cloud services, including Google Cloud Platform services like Cloud Storage, Cloud Data Loss Prevention API, and so on.
+<a href="https://docs.apigee.com/api-platform/extensions/extensions-overview">Overview</a> | <a href="https://docs.apigee.com/api-platform/tutorials/adding-and-using-an-extension">Tutorial</a></p>
+</blockquote>
+
+<h2 id="apigee-api-management-for-istio-ga">Apigee API Management for Istio: GA</h2>
+
+<blockquote>
+<p>You can now expose microservices as APIs and more easily share them with developers inside and outside your organization, thanks to the integration of Apigee API Management for Istio.
+<a href="https://apigee.com/about/blog/api-technology/introducing-apigee-api-management-istio">Blog</a></p>
+</blockquote>
+
+<p>Google CloudにおけるApigeeの立ち位置がよくわかってない。</p>
+
+<h1 id="ai-machine-learning-1">AI &amp; MACHINE LEARNING</h1>
+
+<h2 id="cloud-ml-engine-support-for-scikit-learn-and-xgboost-beta">Cloud ML Engine support for scikit-learn and XGBoost: beta</h2>
+
+<p>Cloud Machine Learning Engine has added support for training and serving scikit-learn and XGBoost models. Now you can click to deploy a model that you’ve trained locally, on premises, or on other cloud services, and generate predictions using managed resources on GCP.
+&gt; <a href="https://cloud.google.com/ml-engine/docs/scikit/getting-started-training">Documentation</a></p>
+
+<p>GCP内でフルマネージドで完結するってのはありがたいですよね。</p>
+
+<h2 id="automl-translation-beta">AutoML Translation: beta</h2>
+
+<blockquote>
+<p>AutoML Translation enables you to create custom translation models that return translation query results specific to your domain. Features include support for 18 languages, an API for training online custom models, and a new UI.
+<a href="https://cloud.google.com/translate/automl/docs/">Documentation</a></p>
+</blockquote>
+
+<p>Translationもあったんですね。単純な対訳コーパスを食わせればいいみたい。</p>
+
+<h2 id="cloud-talent-solution-ga">Cloud Talent Solution: GA</h2>
+
+<blockquote>
+<p>Cloud Talent Solution enables you to store, search, and manage job, company, and candidate profile data. It uses machine learning and standard keyword-based methods to detect and infer matches from data – such as skills, seniority, and industry – to yield better results.
+<a href="https://cloud.google.com/solutions/talent-solution/">Documentation</a></p>
+</blockquote>
+
+<p>これもGCPなのか…？</p>
+
+<h1 id="management-tools">MANAGEMENT TOOLS</h1>
+
+<h2 id="cloud-billing-adds-hong-kong-dollars-ga">Cloud Billing adds Hong Kong dollars: GA</h2>
+
+<blockquote>
+<p>Hong Kong dollars have been added to our list of local currencies available for billing and payments. Google converts prices into applicable local currency according to the conversion rates published by leading financial institutions.
+<a href="https://cloud.google.com/billing/docs/resources/currency">Documentation</a></p>
+</blockquote>
+
+<h1 id="developer-tools-1">DEVELOPER TOOLS</h1>
+
+<h2 id="go-cloud-project">Go Cloud project</h2>
+
+<blockquote>
+<p>With Go Cloud you can write simple, reliable, and efficient multi-cloud and hybrid-cloud applications and libraries, and choose between cloud, on-premises, or custom providers. AWS and GCP are supported out of the box and other platforms are being added.
+<a href="https://github.com/google/go-cloud">Documentation</a> | <a href="https://blog.golang.org/go-cloud">Blog</a></p>
+</blockquote>
+
+<p>Go版のfog的なやつ？Googleから出てるってのが面白いですね。</p>
+
+<h2 id="new-ui-for-cloud-source-repositories-beta">New UI for Cloud Source Repositories: beta</h2>
+
+<blockquote>
+<p>Cloud Source Repositories, fully featured, private Git repositories hosted on GCP, now have a new interface that includes a personalized landing page and robust code search.
+<a href="https://source.cloud.google.com/onboarding/welcome">Product page</a></p>
+</blockquote>
+
+<p>確かに使いやすくなってるけど、まだ積極的に使おうとは思わないですねー。</p>
+
+  </div>
+  <div class="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root">
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</body>
+</html>

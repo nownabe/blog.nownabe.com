@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>postgresql on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/postgresql/</link>
+    <description>Recent content in postgresql on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Sun, 24 Jul 2016 15:31:39 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/postgresql/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PostgreSQLの更新でRails 5が動かなくなった</title>
+      <link>https://blog.nownabe.com/2016/07/31/hatena15.html/</link>
+      <pubDate>Sun, 24 Jul 2016 15:31:39 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2016/07/31/hatena15.html/</guid>
+      <description>CentOS 7です。 Rails 5のアプリがある日こんなメッセージを出して動かなくなってました。 An unhandled lowlevel error occurred. The application logs may have details. puma_error.logをみてみると、</description>
+    </item>
+    
+  </channel>
+</rss>
