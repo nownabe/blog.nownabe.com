@@ -4,14 +4,24 @@ set -eu
 
 . .envrc
 
+git_name=$(git config --get user.name)
+git_email=$(git config --get user.email)
+
 git clone \
   --depth 1 \
   --branch ${GHPAGES_BRANCH} \
   https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY} \
   public
 
+
 hugo -t ${TEMPLATE}
+
 cd public
+
+git config user.name ${git_name}
+git config user.email ${git_email}
+
 git add .
-git commit -m "Automated build at `date --iso-8601=seconds`"
+git commit -m "Automated build at `date -Iseconds`"
+
 git push
