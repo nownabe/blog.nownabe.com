@@ -4,8 +4,8 @@ set -eu
 
 . .envrc
 
-git_name=$(git config --get user.name)
-git_email=$(git config --get user.email)
+git_name=$(git log -1 --pretty=format:"%cn")
+git_email=$(git log -1 --pretty=format:"%ce")
 
 git clone \
   --depth 1 \
@@ -22,6 +22,6 @@ git config user.name ${git_name}
 git config user.email ${git_email}
 
 git add .
-git commit -m "Automated build at `date -Iseconds`"
+git commit --allow-empty -m "Automated build at `date -Iseconds`"
 
 git push
