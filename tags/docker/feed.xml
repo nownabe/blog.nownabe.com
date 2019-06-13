@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>docker on nownab.log</title>
+    <title>Docker on nownab.log</title>
     <link>https://blog.nownabe.com/tags/docker/</link>
-    <description>Recent content in docker on nownab.log</description>
+    <description>Recent content in Docker on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <lastBuildDate>Tue, 21 May 2019 00:00:00 +0900</lastBuildDate>
