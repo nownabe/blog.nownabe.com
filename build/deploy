@@ -10,7 +10,7 @@ git_email=$(git log -1 --pretty=format:"%ce")
 git clone \
   --depth 1 \
   --branch ${GHPAGES_BRANCH} \
-  https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY} \
+  https://${PERSONAL_GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY} \
   public
 
 
