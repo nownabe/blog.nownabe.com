@@ -1,5 +1,10 @@
 workflow "Build or Deploy" {
-  resolves = ["Build", "Deploy"]
+  resolves = ["Build"]
+  on = "push"
+}
+
+workflow "Deploy" {
+  resolves = ["Deploy"]
   on = "push"
 }
 
