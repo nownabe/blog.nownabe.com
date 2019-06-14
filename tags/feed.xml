@@ -6,10 +6,37 @@
     <description>Recent content in Tags on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Wed, 29 May 2019 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 14 Jun 2019 22:45:14 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/tags/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>hugo</title>
+      <link>https://blog.nownabe.com/tags/hugo/</link>
+      <pubDate>Fri, 14 Jun 2019 22:45:14 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>middleman</title>
+      <link>https://blog.nownabe.com/tags/middleman/</link>
+      <pubDate>Fri, 14 Jun 2019 22:45:14 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/middleman/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>static site generator</title>
+      <link>https://blog.nownabe.com/tags/static-site-generator/</link>
+      <pubDate>Fri, 14 Jun 2019 22:45:14 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/static-site-generator/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>GCP</title>
@@ -75,7 +102,7 @@
     </item>
     
     <item>
-      <title>GitHub</title>
+      <title>github</title>
       <link>https://blog.nownabe.com/tags/github/</link>
       <pubDate>Tue, 08 Jan 2019 10:22:02 +0900</pubDate>
       
@@ -521,15 +548,6 @@
       <pubDate>Sun, 12 Mar 2017 16:52:36 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/tags/esa/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>middleman</title>
-      <link>https://blog.nownabe.com/tags/middleman/</link>
-      <pubDate>Sun, 12 Mar 2017 16:52:36 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/middleman/</guid>
       <description></description>
     </item>
     

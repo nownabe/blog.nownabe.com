@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>2019s on nownab.log</title>
-    <link>https://blog.nownabe.com/2019/</link>
-    <description>Recent content in 2019s on nownab.log</description>
+    <title>hugo on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/hugo/</link>
+    <description>Recent content in hugo on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <lastBuildDate>Fri, 14 Jun 2019 22:45:14 +0900</lastBuildDate>
     
-	<atom:link href="https://blog.nownabe.com/2019/feed.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.nownabe.com/tags/hugo/feed.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -32,51 +32,6 @@ GitHub Actionsは初めて使ったんですが、シンプルでいいですね
 おわりに MiddlemanからHugoに変わって依存関係がなくなったし変なパッチもなくなったしビルドは早くなったしシンタックスもハイライトされて万々歳です。 スッキリしました。
 ビルドの遅さやパッチうんぬんはMiddlemanのせいではなくて自分の使い方が悪かったせいなんですけどね 😅
 esaをやめるときにもスクリプトでいろいろ変換してて移行しやすくなってたのもあってスムーズに移行できてよかったです ✨</description>
-    </item>
-    
-    <item>
-      <title>GCP Updates | May 28, 2019</title>
-      <link>https://blog.nownabe.com/2019/05/29/gcp-product-updates-may-28-2019.html/</link>
-      <pubDate>Wed, 29 May 2019 00:00:00 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/2019/05/29/gcp-product-updates-may-28-2019.html/</guid>
-      <description>再開しました。 HYBRID &amp;amp; MULTI-CLOUD Anthos Config Management: GA Manage configuration and enforce policy across your clusters – whether they’re on-premises or in the cloud. Set a declarative configuration for role-based access controls, resource quotas, and Namespaces – all from a single place. Documentation | Blog GitOpsみたいなことが</description>
-    </item>
-    
-    <item>
-      <title>よくしらんRailsアプリとかをAWSのレガシーシステムからGCPのイケイケシステムに移行した話</title>
-      <link>https://blog.nownabe.com/2019/05/21/migration-to-gcp.html/</link>
-      <pubDate>Tue, 21 May 2019 00:00:00 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/2019/05/21/migration-to-gcp.html/</guid>
-      <description>はじめに Railsアプリケーションを中心とするシステムをAWSからGCPに移行しました。本記事ではその過程をできるだけ赤裸々に公開します。 本</description>
-    </item>
-    
-    <item>
-      <title>GCP updates  | January 7, 2019</title>
-      <link>https://blog.nownabe.com/2019/01/15/1450.html/</link>
-      <pubDate>Tue, 15 Jan 2019 13:38:23 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/2019/01/15/1450.html/</guid>
-      <description>MANAGEMENT TOOLS Istio on Kubernetes Engine: beta Get one-click Istio deployment on Kubernetes Engine – or add Istio to an existing Kubernetes Engine cluster. Quickly create all the components you need to run an open-source service mesh to connect, manage, and secure microservices in a uniform way. Documentation GKEにマネージドのIstioをデプロイでき</description>
-    </item>
-    
-    <item>
-      <title>2019年の抱負</title>
-      <link>https://blog.nownabe.com/2019/01/14/1449.html/</link>
-      <pubDate>Mon, 14 Jan 2019 12:09:28 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/2019/01/14/1449.html/</guid>
-      <description>いまさら感ありますが、三連休でふと気が向いたので書きます。 2018年 2018年は総合すると良い一年ではありませんでした。いろいろあってだいぶ</description>
-    </item>
-    
-    <item>
-      <title>GitHubの有料プランを解約した</title>
-      <link>https://blog.nownabe.com/2019/01/08/1448.html/</link>
-      <pubDate>Tue, 08 Jan 2019 10:22:02 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/2019/01/08/1448.html/</guid>
-      <description>GitHubのプランが刷新されて無料で無制限のプライベートレポジトリが使えるようになりましたね 🎉 というわけでGitHubの有料プランを解約し</description>
     </item>
     
   </channel>

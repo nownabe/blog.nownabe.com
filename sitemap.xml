@@ -4,8 +4,43 @@
   
   <url>
     <loc>https://blog.nownabe.com/2019/</loc>
-    <lastmod>2019-05-29T00:00:00+09:00</lastmod>
+    <lastmod>2019-06-14T22:45:14+09:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/</loc>
+    <lastmod>2019-06-14T22:45:14+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/hugo/</loc>
+    <lastmod>2019-06-14T22:45:14+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/middleman/</loc>
+    <lastmod>2019-06-14T22:45:14+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/</loc>
+    <lastmod>2019-06-14T22:45:14+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/static-site-generator/</loc>
+    <lastmod>2019-06-14T22:45:14+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/2019/06/14/migrate-blog-from-middleman-to-hugo/</loc>
+    <lastmod>2019-06-14T22:45:14+09:00</lastmod>
   </url>
   
   <url>
@@ -23,18 +58,6 @@
   <url>
     <loc>https://blog.nownabe.com/2019/05/29/gcp-product-updates-may-28-2019.html/</loc>
     <lastmod>2019-05-29T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/tags/</loc>
-    <lastmod>2019-05-29T00:00:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/</loc>
-    <lastmod>2019-05-29T00:00:00+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -83,14 +106,14 @@
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/tags/github/</loc>
+    <loc>https://blog.nownabe.com/2019/01/08/1448.html/</loc>
     <lastmod>2019-01-08T10:39:37+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/2019/01/08/1448.html/</loc>
+    <loc>https://blog.nownabe.com/tags/github/</loc>
     <lastmod>2019-01-08T10:39:37+09:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -970,12 +993,6 @@
   
   <url>
     <loc>https://blog.nownabe.com/tags/esa/</loc>
-    <lastmod>2017-08-04T19:07:23+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/tags/middleman/</loc>
     <lastmod>2017-08-04T19:07:23+09:00</lastmod>
     <priority>0</priority>
   </url>
