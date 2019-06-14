@@ -58,7 +58,7 @@ Go製のジェネレータで特に問題がなかったからです。
 # デプロイ
 
 ついでにCI/CDをWerckerからGitHub Actionsに変えました。
-Werckerもいろいろ変わったけどOracleに買収されてて追随する気はないし、GitHubで完結してれば一番うれしいのでActionsを使うことにしました。
+Werckerもいろいろ変わったけどOracleに買収されてて追従する気はないし、GitHubで完結してれば一番うれしいのでActionsを使うことにしました。
 
 GitHub Actionsは初めて使ったんですが、シンプルでいいですね。
 
