@@ -10,7 +10,6 @@ category: Tech
 
 created_at: 2015-05-21 00:47:50
 updated_at: 2015-05-21 00:47:50
-published: true
 ---
 
 # はじめに

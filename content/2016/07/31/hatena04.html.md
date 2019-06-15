@@ -10,7 +10,6 @@ category: Diary
 tags:
 created_at: 2015-03-08 02:02:14 +0900
 updated_at: 2015-03-08 02:02:14 +0900
-published: true
 ---
 
 ついこないだまでOSS活動にあんまり興味がなかった。

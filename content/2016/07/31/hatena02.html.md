@@ -10,7 +10,6 @@ category: Diary
 
 created_at: 2015-03-01 19:10:15 +0900
 updated_at: 2015-03-01 19:10:15 +0900
-published: true
 ---
 
 # 経緯

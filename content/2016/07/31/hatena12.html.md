@@ -10,7 +10,6 @@ category: Diary
 
 created_at: 2016-05-24 00:36:44 +0900
 updated_at: 2016-05-24 00:36:44 +0900
-published: true
 ---
 
 [tokyo.ex](http://beam-lang.connpass.com/event/30513/)に参加してきました。Elixir初心者なので全部の話が面白かった 🤗

@@ -10,7 +10,6 @@ category: Tech
 
 created_at: 2015-03-07 02:15:01 +0900
 updated_at: 2015-03-07 02:15:01 +0900
-published: true
 ---
 
 今までRailsとかその他諸々のアプリケーションで、定数の管理に[Settingslogic](https://github.com/settingslogic/settingslogic)を使ってました。

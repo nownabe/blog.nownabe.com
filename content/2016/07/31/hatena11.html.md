@@ -10,7 +10,6 @@ category: Diary
 
 created_at: 2015-08-31 01:11:48 +0900
 updated_at: 2015-08-31 01:11:48 +0900
-published: true
 ---
 
 Gem in a Box冗長化の情報があんまりない気がしたのでQiitaに記事を書きました。

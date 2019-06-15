@@ -10,7 +10,6 @@ category: Diary
 
 created_at: 2015-08-09 00:21:18 +0900
 updated_at: 2015-08-09 00:21:18 +0900
-published: true
 ---
 
 ![Lチカ](/images/articles/hatena09/01.jpg)

@@ -9,7 +9,6 @@ title: GCP Updates | May 28, 2019
 
 created_at: 2019-05-29 00:00:00 +0900
 updated_at: 2019-05-29 00:00:00 +0900
-published: true
 ---
 
 再開しました。

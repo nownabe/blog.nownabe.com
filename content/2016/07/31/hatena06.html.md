@@ -10,7 +10,6 @@ category: Diary
 
 created_at: 2015-04-19 23:55:16 +0900
 updated_at: 2015-04-19 23:55:16 +0900
-published: true
 ---
 
 見事に三日坊主になってしまってました。

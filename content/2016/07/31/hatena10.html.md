@@ -10,7 +10,6 @@ category: Tech
 
 created_at: 2015-08-10 23:46:12 +0900
 updated_at: 2015-08-10 23:46:12 +0900
-published: true
 ---
 
 ネームサーバーをお名前.comからIDCF DNSに移行しました。

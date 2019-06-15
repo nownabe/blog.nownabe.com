@@ -10,7 +10,6 @@ category: Diary
 
 created_at: 2016-07-26 23:57:51 +0900
 updated_at: 2016-07-26 23:57:51 +0900
-published: true
 ---
 
 github pagesでblogを公開しようと思ってゆるりと構築中なんですが、静的ジェネレータとして[Middleman](https://middlemanapp.com/)を使うことにしました。

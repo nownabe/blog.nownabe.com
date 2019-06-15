@@ -10,7 +10,6 @@ category: Diary
 
 created_at: 2015-03-14 04:04:43 +0900
 updated_at: 2015-03-14 04:04:43 +0900
-published: true
 ---
 
 ![01](/images/articles/hatena05/01.png)
