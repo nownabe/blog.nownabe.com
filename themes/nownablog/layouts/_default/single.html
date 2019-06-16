@@ -1,7 +1,7 @@
 {{ define "main" }}
 <article>
   <div class="title">
-    <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
+    <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
     <span class="date">Posted on {{ dateFormat "Jan 2, 2006" .Date }}</span>
   </div>
   <div class="body">
@@ -28,4 +28,22 @@
     </ul>
   </div>
 </article>
+{{ end }}
+
+{{ define "footer" }}
+
+<div id="footer-navigation">
+  <div id="next-prev">
+    <div>
+      {{- if .PrevInSection -}}
+      <a href="{{ .PrevInSection.Permalink }}">&lt; {{ .PrevInSection.Title }}</a>
+      {{- end -}}
+    </div>
+    <div>
+      {{- if .NextInSection -}}
+      <a href="{{ .NextInSection.Permalink }}">{{ .NextInSection.Title }} &gt;</a>
+      {{- end -}}
+    </div>
+  </div>
+</div>
 {{ end }}
