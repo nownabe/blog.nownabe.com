@@ -291,6 +291,24 @@ article .sns-buttons {
 }
 
 
+/* footer navigation */
+
+#footer-navigation {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+
+#footer-navigation a {
+  color: #3c4a60;
+}
+
+#footer-navigation #next-prev {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
 /* Footer Styles */
 #footer-container {
   margin-bottom: 5rem; }
