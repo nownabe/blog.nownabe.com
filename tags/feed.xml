@@ -6,10 +6,46 @@
     <description>Recent content in Tags on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Fri, 14 Jun 2019 22:45:14 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 15 Jun 2019 19:27:08 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/tags/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Docker</title>
+      <link>https://blog.nownabe.com/tags/docker/</link>
+      <pubDate>Sat, 15 Jun 2019 19:27:08 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>https://blog.nownabe.com/tags/kubernetes/</link>
+      <pubDate>Sat, 15 Jun 2019 19:27:08 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>book</title>
+      <link>https://blog.nownabe.com/tags/book/</link>
+      <pubDate>Sat, 15 Jun 2019 19:27:08 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/book/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>reading</title>
+      <link>https://blog.nownabe.com/tags/reading/</link>
+      <pubDate>Sat, 15 Jun 2019 19:27:08 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/reading/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>hugo</title>
@@ -62,24 +98,6 @@
       <pubDate>Tue, 21 May 2019 00:00:00 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/tags/aws/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Docker</title>
-      <link>https://blog.nownabe.com/tags/docker/</link>
-      <pubDate>Tue, 21 May 2019 00:00:00 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Kubernetes</title>
-      <link>https://blog.nownabe.com/tags/kubernetes/</link>
-      <pubDate>Tue, 21 May 2019 00:00:00 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/kubernetes/</guid>
       <description></description>
     </item>
     
@@ -710,15 +728,6 @@
       <pubDate>Sun, 24 Jul 2016 15:31:39 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/tags/postgresql/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>book</title>
-      <link>https://blog.nownabe.com/tags/book/</link>
-      <pubDate>Fri, 22 Jul 2016 00:47:58 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/book/</guid>
       <description></description>
     </item>
     

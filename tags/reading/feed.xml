@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>book on nownab.log</title>
-    <link>https://blog.nownabe.com/tags/book/</link>
-    <description>Recent content in book on nownab.log</description>
+    <title>reading on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/reading/</link>
+    <description>Recent content in reading on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <lastBuildDate>Sat, 15 Jun 2019 19:27:08 +0900</lastBuildDate>
     
-	<atom:link href="https://blog.nownabe.com/tags/book/feed.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.nownabe.com/tags/reading/feed.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>https://blog.nownabe.com/2019/06/15/read-designing-distributed-systems/</guid>
       <description>分散システムデザインパターンを読みました。 感想 分散システムのインフラ構成のデザインパターンの解説本です。 分散システムといっても難しいものでは</description>
-    </item>
-    
-    <item>
-      <title>プログラミングのための確率統計読み始めた</title>
-      <link>https://blog.nownabe.com/2016/07/31/hatena14.html/</link>
-      <pubDate>Fri, 22 Jul 2016 00:47:58 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/2016/07/31/hatena14.html/</guid>
-      <description>プログラミングのための確率統計 平岡 和幸, 堀 玄オーム社 機械学習勉強会はエクストリームリーディングでやってみようということになり、まず選んだのが</description>
     </item>
     
   </channel>
