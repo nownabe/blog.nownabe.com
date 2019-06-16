@@ -15,8 +15,10 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/chroma.css">
+
+  {{- $css := resources.Get "css/main.css" | resources.Fingerprint "sha512" -}}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 
   <meta name="author" content="{{ .Site.Params.Author }}">
   <meta name="description" content="{{ .Site.Params.Description }}">
