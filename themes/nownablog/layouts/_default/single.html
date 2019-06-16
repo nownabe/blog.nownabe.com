@@ -29,3 +29,21 @@
   </div>
 </article>
 {{ end }}
+
+{{ define "footer" }}
+
+<div id="footer-navigation">
+  <div id="next-prev">
+    <div>
+      {{- if .PrevInSection -}}
+      <a href="{{ .PrevInSection.Permalink }}">&lt; {{ .PrevInSection.Title }}</a>
+      {{- end -}}
+    </div>
+    <div>
+      {{- if .NextInSection -}}
+      <a href="{{ .NextInSection.Permalink }}">{{ .NextInSection.Title }} &gt;</a>
+      {{- end -}}
+    </div>
+  </div>
+</div>
+{{ end }}
