@@ -243,16 +243,6 @@ article .body {
         list-style-type: none; }
         article .body .asin .asin-detail ul li {
           margin: 1rem 0; }
-article .sns-buttons {
-  margin-top: 4rem;
-  overflow: hidden; }
-  article .sns-buttons ul {
-    list-style-type: none; }
-    article .sns-buttons ul li {
-      float: left;
-      margin-right: 4px; }
-    article .sns-buttons ul li.last-child::after {
-      clear: both; }
 
 /* Navigation Styles */
 
@@ -306,6 +296,28 @@ article .sns-buttons {
   display: flex;
   justify-content: space-between;
 }
+
+#footer-navigation #related-articles {
+  margin-top: 4rem;
+}
+
+#footer-navigation #related-articles h2 {}
+
+#footer-navigation #related-articles ul {
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+
+#footer-navigation #sns-buttons {
+  margin-top: 4rem;
+  overflow: hidden; }
+  #foooter-navigation #sns-buttons ul {
+    list-style-type: none; }
+    #footer-navigation #sns-buttons ul li {
+      float: left;
+      margin-right: 4px; }
+    #footer-navigation #sns-buttons ul li.last-child::after {
+      clear: both; }
 
 
 

@@ -7,7 +7,36 @@
   <div class="body">
     {{ .Content }}
   </div>
-  <div class="sns-buttons">
+</article>
+{{ end }}
+
+{{ define "footer" }}
+
+<div id="footer-navigation">
+  <div id="next-prev">
+    <div>
+      {{- if .PrevInSection -}}
+      <a href="{{ .PrevInSection.Permalink }}">&lt; {{ .PrevInSection.Title }}</a>
+      {{- end -}}
+    </div>
+    <div>
+      {{- if .NextInSection -}}
+      <a href="{{ .NextInSection.Permalink }}">{{ .NextInSection.Title }} &gt;</a>
+      {{- end -}}
+    </div>
+  </div>
+  <div id="related-articles">
+    {{- $related := .Site.RegularPages.Related . | first 5 -}}
+    {{- with $related -}}
+    <h2>See Also</h2>
+    <ul>
+      {{- range . -}}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{- end -}}
+    </ul>
+    {{- end -}}
+  </div>
+  <div id="sns-buttons">
     <ul>
       <li>
         <div class="twitter-button">
@@ -26,24 +55,6 @@
         <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
       </li>
     </ul>
-  </div>
-</article>
-{{ end }}
-
-{{ define "footer" }}
-
-<div id="footer-navigation">
-  <div id="next-prev">
-    <div>
-      {{- if .PrevInSection -}}
-      <a href="{{ .PrevInSection.Permalink }}">&lt; {{ .PrevInSection.Title }}</a>
-      {{- end -}}
-    </div>
-    <div>
-      {{- if .NextInSection -}}
-      <a href="{{ .NextInSection.Permalink }}">{{ .NextInSection.Title }} &gt;</a>
-      {{- end -}}
-    </div>
   </div>
 </div>
 {{ end }}

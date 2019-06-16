@@ -8,6 +8,7 @@ paginate = 20
 pygmentsUseClasses = true
 pygmentsCodefences = true
 
+
 [outputs]
 home = ["HTML", "RSS"]
 
@@ -19,3 +20,16 @@ baseName = "feed"
 [params]
 author = "nownabe"
 description = "the nownabe's life log"
+
+[related]
+threshold = 80
+includeNewer = true
+toLower = true
+
+[[related.indices]]
+name = "tags"
+weight = 100
+
+[[related.indices]]
+name = "date"
+weight = 10
