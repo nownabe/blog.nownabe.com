@@ -308,6 +308,11 @@ article .body {
   margin-left: 2rem;
 }
 
+#footer-navigation #related-articles ul li {
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
 #footer-navigation #sns-buttons {
   margin-top: 4rem;
   overflow: hidden; }
