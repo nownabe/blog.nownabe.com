@@ -4,36 +4,53 @@
   
   <url>
     <loc>https://blog.nownabe.com/2019/</loc>
-    <lastmod>2019-06-15T19:27:08+09:00</lastmod>
+    <lastmod>2019-08-07T16:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/tags/docker/</loc>
-    <lastmod>2019-06-15T19:27:08+09:00</lastmod>
+    <loc>https://blog.nownabe.com/tags/cloudnative/</loc>
+    <lastmod>2019-08-07T16:00:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/2019/08/07/cloudnativedaystokyo2019/</loc>
+    <lastmod>2019-08-07T16:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/event/</loc>
+    <lastmod>2019-08-07T16:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.nownabe.com/tags/kubernetes/</loc>
-    <lastmod>2019-06-15T19:27:08+09:00</lastmod>
+    <lastmod>2019-08-07T16:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.nownabe.com/tags/</loc>
-    <lastmod>2019-06-15T19:27:08+09:00</lastmod>
+    <lastmod>2019-08-07T16:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/tags/book/</loc>
-    <lastmod>2019-06-15T19:27:08+09:00</lastmod>
+    <loc>https://blog.nownabe.com/tags/docker/</loc>
+    <lastmod>2019-08-07T16:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.nownabe.com/</loc>
+    <lastmod>2019-08-07T16:00:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/book/</loc>
     <lastmod>2019-06-15T19:27:08+09:00</lastmod>
     <priority>0</priority>
   </url>
@@ -73,12 +90,6 @@
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/tags/gcp/</loc>
-    <lastmod>2019-05-29T00:00:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.nownabe.com/tags/gcp-updates/</loc>
     <lastmod>2019-05-29T00:00:00+09:00</lastmod>
     <priority>0</priority>
@@ -87,6 +98,12 @@
   <url>
     <loc>https://blog.nownabe.com/2019/05/29/gcp-product-updates-may-28-2019.html/</loc>
     <lastmod>2019-05-29T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/gcp/</loc>
+    <lastmod>2019-05-29T00:00:00+09:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -123,14 +140,14 @@
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/2019/01/08/1448.html/</loc>
-    <lastmod>2019-01-08T10:39:37+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://blog.nownabe.com/tags/github/</loc>
     <lastmod>2019-01-08T10:39:37+09:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/2019/01/08/1448.html/</loc>
+    <lastmod>2019-01-08T10:39:37+09:00</lastmod>
   </url>
   
   <url>
@@ -1315,12 +1332,6 @@
   <url>
     <loc>https://blog.nownabe.com/tags/postgresql/</loc>
     <lastmod>2016-07-24T15:31:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/tags/event/</loc>
-    <lastmod>2016-07-22T00:47:58+09:00</lastmod>
     <priority>0</priority>
   </url>
   

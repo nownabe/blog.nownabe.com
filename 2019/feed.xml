@@ -6,10 +6,19 @@
     <description>Recent content in 2019s on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sat, 15 Jun 2019 19:27:08 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 07 Aug 2019 16:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/2019/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CloudNative Days Tokyo 2019 参加メモ</title>
+      <link>https://blog.nownabe.com/2019/08/07/cloudnativedaystokyo2019/</link>
+      <pubDate>Wed, 07 Aug 2019 16:00:00 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2019/08/07/cloudnativedaystokyo2019/</guid>
+      <description>先日CloudNative Days Tokyo 2019に参加してきました。 見たやつのメモだったり、見れなかったけど気になったやつのメモだったり、資料まとめだ</description>
+    </item>
     
     <item>
       <title>『分散システムデザインパターン』を読んだ</title>

@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ja"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>CloudNative Days Tokyo 2019 参加メモ - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.5e4d516051eaf80a3c96a5c8f160303915afcc3032634b1464e11720b1cf6bafc8000f3702ccefb89370bcd03fc09d21504e28907f8d52906eb783ead567c35b.css" integrity="sha512-Xk1RYFHq&#43;Ao8lqXI8WAwORWvzDAyY0sUZOEXILHPa6/IAA83AszvuJNwvNA/wJ0hUE4okH&#43;NUpBut4Pq1WfDWw==">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2019/08/07/cloudnativedaystokyo2019/">
+  <meta property="og:title" content="CloudNative Days Tokyo 2019 参加メモ - nownab.log">
+  <meta property="og:description" content="先日CloudNative Days Tokyo 2019に参加してきました。 見たやつのメモだったり、見れなかったけど気になったやつのメモだったり、資料まとめだ">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="CloudNative Days Tokyo 2019 参加メモ - nownab.log">
+  <meta property="twitter:description" content="先日CloudNative Days Tokyo 2019に参加してきました。 見たやつのメモだったり、見れなかったけど気になったやつのメモだったり、資料まとめだ">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg" alt="nownabe logo">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h2><a href="https://blog.nownabe.com/2019/08/07/cloudnativedaystokyo2019/">CloudNative Days Tokyo 2019 参加メモ</a></h2>
+    <span class="date">Posted on Aug 7, 2019</span>
+  </div>
+  <div class="body">
+    
+
+<p>先日<a href="https://cloudnativedays.jp/cndt2019/">CloudNative Days Tokyo 2019</a>に参加してきました。</p>
+
+<p>見たやつのメモだったり、見れなかったけど気になったやつのメモだったり、資料まとめだったりです。</p>
+
+<p>スライドまとめてくれてる方がいました。
+<a href="https://kamoqq.info/post/cloud-native-days-tokyo-2019-slide/">CloudNative Days Tokyo 2019 スライドまとめ - kamoqq.info</a></p>
+
+<h1 id="全体の感想">全体の感想</h1>
+
+<p>前回参加したのは 1 年前とかだったと思うけど、そのときに比べて次のような印象を受けた。</p>
+
+<ul>
+<li>エンタープライズや大規模での利用事例が増えた。イベントもそこらへんをアピールしたい感あった</li>
+<li>operator や storage の話が増えて、すべてをコンテナでという流れが進んでる感があった。来年あたりは operator のツラみとか聞けそう</li>
+<li>operator とかの話に伴って、CRD の話も増えた</li>
+</ul>
+
+<h1 id="day-1">Day 1</h1>
+
+<h2 id="datadog-で実現するこれからのコンテナ監視">Datadog で実現するこれからのコンテナ監視</h2>
+
+<p>Datadog 使ってるけど、VM からコンテナに移行してまだ Datadog を使いこなせてない感があるので見たかったけど見れなかったやつ。</p>
+
+<p>資料もどこにあるかわからん。発表者の同タイトルのスライドならあった。</p>
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/CIMZnTV0y1VzZs" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+<ul>
+<li>Datadog で外形監視できるようになってたの初めて知った。Pingdom やめられる？</li>
+</ul>
+
+<h2 id="kubernetes-クラスタの自動管理システムのつくりかた">Kubernetes クラスタの自動管理システムのつくりかた</h2>
+
+<p>昔やってたことに近いし今でもこういうことがやりたいので興味ある。</p>
+
+<script async class="speakerdeck-embed" data-id="3b6f73bb6b984c2196261c3e320e5b92" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li>Quay 導入事例はじめて見た。なんで採用したのか知りたい</li>
+<li>OSS で公開されてる
+
+<ul>
+<li><a href="https://github.com/cybozu-go/cke">cybozu-go/cke: A kubernetes cluster manager</a></li>
+</ul></li>
+<li>競合は Rancher</li>
+<li>CoreOS</li>
+<li>CKE 自体は Kubernetes にのらない？</li>
+<li>障害復旧のところとか DBaaS 作ったときのこと思い出して懐かしい</li>
+</ul>
+
+<h2 id="kubernetes-を拡張して日々のオペレーションを自動化する">Kubernetes を拡張して日々のオペレーションを自動化する</h2>
+
+<p>CRD の話。</p>
+
+<script async class="speakerdeck-embed" data-id="5935ff7a769344cbbaf66657c9bf24b2" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li>CRD を開発・運用するうえでのキーワードがいろいろ入ってて参考になる</li>
+<li>Platform Style の自動化ってのが CRD を使った自動化のこと？</li>
+</ul>
+
+<h2 id="kubernetes-拡張を利用した自作-autoscaler-で実現するストレスフリーな運用の世界">Kubernetes 拡張を利用した自作 Autoscaler で実現するストレスフリーな運用の世界</h2>
+
+<p>CRD で Bigtable の Autoscaler を作った話。</p>
+
+<script async class="speakerdeck-embed" data-id="615ce1ee285a454cac481fe7c2de71f1" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<h2 id="adtech-studio-における-crd-抽象化した-gpuaas-による段階移行計画-ake-ingress-v2">adtech studio における CRD〜抽象化した GPUaaS による段階移行計画 &amp; AKE Ingress v2〜</h2>
+
+<script async class="speakerdeck-embed" data-id="d3d58b0046044a5dbedd4a5f37dd0956" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li>Kubernetes の 3 つの側面
+
+<ul>
+<li>コンテナ実行基盤としての Kubernetes</li>
+<li>X as a Service 基盤としての Kubernetes</li>
+<li>分散システムフレームワークとしての Kubernetes</li>
+</ul></li>
+</ul>
+
+<h2 id="cloud-native-storage-が拓く-database-on-kubernetes-の世界">Cloud Native Storage が拓く Database on Kubernetes の世界</h2>
+
+<p>やっぱり Kubernetes 上での DB 運用ってのは気になる。</p>
+
+<script async class="speakerdeck-embed" data-id="d5d77ff6e35d45509ecf7bacf987f54d" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li><a href="https://rook.io/">Rook</a>使ってみたい
+
+<ul>
+<li>ceph-operator 的な感じっぽい</li>
+<li>ceph 以外も使えるっぽい</li>
+<li>production ready</li>
+</ul></li>
+</ul>
+
+<h2 id="ociv2-軽量高速なイケてる次世代イメージ仕様の最新動向を抑えよう">OCIv2?! 軽量高速なイケてる次世代イメージ仕様の最新動向を抑えよう！</h2>
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/mnhz8wVy7RJK9m" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+<ul>
+<li>コンテナまわりの基礎技術
+
+<ul>
+<li>Build</li>
+<li>Ship</li>
+<li>Run</li>
+</ul></li>
+<li>Build: OCI Image Format Specification
+
+<ul>
+<li>課題: イメージ軽くならないことが多い</li>
+<li>OCIv2</li>
+<li>tar よりいいアーカイブ方式</li>
+<li>細かい粒度での重複排除</li>
+</ul></li>
+<li>Ship: OCI Distribution Specification
+
+<ul>
+<li>課題: デプロイ単位ありすぎ</li>
+<li>OCI Artifact Registry</li>
+<li>なんでもはいるレジストリ</li>
+</ul></li>
+<li>Run: OCI Runtime Specification
+
+<ul>
+<li>課題: pull に時間がかかる</li>
+<li>lazypull</li>
+<li>ファイル単位で必要になった時点で pull</li>
+</ul></li>
+</ul>
+
+<h2 id="メルペイのマイクロサービスの構築と運用">メルペイのマイクロサービスの構築と運用</h2>
+
+<script async class="speakerdeck-embed" data-id="5406ad306b5f43c8a4d2c3a66b05bb22" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li>Microservices ちゃんとやろうとするとちゃんとやらないとなー</li>
+<li>おまけのトラブル集がいい</li>
+</ul>
+
+<h2 id="argo-による機械学習実行基盤の構築-運用からみえてきたこと">Argo による機械学習実行基盤の構築・運用からみえてきたこと</h2>
+
+<p>Argo 導入しようとしてた(インストールだけした)ので。</p>
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/YJMYhJxASQIJ7" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+<ul>
+<li>Argo 導入しようとしていたので、ちょうどいいレベル感でとても参考になった</li>
+<li>雑に比較検討して Argo にしようか、という段階だったので digdag や Airflow(Composer)との比較がよかった
+
+<ul>
+<li>話を聞く限りだと Composer はまだまだっぽい</li>
+</ul></li>
+<li>Argo CD はまだいいかな、と思ってたけど結構よさそうで使いたくなった</li>
+<li>Argo のツラいポイントは Argo のツラいポイントじゃない感じだった</li>
+</ul>
+
+<h2 id="prometheus-setup-with-long-term-storage">Prometheus setup with long term storage</h2>
+
+<p>なかなか使う機会ないけどずっと使いたいとは思ってるので。</p>
+
+<script async class="speakerdeck-embed" data-id="190cf8cb48d44912b4690823450b05e0" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li>Prometheus の TSDB の仕組みの概要が知れてよかった</li>
+<li>Cortex は Prometheus as a Service を提供するためのものっぽい
+
+<ul>
+<li>自社で Prometheus を冗長化したいとかスケールさせたいとかだとオーバースペックで複雑すぎ？</li>
+<li>必要最低限のコンポーネントだけで動かせばそんなことない？</li>
+</ul></li>
+<li>Thanos よさそう
+
+<ul>
+<li>v0.5 からの Receiver で Remote Write に対応</li>
+<li>Document は TBD で詳しいことはわからん</li>
+</ul></li>
+</ul>
+
+<h2 id="circleci-2-0-を支える-2-つのコンテナクラスター">CircleCI 2.0 を支える 2 つのコンテナクラスター</h2>
+
+<p>CircleCI を実現してる仕組みの話ならめっちゃ気になる。</p>
+
+<script async class="speakerdeck-embed" data-id="63a5f2f4b767455d888cb5fe4bc93ab5" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li>Kubernetes と Nomad を併用してる</li>
+<li>RabbitMQ 使ってる ☺️</li>
+<li>自前で K8s 運用してるところは結構 CoreOS が多い気がする</li>
+<li>CircleCI ジョブ = Nomad ジョブ</li>
+<li>Mesos は複雑で断念</li>
+<li>Nomad のクライアントノードは Datadog からの Autoscale って感じ？</li>
+<li>障害対応フローよさ
+
+<ul>
+<li>ちゃんと障害ごとにチームを組んでしっかり分担してるの素晴らしい</li>
+</ul></li>
+</ul>
+
+<h2 id="失敗しない-kubernetes-向けストレージ選び-5-つのポイント">失敗しない！Kubernetes 向けストレージ選び 5 つのポイント</h2>
+
+<p>最近の Kubernetes のストレージ事情が知りたい。</p>
+
+<script async class="speakerdeck-embed" data-id="63b4c879b3ce4439bfaad9b370477234" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li><a href="https://github.com/cncf/landscape">Cloud Native Landscape</a></li>
+</ul>
+
+<h2 id="knative-で実現する-kubernetes-上のサーバーレスアーキテクチャ">Knative で実現する Kubernetes 上のサーバーレスアーキテクチャ</h2>
+
+<p>Knative を使うか使わないかの判断基準がほしい。</p>
+
+<script async class="speakerdeck-embed" data-id="ed63d2bc07f84f57a4fb303e0b423cc0" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li>うーんやっぱり使う必要がない限り使わなく良いって印象</li>
+</ul>
+
+<h2 id="re-architecturing-of-microservices">Re-architecturing of Microservices</h2>
+
+<script async class="speakerdeck-embed" data-id="243725932ffc4ac0bb0009189f998102" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li>Microservices を始めるとおそらく必ずぶち当たるモノリスの Microservices 化と Microservices の境界ミスの修正事例</li>
+</ul>
+
+<h2 id="kubernetes-を運用したことで学んだアンチパターン">Kubernetes を運用したことで学んだアンチパターン</h2>
+
+<p>資料見つからず。</p>
+
+<h2 id="operator-でどう変わる-これからのデータベース運用">Operator でどう変わる？これからのデータベース運用</h2>
+
+<p>現状の operator がどこまで使えるのか知りたかった。</p>
+
+<script async class="speakerdeck-embed" data-id="0f6959179aff447b8b88c9c9b6c827b8" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li>operator の概要が具体的な MySQL の例で聞けてよかった</li>
+<li>できること、できないことも知れてよかった
+
+<ul>
+<li>使えるけど、まだまだ発展途上という印象</li>
+</ul></li>
+<li>operator の話聞くとまんま昔やってた話で懐かしい(作りたい)</li>
+</ul>
+
+<h2 id="gvisor-で実現するマルチテナント-kubernetes">gVisor で実現するマルチテナント Kubernetes</h2>
+
+<p>資料見つからず。</p>
+
+<h2 id="kubernetes-クラスタのポータビリティを保つための-8-原則">Kubernetes クラスタのポータビリティを保つための 8 原則</h2>
+
+<p>Kubernetes 管理者として把握しておきたい。</p>
+
+<script async class="speakerdeck-embed" data-id="89ea4d9a289d47f0a2f2069361298473" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li>いつでも k8s クラスタを捨てられる(再作成)できるようにする</li>
+<li>非名前管理でわざと依存できなそうな名前にするの面白い</li>
+<li>StatefulSet 禁止してるのか…
+
+<ul>
+<li>そのへんのうまい移行方法あればいいのいなー</li>
+</ul></li>
+</ul>
+
+<h1 id="day-2">Day 2</h1>
+
+<h2 id="楽天モバイルの世界初完全仮想化クラウド型モバイルネットワーク">楽天モバイルの世界初完全仮想化クラウド型モバイルネットワーク</h2>
+
+<p>資料なし。</p>
+
+<ul>
+<li>今の時代 IPv6 だけでネットワーク組むのが当たり前なのかな</li>
+</ul>
+
+<h2 id="決済システムの内製化への旅-spring-と-pcf-で作るクラウドネイティブなシステム開発">決済システムの内製化への旅 - Spring と PCF で作るクラウドネイティブなシステム開発</h2>
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/wji06Ai1Vlt15A" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+<ul>
+<li>全委託の状態から内製にもっていったの</li>
+<li>監視ちゃんとやっててえらい</li>
+<li>Cloud Foundry なの意外
+
+<ul>
+<li>Kubernetes との比較、実際に比較したのか気になる</li>
+<li>選定理由、なんとなく選んだ感がある</li>
+</ul></li>
+</ul>
+
+<h2 id="金融領域における-openstack-導入事例の紹介">金融領域における OpenStack 導入事例の紹介</h2>
+
+<p>資料なし。</p>
+
+<h2 id="change-the-game-change-the-world">Change the Game, Change the World</h2>
+
+<script async class="speakerdeck-embed" data-id="b78c8f88d463417cb0fa08714021f3a8" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li><a href="https://operatorhub.io/">OperatorHub.io | The registry for Kubernetes Operators</a>
+
+<ul>
+<li>Red Hat Certified Operators</li>
+</ul></li>
+<li>Couchbase まだ生きてるのか</li>
+<li><a href="https://learn.openshift.com/operatorframework/">Learning OpenShift</a>
+
+<ul>
+<li>Operator を学べる</li>
+</ul></li>
+</ul>
+
+<h2 id="openstack-を用いたパブリッククラウドの国内事例と課題">OpenStack を用いたパブリッククラウドの国内事例と課題</h2>
+
+<p>資料なし。</p>
+
+<h2 id="あなたに-kubernetes-は必要ですか-kubernetes-のこれからについて話し合おう">あなたに Kubernetes は必要ですか？ Kubernetes のこれからについて話し合おう。</h2>
+
+<p>資料なし。</p>
+
+<ul>
+<li>記事が出てた
+
+<ul>
+<li><a href="https://www.atmarkit.co.jp/ait/articles/1907/23/news120.html">「あなたに Kubernetes は必要ですか？」を、Kubernetes Meetup Tokyo のコアメンバーが議論：OpenStack Days Tokyo／CloudNative Days Tokyo 2019 - ＠IT</a></li>
+<li>元ネタ <a href="https://yakst.com/ja/posts/5455">多分あなたに Kubernetes は必要ない | Yakst</a></li>
+</ul></li>
+<li><a href="https://github.com/fabiolb/fabio">fabiolb/fabio: Consul Load-Balancing made simple</a>
+
+<ul>
+<li>これ初めて知ったけど欲しかったやつ感ある</li>
+</ul></li>
+</ul>
+
+<h2 id="kubernetes-cni-プラグイン結局どれを選べばいいのか">Kubernetes CNI プラグイン結局どれを選べばいいのか</h2>
+
+<script async class="speakerdeck-embed" data-id="667ade5055f149ffaef7c6417b1c2f52" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li>LINE は Rancher 使ってるのか</li>
+<li>違いとか全然知らなかったので、めっちゃありがたい資料</li>
+</ul>
+
+<h2 id="最近の-docker-の新機能">最近の Docker の新機能</h2>
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/dseIedeSImRW0d" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+<h2 id="zozotown-の-cloud-native-journey-トール-マカベッチのアンサーソング付き">ZOZOTOWN の Cloud Native Journey 〜トール・マカベッチのアンサーソング付き〜</h2>
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/zPqDASOlr705xW" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+<h2 id="マイクロサービス運用における最高の-dx-を目指して">マイクロサービス運用における最高の DX を目指して</h2>
+
+<script async class="speakerdeck-embed" data-id="3c44de142a39489faeb1401cd33f6e8e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<h2 id="実録-cloudnative-を目指した-230-日">実録！CloudNative を目指した 230 日</h2>
+
+<script async class="speakerdeck-embed" data-id="29be0427f1c14ce5936ea63c9d883109" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<h2 id="microservices-を支える-infrastructure-as-software">Microservices を支える Infrastructure as Software</h2>
+
+<script async class="speakerdeck-embed" data-id="0367920dc65e4482bc5b7e4447b378ba" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li><a href="https://docs.google.com/document/d/11tjK_lvp1-SVsFZjgOTr1vV3-q6vBAsZYIQ5ZeYBkyM/view">Loki Design Document</a></li>
+</ul>
+
+<h2 id="kubernetes-logging-入門">Kubernetes Logging 入門</h2>
+
+<script async class="speakerdeck-embed" data-id="f6bbe81181d54acf9995cd9e334e499d" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li>Loki は Cortex の水平スケールアーキテクチャを参考にしている</li>
+</ul>
+
+<h2 id="a-deep-dive-into-service-mesh-and-istio">A deep dive into service mesh and Istio</h2>
+
+<script async class="speakerdeck-embed" data-id="475abca3cd564fef890ebcf469ffe600" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li>Istio ありだと 20ms ぐらいのオーバーヘッドがあった</li>
+</ul>
+
+<h2 id="クラウドネイティブを創る技術">クラウドネイティブを創る技術</h2>
+
+<script async class="speakerdeck-embed" data-id="0fc45516f99149b09569afb061a07259" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li>内製技術で FaaS 実現してるのアツいよなー</li>
+</ul>
+
+<h2 id="istio-で実現するクラウドネイティブ時代のセキュリティ">Istio で実現するクラウドネイティブ時代のセキュリティ</h2>
+
+<script async class="speakerdeck-embed" data-id="f5318a23e5da45309458edfef400ba8c" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<h2 id="kubernetes-the-heartful-way-手作りにこだわる職人たちの想い">Kubernetes The Heartful Way ~手作りにこだわる職人たちの想い~</h2>
+
+<script async class="speakerdeck-embed" data-id="9020b65c9f2f403189b7320d7e677118" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li>kube-controller-manager、kube-scheduler、kube-proxy、kubelet を人が担うと何をすることになるのかという話</li>
+<li>netplan しらんかった
+
+<ul>
+<li>ここしばらく手動で IP 設定とかしてない…</li>
+</ul></li>
+</ul>
+
+<h2 id="understanding-envoy">Understanding Envoy</h2>
+
+<script async class="speakerdeck-embed" data-id="669bc7b7464a42128bd5d01c85f48eda" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<h2 id="サーバレス-ネイティブ-が-お伝えする-フルサーバレス開発の魅力">サーバレス・ネイティブ が お伝えする、フルサーバレス開発の魅力</h2>
+
+<p><a href="https://riotz.works/slides/2019-cloudnative-days/#1">https://riotz.works/slides/2019-cloudnative-days/#1</a></p>
+
+<h2 id="スタートアップサービスでもやれる-kubernetes-を使ったセキュア-web-アプリの構築と運用">スタートアップサービスでもやれる!Kubernetes を使ったセキュア Web アプリの構築と運用</h2>
+
+<p>資料なし</p>
+
+<h2 id="cncf-サンドボックスプロダクト-15-本ノック">CNCF サンドボックスプロダクト 15 本ノック！</h2>
+
+<p><a href="https://docs.google.com/presentation/d/1O9Q9E1hH6mBA5w8oDENnCYObZvij1-Dr_obvsY3X29k/edit?usp=sharing">https://docs.google.com/presentation/d/1O9Q9E1hH6mBA5w8oDENnCYObZvij1-Dr_obvsY3X29k/edit?usp=sharing</a></p>
+
+<ul>
+<li>17 本になってた</li>
+<li>cndjp
+
+<ul>
+<li><a href="https://cnd.connpass.com/">https://cnd.connpass.com/</a></li>
+</ul></li>
+<li><a href="https://www.cncf.io/sandbox-projects/">https://www.cncf.io/sandbox-projects/</a></li>
+<li>Flux
+
+<ul>
+<li>Argo CD との違いが気になる</li>
+</ul></li>
+<li>Network Service Mesh 気になる</li>
+<li>SPIFFE
+
+<ul>
+<li><a href="https://qiita.com/hiyosi/items/6e8d56b257c55a709b4d">SPIFFE で何が解決できるのか - Qiita</a></li>
+<li>意識しておきたい</li>
+</ul></li>
+<li>OpenEBS
+
+<ul>
+<li>ストレージ機能をコンテナ内に内包</li>
+<li>使ってみたい</li>
+</ul></li>
+<li>CloudEvents
+
+<ul>
+<li>意識しておきたい</li>
+</ul></li>
+<li>OpenMetrics
+
+<ul>
+<li>放置されてる？</li>
+<li>OpenTelemetry に取り込まれる</li>
+<li>注視しなくていい</li>
+</ul></li>
+<li>Cortex
+
+<ul>
+<li>go build しないと使えない</li>
+<li>コンポーネント自作しないと使えない</li>
+<li>最近は example ある？</li>
+</ul></li>
+</ul>
+
+<h2 id="あなたの-k8s-は大丈夫-k8s-でできるセキュリティ対策-入門編">あなたの k8s は大丈夫？k8s でできるセキュリティ対策（入門編）</h2>
+
+<p>資料なし</p>
+
+<h2 id="100-行のコードで-docker-の基本を実現せよ">100 行のコードで Docker の基本を実現せよ！</h2>
+
+<script async class="speakerdeck-embed" data-id="ae0adb751bf0400cb90bdc711e42d3e2" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li><a href="https://github.com/p8952/bocker">https://github.com/p8952/bocker</a></li>
+<li><a href="https://github.com/xibuka/bocker">https://github.com/xibuka/bocker</a></li>
+<li>docker run 以外にもいろいろ</li>
+</ul>
+
+<h2 id="歴史から紐解く-linux-カーネルのコンテナ機能">歴史から紐解く Linux カーネルのコンテナ機能</h2>
+
+<script async class="speakerdeck-embed" data-id="0d1b0d7fb7d245d79bf0af8e2b5c0f71" data-ratio="1.77966101694915" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li>タイトル通りの発表だった</li>
+</ul>
+
+<h2 id="how-cgroup-v2-and-psi-impacts-cloudnative">How cgroup-v2 and PSI impacts CloudNative?</h2>
+
+<script async class="speakerdeck-embed" data-id="f2e85152056d4c278128291370a8f974" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<h2 id="そのコンテナ-もっと-賢く-置けますよ">そのコンテナ、もっと「賢く」置けますよ？</h2>
+
+<script async class="speakerdeck-embed" data-id="2a7b598976a343bba5c153e284e9ffc0" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li>スケジューリングの話</li>
+</ul>
+
+<h2 id="いつもニコニコあなたの隣に這い寄るカオスエンジニアリング">いつもニコニコあなたの隣に這い寄るカオスエンジニアリング！</h2>
+
+<script async class="speakerdeck-embed" data-id="1b56fa1e87154ad38b4b626f19edb4b5" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li><a href="https://www.oreilly.com/library/view/chaos-engineering/9781491988459/">Chaos Engineering [Book]</a></li>
+<li>Chaos Conf&hellip;かっこいい</li>
+</ul>
+
+<h2 id="challenging-secure-introduction-with-spiffe">Challenging Secure Introduction with SPIFFE</h2>
+
+<script async class="speakerdeck-embed" data-id="c461694ab52a4bac810445826182bbc3" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<h2 id="ライブコーディング-custom-resource-と-controller-を作ろう">[ライブコーディング] Custom Resource と Controller を作ろう</h2>
+
+<p>資料なし</p>
+
+<h2 id="kubernetes-に-audit-ログを求めるのは間違っているだろうか">Kubernetes に audit ログを求めるのは間違っているだろうか</h2>
+
+<script async class="speakerdeck-embed" data-id="a2412affcedc48399db7c5ddb406bb25" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<ul>
+<li>ResponseStarted / ResponseComplete
+
+<ul>
+<li>リクエストによってはヘッダを先に返して Body は後で返すみたいなやつがある</li>
+</ul></li>
+<li>おすすめは Pattern 3: audit webhook log + falco</li>
+<li>audit2rbac 便利そう</li>
+</ul>
+
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+
+<div id="footer-navigation">
+  <div id="next-prev">
+    <div><a href="https://blog.nownabe.com/2019/06/15/read-designing-distributed-systems/">&lt; 『分散システムデザインパターン』を読んだ</a></div>
+    <div></div>
+  </div>
+  <div id="related-articles"><h2>See Also</h2>
+    <ul><li><a href="/2019/06/15/read-designing-distributed-systems/">『分散システムデザインパターン』を読んだ</a></li><li><a href="/2019/05/21/migration-to-gcp.html/">よくしらんRailsアプリとかをAWSのレガシーシステムからGCPのイケイケシステムに移行した話</a></li><li><a href="/2018/09/01/1390.html/">ゼロから作るDeep Learning 2用のDockerイメージ</a></li><li><a href="/2018/08/27/1385.html/">KubernetsのSecretのYAMLを暗号化したりするツールを作った</a></li><li><a href="/2018/08/22/1382.html/">GoのKubernetesオブジェクトをYAMLからDeserializeする</a></li></ul></div>
+  <div id="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root"></div>
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" async="async"></script>
+</body>
+</html>

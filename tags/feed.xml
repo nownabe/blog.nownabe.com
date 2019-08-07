@@ -6,26 +6,44 @@
     <description>Recent content in Tags on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sat, 15 Jun 2019 19:27:08 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 07 Aug 2019 16:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/tags/feed.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Docker</title>
-      <link>https://blog.nownabe.com/tags/docker/</link>
-      <pubDate>Sat, 15 Jun 2019 19:27:08 +0900</pubDate>
+      <title>CloudNative</title>
+      <link>https://blog.nownabe.com/tags/cloudnative/</link>
+      <pubDate>Wed, 07 Aug 2019 16:00:00 +0900</pubDate>
       
-      <guid>https://blog.nownabe.com/tags/docker/</guid>
+      <guid>https://blog.nownabe.com/tags/cloudnative/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Event</title>
+      <link>https://blog.nownabe.com/tags/event/</link>
+      <pubDate>Wed, 07 Aug 2019 16:00:00 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/event/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Kubernetes</title>
       <link>https://blog.nownabe.com/tags/kubernetes/</link>
-      <pubDate>Sat, 15 Jun 2019 19:27:08 +0900</pubDate>
+      <pubDate>Wed, 07 Aug 2019 16:00:00 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://blog.nownabe.com/tags/docker/</link>
+      <pubDate>Wed, 07 Aug 2019 16:00:00 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/docker/</guid>
       <description></description>
     </item>
     
@@ -75,20 +93,20 @@
     </item>
     
     <item>
-      <title>GCP</title>
-      <link>https://blog.nownabe.com/tags/gcp/</link>
-      <pubDate>Wed, 29 May 2019 00:00:00 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/gcp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>GCP Updates</title>
       <link>https://blog.nownabe.com/tags/gcp-updates/</link>
       <pubDate>Wed, 29 May 2019 00:00:00 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/tags/gcp-updates/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gcp</title>
+      <link>https://blog.nownabe.com/tags/gcp/</link>
+      <pubDate>Wed, 29 May 2019 00:00:00 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/gcp/</guid>
       <description></description>
     </item>
     
@@ -120,7 +138,7 @@
     </item>
     
     <item>
-      <title>github</title>
+      <title>GitHub</title>
       <link>https://blog.nownabe.com/tags/github/</link>
       <pubDate>Tue, 08 Jan 2019 10:22:02 +0900</pubDate>
       
@@ -728,15 +746,6 @@
       <pubDate>Sun, 24 Jul 2016 15:31:39 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/tags/postgresql/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>event</title>
-      <link>https://blog.nownabe.com/tags/event/</link>
-      <pubDate>Fri, 22 Jul 2016 00:47:58 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/event/</guid>
       <description></description>
     </item>
     

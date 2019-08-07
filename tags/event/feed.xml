@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>event on nownab.log</title>
+    <title>Event on nownab.log</title>
     <link>https://blog.nownabe.com/tags/event/</link>
-    <description>Recent content in event on nownab.log</description>
+    <description>Recent content in Event on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Fri, 22 Jul 2016 00:47:58 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 07 Aug 2019 16:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/tags/event/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CloudNative Days Tokyo 2019 参加メモ</title>
+      <link>https://blog.nownabe.com/2019/08/07/cloudnativedaystokyo2019/</link>
+      <pubDate>Wed, 07 Aug 2019 16:00:00 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2019/08/07/cloudnativedaystokyo2019/</guid>
+      <description>先日CloudNative Days Tokyo 2019に参加してきました。 見たやつのメモだったり、見れなかったけど気になったやつのメモだったり、資料まとめだ</description>
+    </item>
     
     <item>
       <title>プログラミングのための確率統計読み始めた</title>
