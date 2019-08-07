@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>GCP Updates | August 5, 2019 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.5e4d516051eaf80a3c96a5c8f160303915afcc3032634b1464e11720b1cf6bafc8000f3702ccefb89370bcd03fc09d21504e28907f8d52906eb783ead567c35b.css" integrity="sha512-Xk1RYFHq&#43;Ao8lqXI8WAwORWvzDAyY0sUZOEXILHPa6/IAA83AszvuJNwvNA/wJ0hUE4okH&#43;NUpBut4Pq1WfDWw==">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2019/08/07/gcp-updates-august-5-2019/">
+  <meta property="og:title" content="GCP Updates | August 5, 2019 - nownab.log">
+  <meta property="og:description" content="STORAGE &amp; DATABASES Cloud Storage – dual-regional bucket locations: GA Combine the performance boost of having two specific regional locations for object data storage with the advantages of geo-redundancy. Documentation dual-regional は multi-regional の特別なやつらしい。Console で試してみると、 nam4 (Iowa and South Carolina) us (multiple region in United States) み">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="GCP Updates | August 5, 2019 - nownab.log">
+  <meta property="twitter:description" content="STORAGE &amp; DATABASES Cloud Storage – dual-regional bucket locations: GA Combine the performance boost of having two specific regional locations for object data storage with the advantages of geo-redundancy. Documentation dual-regional は multi-regional の特別なやつらしい。Console で試してみると、 nam4 (Iowa and South Carolina) us (multiple region in United States) み">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg" alt="nownabe logo">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h2><a href="https://blog.nownabe.com/2019/08/07/gcp-updates-august-5-2019/">GCP Updates | August 5, 2019</a></h2>
+    <span class="date">Posted on Aug 7, 2019</span>
+  </div>
+  <div class="body">
+    
+
+<h1 id="storage-databases">STORAGE &amp; DATABASES</h1>
+
+<h2 id="cloud-storage-dual-regional-bucket-locations-ga">Cloud Storage – dual-regional bucket locations: GA</h2>
+
+<blockquote>
+<p>Combine the performance boost of having two specific regional locations for object data storage with the advantages of geo-redundancy. <a href="https://cloud.google.com/storage/docs/locations">Documentation</a></p>
+</blockquote>
+
+<p>dual-regional は multi-regional の特別なやつらしい。Console で試してみると、</p>
+
+<ul>
+<li>nam4 (Iowa and South Carolina)</li>
+<li>us (multiple region in United States)</li>
+</ul>
+
+<p>みたいになってた。</p>
+
+<p>リージョン間で冗長化したいけど、Regional と同じパフォーマンスが欲しい場合に使うらしい。いいね。</p>
+
+<h1 id="data-analytics">DATA ANALYTICS</h1>
+
+<h2 id="bigquery-persistent-user-defined-functions-beta">BigQuery – persistent user-defined functions: beta</h2>
+
+<blockquote>
+<p>Now you can create persistent user-defined functions (UDFs) in BigQuery using a SQL expression or JavaScript. This allows you to reuse functions across queries and share them with others. You can also create a shared UDF library that anyone with access to your dataset can call up in queries. <a href="https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_function_statement">Documentation</a></p>
+</blockquote>
+
+<p>BigQuery で使えるのいいよなー。</p>
+
+<h2 id="cloud-pub-sub-authenticated-push-ga">Cloud Pub/Sub – authenticated push: GA</h2>
+
+<blockquote>
+<p>With this release, you can configure push subscriptions to provide an authentication token that allows the endpoints to authorize the requests. Authorization using these tokens is currently supported by Cloud Run natively. <a href="https://cloud.google.com/pubsub/docs/push">Documentation</a></p>
+</blockquote>
+
+<h2 id="bigquery-data-transfer-service-for-google-merchant-center-beta">BigQuery Data Transfer Service for Google Merchant Center: beta</h2>
+
+<blockquote>
+<p>This service allows you to automatically schedule and manage recurring daily load jobs into BigQuery for Google Merchant Center reporting data. Currently, the BigQuery Data Transfer Service supports product catalog and diagnostic data provided to Merchant Center. <a href="https://cloud.google.com/bigquery/docs/merchant-center-transfer">Documentation</a></p>
+</blockquote>
+
+<p>Merchant Center なんてあるのか。</p>
+
+<h2 id="bigquery-ml-prediction-with-tensorflow-beta">BigQuery ML – prediction with TensorFlow: beta</h2>
+
+<blockquote>
+<p>To make predictions from a SQL query, you can import TensorFlow models into a BigQuery ML dataset using your Google Cloud Platform Console, the bq query CLI command, or the BigQuery API. <a href="https://cloud.google.com/bigquery-ml/docs/making-predictions-with-imported-tensorflow-models">Documentation</a></p>
+</blockquote>
+
+<p>おー、ついに TensorFlow のモデル使えるようになったのかー。</p>
+
+<h1 id="compute">COMPUTE</h1>
+
+<h2 id="compute-engine-compute-optimized-vm-instance-beta">Compute Engine – compute-optimized VM instance: beta</h2>
+
+<blockquote>
+<p>Now you can use compute-optimized VM instance types on Compute Engine. Designed for compute-intensive workloads, these VMs offer the highest performance per core with Intel Scalable processors (Cascade Lake) and up to 3.8 GHz of sustained all-core turbo. <a href="https://cloud.google.com/compute/docs/machine-types">Documentation</a></p>
+</blockquote>
+
+<p>新しい CPU 使うようになったってこと？</p>
+
+<h2 id="compute-engine-guest-attributes-ga">Compute Engine – guest attributes: GA</h2>
+
+<blockquote>
+<p>Guest attributes are a specific type of custom metadata that your applications can both rggead from and write to while running on your instance. They work well for low-volume data and for use cases that require small amounts of data that change infrequetly. <a href="https://cloud.google.com/compute/docs/storing-retrieving-metadata#guest_attributes">Documentation</a></p>
+</blockquote>
+
+<p>インスタンスから書き込めるメタデータってことか。</p>
+
+<h2 id="app-engine-ruby-2-5-standard-environment-beta">App Engine Ruby 2.5 standard environment: beta</h2>
+
+<blockquote>
+<p>Now you can easily build and deploy an application that can reliably run under heavy loads with large amounts of data. Your application can run in its own secure, reliable environment that’s independent of the hardware, operating system, and physical location of the server. <a href="https://cloud.google.com/appengine/docs/standard/ruby/">Documentation</a></p>
+</blockquote>
+
+<p>Ruby の Standard Environment きた！！！！！ 🎉</p>
+
+<h1 id="management-tools">MANAGEMENT TOOLS</h1>
+
+<h2 id="cloud-firestore-stackdriver-monitoring-metrics-for-real-time-updates-beta">Cloud Firestore – Stackdriver Monitoring metrics for real-time updates: beta</h2>
+
+<blockquote>
+<p>This release brings two new metrics from Cloud Firestore into Stackdriver Monitoring that measure your usage of real-time updates. You can now see the number of active connections to your database and the number of snapshot listeners across all active connections. <a href="https://firebase.google.com/docs/firestore/monitor-usage#stackdriver-monitoring">Documentation</a></p>
+</blockquote>
+
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+
+<div id="footer-navigation">
+  <div id="next-prev">
+    <div><a href="https://blog.nownabe.com/2019/08/07/cloudnativedaystokyo2019/">&lt; CloudNative Days Tokyo 2019 参加メモ</a></div>
+    <div></div>
+  </div>
+  <div id="related-articles"><h2>See Also</h2>
+    <ul><li><a href="/2019/05/29/gcp-product-updates-may-28-2019.html/">GCP Updates | May 28, 2019</a></li><li><a href="/2019/05/21/migration-to-gcp.html/">よくしらんRailsアプリとかをAWSのレガシーシステムからGCPのイケイケシステムに移行した話</a></li><li><a href="/2019/01/15/1450.html/">GCP updates  | January 7, 2019</a></li><li><a href="/2018/12/18/1447.html/">GCP updates | December 17, 2018</a></li><li><a href="/2018/11/29/1444.html/">GCP updates  | November 26, 2018</a></li></ul></div>
+  <div id="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root"></div>
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" async="async"></script>
+</body>
+</html>

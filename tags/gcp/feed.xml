@@ -6,10 +6,19 @@
     <description>Recent content in gcp on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Wed, 29 May 2019 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 07 Aug 2019 17:08:23 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/tags/gcp/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>GCP Updates | August 5, 2019</title>
+      <link>https://blog.nownabe.com/2019/08/07/gcp-updates-august-5-2019/</link>
+      <pubDate>Wed, 07 Aug 2019 17:08:23 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2019/08/07/gcp-updates-august-5-2019/</guid>
+      <description>STORAGE &amp;amp; DATABASES Cloud Storage – dual-regional bucket locations: GA Combine the performance boost of having two specific regional locations for object data storage with the advantages of geo-redundancy. Documentation dual-regional は multi-regional の特別なやつらしい。Console で試してみると、 nam4 (Iowa and South Carolina) us (multiple region in United States) み</description>
+    </item>
     
     <item>
       <title>GCP Updates | May 28, 2019</title>
