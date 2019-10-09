@@ -1,7 +1,0 @@
-#!/bin/bash
-
-set -eu
-
-. .envrc
-
-hugo -t ${TEMPLATE}
