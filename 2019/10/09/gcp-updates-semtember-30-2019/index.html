@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>GCP Updates | Semtember 30, 2019 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.5e4d516051eaf80a3c96a5c8f160303915afcc3032634b1464e11720b1cf6bafc8000f3702ccefb89370bcd03fc09d21504e28907f8d52906eb783ead567c35b.css" integrity="sha512-Xk1RYFHq&#43;Ao8lqXI8WAwORWvzDAyY0sUZOEXILHPa6/IAA83AszvuJNwvNA/wJ0hUE4okH&#43;NUpBut4Pq1WfDWw==">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2019/10/09/gcp-updates-semtember-30-2019/">
+  <meta property="og:title" content="GCP Updates | Semtember 30, 2019 - nownab.log">
+  <meta property="og:description" content="COMPUTE Compute Engine – name change for memory-optimized VMs: GA To more clearly identify VM instances as members of the memory-optimized machine-type family, all n1-ultramem and n1-megamem VMs have had their “n1” prefix changed to “m1”. Documentation Compute Engine – persistent disk scheduled snapshots: GA Use snapshot schedules to regularly and automatically back up your Compute Engine workloads as well as your zonal">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="GCP Updates | Semtember 30, 2019 - nownab.log">
+  <meta property="twitter:description" content="COMPUTE Compute Engine – name change for memory-optimized VMs: GA To more clearly identify VM instances as members of the memory-optimized machine-type family, all n1-ultramem and n1-megamem VMs have had their “n1” prefix changed to “m1”. Documentation Compute Engine – persistent disk scheduled snapshots: GA Use snapshot schedules to regularly and automatically back up your Compute Engine workloads as well as your zonal">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg" alt="nownabe logo">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h2><a href="https://blog.nownabe.com/2019/10/09/gcp-updates-semtember-30-2019/">GCP Updates | Semtember 30, 2019</a></h2>
+    <span class="date">Posted on Oct 9, 2019</span>
+  </div>
+  <div class="body">
+    
+
+<h1 id="compute">COMPUTE</h1>
+
+<h2 id="compute-engine-name-change-for-memory-optimized-vms-ga">Compute Engine – name change for memory-optimized VMs: GA</h2>
+
+<blockquote>
+<p>To more clearly identify VM instances as members of the memory-optimized machine-type family, all n1-ultramem and n1-megamem VMs have had their “n1” prefix changed to “m1”. <a href="https://cloud.google.com/compute/docs/machine-types#m1_machine_types">Documentation</a></p>
+</blockquote>
+
+<h2 id="compute-engine-persistent-disk-scheduled-snapshots-ga">Compute Engine – persistent disk scheduled snapshots: GA</h2>
+
+<blockquote>
+<p>Use snapshot schedules to regularly and automatically back up your Compute Engine workloads as well as your zonal and regional persistent disks. And define how long to keep snapshots with a snapshot retention policy. <a href="https://cloud.google.com/compute/docs/disks/scheduled-snapshots">Documentation</a></p>
+</blockquote>
+
+<p>いままでなかったのか 😳</p>
+
+<h1 id="ai-machine-learning">AI &amp; MACHINE LEARNING</h1>
+
+<h2 id="ai-platform-custom-containers-ga">AI Platform – custom containers: GA</h2>
+
+<blockquote>
+<p>Run your apps in a Docker image by building your own custom container to run jobs on AI Platform. Use machine learning frameworks and versions – as well as non-ML dependencies, libraries, and binaries not otherwise supported on AI Platform. <a href="https://cloud.google.com/ml-engine/docs/containers-overview">Documentation</a></p>
+</blockquote>
+
+<p>中ではCloud Runが使われてんのかな 🤔</p>
+
+<p>AI Platformの方のドキュメント見るとDockerのインストールとかDockerfileの書き方とかまで書いてあっておもしろい。</p>
+
+<h2 id="ai-platform-use-predefined-machine-type-names-to-configure-training-job-ga">AI Platform – use predefined machine-type names to configure training job: GA</h2>
+
+<blockquote>
+<p>Gain greater flexibility when allocating computing resources for training machine learning jobs by using names of certain predefined Compute Engine machine types. You can also customize how your job uses GPUs when training with TensorFlow or using custom containers. <a href="https://cloud.google.com/ml-engine/docs/machine-types#compute-engine-machine-types">Documentation</a></p>
+</blockquote>
+
+<h2 id="cloud-video-intelligence-api-logo-detection-beta">Cloud Video Intelligence API – logo detection: beta</h2>
+
+<blockquote>
+<p>Detect, track, and recognize the presence of over 100,000 brands and logos in video content. <a href="https://cloud.google.com/video-intelligence/docs/logo-recognition">Documentation</a></p>
+</blockquote>
+
+<h1 id="security">SECURITY</h1>
+
+<h2 id="cloud-data-loss-prevention-new-google-cloud-platform-console-user-interface-ga">Cloud Data Loss Prevention – new Google Cloud Platform Console user interface: GA</h2>
+
+<blockquote>
+<p>Gain greater visibility and control over sensitive data with the new Cloud DLP UI. Inspect and classify data in Cloud Storage, BigQuery, and Cloud Datastore repositories with a few clicks. Manage inspection jobs, create templates, and examine findings in your console. <a href="https://cloud.google.com/dlp/docs/dlp-ui">Documentation</a></p>
+</blockquote>
+
+<h2 id="cloud-asset-inventory-organization-policy-and-access-policy-support-ga">Cloud Asset Inventory – Organization Policy and Access Policy support: GA</h2>
+
+<blockquote>
+<p>View and assess more resource and policy types in one centralized, managed inventory service with the newly onboarded policies. <a href="https://cloud.google.com/asset-inventory/docs/overview">Documentation</a></p>
+</blockquote>
+
+<h2 id="identity-platform-multi-tenancy-support-beta">Identity Platform multi-tenancy support: beta</h2>
+
+<blockquote>
+<p>Create unique silos of users and configurations within a single Identity Platform project to set up data-isolation boundaries. The silos can represent different customers, business units, subsidiaries, or other identifying characteristics. <a href="https://cloud.google.com/identity-platform/docs/multi-tenancy">Documentation</a></p>
+</blockquote>
+
+<h1 id="anthos">ANTHOS</h1>
+
+<h2 id="gcp-marketplace-private-pricing-beta">GCP Marketplace Private Pricing: beta</h2>
+
+<blockquote>
+<p>Create custom quotes for prospective customers for your Kubernetes apps or integrated SaaS solutions with GCP Marketplace Private Pricing. The quote gives customers the ability to purchase your product on the GCP Marketplace at the negotiated price in their GCP Console. <a href="https://cloud.google.com/marketplace/docs/partners/create-quotes">Documentation</a></p>
+</blockquote>
+
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+
+<div id="footer-navigation">
+  <div id="next-prev">
+    <div><a href="https://blog.nownabe.com/2019/08/07/gcp-updates-august-5-2019/">&lt; GCP Updates | August 5, 2019</a></div>
+    <div></div>
+  </div>
+  <div id="related-articles"><h2>See Also</h2>
+    <ul><li><a href="/2019/08/07/gcp-updates-august-5-2019/">GCP Updates | August 5, 2019</a></li><li><a href="/2019/05/29/gcp-product-updates-may-28-2019.html/">GCP Updates | May 28, 2019</a></li><li><a href="/2019/05/21/migration-to-gcp.html/">よくしらんRailsアプリとかをAWSのレガシーシステムからGCPのイケイケシステムに移行した話</a></li><li><a href="/2019/01/15/1450.html/">GCP updates  | January 7, 2019</a></li><li><a href="/2018/12/18/1447.html/">GCP updates | December 17, 2018</a></li></ul></div>
+  <div id="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root"></div>
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" async="async"></script>
+</body>
+</html>

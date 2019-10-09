@@ -6,10 +6,19 @@
     <description>Recent content in gcp on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Wed, 07 Aug 2019 17:08:23 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 09 Oct 2019 12:24:12 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/tags/gcp/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>GCP Updates | Semtember 30, 2019</title>
+      <link>https://blog.nownabe.com/2019/10/09/gcp-updates-semtember-30-2019/</link>
+      <pubDate>Wed, 09 Oct 2019 12:24:12 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2019/10/09/gcp-updates-semtember-30-2019/</guid>
+      <description>COMPUTE Compute Engine – name change for memory-optimized VMs: GA To more clearly identify VM instances as members of the memory-optimized machine-type family, all n1-ultramem and n1-megamem VMs have had their “n1” prefix changed to “m1”. Documentation Compute Engine – persistent disk scheduled snapshots: GA Use snapshot schedules to regularly and automatically back up your Compute Engine workloads as well as your zonal</description>
+    </item>
     
     <item>
       <title>GCP Updates | August 5, 2019</title>
