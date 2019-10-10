@@ -6,10 +6,19 @@
     <description>Recent content in 2019s on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Wed, 09 Oct 2019 12:24:12 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 10 Oct 2019 16:45:00 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/2019/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>GCE Machine Types Overview</title>
+      <link>https://blog.nownabe.com/2019/10/10/gce-machine-types-overview/</link>
+      <pubDate>Thu, 10 Oct 2019 16:45:00 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2019/10/10/gce-machine-types-overview/</guid>
+      <description>GCP Updates | Semtember 30, 2019 - nownab.log で memory-optimized マシンタイプの名前がn1からm1に変わったという項目があったので、マシンタイプのprefixを整理してみた。 Prefixes n1: 第1世代</description>
+    </item>
     
     <item>
       <title>GCP Updates | Semtember 30, 2019</title>

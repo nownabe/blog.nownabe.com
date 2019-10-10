@@ -4,7 +4,18 @@
   
   <url>
     <loc>https://blog.nownabe.com/2019/</loc>
-    <lastmod>2019-10-09T12:24:12+09:00</lastmod>
+    <lastmod>2019-10-10T16:45:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/2019/10/10/gce-machine-types-overview/</loc>
+    <lastmod>2019-10-10T16:45:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/</loc>
+    <lastmod>2019-10-10T16:45:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -32,12 +43,6 @@
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/</loc>
-    <lastmod>2019-10-09T12:24:12+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.nownabe.com/2019/08/07/gcp-updates-august-5-2019/</loc>
     <lastmod>2019-08-07T17:08:23+09:00</lastmod>
   </url>
@@ -60,13 +65,13 @@
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/tags/docker/</loc>
+    <loc>https://blog.nownabe.com/tags/kubernetes/</loc>
     <lastmod>2019-08-07T16:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/tags/kubernetes/</loc>
+    <loc>https://blog.nownabe.com/tags/docker/</loc>
     <lastmod>2019-08-07T16:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
