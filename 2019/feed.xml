@@ -6,10 +6,19 @@
     <description>Recent content in 2019s on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Thu, 10 Oct 2019 16:45:00 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 19 Oct 2019 16:12:39 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/2019/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>GCP Updates | October 16, 2019</title>
+      <link>https://blog.nownabe.com/2019/10/19/gcp-updates-october-16-2019/</link>
+      <pubDate>Sat, 19 Oct 2019 16:12:39 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2019/10/19/gcp-updates-october-16-2019/</guid>
+      <description>DATA ANALYTICS Cloud Dataproc – GPU support: GA Boost the performance of workloads, including machine learning and data processing, by attaching graphics processing units (GPUs) to master and worker Compute Engine nodes in a Cloud Dataproc cluster. Choose from options including NVIDIA® Tesla® P100, V100, and P4 GPUs. Documentation BigQuery ML – k-means clustering support: GA Use unsupervised learning</description>
+    </item>
     
     <item>
       <title>GCE Machine Types Overview</title>
