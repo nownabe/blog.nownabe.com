@@ -6,10 +6,19 @@
     <description>Recent content in gcp on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sat, 19 Oct 2019 16:12:39 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 28 Nov 2019 14:58:32 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/tags/gcp/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>GCP Updates | November 25 2019</title>
+      <link>https://blog.nownabe.com/2019/11/28/gcp-updates-november-25-2019/</link>
+      <pubDate>Thu, 28 Nov 2019 14:58:32 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2019/11/28/gcp-updates-november-25-2019/</guid>
+      <description>AI &amp;amp; MACHINE LEARNING Cloud AutoML Vision – image classification: beta refresh The unified infrastructure now supports both classification and object detection, and has an integrated UI. Plan ahead and prepare your classification models for the general availability of AutoML Vision scheduled to take place later this year. Use these steps to update current models. Release notes | Documentation Cloud AutoML Vision – batch prediction: beta Use batch prediction for</description>
+    </item>
     
     <item>
       <title>GCP Updates | October 16, 2019</title>
