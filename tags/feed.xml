@@ -39,7 +39,16 @@
     </item>
     
     <item>
-      <title>Event</title>
+      <title>docker</title>
+      <link>https://blog.nownabe.com/tags/docker/</link>
+      <pubDate>Wed, 07 Aug 2019 16:00:00 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>event</title>
       <link>https://blog.nownabe.com/tags/event/</link>
       <pubDate>Wed, 07 Aug 2019 16:00:00 +0900</pubDate>
       
@@ -48,20 +57,11 @@
     </item>
     
     <item>
-      <title>Kubernetes</title>
+      <title>kubernetes</title>
       <link>https://blog.nownabe.com/tags/kubernetes/</link>
       <pubDate>Wed, 07 Aug 2019 16:00:00 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/tags/kubernetes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker</title>
-      <link>https://blog.nownabe.com/tags/docker/</link>
-      <pubDate>Wed, 07 Aug 2019 16:00:00 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/docker/</guid>
       <description></description>
     </item>
     
@@ -111,20 +111,20 @@
     </item>
     
     <item>
-      <title>AWS</title>
-      <link>https://blog.nownabe.com/tags/aws/</link>
-      <pubDate>Tue, 21 May 2019 00:00:00 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/aws/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Ruby on Rails</title>
       <link>https://blog.nownabe.com/tags/ruby-on-rails/</link>
       <pubDate>Tue, 21 May 2019 00:00:00 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/tags/ruby-on-rails/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>aws</title>
+      <link>https://blog.nownabe.com/tags/aws/</link>
+      <pubDate>Tue, 21 May 2019 00:00:00 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/aws/</guid>
       <description></description>
     </item>
     
@@ -138,7 +138,7 @@
     </item>
     
     <item>
-      <title>GitHub</title>
+      <title>github</title>
       <link>https://blog.nownabe.com/tags/github/</link>
       <pubDate>Tue, 08 Jan 2019 10:22:02 +0900</pubDate>
       
