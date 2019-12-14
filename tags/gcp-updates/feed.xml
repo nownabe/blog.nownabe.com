@@ -6,10 +6,19 @@
     <description>Recent content in GCP Updates on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Thu, 28 Nov 2019 14:58:32 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 13 Dec 2019 17:48:21 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/tags/gcp-updates/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>GCP Updates | December 9, 2019</title>
+      <link>https://blog.nownabe.com/2019/12/13/gcp-updates-december-9-2019/</link>
+      <pubDate>Fri, 13 Dec 2019 17:48:21 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2019/12/13/gcp-updates-december-9-2019/</guid>
+      <description>Product updates | December 9, 2019 AI &amp;amp; MACHINE LEARNING AutoML Tables – data residency for EU: beta AutoML Tables now provides full support to users with EU data residency requirements. Documentation | Release notes GDPR大変そう Contact Center AI: GA Automate call center interactions and provide seamless handoffs to human agents with Virtual Agent. Use Agent Assist to transcribe calls in real time,</description>
+    </item>
     
     <item>
       <title>GCP Updates | November 25 2019</title>

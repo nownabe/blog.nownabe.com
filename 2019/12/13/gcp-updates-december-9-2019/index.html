@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ja"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>GCP Updates | December 9, 2019 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.5e4d516051eaf80a3c96a5c8f160303915afcc3032634b1464e11720b1cf6bafc8000f3702ccefb89370bcd03fc09d21504e28907f8d52906eb783ead567c35b.css" integrity="sha512-Xk1RYFHq&#43;Ao8lqXI8WAwORWvzDAyY0sUZOEXILHPa6/IAA83AszvuJNwvNA/wJ0hUE4okH&#43;NUpBut4Pq1WfDWw==">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2019/12/13/gcp-updates-december-9-2019/">
+  <meta property="og:title" content="GCP Updates | December 9, 2019 - nownab.log">
+  <meta property="og:description" content="Product updates | December 9, 2019 AI &amp; MACHINE LEARNING AutoML Tables – data residency for EU: beta AutoML Tables now provides full support to users with EU data residency requirements. Documentation | Release notes GDPR大変そう Contact Center AI: GA Automate call center interactions and provide seamless handoffs to human agents with Virtual Agent. Use Agent Assist to transcribe calls in real time,">
+  <meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png">
+  <meta property="twitter:title" content="GCP Updates | December 9, 2019 - nownab.log">
+  <meta property="twitter:description" content="Product updates | December 9, 2019 AI &amp; MACHINE LEARNING AutoML Tables – data residency for EU: beta AutoML Tables now provides full support to users with EU data residency requirements. Documentation | Release notes GDPR大変そう Contact Center AI: GA Automate call center interactions and provide seamless handoffs to human agents with Virtual Agent. Use Agent Assist to transcribe calls in real time,">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg" alt="nownabe logo">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h2><a href="https://blog.nownabe.com/2019/12/13/gcp-updates-december-9-2019/">GCP Updates | December 9, 2019</a></h2>
+    <span class="date">Posted on Dec 13, 2019</span>
+  </div>
+  <div class="body">
+    
+
+<p>Product updates | December 9, 2019</p>
+
+<h1 id="ai-machine-learning">AI &amp; MACHINE LEARNING</h1>
+
+<h2 id="automl-tables-data-residency-for-eu-beta">AutoML Tables – data residency for EU: beta</h2>
+
+<blockquote>
+<p>AutoML Tables now provides full support to users with EU data residency requirements. <a href="https://cloud.google.com/automl-tables/docs/locations">Documentation</a> | <a href="https://cloud.google.com/automl-tables/docs/release-notes">Release notes</a></p>
+</blockquote>
+
+<p>GDPR大変そう</p>
+
+<h2 id="contact-center-ai-ga">Contact Center AI: GA</h2>
+
+<blockquote>
+<p>Automate call center interactions and provide seamless handoffs to human agents with Virtual Agent. Use Agent Assist to transcribe calls in real time, identify customer intent, and provide real-time, step-by-step assistance to your live agents. <a href="https://cloud.google.com/solutions/contact-center/">Solutions page</a> | <a href="https://cloud.google.com/blog/products/ai-machine-learning/contact-center-ai-now-ga">Blog</a></p>
+</blockquote>
+
+<h1 id="compute">COMPUTE</h1>
+
+<h2 id="google-kubernetes-engine-batch-on-gke-beta">Google Kubernetes Engine – Batch on GKE: beta</h2>
+
+<blockquote>
+<p>Run your batch workload in the cloud using Kubernetes with flexible resources that are dynamically allocated to match your needs and budget. Create queues, prioritize jobs, and handle dependencies with the functions and familiarity of a traditional batch job scheduler. <a href="https://cloud.google.com/kubernetes-engine/docs/concepts/batch">Documentation</a> | <a href="https://cloud.google.com/blog/topics/hpc/introducing-batch-gke-modernizing-hpc-kubernetes-cloud">Blog</a></p>
+</blockquote>
+
+<p>GKEで大規模なバッチ処理を実行するためのものみたいです。
+JobやQueue、Budgetなどなどを持ってるらしい。</p>
+
+<p>インストールは今の所<a href="https://github.com/GoogleCloudPlatform/Kbatch/tree/master/releases">GitHub</a>にあるYAMLをapplyして行います。</p>
+
+<p>こんな感じのCRDがありました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ egrep <span class="s1">&#39;\skind: [^&#34;]&#39;</span> install/01-crds.yaml
+    kind: BatchBudget
+    kind: BatchCostModel
+    kind: BatchJobConstraint
+    kind: BatchJob
+    kind: BatchNode
+    kind: BatchPriority
+    kind: BatchQueue
+    kind: BatchTask
+    kind: BatchUserContext</code></pre></div>
+<p>Jobの作成には先ほどのアーカイブに同梱されているksubコマンドを使うみたいです。
+ksubで<a href="https://github.com/GoogleCloudPlatform/Kbatch/tree/master/samples/defaultresources">Bashスクリプト</a>を指定するみたいです。</p>
+
+<p>面白そうなのでまた触ってみたい。</p>
+
+<h1 id="data-analytics">DATA ANALYTICS</h1>
+
+<h2 id="bigquery-audit-logs-v2-ga">BigQuery – audit logs v2: GA</h2>
+
+<blockquote>
+<p>Gain greater insight into your BigQuery resources with BigQueryAuditMetadata, a newer format of audit log messages. Understand resource interactions and identify which tables were read from and written to by a given query job and which tables have expired. <a href="https://cloud.google.com/bigquery/docs/reference/auditlogs/#bigqueryauditmetadata_format">Documentation</a></p>
+</blockquote>
+
+<h2 id="bigquery-and-bigquery-ml-new-region-ga">BigQuery and BigQuery ML – new region: GA</h2>
+
+<blockquote>
+<p>BigQuery and Biguery ML are now available in the South Carolina (us-east1) region. <a href="https://cloud.google.com/bigquery/docs/release-notes">Release notes</a> | <a href="https://cloud.google.com/bigquery-ml/docs/release-notes">Release notes</a></p>
+</blockquote>
+
+<h2 id="cloud-dataflow-flexible-resource-scheduling-ga">Cloud Dataflow – Flexible Resource Scheduling: GA</h2>
+
+<blockquote>
+<p>Reduce batch processing costs – without changing pipeline code. FlexRS uses advanced scheduling techniques, Dataflow Shuffle, and a combination of preemptible virtual machine instances and regular VMs to reduce worker costs up to 40%. <a href="https://cloud.google.com/dataflow/docs/guides/flexrs">Documentation</a> | <a href="https://cloud.google.com/blog/products/data-analytics/streaming-analytics-now-simpler-more-cost-effective-cloud-dataflow">Blog</a></p>
+</blockquote>
+
+<p>いいですね。</p>
+
+<h1 id="database">DATABASE</h1>
+
+<h2 id="cloud-datastore-managed-export-and-import-service-ga">Cloud Datastore – managed export and import service: GA</h2>
+
+<blockquote>
+<p>Export and import Cloud Datastore entities using your Cloud Console, the gcloud command-line tool, or the Cloud Datastore API. Use the service to recover from accidental deletion of data and export data for offline processing. <a href="https://cloud.google.com/datastore/docs/export-import-entities">Documentation</a></p>
+</blockquote>
+
+<p>おー、ついにGA 🎉</p>
+
+<h1 id="developer-tools">DEVELOPER TOOLS</h1>
+
+<h2 id="cloud-code-visual-studio-code-stackdriver-log-viewer-ga">Cloud Code – Visual Studio Code Stackdriver Log Viewer: GA</h2>
+
+<blockquote>
+<p>Access your Stackdriver logs directly in the Visual Studio Code IDE. Simplify and streamline the diagnostics process with features including integration with Stackdriver Logging, a customizable logs viewer, and Kubernetes-specific filtering. <a href="https://cloud.google.com/code/docs/vscode/logging">Documentation</a> | <a href="https://cloud.google.com/blog/products/application-development/stackdriver-logging-comes-to-cloud-code-in-visual-studio-code">Blog</a></p>
+</blockquote>
+
+<p>Documentationにある動画みたけど便利そう。
+公式でこういうのだしてくれるのいいなー。</p>
+
+<h2 id="go-developer-hub-and-discovery-site-beta">Go developer hub and discovery site: beta</h2>
+
+<blockquote>
+<p>Visit the new site to discover and evaluate Go packages and modules – and learn how to integrate them into your projects. Find a wealth of resources to get started with the language, featured use cases, and case studies of companies that use Go. <a href="https://go.dev/">Product page</a> | <a href="https://blog.golang.org/go.dev">Blog</a></p>
+</blockquote>
+
+<p>Goの新しいサイト？</p>
+
+<h1 id="identity-security">IDENTITY &amp; SECURITY</h1>
+
+<h2 id="cloud-identity-and-access-management-service-account-short-lived-credentials-api-ga">Cloud Identity and Access Management – Service Account Short-Lived Credentials API: GA</h2>
+
+<blockquote>
+<p>Enhance security and usability by allowing users to create short-lived credentials for service accounts. Reduce the need to manage downloaded keys and provide a way to impersonate service account identities securely to access GCP and non-GCP APIs. <a href="https://cloud.google.com/iam/docs/creating-short-lived-service-account-credentials">Documentation</a></p>
+</blockquote>
+
+<h2 id="identity-platform-multi-tenancy-support-ga">Identity Platform – multi-tenancy support: GA</h2>
+
+<blockquote>
+<p>Create and manage multiple tenants within a single instance of Identity Platform. Tenants can operate autonomously, with their own authentication methods and users, even if they’re part of the same instance. <a href="https://cloud.google.com/identity-platform/">Product page</a> | <a href="https://cloud.google.com/blog/products/identity-security/multi-tenancy-support-identity-platform-now-generally-available">Blog</a></p>
+</blockquote>
+
+<h1 id="management-tools">MANAGEMENT TOOLS</h1>
+
+<h2 id="cloud-billing-committed-use-discount-analysis-report-ga">Cloud Billing – Committed Use Discount Analysis report: GA</h2>
+
+<blockquote>
+<p>Analyze your Compute Engine resource footprint alongside your commitments. Easily visualize, understand, and optimize the effectiveness, utilization rate, and financial impact of your committed use discounts. <a href="https://cloud.google.com/billing/docs/how-to/cud-analysis">Documentation</a></p>
+</blockquote>
+
+<h2 id="cloud-billing-budget-api-beta">Cloud Billing Budget API: beta</h2>
+
+<blockquote>
+<p>View, create, and manage budgets programmatically at scale and receive alerts when your spend on services goes above an assigned threshold. Create separate budgets for your Google Cloud Platform projects, bulk update budgets, and add budget creation to your cloud provisioning workflow. <a href="https://cloud.google.com/billing/docs/how-to/budget-api-overview">Documentation</a></p>
+</blockquote>
+
+<h2 id="stackdriver-service-monitoring-api-beta">Stackdriver – Service Monitoring API: beta</h2>
+
+<blockquote>
+<p>Mitigate risk to your microservices with new monitoring features that allow you to select metrics that act as service-level indicators, to define service-level objectives, and to track the health of your service with error budgets. <a href="https://cloud.google.com/monitoring/service-monitoring/">Documentation</a></p>
+</blockquote>
+
+<h1 id="migration">MIGRATION</h1>
+
+<h2 id="migrate-for-anthos-ga">Migrate for Anthos: GA</h2>
+
+<blockquote>
+<p>Migrate existing VMware, Amazon EC2, Microsoft Azure, and Compute Engine VMs to containers directly on GKE in minutes, minimize downtime with streaming storage migration, and automatically transform workloads to run as containers in GKE pods. <a href="https://cloud.google.com/migrate/anthos/docs/release-notes">Release notes</a></p>
+</blockquote>
+
+<p>すげぇ</p>
+
+<h2 id="migrate-for-compute-engine-v4-8-ga">Migrate for Compute Engine v4.8: GA</h2>
+
+<blockquote>
+<p>Migrate Microsoft Azure instances to Compute Engine with enhanced scale, reduced initial downtime and the ability to monitor the source cloud environment during migration. Additional features include the ability to manage system upgrades and patch installation via the system UI. <a href="https://cloud.google.com/migrate/compute-engine/docs/4.8/release-notes">Release notes</a></p>
+</blockquote>
+
+<h1 id="networking">NETWORKING</h1>
+
+<h2 id="google-cloud-armor-findings-and-assets-in-cloud-security-command-center-beta">Google Cloud Armor – findings and assets in Cloud Security Command Center: beta</h2>
+
+<blockquote>
+<p>Enhance visibility into potential attacks with two new findings from Google Cloud Armor: traffic spikes and increasing rate of denied traffic to the Cloud Security Command Center. <a href="https://cloud.google.com/armor/docs/cscc-findings">Documentation</a></p>
+</blockquote>
+
+<p>よさそう。</p>
+
+<h2 id="traffic-director-route-rules-and-traffic-policies-ga">Traffic Director – route rules and traffic policies: GA</h2>
+
+<blockquote>
+<p>Control traffic within your Traffic Director deployment by using route rules and traffic policies to implement traffic splitting, traffic steering, fault injection, circuit breaking, and mirroring. Traffic policies further manage traffic using a range of actions. <a href="https://cloud.google.com/traffic-director/docs/traffic-control">Documentation</a></p>
+</blockquote>
+
+<p>お、GAなったのか。使ってみたいなー。</p>
+
+<h2 id="virtual-private-cloud-packet-mirroring-beta">Virtual Private Cloud – Packet Mirroring: beta</h2>
+
+<blockquote>
+<p>Inspect all traffic in your network to perform advanced security analytics, and troubleshoot app performance, for both Compute Engine instances and GKE clusters. Clone traffic in specific instances in your VPC to a private collector endpoint to run security and monitoring software on the collector back ends. <a href="https://cloud.google.com/vpc/docs/packet-mirroring">Documentation</a> | <a href="https://www.youtube.com/watch">Video</a></p>
+</blockquote>
+
+<p>いいね！GCEインスタンスだけが対象かな。そのうちコンテナとかも対象にできるようになんのかな。</p>
+
+<h2 id="vpc-custom-routes-ga">VPC – custom routes: GA</h2>
+
+<blockquote>
+<p>Import and export custom routes to peer VPC networks, and exchange static and dynamic routes, so that workloads in different VPC networks can communicate in private RFC 1918 space. All traffic stays within Google’s network, and doesn’t cross the public internet. <a href="https://cloud.google.com/vpc/docs/vpc-peering#importing-exporting-routes">Documentation</a></p>
+</blockquote>
+
+<h2 id="network-intelligence-center-network-topology-and-connectivity-tests-beta">Network Intelligence Center – Network Topology and Connectivity Tests: beta</h2>
+
+<blockquote>
+<p>Gain an organization-wide view into your global GCP deployment, diagnose connectivity issues, and predict the impact of configuration changes with <a href="https://cloud.google.com/network-intelligence-center/docs/network-topology/">Network Topology</a> and <a href="https://cloud.google.com/network-intelligence-center/docs/connectivity-tests/">Connectivity Tests</a>. <a href="https://cloud.google.com/blog/products/networking/announcing-network-intelligence-center">Blog</a> | <a href="https://www.youtube.com/watch">Video</a> | <a href="https://www.youtube.com/watch">Video</a></p>
+</blockquote>
+
+<p>便利そう！</p>
+
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+
+<div id="footer-navigation">
+  <div id="next-prev">
+    <div><a href="https://blog.nownabe.com/2019/11/28/gcp-updates-november-25-2019/">&lt; GCP Updates | November 25 2019</a></div>
+    <div></div>
+  </div>
+  <div id="related-articles"><h2>See Also</h2>
+    <ul><li><a href="/2019/11/28/gcp-updates-november-25-2019/">GCP Updates | November 25 2019</a></li><li><a href="/2019/10/19/gcp-updates-october-16-2019/">GCP Updates | October 16, 2019</a></li><li><a href="/2019/10/09/gcp-updates-semtember-30-2019/">GCP Updates | Semtember 30, 2019</a></li><li><a href="/2019/08/07/gcp-updates-august-5-2019/">GCP Updates | August 5, 2019</a></li><li><a href="/2019/05/29/gcp-product-updates-may-28-2019.html/">GCP Updates | May 28, 2019</a></li></ul></div>
+  <div id="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root"></div>
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" async="async"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      anchors.add(".body h1, .body h2, .body h3");
+    });
+  </script>
+</body>
+</html>

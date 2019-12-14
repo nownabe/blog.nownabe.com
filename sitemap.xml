@@ -4,37 +4,42 @@
   
   <url>
     <loc>https://blog.nownabe.com/2019/</loc>
-    <lastmod>2019-11-28T14:58:32+09:00</lastmod>
+    <lastmod>2019-12-13T17:48:21+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.nownabe.com/tags/gcp-updates/</loc>
-    <lastmod>2019-11-28T14:58:32+09:00</lastmod>
+    <lastmod>2019-12-13T17:48:21+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/2019/12/13/gcp-updates-december-9-2019/</loc>
+    <lastmod>2019-12-13T17:48:21+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/</loc>
+    <lastmod>2019-12-13T17:48:21+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/gcp/</loc>
+    <lastmod>2019-12-13T17:48:21+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/</loc>
+    <lastmod>2019-12-13T17:48:21+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.nownabe.com/2019/11/28/gcp-updates-november-25-2019/</loc>
     <lastmod>2019-11-28T14:58:32+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/tags/</loc>
-    <lastmod>2019-11-28T14:58:32+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/tags/gcp/</loc>
-    <lastmod>2019-11-28T14:58:32+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/</loc>
-    <lastmod>2019-11-28T14:58:32+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -74,13 +79,13 @@
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/tags/docker/</loc>
+    <loc>https://blog.nownabe.com/tags/event/</loc>
     <lastmod>2019-08-07T16:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/tags/event/</loc>
+    <loc>https://blog.nownabe.com/tags/docker/</loc>
     <lastmod>2019-08-07T16:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
@@ -170,14 +175,14 @@
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/2019/01/08/1448.html/</loc>
-    <lastmod>2019-01-08T10:39:37+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://blog.nownabe.com/tags/github/</loc>
     <lastmod>2019-01-08T10:39:37+09:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/2019/01/08/1448.html/</loc>
+    <lastmod>2019-01-08T10:39:37+09:00</lastmod>
   </url>
   
   <url>
