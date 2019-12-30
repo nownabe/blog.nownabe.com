@@ -8,12 +8,12 @@ http://blog.nownabe.com/
 Dev server
 
 ```
-hugo server -t nownablog
+make server
 ```
 
 New article
 
 ```
-hugo new 2019/06/14/migrate-blog-from-middleman-to-hugo.md
+make new
 ```
 
