@@ -33,3 +33,6 @@ weight = 100
 [[related.indices]]
 name = "date"
 weight = 10
+
+[markup.goldmark.renderer]
+unsafe = true
