@@ -4,7 +4,18 @@
   
   <url>
     <loc>https://blog.nownabe.com/2019/</loc>
-    <lastmod>2019-12-13T17:48:21+09:00</lastmod>
+    <lastmod>2019-12-30T23:20:05+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/2019/12/30/leave-wondershake/</loc>
+    <lastmod>2019-12-30T23:20:05+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/</loc>
+    <lastmod>2019-12-30T23:20:05+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -27,12 +38,6 @@
   
   <url>
     <loc>https://blog.nownabe.com/tags/gcp/</loc>
-    <lastmod>2019-12-13T17:48:21+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/</loc>
     <lastmod>2019-12-13T17:48:21+09:00</lastmod>
     <priority>0</priority>
   </url>
@@ -79,13 +84,13 @@
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/tags/event/</loc>
+    <loc>https://blog.nownabe.com/tags/docker/</loc>
     <lastmod>2019-08-07T16:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/tags/docker/</loc>
+    <loc>https://blog.nownabe.com/tags/event/</loc>
     <lastmod>2019-08-07T16:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
@@ -175,14 +180,14 @@
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/tags/github/</loc>
+    <loc>https://blog.nownabe.com/2019/01/08/1448.html/</loc>
     <lastmod>2019-01-08T10:39:37+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/2019/01/08/1448.html/</loc>
+    <loc>https://blog.nownabe.com/tags/github/</loc>
     <lastmod>2019-01-08T10:39:37+09:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
