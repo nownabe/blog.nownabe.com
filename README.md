@@ -1,7 +1,7 @@
 nownab.log
 ==========
 
-http://blog.nownabe.com/
+https://blog.nownabe.com/
 
 # Writing
 
