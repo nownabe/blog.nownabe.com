@@ -3,6 +3,35 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://blog.nownabe.com/2020/</loc>
+    <lastmod>2020-01-01T19:30:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/2020/01/01/2020-resolutions/</loc>
+    <lastmod>2020-01-01T19:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/</loc>
+    <lastmod>2020-01-01T19:30:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/</loc>
+    <lastmod>2020-01-01T19:30:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/resolutions/</loc>
+    <lastmod>2020-01-01T19:30:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.nownabe.com/2019/</loc>
     <lastmod>2019-12-30T23:20:05+09:00</lastmod>
     <priority>0</priority>
@@ -14,12 +43,6 @@
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/</loc>
-    <lastmod>2019-12-30T23:20:05+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.nownabe.com/tags/gcp-updates/</loc>
     <lastmod>2019-12-13T17:48:21+09:00</lastmod>
     <priority>0</priority>
@@ -28,12 +51,6 @@
   <url>
     <loc>https://blog.nownabe.com/2019/12/13/gcp-updates-december-9-2019/</loc>
     <lastmod>2019-12-13T17:48:21+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/tags/</loc>
-    <lastmod>2019-12-13T17:48:21+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
