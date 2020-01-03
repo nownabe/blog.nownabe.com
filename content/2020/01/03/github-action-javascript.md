@@ -15,8 +15,6 @@ image: images/2020/01/03/github-action-javascript.png
 
 ![JavaScript](/images/2020/01/03/github-action-javascript.png)
 
-(OGP画像設定できるようにしてみたので意味のないアイキャッチ画像)
-
 JavaScript で GitHub Action を実装して公開しました。
 今までは Dockerfile を書いてたんですが、公式から「できれば JavaScript で作ってくれよな！」的な圧力を感じて、いつまでも Dockerfile に頼ってたらアカンと思ったので JavaScript で実装してみました。
 
