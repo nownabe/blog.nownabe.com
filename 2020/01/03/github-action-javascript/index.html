@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ja"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>JavaScript で Github Action を作ってみた - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.5e4d516051eaf80a3c96a5c8f160303915afcc3032634b1464e11720b1cf6bafc8000f3702ccefb89370bcd03fc09d21504e28907f8d52906eb783ead567c35b.css" integrity="sha512-Xk1RYFHq&#43;Ao8lqXI8WAwORWvzDAyY0sUZOEXILHPa6/IAA83AszvuJNwvNA/wJ0hUE4okH&#43;NUpBut4Pq1WfDWw==">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2020/01/03/github-action-javascript/">
+  <meta property="og:title" content="JavaScript で Github Action を作ってみた - nownab.log">
+  <meta property="og:description" content="JavaScript で GitHub Action を実装して公開しました。 今までは Dockerfile を書いてたんですが、公式から「できれば JavaScript で作ってくれよな！」的な圧力を感じて、いつまでも Dockerfile に頼って"><meta property="og:image" content="https://blog.nownabe.com/images/2020/01/03/github-action-javascript.png"><meta property="twitter:title" content="JavaScript で Github Action を作ってみた - nownab.log">
+  <meta property="twitter:description" content="JavaScript で GitHub Action を実装して公開しました。 今までは Dockerfile を書いてたんですが、公式から「できれば JavaScript で作ってくれよな！」的な圧力を感じて、いつまでも Dockerfile に頼って">
+  <meta property="twitter:image" content="https://blog.nownabe.com/images/2020/01/03/github-action-javascript.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container">
+    <h1>
+      <a href="/">
+        <img src="/img/nownabe.svg" alt="nownabe logo">
+        nownab.log
+      </a>
+    </h1>
+    <p>the nownabe&#39;s life log</p>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h2><a href="https://blog.nownabe.com/2020/01/03/github-action-javascript/">JavaScript で Github Action を作ってみた</a></h2>
+    <span class="date">Posted on Jan 3, 2020</span>
+  </div>
+  <div class="body">
+    
+
+<p><img src="/images/2020/01/03/github-action-javascript.png" alt="JavaScript" /></p>
+
+<p>JavaScript で GitHub Action を実装して公開しました。
+今までは Dockerfile を書いてたんですが、公式から「できれば JavaScript で作ってくれよな！」的な圧力を感じて、いつまでも Dockerfile に頼ってたらアカンと思ったので JavaScript で実装してみました。</p>
+
+<p>作った Action は <a href="https://github.com/nowactions/update-majorver">nowactions/update-majorver</a> です。</p>
+
+<h2 id="なぜ-docker-より-javascript-がいいのか">なぜ Docker より JavaScript がいいのか</h2>
+
+<p>どっかで公式は JavaScript を推奨しているというのを見た気がしないでもないんですが記憶が定かではないので、個人的に考えている理由を書きます。</p>
+
+<p>理由はとても単純で、JavaScript だとすべての OS で動作するからです。
+Docker だと Linux (Ubuntu) でしか動作しません。
+JavaScript だと Linux、Windows、macOS すべてで動作します。</p>
+
+<p>おそらくはこれが理由で、公式の <a href="https://github.com/actions">Action</a> もほぼ全て JavaScript (又は TypeScript) で実装されています。</p>
+
+<p>とは言いつつも、単体の step で Workflow が完結するような Action だとか、Windows？Mac？そんなマイノリティ知らんということで Linux だけで動けばいいという判断もできると思います。
+今回 JavaScript で実装してみて、そんな場合でも Docker ではなく JavaScript で実装することにメリットはあるなぁと感じました。</p>
+
+<ul>
+<li>JavaScript で書ける
+
+<ul>
+<li>ある程度複雑な処理では Bash より遥かに楽に書けることが多いです。個人的には async/await で JavaScript 書きたくない感はほぼなくなったのでなかなか嬉しいです</li>
+</ul></li>
+<li>Docker というレイヤーがない
+
+<ul>
+<li>マシン上で直接動作するのではやいです。小さいビルド済みイメージだとそんな変わらないかもしれませんが、ビルドが走る場合と比べたら爆速です</li>
+<li>あと単純に余分なものがなくて minimal 感があっていいです</li>
+</ul></li>
+<li><a href="https://github.com/actions/toolkit">toolkit</a> が便利
+
+<ul>
+<li>Action を実装するための npm パッケージなんですが、便利でした。inputを直感的に得られたり、Octokitが簡単に使えたりして助かりました</li>
+<li>今回は core と github だけ使いましたが、exec、io、tool-cache も便利そうです</li>
+</ul></li>
+<li>テストしやすい
+
+<ul>
+<li>JavaScript なのでテストできます</li>
+</ul></li>
+<li>書ける人多い
+
+<ul>
+<li>複雑な Bash スクリプトよりは多い、んじゃないかと思ってます。知らんけど</li>
+</ul></li>
+</ul>
+
+<h2 id="作ってどうだったか">作ってどうだったか</h2>
+
+<p>上に全部書いてしまったんですが、なかなかよかったです。</p>
+
+<p>やっぱり Bash よりは JavaScript で書くのが楽ですね。</p>
+
+<p>作る前はビルドとかなんかめんどくさそうというイメージがあったんですが、特にそんなこともなかったです。
+index.js を作ればもう動きます。
+prettier したり jest したりもできて開発体験はよかったです。</p>
+
+<p>また、Docker で作るときって Base イメージを選ぶところから、その後の実装についてもかなり選択肢が多いんですが、 JavaScript だとそのへんの選択肢はなくて脳への負担が少なくてよかったです。
+フレームワークに乗っかる感じですね。というか toolkit が Action のフレームワークなんだと思います。</p>
+
+<h2 id="action-で-docker-はオワコンなのか">Action で Docker はオワコンなのか</h2>
+
+<p>そんなことはないです。
+Dockerfile を書いた方がいいという場合も全然あるので、適材適所で使い分けるのが良いです。</p>
+
+<p>とはいえ、すべてのOSで動作するので公開する Action は JavaScrit で作る努力をしたほうがいいのかなーと思います。</p>
+
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+
+<div id="footer-navigation">
+  <div id="next-prev">
+    <div><a href="https://blog.nownabe.com/2020/01/01/2020-resolutions/">&lt; 2020年のやっていき</a></div>
+    <div></div>
+  </div>
+  <div id="related-articles"><h2>See Also</h2>
+    <ul><li><a href="/2017/12/11/1215.html/">Parcelで使われてるnpmパッケージ調べてた</a></li><li><a href="/2016/09/23/474.html/">GitHub PagesをReact &#43; CSS Modulesで</a></li><li><a href="/2016/08/27/416.html/">jspmでReactなセットアップ</a></li></ul></div>
+  <div id="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+      </div>
+    </div><div id="footer-container">
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016
+      <img src="/img/nownabe.svg" alt="now">
+      nownabe All Right Reserved.
+    </p>
+  </footer>
+  <aside id="information" class="container">
+    <ul id="links">
+      <li>
+        <a href="https://nownabe.github.io/">
+          <img src="/img/nownabe.svg" alt="nownabe.github.io">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/nownabe">
+          <img src="/img/github.svg" alt="GitHub">
+        </a>
+      </li>
+      <li>
+        <a href="https://qiita.com/nownabe">
+          <img src="/img/qiita.svg" alt="Qiita">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/nownabe">
+          <img src="/img/twitter.svg" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/nownabe">
+          <img src="/img/facebook.png" alt="Facebook">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+<div id="fb-root"></div>
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" async="async"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      anchors.add(".body h1, .body h2, .body h3");
+    });
+  </script>
+</body>
+</html>

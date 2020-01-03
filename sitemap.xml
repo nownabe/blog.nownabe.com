@@ -4,25 +4,48 @@
   
   <url>
     <loc>https://blog.nownabe.com/2020/</loc>
-    <lastmod>2020-01-01T19:30:00+09:00</lastmod>
+    <lastmod>2020-01-03T21:52:48+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/github-action/</loc>
+    <lastmod>2020-01-03T21:52:48+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/github-actions/</loc>
+    <lastmod>2020-01-03T21:52:48+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/2020/01/03/github-action-javascript/</loc>
+    <lastmod>2020-01-03T21:52:48+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/</loc>
+    <lastmod>2020-01-03T21:52:48+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/javascript/</loc>
+    <lastmod>2020-01-03T21:52:48+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/</loc>
+    <lastmod>2020-01-03T21:52:48+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.nownabe.com/2020/01/01/2020-resolutions/</loc>
     <lastmod>2020-01-01T19:30:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/tags/</loc>
-    <lastmod>2020-01-01T19:30:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/</loc>
-    <lastmod>2020-01-01T19:30:00+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -722,12 +745,6 @@
   <url>
     <loc>https://blog.nownabe.com/2017/12/11/1215.html/</loc>
     <lastmod>2017-12-11T00:27:02+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/tags/javascript/</loc>
-    <lastmod>2017-12-11T00:27:02+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

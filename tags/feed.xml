@@ -6,10 +6,37 @@
     <description>Recent content in Tags on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Wed, 01 Jan 2020 19:30:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jan 2020 21:52:48 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/tags/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>GitHub Action</title>
+      <link>https://blog.nownabe.com/tags/github-action/</link>
+      <pubDate>Fri, 03 Jan 2020 21:52:48 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/github-action/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GitHub Actions</title>
+      <link>https://blog.nownabe.com/tags/github-actions/</link>
+      <pubDate>Fri, 03 Jan 2020 21:52:48 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/github-actions/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>javascript</title>
+      <link>https://blog.nownabe.com/tags/javascript/</link>
+      <pubDate>Fri, 03 Jan 2020 21:52:48 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/javascript/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>resolutions</title>
@@ -422,15 +449,6 @@
       <pubDate>Mon, 11 Dec 2017 14:48:59 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/tags/%E7%B5%B1%E8%A8%88%E5%AD%A6%E5%85%A5%E9%96%80/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>javascript</title>
-      <link>https://blog.nownabe.com/tags/javascript/</link>
-      <pubDate>Sun, 10 Dec 2017 01:51:53 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/javascript/</guid>
       <description></description>
     </item>
     

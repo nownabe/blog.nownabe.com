@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GitHub Actions on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/github-actions/</link>
+    <description>Recent content in GitHub Actions on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Fri, 03 Jan 2020 21:52:48 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/github-actions/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>JavaScript で Github Action を作ってみた</title>
+      <link>https://blog.nownabe.com/2020/01/03/github-action-javascript/</link>
+      <pubDate>Fri, 03 Jan 2020 21:52:48 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2020/01/03/github-action-javascript/</guid>
+      <description>JavaScript で GitHub Action を実装して公開しました。 今までは Dockerfile を書いてたんですが、公式から「できれば JavaScript で作ってくれよな！」的な圧力を感じて、いつまでも Dockerfile に頼って</description>
+    </item>
+    
+  </channel>
+</rss>
