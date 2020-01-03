@@ -6,5 +6,7 @@ lastmod: {{ .Date }}
 
 draft: true
 isCJKLanguage: true
+
+image: img/nownabe.png
 ---
 
