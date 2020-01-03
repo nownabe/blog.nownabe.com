@@ -17,7 +17,7 @@
       <pubDate>Fri, 03 Jan 2020 21:52:48 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/2020/01/03/github-action-javascript/</guid>
-      <description>(OGP画像設定できるようにしてみたので意味のないアイキャッチ画像) JavaScript で GitHub Action を実装して公開しました。 今までは Dockerfile を書いてたんですが、公式から「</description>
+      <description>JavaScript で GitHub Action を実装して公開しました。 今までは Dockerfile を書いてたんですが、公式から「できれば JavaScript で作ってくれよな！」的な圧力を感じて、いつまでも Dockerfile に頼って</description>
     </item>
     
   </channel>
