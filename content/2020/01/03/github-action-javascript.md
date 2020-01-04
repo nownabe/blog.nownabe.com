@@ -42,7 +42,7 @@ JavaScript だと Linux、Windows、macOS すべてで動作します。
   * Action を実装するための npm パッケージなんですが、便利でした。inputを直感的に得られたり、Octokitが簡単に使えたりして助かりました
   * 今回は core と github だけ使いましたが、exec、io、tool-cache も便利そうです
 * テストしやすい
-  * JavaScript なのでテストできます
+  * JavaScript なテストができます
 * 書ける人多い
   * 複雑な Bash スクリプトよりは多い、んじゃないかと思ってます。知らんけど
 
@@ -64,4 +64,4 @@ prettier したり jest したりもできて開発体験はよかったです�
 そんなことはないです。
 Dockerfile を書いた方がいいという場合も全然あるので、適材適所で使い分けるのが良いです。
 
-とはいえ、すべてのOSで動作するので公開する Action は JavaScrit で作る努力をしたほうがいいのかなーと思います。
+とはいえ、JavaScriptだとすべてのOSで動作するので、今後は公開する Action は JavaScrit で作る努力をしたほうがいいのかなーと思います。
