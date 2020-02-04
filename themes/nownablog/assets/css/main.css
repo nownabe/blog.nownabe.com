@@ -329,6 +329,23 @@ article .body {
 #footer-container {
   margin-bottom: 5rem; }
 
+#author {
+  display: flex;
+  align-items: center;
+}
+
+#author img {
+  width: 64px;
+  height: 64px;
+  border-radius: 64px;
+  margin-right: 1rem;
+}
+
+#author .title {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.8rem;
+}
+
 footer {
   border-top: 1px solid rgba(0, 0, 0, 0.09);
   padding-top: 1rem; }
