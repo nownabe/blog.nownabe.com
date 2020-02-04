@@ -1,0 +1,362 @@
+@charset "UTF-8";
+/* Variables */
+/* Base Styles */
+@media screen and (min-width: 857px) {
+  .container {
+    max-width: calc(857px - 4rem);
+    margin: 4rem auto; } }
+@media screen and (max-width: 856px) {
+  .container {
+    width: calc(100% - 4rem);
+    margin: 1rem 2rem; } }
+html {
+  font-size: 100%; }
+
+body {
+  font-size: 1rem;
+  font-family: "Lato", Arial, "ヒラギノ角ゴPro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+  color: #3c4a60; }
+
+/* Common Styles */
+a {
+  color: #605adb;
+  text-decoration: none; }
+  a:hover {
+    text-decoration: underline; }
+
+/* Header Styles */
+  header h1 a {
+    color: #3c4a60;
+    font-size: 3rem;
+    font-weight: normal;
+    vertical-align: middle; }
+    header h1 a img {
+      height: 3rem;
+      margin-right: 1rem;
+      vertical-align: middle; }
+    header h1 a:hover {
+      text-decoration: none; }
+
+/* Article Styles */
+article.desc .title {
+  margin: 1rem 0; }
+  article.desc .title h2 {
+    font-size: 1.2rem;
+    font-weight: normal; }
+    article.desc .title h2 a:hover {
+      text-decoration: underline; }
+  article.desc .title .date {
+    font-size: 0.8rem; }
+
+article .title {
+  margin: 2rem 0; }
+  article .title .date {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 1rem; }
+  article .title h2 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 2rem; }
+    article .title h2 a {
+      color: #3c4a60; }
+      article .title h2 a:hover {
+        text-decoration: none; }
+article:first-child {
+  margin-top: 2rem; }
+article:last-child {
+  margin-bottom: 2rem; }
+article .body {
+  margin-top: 2rem; }
+  article .body * {
+    margin: 1.5rem 0; }
+  article .body p {
+    line-height: 1.8; }
+    article .body p iframe {
+      margin: 0; }
+    article .body p img {
+      margin: 0;
+      max-width: 100%; }
+  article .body img {
+    border: 1px solid rgba(0, 0, 0, 0.09); }
+  article .body h1 {
+    margin-top: 3rem;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.09);
+    font-weight: normal;
+    font-size: 2rem; }
+    article .body h1 a i {
+      display: none; }
+    article .body h1:hover a i {
+      display: inline-block;
+      height: 0;
+      width: 0;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      left: -1em;
+      color: rgba(0, 0, 0, 0.09); }
+  article .body h2 {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+    font-weight: normal;
+    font-size: 1.7rem; }
+    article .body h2 a i {
+      display: none; }
+    article .body h2:hover a i {
+      display: inline-block;
+      height: 0;
+      width: 0;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      left: -1em;
+      color: rgba(0, 0, 0, 0.09); }
+  article .body h3 {
+    font-weight: bold;
+    font-size: 1.4rem; }
+    article .body h3 a i {
+      display: none; }
+    article .body h3:hover a i {
+      display: inline-block;
+      height: 0;
+      width: 0;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      left: -1em;
+      color: rgba(0, 0, 0, 0.09); }
+  article .body h4 {
+    font-weight: bold;
+    font-size: 1.2rem; }
+    article .body h4 a i {
+      display: none; }
+    article .body h4:hover a i {
+      display: inline-block;
+      height: 0;
+      width: 0;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      left: -1em;
+      color: rgba(0, 0, 0, 0.09); }
+  article .body h5 {
+    font-weight: normal;
+    font-size: 1.2rem; }
+    article .body h5 a i {
+      display: none; }
+    article .body h5:hover a i {
+      display: inline-block;
+      height: 0;
+      width: 0;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      left: -1em;
+      color: rgba(0, 0, 0, 0.09); }
+  article .body h6 {
+    font-weight: normal;
+    font-size: 1rem; }
+    article .body h6 a i {
+      display: none; }
+    article .body h6:hover a i {
+      display: inline-block;
+      height: 0;
+      width: 0;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      left: -1em;
+      color: rgba(0, 0, 0, 0.09); }
+  article .body ul {
+    list-style-type: disc; }
+    article .body ul li {
+      margin-top: 0.8rem;
+      margin-bottom: 0.8rem;
+      margin-left: 3rem; }
+    article .body ul ul, article .body ul ol {
+      margin-top: 0.8rem;
+      margin-bottom: 0.8rem; }
+  article .body ol {
+    list-style-type: decimal; }
+    article .body ol li {
+      margin-top: 0.8rem;
+      margin-bottom: 0.8rem;
+      margin-left: 3rem; }
+    article .body ol ul, article .body ol ol {
+      margin-top: 0.8rem;
+      margin-bottom: 0.8rem; }
+  article .body blockquote {
+    border-left: 5px solid rgba(0, 0, 0, 0.09);
+    padding: 0 1.5rem;
+    color: rgba(0, 0, 0, 0.5); }
+  article .body .highlight {
+    font-size: 0.9rem; }
+    article .body .highlight {
+      font-size: 0.9rem;
+      margin: 0;
+      border-radius: 4px; }
+      article .body .highlight pre {
+        margin: 0;
+        padding: 1rem;
+        font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+        line-height: 1.5em;
+        overflow-x: auto; }
+  article .body p > code {
+    background-color: #f0f3f3;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    padding: 2px 4px; }
+  article .body table {
+    border-collapse: collapse;
+    border: 1px solid rgba(0, 0, 0, 0.09); }
+    article .body table thead th {
+      border: 1px solid rgba(0, 0, 0, 0.09);
+      font-weight: bold;
+      padding: 0.5rem; }
+    article .body table tbody tr:nth-child(2n + 1) td {
+      background-color: #f9f9f9; }
+    article .body table tbody td {
+      border: 1px solid rgba(0, 0, 0, 0.09);
+      padding: 0.5rem; }
+  article .body hr {
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.09); }
+  article .body img.emoji {
+    vertical-align: text-bottom;
+    width: 1.5rem;
+    margin: 0;
+    border: 0; }
+  article .body .asin {
+    display: flex;
+    padding: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    border-radius: 4px; }
+    article .body .asin .asin-image {
+      margin: 0; }
+      article .body .asin .asin-image a img {
+        margin: 0 auto; }
+    article .body .asin .asin-detail {
+      flex: auto;
+      margin: 0 0 0 1rem; }
+      article .body .asin .asin-detail p {
+        margin: 0; }
+      article .body .asin .asin-detail ul {
+        margin: 0;
+        list-style-type: none; }
+        article .body .asin .asin-detail ul li {
+          margin: 1rem 0; }
+
+/* Navigation Styles */
+
+/* Pagination */
+
+#pagination {
+  margin-top: 3rem;
+  color: #3c4a60;
+  text-align: center;
+}
+
+#pagination ul {
+  margin: 0 auto;
+}
+
+#pagination li {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#pagination .active a {
+  background-color: #3c4a60;
+  color: #fff;
+}
+
+#pagination li:not(.active) a:hover {
+  background-color: #ddd;
+}
+
+#pagination a {
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  color: #3c4a60;
+}
+
+
+/* footer navigation */
+
+#footer-navigation {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+
+#footer-navigation a {
+  color: #3c4a60;
+}
+
+#footer-navigation #next-prev {
+  display: flex;
+  justify-content: space-between;
+}
+
+#footer-navigation #related-articles {
+  margin-top: 4rem;
+}
+
+#footer-navigation #related-articles h2 {}
+
+#footer-navigation #related-articles ul {
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+
+#footer-navigation #related-articles ul li {
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+#footer-navigation #sns-buttons {
+  margin-top: 4rem;
+  overflow: hidden; }
+  #foooter-navigation #sns-buttons ul {
+    list-style-type: none; }
+    #footer-navigation #sns-buttons ul li {
+      float: left;
+      margin-right: 4px; }
+    #footer-navigation #sns-buttons ul li.last-child::after {
+      clear: both; }
+
+
+
+/* Footer Styles */
+#footer-container {
+  margin-bottom: 5rem; }
+
+footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.09);
+  padding-top: 1rem; }
+  footer .copyright img {
+    width: 1rem;
+    height: 1rem;
+    margin: 0 0.2rem; }
+
+#information #links li {
+  display: inline-block;
+  margin-right: 1rem; }
+  #information #links li img {
+    width: 1.5rem;
+    vertical-align: middle; }
+
+/* Tags Page Styles */
+#tags li {
+  display: inline-block;
+  margin: 0.5rem; }
+  #tags li a.big-tag {
+    font-size: 3rem; }
+  #tags li a.major-tag {
+    font-size: 2rem; }
+  #tags li a.normal-tag {
+    font-size: 1rem; }
+  #tags li a.minor-tag {
+    font-size: 1rem; }
+  #tags li a.rare-tag {
+    font-size: 1rem; }
+  #tags li a.unusual-tag {
+    font-size: 1rem; }
