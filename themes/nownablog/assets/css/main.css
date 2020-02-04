@@ -38,11 +38,13 @@ a {
       text-decoration: none; }
 
 /* Article Styles */
-article.desc .title h2 {
-  font-size: 1.2rem;
-  font-weight: normal; }
-  article.desc .title h2 a:hover {
-    text-decoration: underline; }
+article.desc .title {
+  margin: 1rem; }
+  article.desc .title h2 {
+    font-size: 1.2rem;
+    font-weight: normal; }
+    article.desc .title h2 a:hover {
+      text-decoration: underline; }
   article.desc .title .date {
     font-size: 0.8rem; }
 
