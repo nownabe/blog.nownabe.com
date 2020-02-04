@@ -36,9 +36,6 @@ a {
       vertical-align: middle; }
     header h1 a:hover {
       text-decoration: none; }
-  header p {
-    margin: 1rem 0;
-    font-size: 1.2rem; }
 
 /* Article Styles */
 article.desc .title h2 {
