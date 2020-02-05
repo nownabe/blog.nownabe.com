@@ -9,8 +9,10 @@ lastmod: 2020-02-05T23:40:00+09:00
 draft: false
 isCJKLanguage: true
 
-image: img/nownabe.png
+image: images/2020/02/05/join-google.png
 ---
+
+![nownabe-google](/images/2020/02/05/join-google.png)
 
 今年の 1 月から Google で GCP のカスタマーエンジニアとして働き始めました。
 まだまだペーペーで価値を産まずに社食を貪る日々を過ごしています :meat_on_bone:
