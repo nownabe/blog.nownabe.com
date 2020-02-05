@@ -4,7 +4,36 @@
   
   <url>
     <loc>https://blog.nownabe.com/2020/</loc>
-    <lastmod>2020-01-03T21:52:48+09:00</lastmod>
+    <lastmod>2020-02-05T23:40:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/google/</loc>
+    <lastmod>2020-02-05T23:40:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/2020/02/05/join-google/</loc>
+    <lastmod>2020-02-05T23:40:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/</loc>
+    <lastmod>2020-02-05T23:40:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/job/</loc>
+    <lastmod>2020-02-05T23:40:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/</loc>
+    <lastmod>2020-02-05T23:40:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -26,19 +55,7 @@
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/tags/</loc>
-    <lastmod>2020-01-03T21:52:48+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.nownabe.com/tags/javascript/</loc>
-    <lastmod>2020-01-03T21:52:48+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/</loc>
     <lastmod>2020-01-03T21:52:48+09:00</lastmod>
     <priority>0</priority>
   </url>
