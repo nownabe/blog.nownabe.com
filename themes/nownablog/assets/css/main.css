@@ -41,6 +41,8 @@ a {
 article.desc .title {
   margin: 1rem 0; }
   article.desc .title h2 {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
     font-size: 1.2rem;
     font-weight: normal; }
     article.desc .title h2 a:hover {
