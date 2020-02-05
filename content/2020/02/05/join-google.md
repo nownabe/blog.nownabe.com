@@ -13,6 +13,8 @@ image: images/2020/02/05/join-google.png
 ---
 
 ![nownabe-google](/images/2020/02/05/join-google.png)
+(GIMPで頑張って作ったOGP画像)
+
 
 今年の 1 月から Google で GCP のカスタマーエンジニアとして働き始めました。
 まだまだペーペーで価値を産まずに社食を貪る日々を過ごしています :meat_on_bone:
