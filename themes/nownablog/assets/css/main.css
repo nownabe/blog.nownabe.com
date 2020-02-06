@@ -343,7 +343,11 @@ article .body {
   margin-right: 1rem;
 }
 
-#author .title {
+#author .name {
+  font-size: 1rem;
+}
+
+#author p {
   color: rgba(0, 0, 0, 0.5);
   font-size: 0.8rem;
 }
