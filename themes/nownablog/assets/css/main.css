@@ -4,7 +4,7 @@
 @media screen and (min-width: 857px) {
   .container {
     max-width: calc(857px - 4rem);
-    margin: 1rem auto; } }
+    margin: 4rem auto; } }
 @media screen and (max-width: 856px) {
   .container {
     width: calc(100% - 4rem);
@@ -25,8 +25,6 @@ a {
     text-decoration: underline; }
 
 /* Header Styles */
-header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.09); }
   header h1 a {
     color: #3c4a60;
     font-size: 3rem;
@@ -38,16 +36,19 @@ header {
       vertical-align: middle; }
     header h1 a:hover {
       text-decoration: none; }
-  header p {
-    margin: 1rem 0;
-    font-size: 1.2rem; }
 
 /* Article Styles */
-article.desc .title h2 {
-  font-size: 1.5rem;
-  font-weight: normal; }
-  article.desc .title h2 a:hover {
-    text-decoration: underline; }
+article.desc .title {
+  margin: 1rem 0; }
+  article.desc .title h2 {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    font-size: 1.2rem;
+    font-weight: normal; }
+    article.desc .title h2 a:hover {
+      text-decoration: underline; }
+  article.desc .title .date {
+    font-size: 0.8rem; }
 
 article .title {
   margin: 2rem 0; }
@@ -329,6 +330,27 @@ article .body {
 /* Footer Styles */
 #footer-container {
   margin-bottom: 5rem; }
+
+#author {
+  display: flex;
+  align-items: center;
+}
+
+#author img {
+  width: 64px;
+  height: 64px;
+  border-radius: 64px;
+  margin-right: 1rem;
+}
+
+#author .name {
+  font-size: 1rem;
+}
+
+#author p {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.8rem;
+}
 
 footer {
   border-top: 1px solid rgba(0, 0, 0, 0.09);
