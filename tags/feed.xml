@@ -6,10 +6,46 @@
     <description>Recent content in Tags on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Wed, 05 Feb 2020 23:40:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 05 Apr 2020 13:56:13 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/tags/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Google Cloud</title>
+      <link>https://blog.nownabe.com/tags/google-cloud/</link>
+      <pubDate>Sun, 05 Apr 2020 13:56:13 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/google-cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Google Cloud Certification</title>
+      <link>https://blog.nownabe.com/tags/google-cloud-certification/</link>
+      <pubDate>Sun, 05 Apr 2020 13:56:13 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/google-cloud-certification/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Professional Cloud Architect</title>
+      <link>https://blog.nownabe.com/tags/professional-cloud-architect/</link>
+      <pubDate>Sun, 05 Apr 2020 13:56:13 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/professional-cloud-architect/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gcp</title>
+      <link>https://blog.nownabe.com/tags/gcp/</link>
+      <pubDate>Sun, 05 Apr 2020 13:56:13 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/gcp/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Google</title>
@@ -84,15 +120,6 @@
     </item>
     
     <item>
-      <title>gcp</title>
-      <link>https://blog.nownabe.com/tags/gcp/</link>
-      <pubDate>Fri, 13 Dec 2019 17:48:21 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/gcp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>CloudNative</title>
       <link>https://blog.nownabe.com/tags/cloudnative/</link>
       <pubDate>Wed, 07 Aug 2019 16:00:00 +0900</pubDate>
@@ -102,20 +129,20 @@
     </item>
     
     <item>
+      <title>Event</title>
+      <link>https://blog.nownabe.com/tags/event/</link>
+      <pubDate>Wed, 07 Aug 2019 16:00:00 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/event/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>docker</title>
       <link>https://blog.nownabe.com/tags/docker/</link>
       <pubDate>Wed, 07 Aug 2019 16:00:00 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>event</title>
-      <link>https://blog.nownabe.com/tags/event/</link>
-      <pubDate>Wed, 07 Aug 2019 16:00:00 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/event/</guid>
       <description></description>
     </item>
     
@@ -174,20 +201,20 @@
     </item>
     
     <item>
+      <title>AWS</title>
+      <link>https://blog.nownabe.com/tags/aws/</link>
+      <pubDate>Tue, 21 May 2019 00:00:00 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Ruby on Rails</title>
       <link>https://blog.nownabe.com/tags/ruby-on-rails/</link>
       <pubDate>Tue, 21 May 2019 00:00:00 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/tags/ruby-on-rails/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>aws</title>
-      <link>https://blog.nownabe.com/tags/aws/</link>
-      <pubDate>Tue, 21 May 2019 00:00:00 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/aws/</guid>
       <description></description>
     </item>
     
@@ -201,7 +228,7 @@
     </item>
     
     <item>
-      <title>github</title>
+      <title>GitHub</title>
       <link>https://blog.nownabe.com/tags/github/</link>
       <pubDate>Tue, 08 Jan 2019 10:22:02 +0900</pubDate>
       
