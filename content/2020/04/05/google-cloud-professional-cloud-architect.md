@@ -21,8 +21,8 @@ image: img/nownabe.png
 ## 感想など
 
 認定資格は全9種類ありますが、取得したのは[Professional Cloud Architect](https://cloud.google.com/certification/cloud-architect)という資格です。
-なんと[2019年度の最も稼げるIT資格](https://itjinzai-lab.jp/article/detail/1553)らしいです。
-年収1500万ほしいですね。
+なんと[2020年度の最も稼げるIT資格](https://itjinzai-lab.jp/article/detail/2069)らしいです。
+年収1900万ほしいですね。
 
 Professionalシリーズは、GCPの1年以上の経験を含む3年以上の経験があるってことをおすすめしてるみたいです。
 Cloud Architectしか受けてませんが、確かにそれぐらいの経験があれば特に勉強しなくても受かるぐらいの難易度だったと思います。
