@@ -1,5 +1,5 @@
 ---
-title: "GCPのProfessional Cloud Architect資格を取得しました"
+title: "GCPのProfessional Cloud Architect資格を取得した"
 tags:
   - GCP
   - Google Cloud
