@@ -79,14 +79,14 @@
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/2020/01/03/github-action-javascript/</loc>
-    <lastmod>2020-01-03T21:52:48+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://blog.nownabe.com/tags/javascript/</loc>
     <lastmod>2020-01-03T21:52:48+09:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/2020/01/03/github-action-javascript/</loc>
+    <lastmod>2020-01-03T21:52:48+09:00</lastmod>
   </url>
   
   <url>
@@ -170,13 +170,13 @@
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/tags/event/</loc>
+    <loc>https://blog.nownabe.com/tags/docker/</loc>
     <lastmod>2019-08-07T16:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/tags/docker/</loc>
+    <loc>https://blog.nownabe.com/tags/event/</loc>
     <lastmod>2019-08-07T16:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>

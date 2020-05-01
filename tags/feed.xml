@@ -84,7 +84,7 @@
     </item>
     
     <item>
-      <title>javascript</title>
+      <title>JavaScript</title>
       <link>https://blog.nownabe.com/tags/javascript/</link>
       <pubDate>Fri, 03 Jan 2020 21:52:48 +0900</pubDate>
       
@@ -129,6 +129,15 @@
     </item>
     
     <item>
+      <title>Docker</title>
+      <link>https://blog.nownabe.com/tags/docker/</link>
+      <pubDate>Wed, 07 Aug 2019 16:00:00 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Event</title>
       <link>https://blog.nownabe.com/tags/event/</link>
       <pubDate>Wed, 07 Aug 2019 16:00:00 +0900</pubDate>
@@ -138,16 +147,7 @@
     </item>
     
     <item>
-      <title>docker</title>
-      <link>https://blog.nownabe.com/tags/docker/</link>
-      <pubDate>Wed, 07 Aug 2019 16:00:00 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>kubernetes</title>
+      <title>Kubernetes</title>
       <link>https://blog.nownabe.com/tags/kubernetes/</link>
       <pubDate>Wed, 07 Aug 2019 16:00:00 +0900</pubDate>
       

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>javascript on nownab.log</title>
+    <title>JavaScript on nownab.log</title>
     <link>https://blog.nownabe.com/tags/javascript/</link>
-    <description>Recent content in javascript on nownab.log</description>
+    <description>Recent content in JavaScript on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <lastBuildDate>Fri, 03 Jan 2020 21:52:48 +0900</lastBuildDate>
@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>JavaScript で Github Action を作ってみた</title>
+      <title>JavaScript で GitHub Action を作ってみた</title>
       <link>https://blog.nownabe.com/2020/01/03/github-action-javascript/</link>
       <pubDate>Fri, 03 Jan 2020 21:52:48 +0900</pubDate>
       
