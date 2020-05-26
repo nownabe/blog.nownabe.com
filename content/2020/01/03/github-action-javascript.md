@@ -1,5 +1,5 @@
 ---
-title: "JavaScript で Github Action を作ってみた"
+title: "JavaScript で GitHub Action を作ってみた"
 tags:
 - GitHub Actions
 - GitHub Action
