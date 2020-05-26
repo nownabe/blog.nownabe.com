@@ -6,10 +6,19 @@
     <description>Recent content on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 05 Apr 2020 13:56:13 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 26 May 2020 21:28:14 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>自宅ネットワーク改善日記その1 調査編</title>
+      <link>https://blog.nownabe.com/2020/05/26/home-network-1/</link>
+      <pubDate>Tue, 26 May 2020 21:28:14 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2020/05/26/home-network-1/</guid>
+      <description>今週末にいよいよ弊家に光回線が開通しそうなので、この機にネットワーク環境を全体的に見直すことにしました。 サーバーとかネットワークとかに手を加</description>
+    </item>
     
     <item>
       <title>GCPのProfessional Cloud Architect資格を取得した</title>

@@ -6,10 +6,19 @@
     <description>Recent content in Tags on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 05 Apr 2020 13:56:13 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 26 May 2020 21:28:14 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/tags/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>network</title>
+      <link>https://blog.nownabe.com/tags/network/</link>
+      <pubDate>Tue, 26 May 2020 21:28:14 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/network/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Google Cloud</title>
@@ -84,7 +93,7 @@
     </item>
     
     <item>
-      <title>JavaScript</title>
+      <title>javascript</title>
       <link>https://blog.nownabe.com/tags/javascript/</link>
       <pubDate>Fri, 03 Jan 2020 21:52:48 +0900</pubDate>
       
@@ -138,20 +147,20 @@
     </item>
     
     <item>
-      <title>Event</title>
-      <link>https://blog.nownabe.com/tags/event/</link>
-      <pubDate>Wed, 07 Aug 2019 16:00:00 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/event/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Kubernetes</title>
       <link>https://blog.nownabe.com/tags/kubernetes/</link>
       <pubDate>Wed, 07 Aug 2019 16:00:00 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>event</title>
+      <link>https://blog.nownabe.com/tags/event/</link>
+      <pubDate>Wed, 07 Aug 2019 16:00:00 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/event/</guid>
       <description></description>
     </item>
     
@@ -228,7 +237,7 @@
     </item>
     
     <item>
-      <title>GitHub</title>
+      <title>github</title>
       <link>https://blog.nownabe.com/tags/github/</link>
       <pubDate>Tue, 08 Jan 2019 10:22:02 +0900</pubDate>
       

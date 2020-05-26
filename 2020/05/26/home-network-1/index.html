@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>自宅ネットワーク改善日記その1 調査編 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.fc46f4a9c4e613bf8435a1429b2df37fb0bcbff2ddf79e5a373aa978bf216451a93cbd1bb85b5efc2faf74d83fa4c98f1d64cdacf3ee9da34f7dcded84cbf04f.css" integrity="sha512-/Eb0qcTmE7&#43;ENaFCmy3zf7C8v/Ld955aNzqpeL8hZFGpPL0buFte/C&#43;vdNg/pMmPHWTNrPPunaNPfc3thMvwTw==">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2020/05/26/home-network-1/">
+  <meta property="og:title" content="自宅ネットワーク改善日記その1 調査編 - nownab.log">
+  <meta property="og:description" content="今週末にいよいよ弊家に光回線が開通しそうなので、この機にネットワーク環境を全体的に見直すことにしました。 サーバーとかネットワークとかに手を加"><meta property="og:image" content="https://blog.nownabe.com/images/2020/05/26/physical-diagram.png"><meta property="twitter:title" content="自宅ネットワーク改善日記その1 調査編 - nownab.log">
+  <meta property="twitter:description" content="今週末にいよいよ弊家に光回線が開通しそうなので、この機にネットワーク環境を全体的に見直すことにしました。 サーバーとかネットワークとかに手を加">
+  <meta property="twitter:image" content="https://blog.nownabe.com/images/2020/05/26/physical-diagram.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container">
+    <h1>
+      <a href="/">
+        nownab.log
+      </a>
+    </h1>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h2><a href="https://blog.nownabe.com/2020/05/26/home-network-1/">自宅ネットワーク改善日記その1 調査編</a></h2>
+    <span class="date">Posted on May 26, 2020</span>
+  </div>
+  <div class="body">
+    
+
+<p>今週末にいよいよ弊家に光回線が開通しそうなので、この機にネットワーク環境を全体的に見直すことにしました。
+サーバーとかネットワークとかに手を加える時は毎回、前は何を考えてたのか忘れてしまって困るので今回はちゃんとブログとして残しておこうと思います。</p>
+
+<p>まずは今の状況がどんな感じか調べました。</p>
+
+<h2 id="経緯">経緯</h2>
+
+<p>飛ばしてください。</p>
+
+<p>去年の秋頃までは十分な速度が出てたのでマンションに無料でついてるインターネットサービスを使ってましたが、その頃から遅かったり繋がらなかったりでまともにスプラトゥーン2ができなくなってしまったのですぐにNUROを申し込みました。
+が、数週間待って工事に来てもらったはいいもののマンション都合で工事ができず、マンションの管理会社とNUROと連絡をしたり、さらに何回か調査や工事に来てもらったりしていろいろ手を尽くしたものの結局無理ということで諦めました。
+その後はフレッツ光を申し込むもコロナの影響でマンションの管理人さんが不在で工事ができなかったり、管理人さんとNTTと日程を調整して工事日を予約してようやく開通すると思ったら、NTTからその日に工事するのは無理なので1ヶ月後に調査してさらにその2週間後に工事しますみたいな連絡が来たりしてました。
+こんな感じでもう半年以上まともなインターネット環境がない状態で、ひきこもりにとってはインターネットまともに繋がらないだけでかなりのストレスな上に、何度も繰り返した工事日予約は取れる日が何週間も先だし、理不尽な日程変更とかもありつつ心身ともに疲れ切ったんですが、前回の調査と言う名の工事で弊家まで光ケーブル引き込んで「次回は管理人さんいなくても開通できます」と工事の方が言ってたので、半年以上かかってようやくインターネットによる人権を手に入れられそうです。
+まともにできない状態が続いてもうスプラトゥーン2の熱は完全に冷めてしまいましたが。</p>
+
+<h2 id="光回線開通するだけちゃうんかい">光回線開通するだけちゃうんかい</h2>
+
+<p>これを機に回線速度をフル活用できるようにしたり、自宅LANを整えたりしようと計画しています。</p>
+
+<p>今まではマンション付属の無料サービスということで、プライベートIPしかもらえないし、回線速度もMAX200Mbpsぐらいでした。
+なので引っ越してからサーバーマシンもただの邪魔な置物になってたり、LANのMaxスピードが100Mbpsだったりという環境を放置してました。</p>
+
+<p>今のマンションに入居する前は自分で光回線契約してサーバーのLinuxで自宅LANのネットワーク機能を構築してたんですが、今回は新しくルーター買って整えようと考えています。
+また、せっかくの光回線を活かせるように自宅LANを100Mbpsから1Gbpsにパワーアップさせるつもりです。</p>
+
+<h2 id="回線速度">回線速度</h2>
+
+<p>早朝などの調子が良いときは、200Mbpsぐらい出ます。
+が、仕事中とか夜はそんな速度が出ることはなく、数Mbpsとか良くても数十Mbpsぐらいです。</p>
+
+<p><img src="/images/2020/05/26/speed.png" width="600"></p>
+
+<p>この画像は2.58Mbps出てるしレイテンシも31msなのでまだマシな方で、1日数回は全く繋がらなくなったりします。
+仕事ではミーティングが多いんですが、よく相手の声が聞こえなかったり落ちたりして困ります。</p>
+
+<h2 id="物理構成">物理構成</h2>
+
+<p>自宅LAN刷新にあたってどの機器を置き換える必要があるのか調べました。
+物理構成図はこんな感じです。</p>
+
+<p><img src="/images/2020/05/26/physical-diagram.png" width="800"></p>
+
+<p>図の実線はLANケーブルで、水色が壁内配線のCat5eケーブル、青が自分で用意したCat7ケーブル、黄色は不明ケーブルです。
+マンションネットワークにつながる線も厳密には不明なんですが、壁内配線と同じだろうということでCat5eだと判断してます。
+点線は無線LANです。</p>
+
+<p>このままだとL2SWが2つとも100BASE-TXにしか対応してなくて、せっかく光回線を引いても有線だと100Mbpsしか出ないということがわかります。</p>
+
+<p>実際、回線の調子がいいときに無線LANと有線LANで回線速度を計測してみました。
+無線LANだと100Mbps以上のスピードが出てますが、有線LANだと100Mbpsまでしかでません。</p>
+
+<p><img src="/images/2020/05/26/compare-lan.png" width="600"></p>
+
+<h3 id="l2sw">L2SW</h3>
+
+<p><img src="/images/2020/05/26/tor-photo.png" width="800"></p>
+
+<p>弊家は壁内配線によって各部屋にLANポートが用意されているんですが、そのハブになっているL2SWはCoregaの<a href="http://corega.jp/prod/co-bsw08tx/">BSW08TX</a>という製品でした。
+このスイッチはマンション備え付けのもので、入居したときからToR (Top of 収納Rack) として写真のような形で設置されていました (LANケーブルがいっぱいささってるやつ)。
+入居した時にはこのスイッチに大元のマンションネットワークからのケーブルと、各部屋のLANポートまでつながるケーブルが挿してありました。
+今はマンションNWとの間にはGoogle Wifiをはさんでいます。</p>
+
+<p><img src="/images/2020/05/26/iodata-photo.png" width="800"></p>
+
+<p>もう一つL2SWがあり、こちらはIO DATAの<a href="https://www.iodata.jp/product/lan/hub/etx-sh5/">ETX-SH5</a>という製品です。
+僕の部屋 (リビングの片隅) でLANポートと各機器のハブとして使っていました。
+こいつとはもう15年ぐらいの付き合いなんですが、100BASE-TXまでしか対応してないのでこの機にリタイアしてもらうことにしました。
+今までありがとう 👋😭</p>
+
+<h3 id="lanケーブル">LANケーブル</h3>
+
+<p>次にToRのスイッチと各部屋のLANポートを壁内配線で接続しているLANケーブルの規格を調べました。
+ToR側に見えているケーブルだけだと何もわからなかったので、コンセントを開きました。</p>
+
+<p><img src="/images/2020/05/26/lan-port-back.png" width="600"></p>
+
+<p>裏にCAT.5Eと書いてあってCategory 5eだということがわかりました。
+もしCategory 5だったら100Mbpsしか出ないので壁内配線全部取り替えることになるなぁと思ってたんですが、その必要はなくて安心しました。</p>
+
+<p>ちなみに、コンセントを開いて閉じてから表にも5eって書いてあることに気づきました 😇</p>
+
+<p><img src="/images/2020/05/26/lan-port-front.png" width="600"></p>
+
+<h2 id="論理構成">論理構成</h2>
+
+<p>入居した当時はもうネットワークに凝るのはやめよう！と思ってたので、特に何も考えずにマンションのサービスを使ってました。
+何もしてません。こんな感じです。</p>
+
+<p><img src="/images/2020/05/26/logical-diagram.png" width="600"></p>
+
+<h1 id="おわりに">おわりに</h1>
+
+<p>以上で調査編は終わりです。
+次から改善していきますが、光回線が開通するのはまだ先なのでまずは自宅LAN環境をグレードアップしたいと思います。</p>
+
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+
+<div id="footer-navigation">
+  <div id="next-prev">
+    <div><a href="https://blog.nownabe.com/2020/04/05/google-cloud-professional-cloud-architect/">&lt; GCPのProfessional Cloud Architect資格を取得した</a></div>
+    <div></div>
+  </div>
+  <div id="related-articles"></div>
+  <div id="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+      </div>
+    </div><div id="footer-container">
+  <div id="author" class="container">
+    <p>
+      <a href="https://nownabe.com">
+        <img src="/img/profile_icon_2020.png" alt="profile icon">
+      </a>
+    </p>
+    <div>
+      <p class="name"><a href="https://nownabe.com">Shogo Watanabe</a></p>
+      <p>
+        Customer Engineer at Google Cloud.
+      </p>
+      <p>
+        Opinions are my own, NOT views of my employer.
+      </p>
+    </div>
+  </div>
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016 nownabe All Right Reserved.
+    </p>
+  </footer>
+</div>
+<div id="fb-root"></div>
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" async="async"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      anchors.add(".body h1, .body h2, .body h3");
+    });
+  </script>
+</body>
+</html>
