@@ -8,10 +8,10 @@ lastmod: 2020-05-28T21:30:56+09:00
 draft: false
 isCJKLanguage: true
 
-image: img/nownabe.png
+image: images/2020/05/28/gs308t.png
 ---
 
-[前回の調査](https://blog.nownabe.com/2020/05/26/home-network-1/)で自宅LANを構成しているL2スイッチがすべて100Mbpsしかでないことがわかったのでまとめて交換しました。
+[前回の調査](https://blog.nownabe.com/2020/05/26/home-network-1/)で自宅LANを構成しているL2スイッチがすべて100Mbpsだということがわかったのでまとめて交換しました。
 
 ## おさらい
 
