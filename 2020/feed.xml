@@ -6,10 +6,19 @@
     <description>Recent content in 2020s on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Tue, 26 May 2020 21:28:14 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 28 May 2020 21:30:56 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/2020/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>自宅ネットワーク改善日記その2 L2SW交換編</title>
+      <link>https://blog.nownabe.com/2020/05/28/home-network-2/</link>
+      <pubDate>Thu, 28 May 2020 21:30:56 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2020/05/28/home-network-2/</guid>
+      <description>前回の調査で自宅LANを構成しているL2スイッチがすべて100Mbpsしかでないことがわかったのでまとめて交換しました。 おさらい 交換前の物理</description>
+    </item>
     
     <item>
       <title>自宅ネットワーク改善日記その1 調査編</title>

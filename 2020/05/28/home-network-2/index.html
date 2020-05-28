@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>自宅ネットワーク改善日記その2 L2SW交換編 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.fc46f4a9c4e613bf8435a1429b2df37fb0bcbff2ddf79e5a373aa978bf216451a93cbd1bb85b5efc2faf74d83fa4c98f1d64cdacf3ee9da34f7dcded84cbf04f.css" integrity="sha512-/Eb0qcTmE7&#43;ENaFCmy3zf7C8v/Ld955aNzqpeL8hZFGpPL0buFte/C&#43;vdNg/pMmPHWTNrPPunaNPfc3thMvwTw==">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2020/05/28/home-network-2/">
+  <meta property="og:title" content="自宅ネットワーク改善日記その2 L2SW交換編 - nownab.log">
+  <meta property="og:description" content="前回の調査で自宅LANを構成しているL2スイッチがすべて100Mbpsしかでないことがわかったのでまとめて交換しました。 おさらい 交換前の物理"><meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png"><meta property="twitter:title" content="自宅ネットワーク改善日記その2 L2SW交換編 - nownab.log">
+  <meta property="twitter:description" content="前回の調査で自宅LANを構成しているL2スイッチがすべて100Mbpsしかでないことがわかったのでまとめて交換しました。 おさらい 交換前の物理">
+  <meta property="twitter:image" content="https://blog.nownabe.com/img/nownabe.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container">
+    <h1>
+      <a href="/">
+        nownab.log
+      </a>
+    </h1>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h2><a href="https://blog.nownabe.com/2020/05/28/home-network-2/">自宅ネットワーク改善日記その2 L2SW交換編</a></h2>
+    <span class="date">Posted on May 28, 2020</span>
+  </div>
+  <div class="body">
+    
+
+<p><a href="https://blog.nownabe.com/2020/05/26/home-network-1/">前回の調査</a>で自宅LANを構成しているL2スイッチがすべて100Mbpsしかでないことがわかったのでまとめて交換しました。</p>
+
+<h2 id="おさらい">おさらい</h2>
+
+<p>交換前の物理構成図はこんな感じです。
+交換対象のL2SWはCO-BSW08TXとETX-SH5ですね。</p>
+
+<p><img src="/images/2020/05/26/physical-diagram.png" width="800"></p>
+
+<p>で、有線だと100BASE-TXのスイッチを経由するので100Mbpsまでしかでませんでした。</p>
+
+<p><img src="/images/2020/05/26/compare-lan.png" width="600"></p>
+
+<p>インターネットではなく、LAN内でiperfを使って計測した結果は次の通りです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ iperf -c <span class="m">192</span>.168.86.71
+------------------------------------------------------------
+Client connecting to <span class="m">192</span>.168.86.71, TCP port <span class="m">5001</span>
+TCP window size:  <span class="m">162</span> KByte <span class="o">(</span>default<span class="o">)</span>
+------------------------------------------------------------
+<span class="o">[</span>  <span class="m">3</span><span class="o">]</span> <span class="nb">local</span> <span class="m">192</span>.168.86.35 port <span class="m">47220</span> connected with <span class="m">192</span>.168.86.71 port <span class="m">5001</span>
+<span class="o">[</span> ID<span class="o">]</span> Interval       Transfer     Bandwidth
+<span class="o">[</span>  <span class="m">3</span><span class="o">]</span>  <span class="m">0</span>.0-10.0 sec   <span class="m">113</span> MBytes  <span class="m">94</span>.6 Mbits/sec</code></pre></div>
+<p>やはりLAN内通信でも100Mbpsを超えることはなく、94.6Mbpsしかでていません。</p>
+
+<h2 id="新しいl2スイッチ">新しいL2スイッチ</h2>
+
+<p>今回はNETGEARの<a href="https://www.jp.netgear.com/business/products/switches/smart/GS308T.aspx">GS308T</a>というL2SWを2つ買いました。</p>
+
+<p><img src="/images/2020/05/28/gs308t.png" width="600"></p>
+
+<p>選んだ理由は、</p>
+
+<ul>
+<li>VLANに対応している</li>
+<li>ポート数が十分</li>
+<li>値段が高くない</li>
+<li>発売日が新しい</li>
+</ul>
+
+<p>といったところです。</p>
+
+<h2 id="物理構成">物理構成</h2>
+
+<p>といってもToR (Top of 収納Rack) とnownabe部屋 (リビングの片隅) のL2SWを入れ替えただけです。
+他の部分も論理構成も変えてません。</p>
+
+<p><img src="/images/2020/05/28/physical-diagram.png" width="800"></p>
+
+<p>おかげでLAN内の有線接続がすべて1000BASE-Tとなりました 🎉</p>
+
+<h2 id="計測">計測</h2>
+
+<p>まず、LAN内のローカル通信の速度をiperfで計測しました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ iperf -c <span class="m">192</span>.168.86.71
+------------------------------------------------------------
+Client connecting to <span class="m">192</span>.168.86.71, TCP port <span class="m">5001</span>
+TCP window size:  <span class="m">484</span> KByte <span class="o">(</span>default<span class="o">)</span>
+------------------------------------------------------------
+<span class="o">[</span>  <span class="m">3</span><span class="o">]</span> <span class="nb">local</span> <span class="m">192</span>.168.86.35 port <span class="m">51748</span> connected with <span class="m">192</span>.168.86.71 port <span class="m">5001</span>
+<span class="o">[</span> ID<span class="o">]</span> Interval       Transfer     Bandwidth
+<span class="o">[</span>  <span class="m">3</span><span class="o">]</span>  <span class="m">0</span>.0-10.0 sec  <span class="m">1</span>.10 GBytes   <span class="m">942</span> Mbits/sec</code></pre></div>
+<p>なんと942Mbpsも出ています 🎉
+交換前に比べて約10倍、約1Gbpsのスピードです ❤️</p>
+
+<p>次に、インターネット速度を計測しました。</p>
+
+<p><img src="/images/2020/05/28/compare.png" width="800"></p>
+
+<p>ちゃんと100Mbps以上出ています！めでたい 🐟</p>
+
+<h2 id="おわりに">おわりに</h2>
+
+<p>今まで100Mbpsな環境を放置していたおかげで、L2SWを交換するだけで回線速度が10倍になるという感動を味わうことができました。</p>
+
+<p>明日はいよいよ光回線の開通工事です。ドキドキ。</p>
+
+<h2 id="おまけ">おまけ</h2>
+
+<p>最初はiperfで計測するためにRaspberry Piを使おうと思って、家に転がってるラズパイを探してOSインストールしてセットアップしてウキウキで計測してたんですが、そもそもラズパイが100Mbpsまでしか出ない仕様で完全に無駄な時間を過ごしてしまったのでウキウキで撮った写真を供養させてください。</p>
+
+<p>以下、ウキウキでOSをラズパイにインストールしてる様子とウキウキで計測し始めるも94Mbpsしか出ず絶望に打ちひしがれている様子です。</p>
+
+<p><img src="/images/2020/05/28/raspberrypi.png" width="800"></p>
+
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+
+<div id="footer-navigation">
+  <div id="next-prev">
+    <div><a href="https://blog.nownabe.com/2020/05/26/home-network-1/">&lt; 自宅ネットワーク改善日記その1 調査編</a></div>
+    <div></div>
+  </div>
+  <div id="related-articles"><h2>See Also</h2>
+    <ul><li><a href="/2020/05/26/home-network-1/">自宅ネットワーク改善日記その1 調査編</a></li></ul></div>
+  <div id="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+      </div>
+    </div><div id="footer-container">
+  <div id="author" class="container">
+    <p>
+      <a href="https://nownabe.com">
+        <img src="/img/profile_icon_2020.png" alt="profile icon">
+      </a>
+    </p>
+    <div>
+      <p class="name"><a href="https://nownabe.com">Shogo Watanabe</a></p>
+      <p>
+        Customer Engineer at Google Cloud.
+      </p>
+      <p>
+        Opinions are my own, NOT views of my employer.
+      </p>
+    </div>
+  </div>
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016 nownabe All Right Reserved.
+    </p>
+  </footer>
+</div>
+<div id="fb-root"></div>
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" async="async"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      anchors.add(".body h1, .body h2, .body h3");
+    });
+  </script>
+</body>
+</html>
