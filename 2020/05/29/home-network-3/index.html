@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>自宅ネットワーク改善日記その3 光開通編 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.fc46f4a9c4e613bf8435a1429b2df37fb0bcbff2ddf79e5a373aa978bf216451a93cbd1bb85b5efc2faf74d83fa4c98f1d64cdacf3ee9da34f7dcded84cbf04f.css" integrity="sha512-/Eb0qcTmE7&#43;ENaFCmy3zf7C8v/Ld955aNzqpeL8hZFGpPL0buFte/C&#43;vdNg/pMmPHWTNrPPunaNPfc3thMvwTw==">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2020/05/29/home-network-3/">
+  <meta property="og:title" content="自宅ネットワーク改善日記その3 光開通編 - nownab.log">
+  <meta property="og:description" content="ついに光回線が開通しました 🎉🎉🎉🎉🎉 前回まで: 自宅ネットワーク改善日記その1 調査編 自宅ネットワーク改善日記その2 L2SW交換編 おさらい 前回は"><meta property="og:image" content="https://blog.nownabe.com/images/2020/05/29/compare.png"><meta property="twitter:title" content="自宅ネットワーク改善日記その3 光開通編 - nownab.log">
+  <meta property="twitter:description" content="ついに光回線が開通しました 🎉🎉🎉🎉🎉 前回まで: 自宅ネットワーク改善日記その1 調査編 自宅ネットワーク改善日記その2 L2SW交換編 おさらい 前回は">
+  <meta property="twitter:image" content="https://blog.nownabe.com/images/2020/05/29/compare.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container">
+    <h1>
+      <a href="/">
+        nownab.log
+      </a>
+    </h1>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h2><a href="https://blog.nownabe.com/2020/05/29/home-network-3/">自宅ネットワーク改善日記その3 光開通編</a></h2>
+    <span class="date">Posted on May 29, 2020</span>
+  </div>
+  <div class="body">
+    
+
+<p>ついに光回線が開通しました 🎉🎉🎉🎉🎉</p>
+
+<p>前回まで:</p>
+
+<ul>
+<li><a href="/2020/05/26/home-network-1/">自宅ネットワーク改善日記その1 調査編</a></li>
+<li><a href="/2020/05/28/home-network-2/">自宅ネットワーク改善日記その2 L2SW交換編</a></li>
+</ul>
+
+<h2 id="おさらい">おさらい</h2>
+
+<p>前回はL2SWを交換して自宅LANの帯域を1Gbpsにしました。
+物理構成図はこんな感じです。</p>
+
+<p><img src="/images/2020/05/28/physical-diagram.png" width="800"></p>
+
+<p>今回は、ついに光回線が開通したのでWANをマンションネットワークからそちらに切り替えました。</p>
+
+<h2 id="開通">開通！！ 🎉</h2>
+
+<p>今日の午後に工事がきて、ONUを設置してもらいました。</p>
+
+<p><img src="/images/2020/05/29/physical-diagram.png" width="800"></p>
+
+<p>それ以外の作業はほとんどなくて、ONU と Google Wifi を接続して PPPoE の設定をしただけです。</p>
+
+<p>半年以上かかってようやく開通しました 🎉
+ついに我が家にグローバルIPが！ 😭 ✨</p>
+
+<p>今回プロバイダは IIJmioひかりにしました。
+IPv4 over IPv6 するときの VNE サービスとして transix は少数派っぽい、つまり将来的に混雑する可能性が低いのでは？というのが理由です。
+素人考えなので、この選択基準が正しいかどうかはわかりません。</p>
+
+<h2 id="計測">計測</h2>
+
+<p>開通直後にマンションネットワークと光回線で比較するとこんな感じでした。倍のスピードが出てますね！！素晴らしい！ 🚀</p>
+
+<p><img src="/images/2020/05/29/compare.png" width="800"></p>
+
+<p>と思ったんですが、光回線の方も夜になるとめちゃくちゃ遅くなりました 😭
+1Mbps出ないぐらい。
+IIJmioがびっくりするぐらい遅いので遅いだろうなーとは思ってましたが、IIJmioひかりもびっくりするぐらい遅かったですね。</p>
+
+<p>マンションネットワークと比較すると、</p>
+
+<ul>
+<li>最高速はだいぶ速い</li>
+<li>日中はいい感じ (まだ1日経ってないからわからんが)</li>
+<li>夜は同じように遅くなる</li>
+</ul>
+
+<p>という感じです。</p>
+
+<h2 id="おわりに">おわりに</h2>
+
+<p>フレッツ光あるあるで夜は遅くなるとは思ってたんですが、想像以上の遅さでした。
+夜遅くなるのは困るので、引き続き改善していく必要がありそうです 😤</p>
+
+<p>NTT以外の回線を選べればよかったんですが、マンション都合で選択肢がなかったので仕方なし…。</p>
+
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+
+<div id="footer-navigation">
+  <div id="next-prev">
+    <div><a href="https://blog.nownabe.com/2020/05/28/home-network-2/">&lt; 自宅ネットワーク改善日記その2 L2SW交換編</a></div>
+    <div></div>
+  </div>
+  <div id="related-articles"><h2>See Also</h2>
+    <ul><li><a href="/2020/05/28/home-network-2/">自宅ネットワーク改善日記その2 L2SW交換編</a></li><li><a href="/2020/05/26/home-network-1/">自宅ネットワーク改善日記その1 調査編</a></li></ul></div>
+  <div id="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+      </div>
+    </div><div id="footer-container">
+  <div id="author" class="container">
+    <p>
+      <a href="https://nownabe.com">
+        <img src="/img/profile_icon_2020.png" alt="profile icon">
+      </a>
+    </p>
+    <div>
+      <p class="name"><a href="https://nownabe.com">Shogo Watanabe</a></p>
+      <p>
+        Customer Engineer at Google Cloud.
+      </p>
+      <p>
+        Opinions are my own, NOT views of my employer.
+      </p>
+    </div>
+  </div>
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016 nownabe All Right Reserved.
+    </p>
+  </footer>
+</div>
+<div id="fb-root"></div>
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" async="async"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      anchors.add(".body h1, .body h2, .body h3");
+    });
+  </script>
+</body>
+</html>
