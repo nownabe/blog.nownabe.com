@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ja"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>自宅ネットワーク改善日記その4 RTX830導入編 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.fc46f4a9c4e613bf8435a1429b2df37fb0bcbff2ddf79e5a373aa978bf216451a93cbd1bb85b5efc2faf74d83fa4c98f1d64cdacf3ee9da34f7dcded84cbf04f.css" integrity="sha512-/Eb0qcTmE7&#43;ENaFCmy3zf7C8v/Ld955aNzqpeL8hZFGpPL0buFte/C&#43;vdNg/pMmPHWTNrPPunaNPfc3thMvwTw==">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2020/05/30/home-network-4/">
+  <meta property="og:title" content="自宅ネットワーク改善日記その4 RTX830導入編 - nownab.log">
+  <meta property="og:description" content="今回はルータとしてYAMAHAのRTX830を導入しました。 前回まで: その1 調査編 その2 L2SW交換編 その3 光開通編 おさらい 前回は、ついに光"><meta property="og:image" content="https://blog.nownabe.com/images/2020/05/30/tor-photo.png"><meta property="twitter:title" content="自宅ネットワーク改善日記その4 RTX830導入編 - nownab.log">
+  <meta property="twitter:description" content="今回はルータとしてYAMAHAのRTX830を導入しました。 前回まで: その1 調査編 その2 L2SW交換編 その3 光開通編 おさらい 前回は、ついに光">
+  <meta property="twitter:image" content="https://blog.nownabe.com/images/2020/05/30/tor-photo.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container">
+    <h1>
+      <a href="/">
+        nownab.log
+      </a>
+    </h1>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h2><a href="https://blog.nownabe.com/2020/05/30/home-network-4/">自宅ネットワーク改善日記その4 RTX830導入編</a></h2>
+    <span class="date">Posted on May 30, 2020</span>
+  </div>
+  <div class="body">
+    
+
+<p>今回はルータとしてYAMAHAの<a href="https://network.yamaha.com/products/routers/rtx830/index">RTX830</a>を導入しました。</p>
+
+<p>前回まで:</p>
+
+<ul>
+<li><a href="/2020/05/26/home-network-1/">その1 調査編</a></li>
+<li><a href="/2020/05/28/home-network-2/">その2 L2SW交換編</a></li>
+<li><a href="/2020/05/29/home-network-3/">その3 光開通編</a></li>
+</ul>
+
+<h2 id="おさらい">おさらい</h2>
+
+<p>前回は、ついに光回線が開通して高速な回線とグローバルIPを手に入れました。</p>
+
+<p><img src="/images/2020/05/29/physical-diagram.png" width="800"></p>
+
+<p>しかし、ただ接続しただけだと、速いときは速いものの夜は1Mbpsを切るぐらいのスピードしかでないという状態でした。</p>
+
+<h2 id="yamaha-rtx830">YAMAHA RTX830</h2>
+
+<p><img src="/images/2020/05/30/rtx830.png" width="600"></p>
+
+<p>家とか小規模オフィスに置くのには定番のルータなんじゃないかなーと思います。
+今回は次の要素が理由でこのルータを選びました。</p>
+
+<ul>
+<li>IPv6 IPoE</li>
+<li>VLAN</li>
+<li>IPsec VPN</li>
+<li>DNS</li>
+<li>DHCP</li>
+<li>SSH</li>
+<li>Web GUI</li>
+<li>見た目</li>
+</ul>
+
+<p>前職も前々職もオフィスでYAMAHA製品使ってたというのもありました。
+見た目が結構好きなんですよね。色が良い 😄</p>
+
+<h2 id="設置">設置</h2>
+
+<p>ToRに設置しました。写真は設置後のToRの様子です。</p>
+
+<p><img src="/images/2020/05/30/tor-photo.png" width="800"></p>
+
+<p>いい感じですね 😊
+ただ、L2SW (GS308T) が結構熱を出していて心配です。
+ただの収納棚で排気も何もできないのでこれからの季節は何かしら対策したほうがよさそうです。</p>
+
+<p>RTX830 を設置して物理構成はこんな感じになりました。</p>
+
+<p><img src="/images/2020/05/30/physical-diagram.png" width="800"></p>
+
+<p>コンシューマ向け無線ルータのかわりにルータっぽいルータが入って、いよいよネットワークっぽくなってきました。
+Google Wifiはブリッジモードに変更しました。</p>
+
+<h2 id="設定">設定</h2>
+
+<p>とりあえずインターネットにPPPoEで接続して、公開鍵認証でSSHログインできるところまで設定しました。</p>
+
+<h3 id="インターネット接続">インターネット接続</h3>
+
+<p>いつもどおり PPPoE でインターネットに接続します。
+ここは Web GUI で設定しました。</p>
+
+<p>Web GUI に接続する前に、ルータを接続したあとネットワークアドレスが変わったりしたのでクライアントのネットワークを再起動しました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo systemctl restart network-manager</code></pre></div>
+<p>これでルーターまで疎通するようになったので、Web GUIにアクセスしました。初期状態だと <a href="http://192.168.100.1">http://192.168.100.1</a> でアクセスできます。Username、Passwordは空欄で大丈夫です。</p>
+
+<p>まずは管理パスワードの設定や新規ユーザの作成を行いました。また、Anonymousユーザはいろいろ無効化しておきました。</p>
+
+<p>その後はポチポチと かんたん設定 &gt; プロバイダー接続 &gt; 新規作成 で PPPoE を設定しました。</p>
+
+<p>これで無事インターネットに接続できました 🎉
+とくに躓くこともなく、スムーズに設定できました。</p>
+
+<h3 id="ssh-設定">SSH 設定</h3>
+
+<p>以降の設定はSSH経由でやりたいので、公開鍵認証でSSHログインできるところまで設定しました。
+<code>$</code>がローカルPC、<code>&gt;</code>がルータコンソール、<code>#</code>がルータ管理コンソールです。</p>
+
+<p>公開鍵認証をするためにはファームウェアを更新する必要があったので、Web GUIで更新しました。
+管理 &gt; 保守 &gt; ファームウェアの更新 &gt; ネットワーク経由でファームウェアを更新 です。
+公開鍵認証に対応しているのは <code>Rev.15.02.15</code> 以上です。インストールされていたのは <code>Rev.15.02.09</code> でした。</p>
+
+<p>次に、SSHサーバを有効化しました。デフォルトでは無効化されています。コンソールの文字コードの設定や、公開鍵ファイルをSFTPで送信するためSFTPの設定もしました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ telnet <span class="m">192</span>.168.100.1
+&gt; console character en.ascii
+&gt; administrator
+<span class="c1"># sshd host key generate</span>
+<span class="c1"># sshd service on</span>
+<span class="c1"># sftpd host lan</span>
+<span class="c1"># save</span>
+<span class="c1"># quit</span>
+&gt; quit</code></pre></div>
+<p>これでSSHにユーザ名とパスワードで接続することができるようになりました。</p>
+
+<p>次に、公開鍵ファイルをSFTPでアップロードして、公開鍵とユーザの紐づけを設定しました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sftp <span class="m">192</span>.168.100.1
+sftp&gt; mkdir /ssh
+sftp&gt; mkdir /ssh/authorized_keys
+sftp&gt; /home/nownabe/.ssh/id_ed25519.pub /ssh/authorized_keys/nownabe
+sftp&gt; ls /ssh/authorized_keys
+sftp&gt; <span class="nb">exit</span>
+
+$ ssh <span class="m">192</span>.168.100.1
+&gt; administrator
+<span class="c1"># sshd authorized-keys filename nownabe path=/ssh/authorized_keys/nownabe</span>
+<span class="c1"># save</span>
+<span class="c1"># quit</span>
+&gt; quit</code></pre></div>
+<p>これで公開鍵認証でSSHに接続できるようになりました。</p>
+
+<p>最後に、telnetを無効化したりSSHを制限したりしておきました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh <span class="m">192</span>.168.100.1
+&gt; administrator
+<span class="c1"># sshd auth method publickey</span>
+<span class="c1"># sshd host lan</span>
+<span class="c1"># telnetd host none</span>
+<span class="c1"># telnetd service off</span>
+<span class="c1"># save</span>
+<span class="c1"># quit</span>
+&gt; quit</code></pre></div>
+<h2 id="おわりに">おわりに</h2>
+
+<p>とりあえずインターネットの設定と、SSHログインはできました。
+ここからが本番ですが、ルータのコマンド操作なんて大昔にちょっとCisco触ったぐらいしか経験がないので勉強しつつやっていきたいと思います。</p>
+
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+
+<div id="footer-navigation">
+  <div id="next-prev">
+    <div><a href="https://blog.nownabe.com/2020/05/29/home-network-3/">&lt; 自宅ネットワーク改善日記その3 光開通編</a></div>
+    <div></div>
+  </div>
+  <div id="related-articles"><h2>See Also</h2>
+    <ul><li><a href="/2020/05/29/home-network-3/">自宅ネットワーク改善日記その3 光開通編</a></li><li><a href="/2020/05/28/home-network-2/">自宅ネットワーク改善日記その2 L2SW交換編</a></li><li><a href="/2020/05/26/home-network-1/">自宅ネットワーク改善日記その1 調査編</a></li></ul></div>
+  <div id="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+      </div>
+    </div><div id="footer-container">
+  <div id="author" class="container">
+    <p>
+      <a href="https://nownabe.com">
+        <img src="/img/profile_icon_2020.png" alt="profile icon">
+      </a>
+    </p>
+    <div>
+      <p class="name"><a href="https://nownabe.com">Shogo Watanabe</a></p>
+      <p>
+        Customer Engineer at Google Cloud.
+      </p>
+      <p>
+        Opinions are my own, NOT views of my employer.
+      </p>
+    </div>
+  </div>
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016 nownabe All Right Reserved.
+    </p>
+  </footer>
+</div>
+<div id="fb-root"></div>
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" async="async"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      anchors.add(".body h1, .body h2, .body h3");
+    });
+  </script>
+</body>
+</html>
