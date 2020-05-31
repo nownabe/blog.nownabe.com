@@ -6,10 +6,19 @@
     <description>Recent content on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sat, 30 May 2020 14:19:10 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 31 May 2020 09:15:15 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>自宅ネットワーク改善日記その5 Google Nest Wifi導入編</title>
+      <link>https://blog.nownabe.com/2020/05/31/home-network-5/</link>
+      <pubDate>Sun, 31 May 2020 09:15:15 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2020/05/31/home-network-5/</guid>
+      <description>今回は Google Nest Wifi を新しく導入した話です。 その1 調査編 その2 L2SW交換編 その3 光開通編 その4 RTX830導入編 あらすじ 前回、YAMAHAのRTX</description>
+    </item>
     
     <item>
       <title>自宅ネットワーク改善日記その4 RTX830導入編</title>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Google on nownab.log</title>
-    <link>https://blog.nownabe.com/tags/google/</link>
-    <description>Recent content in Google on nownab.log</description>
+    <title>Nest Wifi on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/nest-wifi/</link>
+    <description>Recent content in Nest Wifi on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <lastBuildDate>Sun, 31 May 2020 09:15:15 +0900</lastBuildDate>
     
-	<atom:link href="https://blog.nownabe.com/tags/google/feed.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.nownabe.com/tags/nest-wifi/feed.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>https://blog.nownabe.com/2020/05/31/home-network-5/</guid>
       <description>今回は Google Nest Wifi を新しく導入した話です。 その1 調査編 その2 L2SW交換編 その3 光開通編 その4 RTX830導入編 あらすじ 前回、YAMAHAのRTX</description>
-    </item>
-    
-    <item>
-      <title>Google にカスタマーエンジニアとして入社しました</title>
-      <link>https://blog.nownabe.com/2020/02/05/join-google/</link>
-      <pubDate>Wed, 05 Feb 2020 23:40:00 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/2020/02/05/join-google/</guid>
-      <description>(GIMPで頑張って作ったOGP画像) 今年の 1 月から Google で GCP のカスタマーエンジニアとして働き始めました。 まだまだペーペーで価値を産まずに社食を</description>
     </item>
     
   </channel>
