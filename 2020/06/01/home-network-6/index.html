@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>自宅ネットワーク改善日記その6 IPv4 over IPv6編 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.fc46f4a9c4e613bf8435a1429b2df37fb0bcbff2ddf79e5a373aa978bf216451a93cbd1bb85b5efc2faf74d83fa4c98f1d64cdacf3ee9da34f7dcded84cbf04f.css" integrity="sha512-/Eb0qcTmE7&#43;ENaFCmy3zf7C8v/Ld955aNzqpeL8hZFGpPL0buFte/C&#43;vdNg/pMmPHWTNrPPunaNPfc3thMvwTw==">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2020/06/01/home-network-6/">
+  <meta property="og:title" content="自宅ネットワーク改善日記その6 IPv4 over IPv6編 - nownab.log">
+  <meta property="og:description" content="今回はDS-LiteでIPv4通信が90倍速くなった話です。 前回まで: その1 調査編 その2 L2SW交換編 その3 光開通編 その4 RTX830導入編"><meta property="og:image" content="https://blog.nownabe.com/images/2020/06/01/compare-ipv4.png"><meta property="twitter:title" content="自宅ネットワーク改善日記その6 IPv4 over IPv6編 - nownab.log">
+  <meta property="twitter:description" content="今回はDS-LiteでIPv4通信が90倍速くなった話です。 前回まで: その1 調査編 その2 L2SW交換編 その3 光開通編 その4 RTX830導入編">
+  <meta property="twitter:image" content="https://blog.nownabe.com/images/2020/06/01/compare-ipv4.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container">
+    <h1>
+      <a href="/">
+        nownab.log
+      </a>
+    </h1>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h2><a href="https://blog.nownabe.com/2020/06/01/home-network-6/">自宅ネットワーク改善日記その6 IPv4 over IPv6編</a></h2>
+    <span class="date">Posted on Jun 1, 2020</span>
+  </div>
+  <div class="body">
+    
+
+<p>今回はDS-LiteでIPv4通信が90倍速くなった話です。</p>
+
+<p><img src="/images/2020/06/01/compare-ipv4.png" width="800"></p>
+
+<p>前回まで:</p>
+
+<ul>
+<li><a href="/2020/05/26/home-network-1/">その1 調査編</a></li>
+<li><a href="/2020/05/28/home-network-2/">その2 L2SW交換編</a></li>
+<li><a href="/2020/05/29/home-network-3/">その3 光開通編</a></li>
+<li><a href="/2020/05/30/home-network-4/">その4 RTX830導入編</a></li>
+<li><a href="/2020/05/31/home-network-5/">その5 Google Nest Wifi導入編</a></li>
+</ul>
+
+<h2 id="あらすじ">あらすじ</h2>
+
+<p>その1からその5で、ルータ、スイッチ、アクセスポイント、ケーブルといった物理的な機器については予定してた構成が整いました。
+しかし、フレッツ光回線ということもあって相変わらず混雑時間帯は数Mbps以下しかでないという状況でした。</p>
+
+<p>今回はその状況を改善するために、IPoEによる高速なIPv6通信を設定して、さらにDS-LiteによるIPv4 over IPv6でIPv4通信も高速化しました。</p>
+
+<h2 id="ipv6-ipoe-設定">IPv6 (IPoE) 設定</h2>
+
+<p>IPv6で通信するときは、混雑して低速なPPPoEではなく高速なIPoEという接続方式を選択できます。
+例えばYouTubeやNetflixといったIPv6に対応しているサイトであれば、IPoEを使ってIPv6で接続すれば高速に通信できます。</p>
+
+<p>というわけで、まずはIPoEを設定しました。
+設定はRTX830のWeb GUIで行いました。</p>
+
+<p><code>Web GUI &gt; かんたん設定 &gt; プロバイダー設定 &gt; 新規</code> で、接続種別にIPv6 IPoEを選択するだけです。これでIPv6で通信できるようになります。</p>
+
+<p>Netflixの<a href="https://fast.com">fast.com</a>やCloudflareの<a href="https://speed.cloudflare.com/">Speed Test</a>のようなインターネット速度計測サイトであれば接続元のIPが表示されるので、今IPv4で接続しているかIPv6で接続しているかが簡単に判断できます。</p>
+
+<p>次の画像は、混雑時間に連続してPPPoEなIPv4とIPoEなIPv6をfast.comで計測した結果です。</p>
+
+<p><img src="/images/2020/06/01/compare-pppoe-ipoe.png" width="800"></p>
+
+<p>IPv4かIPv6かは下部に表示されているクライアントのIPで判断できます。
+IPv4に比べてIPv6だと120倍以上のスピードが出ていることがわかります。</p>
+
+<p>次のカーネルパラメータを設定してIPv6を有効化/無効化することで、クライアント側のIPv4とIPv6を切り替えました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">net.ipv6.conf.all.disable_ipv6 <span class="o">=</span> <span class="m">0</span> or <span class="m">1</span>
+net.ipv6.conf.default.disable_ipv6 <span class="o">=</span> <span class="m">0</span> or <span class="m">1</span></code></pre></div>
+<h2 id="ipv4-over-ipv6-ds-lite-設定">IPv4 over IPv6 (DS-Lite) 設定</h2>
+
+<p>IPv6では高速に通信できるようになったといっても、まだまだIPv4も現役です。
+IPv4についても、IPv4 over IPv6でIPv4通信をカプセル化してIPv6の通信にのせることで、IPoEと同様のスピードで通信できるようになります。
+IPv4 over IPv6にもいくつかありますが、今回はIIJmioひかりが対応しているDS-LiteでIPv4を高速化しました。
+IIJmioひかりではInternet Mutifeed社のtransixというサービスでDS-Liteを提供しています。</p>
+
+<p>Web GUIでは設定できないので、公式の<a href="http://www.rtpro.yamaha.co.jp/RT/docs/ipip/index.html#setting9">設定例</a>を参考にコマンドで設定しました。以下が設定コマンドです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">&gt; administrator
+<span class="c1"># ip route default gateway tunnel 1</span>
+<span class="c1"># tunnel select 1</span>
+<span class="c1"># tunnel endpoint name gw.transix.jp</span>
+<span class="c1"># tunnel enable 1</span>
+<span class="c1"># tunnel encapsulation ipip</span>
+<span class="c1"># save</span></code></pre></div>
+<p>解説ブログやドキュメントでRTX系のルータだと<code>gw.transix.jp</code>というホスト名は指定できないと書いてあることがありますが、RTX830だと<code>tunnel endpoint name</code>で問題なく指定できます。他の機種だとファームウェアのバージョンによったりするみたいです。</p>
+
+<p><code>tunnel encapsulation ipip</code>というのが、IPv4をカプセル化してIPv6のトンネルに流すという設定ですね。</p>
+
+<p>次の画像は、連続してDS-LiteなIPv4とIPoEなIPv6をfast.comで計測した結果です。</p>
+
+<p><img src="/images/2020/06/01/compare-ipoe.png" width="800"></p>
+
+<p>IPv4でもIPv6と同等のスピードがでています！！やったぜ！！！ 🎉🎉🎉</p>
+
+<h2 id="おわりに">おわりに</h2>
+
+<p>IPv4でもIPoEなIPv6と同等なスピードが出るようになりました 🚀✨</p>
+
+<p>これでようやく、弊家の劣悪なインターネット環境がまともになりました。よかった… 😭✨</p>
+
+<p>ツイッターのタイムラインにはちゃんと画像が表示されるし、ミーティング中に声が途切れることもなくなったし、インターネットって素晴らしいですね！ 💖</p>
+
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+
+<div id="footer-navigation">
+  <div id="next-prev">
+    <div><a href="https://blog.nownabe.com/2020/05/31/home-network-5/">&lt; 自宅ネットワーク改善日記その5 Google Nest Wifi導入編</a></div>
+    <div></div>
+  </div>
+  <div id="related-articles"><h2>See Also</h2>
+    <ul><li><a href="/2020/05/31/home-network-5/">自宅ネットワーク改善日記その5 Google Nest Wifi導入編</a></li><li><a href="/2020/05/30/home-network-4/">自宅ネットワーク改善日記その4 RTX830導入編</a></li><li><a href="/2020/05/29/home-network-3/">自宅ネットワーク改善日記その3 光開通編</a></li><li><a href="/2020/05/28/home-network-2/">自宅ネットワーク改善日記その2 L2SW交換編</a></li><li><a href="/2020/05/26/home-network-1/">自宅ネットワーク改善日記その1 調査編</a></li></ul></div>
+  <div id="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+      </div>
+    </div><div id="footer-container">
+  <div id="author" class="container">
+    <p>
+      <a href="https://nownabe.com">
+        <img src="/img/profile_icon_2020.png" alt="profile icon">
+      </a>
+    </p>
+    <div>
+      <p class="name"><a href="https://nownabe.com">Shogo Watanabe</a></p>
+      <p>
+        Customer Engineer at Google Cloud.
+      </p>
+      <p>
+        Opinions are my own, NOT views of my employer.
+      </p>
+    </div>
+  </div>
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016 nownabe All Right Reserved.
+    </p>
+  </footer>
+</div>
+<div id="fb-root"></div>
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" async="async"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      anchors.add(".body h1, .body h2, .body h3");
+    });
+  </script>
+</body>
+</html>

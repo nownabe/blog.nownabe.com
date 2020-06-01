@@ -6,10 +6,37 @@
     <description>Recent content in Tags on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 31 May 2020 09:15:15 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jun 2020 22:18:28 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/tags/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DS-Lite</title>
+      <link>https://blog.nownabe.com/tags/ds-lite/</link>
+      <pubDate>Mon, 01 Jun 2020 22:18:28 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/ds-lite/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PPPoE</title>
+      <link>https://blog.nownabe.com/tags/pppoe/</link>
+      <pubDate>Mon, 01 Jun 2020 22:18:28 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/pppoe/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>network</title>
+      <link>https://blog.nownabe.com/tags/network/</link>
+      <pubDate>Mon, 01 Jun 2020 22:18:28 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/network/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Google</title>
@@ -35,15 +62,6 @@
       <pubDate>Sun, 31 May 2020 09:15:15 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/tags/nest-wifi/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>network</title>
-      <link>https://blog.nownabe.com/tags/network/</link>
-      <pubDate>Sun, 31 May 2020 09:15:15 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/network/</guid>
       <description></description>
     </item>
     

@@ -4,8 +4,43 @@
   
   <url>
     <loc>https://blog.nownabe.com/2020/</loc>
-    <lastmod>2020-05-31T09:15:15+09:00</lastmod>
+    <lastmod>2020-06-01T22:18:28+09:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/ds-lite/</loc>
+    <lastmod>2020-06-01T22:18:28+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/pppoe/</loc>
+    <lastmod>2020-06-01T22:18:28+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/</loc>
+    <lastmod>2020-06-01T22:18:28+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/network/</loc>
+    <lastmod>2020-06-01T22:18:28+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/</loc>
+    <lastmod>2020-06-01T22:18:28+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/2020/06/01/home-network-6/</loc>
+    <lastmod>2020-06-01T22:18:28+09:00</lastmod>
   </url>
   
   <url>
@@ -22,24 +57,6 @@
   
   <url>
     <loc>https://blog.nownabe.com/tags/nest-wifi/</loc>
-    <lastmod>2020-05-31T09:15:15+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/tags/</loc>
-    <lastmod>2020-05-31T09:15:15+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/tags/network/</loc>
-    <lastmod>2020-05-31T09:15:15+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/</loc>
     <lastmod>2020-05-31T09:15:15+09:00</lastmod>
     <priority>0</priority>
   </url>
