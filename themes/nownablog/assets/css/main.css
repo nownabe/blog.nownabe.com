@@ -201,6 +201,10 @@ article .body {
         font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
         line-height: 1.5em;
         overflow-x: auto; }
+  article .body li > code {
+    background-color: #f0f3f3;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    padding: 2px 4px; }
   article .body p > code {
     background-color: #f0f3f3;
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;

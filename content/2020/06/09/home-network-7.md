@@ -13,7 +13,7 @@ isCJKLanguage: true
 image: img/nownabe.png
 ---
 
-```
+```txt
 TODO: Change date
 TODO: Change OG Image
 ```
