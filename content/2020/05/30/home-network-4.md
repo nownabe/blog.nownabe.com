@@ -15,11 +15,15 @@ image: images/2020/05/30/tor-photo.png
 
 今回はルータとしてYAMAHAの[RTX830](https://network.yamaha.com/products/routers/rtx830/index)を導入しました。
 
-前回まで:
+全日記:
 
 * [その1 調査編](/2020/05/26/home-network-1/)
 * [その2 L2SW交換編](/2020/05/28/home-network-2/)
 * [その3 光開通編](/2020/05/29/home-network-3/)
+* [その4 RTX830導入編](/2020/05/30/home-network-4/)
+* [その5 Google Nest Wifi導入編](/2020/05/31/home-network-5/)
+* [その6 IPv4 over IPv6編](/2020/06/01/home-network-6/)
+* [その7 VLAN編](/2020/06/10/home-network-7/)
 
 ## おさらい
 

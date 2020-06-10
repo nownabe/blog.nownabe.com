@@ -17,7 +17,7 @@ image: images/2020/06/10/logical-diagram.png
 こんなにVLANとかルーティングとかに思いを馳せたのは5年以上前にIDCF(データセンター事業者)で働いていたとき以来だったので、なかなか苦労しました。
 が、その分この改善日記シリーズで一番楽しく構築できました :smile:
 
-前回まで:
+全日記:
 
 * [その1 調査編](/2020/05/26/home-network-1/)
 * [その2 L2SW交換編](/2020/05/28/home-network-2/)
@@ -25,6 +25,7 @@ image: images/2020/06/10/logical-diagram.png
 * [その4 RTX830導入編](/2020/05/30/home-network-4/)
 * [その5 Google Nest Wifi導入編](/2020/05/31/home-network-5/)
 * [その6 IPv4 over IPv6編](/2020/06/01/home-network-6/)
+* [その7 VLAN編](/2020/06/10/home-network-7/)
 
 ## あらすじ
 
