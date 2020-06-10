@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ja"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>自宅ネットワーク改善日記その7 VLAN編 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.7ca170ea0eec8e603aeca12bd089916f77d8de0d4f2b2f88cfc35a93e47b86279e21e0a0b838a584c667f0b3c20e9e947851333df523cf96a9c07b24b26a730d.css" integrity="sha512-fKFw6g7sjmA67KEr0ImRb3fY3g1PKy&#43;Iz8Nak&#43;R7hieeIeCguDilhMZn8LPCDp6UeFEzPfUjz5apwHsksmpzDQ==">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2020/06/10/home-network-7/">
+  <meta property="og:title" content="自宅ネットワーク改善日記その7 VLAN編 - nownab.log">
+  <meta property="og:description" content="今回はVLANを設定してサーバをインターネットに公開した話です。 こんなにVLANとかルーティングとかに思いを馳せたのは5年以上前にIDCF("><meta property="og:image" content="https://blog.nownabe.com/images/2020/06/10/logical-diagram.png"><meta property="twitter:title" content="自宅ネットワーク改善日記その7 VLAN編 - nownab.log">
+  <meta property="twitter:description" content="今回はVLANを設定してサーバをインターネットに公開した話です。 こんなにVLANとかルーティングとかに思いを馳せたのは5年以上前にIDCF(">
+  <meta property="twitter:image" content="https://blog.nownabe.com/images/2020/06/10/logical-diagram.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container">
+    <h1>
+      <a href="/">
+        nownab.log
+      </a>
+    </h1>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h2><a href="https://blog.nownabe.com/2020/06/10/home-network-7/">自宅ネットワーク改善日記その7 VLAN編</a></h2>
+    <span class="date">Posted on Jun 10, 2020</span>
+  </div>
+  <div class="body">
+    
+
+<p>今回はVLANを設定してサーバをインターネットに公開した話です。
+こんなにVLANとかルーティングとかに思いを馳せたのは5年以上前にIDCF(データセンター事業者)で働いていたとき以来だったので、なかなか苦労しました。
+が、その分この改善日記シリーズで一番楽しく構築できました 😄</p>
+
+<p>前回まで:</p>
+
+<ul>
+<li><a href="/2020/05/26/home-network-1/">その1 調査編</a></li>
+<li><a href="/2020/05/28/home-network-2/">その2 L2SW交換編</a></li>
+<li><a href="/2020/05/29/home-network-3/">その3 光開通編</a></li>
+<li><a href="/2020/05/30/home-network-4/">その4 RTX830導入編</a></li>
+<li><a href="/2020/05/31/home-network-5/">その5 Google Nest Wifi導入編</a></li>
+<li><a href="/2020/06/01/home-network-6/">その6 IPv4 over IPv6編</a></li>
+</ul>
+
+<h2 id="あらすじ">あらすじ</h2>
+
+<p>前回IPv4 over IPv6を設定したことで、ついに快適にインターネットできる環境が整いました。</p>
+
+<p><img src="/images/2020/06/01/compare-ipoe.png" width="800"></p>
+
+<p>普通にインターネットを使う環境が整ったので、今回は特に困ってないけどやりたかったことをやりました。具体的には、</p>
+
+<ul>
+<li>グローバルIPが手に入ったのでサーバをインターネットに公開</li>
+<li>VLAN対応NW機器が手に入ったのでサーバ用とそれ以外用でネットワークを分割</li>
+</ul>
+
+<p>ということをしました。</p>
+
+<h2 id="やったこと">やったこと</h2>
+
+<p>サーバ用のネットワークをVLANを使って普段使いのネットワークとわけました。
+以後、サーバ用でない普段使い用のネットワークをホームネットワークとします。
+また、サーバ用のネットワークをインターネットに公開しました。</p>
+
+<p>これらを実現するために必要なタスクは次の4つでした。</p>
+
+<ul>
+<li>設計 (論理・物理)</li>
+<li>物理構築</li>
+<li>VLAN構築</li>
+<li>ルータ設定
+
+<ul>
+<li>ルーティング</li>
+<li>IPマスカレード</li>
+<li>フィルタリング</li>
+</ul></li>
+</ul>
+
+<p>以下、それぞれ順に説明します。</p>
+
+<h2 id="設計">設計</h2>
+
+<p>まず、雑に論理構成を設計しました。といっても、ネットワークアドレスを決めたぐらいです。</p>
+
+<ul>
+<li>lan1 - 192.168.100.0/24 - ホームネットワーク
+
+<ul>
+<li>RTX830のデフォルト設定をそのまま使う</li>
+</ul></li>
+<li>lan1/1 (VLAN1001) - 10.0.0.0/13 - サーバネットワーク
+
+<ul>
+<li>10.0.0.0/9から切り出す感じで</li>
+<li>GCPにVPNでつなげたくて、わかりやすくGCPのデフォルトの10.128.0.0/9を避けた</li>
+<li>RTX830のVLAN数上限32の半分をサーバ用として、均等に分割して/13になった</li>
+<li>今のところこういう使い方を想定してます</li>
+<li>10.0.0.0/15 物理機器</li>
+<li>10.2.0.0/15 Kubernetes Service</li>
+<li>10.4.0.0/14 Kubernetes Pod</li>
+</ul></li>
+</ul>
+
+<p>VLAN1001を無駄にでかく設計してしまって、未来永劫こんな多くのIPが必要になることがないのはわかりきってるので、そのうち小さくするかもしれませんw</p>
+
+<p>この段階を構成図にするとこんな感じです。</p>
+
+<p><img src="/images/2020/06/10/rough-logical-diagram.png" width="800"></p>
+
+<p>NASはインターネットに公開しなくてもインターネット側から使うことができるのと、サーバから使わない予定なので、ホームネットワークに置いています。</p>
+
+<p>次に、物理構成を設計しました。どのケーブルをどのポートにつなぐかってところですね。</p>
+
+<p><img src="/images/2020/06/10/physical-diagram.png" width="800"></p>
+
+<p>この構成図にはないですが、現在はnownabe roomのスイッチのポート6の先にもう一台スイッチがあり、Raspberry Pi 4が4台接続されています。</p>
+
+<h2 id="物理構築">物理構築</h2>
+
+<p>設計した通りにLANケーブルをつないでいきました。</p>
+
+<h2 id="vlan構築">VLAN構築</h2>
+
+<p>VLANを構築するために、スイッチとルータそれぞれ設定しました。</p>
+
+<h3 id="gs308t">GS308T</h3>
+
+<p>まず、2台のNETGEAR GS308TにVLAN1001の設定をしました。</p>
+
+<p>GS308TはWeb UIで設定するんですが、それぞれのIPアドレスは<a href="https://play.google.com/store/apps/details?id=com.netgear.insight&amp;hl=ja">NETGEAR Insight</a>というアプリで調べました。
+同じネットワークにあるNETGEAR機器を一覧表示してくれます。
+実はアプリでいろいろ設定できるんじゃないかと思ってインストールしたんですが、ほぼIPがわかる程度でした。</p>
+
+<p>IPがわかったらブラウザでそのIPにアクセスして、デフォルトのパスワードである <code>password</code> を入力してログインしました。次の順にVLANを設定しました。
+(以下はnownabe roomのGS308Tの場合。ToRも同様)</p>
+
+<ul>
+<li><code>Switching &gt; VLAN &gt; Advanced &gt; VLAN Configuration</code>
+
+<ul>
+<li>わかりやすいように名前をつけてVLAN 1001を追加</li>
+</ul></li>
+</ul>
+
+<p><img src="/images/2020/06/10/vlan1.png" width="600"></p>
+
+<ul>
+<li><code>Switching &gt; VLAN &gt; Advanced &gt; VLAN Membership</code>
+
+<ul>
+<li>VLAN IDで <code>1001</code> を選択</li>
+<li>Portsっていうのが物理ポート</li>
+<li><code>U</code> はVLANの出口ポート</li>
+<li><code>T</code> はTrunk (VLANタグを付けたまま送信する) ポート</li>
+<li>空白はそのVLANに属さないポート</li>
+</ul></li>
+</ul>
+
+<p><img src="/images/2020/06/10/vlan2.png" width="600"></p>
+
+<ul>
+<li><code>Switching &gt; VLAN &gt; Advanced &gt; Port PVID Configuration</code>
+
+<ul>
+<li><code>g5</code>、<code>g6</code>、<code>g7</code>を選択</li>
+<li>PVIDを <code>1001</code> に設定</li>
+<li>PVIDはVLANの入り口</li>
+</ul></li>
+</ul>
+
+<p><img src="/images/2020/06/10/vlan3.png" width="600"></p>
+
+<h3 id="rtx830">RTX830</h3>
+
+<p>VLANのルーティングをするためにRTX830にもVLANの設定をしました。
+とりあえずここでは、vlanインタフェースを作ってDHCPを設定しました。
+また、lan1だけでなくlan側すべてからDNSを受け付けるようにして、lan1/1 (VLAN1001)でもDNSを使えるようにしました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt"># VLANインタフェースの作成
+vlan lan1/1 802.1q vid=1001
+
+# lan1/1 のRTX830のアドレスとネットマスク
+ip lan1/1 address 10.0.0.2/13
+
+# DHCPで使うIPアドレス範囲とネットワークのネットマスク
+dhcp scope 1001 10.1.255.0-10.1.255.255/13
+
+# DNSをlanインタフェース側からはすべて許可する
+dns host lan</code></pre></div>
+<p>VLAN1001の機器は基本的に静的IPを設定するんですが、静的IP設定前でもとりあえず使えると便利なので一部のIPアドレス範囲だけDHCPを設定しています。</p>
+
+<h2 id="ルータ設定">ルータ設定</h2>
+
+<p>次にルーティングとかを設定して、VLAN1001のサーバをインターネットに公開できるように設定しました。</p>
+
+<h3 id="ルーティング">ルーティング</h3>
+
+<p>LAN間もインターネットへも自動でルーティング設定されるんですが、このままだとインターネットに公開ができません。
+というのも、<a href="/2020/06/01/home-network-6/">その6</a>でIPv4の通信はDS-Liteを使うようにしていて、DS-LiteだとルータにGlobal IPがつかないからです。
+なので、VLAN1001のサーバはDS-LiteではなくPPPoEを使ってインターネットに出るようにする必要があります。</p>
+
+<p>図にするとこんな感じです。</p>
+
+<p><img src="/images/2020/06/10/logical-diagram.png" width="800"></p>
+
+<p>RTX830のフィルタ型ルーティングを使ってデフォルトGWを設定して、DS-LiteとPPPoEの使い分けを実現しました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">ip filter 500001 pass 192.168.0.0/16 * udp,tcp * *
+ip route default gateway tunnel 1 filter 500001 gateway pp 1</code></pre></div>
+<p>これで、<code>500001</code>にマッチする通信のみがDS-Liteの<code>tunnel 1</code>を使うようになります。</p>
+
+<h3 id="ipマスカレード">IPマスカレード</h3>
+
+<p>Global IPはサーバではなくPPPoEのインタフェースに1つだけついているという状態なので、静的なIPマスカレード (NAPT) を設定して、特定のポートに対する通信を、特定のローカルIP・ポートへの通信に変換する必要があります。</p>
+
+<p>今回はテストということでHTTPをサーバに割り当てました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt"># NAT Descriptor 1000 はmasquarade typeとする
+nat descriptor type 1000 masquarade
+
+# NAT Descriptor 1000 にHTTPポートに関する静的IPマスカレードを設定
+nat descriptor masquarade static 1000 1 10.0.1.1 tcp 80=80
+
+# pp 1に対して設定しますよ
+pp select 1
+
+ # pp 1ではNAT Descriptor 1000を使う
+ ip pp nat descriptor 1000</code></pre></div>
+<p>今後、公開するポートが増えたら追加していく感じになります。</p>
+
+<h3 id="フィルタリング">フィルタリング</h3>
+
+<p>初期設定だと外からの通信を許可しないようなフィルタが設定されているので、HTTPを許可する必要があります。</p>
+
+<p>図にするとこんな感じです。</p>
+
+<p><img src="/images/2020/06/10/filtering.png" width="800"></p>
+
+<p>最初はルーティングやNAT、フィルタリングの関係性がよくわかってなくてこの図を作りました。
+こう図にするとわかりやすい気がします。</p>
+
+<p>当初はLAN間もフィルタリングで通信を制御しようと考えてたんですが、まずはシンプルにやりたいことを実現するため、必要最低限のフィルタリングのみを設定しました。
+<code>lan1/1</code> と <code>lan1</code> ではフィルタリングせず、インターネットの出入り口である <code>pp 1</code> と <code>tunnel 1</code> だけに対してフィルタリングを設定しました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt"># PingのEcho Replyを通すフィルタ
+ip filter 300000 pass * 192.168.0.0/16,10.0.0.0/9 icmp 0
+
+# すべて拒否するフィルタ
+ip filter 300099 reject * * * * *
+
+# VLAN1001に対してのHTTPコネクション開始時の最初のパケットだけを通すフィルタ
+# (3-way handshake開始のSYNパケットのみを通す)
+ip filter 300001 pass * 10.0.0.0/9 tcpflag=0x0002/0x0017 * 80
+
+# SYNパケットが通った後、そのコネクションが終了するまで通信を許可する動的フィルタ
+ip filter dynamic 300001 * 10.0.0.0/9 www
+
+pp select 1
+ # PingとHTTPだけ通してあとはすべて拒否する
+ ip pp secure filter in 300000 300001 300099 dynamic 300001
+
+# すべて拒否するフィルタ
+ip filter 400001 reject * * * * *
+
+tunnel select 1
+ # すべて拒否する
+ ip tunnel secure filter in 400001</code></pre></div>
+<p>IPマスカレードと同様に、公開するポートが増えたら <code>pp 1</code> に対して許可フィルタを追加していくことになります。</p>
+
+<h2 id="ipv6-について">IPv6 について</h2>
+
+<p>今の所、サーバネットワークはIPv6に対応していません。</p>
+
+<p>もともとは、サーバネットワークもホームネットワークもVLANで運用してIPv6にも対応する予定でした。
+というかそう設定してたけど、なかなか上手く行かず失敗しました。
+最低限だけ実現するためにできるだけシンプルにしようとして、ホームネットワークのVLANもサーバネットワークのIPv6もなくなった感じですね。</p>
+
+<p>今は失敗の原因もわかっているのでどちらも設定できる気がしているんですが、もう設定が完成してしまってめんどくさいのでしばらくこれで運用すると思いますw</p>
+
+<h2 id="役に立ったものたち">役に立ったものたち</h2>
+
+<p>試行錯誤する中でいろいろ調べたりトラブルシュートしたりするのに役立ったものたちを紹介します。</p>
+
+<h3 id="参考サイト">参考サイト</h3>
+
+<ul>
+<li><a href="http://www.rtpro.yamaha.co.jp/">RTpro - Yamaha Network Products Home Page</a>
+
+<ul>
+<li>なんといってもこのサイトです。コマンドリファレンスや技術資料が非常に参考になりました。参考になったというかここのマニュアルがなかったら設定できません。</li>
+</ul></li>
+<li><a href="https://www.sinet.ad.jp/connect_service/service/ping">SINET Pingチェックサイト</a>
+
+<ul>
+<li>確実にIPv4でPingが通る外部のサーバを探していて見つけました。設定が上手く行かずなかなかインターネットに繋がらなかったので確認で使わせてもらいました。</li>
+</ul></li>
+<li><a href="https://cloud.google.com/shell?hl=ja">Cloud Shell</a>
+
+<ul>
+<li>GCPが無料で提供している、Webだけでお手軽に使えるVMです。外からうちのサーバにアクセスできるか確認するのに使いました。Web Consoleからタダで素早く簡単に使えて便利です。</li>
+</ul></li>
+</ul>
+
+<h3 id="調査コマンド">調査コマンド</h3>
+
+<p>このあたりのコマンドが調査で役に立ちました。
+実際ログからフィルタリングのミスなんかが見つかりました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">syslog debug on
+syslog notice on
+show log
+show ip secure filter
+show nat descriptor address</code></pre></div>
+<h2 id="おわりに">おわりに</h2>
+
+<p>これで、自宅ネットワークを改善するぞ！と考え始めてからやりたかった自宅ネットワークの改善は一通り終わりました。
+やったぜ！！ 🎉</p>
+
+<p>インターネット速くなったし楽しかったしちゃんとやりたかったこと実現できたし非常に満足してます 😆
+ただ、VLANでこんな苦労するならRTX830じゃなくてRTX1210買っとけばよかったってのは思いました 😂
+最初の機器選定でどっちにするか迷ったんですよね。。。</p>
+
+<p>今後は、コンフィグが汚かったりするので綺麗にしていったり、サーバで遊んだりしていこうと思います 😚</p>
+
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+
+<div id="footer-navigation">
+  <div id="next-prev">
+    <div><a href="https://blog.nownabe.com/2020/06/01/home-network-6/">&lt; 自宅ネットワーク改善日記その6 IPv4 over IPv6編</a></div>
+    <div></div>
+  </div>
+  <div id="related-articles"><h2>See Also</h2>
+    <ul><li><a href="/2020/05/30/home-network-4/">自宅ネットワーク改善日記その4 RTX830導入編</a></li><li><a href="/2020/06/01/home-network-6/">自宅ネットワーク改善日記その6 IPv4 over IPv6編</a></li><li><a href="/2020/05/31/home-network-5/">自宅ネットワーク改善日記その5 Google Nest Wifi導入編</a></li><li><a href="/2020/05/29/home-network-3/">自宅ネットワーク改善日記その3 光開通編</a></li><li><a href="/2020/05/28/home-network-2/">自宅ネットワーク改善日記その2 L2SW交換編</a></li></ul></div>
+  <div id="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+      </div>
+    </div><div id="footer-container">
+  <div id="author" class="container">
+    <p>
+      <a href="https://nownabe.com">
+        <img src="/img/profile_icon_2020.png" alt="profile icon">
+      </a>
+    </p>
+    <div>
+      <p class="name"><a href="https://nownabe.com">Shogo Watanabe</a></p>
+      <p>
+        Customer Engineer at Google Cloud.
+      </p>
+      <p>
+        Opinions are my own, NOT views of my employer.
+      </p>
+    </div>
+  </div>
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016 nownabe All Right Reserved.
+    </p>
+  </footer>
+</div>
+<div id="fb-root"></div>
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" async="async"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      anchors.add(".body h1, .body h2, .body h3");
+    });
+  </script>
+</body>
+</html>
