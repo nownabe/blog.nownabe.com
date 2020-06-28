@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ja"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>おうちKubernetes構築日記その1 Raspberry Pi編 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2020/06/28/home-kubernetes-1/">
+  <meta property="og:title" content="おうちKubernetes構築日記その1 Raspberry Pi編 - nownab.log">
+  <meta property="og:description" content="家に光回線を引いてグローバルIPが手に入ったとほぼ同時にRaspberry Pi 4の8GB版が発売になり、機は熟したということでずっとやりたかっ"><meta property="og:image" content="https://blog.nownabe.com/images/2020/06/28/pi-stack.jpg"><meta property="twitter:title" content="おうちKubernetes構築日記その1 Raspberry Pi編 - nownab.log">
+  <meta property="twitter:description" content="家に光回線を引いてグローバルIPが手に入ったとほぼ同時にRaspberry Pi 4の8GB版が発売になり、機は熟したということでずっとやりたかっ">
+  <meta property="twitter:image" content="https://blog.nownabe.com/images/2020/06/28/pi-stack.jpg">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container">
+    <h1>
+      <a href="/">
+        nownab.log
+      </a>
+    </h1>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h2><a href="https://blog.nownabe.com/2020/06/28/home-kubernetes-1/">おうちKubernetes構築日記その1 Raspberry Pi編</a></h2>
+    <span class="date">Posted on Jun 28, 2020</span>
+  </div>
+  <div class="body">
+    
+
+<p><a href="https://blog.nownabe.com/2020/05/29/home-network-3/">家に光回線を引いて</a>グローバルIPが手に入ったとほぼ同時にRaspberry Pi 4の8GB版が発売になり、機は熟したということでずっとやりたかったおうちKubernetesを構築しました。</p>
+
+<p><img src="/images/2020/06/28/pi-stack.jpg"></p>
+
+<h2 id="おうちkubernetesとは">おうちKubernetesとは</h2>
+
+<p>その名の通り、おうちで構築・運用するKubernetesです。
+Raspberry Piを使って構成するケースが多いようです。</p>
+
+<p>おうちKubernetesはもう何年も前から組みたかったんですが、Raspberry Pi 3ではメモリが1GB、Raspberry 4でも4GBしかなかったので実用性ないよなーってことで保留してました。
+そこに、メモリを8GB搭載したRaspberry Pi 4が今月2020年5月末に発売され、ついに来たぞということで4台買って構築しました。</p>
+
+<h2 id="構成">構成</h2>
+
+<p>構成ってほどでもないんですが、こんな感じです。</p>
+
+<p><img src="/images/2020/06/28/nodes.png" alt="nodes" /></p>
+
+<p>昔から家にあったサーバをmasterにして、ラズパイ4台はすべてWorkerノードとして利用しています。
+なので合計16 core、32GBのクラスタになります。
+これだけあるとまあまあ遊べそうな気がしてきます。</p>
+
+<p>master用のサーバははるか昔にファイルサーバ用として組んだマシンなのでスペックはしょぼいんですが、ディスクは大量に積んでたのでそのうちPersistent Volumeとして利用できるようにしたいなーと考えています。
+ちなみに、しばらく使ってなくてメモリ32GBぐらいは積んでるだろうと思って起動したところ8GBしかなくて、ラズパイと同じやんけ！と叫びながら8GB追加しました。
+まさかまたDDR3のメモリを買うことになるとは…。</p>
+
+<p>ネットワークに関しては、今回無線での接続はせずに有線で接続しました。
+移動する予定もないし、そもそもサーバ用のNWに入るWifiを用意していなかったからです。</p>
+
+<h2 id="材料">材料</h2>
+
+<p>Kubernetesまわりの材料はこんな感じです。</p>
+
+<p><img src="/images/2020/06/28/parts.jpg" alt="parts" /></p>
+
+<table>
+<thead>
+<tr>
+<th>材料</th>
+<th>個数</th>
+<th>備考</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><a href="https://www.switch-science.com/catalog/6370/">Raspberry Pi 4 Model B / 8GB</a></td>
+<td>4</td>
+<td>Switch Scienceに在庫がありました。</td>
+</tr>
+
+<tr>
+<td><a href="https://amzn.to/3dzHxnO">サムスン EVO Plus 512GB microSDCX</a></td>
+<td>4</td>
+<td>正直こんなでかい容量いらんかった…</td>
+</tr>
+
+<tr>
+<td><a href="https://amzn.to/31rHuYG">GeeekPi Raspberry Pi 4 モデルB用Piラックケース</a></td>
+<td>1</td>
+<td>ラズパイ4はヒートシンクとファン必須らしい</td>
+</tr>
+
+<tr>
+<td><a href="https://amzn.to/3i9jZJM">エレコム EHC-G05PA-SB</a></td>
+<td>1</td>
+<td>ハブ。USB給電で動くもの</td>
+</tr>
+
+<tr>
+<td><a href="https://amzn.to/3g50iB5">エレコム LANケーブル CAT6 0.15m</a></td>
+<td>2</td>
+<td>あとでもう2本買い足した</td>
+</tr>
+
+<tr>
+<td><a href="https://amzn.to/3eBykN3">エレコム LANケーブル CAT6 0.30m</a></td>
+<td>2</td>
+<td>全部0.15mで良かった</td>
+</tr>
+
+<tr>
+<td><a href="https://amzn.to/2YEAi9I">Anker PowerPort Speed 5</a></td>
+<td>1</td>
+<td>給電用。5ポートある</td>
+</tr>
+
+<tr>
+<td><a href="https://amzn.to/2YHPUcS">Micro USB充電ケーブル 30cm</a></td>
+<td>1</td>
+<td>ハブ用</td>
+</tr>
+
+<tr>
+<td><a href="https://amzn.to/3dzGCDS">USB-C 充電ケーブル 30cm 2本入り</a></td>
+<td>2</td>
+<td>ラズパイ用。合計4本</td>
+</tr>
+
+<tr>
+<td><a href="https://amzn.to/2Ag5L96">8.9インチポータブルモニタ</a></td>
+<td>1</td>
+<td>初期設定用</td>
+</tr>
+
+<tr>
+<td><a href="https://amzn.to/2VlbsKb">Micro-HDMI to Mini-HDMI ケーブル</a></td>
+<td>1</td>
+<td>ラズパイとポータブルモニタ接続用</td>
+</tr>
+</tbody>
+</table>
+
+<p>この構成だとラズパイ4の仕様的に電源容量が不足してるんですが、今の所問題なく動作しています。
+負荷があがったときとかに問題が出てきたらまたなんか考えます。</p>
+
+<p>初期設定するためにポータブルモニタを買ってみたんですが、これがめちゃくちゃ便利でした。
+サーバにネットワーク経由で入れなくなったときのトラブルシュート用に最高です。</p>
+
+<p>Workerノードでなにかしらの分散ストレージを組むつもりで速くて容量の大きいSDカードを買ったんですが、今は貴重なWorkerのリソースをストレージに割きたくないなーってなってます。
+というわけで良いSDカードは無駄になりそうです 😂</p>
+
+<h2 id="sdカード準備">SDカード準備</h2>
+
+<p>さて、前置きが長くなりましたがここから実際の作業の様子です。
+といっても最初は地味な作業で、ラズパイ用のOSイメージをSDカードに書き込む作業です。</p>
+
+<p>OSは<a href="https://www.raspberrypi.org/downloads/">Raspberry Pi OS Lite (Buster)</a>にしました。
+デスクトップは不要なのでLiteです。
+今はもうRaspbianって言わないんですね。</p>
+
+<p>ダウンロードしたイメージは <code>dd</code> コマンドでSDカードに書き込みました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">umount /dev/sdc1
+sudo dd <span class="nv">bs</span><span class="o">=</span>4M <span class="k">if</span><span class="o">=</span><span class="m">2020</span>-05-27-raspios-buster-lite-armhf.img <span class="nv">of</span><span class="o">=</span>/dev/sdc</code></pre></div>
+<p><img src="/images/2020/06/28/sdcards.jpg" alt="sd cards" /></p>
+
+<h2 id="ラック組み立て">ラック組み立て</h2>
+
+<p>ラックケースにはこんな感じの部品が入っていました。
+互換性があるのでラズパイ3用のヒートシンクも入っていますが今回は使いません。</p>
+
+<p><img src="/images/2020/06/28/case-parts.jpg" alt="case parts" /></p>
+
+<p>まずはアクリル板に貼ってある保護シールを剥がします。
+透明のラックを買ったはずが白いやんけおいと思ってたんですが、シールを剥がすと透明になりました。</p>
+
+<p><img src="/images/2020/06/28/rack-plate.jpg" alt="rack plate" /></p>
+
+<p>次にヒートシンクを取り付けました。
+熱された空気がお互い干渉しないように、ヒートシンクの向きはすべて揃えました。
+結構小さいので、ピンセットみたいな道具があった方がやりやすいと思います。</p>
+
+<p><img src="/images/2020/06/28/heatsink.jpg" alt="heat sink" /></p>
+
+<p>次はラズパイの取り付けです。
+ファン用の換気口が空いていない底用のプレートにラズパイを取り付けます。</p>
+
+<p><img src="/images/2020/06/28/on-plate.jpg" alt="on plate" /></p>
+
+<p>次にその上にくるプレートを組み立てます。
+直下のラズパイ用の空冷ファンと、そこに設置されるラズパイの基礎となるスペーサーを取り付けます。
+ファンは向きを間違えるとまったく空冷の意味をなさないので、向きをしっかり確認してから取り付けました。
+また、底のプレートにはプレート同士を接続するための長いスペーサーを取り付けます。</p>
+
+<p><img src="/images/2020/06/28/fan.jpg" alt="fan" /></p>
+
+<p>これを繰り返し、4台のラズパイをインストールすればラックの組み立ては完了です！
+お美しい！！ 🎉 ✨</p>
+
+<p><img src="/images/2020/06/28/non-cabled-rack.jpg" alt="non cabled rack" /></p>
+
+<h2 id="ケーブリング">ケーブリング</h2>
+
+<p>次はケーブリングです。
+LANケーブルと電源ケーブルを接続していきます。</p>
+
+<p><img src="/images/2020/06/28/cables.jpg" alt="cables" /></p>
+
+<p>いろいろ試行錯誤して最も綺麗に納まるなというところで、Ankerとハブを両面テープでラックに固定しました。
+こんな感じです。</p>
+
+<div style="display: flex; max-width: 100%;">
+<img src="/images/2020/06/28/pi-stack.jpg" style="max-width: 50%; height: auto;">
+<img src="/images/2020/06/28/pi-stack2.jpg" style="max-width: 50%; height: auto;">
+</div>
+
+<p>このときは30cmのLANケーブルを使っていてくるくるしてる部分があるのですが、今は15cmのケーブルに買い替えてよりすっきりしています。</p>
+
+<p>電源ケーブルの方は同じ長さのUSBケーブルを買ったにも関わらず微妙に長さが違っていたんですが、それがいい感じに働いてはからずもスッキリと納まってくれました。</p>
+
+<h2 id="osセットアップ">OSセットアップ</h2>
+
+<p>最後に、OSの初期設定をしました。
+とりあえずSSHさえできればあとはなんとかなるので、SSHの設定までです。</p>
+
+<p>こんな感じで、1台ずつポータブルモニタとキーボードをつないでセットアップしていきました。</p>
+
+<p><img src="/images/2020/06/28/os-setup.jpg" alt="os-setup" /></p>
+
+<p>以下はだいたい <code>root</code> でコマンドを実行しています。</p>
+
+<p>まずはOSを64bitモードで起動するようにします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;arm_64bit=1&#34;</span> &gt;&gt; /boot/config.txt</code></pre></div>
+<p>Static IPを設定します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># /etc/dhcpcd.conf</span>
+
+interface eth0
+static <span class="nv">ip_address</span><span class="o">=</span><span class="m">10</span>.0.1.101/13
+static <span class="nv">routers</span><span class="o">=</span><span class="m">10</span>.0.0.2
+static <span class="nv">domain_name_servers</span><span class="o">=</span><span class="m">10</span>.0.0.2</code></pre></div>
+<p>SSHを有効にします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl <span class="nb">enable</span> ssh</code></pre></div>
+<p>一度rebootします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">reboot</code></pre></div>
+<p>これで、一応SSHできるようになりました。
+ただ、初期ユーザ・初期パスワードでSSHログインできてしまうのでもう少し設定していきます。</p>
+
+<p>SSHでログインします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh pi@10.0.1.101</code></pre></div>
+<p>一応64bitになってるか確認しておきます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ uname -m
+aarch64</code></pre></div>
+<p>以下、</p>
+
+<ul>
+<li>言語設定</li>
+<li>ホスト名設定</li>
+<li>IPv6無効化</li>
+<li>SSH設定</li>
+<li>nownabeユーザ作成</li>
+<li>nownabeユーザSSH設定</li>
+<li>初期パスワード削除</li>
+</ul>
+
+<p>をババっとやっていきます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo -i
+
+<span class="c1">## 言語設定</span>
+<span class="c1"># echo &#39;export LC_ALL=&#34;en_GB.UTF-8&#34;&#39; &gt;&gt; /etc/profile</span>
+
+<span class="c1">## ホスト名設定</span>
+<span class="c1"># hostnamectl set-hostname kube-worker-1.cf.nownabe.in</span>
+
+<span class="c1">## IPv6無効化</span>
+<span class="c1"># echo &#39;net.ipv6.conf.all.disable_ipv6 = 1&#39; &gt;&gt; /etc/sysctl.conf</span>
+<span class="c1"># sysctl -p</span>
+
+<span class="c1">## SSH設定</span>
+<span class="c1"># vim /etc/ssh/sshd_config</span>
+
+PermitRootLogin no
+PasswordAuthentication no
+
+<span class="c1">## nownabeユーザ作成</span>
+<span class="c1"># useradd -m nownabe</span>
+<span class="c1"># usermod -aG sudo nownabe</span>
+<span class="c1"># passwd nownabe</span>
+
+<span class="c1">## nownabeユーザSSH設定</span>
+<span class="c1"># su - nownabe</span>
+$ mkdir .ssh
+$ curl -o .ssh/authorized_keys https://github.com/nownabe.keys
+$ chmod <span class="m">700</span> .ssh
+$ chmod <span class="m">600</span> .ssh/authorized_keys
+$ <span class="nb">exit</span>
+
+<span class="c1">## 初期パスワード削除</span>
+<span class="c1"># passwd -d pi</span>
+
+<span class="c1"># systemctl restart sshd</span>
+<span class="c1"># exit</span></code></pre></div>
+<p>これで一旦OSのセットアップはおわりです。
+これを4台分やることになります。</p>
+
+<h2 id="おわりに">おわりに</h2>
+
+<p>その1はここまでです。まだ全然Kubernetes関係ないですね。</p>
+
+<p>組み立てたラックケースは机の隅っこに置いてるんですが、ストレス感じたときとかにラズパイのLEDをぼーっと眺めると癒やされるのでとても重宝しています。
+あとは電気消して暗闇で光ってるの眺めると満足感を得られるのでおすすめです 😆</p>
+
+<p><img src="/images/2020/06/28/on-desk.jpg" alt="on-desk" /></p>
+
+<p>次回Kubernetes！といきたいところですが、次回は自宅用DNSサーバを立てる話になりそうです。</p>
+
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+
+<div id="footer-navigation">
+  <div id="next-prev">
+    <div><a href="https://blog.nownabe.com/2020/06/10/home-network-7/">&lt; 自宅ネットワーク改善日記その7 VLAN編</a></div>
+    <div></div>
+  </div>
+  <div id="related-articles"><h2>See Also</h2>
+    <ul><li><a href="/2019/08/07/cloudnativedaystokyo2019/">CloudNative Days Tokyo 2019 参加メモ</a></li><li><a href="/2019/06/15/read-designing-distributed-systems/">『分散システムデザインパターン』を読んだ</a></li><li><a href="/2019/05/21/migration-to-gcp.html/">よくしらんRailsアプリとかをAWSのレガシーシステムからGCPのイケイケシステムに移行した話</a></li><li><a href="/2018/08/27/1385.html/">KubernetsのSecretのYAMLを暗号化したりするツールを作った</a></li><li><a href="/2018/08/22/1382.html/">GoのKubernetesオブジェクトをYAMLからDeserializeする</a></li></ul></div>
+  <div id="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+      </div>
+    </div><div id="footer-container">
+  <div id="author" class="container">
+    <p>
+      <a href="https://nownabe.com">
+        <img src="/img/profile_icon_2020.png" alt="profile icon">
+      </a>
+    </p>
+    <div>
+      <p class="name"><a href="https://nownabe.com">Shogo Watanabe</a></p>
+      <p>
+        Customer Engineer at Google Cloud.
+      </p>
+      <p>
+        Opinions are my own, NOT views of my employer.
+      </p>
+    </div>
+  </div>
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016 nownabe All Right Reserved.
+    </p>
+  </footer>
+</div>
+<div id="fb-root"></div>
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" async="async"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      anchors.add(".body h1, .body h2, .body h3");
+    });
+  </script>
+</body>
+</html>
