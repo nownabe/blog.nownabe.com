@@ -4,24 +4,65 @@
   
   <url>
     <loc>https://blog.nownabe.com/2020/</loc>
-    <lastmod>2020-06-28T19:55:52+09:00</lastmod>
+    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/tags/kubernetes/</loc>
-    <lastmod>2020-06-28T19:55:52+09:00</lastmod>
+    <loc>https://blog.nownabe.com/tags/raspberry-pi-3/</loc>
+    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/raspberry-pi-4/</loc>
+    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/2020/07/03/raspberrypi-bench/</loc>
+    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://blog.nownabe.com/tags/</loc>
-    <lastmod>2020-06-28T19:55:52+09:00</lastmod>
+    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/unixbench/</loc>
+    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/benchmark/</loc>
+    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/fio/</loc>
+    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.nownabe.com/</loc>
+    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/raspberry-pi/</loc>
+    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/tags/kubernetes/</loc>
     <lastmod>2020-06-28T19:55:52+09:00</lastmod>
     <priority>0</priority>
   </url>
@@ -1596,12 +1637,6 @@
   <url>
     <loc>https://blog.nownabe.com/2016/07/31/hatena10.html/</loc>
     <lastmod>2015-08-10T23:46:12+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/tags/raspberry-pi/</loc>
-    <lastmod>2015-08-09T00:21:18+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

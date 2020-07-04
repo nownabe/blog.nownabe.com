@@ -6,10 +6,64 @@
     <description>Recent content in Tags on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 28 Jun 2020 19:55:52 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 04 Jul 2020 19:43:02 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/tags/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Raspberry Pi 3</title>
+      <link>https://blog.nownabe.com/tags/raspberry-pi-3/</link>
+      <pubDate>Sat, 04 Jul 2020 19:43:02 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/raspberry-pi-3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Raspberry Pi 4</title>
+      <link>https://blog.nownabe.com/tags/raspberry-pi-4/</link>
+      <pubDate>Sat, 04 Jul 2020 19:43:02 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/raspberry-pi-4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>UnixBench</title>
+      <link>https://blog.nownabe.com/tags/unixbench/</link>
+      <pubDate>Sat, 04 Jul 2020 19:43:02 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/unixbench/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>benchmark</title>
+      <link>https://blog.nownabe.com/tags/benchmark/</link>
+      <pubDate>Sat, 04 Jul 2020 19:43:02 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/benchmark/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fio</title>
+      <link>https://blog.nownabe.com/tags/fio/</link>
+      <pubDate>Sat, 04 Jul 2020 19:43:02 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/fio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>raspberry pi</title>
+      <link>https://blog.nownabe.com/tags/raspberry-pi/</link>
+      <pubDate>Sat, 04 Jul 2020 19:43:02 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/raspberry-pi/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Kubernetes</title>
@@ -944,15 +998,6 @@
       <pubDate>Mon, 10 Aug 2015 23:46:12 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/tags/idcf-cloud/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>raspberry pi</title>
-      <link>https://blog.nownabe.com/tags/raspberry-pi/</link>
-      <pubDate>Sun, 09 Aug 2015 00:21:18 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/raspberry-pi/</guid>
       <description></description>
     </item>
     

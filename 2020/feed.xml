@@ -6,10 +6,19 @@
     <description>Recent content in 2020s on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 28 Jun 2020 19:55:52 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 04 Jul 2020 19:43:02 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/2020/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Raspberry Pi 4 のベンチマーク</title>
+      <link>https://blog.nownabe.com/2020/07/03/raspberrypi-bench/</link>
+      <pubDate>Sat, 04 Jul 2020 19:43:02 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2020/07/03/raspberrypi-bench/</guid>
+      <description>Raspberry Pi 4 の各種ベンチマークを取ってみました。 UnixBenchとfioです。 雑にほぼデフォルト設定で計測ました。 チューニング等もまったくしてま</description>
+    </item>
     
     <item>
       <title>おうちKubernetes構築日記その1 Raspberry Pi編</title>
