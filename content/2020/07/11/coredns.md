@@ -8,10 +8,10 @@ lastmod: 2020-07-11T20:30:44+09:00
 draft: false
 isCJKLanguage: true
 
-image: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+image: images/2020/07/11/coredns.png
 ---
 
-<img src="https://coredns.io/images/CoreDNS_Colour_Horizontal.png" style="border: none">
+<img src="/images/2020/07/11/coredns.png" style="border: none">
 
 [CoreDNS](https://coredns.io/) を使って自宅のネットワークに DNS サーバをたてました。
 
