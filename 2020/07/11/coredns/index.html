@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ja"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>CoreDNS で DNS サーバたてた - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2020/07/11/coredns/">
+  <meta property="og:title" content="CoreDNS で DNS サーバたてた - nownab.log">
+  <meta property="og:description" content="CoreDNS を使って自宅のネットワークに DNS サーバをたてました。 Kubernetesを構築して1プライベートのサービスを動かそうと思ってたんですが、その"><meta property="og:image" content="https://blog.nownabe.com/https://coredns.io/images/CoreDNS_Colour_Horizontal.png"><meta property="twitter:title" content="CoreDNS で DNS サーバたてた - nownab.log">
+  <meta property="twitter:description" content="CoreDNS を使って自宅のネットワークに DNS サーバをたてました。 Kubernetesを構築して1プライベートのサービスを動かそうと思ってたんですが、その">
+  <meta property="twitter:image" content="https://blog.nownabe.com/https://coredns.io/images/CoreDNS_Colour_Horizontal.png">
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container">
+    <h1>
+      <a href="/">
+        nownab.log
+      </a>
+    </h1>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article>
+  <div class="title">
+    <h2><a href="https://blog.nownabe.com/2020/07/11/coredns/">CoreDNS で DNS サーバたてた</a></h2>
+    <span class="date">Posted on Jul 11, 2020</span>
+  </div>
+  <div class="body">
+    
+
+<p><img src="https://coredns.io/images/CoreDNS_Colour_Horizontal.png" style="border: none"></p>
+
+<p><a href="https://coredns.io/">CoreDNS</a> を使って自宅のネットワークに DNS サーバをたてました。</p>
+
+<p>Kubernetesを構築して<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>プライベートのサービスを動かそうと思ってたんですが、そのときにサービスにもドメインつけたいし、サーバごにょごにょするときのもドメインほしいしってことでDNSサーバをたてました。</p>
+
+<h2 id="そもそもたてる必要あるの">そもそもたてる必要あるの？</h2>
+
+<p>SSHするときもWebでアクセスするときもIPよりはドメインの方がいいので、なんらかのDNSサーバは必要でした。
+DNSサーバの選択肢として、他にはパブリッククラウドのDNSサービス、ルータのDNS機能がありました。</p>
+
+<p>簡単に比較するとこんな感じです。</p>
+
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>クラウド</th>
+<th>自前CoreDNS</th>
+<th>ルータ</th>
+<th>コメント</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>料金</td>
+<td>😷</td>
+<td>😆</td>
+<td>😆</td>
+<td>有料か無料か</td>
+</tr>
+
+<tr>
+<td>反応速度</td>
+<td>😷</td>
+<td>😆</td>
+<td>😆</td>
+<td>やっぱりローカルは圧倒的に速い</td>
+</tr>
+
+<tr>
+<td>運用</td>
+<td>😆</td>
+<td>😷</td>
+<td>😷</td>
+<td>オンプレはだるい</td>
+</tr>
+
+<tr>
+<td>設定</td>
+<td>😆</td>
+<td>😆</td>
+<td>😷</td>
+<td>/etc/hosts書き換えればOK</td>
+</tr>
+
+<tr>
+<td>自動化</td>
+<td>😆</td>
+<td>😃</td>
+<td>😷</td>
+<td>etcdプラグインとか使えば簡単にできる</td>
+</tr>
+
+<tr>
+<td>機能</td>
+<td>😄</td>
+<td>😆</td>
+<td>😷</td>
+<td>まあいろいろできる</td>
+</tr>
+</tbody>
+</table>
+
+<p>速くて無料で必要な機能が実現できる、ということで自前でDNSサーバたてることを選択しました。
+運用に関しても、データぶっ飛んでもすぐ復旧できるレベルでしか使わないだろうし、なんか問題でてきたらクラウドに移せばいいぐらいの感覚です。</p>
+
+<h2 id="なんでcoredns">なんでCoreDNS？</h2>
+
+<p><a href="https://coredns.io/">CoreDNS</a>っていうのはCNCFにホストされている、Goで書かれたDNSサーバです。</p>
+
+<p>CoreDNSを選んだのはこのへんが理由です。</p>
+
+<ul>
+<li>CNCFのプロジェクトということで以前から使ってみたいと思ってた</li>
+<li>dnsmasq的な <code>/etc/hosts</code> での設定ができる</li>
+<li>DB (etcd) をバックエンドにできるのでバックアップとか自動化とかが楽</li>
+<li>プラグインが簡単に書けるので楽しそう</li>
+<li>設定がシンプル</li>
+<li>機能が全部プラグインで実現されてるって思想が良い</li>
+<li>Goで書かれている</li>
+</ul>
+
+<p>今までBind、dnsmasq、PowerDNSを構築、運用したことあるんですが、今の所一番気に入ってます。
+使用感もいいし、わくわく感もあります。</p>
+
+<h2 id="構築手順">構築手順</h2>
+
+<p>Kubernetesのマスターとなるサーバにインストールしました。以下rootでの実行コマンドです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ダウンロード、インストール</span>
+
+curl -LO https://github.com/coredns/coredns/releases/download/v1.6.9/coredns_1.6.9_linux_amd64.tgz
+tar xf coredns_1.6.9_linux_amd64.tgz
+mv coredns /usr/local/bin/
+chown root. /usr/local/bin/coredns
+
+
+<span class="c1"># CoreDNS用ユーザの追加</span>
+
+useradd -l -r -s /usr/sbin/nologin -m -d /var/lib/coredns -c <span class="s1">&#39;CoreDNS user&#39;</span> coredns
+
+
+<span class="c1"># systemdのユニットファイル</span>
+
+cat <span class="s">&lt;&lt;EOF &gt; /etc/systemd/system/coredns.service &gt; /etc/systemd/system/coredns.service
+</span><span class="s">[Unit]
+</span><span class="s">Description=CoreDNS
+</span><span class="s">Documentation=https://coredns.io
+</span><span class="s">After=network.target
+</span><span class="s">
+</span><span class="s">[Service]
+</span><span class="s">LimitNOFILE=1048576
+</span><span class="s">LimitNPROC=512
+</span><span class="s">CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+</span><span class="s">AmbientCapabilities=CAP_NET_BIND_SERVICE
+</span><span class="s">NoNewPrivileges=true
+</span><span class="s">User=coredns
+</span><span class="s">WorkingDirectory=/var/lib/coredns
+</span><span class="s">ExecStart=/usr/local/bin/coredns -conf=/etc/coredns/Corefile
+</span><span class="s">ExecReload=/bin/kill -SIGUSR1 $MAINPID
+</span><span class="s">Restart=on-failure
+</span><span class="s">
+</span><span class="s">[Install]
+</span><span class="s">WantedBy=multi-user.target
+</span><span class="s">EOF</span>
+
+
+<span class="c1"># CoreDNSの設定</span>
+
+mkdir /etc/coredns
+cat <span class="s">&lt;&lt;EOF &gt; /etc/coredns/Corefile
+</span><span class="s">(common) {
+</span><span class="s">  cache
+</span><span class="s">  errors
+</span><span class="s">  loop
+</span><span class="s">}
+</span><span class="s">
+</span><span class="s">. {
+</span><span class="s">  forward . 8.8.8.8 1.1.1.1
+</span><span class="s">  health :1053
+</span><span class="s">  import common
+</span><span class="s">  prometheus :9153
+</span><span class="s">  reload
+</span><span class="s">}
+</span><span class="s">
+</span><span class="s">nownabe.in {
+</span><span class="s">  hosts /etc/coredns/nownabe.in
+</span><span class="s">  import common
+</span><span class="s">}
+</span><span class="s">EOF</span>
+
+<span class="c1"># nownabe.inのレコード設定</span>
+
+cat <span class="s">&lt;&lt;EOF &gt; /etc/coredns/nownabe.in
+</span><span class="s">10.0.0.2   rtx.cf.nownabe.in
+</span><span class="s">10.0.1.1   sv-1.cf.nownabe.in dns.cf.nownabe.in kube-master.cf.nownabe.in
+</span><span class="s">10.0.1.101 kube-worker-1.cf.nownabe.in
+</span><span class="s">10.0.1.102 kube-worker-2.cf.nownabe.in
+</span><span class="s">10.0.1.103 kube-worker-3.cf.nownabe.in
+</span><span class="s">10.0.1.104 kube-worker-4.cf.nownabe.in
+</span><span class="s">EOF</span>
+
+
+<span class="c1"># CoreDNS有効化、起動</span>
+systemctl <span class="nb">enable</span> coredns
+systemctl start coredns</code></pre></div>
+<p>バイナリひとつで動くのがいいですよね。Goプロダクトって感じです。</p>
+
+<p>systemdのユニットファイルは、<a href="https://github.com/coredns/deployment">coredns/deployment</a>というリポジトリにある<a href="https://github.com/coredns/deployment/blob/master/systemd/coredns.service">coredns.service</a>を参考にしました。
+ちょっと古かったり余計な権限がついてたりしたので、少し修正しています。</p>
+
+<p>今の所レコードは/etc/hosts形式で設定しています。</p>
+
+<h2 id="dhcpの設定">DHCPの設定</h2>
+
+<p>ルータ RTX830 をDHCPサーバに使っているので、構築したDNSサーバを設定しました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">no dns server pp 1
+no dns server dhcp lan2
+no dns server select 500000 dhcp lan2 any .
+no dns server select 500001 pp 1 any . restrict pp 1
+dns server 10.0.1.1 8.8.8.8 1.1.1.1
+dns notice order dhcp server
+dns domain cf.nownabe.in</code></pre></div>
+<h2 id="クライアントの設定">クライアントの設定</h2>
+
+<p>DHCPを使っていないサーバにはそれぞれ手動で設定しました。
+いろいろあるのでそれぞれの設定は省略しますが、 <code>/etc/resolv.conf</code> はこんな感じです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">nameserver 10.0.1.1
+nameserver 8.8.8.8
+nameserver 1.1.1.1
+domain cf.nownabe.in
+search cf.nownabe.in nownabe.in</code></pre></div>
+<h2 id="試してみる">試してみる</h2>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ dig kube-worker-1.cf.nownabe.in
+
+<span class="p">;</span> &lt;&lt;&gt;&gt; DiG <span class="m">9</span>.11.5-P4-5.1ubuntu2.2-Ubuntu &lt;&lt;&gt;&gt; kube-worker-1.cf.nownabe.in
+<span class="p">;;</span> global options: +cmd
+<span class="p">;;</span> Got answer:
+<span class="p">;;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">39530</span>
+<span class="p">;;</span> flags: qr aa rd<span class="p">;</span> QUERY: <span class="m">1</span>, ANSWER: <span class="m">1</span>, AUTHORITY: <span class="m">0</span>, ADDITIONAL: <span class="m">1</span>
+<span class="p">;;</span> WARNING: recursion requested but not available
+
+<span class="p">;;</span> OPT PSEUDOSECTION:
+<span class="p">;</span> EDNS: version: <span class="m">0</span>, flags:<span class="p">;</span> udp: <span class="m">4096</span>
+<span class="p">;</span> COOKIE: 10fad6c1cf5760b3 <span class="o">(</span>echoed<span class="o">)</span>
+<span class="p">;;</span> QUESTION SECTION:
+<span class="p">;</span>kube-worker-1.cf.nownabe.in.   IN      A
+
+<span class="p">;;</span> ANSWER SECTION:
+kube-worker-1.cf.nownabe.in. <span class="m">2288</span> IN    A       <span class="m">10</span>.0.1.101
+
+<span class="p">;;</span> Query time: <span class="m">0</span> msec
+<span class="p">;;</span> SERVER: <span class="m">10</span>.0.1.1#53<span class="o">(</span><span class="m">10</span>.0.1.1<span class="o">)</span>
+<span class="p">;;</span> WHEN: 土  7月 <span class="m">11</span> <span class="m">21</span>:35:29 JST <span class="m">2020</span>
+<span class="p">;;</span> MSG SIZE  rcvd: <span class="m">111</span></code></pre></div>
+<p>いいですねー。0msで答えが返ってきてます。</p>
+
+<p>外部ドメインでもキャッシュされてると0msで返ってきます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ dig google.com
+
+<span class="p">;</span> &lt;&lt;&gt;&gt; DiG <span class="m">9</span>.11.5-P4-5.1ubuntu2.2-Ubuntu &lt;&lt;&gt;&gt; google.com
+<span class="p">;;</span> global options: +cmd
+<span class="p">;;</span> Got answer:
+<span class="p">;;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">61410</span>
+<span class="p">;;</span> flags: qr aa rd ra<span class="p">;</span> QUERY: <span class="m">1</span>, ANSWER: <span class="m">1</span>, AUTHORITY: <span class="m">0</span>, ADDITIONAL: <span class="m">1</span>
+
+<span class="p">;;</span> OPT PSEUDOSECTION:
+<span class="p">;</span> EDNS: version: <span class="m">0</span>, flags:<span class="p">;</span> udp: <span class="m">4096</span>
+<span class="p">;</span> COOKIE: 1fc6abfd8e8a2b9d <span class="o">(</span>echoed<span class="o">)</span>
+<span class="p">;;</span> QUESTION SECTION:
+<span class="p">;</span>google.com.                    IN      A
+
+<span class="p">;;</span> ANSWER SECTION:
+google.com.             <span class="m">298</span>     IN      A       <span class="m">172</span>.217.24.142
+
+<span class="p">;;</span> Query time: <span class="m">0</span> msec
+<span class="p">;;</span> SERVER: <span class="m">10</span>.0.1.1#53<span class="o">(</span><span class="m">10</span>.0.1.1<span class="o">)</span>
+<span class="p">;;</span> WHEN: 土  7月 <span class="m">11</span> <span class="m">21</span>:38:23 JST <span class="m">2020</span>
+<span class="p">;;</span> MSG SIZE  rcvd: <span class="m">77</span></code></pre></div>
+<p>パブリックDNSサーバに問い合わせると4msとかかかります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ dig google.com @8.8.8.8
+
+<span class="p">;</span> &lt;&lt;&gt;&gt; DiG <span class="m">9</span>.11.5-P4-5.1ubuntu2.2-Ubuntu &lt;&lt;&gt;&gt; google.com @8.8.8.8
+<span class="p">;;</span> global options: +cmd
+<span class="p">;;</span> Got answer:
+<span class="p">;;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">55448</span>
+<span class="p">;;</span> flags: qr rd ra<span class="p">;</span> QUERY: <span class="m">1</span>, ANSWER: <span class="m">1</span>, AUTHORITY: <span class="m">0</span>, ADDITIONAL: <span class="m">1</span>
+
+<span class="p">;;</span> OPT PSEUDOSECTION:
+<span class="p">;</span> EDNS: version: <span class="m">0</span>, flags:<span class="p">;</span> udp: <span class="m">512</span>
+<span class="p">;;</span> QUESTION SECTION:
+<span class="p">;</span>google.com.                    IN      A
+
+<span class="p">;;</span> ANSWER SECTION:
+google.com.             <span class="m">203</span>     IN      A       <span class="m">172</span>.217.27.78
+
+<span class="p">;;</span> Query time: <span class="m">4</span> msec
+<span class="p">;;</span> SERVER: <span class="m">8</span>.8.8.8#53<span class="o">(</span><span class="m">8</span>.8.8.8<span class="o">)</span>
+<span class="p">;;</span> WHEN: 土  7月 <span class="m">11</span> <span class="m">21</span>:38:38 JST <span class="m">2020</span>
+<span class="p">;;</span> MSG SIZE  rcvd: <span class="m">55</span></code></pre></div>
+<p>ただ、キャッシュにのってない場合はめちゃくちゃ遅くなります。
+うーんなんでだろう。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ dig google.com
+
+<span class="p">;</span> &lt;&lt;&gt;&gt; DiG <span class="m">9</span>.11.5-P4-5.1ubuntu2.2-Ubuntu &lt;&lt;&gt;&gt; google.com
+<span class="p">;;</span> global options: +cmd
+<span class="p">;;</span> Got answer:
+<span class="p">;;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">32912</span>
+<span class="p">;;</span> flags: qr rd ra<span class="p">;</span> QUERY: <span class="m">1</span>, ANSWER: <span class="m">1</span>, AUTHORITY: <span class="m">0</span>, ADDITIONAL: <span class="m">1</span>
+
+<span class="p">;;</span> OPT PSEUDOSECTION:
+<span class="p">;</span> EDNS: version: <span class="m">0</span>, flags:<span class="p">;</span> udp: <span class="m">4096</span>
+<span class="p">;;</span> QUESTION SECTION:
+<span class="p">;</span>google.com.                    IN      A
+
+<span class="p">;;</span> ANSWER SECTION:
+google.com.             <span class="m">299</span>     IN      A       <span class="m">172</span>.217.24.142
+
+<span class="p">;;</span> Query time: <span class="m">84</span> msec
+<span class="p">;;</span> SERVER: <span class="m">10</span>.0.1.1#53<span class="o">(</span><span class="m">10</span>.0.1.1<span class="o">)</span>
+<span class="p">;;</span> WHEN: 土  7月 <span class="m">11</span> <span class="m">21</span>:38:22 JST <span class="m">2020</span>
+<span class="p">;;</span> MSG SIZE  rcvd: <span class="m">65</span></code></pre></div>
+<h2 id="おわりに">おわりに</h2>
+
+<p>以上です。無事に <code>ssh kube-worker-1</code> ができるようになって満足です。
+キャッシュにのってない外部ドメインのクエリがめっちゃ遅いのは不便なのでなんとかしたいですね。</p>
+
+<p>今後は、簡単なWeb UIとかを作りたいなーと思ってます。</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1"><a href="https://blog.nownabe.com/2020/06/28/home-kubernetes-1">おうちKubernetes構築日記その1 Raspberry Pi編 - nownab.log</a>
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+
+<div id="footer-navigation">
+  <div id="next-prev">
+    <div><a href="https://blog.nownabe.com/2020/07/03/raspberrypi-bench/">&lt; Raspberry Pi 4 のベンチマーク</a></div>
+    <div></div>
+  </div>
+  <div id="related-articles"></div>
+  <div id="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+      </div>
+    </div><div id="footer-container">
+  <div id="author" class="container">
+    <p>
+      <a href="https://nownabe.com">
+        <img src="/img/profile_icon_2020.png" alt="profile icon">
+      </a>
+    </p>
+    <div>
+      <p class="name"><a href="https://nownabe.com">Shogo Watanabe</a></p>
+      <p>
+        Customer Engineer at Google Cloud.
+      </p>
+      <p>
+        Opinions are my own, NOT views of my employer.
+      </p>
+    </div>
+  </div>
+  <footer class="container">
+    <p class="copyright">
+      Copyright &copy; 2016 nownabe All Right Reserved.
+    </p>
+  </footer>
+</div>
+<div id="fb-root"></div>
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" async="async"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      anchors.add(".body h1, .body h2, .body h3");
+    });
+  </script>
+</body>
+</html>

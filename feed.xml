@@ -6,10 +6,19 @@
     <description>Recent content on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sat, 04 Jul 2020 19:43:02 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 11 Jul 2020 20:30:44 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CoreDNS で DNS サーバたてた</title>
+      <link>https://blog.nownabe.com/2020/07/11/coredns/</link>
+      <pubDate>Sat, 11 Jul 2020 20:30:44 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2020/07/11/coredns/</guid>
+      <description>CoreDNS を使って自宅のネットワークに DNS サーバをたてました。 Kubernetesを構築して1プライベートのサービスを動かそうと思ってたんですが、その</description>
+    </item>
     
     <item>
       <title>Raspberry Pi 4 のベンチマーク</title>
