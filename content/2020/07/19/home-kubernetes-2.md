@@ -16,8 +16,10 @@ image: images/2020/06/28/pi-stack.jpg
 
 ## あらすじ
 
-前回はWorkerノードのRaspberry Pi 4 8GBを4台組み立てました。
-それとは別のサーバを1台Control Planeとしました。
+前回はWorkerノード用のRaspberry Pi 4 8GBを4台組み立てました。
+今回、それとは別のサーバを1台Control Planeとしました。
+
+![nodes](/images/2020/06/28/nodes.png)
 
 構築には[kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/)を使いました。
 
@@ -33,7 +35,7 @@ kubeadmはKubernetesクラスタを構築するためのツールです。
 * [Creating a single control-plane cluster with kubeadm | Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
 * [Container runtimes | Kubernetes](https://kubernetes.io/docs/setup/production-environment/container-runtimes/)
 
-今回Control Planeとして使うサーバはDebian Busterです。
+今回Control Planeとして使うサーバのOSはDebian Busterです。
 
 ### ネットワーク設定
 
@@ -51,7 +53,7 @@ sysctl --system
 ### Dockerインストール
 
 コンテナを実行するためにDockerをインストールします。
-最初はcri-oでやってみたんですが、Kubernetesの最新バージョンに追随できていなかったのと、構築でエラーが出たのでさっさと諦めてDockerにしました。
+最初はcri-oでやってみたんですが、Kubernetesの最新バージョンに対応していなかったのと、構築でエラーが出たのでさっさと諦めてDockerにしました。
 
 ドキュメントに従ってインストールしていきます。
 
@@ -94,9 +96,9 @@ systemctl restart docker
 ```
 
 `/etc/docker/daemon.json`のcgroup driverはkubeletと同じにする必要があります。
-デフォルトでは`cgroupfs`が設定されますが、kubeadmで構築するとkubeletは`systemd`に設定されるので`systemd`にあわせます。
+Dockerのデフォルトは`cgroupfs`ですが、kubeadmで構築するとkubeletは`systemd`に設定されるので`systemd`にあわせます。
 
-systemcのUnitファイルにはいろいろ書いてありますが、kubeletのcgroup driverを変更する場合は`/var/lib/kubelet/config.yaml`での設定が推奨のようです。
+systemdのUnitファイルにはいろいろ書いてありますが、kubeletのcgroup driverを変更する場合は`/var/lib/kubelet/config.yaml`での設定が推奨のようです。
 
 
 ### kubeadmインストール
@@ -180,6 +182,8 @@ kube-system   kube-scheduler-sv-1.cf.nownabe.in            1/1     Running
 ## Workerノード構築
 
 Control Planeができたので、Raspberry PiをWorkerノードとして構築してクラスタに追加していきます。
+
+Raspberry PiにインストールしたOSはRaspberry Pi OS Busterです。
 
 ### Swap無効化
 
@@ -273,7 +277,7 @@ sv-1.cf.nownabe.in            Ready    master   31d   v1.18.3   10.0.1.1      <n
 最初にCalico、次にCiliumをインストールしようとしたんですが上手く行かずにflannelになりました。
 調べてからインストールすればよかったんですが、Armの64bitに対応できてませんでした。
 
-flannelのインストールは公式で用意されているマニフェストYAMLをApplyでOKです。
+flannelのインストールは公式で用意されているマニフェストYAMLをapplyでOKです。
 
 ```bash
 curl -O https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
@@ -303,7 +307,7 @@ kube-system   kube-proxy-hntn9                             1/1     Running   0  
 kube-system   kube-scheduler-sv-1.cf.nownabe.in            1/1     Running   190        31d   10.0.1.1     sv-1.cf.nownabe.in            <none>           <none>
 ```
 
-1ヶ月ブログ書くの先延ばしにしてたこともわかって素晴らしいですね :raised_hands:
+1ヶ月ブログ書くの先延ばしにしてたこともばっちりわかって素晴らしいですね :raised_hands:
 
 ## おわりに
 
