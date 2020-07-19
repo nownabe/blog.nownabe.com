@@ -2,8 +2,8 @@
 title: "おうちKubernetes構築日記その2 Kubernetes構築編"
 tags:
 - Kubernetes
-date: 2020-07-18T20:48:56+09:00
-lastmod: 2020-07-18T20:48:56+09:00
+date: 2020-07-19T19:26:56+09:00
+lastmod: 2020-07-19T19:26:56+09:00
 
 draft: false
 isCJKLanguage: true
