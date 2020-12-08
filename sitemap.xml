@@ -43,6 +43,12 @@
   </url>
   
   <url>
+    <loc>https://blog.nownabe.com/tags/raspberry-pi/</loc>
+    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.nownabe.com/tags/raspberry-pi-3/</loc>
     <lastmod>2020-07-04T19:43:02+09:00</lastmod>
     <priority>0</priority>
@@ -73,12 +79,6 @@
   
   <url>
     <loc>https://blog.nownabe.com/tags/fio/</loc>
-    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/tags/raspberry-pi/</loc>
     <lastmod>2020-07-04T19:43:02+09:00</lastmod>
     <priority>0</priority>
   </url>
@@ -178,6 +178,12 @@
   </url>
   
   <url>
+    <loc>https://blog.nownabe.com/tags/gcp/</loc>
+    <lastmod>2020-04-05T13:56:13+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.nownabe.com/2020/04/05/google-cloud-professional-cloud-architect/</loc>
     <lastmod>2020-04-05T13:56:13+09:00</lastmod>
   </url>
@@ -196,12 +202,6 @@
   
   <url>
     <loc>https://blog.nownabe.com/tags/professional-cloud-architect/</loc>
-    <lastmod>2020-04-05T13:56:13+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/tags/gcp/</loc>
     <lastmod>2020-04-05T13:56:13+09:00</lastmod>
     <priority>0</priority>
   </url>
@@ -230,14 +230,14 @@
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/2020/01/03/github-action-javascript/</loc>
-    <lastmod>2020-01-03T21:52:48+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://blog.nownabe.com/tags/javascript/</loc>
     <lastmod>2020-01-03T21:52:48+09:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nownabe.com/2020/01/03/github-action-javascript/</loc>
+    <lastmod>2020-01-03T21:52:48+09:00</lastmod>
   </url>
   
   <url>
@@ -378,13 +378,13 @@
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/tags/aws/</loc>
+    <loc>https://blog.nownabe.com/tags/ruby-on-rails/</loc>
     <lastmod>2019-05-21T00:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.nownabe.com/tags/ruby-on-rails/</loc>
+    <loc>https://blog.nownabe.com/tags/aws/</loc>
     <lastmod>2019-05-21T00:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>

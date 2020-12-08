@@ -30,6 +30,15 @@
     </item>
     
     <item>
+      <title>Raspberry Pi</title>
+      <link>https://blog.nownabe.com/tags/raspberry-pi/</link>
+      <pubDate>Sat, 04 Jul 2020 19:43:02 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/raspberry-pi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Raspberry Pi 3</title>
       <link>https://blog.nownabe.com/tags/raspberry-pi-3/</link>
       <pubDate>Sat, 04 Jul 2020 19:43:02 +0900</pubDate>
@@ -71,15 +80,6 @@
       <pubDate>Sat, 04 Jul 2020 19:43:02 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/tags/fio/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>raspberry pi</title>
-      <link>https://blog.nownabe.com/tags/raspberry-pi/</link>
-      <pubDate>Sat, 04 Jul 2020 19:43:02 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/raspberry-pi/</guid>
       <description></description>
     </item>
     
@@ -165,6 +165,15 @@
     </item>
     
     <item>
+      <title>GCP</title>
+      <link>https://blog.nownabe.com/tags/gcp/</link>
+      <pubDate>Sun, 05 Apr 2020 13:56:13 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/gcp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Google Cloud</title>
       <link>https://blog.nownabe.com/tags/google-cloud/</link>
       <pubDate>Sun, 05 Apr 2020 13:56:13 +0900</pubDate>
@@ -188,15 +197,6 @@
       <pubDate>Sun, 05 Apr 2020 13:56:13 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/tags/professional-cloud-architect/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>gcp</title>
-      <link>https://blog.nownabe.com/tags/gcp/</link>
-      <pubDate>Sun, 05 Apr 2020 13:56:13 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/gcp/</guid>
       <description></description>
     </item>
     
@@ -228,7 +228,7 @@
     </item>
     
     <item>
-      <title>javascript</title>
+      <title>JavaScript</title>
       <link>https://blog.nownabe.com/tags/javascript/</link>
       <pubDate>Fri, 03 Jan 2020 21:52:48 +0900</pubDate>
       
@@ -336,20 +336,20 @@
     </item>
     
     <item>
-      <title>AWS</title>
-      <link>https://blog.nownabe.com/tags/aws/</link>
-      <pubDate>Tue, 21 May 2019 00:00:00 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/aws/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Ruby on Rails</title>
       <link>https://blog.nownabe.com/tags/ruby-on-rails/</link>
       <pubDate>Tue, 21 May 2019 00:00:00 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/tags/ruby-on-rails/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>aws</title>
+      <link>https://blog.nownabe.com/tags/aws/</link>
+      <pubDate>Tue, 21 May 2019 00:00:00 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/aws/</guid>
       <description></description>
     </item>
     
