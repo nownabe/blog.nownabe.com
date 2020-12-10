@@ -94,31 +94,27 @@ Money Forward はとてもいいサービスなので弊家でも使っていま
 ### 無料なの？
 
 無料ではないです。毎月 1 円請求が発生しています。
-月 1 円なので、TL; DR ではほぼ無料と書きました。
+Cloud Functions のコンテナイメージを管理している Container Registry のバックエンドの Cloud Storage に料金がかかっています。[^2]
+
+[^2]: コンテナイメージは Cloud Functions によって古いものは自動で削除されるので、何回デプロイしても 1 円で済むと予想しています。
 
 下の画像は実際に弊家で使っているプロジェクトの Billing Report です。
 (Subtotal は 4 ヶ月分が加算されて 4 円と表示されています)
 
 [![billing report](/images/2020/12/13/billing_report.png)](/images/2020/12/13/billing_report.png)
 
-1 円は Cloud Functions にデプロイするコンテナイメージを管理している Container Registry のバックエンドの Cloud Storage に料金がかかっています。[^2]
-
-[^2]: コンテナイメージは Cloud Functions によって古いものは自動で削除されるので、何回デプロイしても 1 円で済むと予想しています。
-
-それ以外の Cloud Storage や Cloud Functions や BigQuery はというと、すべて無料枠におさまっています。もしも既に無料枠を使い切っている場合はある程度料金が発生します。
-
-それぞれ次のような無料枠があります。
+これ以外の Cloud Storage や Cloud Functions や BigQuery はというと、すべて[無料枠](https://cloud.google.com/free)におさまっています。
+もしも既に無料枠を使い切っている場合は料金が発生します。それぞれ以下のように無料枠があります。
 
 * Cloud Storage: 5GB-月 (us-east1, us-west1, us-central1)
 * Cloud Functions: 200 万回/月
 * BigQuery: 1TB クエリ/月
 
-銀行の明細は 1 ヶ月分でせいぜい数 KB、クエリもたかがしれてるのでそう無料枠を超えることはなさそうです。
-無料枠の詳細は[公式サイト](https://cloud.google.com/free)をご覧ください。
-
 Cloud Storage の無料枠はリージョンが限定されています。
 リージョンが異なると余計なネットワーク料金が発生したりするのでリージョンを揃えておくのもポイントです。
 弊家ではすべてを使えるリージョンとして `us-east1` を選択しました。
+
+銀行の明細は 1 ヶ月分でせいぜい数 KB、クエリもたかがしれてるのでなかなか無料枠を超えることはなさそうです。
 
 ## ETL フレームワーク bqloader
 
