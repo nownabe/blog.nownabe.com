@@ -183,7 +183,7 @@ handler := &bqloader.Handler{
 }
 ```
 
-変換のコアは`projector`です。`projector`は次のような関数になります。
+変換のコアは`projector`です。`projector`は行単位の変換を実現する、次のような関数になります。
 
 ```go
 /*
@@ -191,6 +191,9 @@ handler := &bqloader.Handler{
 
   日付,内容,出金金額,入金金額,残高
   2020年12月13日,お賃金,0,"180,000","200,000"
+  
+  rowに1行が入る。上記の例だと次のようになる。
+  row == []string{"2020年12月13日", "お賃金", "0", "180,000", "200,000"}
 */
 projector := func(_ context.Context, row []string) ([]string, error) {
   // 日本語の日付から、BigQueryが解釈できる日付に変換する
@@ -245,7 +248,7 @@ Cloud Storage へのファイルアップロードなどのイベントで実行
 
 ## BigQuery による台所事情分析の始め方
 
-では銀行の明細を BigQuery にロードするシステムを構築してダッシュボードを作ってみましょう。
+では銀行の明細を BigQuery にロードする ETL システムを構築してダッシュボードを作ってみましょう。
 
 銀行の明細は[このサンプル](https://docs.google.com/spreadsheets/d/1vTK8w2pA4Rrdi1fTBB9nq_dZ9VOIdGW35CdWQxzfWc4/edit?usp=sharing)を利用します。このデータを多くの銀行に倣って ShiftJIS の CSV として扱います。
 
