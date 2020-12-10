@@ -17,7 +17,7 @@ image: images/2020/12/13/og.png
 [![dashboard](/images/2020/12/13/og.png)](/images/2020/12/13/og.png)
 
 弊家では銀行やクレジットカードの明細を BigQuery に取り込んでダッシュボードを作ったりしています。
-また、弊家で使っている CSV を BigQuery に取り込むための Go 製 ETL フレームワークを OSS として公開しました。
+また、そのために作った BigQuery 向けの Go 製 ETL フレームワークを OSS として公開しました。
 本記事ではざっくりどんなもんかを紹介して、どう作るのかを説明します。
 
 [Google Cloud Platform Advent Calendar 2020](https://qiita.com/advent-calendar/2020/gcp) の 13 日目の記事です。
@@ -27,7 +27,7 @@ image: images/2020/12/13/og.png
 ## TL; DR
 
 * 明細が BigQuery にあると、可視化もできるしアラートも出せるし、まぁなんでもできて便利
-* 銀行明細レベルのデータなら、ほぼ無料で保存、ETL、分析できる
+* 銀行明細レベルのデータならほぼ無料で保存、ETL、分析できる
 * ETL フレームワーク [bqloader](https://github.com/nownabe/go-bqloader) を OSS として公開したから使ってくれよな :muscle:
 
 説明しないこと:
@@ -124,7 +124,9 @@ Cloud Storage の無料枠はリージョンが限定されています。
 
 ### bqloader 概要
 
-[bqloader](https://github.com/nownabe/go-bqloader)は Go 製のシンプルな ETL フレームワークです。以下のような特徴があります。
+[bqloader](https://github.com/nownabe/go-bqloader)は Go 製のシンプルな ETL フレームワークです。
+弊家の ETL プログラムをフレームワークとして切り出したものになります。
+以下のような特徴があります。
 
 * 1 行を 1 行への変換に特化
 * ユーザは行単位の変換ロジックのみ実装
