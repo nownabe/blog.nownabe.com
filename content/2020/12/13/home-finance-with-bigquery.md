@@ -22,7 +22,7 @@ image: images/2020/12/13/og.png
 
 [Google Cloud Platform Advent Calendar 2020](https://qiita.com/advent-calendar/2020/gcp) の 13 日目の記事です。
 
-[Google Cloud Japan の Customer Engineer の Advent Calendar](https://medium.com/google-cloud-jp/google-cloud-japan-customer-engineer-advent-calendar-2020-1c78e07e1871) もあるので、そちらもぜひご覧ください。
+[Google Cloud Japan の Customer Engineer の Advent Calendar](https://medium.com/google-cloud-jp/google-cloud-japan-customer-engineer-advent-calendar-2020-1c78e07e1871) もぜひご覧ください。
 
 ## TL; DR
 
