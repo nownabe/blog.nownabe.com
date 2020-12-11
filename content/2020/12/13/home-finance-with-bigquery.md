@@ -35,6 +35,12 @@ image: images/2020/12/13/og.png
 * 我が家の台所事情
 * BigQuery のクエリの書き方
 
+## 対象読者
+
+* GCP触ったことある人
+* お金まわりを分析したいと思ってる人
+* BigQuery触ってみたい人
+
 ## ざっくり紹介
 
 ### 何が嬉しいの？
@@ -121,7 +127,7 @@ Cloud Storage の無料枠はリージョンが限定されています。
 ### bqloader 概要
 
 [bqloader](https://github.com/nownabe/go-bqloader)は Go 製のシンプルな ETL フレームワークです。
-弊家の ETL プログラムをフレームワークとして切り出したものになります。
+弊家の ETL をフレームワークとして切り出したものになります。
 以下のような特徴があります。
 
 * 1 行を 1 行への変換に特化
@@ -179,7 +185,7 @@ handler := &bqloader.Handler{
 }
 ```
 
-変換のコアは`projector`です。`projector`は行単位の変換を実現する、次のような関数になります。
+変換のコアは`projector`です。`projector`は行単位の変換を実現する関数です。
 
 ```go
 /*
