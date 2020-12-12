@@ -160,7 +160,9 @@ Go で実装することになるので Go の知識はあった方がいいで�
 import "go.nownabe.dev/bqloader"
 ```
 
-データ種類ごとに、こんな感じの`bqloader.Handler`を設定して入力ファイルを処理します。ひとつのデータに複数の Handler を対応させることもできます。
+保存先テーブルごとに `bqloader.Handler` を設定します。
+Cloud Storage にアップロードされたファイルが Handler の Pattern に一致する場合に処理されてテーブルにロードされます。
+Handler を複数定義すればひとつの Pattern に複数の Handler を対応させることもできます。
 
 ```go
 handler := &bqloader.Handler{
@@ -246,7 +248,7 @@ Cloud Storage へのファイルアップロードなどのイベントで実行
 
 [^4]: イベントについての詳細は[Cloud Functions のドキュメント](https://cloud.google.com/functions/docs/calling/storage)を参照してください。
 
-こんな感じで bqloader で関数を実装して Cloud Functions にデプロイすれば、対応するバケットにファイルをアップロードすればデータが BigQuery にロードされます。
+こんな感じで bqloader による関数を Cloud Functions にデプロイして、対応するバケットにファイルをアップロードすればデータが BigQuery にロードされます。
 
 ## BigQuery による台所事情分析の始め方
 
@@ -450,7 +452,7 @@ func MyFunc(ctx context.Context, e bqloader.Event) error {
 }
 ```
 
-Cloud Functions は Go Modules を理解してくれるので、go.mod を作ります。
+Cloud Functions は Go Modules を理解してくれるので go.mod を作ります。
 
 ```bash
 go mod init
@@ -520,4 +522,4 @@ bq --project_id $GCP_PROJECT \
 やってみると意外と簡単で楽しいのでぜひやってみてください。
 弊家では今後もどんどんデータを増やして Data Driven な家庭を目指していきます。
 
-あ、[nownabe/go-bqloader](https://github.com/nownabe/go-bqloader)に Star くれると嬉しいです！:star:
+あ、[nownabe/go-bqloader](https://github.com/nownabe/go-bqloader) に Star くれると嬉しいです！:star:
