@@ -215,7 +215,9 @@ Cloud Functions のコンテナイメージを管理している Container Regis
 
 <p>まず import します。</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="s">&#34;go.nownabe.dev/bqloader&#34;</span></code></pre></div>
-<p>データ種類ごとに、こんな感じの<code>bqloader.Handler</code>を設定して入力ファイルを処理します。ひとつのデータに複数の Handler を対応させることもできます。</p>
+<p>保存先テーブルごとに <code>bqloader.Handler</code> を設定します。
+Cloud Storage にアップロードされたファイルが Handler の Pattern に一致する場合に処理されてテーブルにロードされます。
+Handler を複数定義すればひとつの Pattern に複数の Handler を対応させることもできます。</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">handler</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">bqloader</span><span class="p">.</span><span class="nx">Handler</span><span class="p">{</span>
   <span class="nx">Name</span><span class="p">:</span>     <span class="s">&#34;main_bank&#34;</span><span class="p">,</span>          <span class="c1">// 通知などで使われる
 </span><span class="c1"></span>  <span class="nx">Encoding</span><span class="p">:</span> <span class="nx">japanese</span><span class="p">.</span><span class="nx">ShiftJIS</span><span class="p">,</span>    <span class="c1">// 入力ファイルをShiftJISとして扱う
@@ -281,7 +283,7 @@ Cloud Functions のコンテナイメージを管理している Container Regis
 <span class="p">}</span></code></pre></div>
 <p>Cloud Storage へのファイルアップロードなどのイベントで実行されます。<sup class="footnote-ref" id="fnref:4"><a href="#fn:4">4</a></sup></p>
 
-<p>こんな感じで bqloader で関数を実装して Cloud Functions にデプロイすれば、対応するバケットにファイルをアップロードすればデータが BigQuery にロードされます。</p>
+<p>こんな感じで bqloader による関数を Cloud Functions にデプロイして、対応するバケットにファイルをアップロードすればデータが BigQuery にロードされます。</p>
 
 <h2 id="bigquery-による台所事情分析の始め方">BigQuery による台所事情分析の始め方</h2>
 
@@ -444,7 +446,7 @@ Cloud Functions のトリガーとなるイベントを発行するソースに�
 <span class="kd">func</span> <span class="nf">MyFunc</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">e</span> <span class="nx">bqloader</span><span class="p">.</span><span class="nx">Event</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">loader</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span>
 <span class="p">}</span></code></pre></div>
-<p>Cloud Functions は Go Modules を理解してくれるので、go.mod を作ります。</p>
+<p>Cloud Functions は Go Modules を理解してくれるので go.mod を作ります。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go mod init
 go mod tidy</code></pre></div>
 <h3 id="function-デプロイ">Function デプロイ</h3>
@@ -491,7 +493,7 @@ bq コマンドで確認します。</p>
 <p>やってみると意外と簡単で楽しいのでぜひやってみてください。
 弊家では今後もどんどんデータを増やして Data Driven な家庭を目指していきます。</p>
 
-<p>あ、<a href="https://github.com/nownabe/go-bqloader">nownabe/go-bqloader</a>に Star くれると嬉しいです！⭐️</p>
+<p>あ、<a href="https://github.com/nownabe/go-bqloader">nownabe/go-bqloader</a> に Star くれると嬉しいです！⭐️</p>
 <div class="footnotes">
 
 <hr />
