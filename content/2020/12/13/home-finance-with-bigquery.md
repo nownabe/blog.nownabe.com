@@ -5,8 +5,8 @@ tags:
 - BigQuery
 - Cloud Storage
 - Cloud Functions
-date: 2020-12-13T09:00:00+09:00
-lastmod: 2020-12-13T09:00:00+09:00
+date: 2020-12-13T00:00:00+09:00
+lastmod: 2020-12-13T00:00:00+09:00
 
 draft: false
 isCJKLanguage: true
