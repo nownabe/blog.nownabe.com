@@ -6,10 +6,19 @@
     <description>Recent content in 2020s on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 19 Jul 2020 19:26:56 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 13 Dec 2020 00:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.nownabe.com/2020/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>我が家の BigQuery による台所事情分析</title>
+      <link>https://blog.nownabe.com/2020/12/13/home-finance-with-bigquery/</link>
+      <pubDate>Sun, 13 Dec 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2020/12/13/home-finance-with-bigquery/</guid>
+      <description>弊家では銀行やクレジットカードの明細を BigQuery に取り込んでダッシュボードを作ったりしています。 また、そのために作った BigQuery 向けの Go 製 ETL フレームワークを</description>
+    </item>
     
     <item>
       <title>おうちKubernetes構築日記その2 Kubernetes構築編</title>

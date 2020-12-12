@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cloud Functions on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/cloud-functions/</link>
+    <description>Recent content in Cloud Functions on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Sun, 13 Dec 2020 00:00:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.nownabe.com/tags/cloud-functions/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>我が家の BigQuery による台所事情分析</title>
+      <link>https://blog.nownabe.com/2020/12/13/home-finance-with-bigquery/</link>
+      <pubDate>Sun, 13 Dec 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2020/12/13/home-finance-with-bigquery/</guid>
+      <description>弊家では銀行やクレジットカードの明細を BigQuery に取り込んでダッシュボードを作ったりしています。 また、そのために作った BigQuery 向けの Go 製 ETL フレームワークを</description>
+    </item>
+    
+  </channel>
+</rss>
