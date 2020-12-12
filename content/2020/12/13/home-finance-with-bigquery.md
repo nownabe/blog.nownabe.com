@@ -37,44 +37,43 @@ image: images/2020/12/13/og.png
 
 ## 対象読者
 
-* GCP触ったことある人
-* お金まわりを分析したいと思ってる人
-* BigQuery触ってみたい人
+* GCP を触ったことがある人
+* お金まわりを分析したいと思っている人
+* 身近な題材で BigQuery を触ってみたい人
 
 ## ざっくり紹介
 
 ### 何が嬉しいの？
 
 BigQuery でできることができるようになります。
-で終わらせるのもアレなので、弊家でのユースケース(未実装含む)を列挙します。
+で終わらせるのもアレなので、弊家でのユースケースを列挙します。
 
 * ダッシュボード
   * 資産推移
   * 出費分析
   * でかい出費ランキング
 * アラート (銀行残高、クレジットカード)
-* レコメンド (今月余裕あるから旅行でもいけば？)
 * 予算管理
 
-記事用に作ったものですがダッシュボードはこんな感じです。
+例えばダッシュボードはこんな感じです。(記事用に加工してます)
 
 [![dashboard](/images/2020/12/13/dashboard.png)](/images/2020/12/13/dashboard.png)
 
 BigQuery を使うことで、手動でやってたことを自動化できるようになったり、今までできなかったことができるようになったりしました。
-SQL を書けばほしいデータをほしい形ですぐに手に入れることができて、それを様々なシステムと連携して使うことができるので超便利です。
-おかげで良い感じのダッシュボードも作ることができて節約を頑張れそうです。
+SQL を書けばほしいデータをほしい形ですぐに手に入れることができて、それを簡単に様々なシステムと連携できるので超便利です。
+おかげで自動化もできたし、良い感じのダッシュボードも作ることができて節約を頑張れそうです。
 
 
 ### Money Forward でええんちゃうの？
 
 いいです :joy:
 
-本記事の内容は簡易 Money Forward の再実装です。
+本記事の内容は劣化版 Money Forward の再実装と言える部分もあります。
 
 Money Forward はとてもいいサービスなので弊家でも使っていますが、かゆいところに手が届かなかったり、使いたい機能が有料だったりしたので自分でも作りました。
 
-自分で作ると Money Forward に比べて手間はかかりますが、BigQuery なのでやりたいことがあればだいたいは実現できるようになります。
-自分でクエリを書いて好きな結果を得られるというのは大きいですね。
+自分で作ると手間はかかりますが Money Forward 以上のやりたいことがだいたい実現できるようになります。
+BigQuery でクエリを書いて好きな結果を得られるというのは大きいですね。
 
 ### アーキテクチャ
 
@@ -109,8 +108,8 @@ Cloud Functions のコンテナイメージを管理している Container Regis
 
 [![billing report](/images/2020/12/13/billing_report.png)](/images/2020/12/13/billing_report.png)
 
-これ以外の Cloud Storage や Cloud Functions や BigQuery はというと、すべて[無料枠](https://cloud.google.com/free)におさまっています。
-もしも既に無料枠を使い切っている場合は料金が発生します。それぞれ以下のように無料枠があります。
+Cloud Storage や Cloud Functions や BigQuery は[無料枠](https://cloud.google.com/free)におさまっています。
+もし既に無料枠を使い切っている場合は料金が発生します。それぞれ以下のように無料枠があります。
 
 * Cloud Storage: 5GB-月 (us-east1, us-west1, us-central1)
 * Cloud Functions: 200 万回/月
@@ -133,12 +132,12 @@ Cloud Storage の無料枠はリージョンが限定されています。
 * 1 行を 1 行への変換に特化
 * ユーザは行単位の変換ロジックのみ実装
 * 簡単な設定で文字コード変換、不要な行のスキップ、成功・失敗通知が可能
-* ほぼ Cloud Storage、Cloud Functions、BigQuery 専用[^3]
+* 今のところ Cloud Storage、Cloud Functions、BigQuery 専用[^3]
 * 1 つの Function で複数種のデータに対応
 
 Go で実装することになるので Go の知識はあった方がいいですが、なくても Hello, world ぐらいできればサンプル見ながら実装できるんじゃないでしょうか。
 
-[^3]: 内部的には他にも対応できるようになってるので Pull Request お待ちしています！
+[^3]: Pull Request お待ちしています！
 
 以下のような利点があります。
 
@@ -149,10 +148,11 @@ Go で実装することになるので Go の知識はあった方がいいで�
 
 ### bqloader 使い方
 
-[サンプルプロジェクト](https://github.com/nownabe/go-bqloader/tree/main/examples/quickstart)をさらっと見てもらうのがはやいです。
+[サンプルプロジェクト](https://github.com/nownabe/go-bqloader/tree/main/examples/quickstart)を見てもらうのがはやいです。
 このサンプルの中で Service Account の作成や Function のデプロイ、BigQuery への ETL まで一通りカバーしています。
 
-以下ではフレームワークのコアについて少し丁寧に説明していきます。
+以下ではフレームワークのさわりだけ丁寧に説明していきます。
+詳しくは[godoc](https://pkg.go.dev/go.nownabe.dev/bqloader)やサンプルを見てください。
 
 まず import します。
 
