@@ -84,9 +84,9 @@ if (!doNotTrack) {
 <h2 id="対象読者">対象読者</h2>
 
 <ul>
-<li>GCP触ったことある人</li>
-<li>お金まわりを分析したいと思ってる人</li>
-<li>BigQuery触ってみたい人</li>
+<li>GCP を触ったことがある人</li>
+<li>お金まわりを分析したいと思っている人</li>
+<li>身近な題材で BigQuery を触ってみたい人</li>
 </ul>
 
 <h2 id="ざっくり紹介">ざっくり紹介</h2>
@@ -94,7 +94,7 @@ if (!doNotTrack) {
 <h3 id="何が嬉しいの">何が嬉しいの？</h3>
 
 <p>BigQuery でできることができるようになります。
-で終わらせるのもアレなので、弊家でのユースケース(未実装含む)を列挙します。</p>
+で終わらせるのもアレなので、弊家でのユースケースを列挙します。</p>
 
 <ul>
 <li>ダッシュボード
@@ -105,28 +105,27 @@ if (!doNotTrack) {
 <li>でかい出費ランキング</li>
 </ul></li>
 <li>アラート (銀行残高、クレジットカード)</li>
-<li>レコメンド (今月余裕あるから旅行でもいけば？)</li>
 <li>予算管理</li>
 </ul>
 
-<p>記事用に作ったものですがダッシュボードはこんな感じです。</p>
+<p>例えばダッシュボードはこんな感じです。(記事用に加工してます)</p>
 
 <p><a href="/images/2020/12/13/dashboard.png"><img src="/images/2020/12/13/dashboard.png" alt="dashboard" /></a></p>
 
 <p>BigQuery を使うことで、手動でやってたことを自動化できるようになったり、今までできなかったことができるようになったりしました。
-SQL を書けばほしいデータをほしい形ですぐに手に入れることができて、それを様々なシステムと連携して使うことができるので超便利です。
-おかげで良い感じのダッシュボードも作ることができて節約を頑張れそうです。</p>
+SQL を書けばほしいデータをほしい形ですぐに手に入れることができて、それを簡単に様々なシステムと連携できるので超便利です。
+おかげで自動化もできたし、良い感じのダッシュボードも作ることができて節約を頑張れそうです。</p>
 
 <h3 id="money-forward-でええんちゃうの">Money Forward でええんちゃうの？</h3>
 
 <p>いいです 😂</p>
 
-<p>本記事の内容は簡易 Money Forward の再実装です。</p>
+<p>本記事の内容は劣化版 Money Forward の再実装と言える部分もあります。</p>
 
 <p>Money Forward はとてもいいサービスなので弊家でも使っていますが、かゆいところに手が届かなかったり、使いたい機能が有料だったりしたので自分でも作りました。</p>
 
-<p>自分で作ると Money Forward に比べて手間はかかりますが、BigQuery なのでやりたいことがあればだいたいは実現できるようになります。
-自分でクエリを書いて好きな結果を得られるというのは大きいですね。</p>
+<p>自分で作ると手間はかかりますが Money Forward 以上のやりたいことがだいたい実現できるようになります。
+BigQuery でクエリを書いて好きな結果を得られるというのは大きいですね。</p>
 
 <h3 id="アーキテクチャ">アーキテクチャ</h3>
 
@@ -164,8 +163,8 @@ Cloud Functions のコンテナイメージを管理している Container Regis
 
 <p><a href="/images/2020/12/13/billing_report.png"><img src="/images/2020/12/13/billing_report.png" alt="billing report" /></a></p>
 
-<p>これ以外の Cloud Storage や Cloud Functions や BigQuery はというと、すべて<a href="https://cloud.google.com/free">無料枠</a>におさまっています。
-もしも既に無料枠を使い切っている場合は料金が発生します。それぞれ以下のように無料枠があります。</p>
+<p>Cloud Storage や Cloud Functions や BigQuery は<a href="https://cloud.google.com/free">無料枠</a>におさまっています。
+もし既に無料枠を使い切っている場合は料金が発生します。それぞれ以下のように無料枠があります。</p>
 
 <ul>
 <li>Cloud Storage: 5GB-月 (us-east1, us-west1, us-central1)</li>
@@ -191,7 +190,7 @@ Cloud Functions のコンテナイメージを管理している Container Regis
 <li>1 行を 1 行への変換に特化</li>
 <li>ユーザは行単位の変換ロジックのみ実装</li>
 <li>簡単な設定で文字コード変換、不要な行のスキップ、成功・失敗通知が可能</li>
-<li>ほぼ Cloud Storage、Cloud Functions、BigQuery 専用<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup></li>
+<li>今のところ Cloud Storage、Cloud Functions、BigQuery 専用<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup></li>
 <li>1 つの Function で複数種のデータに対応</li>
 </ul>
 
@@ -208,10 +207,11 @@ Cloud Functions のコンテナイメージを管理している Container Regis
 
 <h3 id="bqloader-使い方">bqloader 使い方</h3>
 
-<p><a href="https://github.com/nownabe/go-bqloader/tree/main/examples/quickstart">サンプルプロジェクト</a>をさらっと見てもらうのがはやいです。
+<p><a href="https://github.com/nownabe/go-bqloader/tree/main/examples/quickstart">サンプルプロジェクト</a>を見てもらうのがはやいです。
 このサンプルの中で Service Account の作成や Function のデプロイ、BigQuery への ETL まで一通りカバーしています。</p>
 
-<p>以下ではフレームワークのコアについて少し丁寧に説明していきます。</p>
+<p>以下ではフレームワークのさわりだけ丁寧に説明していきます。
+詳しくは<a href="https://pkg.go.dev/go.nownabe.dev/bqloader">godoc</a>やサンプルを見てください。</p>
 
 <p>まず import します。</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="s">&#34;go.nownabe.dev/bqloader&#34;</span></code></pre></div>
