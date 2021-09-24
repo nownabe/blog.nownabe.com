@@ -1,11 +1,20 @@
 {{ define "main" }}
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
     <span class="date">Posted on {{ dateFormat "Jan 2, 2006" .Date }}</span>
   </div>
-  <div class="body">
-    {{ .Content }}
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        {{ .Content }}
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        {{ .TableOfContents }}
+      </aside>
+    </div>
   </div>
 </article>
 {{ end }}

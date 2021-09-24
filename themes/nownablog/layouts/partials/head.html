@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="/css/ress.min.css">
   <link rel="stylesheet" href="/css/chroma.css">
 
-  {{- $css := resources.Get "css/main.css" | resources.Fingerprint "sha512" -}}
+  {{- $css := resources.Get "css/main.scss" | toCSS | minify | fingerprint -}}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 
   <meta name="author" content="{{ .Site.Params.Author }}">
