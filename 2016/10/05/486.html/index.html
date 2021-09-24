@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,20 +48,18 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2016/10/05/486.html/">Google App EngineでGoogle認証</a></h2>
     <span class="date">Posted on Oct 5, 2016</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="はじめに">はじめに</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="はじめに">はじめに</h1>
 <p><a href="https://blog.nownabe.com/2016/10/04/485.html">前回</a>の続きでGoogle認証をさせるアプリを作る<a href="https://cloud.google.com/appengine/docs/go/getting-started/authenticating-users?hl=ja">チュートリアル</a>をやりました 💪</p>
-
-<h1 id="hello-go">hello.go</h1>
-<div class="highlight"><pre class="chroma"><code class="language-go:hello.go" data-lang="go:hello.go"><span class="kn">package</span> <span class="nx">hello</span>
+<h1 id="hellogo">hello.go</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go:hello.go" data-lang="go:hello.go"><span class="kn">package</span> <span class="nx">hello</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&#34;fmt&#34;</span>
@@ -89,45 +87,37 @@ if (!doNotTrack) {
         <span class="k">return</span>
     <span class="p">}</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Hello, %v!&#34;</span><span class="p">,</span> <span class="nx">u</span><span class="p">)</span>
-<span class="p">}</span></code></pre></div>
-<p><code>appengine.Context</code>は現在のリクエストに関連する<code>context.Context</code>を返す。</p>
-
+<span class="p">}</span>
+</code></pre></div><p><code>appengine.Context</code>は現在のリクエストに関連する<code>context.Context</code>を返す。</p>
 <p>どうでもいいけど<a href="https://github.com/golang/appengine/blob/7f59a8c76b8594d06044bfe0bcbe475cb2020482/appengine.go#L26">ソース</a>読んでたらコメントがナイスだった。<code>in-flight HTTP request</code> ✈️</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// NewContext returns a context for an in-flight HTTP request.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// NewContext returns a context for an in-flight HTTP request.
 </span><span class="c1">// This function is cheap.
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">NewContext</span><span class="p">(</span><span class="nx">req</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span> <span class="p">{</span>
 	<span class="k">return</span> <span class="nf">WithContext</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="nx">req</span><span class="p">)</span>
-<span class="p">}</span></code></pre></div>
-<p><a href="https://cloud.google.com/appengine/docs/go/users/reference?hl=ja#Current"><code>user.Current</code></a>は現在ログインしてるユーザが取れるらしい。ほう。</p>
-
+<span class="p">}</span>
+</code></pre></div><p><a href="https://cloud.google.com/appengine/docs/go/users/reference?hl=ja#Current"><code>user.Current</code></a>は現在ログインしてるユーザが取れるらしい。ほう。</p>
 <p><a href="https://cloud.google.com/appengine/docs/go/users/reference?hl=ja#LoginURL"><code>user.LoginURL</code></a>はログインURLを返す。第2引数はログイン後のリダイレクト先。</p>
-
 <h1 id="どうなる">どうなる</h1>
-
-<p>起動して<a href="http://localhost:8080/にアクセスしてみると、こうなった。">http://localhost:8080/にアクセスしてみると、こうなった。</a></p>
-
-<p><img width="590" alt="スクリーンショット 2016-10-05 21.40.10.png (54.9 kB)" src="/images/2016/10/05/1.png"></p>
-
+<p>起動してhttp://localhost:8080/にアクセスしてみると、こうなった。</p>
+<img width="590" alt="スクリーンショット 2016-10-05 21.40.10.png (54.9 kB)" src="/images/2016/10/05/1.png">
 <p>Loginしてみるとこんな感じ。</p>
-
-<p><img width="288" alt="スクリーンショット 2016-10-05 21.40.57.png (17.7 kB)" src="/images/2016/10/05/2.png"></p>
-
+<img width="288" alt="スクリーンショット 2016-10-05 21.40.57.png (17.7 kB)" src="/images/2016/10/05/2.png">
 <h1 id="デプロイすると">デプロイすると</h1>
-
 <p>いやいやさすがにこれは、と思ったけど、やっぱりこれは開発用の機能らしい。</p>
-
 <p>デプロイするとGoogleのアカウントを選ぶ画面にリダイレクトされた。</p>
-
-<p><img width="888" alt="スクリーンショット_2016-10-05_21_44_19.png (172.4 kB)" src="/images/2016/10/05/3.png"></p>
-
+<img width="888" alt="スクリーンショット_2016-10-05_21_44_19.png (172.4 kB)" src="/images/2016/10/05/3.png">
 <p>アカウントを選ぶとこうなる。</p>
-
-<p><img width="352" alt="スクリーンショット 2016-10-05 21.44.33.png (20.2 kB)" src="/images/2016/10/05/4.png"></p>
-
+<img width="352" alt="スクリーンショット 2016-10-05 21.44.33.png (20.2 kB)" src="/images/2016/10/05/4.png">
 <p>Googleにログインしてない状態でアクセスすると、Googleのおなじみのログイン画面がでてくる。</p>
-
 <p>なんかよくわからんままGoogle認証できた。すごい 😳</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,20 +48,22 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/11/07/1434.html/">Ubuntuでapt-get updateができなくなった</a></h2>
     <span class="date">Posted on Nov 7, 2018</span>
   </div>
-  <div class="body">
-    <p>こんなかんじ。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo apt-get update                                                                                                              
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>こんなかんじ。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ sudo apt-get update                                                                                                              
 Hit:1 http://archive.ubuntulinux.jp/ubuntu bionic InRelease                                                                  
 Hit:2 http://archive.ubuntulinux.jp/ubuntu-ja-non-free bionic InRelease
-Get:3 https://nvidia.github.io/libnvidia-container/ubuntu18.04/amd64  InRelease <span class="o">[</span><span class="m">1</span>,139 B<span class="o">]</span>
-Get:4 https://nvidia.github.io/nvidia-container-runtime/ubuntu18.04/amd64  InRelease <span class="o">[</span><span class="m">1</span>,136 B<span class="o">]</span>
+Get:3 https://nvidia.github.io/libnvidia-container/ubuntu18.04/amd64  InRelease <span class="o">[</span>1,139 B<span class="o">]</span>
+Get:4 https://nvidia.github.io/nvidia-container-runtime/ubuntu18.04/amd64  InRelease <span class="o">[</span>1,136 B<span class="o">]</span>
 Hit:5 http://jp.archive.ubuntu.com/ubuntu bionic InRelease
-Get:6 https://nvidia.github.io/nvidia-docker/ubuntu18.04/amd64  InRelease <span class="o">[</span><span class="m">1</span>,129 B<span class="o">]</span>
+Get:6 https://nvidia.github.io/nvidia-docker/ubuntu18.04/amd64  InRelease <span class="o">[</span>1,129 B<span class="o">]</span>
 Ign:7 http://dl.google.com/linux/chrome/deb stable InRelease
 Hit:8 http://jp.archive.ubuntu.com/ubuntu bionic-updates InRelease
 Hit:9 http://jp.archive.ubuntu.com/ubuntu bionic-backports InRelease
@@ -86,39 +88,46 @@ d64  InRelease: The following signatures were invalid: EXPKEYSIG C45B1676A04EA55
 W: An error occurred during the signature verification. The repository is not updated and the previous index files will be used. GPG error: https://nvidia.github.io/nvidia-docker/ubuntu18.04/amd64  InRele
 ase: The following signatures were invalid: EXPKEYSIG C45B1676A04EA552 NVIDIA CORPORATION <span class="o">(</span>Open Source Projects<span class="o">)</span> &lt;cudatools@nvidia.com&gt;
 E: Repository <span class="s1">&#39;http://dl.google.com/linux/chrome/deb stable Release&#39;</span> changed its <span class="s1">&#39;Origin&#39;</span> value from <span class="s1">&#39;Google, Inc.&#39;</span> to <span class="s1">&#39;Google LLC&#39;</span>
-N: This must be accepted explicitly before updates <span class="k">for</span> this repository can be applied. See apt-secure<span class="o">(</span><span class="m">8</span><span class="o">)</span> manpage <span class="k">for</span> details.</code></pre></div>
-<p>Nvidiaとchromeのレポジトリがあれっぽい。</p>
-
+N: This must be accepted explicitly before updates <span class="k">for</span> this repository can be applied. See apt-secure<span class="o">(</span>8<span class="o">)</span> manpage <span class="k">for</span> details.
+</code></pre></div><p>Nvidiaとchromeのレポジトリがあれっぽい。</p>
 <p>nvidia-dockerの方はGPG Keyを追加しなおす。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey <span class="p">|</span> sudo apt-key add -
-OK</code></pre></div>
-<p>Chromeの方はこう。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo apt update
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey <span class="p">|</span> sudo apt-key add -
+OK
+</code></pre></div><p>Chromeの方はこう。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ sudo apt update
 Hit:1 http://archive.ubuntulinux.jp/ubuntu bionic InRelease
 Hit:2 http://archive.ubuntulinux.jp/ubuntu-ja-non-free bionic InRelease                                                                                                                                    
 Hit:3 http://jp.archive.ubuntu.com/ubuntu bionic InRelease                                                                                                                                                 
 Hit:4 http://jp.archive.ubuntu.com/ubuntu bionic-updates InRelease                                                                                                                                         
 Hit:5 http://jp.archive.ubuntu.com/ubuntu bionic-backports InRelease                                                                                                                                       
-Get:6 https://nvidia.github.io/libnvidia-container/ubuntu18.04/amd64  InRelease <span class="o">[</span><span class="m">1</span>,139 B<span class="o">]</span>                                                                                                                  
+Get:6 https://nvidia.github.io/libnvidia-container/ubuntu18.04/amd64  InRelease <span class="o">[</span>1,139 B<span class="o">]</span>                                                                                                                  
 Ign:7 http://dl.google.com/linux/chrome/deb stable InRelease                                                                                                                                               
-Get:8 https://nvidia.github.io/nvidia-container-runtime/ubuntu18.04/amd64  InRelease <span class="o">[</span><span class="m">1</span>,136 B<span class="o">]</span>                                                                                                             
-Get:9 https://nvidia.github.io/nvidia-docker/ubuntu18.04/amd64  InRelease <span class="o">[</span><span class="m">1</span>,129 B<span class="o">]</span>                                                                                                                        
+Get:8 https://nvidia.github.io/nvidia-container-runtime/ubuntu18.04/amd64  InRelease <span class="o">[</span>1,136 B<span class="o">]</span>                                                                                                             
+Get:9 https://nvidia.github.io/nvidia-docker/ubuntu18.04/amd64  InRelease <span class="o">[</span>1,129 B<span class="o">]</span>                                                                                                                        
 Hit:10 http://packages.microsoft.com/repos/vscode stable InRelease                                                                                                                                         
 Hit:11 https://download.docker.com/linux/ubuntu bionic InRelease                                                                                                    
 Get:12 http://dl.google.com/linux/chrome/deb stable Release <span class="o">[</span><span class="m">943</span> B<span class="o">]</span>                                                                           
 Get:13 http://dl.google.com/linux/chrome/deb stable Release.gpg <span class="o">[</span><span class="m">819</span> B<span class="o">]</span>                                                 
 Hit:14 http://ppa.launchpad.net/zanchey/asciinema/ubuntu bionic InRelease                                                          
 E: Repository <span class="s1">&#39;http://dl.google.com/linux/chrome/deb stable Release&#39;</span> changed its <span class="s1">&#39;Origin&#39;</span> value from <span class="s1">&#39;Google, Inc.&#39;</span> to <span class="s1">&#39;Google LLC&#39;</span>
-N: This must be accepted explicitly before updates <span class="k">for</span> this repository can be applied. See apt-secure<span class="o">(</span><span class="m">8</span><span class="o">)</span> manpage <span class="k">for</span> details.
+N: This must be accepted explicitly before updates <span class="k">for</span> this repository can be applied. See apt-secure<span class="o">(</span>8<span class="o">)</span> manpage <span class="k">for</span> details.
 Do you want to accept these changes and <span class="k">continue</span> updating from this repository? <span class="o">[</span>y/N<span class="o">]</span> y
 Hit:15 http://security.ubuntu.com/ubuntu bionic-security InRelease                                              
-Get:17 http://dl.google.com/linux/chrome/deb stable/main amd64 Packages <span class="o">[</span><span class="m">1</span>,130 B<span class="o">]</span>   
+Get:17 http://dl.google.com/linux/chrome/deb stable/main amd64 Packages <span class="o">[</span>1,130 B<span class="o">]</span>   
 Hit:16 https://packagecloud.io/slacktechnologies/slack/debian jessie InRelease                 
-Fetched <span class="m">5</span>,353 B in 5s <span class="o">(</span><span class="m">1</span>,007 B/s<span class="o">)</span>
+Fetched 5,353 B in 5s <span class="o">(</span>1,007 B/s<span class="o">)</span>
 Reading package lists... Done
 Building dependency tree       
 Reading state information... Done
-<span class="m">93</span> packages can be upgraded. Run <span class="s1">&#39;apt list --upgradable&#39;</span> to see them.</code></pre></div>
+<span class="m">93</span> packages can be upgraded. Run <span class="s1">&#39;apt list --upgradable&#39;</span> to see them.
+</code></pre></div>
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

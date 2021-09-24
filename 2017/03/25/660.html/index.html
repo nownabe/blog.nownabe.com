@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -22,8 +22,8 @@
 
   <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2017/03/25/660.html/">
   <meta property="og:title" content="誰でもBrainf*ckっぽい言語が作れる？ツール作った - nownab.log">
-  <meta property="og:description" content="はじめに なぜかbrainf*ckを実装した。 ついでに誰でもオリジナルなbrainf*ckっぽいプログラムを実行できるようにしてみた 💡 https://github.com/nownabe/brainfuck-go 使い方"><meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png"><meta property="twitter:title" content="誰でもBrainf*ckっぽい言語が作れる？ツール作った - nownab.log">
-  <meta property="twitter:description" content="はじめに なぜかbrainf*ckを実装した。 ついでに誰でもオリジナルなbrainf*ckっぽいプログラムを実行できるようにしてみた 💡 https://github.com/nownabe/brainfuck-go 使い方">
+  <meta property="og:description" content="はじめに なぜかbrainfckを実装した。 ついでに誰でもオリジナルなbrainfckっぽいプログラムを実行できるようにしてみた 💡 https://github.com/nownabe/brainfuck-go 使い方 まず"><meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png"><meta property="twitter:title" content="誰でもBrainf*ckっぽい言語が作れる？ツール作った - nownab.log">
+  <meta property="twitter:description" content="はじめに なぜかbrainfckを実装した。 ついでに誰でもオリジナルなbrainfckっぽいプログラムを実行できるようにしてみた 💡 https://github.com/nownabe/brainfuck-go 使い方 まず">
   <meta property="twitter:image" content="https://blog.nownabe.com/">
 <script type="application/javascript">
 var doNotTrack = false;
@@ -48,37 +48,32 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/03/25/660.html/">誰でもBrainf*ckっぽい言語が作れる？ツール作った</a></h2>
     <span class="date">Posted on Mar 25, 2017</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="はじめに">はじめに</h1>
-
-<p>なぜかbrainf*ckを実装した。
-ついでに誰でもオリジナルなbrainf*ckっぽいプログラムを実行できるようにしてみた 💡</p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="はじめに">はじめに</h1>
+<p>なぜかbrainf<em>ckを実装した。
+ついでに誰でもオリジナルなbrainf</em>ckっぽいプログラムを実行できるようにしてみた 💡</p>
 <p><a href="https://github.com/nownabe/brainfuck-go">https://github.com/nownabe/brainfuck-go</a></p>
-
 <h1 id="使い方">使い方</h1>
-
 <p>まずはインストール。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go get -u github.com/nownabe/brainfuck-go</code></pre></div>
-<p>例えばfizzbuzzを実行してみる。ソースコードはこんな感じ。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cat fizzbuzz.bf
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">go get -u github.com/nownabe/brainfuck-go
+</code></pre></div><p>例えばfizzbuzzを実行してみる。ソースコードはこんな感じ。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ cat fizzbuzz.bf
 ++++++<span class="o">[</span>-&gt;++++&gt; &gt;+&gt;+&gt;-<span class="o">&lt;&lt;&lt;</span>&lt;&lt;<span class="o">]</span>&gt;<span class="o">[</span>&lt;++++&gt; &gt;+++&gt;++++&gt; &gt;+++&gt;+
 ++++&gt;+++++&gt; &gt; &gt; &gt; &gt; &gt;++&gt; &gt;++<span class="o">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span>&lt;&lt;-<span class="o">]</span>&lt;++++&gt;+++
 &gt;--&gt;+++&gt;-&gt; &gt;---&gt;++&gt; &gt; &gt;+++++<span class="o">[</span>-&gt;++&gt;++&lt;&lt;<span class="o">]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span>&lt;<span class="o">[</span>-&gt;-
 <span class="o">[</span>&gt; &gt; &gt; &gt; &gt; &gt; &gt;<span class="o">]</span>&gt;<span class="o">[</span>&lt;+++&gt;.&gt;.&gt; &gt; &gt; &gt;..&gt; &gt; &gt;+&lt;<span class="o">]&lt;&lt;&lt;</span>&lt;&lt;-<span class="o">[</span>&gt; &gt; &gt; &gt;<span class="o">]</span>&gt;<span class="o">[</span>&lt;+
 ++++&gt;.&gt;.&gt;..&gt; &gt; &gt;+&lt;<span class="o">]</span>&gt; &gt; &gt; &gt;+&lt;-<span class="o">[&lt;&lt;&lt;]</span>&lt;<span class="o">[[</span>-&lt;&lt;+&gt; &gt;<span class="o">]</span>&gt; &gt; &gt;+&gt;+<span class="o">&lt;&lt;&lt;</span>&lt;&lt;
 &lt;<span class="o">[</span>-&gt; &gt;+&gt;+&gt;-<span class="o">&lt;&lt;&lt;</span>&lt;<span class="o">]</span>&lt;<span class="o">]</span>&gt;&gt;<span class="o">[[</span>-<span class="o">]</span>&lt;<span class="o">]</span>&gt;<span class="o">[</span>&gt; &gt; &gt;<span class="o">[</span>&gt;.&lt;&lt;.<span class="o">&lt;&lt;&lt;]</span>&lt;<span class="o">[</span>.<span class="o">&lt;&lt;&lt;</span>&lt;<span class="o">]</span>&gt;<span class="o">]</span>&gt;.<span class="o">&lt;&lt;&lt;</span>&lt;
-<span class="o">&lt;&lt;&lt;&lt;&lt;&lt;</span>&lt;<span class="o">]</span></code></pre></div>
-<p>実行する。</p>
-
-<pre><code>$ brainfuck-go fizzbuzz.bf
+<span class="o">&lt;&lt;&lt;&lt;&lt;&lt;</span>&lt;<span class="o">]</span>
+</code></pre></div><p>実行する。</p>
+<pre tabindex="0"><code>$ brainfuck-go fizzbuzz.bf
 Input: ++++++[-&gt;++++&gt; &gt;+&gt;+&gt;-&lt;&lt;&lt;&lt;&lt;]&gt;[&lt;++++&gt; &gt;+++&gt;++++&gt; &gt;+++&gt;+
 ++++&gt;+++++&gt; &gt; &gt; &gt; &gt; &gt;++&gt; &gt;++&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;-]&lt;++++&gt;+++
 &gt;--&gt;+++&gt;-&gt; &gt;---&gt;++&gt; &gt; &gt;+++++[-&gt;++&gt;++&lt;&lt;]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-&gt;-
@@ -100,14 +95,10 @@ Buzz
 
 
 (END)
-</code></pre>
-
-<h1 id="brainf-ck風言語を作ってみる">Brainf*ck風言語を作ってみる</h1>
-
+</code></pre><h1 id="brainfck風言語を作ってみる">Brainf*ck風言語を作ってみる</h1>
 <p>この<code>brainfuck-go</code>というbrainf*ck処理系はJSONで命令をカスタマイズできるようになっている。</p>
-
 <p>例えば、こんな感じのJSONを作ってみる。</p>
-<div class="highlight"><pre class="chroma"><code class="language-json:sushi.json" data-lang="json:sushi.json"><span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json:sushi.json" data-lang="json:sushi.json"><span class="p">{</span>
   <span class="nt">&#34;next&#34;</span><span class="p">:</span> <span class="s2">&#34;ウニ&#34;</span><span class="p">,</span>
   <span class="nt">&#34;prev&#34;</span><span class="p">:</span> <span class="s2">&#34;イクラ&#34;</span><span class="p">,</span>
   <span class="nt">&#34;inc&#34;</span><span class="p">:</span> <span class="s2">&#34;マグロ&#34;</span><span class="p">,</span>
@@ -117,13 +108,11 @@ Buzz
   <span class="nt">&#34;open&#34;</span><span class="p">:</span> <span class="s2">&#34;[&#34;</span><span class="p">,</span>
   <span class="nt">&#34;close&#34;</span><span class="p">:</span> <span class="s2">&#34;]&#34;</span><span class="p">,</span>
   <span class="nt">&#34;whitespaces&#34;</span><span class="p">:</span> <span class="s2">&#34; \t\r\n&#34;</span>
-<span class="p">}</span></code></pre></div>
-<p>このJSONだと、例えば<code>ウニ</code>はポインタをインクリメントする命令、<code>アジ</code>はポインタが指す値をデクリメントする命令となる。<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></p>
-
+<span class="p">}</span>
+</code></pre></div><p>このJSONだと、例えば<code>ウニ</code>はポインタをインクリメントする命令、<code>アジ</code>はポインタが指す値をデクリメントする命令となる。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <p>このJSONでできるプログラミング言語SUSHIで書かれたプログラムを実行するためには<code>-conf</code>オプションを使用する。</p>
-
 <p>こんな感じで、SUSHIで書かれたfizzbuzzを実行できる。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ brainfuck-go -conf sushi.json fizzbuzz.sushi
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ brainfuck-go -conf sushi.json fizzbuzz.sushi
 Input: マグロマグロマグロマグロマグロマグロ<span class="o">[</span>アジウニマグロマグロマグロマグロウニ ウニマグロウニマグロウニアジイクライクライクライクライクラ<span class="o">]</span>ウニ<span class="o">[</span>イクラマグロマグロマグロマグロウニ ウニマグロマグロマグロウニマグロマグロマグロマグロウニ ウニマグロマグロマグロウニマグロ
 マグロマグロマグロマグロウニマグロマグロマグロマグロマグロウニ ウニ ウニ ウニ ウニ ウニマグロマグロウニ ウニマグロマグロイクライクライクライクライクライクライクライクライクライクライクライクライクライクラアジ<span class="o">]</span>イクラマグロマグロマグロマグロウニマグロマグロマグロ
 ウニアジアジウニマグロマグロマグロウニアジウニ ウニアジアジアジウニマグロマグロウニ ウニ ウニマグロマグロマグロマグロマグロ<span class="o">[</span>アジウニマグロマグロウニマグロマグロイクライクラ<span class="o">]</span>イクライクライクライクライクライクライクライクライクライクラ<span class="o">[</span>アジウニアジ
@@ -145,37 +134,39 @@ Fizz
 Buzz
 
 
-<span class="o">(</span>END<span class="o">)</span></code></pre></div>
-<h1 id="ソースコード変換">ソースコード変換</h1>
-
+<span class="o">(</span>END<span class="o">)</span>
+</code></pre></div><h1 id="ソースコード変換">ソースコード変換</h1>
 <p>brainf*ckのソースコードを新しいオリジナル言語のソースコードに変換できるような変換器も作った。</p>
-
 <p>インストール</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go get -u github.com/nownabe/brainfuck-go/converter</code></pre></div>
-<p>変換</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ converter -conf sushi.json fizzbuzz.bf
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">go get -u github.com/nownabe/brainfuck-go/converter
+</code></pre></div><p>変換</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ converter -conf sushi.json fizzbuzz.bf
 マグロマグロマグロマグロマグロマグロ<span class="o">[</span>アジウニマグロマグロマグロマグロウニ ウニマグロウニマグロウニアジイクライクライクライクライクラ<span class="o">]</span>ウニ<span class="o">[</span>イクラマグロマグロマグロマグロウニ ウニマグロマグロマグロウニマグロマグロマグロマグロウニ ウニマグロマグロマグロウニマグロ
 マグロマグロマグロマグロウニマグロマグロマグロマグロマグロウニ ウニ ウニ ウニ ウニ ウニマグロマグロウニ ウニマグロマグロイクライクライクライクライクライクライクライクライクライクライクライクライクライクラアジ<span class="o">]</span>イクラマグロマグロマグロマグロウニマグロマグロマグロ
 ウニアジアジウニマグロマグロマグロウニアジウニ ウニアジアジアジウニマグロマグロウニ ウニ ウニマグロマグロマグロマグロマグロ<span class="o">[</span>アジウニマグロマグロウニマグロマグロイクライクラ<span class="o">]</span>イクライクライクライクライクライクライクライクライクライクラ<span class="o">[</span>アジウニアジ
 <span class="o">[</span>ウニ ウニ ウニ ウニ ウニ ウニ ウニ<span class="o">]</span>ウニ<span class="o">[</span>イクラマグロマグロマグロウニトビウオウニトビウオウニ ウニ ウニ ウニトビウオトビウオウニ ウニ ウニマグロイクラ<span class="o">]</span>イクライクライクライクライクラアジ<span class="o">[</span>ウニ ウニ ウニ ウニ<span class="o">]</span>ウニ<span class="o">[</span>イクラマグロ
 マグロマグロマグロマグロウニトビウオウニトビウオウニトビウオトビウオウニ ウニ ウニマグロイクラ<span class="o">]</span>ウニ ウニ ウニ ウニマグロイクラアジ<span class="o">[</span>イクライクライクラ<span class="o">]</span>イクラ<span class="o">[[</span>アジイクライクラマグロウニ ウニ<span class="o">]</span>ウニ ウニ ウニマグロウニマグロイクライクライクライクライクラ
 イクラ<span class="o">[</span>アジウニ ウニマグロウニマグロウニアジイクライクライクライクラ<span class="o">]</span>イクラ<span class="o">]</span>ウニウニ<span class="o">[[</span>アジ<span class="o">]</span>イクラ<span class="o">]</span>ウニ<span class="o">[</span>ウニ ウニ ウニ<span class="o">[</span>ウニトビウオイクライクラトビウオイクライクライクラ<span class="o">]</span>イクラ<span class="o">[</span>トビウオイクライクライクライクラ<span class="o">]</span>ウニ<span class="o">]</span>ウニトビウオイクライクライクライクラ
-イクライクライクライクライクライクライクラ<span class="o">]</span></code></pre></div>
-<h1 id="おわりに">おわりに</h1>
-
+イクライクライクライクライクライクライクラ<span class="o">]</span>
+</code></pre></div><h1 id="おわりに">おわりに</h1>
 <p>ぜひ遊んでみてください 🌟</p>
-
 <p>次はもっと高級な言語を作ってみたい。</p>
-<div class="footnotes">
-
-<hr />
-
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1">それぞれの命令の詳細はこちら: <a href="https://ja.wikipedia.org/wiki/Brainfuck">https://ja.wikipedia.org/wiki/Brainfuck</a>
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p>それぞれの命令の詳細はこちら: <a href="https://ja.wikipedia.org/wiki/Brainfuck">https://ja.wikipedia.org/wiki/Brainfuck</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

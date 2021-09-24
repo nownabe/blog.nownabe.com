@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,61 +48,50 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2016/07/31/hatena02.html/">RubotyのデータをLevelDBで永続化するruboty-leveldbというGemを作った</a></h2>
     <span class="date">Posted on Mar 1, 2015</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="経緯">経緯</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="経緯">経緯</h1>
 <p>会社でチャットボットとして<a href="https://github.com/r7kamura/ruboty">Ruboty</a>を使ってます。</p>
-
 <p>Rubotyはデータの永続化にプラグインを使わないといけないんですが、今はRedis用のプラグインしか用意されていません。
 （もしかしたら誰か作ってるのがあるかも）</p>
-
 <p>おそらく、RubotyはHeroku + Redis To Goのような環境で運用されることを想定されていて、Redis用のプラグインしかないんだと思います。
 プライベートで使ってるのはその構成なんですが、会社では自前のサーバでDockerコンテナとして動作させています。</p>
-
 <p>外部のサーバに置きたくなくてそうしてるのでデータも内部に持ちたかったんですが、RubotyのためだけにRedisサーバ運用するのもなんだかなーとしばらくデータ永続化せずに使ってました。</p>
-
 <p>けどこのままはアカンなーということで、<a href="https://github.com/google/leveldb">LevelDB</a>を使ってRubotyのデータを永続化できる<a href="https://rubygems.org/gems/ruboty-leveldb">ruboty-leveldb</a>というプラグインを作成しました！</p>
-
 <h1 id="なぜleveldb">なぜLevelDB？</h1>
-
 <p>正直言うと、余分なサーバ建てずにデータの永続化ができればテキストファイルでも他のKVSでもなんでも良かったんですが、使ってみたかったのでLevelDBにしました。</p>
-
 <p>Rubotyのデータぐらいだと、LevelDBが他のKVSに比べてどういいのかとかは全然見えません。</p>
-
 <p>個人的には<a href="http://fallabs.com/kyotocabinet/">KyotoCabinet</a>が好きで使ってたんですが、ほぼ同じ感覚で使えました。
 LevelDBが流行りならLevelDBでも全然いいなーという感想です。</p>
-
 <p>LevelDBについてはここがまとまってました。</p>
-
 <ul>
 <li><a href="http://yosuke-furukawa.hatenablog.com/entry/2014/05/05/095207">LevelDB入門 (基本編)</a></li>
 </ul>
-
 <h1 id="使い方">使い方</h1>
-
 <p>Qiitaに書きました。</p>
-
 <ul>
 <li><a href="http://qiita.com/nownabe/items/06977acec7f08133d8c9">Rubotyのデータ永続化にLevelDBを使う</a></li>
 </ul>
-
 <h1 id="感想">感想</h1>
-
 <p>Rubotyまわりはとてもコードが綺麗でよく見てるんですが、本当に参考になります。
 ruboty-leveldbもほとんど<a href="https://github.com/r7kamura/ruboty-redis">ruboty-redis</a>まんまですw</p>
-
 <p>…今気づいたんですがRubotyのREADMEでruboty-leveldbが紹介されてる…！！
 ありがとうございます！！</p>
-
 <p><a href="https://github.com/r7kamura/ruboty">https://github.com/r7kamura/ruboty</a></p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

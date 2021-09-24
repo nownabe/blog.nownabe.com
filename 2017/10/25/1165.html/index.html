@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,16 +48,15 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/10/25/1165.html/">統計学入門  第12章 仮説検定</a></h2>
     <span class="date">Posted on Oct 24, 2017</span>
   </div>
-  <div class="body">
-    
-
-<p><a href="https://blog.nownabe.com/2017/10/16/1142.html">nownab.log | 統計学入門 第11章 推定</a></p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p><a href="https://blog.nownabe.com/2017/10/16/1142.html">nownab.log | 統計学入門 第11章 推定</a></p>
 <div class="asin">
 <div class="asin-image"><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/" rel="nofollow noopener" target="_blank"><img src="http://images-jp.amazon.com/images/P/4130420658.09._SL160_.jpg" alt="統計学入門 (基礎統計学Ⅰ)" title="統計学入門 (基礎統計学Ⅰ)"></a></div>
 <div class="asin-detail">
@@ -67,24 +66,18 @@ if (!doNotTrack) {
 <li>東京大学出版会</li>
 </ul>
 </div>
-
-<p><p></p>
-</div></p>
-
+<p></p>
+</div>
 <p>機械学習勉強会として今は<a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/">統計学入門</a>をやっている。
 週一でやっていて、今週から輪読形式で進めてみることになった。</p>
-
 <p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。
 <a href="https://github.com/Wondershake/ml-statistics-intro">Wondershake/ml-statistics-intro: 基礎統計学 I 統計学入門 (東京大学出版会)</a></p>
-
 <h1 id="今回の内容">今回の内容</h1>
-
-<h2 id="12-1-検定の考え方">12.1 検定の考え方</h2>
-
+<h2 id="121-検定の考え方">12.1 検定の考え方</h2>
 <ul>
 <li>仮説検定の目的は、母集団について仮定された命題を標本に基づいて検証すること</li>
-<li>仮説からのずれに意味がある場合、<strong>有意 (significant)</strong>であるという</li>
-<li>仮説のことを<strong>統計的仮説 (statistical hypothesis)</strong>又は<strong>仮説 (hypothesis)</strong>という</li>
+<li>仮説からのずれに意味がある場合、**有意 (significant)**であるという</li>
+<li>仮説のことを**統計的仮説 (statistical hypothesis)<strong>又は</strong>仮説 (hypothesis)**という</li>
 <li>仮説検定: 統計的仮説の<strong>優位性検定 (test of significance)</strong></li>
 <li><strong>棄却 (reject)</strong>: その仮説に基づくと観測された標本が現れる確率が希少なとき、仮説は棄却される、という</li>
 <li><strong>有意水準 (significance level)</strong>: どの程度の希少確率を考えるかという基準の確率。</li>
@@ -92,146 +85,133 @@ if (!doNotTrack) {
 <li><strong>帰無仮説 (null hypothesis)</strong>: 棄却されるかされないかの判断にさらされる仮説</li>
 <li><strong>対立仮説 (alternative hypothesis)</strong>: 帰無仮説に対立する仮説</li>
 <li><strong>第一種の誤り (error of the first kind)</strong>
-
 <ul>
 <li>帰無仮説が正しいのにそれを棄却する</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>第二種の誤り (error of the second kind)</strong>
-
 <ul>
 <li>帰無仮説が誤っているのにそれを採択する</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>検定統計量 (test statistic)</strong>: 検定に用いる統計量</li>
 <li><strong>棄却域 (rejection region)</strong>: 帰無仮説を棄却すべき統計量の値の集合</li>
 <li><strong>採択域 (acceptance region)</strong>: 帰無仮説を棄却しない統計量の値の集合</li>
-<li><strong>両側検定 (two-sided test)</strong>: <strong>両側対立仮説 (two-sided alternative hypothesis)</strong>のときに用いる</li>
-<li><strong>片側検定 (one-sided test)</strong>: <strong>片側対立仮説 (one-sided alternative hypothesis)</strong>のときに用いる</li>
+<li><strong>両側検定 (two-sided test)</strong>: **両側対立仮説 (two-sided alternative hypothesis)**のときに用いる</li>
+<li><strong>片側検定 (one-sided test)</strong>: **片側対立仮説 (one-sided alternative hypothesis)**のときに用いる</li>
 </ul>
-
-<h2 id="12-2-正規母集団に対する仮説検定">12.2 正規母集団に対する仮説検定</h2>
-
-<h3 id="12-2-1-母平均に関する検定">12.2.1 母平均に関する検定</h3>
-
+<h2 id="122-正規母集団に対する仮説検定">12.2 正規母集団に対する仮説検定</h2>
+<h3 id="1221-母平均に関する検定">12.2.1 母平均に関する検定</h3>
 <ul>
 <li>両側検定
-
 <ul>
 <li>帰無仮説: $H_0:\mu=\mu_0$</li>
 <li>対立仮説: $H_1: \mu\neq\mu_0$</li>
 <li>分散が既知のとき
-
 <ul>
 <li>検定統計量Zを使う</li>
 <li>$Z=\frac{\bar{X}-\mu}{\frac{\sigma}{\sqrt{n}}}$</li>
 <li>$|Z|&gt;Z_{\frac{\alpha}{2}}$のとき帰無仮説を棄却する</li>
 <li>$|Z|\leq Z_{\frac{\alpha}{2}}$のとき帰無仮説を棄却しない</li>
-</ul></li>
+</ul>
+</li>
 <li>分散が未知のとき
-
 <ul>
 <li><strong>t検定 (Student&rsquo;s t-test)</strong></li>
 <li>検定統計量tを使う</li>
 <li>$t=\frac{\bar{X}-\mu}{\frac{s}{\sqrt{n}}}$</li>
 <li>$|t|&gt;t_\frac{\alpha}{2}(n-1)$のとき帰無仮説を棄却する</li>
 <li>$|t|\leq t_\frac{\alpha}{2}(n-1)$のとき帰無仮説を棄却しない</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>片側検定
-
 <ul>
 <li>帰無仮説: $H_0:\mu=\mu_0$</li>
 <li>対立仮説: $H_1: \mu&gt;\mu_0$</li>
 <li>分散が既知のとき
-
 <ul>
 <li>$Z&gt;Z_\alpha$のとき帰無仮説を棄却する</li>
 <li>$Z\leq Z_\alpha$のとき帰無仮説を棄却しない</li>
-</ul></li>
+</ul>
+</li>
 <li>分散が未知のとき
-
 <ul>
 <li>$t&gt;t_\alpha(n-1)$のとき帰無仮説を棄却する</li>
 <li>$t\leq t_\alpha(n-1)$のとき帰無仮説を棄却しない</li>
-</ul></li>
-</ul></li>
 </ul>
-
-<h3 id="12-2-2-母分散に対する仮説検定">12.2.2 母分散に対する仮説検定</h3>
-
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="1222-母分散に対する仮説検定">12.2.2 母分散に対する仮説検定</h3>
 <ul>
 <li><strong>$\chi^2$検定 ($\chi^2$-test)</strong>
-
 <ul>
 <li>帰無仮説: $H_0: \sigma^2=\sigma_0^2$</li>
 <li>$\chi^2=(n-1)\frac{s^2}{\sigma_0^2}$</li>
 <li>両側検定
-
 <ul>
 <li>対立仮説: $H_1: \sigma^2\neq\sigma_0^2$</li>
-<li>$\chi^2<em>{1-\frac{\alpha}{2}}(n-1)&lt;\chi^2&lt;\chi^2</em>{\frac{\alpha}{2}}(n-1)$のとき帰無仮説を棄却せず、それ以外で棄却する</li>
-</ul></li>
+<li>$\chi^2_{1-\frac{\alpha}{2}}(n-1)&lt;\chi^2&lt;\chi^2_{\frac{\alpha}{2}}(n-1)$のとき帰無仮説を棄却せず、それ以外で棄却する</li>
+</ul>
+</li>
 <li>片側検定
-
 <ul>
 <li>対立仮説: $H_1: \sigma^2&lt;\sigma_0^2$</li>
 <li>$\chi^2&lt;\chi^2_{1-\alpha}(n-1)$のとき帰無仮説を棄却し、それ以外で棄却しない</li>
-</ul></li>
-</ul></li>
 </ul>
-
-<h3 id="12-2-3-母平均の差の検定">12.2.3 母平均の差の検定</h3>
-
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="1223-母平均の差の検定">12.2.3 母平均の差の検定</h3>
 <ul>
 <li><strong>2標本検定 (two-sample test)</strong>: 2つのグループで結果に差があるかどうかを検定する
-
 <ul>
 <li>治療法の効果を調べるときなど</li>
-<li>治療等を行ったグループを<strong>処理群 (treatment group)</strong>という</li>
-<li>行わなかった基準となるグループを<strong>対照群 (contrast group)</strong>または<strong>制御群 (control group)</strong>という</li>
+<li>治療等を行ったグループを**処理群 (treatment group)**という</li>
+<li>行わなかった基準となるグループを**対照群 (contrast group)<strong>または</strong>制御群 (control group)**という</li>
 <li>帰無仮説 $H_0: \mu_1=\mu_2$</li>
 <li>母分散が等しいとき
-
 <ul>
 <li>2標本t統計量 $t=\frac{\displaystyle\bar{X}-\bar{Y}}{\displaystyle s\sqrt{\frac{1}{m}+\frac{1}{n}}}$</li>
 <li>両側検定
-
 <ul>
 <li>対立仮説 $H_1: \mu_1\neq\mu_2$</li>
 <li>$|t|&gt;t_\frac{\alpha}{2}(m+n-2)$のとき帰無仮説を棄却する</li>
-</ul></li>
+</ul>
+</li>
 <li>片側検定
-
 <ul>
 <li>対立仮説 $H_1: \mu_1&gt;\mu_2$</li>
 <li>$t&gt;t_\alpha(m+n-2)$のとき帰無仮説を棄却する</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>母分散が等しくないとき
-
 <ul>
 <li><strong>ウェルチの検定 (Welch&rsquo;s test)</strong></li>
-</ul></li>
-</ul></li>
 </ul>
-
-<h3 id="12-2-4-母分散の比の検定">12.2.4 母分散の比の検定</h3>
-
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="1224-母分散の比の検定">12.2.4 母分散の比の検定</h3>
 <ul>
 <li>2つの正規母集団の母平均が等しいか否か</li>
 <li>帰無仮説 $H_0:\sigma_1^2=\sigma_2^2$</li>
 <li>対立仮説 $H_1:\sigma_1^2\neq\sigma_2^2$</li>
 <li>統計量 $F=\frac{s_1^2}{s_2^2}$</li>
-<li>$F<em>{1-\frac{\alpha}{2}}(m-1, n-1)\leq F\leq F</em>\frac{\alpha}{2}(m-1, n-1)$のとき帰無仮説を棄却しない</li>
+<li>$F_{1-\frac{\alpha}{2}}(m-1, n-1)\leq F\leq F_\frac{\alpha}{2}(m-1, n-1)$のとき帰無仮説を棄却しない</li>
 <li><strong>F検定</strong></li>
 </ul>
-
-<h2 id="12-3-いろいろの-chi-2-検定">12.3 いろいろの$\chi^2$検定</h2>
-
-<h3 id="12-3-1-適合度の検定">12.3.1 適合度の検定</h3>
-
+<h2 id="123-いろいろのchi2検定">12.3 いろいろの$\chi^2$検定</h2>
+<h3 id="1231-適合度の検定">12.3.1 適合度の検定</h3>
 <ul>
 <li><strong>適合度の$\chi^2$検定 ($\chi^2$-test of goodness of fit)</strong>
-
 <ul>
 <li>仮定された理論上の確率分布に対して、標本から求められた度数が適合するか否か</li>
 <li>$n$個の標本が$k$主のカテゴリ$A_1,\dots,A_k$へ分類されたとする</li>
@@ -241,50 +221,69 @@ if (!doNotTrack) {
 <li>K. ピアソンの適合度基準 $\chi^2=\sum_{i=1}^{k}\frac{(f_i-np_i)^2}{np_i}$</li>
 <li>帰無仮説 $H_0: P(A_1)=p_1,\dots,P(A_k)=p_k$</li>
 <li>$\chi^2&gt;\chi_\alpha^2(k-1)$なら帰無仮説は棄却される</li>
-</ul></li>
+</ul>
+</li>
 <li>$\chi^2=\sum\frac{(O-E)^2}{E}$と要約できる
-
 <ul>
 <li>O: Observed</li>
 <li>E: Expected</li>
-</ul></li>
 </ul>
-
-<h3 id="12-3-2-分割表と独立性の検定">12.3.2 分割表と独立性の検定</h3>
-
+</li>
+</ul>
+<h3 id="1232-分割表と独立性の検定">12.3.2 分割表と独立性の検定</h3>
 <ul>
 <li><strong>独立性の$\chi^2$検定 ($\chi^2$ test for independence)</strong>
-
 <ul>
 <li>$n$個の個体に対して2つの異なる属性$A, B$を同時に測定したとする</li>
 <li>$A$は$A_1,\dots,A_r$</li>
 <li>$B$は$B_1,\dots,B_c$</li>
 <li><strong>分割表</strong>: A, Bについて度数を集計した表</li>
 <li>独立の仮説: $H_0: すべてのi,jに対しP(A_i\cap B_j)=P(A_i)P(B_j)$</li>
-<li>$\chi^2=\sum_i\sum<em>j\frac{\displaystyle (f</em>{ij}-\frac{f<em>{i\cdot}f</em>{\cdot j}}{n})^2}{\displaystyle \frac{f<em>{i\cdot}f</em>{\cdot j}}{n}}=\sum_i\sum<em>j\frac{\displaystyle (nf</em>{ij}-f<em>{i\cdot}f</em>{\cdot j})^2}{\displaystyle nf<em>{i\cdot}f</em>{\cdot j}}$</li>
+<li>$\chi^2=\sum_i\sum_j\frac{\displaystyle (f_{ij}-\frac{f_{i\cdot}f_{\cdot j}}{n})^2}{\displaystyle \frac{f_{i\cdot}f_{\cdot j}}{n}}=\sum_i\sum_j\frac{\displaystyle (nf_{ij}-f_{i\cdot}f_{\cdot j})^2}{\displaystyle nf_{i\cdot}f_{\cdot j}}$</li>
 <li>自由度は$(r-1)(c-1)$</li>
-</ul></li>
 </ul>
-
-<h2 id="12-4-中心極限定理を用いる検定">12.4 中心極限定理を用いる検定</h2>
-
+</li>
+</ul>
+<h2 id="124-中心極限定理を用いる検定">12.4 中心極限定理を用いる検定</h2>
 <ul>
 <li>各$X_i$が独立に$B_i(1, p)$に従う</li>
 <li>$S_n=X_i+\dots+X_n$</li>
 <li>$\hat{p}=\frac{S_n}{n}$</li>
 <li>検定統計量 $Z=\frac{\hat{p}-p}{\sqrt{p(1-p)/n}}$</li>
 </ul>
-
 <h1 id="練習問題">練習問題</h1>
-
 <p><a href="https://github.com/Wondershake/machine-learning-study/issues/26">第12章 仮説検定 · Issue #26 · Wondershake/machine-learning-study</a></p>
-
 <h1 id="所感">所感</h1>
-
 <ul>
 <li>理解度が怪しい部門第1位の検定をちゃんと勉強できてよかった</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-math" data-lang="math"></code></pre></div>
+<pre tabindex="0"><code class="language-math" data-lang="math"></code></pre>
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#121-検定の考え方">12.1 検定の考え方</a></li>
+    <li><a href="#122-正規母集団に対する仮説検定">12.2 正規母集団に対する仮説検定</a>
+      <ul>
+        <li><a href="#1221-母平均に関する検定">12.2.1 母平均に関する検定</a></li>
+        <li><a href="#1222-母分散に対する仮説検定">12.2.2 母分散に対する仮説検定</a></li>
+        <li><a href="#1223-母平均の差の検定">12.2.3 母平均の差の検定</a></li>
+        <li><a href="#1224-母分散の比の検定">12.2.4 母分散の比の検定</a></li>
+      </ul>
+    </li>
+    <li><a href="#123-いろいろのchi2検定">12.3 いろいろの$\chi^2$検定</a>
+      <ul>
+        <li><a href="#1231-適合度の検定">12.3.1 適合度の検定</a></li>
+        <li><a href="#1232-分割表と独立性の検定">12.3.2 分割表と独立性の検定</a></li>
+      </ul>
+    </li>
+    <li><a href="#124-中心極限定理を用いる検定">12.4 中心極限定理を用いる検定</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

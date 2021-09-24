@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,37 +48,27 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/02/25/1263.html/">PythonのgRPCサーバのテスト</a></h2>
     <span class="date">Posted on Feb 25, 2018</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="概要">概要</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="概要">概要</h1>
 <p>PythonのgRPCのテストの方法です。
 今回のサンプルコードは<a href="https://gitlab.com/nownabe/example-gRPC-python-test">こちら</a>にあります。</p>
-
 <h1 id="grpcサーバのテスト">gRPCサーバのテスト</h1>
-
-<p>ググるとE2Eテストがひっかかります。<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup> つまり実際にサーバを立ち上げて、クライアントからアクセスしてそのレスポンスをチェックする感じです。</p>
-
+<p>ググるとE2Eテストがひっかかります。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> つまり実際にサーバを立ち上げて、クライアントからアクセスしてそのレスポンスをチェックする感じです。</p>
 <p>gRPCパッケージのテストでそれをやるのは当たり前なんですが、gRPCを使う側としては単体テストでわざわざサーバを立ち上げたくはないですよね。サービスとメッセージを定義したらコードが自動生成されてサービスが受け取るリクエストのメッセージは保証されてるはずなので、リクエストに対するサービスの振る舞いのみをテストしたいところです。</p>
-
 <p>雑に図にするとこんな感じです。</p>
-
-<p><img width="903" alt="スクリーンショット 2018-02-25 14.42.56.png (684.8 kB)" src="/images/2018/02/25/1.png"></p>
-
+<img width="903" alt="スクリーンショット 2018-02-25 14.42.56.png (684.8 kB)" src="/images/2018/02/25/1.png">
 <p>なので、これを実現する方法を紹介します。</p>
-
 <h1 id="実装">実装</h1>
-
 <h2 id="テストするサービスの定義">テストするサービスの定義</h2>
-
 <p>こんな感じの単純なEchoサービスを考えます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-proto:echo.proto" data-lang="proto:echo.proto"><span class="n">syntax</span> <span class="o">=</span> <span class="s">&#34;proto3&#34;</span><span class="p">;</span><span class="err">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-proto:echo.proto" data-lang="proto:echo.proto"><span class="n">syntax</span> <span class="o">=</span> <span class="s">&#34;proto3&#34;</span><span class="p">;</span><span class="err">
 </span><span class="err">
 </span><span class="err"></span><span class="kd">service</span> <span class="n">Echo</span> <span class="p">{</span><span class="err">
 </span><span class="err"></span>  <span class="k">rpc</span> <span class="n">Echo</span> <span class="p">(</span><span class="n">Request</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">Response</span><span class="p">)</span> <span class="p">{}</span><span class="err">
@@ -90,13 +80,12 @@ if (!doNotTrack) {
 </span><span class="err">
 </span><span class="err"></span><span class="kd">message</span> <span class="nc">Response</span> <span class="p">{</span><span class="err">
 </span><span class="err"></span>  <span class="kt">string</span> <span class="kd">message</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="err">
-</span><span class="err"></span><span class="p">}</span></code></pre></div>
-<p>コードを生成するにはこんな感じです。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">python -m grpc_tools.protoc -I<span class="o">=</span>. --python_out<span class="o">=</span>. --grpc_python_out<span class="o">=</span>. echo.proto</code></pre></div>
-<h2 id="サービスの実装">サービスの実装</h2>
-
+</span><span class="err"></span><span class="p">}</span><span class="err">
+</span></code></pre></div><p>コードを生成するにはこんな感じです。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">python -m grpc_tools.protoc -I<span class="o">=</span>. --python_out<span class="o">=</span>. --grpc_python_out<span class="o">=</span>. echo.proto
+</code></pre></div><h2 id="サービスの実装">サービスの実装</h2>
 <p>サービスの実装はこんな感じです。今回のEchoサービスには禁止ワードの場合エラーを返す機能がついています。</p>
-<div class="highlight"><pre class="chroma"><code class="language-python:servicer.py" data-lang="python:servicer.py"><span class="kn">import</span> <span class="nn">grpc</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python:servicer.py" data-lang="python:servicer.py"><span class="kn">import</span> <span class="nn">grpc</span>
 <span class="kn">import</span> <span class="nn">echo_pb2</span>
 <span class="kn">import</span> <span class="nn">echo_pb2_grpc</span>
 
@@ -109,17 +98,14 @@ if (!doNotTrack) {
     <span class="k">def</span> <span class="nf">Echo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">message</span> <span class="ow">in</span> <span class="n">_BANNED_WORDS</span><span class="p">:</span>
             <span class="n">context</span><span class="o">.</span><span class="n">set_code</span><span class="p">(</span><span class="n">grpc</span><span class="o">.</span><span class="n">StatusCode</span><span class="o">.</span><span class="n">OUT_OF_RANGE</span><span class="p">)</span>
-            <span class="n">context</span><span class="o">.</span><span class="n">set_details</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;{request.message} is a prohibited word.&#34;</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;&#39;{request.message}&#39; is a prohibited word.&#34;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">echo_pb2</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">message</span><span class="p">)</span></code></pre></div>
-<p>エラーコードが<code>OUT_OF_RANGE</code>なのは気にしないでください。</p>
-
+            <span class="n">context</span><span class="o">.</span><span class="n">set_details</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2"> is a prohibited word.&#34;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;&#39;</span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">&#39; is a prohibited word.&#34;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">echo_pb2</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+</code></pre></div><p>エラーコードが<code>OUT_OF_RANGE</code>なのは気にしないでください。</p>
 <p>このサービスのクラスのみを単体テストするのが目標です。</p>
-
-<h2 id="サーバ-クライアントの実装">サーバ/クライアントの実装</h2>
-
+<h2 id="サーバクライアントの実装">サーバ/クライアントの実装</h2>
 <p>サーバとクライアントの実装です。gRPCのサンプルから持ってきただけです。</p>
-<div class="highlight"><pre class="chroma"><code class="language-python:server.py" data-lang="python:server.py"><span class="kn">from</span> <span class="nn">concurrent</span> <span class="kn">import</span> <span class="n">futures</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python:server.py" data-lang="python:server.py"><span class="kn">from</span> <span class="nn">concurrent</span> <span class="kn">import</span> <span class="n">futures</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
 <span class="kn">import</span> <span class="nn">grpc</span>
@@ -137,13 +123,14 @@ if (!doNotTrack) {
     <span class="n">server</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">_ONE_DAY_IN_SECONDS</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
         <span class="n">server</span><span class="o">.</span><span class="n">stop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-    <span class="n">serve</span><span class="p">()</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python:client.py" data-lang="python:client.py"><span class="kn">import</span> <span class="nn">grpc</span>
+    <span class="n">serve</span><span class="p">()</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python:client.py" data-lang="python:client.py"><span class="kn">import</span> <span class="nn">grpc</span>
 
 <span class="kn">import</span> <span class="nn">grpc</span>
 <span class="kn">import</span> <span class="nn">echo_pb2</span>
@@ -156,39 +143,33 @@ if (!doNotTrack) {
     <span class="n">message</span> <span class="o">=</span> <span class="s2">&#34;Hello, world!&#34;</span>
 
     <span class="n">response</span> <span class="o">=</span> <span class="n">stub</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span><span class="n">echo_pb2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;Response: {response.message}&#34;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Response: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-    <span class="n">run</span><span class="p">()</span></code></pre></div>
-<p>実際に動かすには<code>python server.py</code>でサーバを起動して、別のターミナルなどで<code>python client.py</code>を実行します。こんな感じですね。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ python server.py <span class="p">&amp;</span> sleep <span class="m">1</span> <span class="o">&amp;&amp;</span> python client.py
-<span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="m">76052</span>
-Response: Hello, world!</code></pre></div>
-<p>これらのサーバとクライアントのコードを単体テストでは<strong>使わない</strong>ことが目標になります。</p>
+    <span class="n">run</span><span class="p">()</span>
 
+</code></pre></div><p>実際に動かすには<code>python server.py</code>でサーバを起動して、別のターミナルなどで<code>python client.py</code>を実行します。こんな感じですね。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ python server.py <span class="p">&amp;</span> sleep <span class="m">1</span> <span class="o">&amp;&amp;</span> python client.py
+<span class="o">[</span>1<span class="o">]</span> <span class="m">76052</span>
+Response: Hello, world!
+</code></pre></div><p>これらのサーバとクライアントのコードを単体テストでは<strong>使わない</strong>ことが目標になります。</p>
 <h2 id="サービスの引数">サービスの引数</h2>
-
 <p>再掲しますがサービスの本体はこれです。</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Servicer</span><span class="p">(</span><span class="n">echo_pb2_grpc</span><span class="o">.</span><span class="n">EchoServicer</span><span class="p">):</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Servicer</span><span class="p">(</span><span class="n">echo_pb2_grpc</span><span class="o">.</span><span class="n">EchoServicer</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">Echo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">message</span> <span class="ow">in</span> <span class="n">_BANNED_WORDS</span><span class="p">:</span>
             <span class="n">context</span><span class="o">.</span><span class="n">set_code</span><span class="p">(</span><span class="n">grpc</span><span class="o">.</span><span class="n">StatusCode</span><span class="o">.</span><span class="n">OUT_OF_RANGE</span><span class="p">)</span>
-            <span class="n">context</span><span class="o">.</span><span class="n">set_details</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;{request.message} is a prohibited word.&#34;</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;&#39;{request.message}&#39; is a prohibited word.&#34;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">echo_pb2</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">message</span><span class="p">)</span></code></pre></div>
-<p>サービスのメソッドはprotoで定義されたリクエストメッセージである<code>request</code>と、<code>context</code>を引数として受け取ります。</p>
-
-<p><code>context</code>は<code>grpc.ServicerContext</code><sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>のオブジェクトです<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup>が<code>grpc.ServicerContext</code>は抽象クラスであり、その実装は公開されていません。</p>
-
+            <span class="n">context</span><span class="o">.</span><span class="n">set_details</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2"> is a prohibited word.&#34;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;&#39;</span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">&#39; is a prohibited word.&#34;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">echo_pb2</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+</code></pre></div><p>サービスのメソッドはprotoで定義されたリクエストメッセージである<code>request</code>と、<code>context</code>を引数として受け取ります。</p>
+<p><code>context</code>は<code>grpc.ServicerContext</code><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>のオブジェクトです<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>が<code>grpc.ServicerContext</code>は抽象クラスであり、その実装は公開されていません。</p>
 <p>メソッド内で<code>context</code>を使う場合は<code>context</code>を渡す必要がありますが、公開されていないので自前で実装するひつようがあります。<a href="https://github.com/grpc/grpc/blob/v1.9.1/src/python/grpcio_testing/grpc_testing/_server/_servicer_context.py">本家のテスト</a>でも<code>grpc.ServicerContext</code>を実装したテスト用のクラスを作っています。</p>
-
-<p>また、その場合は<code>grpc.ServicerContext</code>は親抽象クラスの<code>gprc.RpcContext</code><sup class="footnote-ref" id="fnref:4"><a href="#fn:4">4</a></sup>を継承しているので、そちらのメソッドも実装する必要があります。</p>
-
+<p>また、その場合は<code>grpc.ServicerContext</code>は親抽象クラスの<code>gprc.RpcContext</code><sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>を継承しているので、そちらのメソッドも実装する必要があります。</p>
 <h2 id="テストの実装">テストの実装</h2>
-
 <p>以上を踏まえEchoサービスの単体テストを書くとこんな感じになります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-python:tests/test_servicer.py" data-lang="python:tests/test_servicer.py"><span class="kn">import</span> <span class="nn">unittest</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python:tests/test_servicer.py" data-lang="python:tests/test_servicer.py"><span class="kn">import</span> <span class="nn">unittest</span>
 
 <span class="kn">import</span> <span class="nn">grpc</span>
 <span class="kn">import</span> <span class="nn">echo_pb2</span>
@@ -197,8 +178,8 @@ Response: Hello, world!</code></pre></div>
 
 <span class="k">class</span> <span class="nc">ServicerContext</span><span class="p">(</span><span class="n">grpc</span><span class="o">.</span><span class="n">ServicerContext</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="bp">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">details</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">details</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">add_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
@@ -264,29 +245,44 @@ Response: Hello, world!</code></pre></div>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="s2">&#34;unko is a prohibited word.&#34;</span><span class="p">,</span> <span class="n">context</span><span class="o">.</span><span class="n">details</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span></code></pre></div>
-<p><code>ServicerContext</code>は必要に応じてメソッドを実装すればいいと思います。今回は
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</code></pre></div><p><code>ServicerContext</code>は必要に応じてメソッドを実装すればいいと思います。今回は
 <code>set_code</code>と<code>set_details</code>のみを実装して、エラーコードと詳細のテストができるようにしました。</p>
-
 <h1 id="おわりに">おわりに</h1>
-
 <p>なんかごく普通のことを長々と書いてしまった気がしますが、あまり情報がなかったので。gRPCまわりはまだまだ情報が少ないですね。</p>
-<div class="footnotes">
-
-<hr />
-
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1"><a href="https://stackoverflow.com/questions/44718078/how-to-write-a-grpc-python-unittest">How to write a GRPC python unittest - Stack Overflow</a>
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-<li id="fn:2"><a href="https://grpc.io/grpc/python/grpc.html#grpc.ServicerContext">https://grpc.io/grpc/python/grpc.html#grpc.ServicerContext</a>
- <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
-<li id="fn:3"><a href="https://grpc.io/docs/tutorials/basic/python.html#simple-rpc">https://grpc.io/docs/tutorials/basic/python.html#simple-rpc</a>
- <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
-<li id="fn:4"><a href="https://grpc.io/grpc/python/grpc.html#grpc.RpcContext">https://grpc.io/grpc/python/grpc.html#grpc.RpcContext</a>
- <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://stackoverflow.com/questions/44718078/how-to-write-a-grpc-python-unittest">How to write a GRPC python unittest - Stack Overflow</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><a href="https://grpc.io/grpc/python/grpc.html#grpc.ServicerContext">https://grpc.io/grpc/python/grpc.html#grpc.ServicerContext</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p><a href="https://grpc.io/docs/tutorials/basic/python.html#simple-rpc">https://grpc.io/docs/tutorials/basic/python.html#simple-rpc</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p><a href="https://grpc.io/grpc/python/grpc.html#grpc.RpcContext">https://grpc.io/grpc/python/grpc.html#grpc.RpcContext</a>&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#テストするサービスの定義">テストするサービスの定義</a></li>
+    <li><a href="#サービスの実装">サービスの実装</a></li>
+    <li><a href="#サーバクライアントの実装">サーバ/クライアントの実装</a></li>
+    <li><a href="#サービスの引数">サービスの引数</a></li>
+    <li><a href="#テストの実装">テストの実装</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

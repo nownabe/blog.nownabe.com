@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,71 +48,71 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/02/06/1251.html/">Python機械学習プログラミング  第9章</a></h2>
     <span class="date">Posted on Feb 6, 2018</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="概要">概要</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="概要">概要</h1>
 <p>Python機械学習プログラミングの学習メモです。
 勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。</p>
-
 <p>今回は、第9章 機械学習の適用2 - Webアプリケーション</p>
-
 <p>前回: <a href="https://blog.nownabe.com/2018/02/06/1250.html">nownab.log | Python機械学習プログラミング 第8章</a></p>
-
 <h1 id="資料">資料</h1>
-
 <h1 id="環境">環境</h1>
-
 <p>本書の各バージョンは結構古いので、できるだけ新しいバージョンを使うようにしている。</p>
-
 <ul>
 <li>Python 3.6.4</li>
 <li>scikit-learn 0.19.1</li>
 <li>matplotlib 2.1.1</li>
 </ul>
-
 <h1 id="メモ">メモ</h1>
-
-<h2 id="9-1-学習済みの-scikit-learn-推定器をシリアライズする">9.1 学習済みの scikit-learn 推定器をシリアライズする</h2>
-
-<h2 id="9-2-データストレージとして-sqlite-データベースをセットアップする">9.2 データストレージとして SQLite データベースをセットアップする</h2>
-
-<h2 id="9-3-flask-を使って-web-アプリケーションを開発する">9.3 Flask を使って Web アプリケーションを開発する</h2>
-
-<h3 id="9-3-1-はじめての-flask-web-アプリケーション">9.3.1 はじめての Flask Web アプリケーション</h3>
-
-<h3 id="9-3-2-フォームの検証とレンダリング">9.3.2 フォームの検証とレンダリング</h3>
-
-<h2 id="9-4-映画レビュー分類器を-web-アプリケーションとして実装する">9.4 映画レビュー分類器を Web アプリケーションとして実装する</h2>
-
-<h2 id="9-5-web-アプリケーションをパブリック-web-サーバーにデプロイする">9.5 Web アプリケーションをパブリック Web サーバーにデプロイする</h2>
-
+<h2 id="91-学習済みの-scikit-learn-推定器をシリアライズする">9.1 学習済みの scikit-learn 推定器をシリアライズする</h2>
+<h2 id="92-データストレージとして-sqlite-データベースをセットアップする">9.2 データストレージとして SQLite データベースをセットアップする</h2>
+<h2 id="93-flask-を使って-web-アプリケーションを開発する">9.3 Flask を使って Web アプリケーションを開発する</h2>
+<h3 id="931-はじめての-flask-web-アプリケーション">9.3.1 はじめての Flask Web アプリケーション</h3>
+<h3 id="932-フォームの検証とレンダリング">9.3.2 フォームの検証とレンダリング</h3>
+<h2 id="94-映画レビュー分類器を-web-アプリケーションとして実装する">9.4 映画レビュー分類器を Web アプリケーションとして実装する</h2>
+<h2 id="95-web-アプリケーションをパブリック-web-サーバーにデプロイする">9.5 Web アプリケーションをパブリック Web サーバーにデプロイする</h2>
 <p><a href="https://www.pythonanywhere.com/">Host, run, and code Python in the cloud: PythonAnywhere</a></p>
-
 <p>PythonAnywhereはブラウザから1つずつファイルをアップロードする感じで、昔のFTPでCGIアップロードしてたのを思い出した 😂</p>
-
 <p>ちょっとやって上手く動かなかったけど、もう2度と触ることはないだろうから早々に諦めた。</p>
-
-<h3 id="9-5-1-映画レビュー分類器を更新する">9.5.1 映画レビュー分類器を更新する</h3>
-
+<h3 id="951-映画レビュー分類器を更新する">9.5.1 映画レビュー分類器を更新する</h3>
 <h1 id="python機械学習プログラミング">Python機械学習プログラミング</h1>
-
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B01HGIPIAK&linkId=ef8aa25f336a01f62b00fce21e6f952a"></iframe>
-
 <h1 id="機械学習勉強会について">機械学習勉強会について</h1>
-
 <p>社内で毎週開催している。本書は輪読形式でまわしているが、題材によって形式は柔軟に変えている。
 毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。</p>
-
 <p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。
 <a href="https://github.com/Wondershake/machine-learning-study">Wondershake/machine-learning-study: 機械学習勉強会</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-math" data-lang="math"></code></pre></div>
+<pre tabindex="0"><code class="language-math" data-lang="math"></code></pre>
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#91-学習済みの-scikit-learn-推定器をシリアライズする">9.1 学習済みの scikit-learn 推定器をシリアライズする</a></li>
+    <li><a href="#92-データストレージとして-sqlite-データベースをセットアップする">9.2 データストレージとして SQLite データベースをセットアップする</a></li>
+    <li><a href="#93-flask-を使って-web-アプリケーションを開発する">9.3 Flask を使って Web アプリケーションを開発する</a>
+      <ul>
+        <li><a href="#931-はじめての-flask-web-アプリケーション">9.3.1 はじめての Flask Web アプリケーション</a></li>
+        <li><a href="#932-フォームの検証とレンダリング">9.3.2 フォームの検証とレンダリング</a></li>
+      </ul>
+    </li>
+    <li><a href="#94-映画レビュー分類器を-web-アプリケーションとして実装する">9.4 映画レビュー分類器を Web アプリケーションとして実装する</a></li>
+    <li><a href="#95-web-アプリケーションをパブリック-web-サーバーにデプロイする">9.5 Web アプリケーションをパブリック Web サーバーにデプロイする</a>
+      <ul>
+        <li><a href="#951-映画レビュー分類器を更新する">9.5.1 映画レビュー分類器を更新する</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

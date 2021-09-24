@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,23 +48,20 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2016/08/16/408.html/">RustをRubyから呼び出したら爆速</a></h2>
     <span class="date">Posted on Aug 16, 2016</span>
   </div>
-  <div class="body">
-    
-
-<p>なぜかRustのドキュメントの日本語版だけに英語で存在している<a href="https://rust-lang-ja.github.io/the-rust-programming-language-ja/1.6/book/rust-inside-other-languages.html">Rust Inside Other Languages</a>という章に、FFIを使ってRubyの並列処理を高速化するというのがあったのでやってみたら爆速でした 🚀</p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>なぜかRustのドキュメントの日本語版だけに英語で存在している<a href="https://rust-lang-ja.github.io/the-rust-programming-language-ja/1.6/book/rust-inside-other-languages.html">Rust Inside Other Languages</a>という章に、FFIを使ってRubyの並列処理を高速化するというのがあったのでやってみたら爆速でした 🚀</p>
 <p>この記事タイトルも雑ですが内容も雑です。説明する気はない感じになってます 🙏
 雰囲気を感じていただければ 😉</p>
-
 <h1 id="元のrubyコード">元のRubyコード</h1>
-
 <p>単純に10スレッド立ち上げて1スレッド毎に5百万回カウントするという処理です。</p>
-<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">threads</span> <span class="o">=</span> <span class="o">[]</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">threads</span> <span class="o">=</span> <span class="o">[]</span>
 
 <span class="mi">10</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
   <span class="n">threads</span> <span class="o">&lt;&lt;</span> <span class="no">Thread</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span>
@@ -80,10 +77,9 @@ if (!doNotTrack) {
   <span class="nb">puts</span> <span class="s2">&#34;Thread finished with count=</span><span class="si">#{</span><span class="n">t</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&#34;</span>
 <span class="k">end</span>
 
-<span class="nb">puts</span> <span class="s2">&#34;done!&#34;</span></code></pre></div>
-<p>なんとこれだけでもマイMac Book Proだと2秒以上かかりました。</p>
-
-<pre><code>$ time ruby pure_ruby.rb
+<span class="nb">puts</span> <span class="s2">&#34;done!&#34;</span>
+</code></pre></div><p>なんとこれだけでもマイMac Book Proだと2秒以上かかりました。</p>
+<pre tabindex="0"><code>$ time ruby pure_ruby.rb
 Thread finished with count=5000000
 Thread finished with count=5000000
 Thread finished with count=5000000
@@ -96,18 +92,13 @@ Thread finished with count=5000000
 Thread finished with count=5000000
 done!
 ruby pure_ruby.rb  2.52s user 0.05s system 99% cpu 2.593 total
-</code></pre>
-
-<p>RubyにはGIL (Global Interpreter Lock)という仕組みがあってCPUを1コアしか使えてません 😭</p>
-
+</code></pre><p>RubyにはGIL (Global Interpreter Lock)という仕組みがあってCPUを1コアしか使えてません 😭</p>
 <p>なのでCPUぶん回すような並列処理はだいぶ遅いです。
 <code>top</code>コマンドとかで1コアしか使えてないのを確認することができます。</p>
-
 <h1 id="rustで書く">Rustで書く</h1>
-
 <p>というわけで、並列化の部分をRustに外出ししてみます。
 Rustは所有権とかいう難しいあれのおかげで、並列処理も安全かつ高速にいい感じにやってくれます ✨</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">thread</span><span class="p">;</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">thread</span><span class="p">;</span><span class="w">
 </span><span class="w">
 </span><span class="w"></span><span class="cp">#[no_mangle]</span><span class="w">
 </span><span class="w"></span><span class="k">pub</span><span class="w"> </span><span class="k">extern</span><span class="w"> </span><span class="k">fn</span> <span class="nf">process</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -126,20 +117,16 @@ Rustは所有権とかいう難しいあれのおかげで、並列処理も安�
 </span><span class="w">                 </span><span class="n">h</span><span class="p">.</span><span class="n">join</span><span class="p">().</span><span class="n">map_err</span><span class="p">(</span><span class="o">|</span><span class="n">_</span><span class="o">|</span><span class="w"> </span><span class="s">&#34;Could not a join thread!&#34;</span><span class="p">).</span><span class="n">unwrap</span><span class="p">());</span><span class="w">
 </span><span class="w">    </span><span class="p">}</span><span class="w">
 </span><span class="w"></span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>詳しくはドキュメントを読んでいただければわかると思います。
+</span></code></pre></div><p>詳しくはドキュメントを読んでいただければわかると思います。
 とにかくRust側でスレッドを使って同じ処理をしています。</p>
-
 <p>これをコンパイルすると、<code>libembed.dylib</code>というファイルができます。
 これをRubyで使えるようにします。</p>
-
 <h1 id="ffiする">FFIする</h1>
-
 <p>RubyからRustの関数を呼ぶにはFFI(Foreign Function Interface)という仕組みを使います。
 まずはGemをインストールします。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gem install ffi</code></pre></div>
-<p>Rubyのコードは次のようになります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-rb" data-lang="rb"><span class="nb">require</span> <span class="s2">&#34;ffi&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">gem install ffi
+</code></pre></div><p>Rubyのコードは次のようになります。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rb" data-lang="rb"><span class="nb">require</span> <span class="s2">&#34;ffi&#34;</span>
 
 <span class="k">module</span> <span class="nn">Hello</span>
   <span class="kp">extend</span> <span class="no">FFI</span><span class="o">::</span><span class="no">Library</span>
@@ -149,14 +136,13 @@ Rustは所有権とかいう難しいあれのおかげで、並列処理も安�
 
 <span class="no">Hello</span><span class="o">.</span><span class="n">process</span>
 
-<span class="nb">puts</span> <span class="s2">&#34;done!&#34;</span></code></pre></div>
-<p>なんとなく感じはわかります。
+<span class="nb">puts</span> <span class="s2">&#34;done!&#34;</span>
+</code></pre></div><p>なんとなく感じはわかります。
 <code>ffi_lib &quot;embed/target/release/libembed.dylib&quot;</code>という行でRustをコンパイルしたライブラリを<code>Hello</code>モジュールに読み込んでます。
 <code>attach_function</code>はライブラリの関数をRubyのメソッドとして割り当てるメソッドです。
 第2引数が関数の引数の型で、第3引数が返り値の型です。</p>
-
 <h1 id="実行してみる">実行してみる</h1>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">time</span> ruby embed.rb
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">time</span> ruby embed.rb
 Thread finished with <span class="nv">count</span><span class="o">=</span><span class="m">5000000</span>
 Thread finished with <span class="nv">count</span><span class="o">=</span><span class="m">5000000</span>
 Thread finished with <span class="nv">count</span><span class="o">=</span><span class="m">5000000</span>
@@ -168,19 +154,22 @@ Thread finished with <span class="nv">count</span><span class="o">=</span><span 
 Thread finished with <span class="nv">count</span><span class="o">=</span><span class="m">5000000</span>
 Thread finished with <span class="nv">count</span><span class="o">=</span><span class="m">5000000</span>
 <span class="k">done</span>!
-ruby embed.rb  <span class="m">0</span>.09s user <span class="m">0</span>.05s system <span class="m">98</span>% cpu <span class="m">0</span>.144 total</code></pre></div>
-<p>爆速！！！ 🔥🚀</p>
-
+ruby embed.rb  0.09s user 0.05s system 98% cpu 0.144 total
+</code></pre></div><p>爆速！！！ 🔥🚀</p>
 <h1 id="おわりに">おわりに</h1>
-
 <p>今仕事でパフォーマンスチューニングとかもやってるので、チャンスがあれば使ってみたいなー 😍
 (無理に使おうとは思わない 😅  )</p>
-
 <p>WebAssemblyへコンパイルする実装とかも<a href="https://github.com/brson/mir2wasm">未完成ながらある</a>っぽいので、フロントエンドとかでも使えるかもしれない 💪
 WebAssemblyはMozillaも絡んでるし！</p>
-
 <p>Rustの波が来てる！！(マイブーム)</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

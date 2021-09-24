@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,110 +48,115 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/10/03/1416.html/">GCP updates  | October 1, 2018</a></h2>
     <span class="date">Posted on Oct 3, 2018</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="databases">DATABASES</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="databases">DATABASES</h1>
 <h2 id="new-asia-south1-cloud-bigtable-region-added-ga">New asia-south1 Cloud Bigtable region added: GA</h2>
-
 <blockquote>
 <p>Cloud Bigtable is now available in the asia-south1 (Mumbai, India) region. <a href="https://cloud.google.com/bigtable/">Product page</a></p>
 </blockquote>
-
 <h1 id="data-analytics">DATA ANALYTICS</h1>
-
-<h2 id="bigquery-apache-orc-ingestion-ga">BigQuery – Apache ORC ingestion: GA</h2>
-
+<h2 id="bigquery--apache-orc-ingestion-ga">BigQuery – Apache ORC ingestion: GA</h2>
 <blockquote>
 <p>This feature adds support for importing ORC data from Cloud Storage into BigQuery. You can access it through <a href="https://cloud.google.com/apis/docs/cloud-client-libraries">Cloud Client Libraries</a> in any of the seven supported languages. ORC is an open-source, column-oriented data format, widely used in the Apache Hadoop ecosystem. <a href="https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-orc">Documentation</a></p>
 </blockquote>
-
-<hr />
-
+<hr>
 <p>Additional releases</p>
-
 <h1 id="compute">COMPUTE</h1>
-
 <h2 id="containers-on-compute-engine-ga">Containers on Compute Engine: GA</h2>
-
 <blockquote>
 <p>This release allows you to deploy software to a Compute Engine VM instance or a managed instance group using the Docker container image format in a declarative way. You provide a Docker image name, configure how your container should run, and Compute Engine runs it automatically. <a href="https://cloud.google.com/compute/docs/containers/deploying-containers">Documentation</a></p>
 </blockquote>
-
 <p>なんとも中途半端な機能ですがGAになったみたいですね。サーバーレスコンテナのテスト機能感がある。</p>
-
 <h2 id="zonal-dns-names-for-compute-engine-ga">Zonal DNS names for Compute Engine: GA</h2>
-
 <blockquote>
 <p>Zonal DNS names let you build more fault-tolerant applications with improved availability and performance. Because they contain the Compute Engine zone that your VM instance resides in, VM instances with zonal DNS names aren’t affected by the health of other locations. <a href="https://cloud.google.com/compute/docs/internal-dns#zonal-dns">Documentation</a></p>
 </blockquote>
-
 <p>んー、具体的に何がどうなるんだ？
 VM内からの問い合わせ先がZonalなやつになるってことか？</p>
-
 <h1 id="data-analytics-1">DATA ANALYTICS</h1>
-
 <h2 id="new-site-for-tensorflow-hub-ga">New site for TensorFlow Hub: GA</h2>
-
 <blockquote>
 <p>A new web experience for TensorFlow Hub makes it easier for developers to search for and find TensorFlow modules for their use cases. It paves the way to a multipublisher platform. <a href="https://medium.com/tensorflow/a-new-tensorflow-hub-web-experience-c804496e99f3">Blog</a></p>
 </blockquote>
-
 <p>GCP Updatesなのか？</p>
-
-<h2 id="bigquery-scheduled-queries-beta">BigQuery – scheduled queries: beta</h2>
-
+<h2 id="bigquery--scheduled-queries-beta">BigQuery – scheduled queries: beta</h2>
 <blockquote>
 <p>This launch makes it possible for you to run parameterized queries on a scheduled basis and organize query results by date and time. You must write scheduled queries in standard SQL, which can include data definition language and data manipulation language statements. <a href="https://cloud.google.com/bigquery/docs/scheduling-queries">Documentation</a></p>
 </blockquote>
-
 <p>これはアツいですね！BigQueryだけで定期実行できるようになるやつです。
 Pub/Subやメールでの通知もできるみたいですね。</p>
-
 <h2 id="bigquery-geographic-information-systems-beta">BigQuery Geographic Information Systems: beta</h2>
-
 <p>BigQuery GIS enables you to conduct geospatial analyses at any scale, using the power of BigQuery’s cloud MPP architecture. Using standard SQL, your spatial data can now be analyzed precisely using a new geography data type and with common GIS functions. <a href="https://cloud.google.com/bigquery/docs/gis-intro">Documentation</a></p>
-
 <h1 id="security">SECURITY</h1>
-
 <h2 id="access-transparency-ga">Access Transparency: GA</h2>
-
 <blockquote>
 <p>Access Transparency gives you expanded visibility over your cloud provider, with near real-time logs that show when Google Cloud Platform administrators access your content. <a href="https://cloud.google.com/access-transparency/">Product page</a></p>
 </blockquote>
-
 <p>GCPの中の人がなにかしら自分たちのものにアクセスしたときにログが残るってやつですね。</p>
-
 <h1 id="networking">NETWORKING</h1>
-
 <h2 id="ability-to-enable-and-disable-firewall-rules-ga">Ability to enable and disable firewall rules: GA</h2>
-
 <blockquote>
 <p>This feature lets you see how your network behaves without firewall rules, making it easy to disable and then quickly re-enable them. <a href="https://cloud.google.com/vpc/docs/firewalls">Documentation</a></p>
 </blockquote>
-
 <p>開発とかテストがしやすくなっていいですね！</p>
-
 <h1 id="media-solutions">MEDIA SOLUTIONS</h1>
-
 <h2 id="zync-render-support-for-chaos-group-v-ray-for-maxon-cinema-4d-beta">Zync Render support for Chaos Group V-Ray for MAXON Cinema 4D: beta</h2>
-
 <p>Zync Render now supports V-Ray for Cinema 4D. <a href="https://www.maxon.net/en/products/cinema-4d/overview/">Website</a></p>
-
 <h1 id="databases-1">DATABASES</h1>
-
 <h2 id="key-visualizer-for-cloud-bigtable-ga">Key Visualizer for Cloud Bigtable: GA</h2>
-
 <blockquote>
 <p>You can now analyze your Cloud Bigtable usage patterns with Key Visualizer, which generates visual reports for your tables that break down your usage based on the row keys that you access. <a href="https://cloud.google.com/bigtable/docs/keyvis-overview">Documentation</a></p>
 </blockquote>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#new-asia-south1-cloud-bigtable-region-added-ga">New asia-south1 Cloud Bigtable region added: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#bigquery--apache-orc-ingestion-ga">BigQuery – Apache ORC ingestion: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#containers-on-compute-engine-ga">Containers on Compute Engine: GA</a></li>
+    <li><a href="#zonal-dns-names-for-compute-engine-ga">Zonal DNS names for Compute Engine: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#new-site-for-tensorflow-hub-ga">New site for TensorFlow Hub: GA</a></li>
+    <li><a href="#bigquery--scheduled-queries-beta">BigQuery – scheduled queries: beta</a></li>
+    <li><a href="#bigquery-geographic-information-systems-beta">BigQuery Geographic Information Systems: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#access-transparency-ga">Access Transparency: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#ability-to-enable-and-disable-firewall-rules-ga">Ability to enable and disable firewall rules: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#zync-render-support-for-chaos-group-v-ray-for-maxon-cinema-4d-beta">Zync Render support for Chaos Group V-Ray for MAXON Cinema 4D: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#key-visualizer-for-cloud-bigtable-ga">Key Visualizer for Cloud Bigtable: GA</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

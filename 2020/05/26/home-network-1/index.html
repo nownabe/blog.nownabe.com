@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,21 +48,18 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2020/05/26/home-network-1/">自宅ネットワーク改善日記その1 調査編</a></h2>
     <span class="date">Posted on May 26, 2020</span>
   </div>
-  <div class="body">
-    
-
-<p>今週末にいよいよ弊家に光回線が開通しそうなので、この機にネットワーク環境を全体的に見直すことにしました。
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>今週末にいよいよ弊家に光回線が開通しそうなので、この機にネットワーク環境を全体的に見直すことにしました。
 サーバーとかネットワークとかに手を加える時は毎回、前は何を考えてたのか忘れてしまって困るので今回はちゃんとブログとして残しておこうと思います。</p>
-
 <p>まずは今の状況がどんな感じか調べました。</p>
-
 <p>全日記:</p>
-
 <ul>
 <li><a href="/2020/05/26/home-network-1/">その1 調査編</a></li>
 <li><a href="/2020/05/28/home-network-2/">その2 L2SW交換編</a></li>
@@ -72,97 +69,83 @@ if (!doNotTrack) {
 <li><a href="/2020/06/01/home-network-6/">その6 IPv4 over IPv6編</a></li>
 <li><a href="/2020/06/10/home-network-7/">その7 VLAN編</a></li>
 </ul>
-
 <h2 id="経緯">経緯</h2>
-
 <p>飛ばしてください。</p>
-
 <p>去年の秋頃までは十分な速度が出てたのでマンションに無料でついてるインターネットサービスを使ってましたが、その頃から遅かったり繋がらなかったりでまともにスプラトゥーン2ができなくなってしまったのですぐにNUROを申し込みました。
 が、数週間待って工事に来てもらったはいいもののマンション都合で工事ができず、マンションの管理会社とNUROと連絡をしたり、さらに何回か調査や工事に来てもらったりしていろいろ手を尽くしたものの結局無理ということで諦めました。
 その後はフレッツ光を申し込むもコロナの影響でマンションの管理人さんが不在で工事ができなかったり、管理人さんとNTTと日程を調整して工事日を予約してようやく開通すると思ったら、NTTからその日に工事するのは無理なので1ヶ月後に調査してさらにその2週間後に工事しますみたいな連絡が来たりしてました。
 こんな感じでもう半年以上まともなインターネット環境がない状態で、ひきこもりにとってはインターネットまともに繋がらないだけでかなりのストレスな上に、何度も繰り返した工事日予約は取れる日が何週間も先だし、理不尽な日程変更とかもありつつ心身ともに疲れ切ったんですが、前回の調査と言う名の工事で弊家まで光ケーブル引き込んで「次回は管理人さんいなくても開通できます」と工事の方が言ってたので、半年以上かかってようやくインターネットによる人権を手に入れられそうです。
 まともにできない状態が続いてもうスプラトゥーン2の熱は完全に冷めてしまいましたが。</p>
-
 <h2 id="光回線開通するだけちゃうんかい">光回線開通するだけちゃうんかい</h2>
-
 <p>これを機に回線速度をフル活用できるようにしたり、自宅LANを整えたりしようと計画しています。</p>
-
 <p>今まではマンション付属の無料サービスということで、プライベートIPしかもらえないし、回線速度もMAX200Mbpsぐらいでした。
 なので引っ越してからサーバーマシンもただの邪魔な置物になってたり、LANのMaxスピードが100Mbpsだったりという環境を放置してました。</p>
-
 <p>今のマンションに入居する前は自分で光回線契約してサーバーのLinuxで自宅LANのネットワーク機能を構築してたんですが、今回は新しくルーター買って整えようと考えています。
 また、せっかくの光回線を活かせるように自宅LANを100Mbpsから1Gbpsにパワーアップさせるつもりです。</p>
-
 <h2 id="回線速度">回線速度</h2>
-
 <p>早朝などの調子が良いときは、200Mbpsぐらい出ます。
 が、仕事中とか夜はそんな速度が出ることはなく、数Mbpsとか良くても数十Mbpsぐらいです。</p>
-
-<p><img src="/images/2020/05/26/speed.png" width="600"></p>
-
+<img src="/images/2020/05/26/speed.png" width="600">
 <p>この画像は2.58Mbps出てるしレイテンシも31msなのでまだマシな方で、1日数回は全く繋がらなくなったりします。
 仕事ではミーティングが多いんですが、よく相手の声が聞こえなかったり落ちたりして困ります。</p>
-
 <h2 id="物理構成">物理構成</h2>
-
 <p>自宅LAN刷新にあたってどの機器を置き換える必要があるのか調べました。
 物理構成図はこんな感じです。</p>
-
-<p><img src="/images/2020/05/26/physical-diagram.png" width="800"></p>
-
+<img src="/images/2020/05/26/physical-diagram.png" width="800">
 <p>図の実線はLANケーブルで、水色が壁内配線のCat5eケーブル、青が自分で用意したCat7ケーブル、黄色は不明ケーブルです。
 マンションネットワークにつながる線も厳密には不明なんですが、壁内配線と同じだろうということでCat5eだと判断してます。
 点線は無線LANです。</p>
-
 <p>このままだとL2SWが2つとも100BASE-TXにしか対応してなくて、せっかく光回線を引いても有線だと100Mbpsしか出ないということがわかります。</p>
-
 <p>実際、回線の調子がいいときに無線LANと有線LANで回線速度を計測してみました。
 無線LANだと100Mbps以上のスピードが出てますが、有線LANだと100Mbpsまでしかでません。</p>
-
-<p><img src="/images/2020/05/26/compare-lan.png" width="600"></p>
-
+<img src="/images/2020/05/26/compare-lan.png" width="600">
 <h3 id="l2sw">L2SW</h3>
-
-<p><img src="/images/2020/05/26/tor-photo.png" width="800"></p>
-
+<img src="/images/2020/05/26/tor-photo.png" width="800">
 <p>弊家は壁内配線によって各部屋にLANポートが用意されているんですが、そのハブになっているL2SWはCoregaの<a href="http://corega.jp/prod/co-bsw08tx/">BSW08TX</a>という製品でした。
 このスイッチはマンション備え付けのもので、入居したときからToR (Top of 収納Rack) として写真のような形で設置されていました (LANケーブルがいっぱいささってるやつ)。
 入居した時にはこのスイッチに大元のマンションネットワークからのケーブルと、各部屋のLANポートまでつながるケーブルが挿してありました。
 今はマンションNWとの間にはGoogle Wifiをはさんでいます。</p>
-
-<p><img src="/images/2020/05/26/iodata-photo.png" width="800"></p>
-
+<img src="/images/2020/05/26/iodata-photo.png" width="800">
 <p>もう一つL2SWがあり、こちらはIO DATAの<a href="https://www.iodata.jp/product/lan/hub/etx-sh5/">ETX-SH5</a>という製品です。
 僕の部屋 (リビングの片隅) でLANポートと各機器のハブとして使っていました。
 こいつとはもう15年ぐらいの付き合いなんですが、100BASE-TXまでしか対応してないのでこの機にリタイアしてもらうことにしました。
 今までありがとう 👋😭</p>
-
 <h3 id="lanケーブル">LANケーブル</h3>
-
 <p>次にToRのスイッチと各部屋のLANポートを壁内配線で接続しているLANケーブルの規格を調べました。
 ToR側に見えているケーブルだけだと何もわからなかったので、コンセントを開きました。</p>
-
-<p><img src="/images/2020/05/26/lan-port-back.png" width="600"></p>
-
+<img src="/images/2020/05/26/lan-port-back.png" width="600">
 <p>裏にCAT.5Eと書いてあってCategory 5eだということがわかりました。
 もしCategory 5だったら100Mbpsしか出ないので壁内配線全部取り替えることになるなぁと思ってたんですが、その必要はなくて安心しました。</p>
-
 <p>ちなみに、コンセントを開いて閉じてから表にも5eって書いてあることに気づきました 😇</p>
-
-<p><img src="/images/2020/05/26/lan-port-front.png" width="600"></p>
-
+<img src="/images/2020/05/26/lan-port-front.png" width="600">
 <h2 id="論理構成">論理構成</h2>
-
 <p>入居した当時はもうネットワークに凝るのはやめよう！と思ってたので、特に何も考えずにマンションのサービスを使ってました。
 何もしてません。こんな感じです。</p>
-
-<p><img src="/images/2020/05/26/logical-diagram.png" width="600"></p>
-
+<img src="/images/2020/05/26/logical-diagram.png" width="600">
 <h1 id="おわりに">おわりに</h1>
-
 <p>以上で調査編は終わりです。
 次から改善していきますが、光回線が開通するのはまだ先なのでまずは自宅LAN環境をグレードアップしたいと思います。</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#経緯">経緯</a></li>
+    <li><a href="#光回線開通するだけちゃうんかい">光回線開通するだけちゃうんかい</a></li>
+    <li><a href="#回線速度">回線速度</a></li>
+    <li><a href="#物理構成">物理構成</a>
+      <ul>
+        <li><a href="#l2sw">L2SW</a></li>
+        <li><a href="#lanケーブル">LANケーブル</a></li>
+      </ul>
+    </li>
+    <li><a href="#論理構成">論理構成</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

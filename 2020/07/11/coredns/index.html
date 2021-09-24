@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,27 +48,21 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2020/07/11/coredns/">CoreDNS で DNS サーバたてた</a></h2>
     <span class="date">Posted on Jul 11, 2020</span>
   </div>
-  <div class="body">
-    
-
-<p><img src="/images/2020/07/11/coredns.png" style="border: none"></p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <img src="/images/2020/07/11/coredns.png" style="border: none">
 <p><a href="https://coredns.io/">CoreDNS</a> を使って自宅のネットワークに DNS サーバをたてました。</p>
-
-<p>Kubernetesを構築して<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>プライベートのサービスを動かそうと思ってたんですが、そのときにサービスにもドメインつけたいし、サーバごにょごにょするときのもドメインほしいしってことでDNSサーバをたてました。</p>
-
+<p>Kubernetesを構築して<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>プライベートのサービスを動かそうと思ってたんですが、そのときにサービスにもドメインつけたいし、サーバごにょごにょするときのもドメインほしいしってことでDNSサーバをたてました。</p>
 <h2 id="そもそもたてる必要あるの">そもそもたてる必要あるの？</h2>
-
 <p>SSHするときもWebでアクセスするときもIPよりはドメインの方がいいので、なんらかのDNSサーバは必要でした。
 DNSサーバの選択肢として、他にはパブリッククラウドのDNSサービス、ルータのDNS機能がありました。</p>
-
 <p>簡単に比較するとこんな感じです。</p>
-
 <table>
 <thead>
 <tr>
@@ -79,7 +73,6 @@ DNSサーバの選択肢として、他にはパブリッククラウドのDNS�
 <th>コメント</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>料金</td>
@@ -88,7 +81,6 @@ DNSサーバの選択肢として、他にはパブリッククラウドのDNS�
 <td>😆</td>
 <td>有料か無料か</td>
 </tr>
-
 <tr>
 <td>反応速度</td>
 <td>😷</td>
@@ -96,7 +88,6 @@ DNSサーバの選択肢として、他にはパブリッククラウドのDNS�
 <td>😆</td>
 <td>やっぱりローカルは圧倒的に速い</td>
 </tr>
-
 <tr>
 <td>運用</td>
 <td>😆</td>
@@ -104,7 +95,6 @@ DNSサーバの選択肢として、他にはパブリッククラウドのDNS�
 <td>😷</td>
 <td>オンプレはだるい</td>
 </tr>
-
 <tr>
 <td>設定</td>
 <td>😆</td>
@@ -112,7 +102,6 @@ DNSサーバの選択肢として、他にはパブリッククラウドのDNS�
 <td>😷</td>
 <td>/etc/hosts書き換えればOK</td>
 </tr>
-
 <tr>
 <td>自動化</td>
 <td>😆</td>
@@ -120,7 +109,6 @@ DNSサーバの選択肢として、他にはパブリッククラウドのDNS�
 <td>😷</td>
 <td>etcdプラグインとか使えば簡単にできる</td>
 </tr>
-
 <tr>
 <td>機能</td>
 <td>😄</td>
@@ -130,16 +118,11 @@ DNSサーバの選択肢として、他にはパブリッククラウドのDNS�
 </tr>
 </tbody>
 </table>
-
 <p>速くて無料で必要な機能が実現できる、ということで自前でDNSサーバたてることを選択しました。
 運用に関しても、データぶっ飛んでもすぐ復旧できるレベルでしか使わないだろうし、なんか問題でてきたらクラウドに移せばいいぐらいの感覚です。</p>
-
 <h2 id="なんでcoredns">なんでCoreDNS？</h2>
-
 <p><a href="https://coredns.io/">CoreDNS</a>っていうのはCNCFにホストされている、Goで書かれたDNSサーバです。</p>
-
 <p>CoreDNSを選んだのはこのへんが理由です。</p>
-
 <ul>
 <li>CNCFのプロジェクトということで以前から使ってみたいと思ってた</li>
 <li>dnsmasq的な <code>/etc/hosts</code> での設定ができる</li>
@@ -149,14 +132,11 @@ DNSサーバの選択肢として、他にはパブリッククラウドのDNS�
 <li>機能が全部プラグインで実現されてるって思想が良い</li>
 <li>Goで書かれている</li>
 </ul>
-
 <p>今までBind、dnsmasq、PowerDNSを構築、運用したことあるんですが、今の所一番気に入ってます。
 使用感もいいし、わくわく感もあります。</p>
-
 <h2 id="構築手順">構築手順</h2>
-
 <p>Kubernetesのマスターとなるサーバにインストールしました。以下rootでの実行コマンドです。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ダウンロード、インストール</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ダウンロード、インストール</span>
 
 curl -LO https://github.com/coredns/coredns/releases/download/v1.6.9/coredns_1.6.9_linux_amd64.tgz
 tar xf coredns_1.6.9_linux_amd64.tgz
@@ -232,141 +212,151 @@ cat <span class="s">&lt;&lt;EOF &gt; /etc/coredns/nownabe.in
 
 <span class="c1"># CoreDNS有効化、起動</span>
 systemctl <span class="nb">enable</span> coredns
-systemctl start coredns</code></pre></div>
-<p>バイナリひとつで動くのがいいですよね。Goプロダクトって感じです。</p>
-
+systemctl start coredns
+</code></pre></div><p>バイナリひとつで動くのがいいですよね。Goプロダクトって感じです。</p>
 <p>systemdのユニットファイルは、<a href="https://github.com/coredns/deployment">coredns/deployment</a>というリポジトリにある<a href="https://github.com/coredns/deployment/blob/master/systemd/coredns.service">coredns.service</a>を参考にしました。
 ちょっと古かったり余計な権限がついてたりしたので、少し修正しています。</p>
-
 <p>今の所レコードは/etc/hosts形式で設定しています。</p>
-
 <h2 id="dhcpの設定">DHCPの設定</h2>
-
 <p>ルータ RTX830 をDHCPサーバに使っているので、構築したDNSサーバを設定しました。</p>
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">no dns server pp 1
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt">no dns server pp 1
 no dns server dhcp lan2
 no dns server select 500000 dhcp lan2 any .
 no dns server select 500001 pp 1 any . restrict pp 1
 dns server 10.0.1.1 8.8.8.8 1.1.1.1
 dns notice order dhcp server
-dns domain cf.nownabe.in</code></pre></div>
-<h2 id="クライアントの設定">クライアントの設定</h2>
-
+dns domain cf.nownabe.in
+</code></pre></div><h2 id="クライアントの設定">クライアントの設定</h2>
 <p>DHCPを使っていないサーバにはそれぞれ手動で設定しました。
 いろいろあるのでそれぞれの設定は省略しますが、 <code>/etc/resolv.conf</code> はこんな感じです。</p>
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">nameserver 10.0.1.1
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt">nameserver 10.0.1.1
 nameserver 8.8.8.8
 nameserver 1.1.1.1
 domain cf.nownabe.in
-search cf.nownabe.in nownabe.in</code></pre></div>
-<h2 id="試してみる">試してみる</h2>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ dig kube-worker-1.cf.nownabe.in
+search cf.nownabe.in nownabe.in
+</code></pre></div><h2 id="試してみる">試してみる</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ dig kube-worker-1.cf.nownabe.in
 
-<span class="p">;</span> &lt;&lt;&gt;&gt; DiG <span class="m">9</span>.11.5-P4-5.1ubuntu2.2-Ubuntu &lt;&lt;&gt;&gt; kube-worker-1.cf.nownabe.in
+<span class="p">;</span> &lt;&lt;&gt;&gt; DiG 9.11.5-P4-5.1ubuntu2.2-Ubuntu &lt;&lt;&gt;&gt; kube-worker-1.cf.nownabe.in
 <span class="p">;;</span> global options: +cmd
 <span class="p">;;</span> Got answer:
 <span class="p">;;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">39530</span>
-<span class="p">;;</span> flags: qr aa rd<span class="p">;</span> QUERY: <span class="m">1</span>, ANSWER: <span class="m">1</span>, AUTHORITY: <span class="m">0</span>, ADDITIONAL: <span class="m">1</span>
+<span class="p">;;</span> flags: qr aa rd<span class="p">;</span> QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: <span class="m">1</span>
 <span class="p">;;</span> WARNING: recursion requested but not available
 
 <span class="p">;;</span> OPT PSEUDOSECTION:
-<span class="p">;</span> EDNS: version: <span class="m">0</span>, flags:<span class="p">;</span> udp: <span class="m">4096</span>
+<span class="p">;</span> EDNS: version: 0, flags:<span class="p">;</span> udp: <span class="m">4096</span>
 <span class="p">;</span> COOKIE: 10fad6c1cf5760b3 <span class="o">(</span>echoed<span class="o">)</span>
 <span class="p">;;</span> QUESTION SECTION:
 <span class="p">;</span>kube-worker-1.cf.nownabe.in.   IN      A
 
 <span class="p">;;</span> ANSWER SECTION:
-kube-worker-1.cf.nownabe.in. <span class="m">2288</span> IN    A       <span class="m">10</span>.0.1.101
+kube-worker-1.cf.nownabe.in. <span class="m">2288</span> IN    A       10.0.1.101
 
 <span class="p">;;</span> Query time: <span class="m">0</span> msec
-<span class="p">;;</span> SERVER: <span class="m">10</span>.0.1.1#53<span class="o">(</span><span class="m">10</span>.0.1.1<span class="o">)</span>
-<span class="p">;;</span> WHEN: 土  7月 <span class="m">11</span> <span class="m">21</span>:35:29 JST <span class="m">2020</span>
-<span class="p">;;</span> MSG SIZE  rcvd: <span class="m">111</span></code></pre></div>
-<p>いいですねー。0msで答えが返ってきてます。</p>
-
+<span class="p">;;</span> SERVER: 10.0.1.1#53<span class="o">(</span>10.0.1.1<span class="o">)</span>
+<span class="p">;;</span> WHEN: 土  7月 <span class="m">11</span> 21:35:29 JST <span class="m">2020</span>
+<span class="p">;;</span> MSG SIZE  rcvd: <span class="m">111</span>
+</code></pre></div><p>いいですねー。0msで答えが返ってきてます。</p>
 <p>外部ドメインでもキャッシュされてると0msで返ってきます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ dig google.com
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ dig google.com
 
-<span class="p">;</span> &lt;&lt;&gt;&gt; DiG <span class="m">9</span>.11.5-P4-5.1ubuntu2.2-Ubuntu &lt;&lt;&gt;&gt; google.com
+<span class="p">;</span> &lt;&lt;&gt;&gt; DiG 9.11.5-P4-5.1ubuntu2.2-Ubuntu &lt;&lt;&gt;&gt; google.com
 <span class="p">;;</span> global options: +cmd
 <span class="p">;;</span> Got answer:
 <span class="p">;;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">61410</span>
-<span class="p">;;</span> flags: qr aa rd ra<span class="p">;</span> QUERY: <span class="m">1</span>, ANSWER: <span class="m">1</span>, AUTHORITY: <span class="m">0</span>, ADDITIONAL: <span class="m">1</span>
+<span class="p">;;</span> flags: qr aa rd ra<span class="p">;</span> QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: <span class="m">1</span>
 
 <span class="p">;;</span> OPT PSEUDOSECTION:
-<span class="p">;</span> EDNS: version: <span class="m">0</span>, flags:<span class="p">;</span> udp: <span class="m">4096</span>
+<span class="p">;</span> EDNS: version: 0, flags:<span class="p">;</span> udp: <span class="m">4096</span>
 <span class="p">;</span> COOKIE: 1fc6abfd8e8a2b9d <span class="o">(</span>echoed<span class="o">)</span>
 <span class="p">;;</span> QUESTION SECTION:
 <span class="p">;</span>google.com.                    IN      A
 
 <span class="p">;;</span> ANSWER SECTION:
-google.com.             <span class="m">298</span>     IN      A       <span class="m">172</span>.217.24.142
+google.com.             <span class="m">298</span>     IN      A       172.217.24.142
 
 <span class="p">;;</span> Query time: <span class="m">0</span> msec
-<span class="p">;;</span> SERVER: <span class="m">10</span>.0.1.1#53<span class="o">(</span><span class="m">10</span>.0.1.1<span class="o">)</span>
-<span class="p">;;</span> WHEN: 土  7月 <span class="m">11</span> <span class="m">21</span>:38:23 JST <span class="m">2020</span>
-<span class="p">;;</span> MSG SIZE  rcvd: <span class="m">77</span></code></pre></div>
-<p>パブリックDNSサーバに問い合わせると4msとかかかります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ dig google.com @8.8.8.8
+<span class="p">;;</span> SERVER: 10.0.1.1#53<span class="o">(</span>10.0.1.1<span class="o">)</span>
+<span class="p">;;</span> WHEN: 土  7月 <span class="m">11</span> 21:38:23 JST <span class="m">2020</span>
+<span class="p">;;</span> MSG SIZE  rcvd: <span class="m">77</span>
+</code></pre></div><p>パブリックDNSサーバに問い合わせると4msとかかかります。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ dig google.com @8.8.8.8
 
-<span class="p">;</span> &lt;&lt;&gt;&gt; DiG <span class="m">9</span>.11.5-P4-5.1ubuntu2.2-Ubuntu &lt;&lt;&gt;&gt; google.com @8.8.8.8
+<span class="p">;</span> &lt;&lt;&gt;&gt; DiG 9.11.5-P4-5.1ubuntu2.2-Ubuntu &lt;&lt;&gt;&gt; google.com @8.8.8.8
 <span class="p">;;</span> global options: +cmd
 <span class="p">;;</span> Got answer:
 <span class="p">;;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">55448</span>
-<span class="p">;;</span> flags: qr rd ra<span class="p">;</span> QUERY: <span class="m">1</span>, ANSWER: <span class="m">1</span>, AUTHORITY: <span class="m">0</span>, ADDITIONAL: <span class="m">1</span>
+<span class="p">;;</span> flags: qr rd ra<span class="p">;</span> QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: <span class="m">1</span>
 
 <span class="p">;;</span> OPT PSEUDOSECTION:
-<span class="p">;</span> EDNS: version: <span class="m">0</span>, flags:<span class="p">;</span> udp: <span class="m">512</span>
+<span class="p">;</span> EDNS: version: 0, flags:<span class="p">;</span> udp: <span class="m">512</span>
 <span class="p">;;</span> QUESTION SECTION:
 <span class="p">;</span>google.com.                    IN      A
 
 <span class="p">;;</span> ANSWER SECTION:
-google.com.             <span class="m">203</span>     IN      A       <span class="m">172</span>.217.27.78
+google.com.             <span class="m">203</span>     IN      A       172.217.27.78
 
 <span class="p">;;</span> Query time: <span class="m">4</span> msec
-<span class="p">;;</span> SERVER: <span class="m">8</span>.8.8.8#53<span class="o">(</span><span class="m">8</span>.8.8.8<span class="o">)</span>
-<span class="p">;;</span> WHEN: 土  7月 <span class="m">11</span> <span class="m">21</span>:38:38 JST <span class="m">2020</span>
-<span class="p">;;</span> MSG SIZE  rcvd: <span class="m">55</span></code></pre></div>
-<p>ただ、キャッシュにのってない場合はめちゃくちゃ遅くなります。
-うーんなんでだろう。<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup></p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ dig google.com
+<span class="p">;;</span> SERVER: 8.8.8.8#53<span class="o">(</span>8.8.8.8<span class="o">)</span>
+<span class="p">;;</span> WHEN: 土  7月 <span class="m">11</span> 21:38:38 JST <span class="m">2020</span>
+<span class="p">;;</span> MSG SIZE  rcvd: <span class="m">55</span>
 
-<span class="p">;</span> &lt;&lt;&gt;&gt; DiG <span class="m">9</span>.11.5-P4-5.1ubuntu2.2-Ubuntu &lt;&lt;&gt;&gt; google.com
+</code></pre></div><p>ただ、キャッシュにのってない場合はめちゃくちゃ遅くなります。
+うーんなんでだろう。<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ dig google.com
+
+<span class="p">;</span> &lt;&lt;&gt;&gt; DiG 9.11.5-P4-5.1ubuntu2.2-Ubuntu &lt;&lt;&gt;&gt; google.com
 <span class="p">;;</span> global options: +cmd
 <span class="p">;;</span> Got answer:
 <span class="p">;;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">32912</span>
-<span class="p">;;</span> flags: qr rd ra<span class="p">;</span> QUERY: <span class="m">1</span>, ANSWER: <span class="m">1</span>, AUTHORITY: <span class="m">0</span>, ADDITIONAL: <span class="m">1</span>
+<span class="p">;;</span> flags: qr rd ra<span class="p">;</span> QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: <span class="m">1</span>
 
 <span class="p">;;</span> OPT PSEUDOSECTION:
-<span class="p">;</span> EDNS: version: <span class="m">0</span>, flags:<span class="p">;</span> udp: <span class="m">4096</span>
+<span class="p">;</span> EDNS: version: 0, flags:<span class="p">;</span> udp: <span class="m">4096</span>
 <span class="p">;;</span> QUESTION SECTION:
 <span class="p">;</span>google.com.                    IN      A
 
 <span class="p">;;</span> ANSWER SECTION:
-google.com.             <span class="m">299</span>     IN      A       <span class="m">172</span>.217.24.142
+google.com.             <span class="m">299</span>     IN      A       172.217.24.142
 
 <span class="p">;;</span> Query time: <span class="m">84</span> msec
-<span class="p">;;</span> SERVER: <span class="m">10</span>.0.1.1#53<span class="o">(</span><span class="m">10</span>.0.1.1<span class="o">)</span>
-<span class="p">;;</span> WHEN: 土  7月 <span class="m">11</span> <span class="m">21</span>:38:22 JST <span class="m">2020</span>
-<span class="p">;;</span> MSG SIZE  rcvd: <span class="m">65</span></code></pre></div>
-<h2 id="おわりに">おわりに</h2>
-
+<span class="p">;;</span> SERVER: 10.0.1.1#53<span class="o">(</span>10.0.1.1<span class="o">)</span>
+<span class="p">;;</span> WHEN: 土  7月 <span class="m">11</span> 21:38:22 JST <span class="m">2020</span>
+<span class="p">;;</span> MSG SIZE  rcvd: <span class="m">65</span>
+</code></pre></div><h2 id="おわりに">おわりに</h2>
 <p>以上です。無事に <code>ssh kube-worker-1</code> ができるようになって満足です。
-キャッシュにのってない外部ドメインのクエリがめっちゃ遅いのは不便なのでなんとかしたいですね。<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup></p>
-
+キャッシュにのってない外部ドメインのクエリがめっちゃ遅いのは不便なのでなんとかしたいですね。<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
 <p>今後は、簡単なWeb UIとかを作りたいなーと思ってます。</p>
-<div class="footnotes">
-
-<hr />
-
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1"><a href="https://blog.nownabe.com/2020/06/28/home-kubernetes-1">おうちKubernetes構築日記その1 Raspberry Pi編 - nownab.log</a>
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-<li id="fn:2">記事書いた直後に調べたら、単純にサーバから外に出る回線(PPPoE)が遅いだけだった
- <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://blog.nownabe.com/2020/06/28/home-kubernetes-1">おうちKubernetes構築日記その1 Raspberry Pi編 - nownab.log</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>記事書いた直後に調べたら、単純にサーバから外に出る回線(PPPoE)が遅いだけだった&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#そもそもたてる必要あるの">そもそもたてる必要あるの？</a></li>
+    <li><a href="#なんでcoredns">なんでCoreDNS？</a></li>
+    <li><a href="#構築手順">構築手順</a></li>
+    <li><a href="#dhcpの設定">DHCPの設定</a></li>
+    <li><a href="#クライアントの設定">クライアントの設定</a></li>
+    <li><a href="#試してみる">試してみる</a></li>
+    <li><a href="#おわりに">おわりに</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

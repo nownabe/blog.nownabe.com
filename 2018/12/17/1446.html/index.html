@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,26 +48,21 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/12/17/1446.html/">LB配下にメンテナンスサーバをNginxで構築する</a></h2>
     <span class="date">Posted on Dec 17, 2018</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="概要">概要</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="概要">概要</h1>
 <p>既存のアプリケーションサーバをファイル等でメンテナンスモードに切り替えるのではなく、メンテナンスモード専用のサーバを構築する方法です。いわゆるソーリーページを返すだけのサーバですね。
 LBにメンテナンスサーバを追加して、アプリケーションサーバをLBの分散先から外すことでメンテナンスモードに移行します。</p>
-
 <p>既存のサーバに手を加えずにメンテナンス機能を追加する必要があり構築しました。</p>
-
 <h1 id="実装">実装</h1>
-
 <p>といってもNginxの設定のみです。こんな感じです。</p>
-
-<pre><code>server {
+<pre tabindex="0"><code>server {
   listen 80;
   root /usr/share/nginx/html;
 
@@ -89,32 +84,20 @@ LBにメンテナンスサーバを追加して、アプリケーションサー
 
   return 503;
 }
-</code></pre>
-
-<p>それぞれ見ていきます。</p>
-
+</code></pre><p>それぞれ見ていきます。</p>
 <h2 id="ヘルスチェック">ヘルスチェック</h2>
-
-<pre><code>  location = /healthcheck {
+<pre tabindex="0"><code>  location = /healthcheck {
     empty_gif;
     access_log off;
     break;
   }
-</code></pre>
-
-<p>メンテナンスページは503で返しますが、LBからのヘルスチェックは成功ステータスで返してやる必要があります。
+</code></pre><p>メンテナンスページは503で返しますが、LBからのヘルスチェックは成功ステータスで返してやる必要があります。
 <code>empty_gif</code>はNginxがメモリ上に保持している1x1ピクセルの透過GIFを返すモジュールです。</p>
-
 <p><a href="http://nginx.org/en/docs/http/ngx_http_empty_gif_module.html">Module ngx_http_empty_gif_module</a></p>
-
 <h2 id="メンテナンスページ">メンテナンスページ</h2>
-
-<pre><code>  error_page 503 @maintenance;
-</code></pre>
-
-<p>503ステータスを名前付きロケーション <code>@maintenance</code> に内部リダイレクトしています。</p>
-
-<pre><code>  location @maintenance {
+<pre tabindex="0"><code>  error_page 503 @maintenance;
+</code></pre><p>503ステータスを名前付きロケーション <code>@maintenance</code> に内部リダイレクトしています。</p>
+<pre tabindex="0"><code>  location @maintenance {
     internal;
     if ($host ~* api) {
       return 503 &quot;{}&quot;;
@@ -122,27 +105,29 @@ LBにメンテナンスサーバを追加して、アプリケーションサー
     rewrite ^(.*)$ /503.html break;
     break;
   }
-</code></pre>
-
-<p>メンテナンスページの名前付きロケーションです。
+</code></pre><p>メンテナンスページの名前付きロケーションです。
 内部リダイレクト専用のロケーションなのでお行儀よく<code>internal</code>を書いています。<code>internal</code>が記述されたロケーションは外部から直接アクセスすることはできません。</p>
-
 <p>今回のシステムはホスト名によってJSON APIか通常Webかを判断しており、APIホストへのリクエストであれば503ステータスで空オブジェクトのJSONを返すようにしています。
 今回はたまたまそんな感じでしたが、<code>example.com/api/v1/foobar</code>のようにパスで分岐させているなら<code>if ($uri ~* ^/api)</code>、ちゃんとヘッダをつけてくれるなら <code>if ($http_accept ~* json)</code>みたいな感じにすればOKです。</p>
-
 <p>そして、すべてのパスに対してメンテナンスサーバを表示させたいのですべてのパスを<code>/503.html</code>に書き換えています。</p>
-
 <h1 id="503">503</h1>
-
-<pre><code>  return 503;
-</code></pre>
-
-<p>ヘルスチェック以外のすべてのリクエストに対して503を返してメンテナンスページを表示します。</p>
-
-<h1 id="503-html">503.html</h1>
-
+<pre tabindex="0"><code>  return 503;
+</code></pre><p>ヘルスチェック以外のすべてのリクエストに対して503を返してメンテナンスページを表示します。</p>
+<h1 id="503html">503.html</h1>
 <p>今回は専用のメンテナンスページを用意したので、<code>/usr/share/nginx/html/503.html</code>にHTMLを置いておきます。</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#ヘルスチェック">ヘルスチェック</a></li>
+    <li><a href="#メンテナンスページ">メンテナンスページ</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

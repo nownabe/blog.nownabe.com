@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Wondershake on nownab.log</title>
@@ -6,11 +6,7 @@
     <description>Recent content in Wondershake on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Mon, 30 Dec 2019 23:20:05 +0900</lastBuildDate>
-    
-	<atom:link href="https://blog.nownabe.com/tags/wondershake/feed.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 30 Dec 2019 23:20:05 +0900</lastBuildDate><atom:link href="https://blog.nownabe.com/tags/wondershake/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Wondershakeを退職しました</title>
       <link>https://blog.nownabe.com/2019/12/30/leave-wondershake/</link>

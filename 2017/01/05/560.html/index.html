@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,33 +48,26 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/01/05/560.html/">ngx_mrubyのビルド</a></h2>
     <span class="date">Posted on Jan 5, 2017</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="はじめに">はじめに</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="はじめに">はじめに</h1>
 <p>Dockerでngx_mrubyが入ったNginxのイメージが欲しかったのでビルドした。
 公式？の<a href="https://hub.docker.com/r/matsumotory/ngx-mruby/">matsumotory/ngx-mruby</a>イメージはUbuntuベースで余計なパッケージとかも入っているので、作り直すことにした。</p>
-
-<h1 id="ngx-mrubyのビルド方法">ngx_mrubyのビルド方法</h1>
-
+<h1 id="ngx_mrubyのビルド方法">ngx_mrubyのビルド方法</h1>
 <p>ngx_mruby入りのNginxのインストール方法はwikiに書いてある。
 <a href="https://github.com/matsumotory/ngx_mruby/wiki/Install">https://github.com/matsumotory/ngx_mruby/wiki/Install</a></p>
-
 <p><a href="https://github.com/matsumotory/ngx_mruby">matsumotory/ngx_mruby</a>レポジトリをクローンして、<code>build.sh</code>という便利スクリプトを叩く感じになってる。</p>
-
 <p><code>build.sh</code>は単純にNginxをダウンロードしてきて、configureして、makeする感じ。
 configureのオプションを<code>$NGINX_CONFIG_OPT_ENV</code>という環境変数で指定できるようになっている。</p>
-
 <h1 id="nginxビルドのオプション">Nginxビルドのオプション</h1>
-
 <p>ngx_mruby公式イメージではこのようになっていた。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash:Dockerfile" data-lang="bash:Dockerfile">ENV NGINX_CONFIG_OPT_ENV \
+<pre tabindex="0"><code class="language-bash:Dockerfile" data-lang="bash:Dockerfile">ENV NGINX_CONFIG_OPT_ENV \
   --with-http_stub_status_module \
   --with-http_ssl_module \
   --prefix=/usr/local/nginx \
@@ -84,9 +77,9 @@ configureのオプションを<code>$NGINX_CONFIG_OPT_ENV</code>という環境�
   --with-http_gunzip_module \
   --with-http_gzip_static_module \
   --with-http_random_index_module \
-  --with-http_secure_link_module \</code></pre></div>
-<p>自分が使うことを想定しつつ、オプションは次のようにした。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash:Dockerfile" data-lang="bash:Dockerfile">ENV NGINX_CONFIG_OPT_ENV \
+  --with-http_secure_link_module \
+</code></pre><p>自分が使うことを想定しつつ、オプションは次のようにした。</p>
+<pre tabindex="0"><code class="language-bash:Dockerfile" data-lang="bash:Dockerfile">ENV NGINX_CONFIG_OPT_ENV \
   --http-log-path=/var/log/nginx/access.log \
   --error-log-path=/var/log/nginx/error.log \
   --with-http_ssl_module \
@@ -94,12 +87,11 @@ configureのオプションを<code>$NGINX_CONFIG_OPT_ENV</code>という環境�
   --with-http_realip_module \ # X-Forwarded-Forのロギング
   --with-http_gunzip_module \
   --with-http_gzip_static_module \
-  --with-http_stub_status_module</code></pre></div>
-<h1 id="dockerfile">Dockerfile</h1>
-
+  --with-http_stub_status_module
+</code></pre><h1 id="dockerfile">Dockerfile</h1>
 <p>できあがったDockerfileはこんな感じ。
 <a href="https://hub.docker.com/r/nownabe/nginx_mruby/">https://hub.docker.com/r/nownabe/nginx_mruby/</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-bash:Dockerfile" data-lang="bash:Dockerfile">FROM alpine:3.5
+<pre tabindex="0"><code class="language-bash:Dockerfile" data-lang="bash:Dockerfile">FROM alpine:3.5
 MAINTAINER nownabe
 
 ENV NGINX_CONFIG_OPT_ENV \
@@ -127,7 +119,15 @@ RUN apk add --no-cache --update openssl-dev pcre-dev \
 
 ADD nginx.conf /etc/nginx/nginx.conf
 
-CMD /usr/local/sbin/nginx -c /etc/nginx/nginx.conf -g &#34;daemon off;&#34;</code></pre></div>
+CMD /usr/local/sbin/nginx -c /etc/nginx/nginx.conf -g &quot;daemon off;&quot;
+</code></pre>
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

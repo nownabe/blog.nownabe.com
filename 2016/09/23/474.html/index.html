@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,82 +48,58 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2016/09/23/474.html/">GitHub PagesをReact &#43; CSS Modulesで</a></h2>
     <span class="date">Posted on Sep 23, 2016</span>
   </div>
-  <div class="body">
-    
-
-<p>個人用の名刺を作ったのでついでに<a href="https://nownabe.github.io/">ポートフォリオ</a>を作ってみました 💪</p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>個人用の名刺を作ったのでついでに<a href="https://nownabe.github.io/">ポートフォリオ</a>を作ってみました 💪</p>
 <p>その際React + CSS Modulesな感じで作ったので、その雑感とやり方です 📝</p>
-
 <h1 id="雑感">雑感</h1>
-
 <h2 id="静的ページをreactで作ることについて">静的ページをReactで作ることについて</h2>
-
 <p>GitHub Pagesなので静的ページです。なかなか良かったです 😊</p>
-
 <p>生のHTMLをそのまま書くのはだるいのであり得ない。けどRuby使ったりJadeも違うなーって感じでReactでした。</p>
-
 <p>ヌルヌル動かしたりするなら別かもしれませんが、</p>
-
 <ul>
 <li>部品をコンポーネントとして再利用できる</li>
 <li>繰り返しとか楽ちん</li>
 <li>プログラミング楽しい</li>
 </ul>
-
 <p>らへんがよかったです。</p>
-
 <h2 id="css-modulesについて">CSS Modulesについて</h2>
-
 <p>今回デザインは、Atomic Designを意識してCSS Modulesを使って組みました。
 CSS Modulesよかったです ✨</p>
-
 <ul>
 <li>普通のCSSで書ける</li>
 <li>コンポーネントで閉じている</li>
 </ul>
-
 <p>っていうのがよかったです。わかりやすくてシンプルになるので、脳みその負担を減らせる感じでした。</p>
-
 <p>ただもっと込み入ったもの作ろうとすると<code>composes</code>使ったりしないといけないだろうし、コンポーネントの設計にもっと力入れないといけないんだろうと思います。</p>
-
 <h2 id="atomic-designについて">Atomic Designについて</h2>
-
 <p>React使ってるとコンポーネントがどんどん増えていくので整理する方法として、Atomic Designの考え方を取り入れようとしました。
 結論としては、Atomic Designの考え方そのままでReactのコンポーネントをわけるのはやめた方がいい、ってのがわかりました 😞</p>
-
 <p>Atomic Designは大雑把に言えば最小単位のAtomsからMolecules、Organismsを構成してそれを組み合わせてTemplatesを作り、コンテンツを流し込んでPagesを完成させる、って考え方です。
 これでReactを構成しようとすると次のような課題にぶつかりました。</p>
-
 <ul>
 <li>Templates以下の要素はコンテンツを持つべきではないので、すべてのコンテンツをRootコンポーネントに持たせる必要がある</li>
-<li>MoleculesとOrganismsを分ける明確な基準がわからん <sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></li>
+<li>MoleculesとOrganismsを分ける明確な基準がわからん <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></li>
 </ul>
-
 <p>で、最終的にこんな感じに落ち着きました。</p>
-
 <ul>
 <li>Atoms: それ以上分割できない再利用可能なコンポーネント</li>
 <li>Organisms: コンテンツを持たない再利用可能なコンポーネント</li>
 <li>Parts: コンテンツを持ち、AtomsやOrganismsで構成されるコンポーネント</li>
 </ul>
-
 <p>Partsの名前は気に入ってないんですが、いいのが思い浮かばず…。ReactでAtomic Designやってるとこのベストプラクティスが知りたいです。</p>
-
 <h1 id="how-to">How to</h1>
-
 <p>React + CSS Modulesで静的ページを作るまで with Webpackです。
 ボイラープレートを<a href="https://github.com/nownabe/skel-static_website">nownabe/skel-static_website</a>に用意しました。</p>
-
 <h2 id="ディレクトリ構造">ディレクトリ構造</h2>
-
 <p>最終的なディレクトリ構造はこのようになります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ tree .
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ tree .
 .
 ├── bundle.js
 ├── index.html
@@ -131,22 +107,19 @@ CSS Modulesよかったです ✨</p>
 ├── src
 │   ├── index.css
 │   └── index.js
-└── webpack.config.js</code></pre></div>
-<p>ローカルでビルドして、直接masterブランチにPushしていく感じです。</p>
-
+└── webpack.config.js
+</code></pre></div><p>ローカルでビルドして、直接masterブランチにPushしていく感じです。</p>
 <h2 id="セットアップ">セットアップ</h2>
-
 <p>まずは適当なディレクトリを作って<code>npm init</code>で<code>package.json</code>を作ります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir my-website
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mkdir my-website
 <span class="nb">cd</span> my-website
-npm init</code></pre></div>
-<p>必要なパッケージをインストールします。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm install --save react react-dom
-npm install --save-dev webpack style-loader css-loader babel-loader babel-preset-es2015 babel-preset-react browser-sync-webpack-plugin browser-sync</code></pre></div>
-<h2 id="webpack">Webpack</h2>
-
+npm init
+</code></pre></div><p>必要なパッケージをインストールします。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">npm install --save react react-dom
+npm install --save-dev webpack style-loader css-loader babel-loader babel-preset-es2015 babel-preset-react browser-sync-webpack-plugin browser-sync
+</code></pre></div><h2 id="webpack">Webpack</h2>
 <p>Webpackを設定します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript:webpack.config.js" data-lang="javascript:webpack.config.js"><span class="kd">var</span> <span class="nx">BrowserSyncPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;browser-sync-webpack-plugin&#34;</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript:webpack.config.js" data-lang="javascript:webpack.config.js"><span class="kd">var</span> <span class="nx">BrowserSyncPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;browser-sync-webpack-plugin&#34;</span><span class="p">)</span>
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">entry</span><span class="o">:</span> <span class="p">{</span>
@@ -173,24 +146,21 @@ npm install --save-dev webpack style-loader css-loader babel-loader babel-preset
     <span class="p">})</span>
   <span class="p">]</span>
 <span class="p">}</span>
-</code></pre></div>
-<p>これで、<code>webpack --watch</code>コマンドでいい感じに開発できるようになります。
+</code></pre></div><p>これで、<code>webpack --watch</code>コマンドでいい感じに開発できるようになります。
 ついでに<code>npm start</code>で起動できるように<code>package.json</code>を修正しておきます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript:package.json" data-lang="javascript:package.json">  <span class="err">//</span> <span class="err">...</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript:package.json" data-lang="javascript:package.json">  <span class="err">//</span> <span class="err">...</span>
   <span class="s2">&#34;scripts&#34;</span><span class="err">:</span> <span class="p">{</span>
     <span class="nt">&#34;start&#34;</span><span class="p">:</span> <span class="s2">&#34;node_modules/.bin/webpack --watch&#34;</span>
   <span class="p">}</span><span class="err">,</span>
-  <span class="err">//</span> <span class="err">...</span></code></pre></div>
-<h2 id="babelrc">.babelrc</h2>
-
+  <span class="err">//</span> <span class="err">...</span>
+</code></pre></div><h2 id="babelrc">.babelrc</h2>
 <p>バベる設定。</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript:.babelrc" data-lang="javascript:.babelrc">{
-  &#34;presets&#34;: [&#34;es2015&#34;, &#34;react&#34;]
-}</code></pre></div>
-<h2 id="index-html">index.html</h2>
-
+<pre tabindex="0"><code class="language-javascript:.babelrc" data-lang="javascript:.babelrc">{
+  &quot;presets&quot;: [&quot;es2015&quot;, &quot;react&quot;]
+}
+</code></pre><h2 id="indexhtml">index.html</h2>
 <p><code>index.html</code>は何の変哲もない感じで。</p>
-<div class="highlight"><pre class="chroma"><code class="language-html:index.html" data-lang="html:index.html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html:index.html" data-lang="html:index.html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
@@ -201,16 +171,14 @@ npm install --save-dev webpack style-loader css-loader babel-loader babel-preset
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;bundle.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></code></pre></div>
-<h2 id="react-css-modules">React / CSS Modules</h2>
-
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div><h2 id="react--css-modules">React / CSS Modules</h2>
 <p>最後にReactとCSS Modulesです。</p>
-
 <p>こんな感じで、javascript内でCSSを読み込んであげることで、適当なクラス名に変換されます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-js:src/index.js" data-lang="js:src/index.js"><span class="k">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&#34;react&#34;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;react-dom&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js:src/index.js" data-lang="js:src/index.js"><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&#34;react&#34;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;react-dom&#34;</span>
 
-<span class="k">import</span> <span class="nx">styles</span> <span class="nx">from</span> <span class="s2">&#34;./index.css&#34;</span>
+<span class="kr">import</span> <span class="nx">styles</span> <span class="nx">from</span> <span class="s2">&#34;./index.css&#34;</span>
 
 <span class="nx">render</span><span class="p">(</span>
   <span class="o">&lt;</span><span class="nx">h1</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">hello</span><span class="p">}</span><span class="o">&gt;</span>
@@ -218,24 +186,43 @@ npm install --save-dev webpack style-loader css-loader babel-loader babel-preset
   <span class="o">&lt;</span><span class="err">/h1&gt;,</span>
   <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;app&#34;</span><span class="p">)</span>
 <span class="p">)</span>
-</code></pre></div>
-<p>CSSは普通に書きます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-css:src/index.css" data-lang="css:src/index.css"><span class="p">.</span><span class="nc">hello</span> <span class="p">{</span>
+</code></pre></div><p>CSSは普通に書きます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css:src/index.css" data-lang="css:src/index.css"><span class="p">.</span><span class="nc">hello</span> <span class="p">{</span>
   <span class="k">font-size</span><span class="p">:</span> <span class="mi">5</span><span class="kt">rem</span><span class="p">;</span>
-<span class="p">}</span></code></pre></div>
-<h1 id="おわりに">おわりに</h1>
-
+<span class="p">}</span>
+</code></pre></div><h1 id="おわりに">おわりに</h1>
 <p>すぐに目で確認できるフロントのコーディングは楽しいですね ☺️</p>
-<div class="footnotes">
-
-<hr />
-
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1">ただ勉強不足なだけだと思います
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p>ただ勉強不足なだけだと思います&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#静的ページをreactで作ることについて">静的ページをReactで作ることについて</a></li>
+    <li><a href="#css-modulesについて">CSS Modulesについて</a></li>
+    <li><a href="#atomic-designについて">Atomic Designについて</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#ディレクトリ構造">ディレクトリ構造</a></li>
+    <li><a href="#セットアップ">セットアップ</a></li>
+    <li><a href="#webpack">Webpack</a></li>
+    <li><a href="#babelrc">.babelrc</a></li>
+    <li><a href="#indexhtml">index.html</a></li>
+    <li><a href="#react--css-modules">React / CSS Modules</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

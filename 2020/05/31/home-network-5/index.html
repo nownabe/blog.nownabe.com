@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,18 +48,16 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2020/05/31/home-network-5/">自宅ネットワーク改善日記その5 Google Nest Wifi導入編</a></h2>
     <span class="date">Posted on May 31, 2020</span>
   </div>
-  <div class="body">
-    
-
-<p>今回は Google Nest Wifi を新しく導入した話です。</p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>今回は Google Nest Wifi を新しく導入した話です。</p>
 <p>全日記:</p>
-
 <ul>
 <li><a href="/2020/05/26/home-network-1/">その1 調査編</a></li>
 <li><a href="/2020/05/28/home-network-2/">その2 L2SW交換編</a></li>
@@ -69,65 +67,57 @@ if (!doNotTrack) {
 <li><a href="/2020/06/01/home-network-6/">その6 IPv4 over IPv6編</a></li>
 <li><a href="/2020/06/10/home-network-7/">その7 VLAN編</a></li>
 </ul>
-
 <h2 id="あらすじ">あらすじ</h2>
-
 <p>前回、YAMAHAのRTX830を導入したことによりGoogle Wifiのルータとしての任が解かれました。
 構成図はこんな感じで、ただのアクセスポイントとして機能しています。</p>
-
-<p><img src="/images/2020/05/30/physical-diagram.png" width="800"></p>
-
+<img src="/images/2020/05/30/physical-diagram.png" width="800">
 <p>というわけで、Wifiアクセスポイントを自由に配置できるようになりました。
 今は新しく買ったGoogle Nest Wifiと今まで使ってたGoogle Wifiとを併用しています。</p>
-
 <h2 id="google-nest-wifi">Google Nest Wifi</h2>
-
 <p>今回新しく <a href="https://store.google.com/jp/product/nest_wifi">Google Nest Wifi</a> を買いました。
 ルータはRTX830にやらせるので無線アクセスポイントはブリッジするアクセスポイントであればシンプルなものほど嬉しくて、前から使ってた Google Wifi がシンプルでよかったので後継のNest Wifiにしました。</p>
-
-<p><img src="/images/2020/05/31/nest-wifi-photo.png" width="800"></p>
-
+<img src="/images/2020/05/31/nest-wifi-photo.png" width="800">
 <p>ルータとして動かす必要がなくなったことで置き場所が自由になりました。
 というわけで、ToRではなくリビングのGoogle Homeの横に置いて、壁内配線を経由してToRのL2SWに接続しています。</p>
-
 <h2 id="google-wifi">Google Wifi</h2>
-
 <p>じゃあ今まで使ってたGoogle Wifiはどうすんの？そもそも新しく買う必要あったの？ってことなんですが、新しく買った理由は2つあります。</p>
-
 <ul>
 <li>せっかく無料で使えるマンションネットワークを活かしたかった</li>
 <li>慣れないルータ設定でメイン回線がダウンする可能性が十分あるので、バックアップを用意しておきたかった</li>
 </ul>
-
 <p>というわけで、Google WifiはマンションネットワークのNATルータ兼アクセスポイントとして現役で使っています。
 バックアップWifiやゲストWifiとして使う予定です。</p>
-
 <p>Google WifiとNest Wifiの2つAPを置くことで、物理構成的には予定していたものが完成しました 👏</p>
-
-<p><img src="/images/2020/05/31/physical-diagram.png" width="800"></p>
-
+<img src="/images/2020/05/31/physical-diagram.png" width="800">
 <h2 id="計測">計測</h2>
-
 <p>一応Nest WifiはGoogle Wifiより仕様上の性能は上がってるんですが、そんな大きいものでもないし、そもそもそこは期待していた部分でもないので今回は計測してません。</p>
-
 <p>それよりも、置き場所が自由になりリビングに置けたので、リビングでの電波強度の改善が期待できます。
 僕の作業場所はリビングなので、普段の作業への効果も期待できます。</p>
-
 <p>Androidの <a href="https://play.google.com/store/apps/details?id=abdelrahman.wifianalyzerpro&amp;hl=ja">Wifi Analyzer</a> というアプリで調べるとこんな感じでした。</p>
-
-<p><img src="/images/2020/05/31/wifi-analyzer.png" width="800"></p>
-
+<img src="/images/2020/05/31/wifi-analyzer.png" width="800">
 <p>やはりリビングではかなり改善しています。
 距離はそんなに変わらないものの、棚の中にあるかどうかという点で大きく差がついている感じです。</p>
-
 <p>しかし、Nest Wifiから距離が遠い妻の部屋や寝室では、だいぶ距離が近いGoogle Wifiの方が良いという結果になりました。
 今のところ特に問題はなさそうですが、問題があるようならもう1台Nest Wifiを置くなどの対策を検討する必要がありそうです。</p>
-
 <h2 id="おわりに">おわりに</h2>
-
 <p>いよいよ物理構成が完成しました。
 次からはインターネット速度の改善と論理構成の構築をやっていきます。</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#あらすじ">あらすじ</a></li>
+    <li><a href="#google-nest-wifi">Google Nest Wifi</a></li>
+    <li><a href="#google-wifi">Google Wifi</a></li>
+    <li><a href="#計測">計測</a></li>
+    <li><a href="#おわりに">おわりに</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

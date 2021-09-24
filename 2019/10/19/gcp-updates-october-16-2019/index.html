@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,119 +48,124 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2019/10/19/gcp-updates-october-16-2019/">GCP Updates | October 16, 2019</a></h2>
     <span class="date">Posted on Oct 19, 2019</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="data-analytics">DATA ANALYTICS</h1>
-
-<h2 id="cloud-dataproc-gpu-support-ga">Cloud Dataproc – GPU support: GA</h2>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="data-analytics">DATA ANALYTICS</h1>
+<h2 id="cloud-dataproc--gpu-support-ga">Cloud Dataproc – GPU support: GA</h2>
 <blockquote>
 <p>Boost the performance of workloads, including machine learning and data processing, by attaching graphics processing units (GPUs) to master and worker Compute Engine nodes in a Cloud Dataproc cluster. Choose from options including NVIDIA® Tesla® P100, V100, and P4 GPUs. <a href="https://cloud.google.com/dataproc/docs/concepts/compute/gpus">Documentation</a></p>
 </blockquote>
-
-<h2 id="bigquery-ml-k-means-clustering-support-ga">BigQuery ML – k-means clustering support: GA</h2>
-
+<h2 id="bigquery-ml--k-means-clustering-support-ga">BigQuery ML – k-means clustering support: GA</h2>
 <blockquote>
 <p>Use unsupervised learning to aggregate your data into clusters and identify natural groupings. The <a href="https://en.wikipedia.org/wiki/K-means_clustering">k-means</a> algorithm has been used for everything from understanding customer segmentation to computer vision and astronomy. <a href="https://cloud.google.com/bigquery-ml/docs/kmeans-tutorial">Documentation</a></p>
 </blockquote>
-
-<h1 id="ai-machine-learning">AI &amp; MACHINE LEARNING</h1>
-
-<h2 id="dialogflow-agent-validation-beta">Dialogflow – agent validation: beta</h2>
-
+<h1 id="ai--machine-learning">AI &amp; MACHINE LEARNING</h1>
+<h2 id="dialogflow--agent-validation-beta">Dialogflow – agent validation: beta</h2>
 <blockquote>
 <p>Automatically check your agent for errors whenever you train it. Access the results from the Dialogflow Console or API, and choose to ignore or correct the errors to manage the quality and performance of your agent. <a href="https://cloud.google.com/dialogflow/docs/agents-validation">Documentation</a></p>
 </blockquote>
-
-<h2 id="dialogflow-regular-expressions-regexp-for-entities-ga">Dialogflow – regular expressions (regexp) for entities: GA</h2>
-
+<h2 id="dialogflow--regular-expressions-regexp-for-entities-ga">Dialogflow – regular expressions (regexp) for entities: GA</h2>
 <blockquote>
 <p>Now you can provide <a href="https://github.com/google/re2/wiki/Syntax">regular expressions</a> to create agents that match data patterns – such as national identification numbers or license plates – rather than specific terms. <a href="https://cloud.google.com/dialogflow/docs/entities-regexp">Documentation</a></p>
 </blockquote>
-
-<h2 id="dialogflow-fuzzy-matching-ga">Dialogflow – fuzzy matching: GA</h2>
-
+<h2 id="dialogflow--fuzzy-matching-ga">Dialogflow – fuzzy matching: GA</h2>
 <blockquote>
 <p>Spend less time and effort constructing entities – and simplify development. Entity matching requires an exact match for one of the entity entries. Fuzzy matching allows entities to identify matches of a value or synonym regardless of the word order. <a href="https://cloud.google.com/dialogflow/docs/entities-fuzzy">Documentation</a></p>
 </blockquote>
-
 <h1 id="compute">COMPUTE</h1>
-
-<h2 id="compute-engine-custom-virtual-network-interface-controller-beta">Compute Engine – custom virtual network interface controller: beta</h2>
-
+<h2 id="compute-engine--custom-virtual-network-interface-controller-beta">Compute Engine – custom virtual network interface controller: beta</h2>
 <blockquote>
 <p>Enable higher network bandwidth with a more efficient delivery network for sending traffic to and from your VM instances. Specifically designed for Compute Engine, the gVNIC device and driver will work on all Google Cloud VMs except memory-optimized machine types. <a href="https://cloud.google.com/compute/docs/instances/create-vm-with-gvnic">Documentation</a></p>
 </blockquote>
-
-<h2 id="kubernetes-engine-container-native-load-balancing-ga">Kubernetes Engine – container-native load balancing: GA</h2>
-
+<h2 id="kubernetes-engine--container-native-load-balancing-ga">Kubernetes Engine – container-native load balancing: GA</h2>
 <blockquote>
 <p>Enhance traffic visibility, performance, and scalability by creating services using <a href="https://cloud.google.com/load-balancing/docs/negs/">network endpoint groups (NEGs)</a>. NEGs ensure requests to your service are distributed directly to the containers serving the requests. <a href="https://cloud.google.com/kubernetes-engine/docs/how-to/container-native-load-balancing">Documentation</a> | <a href="https://cloud.google.com/blog/products/containers-kubernetes/container-native-load-balancing-on-gke-now-generally-available">Blog</a></p>
 </blockquote>
-
 <p>NEGに移行したいなぁ。</p>
-
-<h2 id="kubernetes-engine-usage-metering-ga">Kubernetes Engine – usage metering: GA</h2>
-
+<h2 id="kubernetes-engine--usage-metering-ga">Kubernetes Engine – usage metering: GA</h2>
 <blockquote>
 <p>View the usage profiles of Kubernetes Engine clusters and tie usage to individual teams, business units, apps, or environments within your organization based on namespaces and labels. Usage metering makes it easier to adopt Kubernetes in a multi-tenant environment. <a href="https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-usage-metering">Documentation</a></p>
 </blockquote>
-
-<h2 id="kubernetes-engine-containerd-ga">Kubernetes Engine – containerd: GA</h2>
-
+<h2 id="kubernetes-engine--containerd-ga">Kubernetes Engine – containerd: GA</h2>
 <blockquote>
 <p>Use containerd instead of Docker as the container runtime for Kubernetes on Container-Optimized OS and Ubuntu to execute apps within containers and handle interactions with the underlying host operating system. <a href="https://cloud.google.com/kubernetes-engine/docs/concepts/using-containerd">Documentation</a></p>
 </blockquote>
-
 <p>実運用でどれぐらい変わるんだろうなー。</p>
-
 <h1 id="networking">NETWORKING</h1>
-
-<h2 id="vpc-flow-logs-log-sampling-aggregation-and-metadata-exclusion-ga">VPC Flow Logs – log sampling, aggregation, and metadata exclusion: GA</h2>
-
+<h2 id="vpc-flow-logs--log-sampling-aggregation-and-metadata-exclusion-ga">VPC Flow Logs – log sampling, aggregation, and metadata exclusion: GA</h2>
 <blockquote>
 <p>Balance your traffic visibility and storage costs – and lower monthly bills – by adjusting aggregation time interval, log-entry sampling, and metadata annotations to reduce the volume of data in your logs. <a href="https://cloud.google.com/vpc/docs/using-flow-logs#log-sampling">Documentation</a></p>
 </blockquote>
-
 <h1 id="management-tools">MANAGEMENT TOOLS</h1>
-
-<h2 id="stackdriver-logging-support-for-exporting-logs-to-partitioned-tables-beta">Stackdriver Logging – support for exporting logs to partitioned tables: beta</h2>
-
+<h2 id="stackdriver-logging--support-for-exporting-logs-to-partitioned-tables-beta">Stackdriver Logging – support for exporting logs to partitioned tables: beta</h2>
 <blockquote>
 <p>Improve BigQuery performance and gain greater control over your costs. Reduce the number of bytes read by a query by organizing the data you export to BigQuery into partitioned tables. <a href="https://cloud.google.com/logging/docs/export/bigquery#partition-tables">Documentation</a></p>
 </blockquote>
-
-<h1 id="identity-security">IDENTITY &amp; SECURITY</h1>
-
-<h2 id="kubernetes-engine-binary-authorization-ga">Kubernetes Engine – Binary Authorization: GA</h2>
-
+<h1 id="identity--security">IDENTITY &amp; SECURITY</h1>
+<h2 id="kubernetes-engine--binary-authorization-ga">Kubernetes Engine – Binary Authorization: GA</h2>
 <blockquote>
 <p>Ensure that only trusted containers run on Kubernetes Engine with this deploy-time security control. You can require images to be signed by trusted authorities during the development process and then enforce signature validation when deploying. <a href="https://cloud.google.com/binary-authorization/docs/">Documentation</a> | <a href="https://cloud.google.com/blog/products/identity-security/increasing-trust-in-google-cloud-visibility-control-and-automation">Blog</a></p>
 </blockquote>
-
-<h2 id="cloud-identity-and-access-management-policy-troubleshooter-beta">Cloud Identity and Access Management – Policy Troubleshooter: beta</h2>
-
+<h2 id="cloud-identity-and-access-management--policy-troubleshooter-beta">Cloud Identity and Access Management – Policy Troubleshooter: beta</h2>
 <blockquote>
 <p>Use Policy Troubleshooter to examine all identity and access management policies that apply to a given resource, and determine whether a member has been granted permission to access that resource and, if so, by what policies. <a href="https://cloud.google.com/iam/docs/troubleshooting-access">Documentation</a></p>
 </blockquote>
-
 <p>便利そう ✨
 今度なんかに困ったときに使ってみたい。</p>
-
 <h1 id="developer-tools">DEVELOPER TOOLS</h1>
-
-<h2 id="cloud-build-github-app-triggers-beta">Cloud Build – GitHub app triggers: beta</h2>
-
+<h2 id="cloud-build--github-app-triggers-beta">Cloud Build – GitHub app triggers: beta</h2>
 <blockquote>
 <p>Configure automatic builds of code stored in GitHub to enable GitOps-like CI/CD workflows. This release includes enhanced security features, new API methods to manage triggers, and greater flexibility and support for a broader range of build configurations. <a href="https://cloud.google.com/cloud-build/docs/run-builds-on-github">Documentation</a></p>
 </blockquote>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#cloud-dataproc--gpu-support-ga">Cloud Dataproc – GPU support: GA</a></li>
+    <li><a href="#bigquery-ml--k-means-clustering-support-ga">BigQuery ML – k-means clustering support: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#dialogflow--agent-validation-beta">Dialogflow – agent validation: beta</a></li>
+    <li><a href="#dialogflow--regular-expressions-regexp-for-entities-ga">Dialogflow – regular expressions (regexp) for entities: GA</a></li>
+    <li><a href="#dialogflow--fuzzy-matching-ga">Dialogflow – fuzzy matching: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#compute-engine--custom-virtual-network-interface-controller-beta">Compute Engine – custom virtual network interface controller: beta</a></li>
+    <li><a href="#kubernetes-engine--container-native-load-balancing-ga">Kubernetes Engine – container-native load balancing: GA</a></li>
+    <li><a href="#kubernetes-engine--usage-metering-ga">Kubernetes Engine – usage metering: GA</a></li>
+    <li><a href="#kubernetes-engine--containerd-ga">Kubernetes Engine – containerd: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#vpc-flow-logs--log-sampling-aggregation-and-metadata-exclusion-ga">VPC Flow Logs – log sampling, aggregation, and metadata exclusion: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#stackdriver-logging--support-for-exporting-logs-to-partitioned-tables-beta">Stackdriver Logging – support for exporting logs to partitioned tables: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#kubernetes-engine--binary-authorization-ga">Kubernetes Engine – Binary Authorization: GA</a></li>
+    <li><a href="#cloud-identity-and-access-management--policy-troubleshooter-beta">Cloud Identity and Access Management – Policy Troubleshooter: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-build--github-app-triggers-beta">Cloud Build – GitHub app triggers: beta</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

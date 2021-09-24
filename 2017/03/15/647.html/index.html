@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,42 +48,40 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/03/15/647.html/">Goでファイルを暗号化するCLIツール作った</a></h2>
     <span class="date">Posted on Mar 15, 2017</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="はじめに">はじめに</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="はじめに">はじめに</h1>
 <p>Goで暗号化まわりのプログラムを書いてて、同じアルゴリズムで手軽に暗号化/復号する方法がなかった(見つからなかった)ので作りました。
 <a href="https://github.com/nownabe/cryptography">https://github.com/nownabe/cryptography</a></p>
-
 <p>Rubyの<a href="https://github.com/mitaku/reversible_cryptography">reversible_cryptography</a> Gemを参考にさせていただきました 👀</p>
-
 <h1 id="使い方">使い方</h1>
-
-<p>📝 READMEに書いてあることがすべてです。</p>
-
+<p>✏ READMEに書いてあることがすべてです。</p>
 <p>インストール</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go get github.com/nownabe/cryptography</code></pre></div>
-<p>暗号化</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cryptography enc -in 平文ファイル -out 暗号ファイル -key 暗号化キー</code></pre></div>
-<p>復号</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cryptography dec -in 暗号ファイル -out 平文ファイル -key 暗号化キー</code></pre></div>
-<p>暗号化キーは16文字 or 32文字な必要があります。</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">go get github.com/nownabe/cryptography
+</code></pre></div><p>暗号化</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">cryptography enc -in 平文ファイル -out 暗号ファイル -key 暗号化キー
+</code></pre></div><p>復号</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">cryptography dec -in 暗号ファイル -out 平文ファイル -key 暗号化キー
+</code></pre></div><p>暗号化キーは16文字 or 32文字な必要があります。</p>
 <h1 id="学び">学び</h1>
-
 <p>Goのflagはいまいち使いにくかった。
 今度は<a href="https://github.com/urfave/cli">github.com/urfave/cli</a>らへんを使ってみたい。</p>
-
 <h1 id="所感">所感</h1>
-
 <p>始めてGoのライブラリを公開できた 🎉✨</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

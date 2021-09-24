@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,77 +48,60 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2016/07/31/hatena15.html/">PostgreSQLの更新でRails 5が動かなくなった</a></h2>
     <span class="date">Posted on Jul 24, 2016</span>
   </div>
-  <div class="body">
-    <p>CentOS 7です。</p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>CentOS 7です。</p>
 <p>Rails 5のアプリがある日こんなメッセージを出して動かなくなってました。</p>
-
-<pre><code>An unhandled lowlevel error occurred. The application logs may have details.
-</code></pre>
-
-<p><code>puma_error.log</code>をみてみると、</p>
-
-<pre><code>2016-07-24 14:42:22 +0900: Rack app error: #&lt;PG::ConnectionBad: could not connect to server: No such file or directory
-</code></pre>
-
-<p>とでていて、systemctlでstatusみてみると、</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@bots ~<span class="o">]</span><span class="c1"># systemctl status postgresql-9.6</span>
-● postgresql-9.6.service - PostgreSQL <span class="m">9</span>.6 database server
+<pre tabindex="0"><code>An unhandled lowlevel error occurred. The application logs may have details.
+</code></pre><p><code>puma_error.log</code>をみてみると、</p>
+<pre tabindex="0"><code>2016-07-24 14:42:22 +0900: Rack app error: #&lt;PG::ConnectionBad: could not connect to server: No such file or directory
+</code></pre><p>とでていて、systemctlでstatusみてみると、</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@bots ~<span class="o">]</span><span class="c1"># systemctl status postgresql-9.6</span>
+● postgresql-9.6.service - PostgreSQL 9.6 database server
    Loaded: loaded <span class="o">(</span>/usr/lib/systemd/system/postgresql-9.6.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset: disabled<span class="o">)</span>
-   Active: failed <span class="o">(</span>Result: exit-code<span class="o">)</span> since 日 <span class="m">2016</span>-07-24 <span class="m">14</span>:38:40 JST<span class="p">;</span> 5min ago
- Main PID: <span class="m">33354</span> <span class="o">(</span><span class="nv">code</span><span class="o">=</span>exited, <span class="nv">status</span><span class="o">=</span><span class="m">0</span>/SUCCESS<span class="o">)</span>
+   Active: failed <span class="o">(</span>Result: exit-code<span class="o">)</span> since 日 2016-07-24 14:38:40 JST<span class="p">;</span> 5min ago
+ Main PID: <span class="m">33354</span> <span class="o">(</span><span class="nv">code</span><span class="o">=</span>exited, <span class="nv">status</span><span class="o">=</span>0/SUCCESS<span class="o">)</span>
 
- 7月 <span class="m">24</span> <span class="m">14</span>:38:39 bots systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Starting PostgreSQL <span class="m">9</span>.6 database server...
- 7月 <span class="m">24</span> <span class="m">14</span>:38:39 bots pg_ctl<span class="o">[</span><span class="m">10853</span><span class="o">]</span>: &lt; <span class="m">2016</span>-07-24 <span class="m">14</span>:38:39.049 JST &gt;FATAL:  データベースファイルがサーバと互換性がありません
- 7月 <span class="m">24</span> <span class="m">14</span>:38:39 bots pg_ctl<span class="o">[</span><span class="m">10853</span><span class="o">]</span>: &lt; <span class="m">2016</span>-07-24 <span class="m">14</span>:38:39.049 JST &gt;詳細:  データベースクラスタはPG_CONTROL_VERSION <span class="m">942</span> で初期化されましたが、サーバは PG_CONTROL_VERSION <span class="m">960</span> でコンパイルされています。
- 7月 <span class="m">24</span> <span class="m">14</span>:38:39 bots pg_ctl<span class="o">[</span><span class="m">10853</span><span class="o">]</span>: &lt; <span class="m">2016</span>-07-24 <span class="m">14</span>:38:39.049 JST &gt;ヒント:  initdbが必要のようです
- 7月 <span class="m">24</span> <span class="m">14</span>:38:39 bots pg_ctl<span class="o">[</span><span class="m">10853</span><span class="o">]</span>: &lt; <span class="m">2016</span>-07-24 <span class="m">14</span>:38:39.050 JST &gt;LOG:  データベースシステムはシャットダウンしました
- 7月 <span class="m">24</span> <span class="m">14</span>:38:40 bots systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: postgresql-9.6.service: control process exited, <span class="nv">code</span><span class="o">=</span>exited <span class="nv">status</span><span class="o">=</span><span class="m">1</span>
- 7月 <span class="m">24</span> <span class="m">14</span>:38:40 bots systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Failed to start PostgreSQL <span class="m">9</span>.6 database server.
- 7月 <span class="m">24</span> <span class="m">14</span>:38:40 bots systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Unit postgresql-9.6.service entered failed state.
- 7月 <span class="m">24</span> <span class="m">14</span>:38:40 bots systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: postgresql-9.6.service failed.</code></pre></div>
-<p>とこんな感じ。
+ 7月 <span class="m">24</span> 14:38:39 bots systemd<span class="o">[</span>1<span class="o">]</span>: Starting PostgreSQL 9.6 database server...
+ 7月 <span class="m">24</span> 14:38:39 bots pg_ctl<span class="o">[</span>10853<span class="o">]</span>: &lt; 2016-07-24 14:38:39.049 JST &gt;FATAL:  データベースファイルがサーバと互換性がありません
+ 7月 <span class="m">24</span> 14:38:39 bots pg_ctl<span class="o">[</span>10853<span class="o">]</span>: &lt; 2016-07-24 14:38:39.049 JST &gt;詳細:  データベースクラスタはPG_CONTROL_VERSION <span class="m">942</span> で初期化されましたが、サーバは PG_CONTROL_VERSION <span class="m">960</span> でコンパイルされています。
+ 7月 <span class="m">24</span> 14:38:39 bots pg_ctl<span class="o">[</span>10853<span class="o">]</span>: &lt; 2016-07-24 14:38:39.049 JST &gt;ヒント:  initdbが必要のようです
+ 7月 <span class="m">24</span> 14:38:39 bots pg_ctl<span class="o">[</span>10853<span class="o">]</span>: &lt; 2016-07-24 14:38:39.050 JST &gt;LOG:  データベースシステムはシャットダウンしました
+ 7月 <span class="m">24</span> 14:38:40 bots systemd<span class="o">[</span>1<span class="o">]</span>: postgresql-9.6.service: control process exited, <span class="nv">code</span><span class="o">=</span>exited <span class="nv">status</span><span class="o">=</span><span class="m">1</span>
+ 7月 <span class="m">24</span> 14:38:40 bots systemd<span class="o">[</span>1<span class="o">]</span>: Failed to start PostgreSQL 9.6 database server.
+ 7月 <span class="m">24</span> 14:38:40 bots systemd<span class="o">[</span>1<span class="o">]</span>: Unit postgresql-9.6.service entered failed state.
+ 7月 <span class="m">24</span> 14:38:40 bots systemd<span class="o">[</span>1<span class="o">]</span>: postgresql-9.6.service failed.
+</code></pre></div><p>とこんな感じ。
 どうやらyum-cronで更新されたらしい。</p>
-
 <p>動いてた時のやつ:</p>
-
-<pre><code>Jul 13 00:53:13 Installed: postgresql96-libs-9.6beta2-2PGDG.rhel7.x86_64
+<pre tabindex="0"><code>Jul 13 00:53:13 Installed: postgresql96-libs-9.6beta2-2PGDG.rhel7.x86_64
 Jul 13 00:53:19 Installed: postgresql96-9.6beta2-2PGDG.rhel7.x86_64
 Jul 13 00:53:27 Installed: postgresql96-server-9.6beta2-2PGDG.rhel7.x86_64
 Jul 13 00:53:33 Installed: libxslt-1.1.28-5.el7.x86_64
 Jul 13 00:53:33 Installed: postgresql96-contrib-9.6beta2-2PGDG.rhel7.x86_64
 Jul 13 00:53:40 Installed: postgresql96-devel-9.6beta2-2PGDG.rhel7.x86_64
-</code></pre>
-
-<p>今:</p>
-
-<pre><code>Jul 22 05:50:17 更新: postgresql96-libs.x86_64 9.6beta3-1PGDG.rhel7
+</code></pre><p>今:</p>
+<pre tabindex="0"><code>Jul 22 05:50:17 更新: postgresql96-libs.x86_64 9.6beta3-1PGDG.rhel7
 Jul 22 05:50:17 更新: postgresql96.x86_64 9.6beta3-1PGDG.rhel7
 Jul 22 05:50:17 更新: postgresql96-contrib.x86_64 9.6beta3-1PGDG.rhel7
 Jul 22 05:50:18 更新: postgresql96-server.x86_64 9.6beta3-1PGDG.rhel7
 Jul 22 05:50:18 更新: postgresql96-devel.x86_64 9.6beta3-1PGDG.rhel7
-</code></pre>
-
-<p>beta2からbeta3になってデータファイルの互換性がなくなったのか…。さすがβ版 😱</p>
-
+</code></pre><p>beta2からbeta3になってデータファイルの互換性がなくなったのか…。さすがβ版 😱</p>
 <p>beta3のリリースノートみたらちゃんと書いてあった。</p>
-
 <blockquote>
 <p>Due to changes in system catalogs, a pg_upgrade or dump and restore will be required for users migrating databases from earlier betas.</p>
 </blockquote>
-
 <p><a href="https://www.postgresql.org/about/news/1686/">PostgreSQL: PostgreSQL 9.6 Beta 3 Released</a></p>
-
 <p>というわけで、pg_upgradeしたら動きました。以下、そのときの手順です。</p>
-
 <p>pg_upgradeでは新旧のバイナリと旧データが必要になります。
 yum-cronで新しいバイナリしか残ってないので、古いバイナリを入手します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir /tmp/psql_migrate
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ mkdir /tmp/psql_migrate
 $ <span class="nb">cd</span> tmp/psql_migrate
 $ wget http://yum.postgresql.org/9.6/redhat/rhel-7.3-x86_64/postgresql96-server-9.6beta2-1PGDG.rhel7.x86_64.rpm
 
@@ -127,14 +110,14 @@ $ rpm2cpio postgresql96-server-9.6beta2-1PGDG.rhel7.x86_64.rpm <span class="p">|
 
 <span class="c1"># 古いバイナリが揃いました</span>
 $ ls /tmp/psql_migrate/usr/pgsql-9.6/bin/
-initdb  pg_controldata  pg_ctl  pg_resetxlog  postgres  postgresql96-check-db-dir  postgresql96-setup  postmaster</code></pre></div>
-<p>古いデータを別の場所に移して、新しい用のデータを初期化しておきます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo mv /var/lib/pgsql/9.6/data /var/lib/pgsql/9.6/data-beta2
+initdb  pg_controldata  pg_ctl  pg_resetxlog  postgres  postgresql96-check-db-dir  postgresql96-setup  postmaster
+</code></pre></div><p>古いデータを別の場所に移して、新しい用のデータを初期化しておきます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ sudo mv /var/lib/pgsql/9.6/data /var/lib/pgsql/9.6/data-beta2
 $ sudo mkdir /var/lib/pgsql/9.6/data
 $ sudo chown postgres. /var/lib/pgsql/9.6/data
-$ sudo -u postgres /usr/pgsql-9.6/bin/initdb -D /var/lib/pgsql/9.6/data</code></pre></div>
-<p>pg_upgradeを実行します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># postgresユーザでカレントディレクトリにログを吐くため移動する</span>
+$ sudo -u postgres /usr/pgsql-9.6/bin/initdb -D /var/lib/pgsql/9.6/data
+</code></pre></div><p>pg_upgradeを実行します。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># postgresユーザでカレントディレクトリにログを吐くため移動する</span>
 $ <span class="nb">cd</span> /var/lib/pgsql/9.6
 
 <span class="c1"># 実行する</span>
@@ -192,9 +175,9 @@ once you start the new server, consider running:
     ./analyze_new_cluster.sh
 
 Running this script will delete the old cluster<span class="err">&#39;</span>s data files:
-    ./delete_old_cluster.sh</code></pre></div>
-<p>pg_upgradeが作ったスクリプトを実行しろと言われるので、実行します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ systemctl start postgresql-9.6
+    ./delete_old_cluster.sh
+</code></pre></div><p>pg_upgradeが作ったスクリプトを実行しろと言われるので、実行します。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ systemctl start postgresql-9.6
 $ sudo -u postgres ./analyze_new_cluster.sh
 This script will generate minimal optimizer statistics rapidly
 so your system is usable, and <span class="k">then</span> gather statistics twice more
@@ -216,13 +199,20 @@ vacuumdb: processing database <span class="s2">&#34;template1&#34;</span>: Gener
 vacuumdb: processing database <span class="s2">&#34;postgres&#34;</span>: Generating default <span class="o">(</span>full<span class="o">)</span> optimizer statistics
 vacuumdb: processing database <span class="s2">&#34;template1&#34;</span>: Generating default <span class="o">(</span>full<span class="o">)</span> optimizer statistics
 
-Done</code></pre></div>
-<p>実際は自分が使ってるデータベースも対象になるはずです。</p>
-
+Done
+</code></pre></div><p>実際は自分が使ってるデータベースも対象になるはずです。</p>
 <p>最後に古いデータとかを削除します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo -u postgres ./delete_old_cluster.sh
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ sudo -u postgres ./delete_old_cluster.sh
 $ sudo rm analyze_new_cluster.sh delete_old_cluster.sh
-$ rm -rf /tmp/psql_migrate/</code></pre></div>
+$ rm -rf /tmp/psql_migrate/
+</code></pre></div>
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

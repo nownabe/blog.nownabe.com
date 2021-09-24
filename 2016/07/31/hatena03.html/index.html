@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,41 +48,37 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2016/07/31/hatena03.html/">EasySettingsをSettingslogicの替りにいかがでしょうか</a></h2>
     <span class="date">Posted on Mar 7, 2015</span>
   </div>
-  <div class="body">
-    
-
-<p>今までRailsとかその他諸々のアプリケーションで、定数の管理に<a href="https://github.com/settingslogic/settingslogic">Settingslogic</a>を使ってました。
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>今までRailsとかその他諸々のアプリケーションで、定数の管理に<a href="https://github.com/settingslogic/settingslogic">Settingslogic</a>を使ってました。
 色々不満がありつつ使ってたんですが、この度<a href="https://rubygems.org/gems/easy_settings">EasySettings</a>というGemを新しく作りました。</p>
-
 <p><a href="https://github.com/nownabe/easy_settings">https://github.com/nownabe/easy_settings</a></p>
-
 <p>元々はアプリ側でデフォルト値を設定したくて<a href="https://rubygems.org/gems/settingslogic_default">SettingslogicDefault</a>みたいなGemを作ったんですが、色々と限界を感じたのでもう新しいの作ってしまおうと。</p>
-
 <h2 id="初期化いらず">初期化いらず</h2>
-<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># EasySettings</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># EasySettings</span>
 <span class="c1"># いらない</span>
 
 <span class="c1"># Settingslogic</span>
 <span class="k">class</span> <span class="nc">Settings</span> <span class="o">&lt;</span> <span class="no">Settingslogic</span>
    <span class="n">source</span> <span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&#34;config/settings.yml&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">to_s</span>
-<span class="k">end</span></code></pre></div>
-<h2 id="メソッド形式での動的代入ができる">メソッド形式での動的代入ができる</h2>
-<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># EasySettings</span>
+<span class="k">end</span>
+</code></pre></div><h2 id="メソッド形式での動的代入ができる">メソッド形式での動的代入ができる</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># EasySettings</span>
 <span class="o">&gt;</span> <span class="no">EasySettings</span><span class="o">.</span><span class="n">foo</span> <span class="o">||=</span> <span class="s2">&#34;bar&#34;</span>
 <span class="o">=&gt;</span> <span class="s2">&#34;bar&#34;</span>
 
 <span class="c1"># Settingslogic</span>
 <span class="o">&gt;</span> <span class="no">Settings</span><span class="o">.</span><span class="n">foo</span> <span class="o">||=</span> <span class="s2">&#34;bar&#34;</span>
-<span class="no">Settingslogic</span><span class="o">::</span><span class="ss">MissingSetting</span><span class="p">:</span> <span class="no">Missing</span> <span class="n">setting</span> <span class="s1">&#39;foo&#39;</span> <span class="k">in</span> <span class="n">settings1</span><span class="o">.</span><span class="n">yml</span></code></pre></div>
-<h2 id="ネストされたhashで同じキーが使える">ネストされたHashで同じキーが使える</h2>
-
+<span class="no">Settingslogic</span><span class="o">::</span><span class="ss">MissingSetting</span><span class="p">:</span> <span class="no">Missing</span> <span class="n">setting</span> <span class="s1">&#39;foo&#39;</span> <span class="k">in</span> <span class="n">settings1</span><span class="o">.</span><span class="n">yml</span>
+</code></pre></div><h2 id="ネストされたhashで同じキーが使える">ネストされたHashで同じキーが使える</h2>
 <p>というか使えないSettingslogicにびっくり。</p>
-<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># EasySettings</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># EasySettings</span>
 <span class="o">&gt;</span> <span class="no">EasySettings</span><span class="o">[</span><span class="s2">&#34;foo&#34;</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span><span class="ss">foo</span><span class="p">:</span> <span class="s2">&#34;bar&#34;</span><span class="p">}</span>
 <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:foo</span><span class="o">=&gt;</span><span class="s2">&#34;bar&#34;</span><span class="p">}</span>
 <span class="o">&gt;</span> <span class="no">EasySettings</span><span class="o">.</span><span class="n">foo</span><span class="o">.</span><span class="n">foo</span>
@@ -92,12 +88,11 @@ if (!doNotTrack) {
 <span class="o">&gt;</span> <span class="no">Settings</span><span class="o">[</span><span class="s2">&#34;foo&#34;</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span><span class="ss">foo</span><span class="p">:</span> <span class="s2">&#34;bar&#34;</span><span class="p">}</span>
 <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:foo</span><span class="o">=&gt;</span><span class="s2">&#34;bar&#34;</span><span class="p">}</span>
 <span class="o">&gt;</span> <span class="no">Settings</span><span class="o">.</span><span class="n">foo</span><span class="o">.</span><span class="n">foo</span>
-<span class="no">Settingslogic</span><span class="o">::</span><span class="ss">MissingSetting</span><span class="p">:</span> <span class="no">Missing</span> <span class="n">setting</span> <span class="s1">&#39;foo&#39;</span> <span class="k">in</span> <span class="n">settings</span><span class="o">.</span><span class="n">yml</span></code></pre></div>
-<h2 id="デフォルト値が設定できる">デフォルト値が設定できる</h2>
-
+<span class="no">Settingslogic</span><span class="o">::</span><span class="ss">MissingSetting</span><span class="p">:</span> <span class="no">Missing</span> <span class="n">setting</span> <span class="s1">&#39;foo&#39;</span> <span class="k">in</span> <span class="n">settings</span><span class="o">.</span><span class="n">yml</span>
+</code></pre></div><h2 id="デフォルト値が設定できる">デフォルト値が設定できる</h2>
 <p>元々これをやりたかったんですが、あんまりいらない気もする。
 デフォルト値設定を簡潔に書きたくてこういう仕様にしました。</p>
-<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="o">&gt;</span> <span class="no">EasySettings</span><span class="o">.</span><span class="n">foo</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="o">&gt;</span> <span class="no">EasySettings</span><span class="o">.</span><span class="n">foo</span>
 <span class="o">=&gt;</span> <span class="kp">nil</span>
 <span class="o">&gt;</span> <span class="no">EasySettings</span><span class="o">.</span><span class="n">has_key?</span><span class="p">(</span><span class="ss">:foo</span><span class="p">)</span>
 <span class="o">=&gt;</span> <span class="kp">false</span>
@@ -106,21 +101,34 @@ if (!doNotTrack) {
 <span class="o">&gt;</span> <span class="no">EasySettings</span><span class="o">.</span><span class="n">foo</span>
 <span class="o">=&gt;</span> <span class="s2">&#34;bar&#34;</span>
 <span class="o">&gt;</span> <span class="no">EasySettings</span><span class="o">.</span><span class="n">foo</span><span class="p">(</span><span class="s2">&#34;baz&#34;</span><span class="p">)</span>
-<span class="o">=&gt;</span> <span class="s2">&#34;bar&#34;</span></code></pre></div>
-<p>こんなこともできます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="o">&gt;</span> <span class="no">EasySettings</span><span class="o">.</span><span class="n">foo</span><span class="p">({})</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="s2">&#34;baz&#34;</span><span class="p">)</span>
+<span class="o">=&gt;</span> <span class="s2">&#34;bar&#34;</span>
+</code></pre></div><p>こんなこともできます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="o">&gt;</span> <span class="no">EasySettings</span><span class="o">.</span><span class="n">foo</span><span class="p">({})</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="s2">&#34;baz&#34;</span><span class="p">)</span>
 <span class="o">=&gt;</span> <span class="s2">&#34;baz&#34;</span>
 <span class="o">&gt;</span> <span class="no">EasySettings</span><span class="o">.</span><span class="n">to_h</span>
-<span class="o">=&gt;</span> <span class="p">{</span><span class="s2">&#34;foo&#34;</span><span class="o">=&gt;</span><span class="p">{</span><span class="s2">&#34;bar&#34;</span><span class="o">=&gt;</span><span class="s2">&#34;baz&#34;</span><span class="p">}}</span></code></pre></div>
-<p>Settingslogicだとできない。</p>
-<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="o">&gt;</span> <span class="p">(</span><span class="no">Settings</span><span class="o">[</span><span class="ss">:foo</span><span class="o">]</span> <span class="o">||=</span> <span class="p">{})</span><span class="o">[</span><span class="ss">:bar</span><span class="o">]</span> <span class="o">||=</span> <span class="s2">&#34;baz&#34;</span>
+<span class="o">=&gt;</span> <span class="p">{</span><span class="s2">&#34;foo&#34;</span><span class="o">=&gt;</span><span class="p">{</span><span class="s2">&#34;bar&#34;</span><span class="o">=&gt;</span><span class="s2">&#34;baz&#34;</span><span class="p">}}</span>
+</code></pre></div><p>Settingslogicだとできない。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="o">&gt;</span> <span class="p">(</span><span class="no">Settings</span><span class="o">[</span><span class="ss">:foo</span><span class="o">]</span> <span class="o">||=</span> <span class="p">{})</span><span class="o">[</span><span class="ss">:bar</span><span class="o">]</span> <span class="o">||=</span> <span class="s2">&#34;baz&#34;</span>
 <span class="o">=&gt;</span> <span class="s2">&#34;baz&#34;</span>
 <span class="o">&gt;</span> <span class="no">Settings</span><span class="o">[</span><span class="ss">:foo</span><span class="o">][</span><span class="ss">:bar</span><span class="o">]</span>
-<span class="o">=&gt;</span> <span class="kp">nil</span></code></pre></div>
-<p>詳しい使い方はGithubのREADMEに書いてます。</p>
-
+<span class="o">=&gt;</span> <span class="kp">nil</span>
+</code></pre></div><p>詳しい使い方はGithubのREADMEに書いてます。</p>
 <p>是非、使ってみてください。</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#初期化いらず">初期化いらず</a></li>
+    <li><a href="#メソッド形式での動的代入ができる">メソッド形式での動的代入ができる</a></li>
+    <li><a href="#ネストされたhashで同じキーが使える">ネストされたHashで同じキーが使える</a></li>
+    <li><a href="#デフォルト値が設定できる">デフォルト値が設定できる</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

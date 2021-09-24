@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CoreDNS on nownab.log</title>
@@ -6,11 +6,7 @@
     <description>Recent content in CoreDNS on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sat, 11 Jul 2020 20:30:44 +0900</lastBuildDate>
-    
-	<atom:link href="https://blog.nownabe.com/tags/coredns/feed.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 11 Jul 2020 20:30:44 +0900</lastBuildDate><atom:link href="https://blog.nownabe.com/tags/coredns/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CoreDNS で DNS サーバたてた</title>
       <link>https://blog.nownabe.com/2020/07/11/coredns/</link>

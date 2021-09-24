@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,255 +48,209 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/12/11/1215.html/">Parcelで使われてるnpmパッケージ調べてた</a></h2>
     <span class="date">Posted on Dec 10, 2017</span>
   </div>
-  <div class="body">
-    
-
-<p><a href="https://parceljs.org/">Parcel</a>が依存しているnpmパッケージを調べてみた。なんとなくこういう用途にこういうパッケージ使うのかーという程度。</p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p><a href="https://parceljs.org/">Parcel</a>が依存しているnpmパッケージを調べてみた。なんとなくこういう用途にこういうパッケージ使うのかーという程度。</p>
 <p>新しく作るアプリに今話題の<a href="https://parceljs.org/">Parcel</a>を使ってみようとしたけどHot module replacementが効かず、Fedoraを使っているのでinotifyに対応してないのでは？ってところから依存パッケージを調べてみた。</p>
-
-<p>HMRが効かない原因は何もわかってない。Nodeには標準でクロスプラットフォームな<code>fs.watch</code><sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>なるものがあるのでそれはなさそう。</p>
-
+<p>HMRが効かない原因は何もわかってない。Nodeには標準でクロスプラットフォームな<code>fs.watch</code><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>なるものがあるのでそれはなさそう。</p>
 <p>きっかけはそんな感じで、流行りのイケてるパッケージはどういう用途でどういうパッケージを使うのかってのを知っておこうと思ったので一通りみてみた。</p>
-
 <h1 id="dependencies">dependencies</h1>
-
-<h2 id="babel-core-https-www-npmjs-com-package-babel-core"><a href="https://www.npmjs.com/package/babel-core">babel-core</a></h2>
-
+<h2 id="babel-corehttpswwwnpmjscompackagebabel-core"><a href="https://www.npmjs.com/package/babel-core">babel-core</a></h2>
 <p>Babelのコア。元コードから生成されたコード、ソースマップ、ASTを生成したりする。こいつの提供する関数にオプションとしてpluginとかpresetとかを渡す。</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">babel</span><span class="p">.</span><span class="nx">transform</span><span class="p">(</span><span class="nx">code</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">babel</span><span class="p">.</span><span class="nx">transform</span><span class="p">(</span><span class="nx">code</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
 <span class="nx">res</span><span class="p">.</span><span class="nx">code</span><span class="p">;</span>
 <span class="nx">res</span><span class="p">.</span><span class="nx">map</span><span class="p">;</span>
 <span class="nx">res</span><span class="p">.</span><span class="nx">ast</span><span class="p">;</span>
-</code></pre></div>
-<p>Babelまわりはバージョン7でパッケージ名が変わるっぽい。例えばbabel-coreなら<code>@babel/core</code>になる。今は<code>@babel/core</code>を使うと<code>7.0.0-beta.34</code>が手に入る。
+</code></pre></div><p>Babelまわりはバージョン7でパッケージ名が変わるっぽい。例えばbabel-coreなら<code>@babel/core</code>になる。今は<code>@babel/core</code>を使うと<code>7.0.0-beta.34</code>が手に入る。
 ほかも例えばbabel-preset-reactが<code>@babel/preset-react</code>になったりする。</p>
-
 <blockquote>
 <p>A monorepo, muhahahahahaha. See the <a href="https://github.com/babel/babel/blob/master/doc/design/monorepo.md">monorepo design doc</a> for reasoning.</p>
 </blockquote>
-
 <p><a href="https://github.com/babel/babel/tree/master/packages">https://github.com/babel/babel/tree/master/packages</a></p>
-
 <p>正直またこんなでっかい変更が…という思いしかないが主要パッケージのバージョンを統一してくれるのは良い。</p>
-
-<h2 id="babel-generator-https-www-npmjs-com-package-babel-generator"><a href="https://www.npmjs.com/package/babel-generator">babel-generator</a></h2>
-
+<h2 id="babel-generatorhttpswwwnpmjscompackagebabel-generator"><a href="https://www.npmjs.com/package/babel-generator">babel-generator</a></h2>
 <p>ASTからコードを生成するやつ。ソースマップもでる。</p>
-
-<h2 id="babel-plugin-transform-es2015-modules-commonjs-https-www-npmjs-com-package-babel-plugin-transform-es2015-modules-commonjs"><a href="https://www.npmjs.com/package/babel-plugin-transform-es2015-modules-commonjs">babel-plugin-transform-es2015-modules-commonjs</a></h2>
-
+<h2 id="babel-plugin-transform-es2015-modules-commonjshttpswwwnpmjscompackagebabel-plugin-transform-es2015-modules-commonjs"><a href="https://www.npmjs.com/package/babel-plugin-transform-es2015-modules-commonjs">babel-plugin-transform-es2015-modules-commonjs</a></h2>
 <p>Babelのプラグイン。ES ModulesをCommonJS形式に変換するやつ。</p>
-
-<h2 id="babel-to-estree-https-www-npmjs-com-package-babel-to-estree"><a href="https://www.npmjs.com/package/babel-to-estree">babel-to-estree</a></h2>
-
+<h2 id="babel-to-estreehttpswwwnpmjscompackagebabel-to-estree"><a href="https://www.npmjs.com/package/babel-to-estree">babel-to-estree</a></h2>
 <p><a href="https://github.com/babel/babylon/blob/master/ast/spec.md">Babel AST</a>を<a href="https://github.com/estree/estree">ESTree</a>に変換するやつ。</p>
-
-<h2 id="babylon-https-www-npmjs-com-package-babylon"><a href="https://www.npmjs.com/package/babylon">babylon</a></h2>
-
+<h2 id="babylonhttpswwwnpmjscompackagebabylon"><a href="https://www.npmjs.com/package/babylon">babylon</a></h2>
 <p>Babelのパーサ。Babel(Babylon) ASTを吐く。</p>
-
-<h2 id="babylon-walk-https-www-npmjs-com-package-babylon-walk"><a href="https://www.npmjs.com/package/babylon-walk">babylon-walk</a></h2>
-
+<h2 id="babylon-walkhttpswwwnpmjscompackagebabylon-walk"><a href="https://www.npmjs.com/package/babylon-walk">babylon-walk</a></h2>
 <p>Babylon ASTを歩くやつ。</p>
-
-<h2 id="browser-resolve-https-www-npmjs-com-package-browser-resolve"><a href="https://www.npmjs.com/package/browser-resolve">browser-resolve</a></h2>
-
+<h2 id="browser-resolvehttpswwwnpmjscompackagebrowser-resolve"><a href="https://www.npmjs.com/package/browser-resolve">browser-resolve</a></h2>
 <blockquote>
 <p>Sadly, this package has no readme. Go write one!</p>
 </blockquote>
-
 <p>Oops!</p>
-
 <p><code>package.json</code>の<code>browser</code>フィールドを解決するやつ？具体的にどう動くのかはよくわかってない。</p>
-
-<h2 id="chalk-https-www-npmjs-com-package-chalk"><a href="https://www.npmjs.com/package/chalk">chalk</a></h2>
-
+<h2 id="chalkhttpswwwnpmjscompackagechalk"><a href="https://www.npmjs.com/package/chalk">chalk</a></h2>
 <p>コンソールの出力に色つけたりするやつ。</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="k">const</span> <span class="nx">chalk</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;chalk&#39;</span><span class="p">);</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">chalk</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;chalk&#39;</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">chalk</span><span class="p">.</span><span class="nx">blue</span><span class="p">(</span><span class="s1">&#39;Hello world!&#39;</span><span class="p">));</span>
-</code></pre></div>
-<h2 id="chokidar-https-www-npmjs-com-package-chokidar"><a href="https://www.npmjs.com/package/chokidar">chokidar</a></h2>
-
+</code></pre></div><h2 id="chokidarhttpswwwnpmjscompackagechokidar"><a href="https://www.npmjs.com/package/chokidar">chokidar</a></h2>
 <p><code>fs.watch</code>、<code>fs.watchFile</code>、fseventsのラッパー。環境差異を吸収するやつらしい。</p>
-
-<h2 id="commander-https-www-npmjs-com-package-commander"><a href="https://www.npmjs.com/package/commander">commander</a></h2>
-
+<h2 id="commanderhttpswwwnpmjscompackagecommander"><a href="https://www.npmjs.com/package/commander">commander</a></h2>
 <p>Rubyの<a href="https://github.com/commander-rb/commander">commander</a>にインスパイアされたCLIツールを作るやつ。</p>
-
-<h2 id="cssnano-https-www-npmjs-com-package-cssnano"><a href="https://www.npmjs.com/package/cssnano">cssnano</a></h2>
-
+<h2 id="cssnanohttpswwwnpmjscompackagecssnano"><a href="https://www.npmjs.com/package/cssnano">cssnano</a></h2>
 <p>MinifyするPostCSSのプラグイン。</p>
-
-<h2 id="glob-https-www-npmjs-com-package-glob"><a href="https://www.npmjs.com/package/glob">glob</a></h2>
-
+<h2 id="globhttpswwwnpmjscompackageglob"><a href="https://www.npmjs.com/package/glob">glob</a></h2>
 <p>Fileをglobするやつ。</p>
-
-<h2 id="htmlnano-https-www-npmjs-com-package-htmlnano"><a href="https://www.npmjs.com/package/htmlnano">htmlnano</a></h2>
-
+<h2 id="htmlnanohttpswwwnpmjscompackagehtmlnano"><a href="https://www.npmjs.com/package/htmlnano">htmlnano</a></h2>
 <p>cssnanoにインスパイアされたHTMLをminifyするPostHTMLのプラグイン。</p>
-
-<h2 id="is-url-https-www-npmjs-com-package-is-url"><a href="https://www.npmjs.com/package/is-url">is-url</a></h2>
-
+<h2 id="is-urlhttpswwwnpmjscompackageis-url"><a href="https://www.npmjs.com/package/is-url">is-url</a></h2>
 <p>文字列がURLかどうか調べるやつ。</p>
-
-<h2 id="js-yaml-https-www-npmjs-com-package-js-yaml"><a href="https://www.npmjs.com/package/js-yaml">js-yaml</a></h2>
-
+<h2 id="js-yamlhttpswwwnpmjscompackagejs-yaml"><a href="https://www.npmjs.com/package/js-yaml">js-yaml</a></h2>
 <p>YAML扱うやつ。</p>
-
-<h2 id="micromatch-https-www-npmjs-com-package-micromatch"><a href="https://www.npmjs.com/package/micromatch">micromatch</a></h2>
-
+<h2 id="micromatchhttpswwwnpmjscompackagemicromatch"><a href="https://www.npmjs.com/package/micromatch">micromatch</a></h2>
 <p>globマッチャ。</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">micromatch</span><span class="p">([</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;qux&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;f*&#39;</span><span class="p">,</span> <span class="s1">&#39;b*&#39;</span><span class="p">]));</span> 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">micromatch</span><span class="p">([</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;qux&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;f*&#39;</span><span class="p">,</span> <span class="s1">&#39;b*&#39;</span><span class="p">]));</span> 
 <span class="c1">//=&gt; [&#39;foo&#39;, &#39;bar&#39;]
-</span></code></pre></div>
-<h2 id="mkdirp-https-www-npmjs-com-package-mkdirp"><a href="https://www.npmjs.com/package/mkdirp">mkdirp</a></h2>
-
+</span></code></pre></div><h2 id="mkdirphttpswwwnpmjscompackagemkdirp"><a href="https://www.npmjs.com/package/mkdirp">mkdirp</a></h2>
 <p><code>mkdir -p</code></p>
-
-<h2 id="node-libs-browser-https-www-npmjs-com-package-node-libs-browser"><a href="https://www.npmjs.com/package/node-libs-browser">node-libs-browser</a></h2>
-
+<h2 id="node-libs-browserhttpswwwnpmjscompackagenode-libs-browser"><a href="https://www.npmjs.com/package/node-libs-browser">node-libs-browser</a></h2>
 <p>Nodeの機能をブラウザで再現するためのパッケージ群。</p>
-
-<h2 id="parse-json-https-www-npmjs-com-package-parse-json"><a href="https://www.npmjs.com/package/parse-json">parse-json</a></h2>
-
+<h2 id="parse-jsonhttpswwwnpmjscompackageparse-json"><a href="https://www.npmjs.com/package/parse-json">parse-json</a></h2>
 <p>親切なエラーメッセージを出すJSONパーサ。</p>
-
-<h2 id="physical-cpu-count-https-www-npmjs-com-package-physical-cpu-count"><a href="https://www.npmjs.com/package/physical-cpu-count">physical-cpu-count</a></h2>
-
+<h2 id="physical-cpu-counthttpswwwnpmjscompackagephysical-cpu-count"><a href="https://www.npmjs.com/package/physical-cpu-count">physical-cpu-count</a></h2>
 <p>物理CPUコアをカウントするやつ。</p>
-
-<h2 id="postcss-https-www-npmjs-com-package-postcss"><a href="https://www.npmjs.com/package/postcss">postcss</a></h2>
-
+<h2 id="postcsshttpswwwnpmjscompackagepostcss"><a href="https://www.npmjs.com/package/postcss">postcss</a></h2>
 <p>PostCSS</p>
-
-<h2 id="postcss-value-parser-https-www-npmjs-com-package-postcss-value-parser"><a href="https://www.npmjs.com/package/postcss-value-parser">postcss-value-parser</a></h2>
-
+<h2 id="postcss-value-parserhttpswwwnpmjscompackagepostcss-value-parser"><a href="https://www.npmjs.com/package/postcss-value-parser">postcss-value-parser</a></h2>
 <p>CSSの値のパーサ。</p>
-
-<h2 id="posthtml-https-www-npmjs-com-package-posthtml"><a href="https://www.npmjs.com/package/posthtml">posthtml</a></h2>
-
+<h2 id="posthtmlhttpswwwnpmjscompackageposthtml"><a href="https://www.npmjs.com/package/posthtml">posthtml</a></h2>
 <p>PostHTML</p>
-
-<h2 id="resolve-https-www-npmjs-com-package-resolve"><a href="https://www.npmjs.com/package/resolve">resolve</a></h2>
-
+<h2 id="resolvehttpswwwnpmjscompackageresolve"><a href="https://www.npmjs.com/package/resolve">resolve</a></h2>
 <p>Nodeの<code>require.resolve()</code>の実装？<code>require.resolve()</code>は<code>require</code>のパスを解決するやつっぽい。</p>
-
-<h2 id="serve-static-https-www-npmjs-com-package-serve-static"><a href="https://www.npmjs.com/package/serve-static">serve-static</a></h2>
-
+<h2 id="serve-statichttpswwwnpmjscompackageserve-static"><a href="https://www.npmjs.com/package/serve-static">serve-static</a></h2>
 <p>静的ファイルをserveするミドルウェアを作るやつ。ミドルウェアってのはNodeのhttpとかExpressとかで使えるものを指してるらしい。</p>
-
-<h2 id="uglify-js-https-www-npmjs-com-package-uglify-js"><a href="https://www.npmjs.com/package/uglify-js">uglify-js</a></h2>
-
+<h2 id="uglify-jshttpswwwnpmjscompackageuglify-js"><a href="https://www.npmjs.com/package/uglify-js">uglify-js</a></h2>
 <p>minifyするやつと思ってたけど、その逆とかパースとかもできるらしい。</p>
-
-<h2 id="v8-compile-cache-https-www-npmjs-com-package-v8-compile-cache"><a href="https://www.npmjs.com/package/v8-compile-cache">v8-compile-cache</a></h2>
-
+<h2 id="v8-compile-cachehttpswwwnpmjscompackagev8-compile-cache"><a href="https://www.npmjs.com/package/v8-compile-cache">v8-compile-cache</a></h2>
 <p>コンパイル後のコードをキャッシュしとくやつ？立ち上がりのスピードが早くなるっぽい。</p>
-
-<h2 id="worker-farm-https-www-npmjs-com-package-worker-farm"><a href="https://www.npmjs.com/package/worker-farm">worker-farm</a></h2>
-
+<h2 id="worker-farmhttpswwwnpmjscompackageworker-farm"><a href="https://www.npmjs.com/package/worker-farm">worker-farm</a></h2>
 <p>子プロセスを立ち上げてコードを実行するタイプのワーカー。</p>
-
-<h2 id="ws-https-www-npmjs-com-package-ws"><a href="https://www.npmjs.com/package/ws">ws</a></h2>
-
+<h2 id="wshttpswwwnpmjscompackagews"><a href="https://www.npmjs.com/package/ws">ws</a></h2>
 <p>WebSocketのクライアントとサーバ。</p>
-
 <h1 id="devdependencies">devDependencies</h1>
-
-<h2 id="babel-cli-https-www-npmjs-com-package-babel-cli"><a href="https://www.npmjs.com/package/babel-cli">babel-cli</a></h2>
-
+<h2 id="babel-clihttpswwwnpmjscompackagebabel-cli"><a href="https://www.npmjs.com/package/babel-cli">babel-cli</a></h2>
 <p>BabelのCLIツール。</p>
-
-<h2 id="babel-preset-env-https-www-npmjs-com-package-babel-preset-env"><a href="https://www.npmjs.com/package/babel-preset-env">babel-preset-env</a></h2>
-
+<h2 id="babel-preset-envhttpswwwnpmjscompackagebabel-preset-env"><a href="https://www.npmjs.com/package/babel-preset-env">babel-preset-env</a></h2>
 <p>Babelのプリセット。対象のブラウザ・ランタイムにあわせて自動でBabelのプラグインとPolyfillを決定する。</p>
-
-<h2 id="cross-env-https-www-npmjs-com-package-cross-env"><a href="https://www.npmjs.com/package/cross-env">cross-env</a></h2>
-
+<h2 id="cross-envhttpswwwnpmjscompackagecross-env"><a href="https://www.npmjs.com/package/cross-env">cross-env</a></h2>
 <p>クロスプラットフォームで動作する環境変数を設定してスクリプトを実行するCLIツール。</p>
-
-<h2 id="husky-https-www-npmjs-com-package-husky"><a href="https://www.npmjs.com/package/husky">husky</a></h2>
-
+<h2 id="huskyhttpswwwnpmjscompackagehusky"><a href="https://www.npmjs.com/package/husky">husky</a></h2>
 <p>Git hookとしてnpm scriptsを実行するように自動で設定するツール。<code>npm install husky</code>すると<code>.git/hooks</code>以下に自動でスクリプトが作成される。</p>
-
-<h2 id="less-https-www-npmjs-com-package-less"><a href="https://www.npmjs.com/package/less">less</a></h2>
-
+<h2 id="lesshttpswwwnpmjscompackageless"><a href="https://www.npmjs.com/package/less">less</a></h2>
 <p>CSSプリプロセッサ。</p>
-
-<h2 id="lint-staged-https-www-npmjs-com-package-lint-staged"><a href="https://www.npmjs.com/package/lint-staged">lint-staged</a></h2>
-
+<h2 id="lint-stagedhttpswwwnpmjscompackagelint-staged"><a href="https://www.npmjs.com/package/lint-staged">lint-staged</a></h2>
 <p>Gitのステージのファイルに対してLintを実行するツール。</p>
-
-<h2 id="mocha-https-www-npmjs-com-package-mocha"><a href="https://www.npmjs.com/package/mocha">mocha</a></h2>
-
+<h2 id="mochahttpswwwnpmjscompackagemocha"><a href="https://www.npmjs.com/package/mocha">mocha</a></h2>
 <p>simple, flexible, funなJavaScriptテストフレームワーク。</p>
-
-<h2 id="ncp-https-www-npmjs-com-package-ncp"><a href="https://www.npmjs.com/package/ncp">ncp</a></h2>
-
+<h2 id="ncphttpswwwnpmjscompackagencp"><a href="https://www.npmjs.com/package/ncp">ncp</a></h2>
 <p>高機能な<code>cp -r</code>みたいなやつ。</p>
-
-<h2 id="nib-https-www-npmjs-com-package-nib"><a href="https://www.npmjs.com/package/nib">nib</a></h2>
-
+<h2 id="nibhttpswwwnpmjscompackagenib"><a href="https://www.npmjs.com/package/nib">nib</a></h2>
 <p>StylusにMix-inとか様々な機能を追加するやつ。</p>
-
-<h2 id="node-sass-https-www-npmjs-com-package-node-sass"><a href="https://www.npmjs.com/package/node-sass">node-sass</a></h2>
-
+<h2 id="node-sasshttpswwwnpmjscompackagenode-sass"><a href="https://www.npmjs.com/package/node-sass">node-sass</a></h2>
 <p>CSSプリプロセッサ。</p>
-
-<h2 id="nyc-https-www-npmjs-com-package-nyc"><a href="https://www.npmjs.com/package/nyc">nyc</a></h2>
-
+<h2 id="nychttpswwwnpmjscompackagenyc"><a href="https://www.npmjs.com/package/nyc">nyc</a></h2>
 <p><a href="https://www.npmjs.com/package/istanbul">Istanbul</a>のCLIツール？nyc経由でテストを実行するとカバレッジがとれる。</p>
-
-<h2 id="postcss-modules-https-www-npmjs-com-package-postcss-modules"><a href="https://www.npmjs.com/package/postcss-modules">postcss-modules</a></h2>
-
+<h2 id="postcss-moduleshttpswwwnpmjscompackagepostcss-modules"><a href="https://www.npmjs.com/package/postcss-modules">postcss-modules</a></h2>
 <p>CSS Modulesを扱うためのPostCSSのプラグイン。</p>
-
-<h2 id="posthtml-include-https-www-npmjs-com-package-posthtml-include"><a href="https://www.npmjs.com/package/posthtml-include">posthtml-include</a></h2>
-
+<h2 id="posthtml-includehttpswwwnpmjscompackageposthtml-include"><a href="https://www.npmjs.com/package/posthtml-include">posthtml-include</a></h2>
 <p><code>include</code>タグが使えるようになるPostHTMLのプラグイン。</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>index.html<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">include</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;component/button/button.html&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">include</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></code></pre></div>
-<h2 id="prettier-https-www-npmjs-com-package-prettier"><a href="https://www.npmjs.com/package/prettier">prettier</a></h2>
-
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div><h2 id="prettierhttpswwwnpmjscompackageprettier"><a href="https://www.npmjs.com/package/prettier">prettier</a></h2>
 <p>コードフォーマッタ。</p>
-
-<h2 id="rimraf-https-www-npmjs-com-package-rimraf"><a href="https://www.npmjs.com/package/rimraf">rimraf</a></h2>
-
+<h2 id="rimrafhttpswwwnpmjscompackagerimraf"><a href="https://www.npmjs.com/package/rimraf">rimraf</a></h2>
 <p><code>rm -rf</code></p>
-
-<h2 id="stylus-https-www-npmjs-com-package-stylus"><a href="https://www.npmjs.com/package/stylus">stylus</a></h2>
-
+<h2 id="stylushttpswwwnpmjscompackagestylus"><a href="https://www.npmjs.com/package/stylus">stylus</a></h2>
 <p>CSSプリプロセッサ。</p>
-
-<h2 id="typescript-https-www-npmjs-com-package-typescript"><a href="https://www.npmjs.com/package/typescript">typescript</a></h2>
-
+<h2 id="typescripthttpswwwnpmjscompackagetypescript"><a href="https://www.npmjs.com/package/typescript">typescript</a></h2>
 <p>TypeScript。</p>
-
 <h1 id="おわりに">おわりに</h1>
-
 <p>Babelのエコシステムがどんな感じなのかしれたのと、devDependenciesが参考になりそうなのでよかったけど、全部書く必要はなかった。。。 😫</p>
-<div class="footnotes">
-
-<hr />
-
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1"><a href="https://nodejs.org/docs/latest/api/fs.html#fs_fs_watch_filename_options_listener">File System | Node.js v9.2.1 Documentation</a>
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://nodejs.org/docs/latest/api/fs.html#fs_fs_watch_filename_options_listener">File System | Node.js v9.2.1 Documentation</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#babel-corehttpswwwnpmjscompackagebabel-core"><a href="https://www.npmjs.com/package/babel-core">babel-core</a></a></li>
+    <li><a href="#babel-generatorhttpswwwnpmjscompackagebabel-generator"><a href="https://www.npmjs.com/package/babel-generator">babel-generator</a></a></li>
+    <li><a href="#babel-plugin-transform-es2015-modules-commonjshttpswwwnpmjscompackagebabel-plugin-transform-es2015-modules-commonjs"><a href="https://www.npmjs.com/package/babel-plugin-transform-es2015-modules-commonjs">babel-plugin-transform-es2015-modules-commonjs</a></a></li>
+    <li><a href="#babel-to-estreehttpswwwnpmjscompackagebabel-to-estree"><a href="https://www.npmjs.com/package/babel-to-estree">babel-to-estree</a></a></li>
+    <li><a href="#babylonhttpswwwnpmjscompackagebabylon"><a href="https://www.npmjs.com/package/babylon">babylon</a></a></li>
+    <li><a href="#babylon-walkhttpswwwnpmjscompackagebabylon-walk"><a href="https://www.npmjs.com/package/babylon-walk">babylon-walk</a></a></li>
+    <li><a href="#browser-resolvehttpswwwnpmjscompackagebrowser-resolve"><a href="https://www.npmjs.com/package/browser-resolve">browser-resolve</a></a></li>
+    <li><a href="#chalkhttpswwwnpmjscompackagechalk"><a href="https://www.npmjs.com/package/chalk">chalk</a></a></li>
+    <li><a href="#chokidarhttpswwwnpmjscompackagechokidar"><a href="https://www.npmjs.com/package/chokidar">chokidar</a></a></li>
+    <li><a href="#commanderhttpswwwnpmjscompackagecommander"><a href="https://www.npmjs.com/package/commander">commander</a></a></li>
+    <li><a href="#cssnanohttpswwwnpmjscompackagecssnano"><a href="https://www.npmjs.com/package/cssnano">cssnano</a></a></li>
+    <li><a href="#globhttpswwwnpmjscompackageglob"><a href="https://www.npmjs.com/package/glob">glob</a></a></li>
+    <li><a href="#htmlnanohttpswwwnpmjscompackagehtmlnano"><a href="https://www.npmjs.com/package/htmlnano">htmlnano</a></a></li>
+    <li><a href="#is-urlhttpswwwnpmjscompackageis-url"><a href="https://www.npmjs.com/package/is-url">is-url</a></a></li>
+    <li><a href="#js-yamlhttpswwwnpmjscompackagejs-yaml"><a href="https://www.npmjs.com/package/js-yaml">js-yaml</a></a></li>
+    <li><a href="#micromatchhttpswwwnpmjscompackagemicromatch"><a href="https://www.npmjs.com/package/micromatch">micromatch</a></a></li>
+    <li><a href="#mkdirphttpswwwnpmjscompackagemkdirp"><a href="https://www.npmjs.com/package/mkdirp">mkdirp</a></a></li>
+    <li><a href="#node-libs-browserhttpswwwnpmjscompackagenode-libs-browser"><a href="https://www.npmjs.com/package/node-libs-browser">node-libs-browser</a></a></li>
+    <li><a href="#parse-jsonhttpswwwnpmjscompackageparse-json"><a href="https://www.npmjs.com/package/parse-json">parse-json</a></a></li>
+    <li><a href="#physical-cpu-counthttpswwwnpmjscompackagephysical-cpu-count"><a href="https://www.npmjs.com/package/physical-cpu-count">physical-cpu-count</a></a></li>
+    <li><a href="#postcsshttpswwwnpmjscompackagepostcss"><a href="https://www.npmjs.com/package/postcss">postcss</a></a></li>
+    <li><a href="#postcss-value-parserhttpswwwnpmjscompackagepostcss-value-parser"><a href="https://www.npmjs.com/package/postcss-value-parser">postcss-value-parser</a></a></li>
+    <li><a href="#posthtmlhttpswwwnpmjscompackageposthtml"><a href="https://www.npmjs.com/package/posthtml">posthtml</a></a></li>
+    <li><a href="#resolvehttpswwwnpmjscompackageresolve"><a href="https://www.npmjs.com/package/resolve">resolve</a></a></li>
+    <li><a href="#serve-statichttpswwwnpmjscompackageserve-static"><a href="https://www.npmjs.com/package/serve-static">serve-static</a></a></li>
+    <li><a href="#uglify-jshttpswwwnpmjscompackageuglify-js"><a href="https://www.npmjs.com/package/uglify-js">uglify-js</a></a></li>
+    <li><a href="#v8-compile-cachehttpswwwnpmjscompackagev8-compile-cache"><a href="https://www.npmjs.com/package/v8-compile-cache">v8-compile-cache</a></a></li>
+    <li><a href="#worker-farmhttpswwwnpmjscompackageworker-farm"><a href="https://www.npmjs.com/package/worker-farm">worker-farm</a></a></li>
+    <li><a href="#wshttpswwwnpmjscompackagews"><a href="https://www.npmjs.com/package/ws">ws</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#babel-clihttpswwwnpmjscompackagebabel-cli"><a href="https://www.npmjs.com/package/babel-cli">babel-cli</a></a></li>
+    <li><a href="#babel-preset-envhttpswwwnpmjscompackagebabel-preset-env"><a href="https://www.npmjs.com/package/babel-preset-env">babel-preset-env</a></a></li>
+    <li><a href="#cross-envhttpswwwnpmjscompackagecross-env"><a href="https://www.npmjs.com/package/cross-env">cross-env</a></a></li>
+    <li><a href="#huskyhttpswwwnpmjscompackagehusky"><a href="https://www.npmjs.com/package/husky">husky</a></a></li>
+    <li><a href="#lesshttpswwwnpmjscompackageless"><a href="https://www.npmjs.com/package/less">less</a></a></li>
+    <li><a href="#lint-stagedhttpswwwnpmjscompackagelint-staged"><a href="https://www.npmjs.com/package/lint-staged">lint-staged</a></a></li>
+    <li><a href="#mochahttpswwwnpmjscompackagemocha"><a href="https://www.npmjs.com/package/mocha">mocha</a></a></li>
+    <li><a href="#ncphttpswwwnpmjscompackagencp"><a href="https://www.npmjs.com/package/ncp">ncp</a></a></li>
+    <li><a href="#nibhttpswwwnpmjscompackagenib"><a href="https://www.npmjs.com/package/nib">nib</a></a></li>
+    <li><a href="#node-sasshttpswwwnpmjscompackagenode-sass"><a href="https://www.npmjs.com/package/node-sass">node-sass</a></a></li>
+    <li><a href="#nychttpswwwnpmjscompackagenyc"><a href="https://www.npmjs.com/package/nyc">nyc</a></a></li>
+    <li><a href="#postcss-moduleshttpswwwnpmjscompackagepostcss-modules"><a href="https://www.npmjs.com/package/postcss-modules">postcss-modules</a></a></li>
+    <li><a href="#posthtml-includehttpswwwnpmjscompackageposthtml-include"><a href="https://www.npmjs.com/package/posthtml-include">posthtml-include</a></a></li>
+    <li><a href="#prettierhttpswwwnpmjscompackageprettier"><a href="https://www.npmjs.com/package/prettier">prettier</a></a></li>
+    <li><a href="#rimrafhttpswwwnpmjscompackagerimraf"><a href="https://www.npmjs.com/package/rimraf">rimraf</a></a></li>
+    <li><a href="#stylushttpswwwnpmjscompackagestylus"><a href="https://www.npmjs.com/package/stylus">stylus</a></a></li>
+    <li><a href="#typescripthttpswwwnpmjscompackagetypescript"><a href="https://www.npmjs.com/package/typescript">typescript</a></a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

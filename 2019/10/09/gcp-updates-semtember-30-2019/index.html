@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,82 +48,86 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2019/10/09/gcp-updates-semtember-30-2019/">GCP Updates | Semtember 30, 2019</a></h2>
     <span class="date">Posted on Oct 9, 2019</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="compute">COMPUTE</h1>
-
-<h2 id="compute-engine-name-change-for-memory-optimized-vms-ga">Compute Engine – name change for memory-optimized VMs: GA</h2>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="compute">COMPUTE</h1>
+<h2 id="compute-engine--name-change-for-memory-optimized-vms-ga">Compute Engine – name change for memory-optimized VMs: GA</h2>
 <blockquote>
 <p>To more clearly identify VM instances as members of the memory-optimized machine-type family, all n1-ultramem and n1-megamem VMs have had their “n1” prefix changed to “m1”. <a href="https://cloud.google.com/compute/docs/machine-types#m1_machine_types">Documentation</a></p>
 </blockquote>
-
-<h2 id="compute-engine-persistent-disk-scheduled-snapshots-ga">Compute Engine – persistent disk scheduled snapshots: GA</h2>
-
+<h2 id="compute-engine--persistent-disk-scheduled-snapshots-ga">Compute Engine – persistent disk scheduled snapshots: GA</h2>
 <blockquote>
 <p>Use snapshot schedules to regularly and automatically back up your Compute Engine workloads as well as your zonal and regional persistent disks. And define how long to keep snapshots with a snapshot retention policy. <a href="https://cloud.google.com/compute/docs/disks/scheduled-snapshots">Documentation</a></p>
 </blockquote>
-
 <p>いままでなかったのか 😳</p>
-
-<h1 id="ai-machine-learning">AI &amp; MACHINE LEARNING</h1>
-
-<h2 id="ai-platform-custom-containers-ga">AI Platform – custom containers: GA</h2>
-
+<h1 id="ai--machine-learning">AI &amp; MACHINE LEARNING</h1>
+<h2 id="ai-platform--custom-containers-ga">AI Platform – custom containers: GA</h2>
 <blockquote>
 <p>Run your apps in a Docker image by building your own custom container to run jobs on AI Platform. Use machine learning frameworks and versions – as well as non-ML dependencies, libraries, and binaries not otherwise supported on AI Platform. <a href="https://cloud.google.com/ml-engine/docs/containers-overview">Documentation</a></p>
 </blockquote>
-
 <p>中ではCloud Runが使われてんのかな 🤔</p>
-
 <p>AI Platformの方のドキュメント見るとDockerのインストールとかDockerfileの書き方とかまで書いてあっておもしろい。</p>
-
-<h2 id="ai-platform-use-predefined-machine-type-names-to-configure-training-job-ga">AI Platform – use predefined machine-type names to configure training job: GA</h2>
-
+<h2 id="ai-platform--use-predefined-machine-type-names-to-configure-training-job-ga">AI Platform – use predefined machine-type names to configure training job: GA</h2>
 <blockquote>
 <p>Gain greater flexibility when allocating computing resources for training machine learning jobs by using names of certain predefined Compute Engine machine types. You can also customize how your job uses GPUs when training with TensorFlow or using custom containers. <a href="https://cloud.google.com/ml-engine/docs/machine-types#compute-engine-machine-types">Documentation</a></p>
 </blockquote>
-
-<h2 id="cloud-video-intelligence-api-logo-detection-beta">Cloud Video Intelligence API – logo detection: beta</h2>
-
+<h2 id="cloud-video-intelligence-api--logo-detection-beta">Cloud Video Intelligence API – logo detection: beta</h2>
 <blockquote>
 <p>Detect, track, and recognize the presence of over 100,000 brands and logos in video content. <a href="https://cloud.google.com/video-intelligence/docs/logo-recognition">Documentation</a></p>
 </blockquote>
-
 <h1 id="security">SECURITY</h1>
-
-<h2 id="cloud-data-loss-prevention-new-google-cloud-platform-console-user-interface-ga">Cloud Data Loss Prevention – new Google Cloud Platform Console user interface: GA</h2>
-
+<h2 id="cloud-data-loss-prevention--new-google-cloud-platform-console-user-interface-ga">Cloud Data Loss Prevention – new Google Cloud Platform Console user interface: GA</h2>
 <blockquote>
 <p>Gain greater visibility and control over sensitive data with the new Cloud DLP UI. Inspect and classify data in Cloud Storage, BigQuery, and Cloud Datastore repositories with a few clicks. Manage inspection jobs, create templates, and examine findings in your console. <a href="https://cloud.google.com/dlp/docs/dlp-ui">Documentation</a></p>
 </blockquote>
-
-<h2 id="cloud-asset-inventory-organization-policy-and-access-policy-support-ga">Cloud Asset Inventory – Organization Policy and Access Policy support: GA</h2>
-
+<h2 id="cloud-asset-inventory--organization-policy-and-access-policy-support-ga">Cloud Asset Inventory – Organization Policy and Access Policy support: GA</h2>
 <blockquote>
 <p>View and assess more resource and policy types in one centralized, managed inventory service with the newly onboarded policies. <a href="https://cloud.google.com/asset-inventory/docs/overview">Documentation</a></p>
 </blockquote>
-
 <h2 id="identity-platform-multi-tenancy-support-beta">Identity Platform multi-tenancy support: beta</h2>
-
 <blockquote>
 <p>Create unique silos of users and configurations within a single Identity Platform project to set up data-isolation boundaries. The silos can represent different customers, business units, subsidiaries, or other identifying characteristics. <a href="https://cloud.google.com/identity-platform/docs/multi-tenancy">Documentation</a></p>
 </blockquote>
-
 <h1 id="anthos">ANTHOS</h1>
-
 <h2 id="gcp-marketplace-private-pricing-beta">GCP Marketplace Private Pricing: beta</h2>
-
 <blockquote>
 <p>Create custom quotes for prospective customers for your Kubernetes apps or integrated SaaS solutions with GCP Marketplace Private Pricing. The quote gives customers the ability to purchase your product on the GCP Marketplace at the negotiated price in their GCP Console. <a href="https://cloud.google.com/marketplace/docs/partners/create-quotes">Documentation</a></p>
 </blockquote>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#compute-engine--name-change-for-memory-optimized-vms-ga">Compute Engine – name change for memory-optimized VMs: GA</a></li>
+    <li><a href="#compute-engine--persistent-disk-scheduled-snapshots-ga">Compute Engine – persistent disk scheduled snapshots: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#ai-platform--custom-containers-ga">AI Platform – custom containers: GA</a></li>
+    <li><a href="#ai-platform--use-predefined-machine-type-names-to-configure-training-job-ga">AI Platform – use predefined machine-type names to configure training job: GA</a></li>
+    <li><a href="#cloud-video-intelligence-api--logo-detection-beta">Cloud Video Intelligence API – logo detection: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-data-loss-prevention--new-google-cloud-platform-console-user-interface-ga">Cloud Data Loss Prevention – new Google Cloud Platform Console user interface: GA</a></li>
+    <li><a href="#cloud-asset-inventory--organization-policy-and-access-policy-support-ga">Cloud Asset Inventory – Organization Policy and Access Policy support: GA</a></li>
+    <li><a href="#identity-platform-multi-tenancy-support-beta">Identity Platform multi-tenancy support: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#gcp-marketplace-private-pricing-beta">GCP Marketplace Private Pricing: beta</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

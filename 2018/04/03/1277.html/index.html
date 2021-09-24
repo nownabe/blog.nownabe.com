@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,26 +48,24 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/04/03/1277.html/">言語処理のための機械学習入門 第7回</a></h2>
     <span class="date">Posted on Apr 3, 2018</span>
   </div>
-  <div class="body">
-    
-
-<p><a href="https://blog.nownabe.com/2018/03/14/1271.html">nownab.log | 言語処理のための機械学習入門 第4回</a></p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p><a href="https://blog.nownabe.com/2018/03/14/1271.html">nownab.log | 言語処理のための機械学習入門 第4回</a></p>
 <h1 id="概要">概要</h1>
-
 <p>機械学習勉強会で輪読してる<a href="http://amzn.to/2BFQSee">言語処理のための機械学習入門</a>の学習メモです。
 勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。</p>
-
 <h1 id="範囲">範囲</h1>
-
 <ul>
-<li>2. 文書および単語の数学的表現
-
+<li>
+<ol start="2">
+<li>文書および単語の数学的表現</li>
+</ol>
 <ul>
 <li>2.1 タイプ, トークン</li>
 <li>2.2 nグラム</li>
@@ -77,53 +75,32 @@ if (!doNotTrack) {
 <li>2.6 文書や単語の確率分布による表現</li>
 <li>2.7 この章のまとめ</li>
 <li>章末問題</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h1 id="資料">資料</h1>
-
 <h1 id="2-文書および単語の数学的表現">2 文書および単語の数学的表現</h1>
-
-<h2 id="2-1-タイプ-トークン">2.1 タイプ, トークン</h2>
-
+<h2 id="21-タイプ-トークン">2.1 タイプ, トークン</h2>
 <p>自分でなにかするときはもちろん意識してるけど会話するときは「単語」としか言ってなかったので, 会話の中で単語トークンと単語タイプを使い分けるのやったほうがよさそう.</p>
-
-<h2 id="2-2-nグラム">2.2 nグラム</h2>
-
-<h3 id="2-2-1-単語nグラム">2.2.1 単語nグラム</h3>
-
-<h3 id="2-2-2-文字nグラム">2.2.2 文字nグラム</h3>
-
-<h2 id="2-3-文書-文のベクトル表現">2.3 文書, 文のベクトル表現</h2>
-
-<h3 id="2-3-1-文書のベクトル表現">2.3.1 文書のベクトル表現</h3>
-
+<h2 id="22-nグラム">2.2 nグラム</h2>
+<h3 id="221-単語nグラム">2.2.1 単語nグラム</h3>
+<h3 id="222-文字nグラム">2.2.2 文字nグラム</h3>
+<h2 id="23-文書-文のベクトル表現">2.3 文書, 文のベクトル表現</h2>
+<h3 id="231-文書のベクトル表現">2.3.1 文書のベクトル表現</h3>
 <p>頻度を素性値に使うものを頻度ベクトル, 出現したかどうかのみ気にするのを二値ベクトル. これもあんま使い分けしてなかったので気をつけよう.</p>
-
-<h3 id="2-3-2-文のベクトル表現">2.3.2 文のベクトル表現</h3>
-
-<h2 id="2-4-文書に対する前処理とデータスパースネス問題">2.4 文書に対する前処理とデータスパースネス問題</h2>
-
-<h3 id="2-4-1-文書に対する前処理">2.4.1 文書に対する前処理</h3>
-
-<h3 id="2-4-2-日本語の前処理">2.4.2 日本語の前処理</h3>
-
-<h3 id="2-4-3-データスパースネス問題">2.4.3.データスパースネス問題</h3>
-
-<h2 id="2-5-単語のベクトル表現">2.5 単語のベクトル表現</h2>
-
-<h3 id="2-5-1-単語トークンの文脈ベクトル表現">2.5.1 単語トークンの文脈ベクトル表現</h3>
-
-<h3 id="2-5-2-単語タイプの文脈ベクトル表現">2.5.2 単語タイプの文脈ベクトル表現</h3>
-
+<h3 id="232-文のベクトル表現">2.3.2 文のベクトル表現</h3>
+<h2 id="24-文書に対する前処理とデータスパースネス問題">2.4 文書に対する前処理とデータスパースネス問題</h2>
+<h3 id="241-文書に対する前処理">2.4.1 文書に対する前処理</h3>
+<h3 id="242-日本語の前処理">2.4.2 日本語の前処理</h3>
+<h3 id="243データスパースネス問題">2.4.3.データスパースネス問題</h3>
+<h2 id="25-単語のベクトル表現">2.5 単語のベクトル表現</h2>
+<h3 id="251-単語トークンの文脈ベクトル表現">2.5.1 単語トークンの文脈ベクトル表現</h3>
+<h3 id="252-単語タイプの文脈ベクトル表現">2.5.2 単語タイプの文脈ベクトル表現</h3>
 <p>単純に足し合わせるだけなのかー. 正規化とか必要そう.</p>
-
-<h2 id="2-6-文書や単語の確率分布による表現">2.6 文書や単語の確率分布による表現</h2>
-
-<h2 id="2-7-この章のまとめ">2.7 この章のまとめ</h2>
-
+<h2 id="26-文書や単語の確率分布による表現">2.6 文書や単語の確率分布による表現</h2>
+<h2 id="27-この章のまとめ">2.7 この章のまとめ</h2>
 <h2 id="章末問題">章末問題</h2>
-<div class="highlight"><pre class="chroma"><code class="language-rb" data-lang="rb"><span class="c1"># frozen_string_literal: true</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rb" data-lang="rb"><span class="c1"># frozen_string_literal: true</span>
 
 <span class="k">def</span> <span class="nf">make_ngram</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">arr</span><span class="p">)</span>
   <span class="nb">print</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="n">n</span><span class="si">}</span><span class="s2">-gram: &#34;</span>
@@ -162,10 +139,9 @@ if (!doNotTrack) {
 <span class="nb">puts</span> <span class="s2">&#34;======== 3 ========&#34;</span>
 
 <span class="n">sentence</span> <span class="o">=</span> <span class="s2">&#34;I had a supercalifragilisticexpialidocious time with friends.&#34;</span>
-<span class="nb">puts</span> <span class="s2">&#34;[-2=had:1, -1=a:1, +1=time:1, +2=with:1]&#34;</span></code></pre></div>
-<p>3番… 😇</p>
-
-<pre><code>======== 1 ========
+<span class="nb">puts</span> <span class="s2">&#34;[-2=had:1, -1=a:1, +1=time:1, +2=with:1]&#34;</span>
+</code></pre></div><p>3番… 😇</p>
+<pre tabindex="0"><code>======== 1 ========
 1-gram: [a:4, r:2, t:6]
 2-gram: [ar:1, at:3, ra:1, rr:1, ta:3, tt:2]
 3-gram: [arr:1, att:2, rat:1, rra:1, tar:1, tat:2, tta:2]
@@ -175,24 +151,55 @@ if (!doNotTrack) {
 
 ======== 3 ========
 [-2=had:1, -1=a:1, +1=time:1, +2=with:1]
-</code></pre>
-
-<h1 id="所感">所感</h1>
-
+</code></pre><h1 id="所感">所感</h1>
 <p>Word2Vecとかも詳しく勉強してみたいなー.</p>
-
 <h1 id="言語処理のための機械学習入門">言語処理のための機械学習入門</h1>
-
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=4339027510&linkId=1c6291b86381f20d113796257356ef1b"></iframe>
-
 <h1 id="機械学習勉強会について">機械学習勉強会について</h1>
-
 <p>社内で毎週開催している。本書は輪読形式でまわしているが、題材によって形式は柔軟に変えている。
 毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。</p>
-
 <p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。
 <a href="https://github.com/Wondershake/machine-learning-study">Wondershake/machine-learning-study: 機械学習勉強会</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-math" data-lang="math"></code></pre></div>
+<pre tabindex="0"><code class="language-math" data-lang="math"></code></pre>
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#21-タイプ-トークン">2.1 タイプ, トークン</a></li>
+    <li><a href="#22-nグラム">2.2 nグラム</a>
+      <ul>
+        <li><a href="#221-単語nグラム">2.2.1 単語nグラム</a></li>
+        <li><a href="#222-文字nグラム">2.2.2 文字nグラム</a></li>
+      </ul>
+    </li>
+    <li><a href="#23-文書-文のベクトル表現">2.3 文書, 文のベクトル表現</a>
+      <ul>
+        <li><a href="#231-文書のベクトル表現">2.3.1 文書のベクトル表現</a></li>
+        <li><a href="#232-文のベクトル表現">2.3.2 文のベクトル表現</a></li>
+      </ul>
+    </li>
+    <li><a href="#24-文書に対する前処理とデータスパースネス問題">2.4 文書に対する前処理とデータスパースネス問題</a>
+      <ul>
+        <li><a href="#241-文書に対する前処理">2.4.1 文書に対する前処理</a></li>
+        <li><a href="#242-日本語の前処理">2.4.2 日本語の前処理</a></li>
+        <li><a href="#243データスパースネス問題">2.4.3.データスパースネス問題</a></li>
+      </ul>
+    </li>
+    <li><a href="#25-単語のベクトル表現">2.5 単語のベクトル表現</a>
+      <ul>
+        <li><a href="#251-単語トークンの文脈ベクトル表現">2.5.1 単語トークンの文脈ベクトル表現</a></li>
+        <li><a href="#252-単語タイプの文脈ベクトル表現">2.5.2 単語タイプの文脈ベクトル表現</a></li>
+      </ul>
+    </li>
+    <li><a href="#26-文書や単語の確率分布による表現">2.6 文書や単語の確率分布による表現</a></li>
+    <li><a href="#27-この章のまとめ">2.7 この章のまとめ</a></li>
+    <li><a href="#章末問題">章末問題</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

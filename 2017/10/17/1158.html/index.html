@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,82 +48,82 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/10/17/1158.html/">GCP updates | October 16, 2017</a></h2>
     <span class="date">Posted on Oct 17, 2017</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="compute">Compute</h1>
-
-<h2 id="google-container-engine-cpu-platform-beta-https-cloud-google-com-container-engine-docs-min-cpu-platform"><a href="https://cloud.google.com/container-engine/docs/min-cpu-platform">Google Container Engine CPU platform beta</a></h2>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="compute">Compute</h1>
+<h2 id="google-container-engine-cpu-platform-betahttpscloudgooglecomcontainer-enginedocsmin-cpu-platform"><a href="https://cloud.google.com/container-engine/docs/min-cpu-platform">Google Container Engine CPU platform beta</a></h2>
 <blockquote>
 <p>A new GCE feature now in beta allows users to specify a minimum CPU platform when creating a GKE cluster or node pool.</p>
-
 <p>ベータの新しいGCE機能ではGKEクラスタ又はノードプールを作成するとき最小CPUプラットフォームを選択可能になります。</p>
 </blockquote>
-
 <p>「XX以降のCPUアーキテクチャを使う」を指定するやつです。</p>
-
-<h2 id="app-engine-flexible-runtime-for-php-ga-https-cloud-google-com-appengine-docs-flexible-php"><a href="https://cloud.google.com/appengine/docs/flexible/php/">App Engine flexible runtime for PHP GA</a></h2>
-
+<h2 id="app-engine-flexible-runtime-for-php-gahttpscloudgooglecomappenginedocsflexiblephp"><a href="https://cloud.google.com/appengine/docs/flexible/php/">App Engine flexible runtime for PHP GA</a></h2>
 <blockquote>
 <p>The PHP runtime option, now generally available, allows users to develop and deploy PHP applications in App Engine flexible environment.</p>
-
 <p>PHPランタイムがGenerally Availableになりました。App Engineのflexible環境においてPHPアプリケーションの開発、デプロイが可能です。</p>
 </blockquote>
-
-<h2 id="java-8-in-app-engine-standard-environment-is-now-ga-https-cloud-google-com-appengine-docs-standard-java-runtime-java8"><a href="https://cloud.google.com/appengine/docs/standard/java/runtime-java8">Java 8 in App Engine standard environment is now GA</a></h2>
-
+<h2 id="java-8-in-app-engine-standard-environment-is-now-gahttpscloudgooglecomappenginedocsstandardjavaruntime-java8"><a href="https://cloud.google.com/appengine/docs/standard/java/runtime-java8">Java 8 in App Engine standard environment is now GA</a></h2>
 <blockquote>
 <p>Java 8 runtime on App Engine standard environment is now generally available and is covered by the App Engine service level agreement.</p>
-
 <p>App Engine standard環境のJava 8ランタイムがGenerally Availableになり、App EngineのSLAをカバーします。</p>
 </blockquote>
-
 <h1 id="management-tools">Management Tools</h1>
-
-<h2 id="stackdriver-for-ruby-beta-https-cloud-google-com-ruby-docs-stackdriver"><a href="https://cloud.google.com/ruby/docs/stackdriver">Stackdriver for Ruby beta</a></h2>
-
+<h2 id="stackdriver-for-ruby-betahttpscloudgooglecomrubydocsstackdriver"><a href="https://cloud.google.com/ruby/docs/stackdriver">Stackdriver for Ruby beta</a></h2>
 <blockquote>
 <p>Ruby libraries are now in beta for logging, debugging, trace, and error reporting Stackdriver services.</p>
-
 <p>Stackdriverのロギング、デバッグ、トレース、エラーレポートサービスのライブラリがベータになりました。</p>
 </blockquote>
-
 <p>Rubyistとしては嬉しいニュースですね。まともに使えるといいんですが。。。</p>
-
 <h1 id="machine-learning">Machine Learning</h1>
-
-<h2 id="nvidia-k80-and-p100-gpus-for-google-compute-engine-ga-https-cloudplatform-googleblog-com-2017-09-introducing-faster-gpus-for-google-compute-engine-html"><a href="https://cloudplatform.googleblog.com/2017/09/introducing-faster-GPUs-for-Google-Compute-Engine.html">NVIDIA K80 and P100 GPUs for Google Compute Engine GA</a></h2>
-
+<h2 id="nvidia-k80-and-p100-gpus-for-google-compute-engine-gahttpscloudplatformgoogleblogcom201709introducing-faster-gpus-for-google-compute-enginehtml"><a href="https://cloudplatform.googleblog.com/2017/09/introducing-faster-GPUs-for-Google-Compute-Engine.html">NVIDIA K80 and P100 GPUs for Google Compute Engine GA</a></h2>
 <blockquote>
 <p>High-performance NVIDIA P100 GPUs are now publicly available in beta, while K80 GPUs have moved to GA. Both CPU platforms are offered with sustained use discounts.</p>
-
 <p>ハイパフォーマンスなNVIDIA P100 GPUがベータで公開され、K80 GPUはGAになりました。どちらのCPU(GPU?)プラットフォームにも継続利用割引が提供されます。</p>
 </blockquote>
-
 <h1 id="big-data">Big Data</h1>
-
-<h2 id="cloud-dataprep-beta-https-cloud-google-com-dataprep"><a href="https://cloud.google.com/dataprep/">Cloud Dataprep beta</a></h2>
-
+<h2 id="cloud-dataprep-betahttpscloudgooglecomdataprep"><a href="https://cloud.google.com/dataprep/">Cloud Dataprep beta</a></h2>
 <blockquote>
 <p>Cloud Dataprep public beta allows users to modify and enrich their own datasets directly, without the need for a data engineer.</p>
-
 <p>Cloud Dataprepがパブリックベータになりました。ユーザは自身のデータセットをデータエンジニアなしに直接変更したり強化したりできます。</p>
 </blockquote>
-
-<h2 id="cloud-dataflow-regional-endpoint-beta-launched-in-europe-west1-https-cloud-google-com-dataflow-docs-concepts-regional-endpoints"><a href="https://cloud.google.com/dataflow/docs/concepts/regional-endpoints">Cloud Dataflow regional endpoint beta launched in europe-west1</a></h2>
-
+<h2 id="cloud-dataflow-regional-endpoint-beta-launched-in-europe-west1httpscloudgooglecomdataflowdocsconceptsregional-endpoints"><a href="https://cloud.google.com/dataflow/docs/concepts/regional-endpoints">Cloud Dataflow regional endpoint beta launched in europe-west1</a></h2>
 <blockquote>
 <p>Cloud Dataflow regional endpoint beta is now available in the europe-west1 region, helping users meet potential compliance and geographic resilience requirements.</p>
-
 <p>Cloud Dataflowのベータエンドポイントがeurope-west1リージョンで公開されました。潜在的なコンプライアンスと地理的回復力の要件を満たします。</p>
 </blockquote>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#google-container-engine-cpu-platform-betahttpscloudgooglecomcontainer-enginedocsmin-cpu-platform"><a href="https://cloud.google.com/container-engine/docs/min-cpu-platform">Google Container Engine CPU platform beta</a></a></li>
+    <li><a href="#app-engine-flexible-runtime-for-php-gahttpscloudgooglecomappenginedocsflexiblephp"><a href="https://cloud.google.com/appengine/docs/flexible/php/">App Engine flexible runtime for PHP GA</a></a></li>
+    <li><a href="#java-8-in-app-engine-standard-environment-is-now-gahttpscloudgooglecomappenginedocsstandardjavaruntime-java8"><a href="https://cloud.google.com/appengine/docs/standard/java/runtime-java8">Java 8 in App Engine standard environment is now GA</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#stackdriver-for-ruby-betahttpscloudgooglecomrubydocsstackdriver"><a href="https://cloud.google.com/ruby/docs/stackdriver">Stackdriver for Ruby beta</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#nvidia-k80-and-p100-gpus-for-google-compute-engine-gahttpscloudplatformgoogleblogcom201709introducing-faster-gpus-for-google-compute-enginehtml"><a href="https://cloudplatform.googleblog.com/2017/09/introducing-faster-GPUs-for-Google-Compute-Engine.html">NVIDIA K80 and P100 GPUs for Google Compute Engine GA</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-dataprep-betahttpscloudgooglecomdataprep"><a href="https://cloud.google.com/dataprep/">Cloud Dataprep beta</a></a></li>
+    <li><a href="#cloud-dataflow-regional-endpoint-beta-launched-in-europe-west1httpscloudgooglecomdataflowdocsconceptsregional-endpoints"><a href="https://cloud.google.com/dataflow/docs/concepts/regional-endpoints">Cloud Dataflow regional endpoint beta launched in europe-west1</a></a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

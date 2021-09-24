@@ -1,1761 +1,982 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://blog.nownabe.com/2020/</loc>
     <lastmod>2020-12-13T00:00:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/bigquery/</loc>
     <lastmod>2020-12-13T00:00:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/cloud-functions/</loc>
     <lastmod>2020-12-13T00:00:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/cloud-storage/</loc>
     <lastmod>2020-12-13T00:00:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/google-cloud-platform/</loc>
     <lastmod>2020-12-13T00:00:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/tags/</loc>
-    <lastmod>2020-12-13T00:00:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/</loc>
     <lastmod>2020-12-13T00:00:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/tags/</loc>
+    <lastmod>2020-12-13T00:00:00+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/2020/12/13/home-finance-with-bigquery/</loc>
     <lastmod>2020-12-13T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/kubernetes/</loc>
     <lastmod>2020-07-19T19:26:56+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2020/07/19/home-kubernetes-2/</loc>
     <lastmod>2020-07-19T19:26:56+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/coredns/</loc>
     <lastmod>2020-07-11T20:30:44+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2020/07/11/coredns/</loc>
     <lastmod>2020-07-11T20:30:44+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/tags/raspberry-pi/</loc>
-    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/tags/raspberry-pi-3/</loc>
-    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/tags/raspberry-pi-4/</loc>
-    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2020/07/03/raspberrypi-bench/</loc>
-    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/tags/unixbench/</loc>
-    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/benchmark/</loc>
     <lastmod>2020-07-04T19:43:02+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/fio/</loc>
     <lastmod>2020-07-04T19:43:02+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/tags/raspberry-pi/</loc>
+    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
+  </url><url>
+    <loc>https://blog.nownabe.com/tags/raspberry-pi-3/</loc>
+    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
+  </url><url>
+    <loc>https://blog.nownabe.com/tags/raspberry-pi-4/</loc>
+    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
+  </url><url>
+    <loc>https://blog.nownabe.com/2020/07/03/raspberrypi-bench/</loc>
+    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
+  </url><url>
+    <loc>https://blog.nownabe.com/tags/unixbench/</loc>
+    <lastmod>2020-07-04T19:43:02+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/2020/06/28/home-kubernetes-1/</loc>
     <lastmod>2020-06-28T19:55:52+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/tags/yamaha/</loc>
-    <lastmod>2020-06-10T21:33:46+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/tags/yamaha-rtx830/</loc>
-    <lastmod>2020-06-10T21:33:46+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/network/</loc>
     <lastmod>2020-06-10T21:33:46+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/tags/yamaha/</loc>
+    <lastmod>2020-06-10T21:33:46+09:00</lastmod>
+  </url><url>
+    <loc>https://blog.nownabe.com/tags/yamaha-rtx830/</loc>
+    <lastmod>2020-06-10T21:33:46+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/2020/06/10/home-network-7/</loc>
     <lastmod>2020-06-10T21:33:46+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/ds-lite/</loc>
     <lastmod>2020-06-01T22:18:28+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/pppoe/</loc>
     <lastmod>2020-06-01T22:18:28+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2020/06/01/home-network-6/</loc>
     <lastmod>2020-06-01T22:18:28+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/google/</loc>
     <lastmod>2020-05-31T09:15:15+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/google-nest-wifi/</loc>
     <lastmod>2020-05-31T09:15:15+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/nest-wifi/</loc>
     <lastmod>2020-05-31T09:15:15+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2020/05/31/home-network-5/</loc>
     <lastmod>2020-05-31T09:15:15+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/rtx830/</loc>
     <lastmod>2020-05-30T14:19:10+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2020/05/30/home-network-4/</loc>
     <lastmod>2020-05-30T14:19:10+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2020/05/29/home-network-3/</loc>
     <lastmod>2020-05-29T22:43:54+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2020/05/28/home-network-2/</loc>
     <lastmod>2020-05-28T21:30:56+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2020/05/26/home-network-1/</loc>
     <lastmod>2020-05-26T21:28:14+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/gcp/</loc>
     <lastmod>2020-04-05T13:56:13+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2020/04/05/google-cloud-professional-cloud-architect/</loc>
     <lastmod>2020-04-05T13:56:13+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/google-cloud/</loc>
     <lastmod>2020-04-05T13:56:13+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/google-cloud-certification/</loc>
     <lastmod>2020-04-05T13:56:13+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/professional-cloud-architect/</loc>
     <lastmod>2020-04-05T13:56:13+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2020/02/05/join-google/</loc>
     <lastmod>2020-02-05T23:40:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/job/</loc>
     <lastmod>2020-02-05T23:40:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/github-action/</loc>
     <lastmod>2020-01-03T21:52:48+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/github-actions/</loc>
     <lastmod>2020-01-03T21:52:48+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/javascript/</loc>
     <lastmod>2020-01-03T21:52:48+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2020/01/03/github-action-javascript/</loc>
     <lastmod>2020-01-03T21:52:48+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2020/01/01/2020-resolutions/</loc>
     <lastmod>2020-01-01T19:30:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/resolutions/</loc>
     <lastmod>2020-01-01T19:30:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2019/</loc>
     <lastmod>2019-12-30T23:20:05+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/wondershake/</loc>
     <lastmod>2019-12-30T23:20:05+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2019/12/30/leave-wondershake/</loc>
     <lastmod>2019-12-30T23:20:05+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/gcp-updates/</loc>
     <lastmod>2019-12-13T17:48:21+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2019/12/13/gcp-updates-december-9-2019/</loc>
     <lastmod>2019-12-13T17:48:21+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2019/11/28/gcp-updates-november-25-2019/</loc>
     <lastmod>2019-11-28T14:58:32+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2019/11/28/kigyo-wo-kangaetara-yomu-hon/</loc>
     <lastmod>2019-11-28T14:35:55+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2019/10/19/gcp-updates-october-16-2019/</loc>
     <lastmod>2019-10-19T16:12:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2019/10/10/gce-machine-types-overview/</loc>
     <lastmod>2019-10-10T16:45:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2019/10/09/gcp-updates-semtember-30-2019/</loc>
     <lastmod>2019-10-09T12:24:12+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2019/08/07/gcp-updates-august-5-2019/</loc>
     <lastmod>2019-08-07T17:08:23+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/cloudnative/</loc>
     <lastmod>2019-08-07T16:00:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2019/08/07/cloudnativedaystokyo2019/</loc>
     <lastmod>2019-08-07T16:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/docker/</loc>
     <lastmod>2019-08-07T16:00:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/event/</loc>
     <lastmod>2019-08-07T16:00:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/book/</loc>
     <lastmod>2019-06-15T19:27:08+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/reading/</loc>
     <lastmod>2019-06-15T19:27:08+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2019/06/15/read-designing-distributed-systems/</loc>
     <lastmod>2019-06-15T19:27:08+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/hugo/</loc>
     <lastmod>2019-06-14T22:45:14+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/middleman/</loc>
     <lastmod>2019-06-14T22:45:14+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/static-site-generator/</loc>
     <lastmod>2019-06-14T22:45:14+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2019/06/14/migrate-blog-from-middleman-to-hugo/</loc>
     <lastmod>2019-06-14T22:45:14+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2019/05/29/gcp-product-updates-may-28-2019.html/</loc>
     <lastmod>2019-05-29T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/tags/ruby-on-rails/</loc>
-    <lastmod>2019-05-21T00:00:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/aws/</loc>
     <lastmod>2019-05-21T00:00:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/tags/ruby-on-rails/</loc>
+    <lastmod>2019-05-21T00:00:00+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/2019/05/21/migration-to-gcp.html/</loc>
     <lastmod>2019-05-21T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2019/01/15/1450.html/</loc>
     <lastmod>2019-01-15T13:38:23+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/gcpupdates/</loc>
     <lastmod>2019-01-15T13:38:23+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2019/01/14/1449.html/</loc>
     <lastmod>2019-01-14T12:16:18+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2019/01/08/1448.html/</loc>
-    <lastmod>2019-01-08T10:39:37+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/github/</loc>
     <lastmod>2019-01-08T10:39:37+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2019/01/08/1448.html/</loc>
+    <lastmod>2019-01-08T10:39:37+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/</loc>
     <lastmod>2018-12-18T10:17:06+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/12/18/1447.html/</loc>
     <lastmod>2018-12-18T10:17:06+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/12/17/1446.html/</loc>
     <lastmod>2018-12-17T13:39:17+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/nginx/</loc>
     <lastmod>2018-12-17T13:39:17+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/12/08/1445.html/</loc>
     <lastmod>2018-12-08T21:11:06+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/11/29/1444.html/</loc>
     <lastmod>2018-11-29T20:08:26+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/11/29/1443.html/</loc>
     <lastmod>2018-11-29T19:47:33+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/beautifulsoup/</loc>
     <lastmod>2018-11-29T19:47:33+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/python/</loc>
     <lastmod>2018-11-29T19:47:33+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/11/28/1442.html/</loc>
     <lastmod>2018-11-28T18:59:09+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2018/11/07/1434.html/</loc>
-    <lastmod>2018-11-07T23:34:27+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/ubuntu/</loc>
     <lastmod>2018-11-07T23:34:27+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2018/11/07/1434.html/</loc>
+    <lastmod>2018-11-07T23:34:27+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/11/28/1432.html/</loc>
     <lastmod>2018-11-28T14:37:41+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/10/30/1431.html/</loc>
     <lastmod>2018-10-31T12:03:06+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/10/09/1419.html/</loc>
     <lastmod>2018-10-09T10:18:58+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/rails/</loc>
     <lastmod>2018-10-09T10:18:58+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/ruby/</loc>
     <lastmod>2018-10-09T10:18:58+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/10/03/1416.html/</loc>
     <lastmod>2018-10-03T09:49:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/10/01/1414.html/</loc>
     <lastmod>2018-10-01T23:08:09+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/%E3%83%9D%E3%82%A8%E3%83%A0/</loc>
     <lastmod>2018-10-01T23:08:09+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/deeplearning/</loc>
     <lastmod>2018-09-26T15:04:13+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/ml/</loc>
     <lastmod>2018-09-26T15:04:13+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/nlp/</loc>
     <lastmod>2018-09-26T15:04:13+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/09/26/1411.html/</loc>
     <lastmod>2018-09-26T15:04:13+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/%E3%82%BC%E3%83%AD%E3%81%8B%E3%82%89%E4%BD%9C%E3%82%8Bdeeplearning2/</loc>
     <lastmod>2018-09-26T15:04:13+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E5%8B%89%E5%BC%B7%E4%BC%9A/</loc>
     <lastmod>2018-09-26T15:04:13+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/%E8%87%AA%E7%84%B6%E8%A8%80%E8%AA%9E%E5%87%A6%E7%90%86/</loc>
     <lastmod>2018-09-26T15:04:13+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/09/18/1403.html/</loc>
     <lastmod>2018-09-18T11:01:01+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/09/14/1401.html/</loc>
     <lastmod>2018-09-26T14:33:18+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/09/13/1396.html/</loc>
     <lastmod>2018-09-13T10:21:53+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/09/05/1394.html/</loc>
     <lastmod>2018-09-05T10:45:19+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/09/01/1390.html/</loc>
     <lastmod>2018-09-01T21:28:10+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/08/30/1389.html/</loc>
     <lastmod>2018-08-30T16:56:27+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2018/08/27/1385.html/</loc>
-    <lastmod>2018-08-27T19:20:41+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/golang/</loc>
     <lastmod>2018-08-27T19:20:41+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2018/08/27/1385.html/</loc>
+    <lastmod>2018-08-27T19:20:41+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/08/22/1382.html/</loc>
     <lastmod>2018-08-22T23:09:06+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/08/21/1378.html/</loc>
     <lastmod>2018-08-21T13:00:04+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/08/18/1375.html/</loc>
     <lastmod>2018-08-18T01:32:02+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/%E8%A8%80%E8%AA%9E%E5%87%A6%E7%90%86%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E5%85%A5%E9%96%80/</loc>
     <lastmod>2018-08-02T11:02:35+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/08/02/1370.html/</loc>
     <lastmod>2018-08-02T11:02:35+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/07/12/1357.html/</loc>
     <lastmod>2018-07-12T08:55:45+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/07/05/1351.html/</loc>
     <lastmod>2018-07-05T15:01:38+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/07/03/1348.html/</loc>
     <lastmod>2018-07-03T12:09:34+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2018/07/02/1346.html/</loc>
-    <lastmod>2018-07-02T09:20:05+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/cloud/</loc>
     <lastmod>2018-07-02T09:20:05+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/idcf/</loc>
     <lastmod>2018-07-02T09:20:05+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/mysql/</loc>
     <lastmod>2018-07-02T09:20:05+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/rdb/</loc>
     <lastmod>2018-07-02T09:20:05+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2018/07/02/1346.html/</loc>
+    <lastmod>2018-07-02T09:20:05+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/06/21/1334.html/</loc>
     <lastmod>2018-06-21T10:05:12+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/diy/</loc>
     <lastmod>2018-06-09T20:40:53+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/06/09/1328.html/</loc>
     <lastmod>2018-06-09T20:40:53+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/06/08/1327.html/</loc>
     <lastmod>2018-06-24T15:22:43+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/06/06/1322.html/</loc>
     <lastmod>2018-06-06T19:40:14+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/06/05/1321.html/</loc>
     <lastmod>2018-06-06T15:26:02+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/05/30/1315.html/</loc>
     <lastmod>2018-06-01T10:25:25+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/05/24/1304.html/</loc>
     <lastmod>2018-05-24T19:27:28+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/05/16/1298.html/</loc>
     <lastmod>2018-05-16T15:18:23+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/05/16/1297.html/</loc>
     <lastmod>2018-05-16T13:40:21+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/05/08/1293.html/</loc>
     <lastmod>2018-05-16T13:36:48+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/04/25/1289.html/</loc>
     <lastmod>2018-04-25T12:05:01+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/04/24/1288.html/</loc>
     <lastmod>2018-04-24T11:23:26+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/04/20/1286.html/</loc>
     <lastmod>2018-04-20T14:11:59+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/04/09/1281.html/</loc>
     <lastmod>2018-04-09T15:05:31+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/04/03/1277.html/</loc>
     <lastmod>2018-04-03T16:13:52+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/03/16/1272.html/</loc>
     <lastmod>2018-03-19T09:53:03+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/03/14/1271.html/</loc>
     <lastmod>2018-03-14T17:39:56+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/03/04/1267.html/</loc>
     <lastmod>2018-03-04T22:10:06+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2018/02/25/1263.html/</loc>
-    <lastmod>2018-02-25T16:01:56+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/grpc/</loc>
     <lastmod>2018-02-25T16:01:56+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2018/02/25/1263.html/</loc>
+    <lastmod>2018-02-25T16:01:56+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/02/21/1260.html/</loc>
     <lastmod>2018-02-22T13:28:29+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2018/02/17/1259.html/</loc>
-    <lastmod>2018-02-17T17:09:19+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/docker-registry/</loc>
     <lastmod>2018-02-17T17:09:19+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2018/02/17/1259.html/</loc>
+    <lastmod>2018-02-17T17:09:19+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/gitlab/</loc>
     <lastmod>2018-02-17T17:09:19+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/02/07/1252.html/</loc>
     <lastmod>2018-02-07T18:23:56+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/python%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/</loc>
     <lastmod>2018-02-06T16:51:22+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/02/06/1251.html/</loc>
     <lastmod>2018-02-06T16:51:22+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/02/06/1250.html/</loc>
     <lastmod>2018-02-06T14:08:01+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2018/02/05/1248.html/</loc>
-    <lastmod>2018-02-05T16:47:49+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/cloudendpoints/</loc>
     <lastmod>2018-02-05T16:47:49+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2018/02/05/1248.html/</loc>
+    <lastmod>2018-02-05T16:47:49+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/%E3%81%B5%E3%82%8A%E3%81%8B%E3%81%88%E3%82%8A/</loc>
     <lastmod>2018-02-04T15:23:58+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/02/04/1246.html/</loc>
     <lastmod>2018-02-04T15:23:58+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/01/31/1244.html/</loc>
     <lastmod>2018-01-31T17:38:58+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/01/24/1242.html/</loc>
     <lastmod>2018-01-24T21:39:57+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/01/17/1240.html/</loc>
     <lastmod>2018-01-17T22:17:32+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/cryptocurrency/</loc>
     <lastmod>2018-01-14T01:36:46+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/01/14/1239.html/</loc>
     <lastmod>2018-01-14T01:36:46+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2018/01/12/1238.html/</loc>
     <lastmod>2018-01-12T17:08:41+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/</loc>
     <lastmod>2017-12-31T21:20:06+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/12/31/1234.html/</loc>
     <lastmod>2017-12-31T21:20:06+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/12/27/1232.html/</loc>
     <lastmod>2017-12-27T11:14:19+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/12/25/1228.html/</loc>
     <lastmod>2017-12-25T17:24:50+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/mecab/</loc>
     <lastmod>2017-12-25T17:24:50+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/neologd/</loc>
     <lastmod>2017-12-25T17:24:50+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/12/19/1224.html/</loc>
     <lastmod>2017-12-19T13:47:49+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/12/14/1217.html/</loc>
     <lastmod>2017-12-14T13:02:09+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/%E7%B5%B1%E8%A8%88%E5%AD%A6%E5%85%A5%E9%96%80/</loc>
     <lastmod>2017-12-14T13:02:09+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2017/12/11/1215.html/</loc>
-    <lastmod>2017-12-11T00:27:02+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/npm/</loc>
     <lastmod>2017-12-11T00:27:02+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/parcel/</loc>
     <lastmod>2017-12-11T00:27:02+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2017/12/11/1215.html/</loc>
+    <lastmod>2017-12-11T00:27:02+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/12/08/1206.html/</loc>
     <lastmod>2017-12-08T16:50:27+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/12/02/1205.html/</loc>
     <lastmod>2017-12-02T12:27:17+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/releasenote/</loc>
     <lastmod>2017-12-02T12:27:17+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/12/08/1200.html/</loc>
     <lastmod>2017-12-08T16:50:38+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/12/08/1199.html/</loc>
     <lastmod>2017-12-08T16:37:48+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/11/19/1185.html/</loc>
     <lastmod>2017-11-19T17:58:59+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2017/11/06/1176.html/</loc>
-    <lastmod>2017-11-06T21:44:13+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/cloudgarage/</loc>
     <lastmod>2017-11-06T21:44:13+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2017/11/06/1176.html/</loc>
+    <lastmod>2017-11-06T21:44:13+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/11/08/1174.html/</loc>
     <lastmod>2017-11-08T20:17:55+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/10/25/1165.html/</loc>
     <lastmod>2017-10-25T20:38:54+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/10/17/1158.html/</loc>
     <lastmod>2017-10-17T13:49:31+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/10/17/1157.html/</loc>
     <lastmod>2017-10-17T12:53:27+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/10/25/1155.html/</loc>
     <lastmod>2017-10-25T20:42:10+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2017/10/10/1149.html/</loc>
-    <lastmod>2017-10-10T00:15:55+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/epub/</loc>
     <lastmod>2017-10-10T00:15:55+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/fedora/</loc>
     <lastmod>2017-10-10T00:15:55+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/linux/</loc>
     <lastmod>2017-10-10T00:15:55+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2017/10/10/1149.html/</loc>
+    <lastmod>2017-10-10T00:15:55+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/10/04/1146.html/</loc>
     <lastmod>2017-10-04T15:12:51+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/10/16/1142.html/</loc>
     <lastmod>2017-10-16T22:51:15+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/10/02/1136.html/</loc>
     <lastmod>2017-10-02T12:27:46+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/09/22/1133.html/</loc>
     <lastmod>2017-09-22T18:22:23+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/09/22/1126.html/</loc>
     <lastmod>2017-09-22T01:31:05+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/09/08/1124.html/</loc>
     <lastmod>2017-09-08T15:19:53+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/08/28/1108.html/</loc>
     <lastmod>2017-08-28T17:24:40+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/09/10/1105.html/</loc>
     <lastmod>2017-09-10T13:43:22+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/08/25/1097.html/</loc>
     <lastmod>2017-08-25T10:31:48+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/08/15/1096.html/</loc>
     <lastmod>2017-08-15T13:24:11+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/08/18/1095.html/</loc>
     <lastmod>2017-08-18T10:38:14+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/08/14/1093.html/</loc>
     <lastmod>2017-08-14T13:25:44+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/08/10/1081.html/</loc>
     <lastmod>2017-08-10T13:59:51+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/08/06/1071.html/</loc>
     <lastmod>2017-08-06T23:33:35+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/git/</loc>
     <lastmod>2017-08-05T02:03:11+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/08/05/1070.html/</loc>
     <lastmod>2017-08-05T02:03:11+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/wercker/</loc>
     <lastmod>2017-08-05T02:03:11+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/08/04/1069.html/</loc>
     <lastmod>2017-08-04T20:18:51+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/07/29/1057.html/</loc>
     <lastmod>2017-08-04T18:29:25+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/gae/</loc>
     <lastmod>2017-08-04T18:36:18+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/07/20/1056.html/</loc>
     <lastmod>2017-08-06T15:54:27+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/07/19/1055.html/</loc>
     <lastmod>2017-08-04T19:00:44+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/07/19/1054.html/</loc>
     <lastmod>2017-08-04T18:49:34+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2017/07/14/1050.html/</loc>
-    <lastmod>2017-08-04T18:49:07+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/emacs/</loc>
     <lastmod>2017-08-04T18:49:07+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/spacemacs/</loc>
     <lastmod>2017-08-04T18:49:07+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2017/07/14/1050.html/</loc>
+    <lastmod>2017-08-04T18:49:07+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/%E8%AA%AD%E6%9B%B8%E8%A8%98%E9%8C%B2/</loc>
     <lastmod>2017-08-04T18:48:58+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/06/12/724.html/</loc>
     <lastmod>2017-08-04T18:48:58+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/06/02/712.html/</loc>
     <lastmod>2017-08-04T18:48:48+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/05/26/709.html/</loc>
     <lastmod>2017-08-04T18:48:42+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/05/25/708.html/</loc>
     <lastmod>2017-08-04T19:08:55+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/04/23/681.html/</loc>
     <lastmod>2017-08-04T18:48:20+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/04/20/680.html/</loc>
     <lastmod>2017-08-04T19:08:44+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/04/18/677.html/</loc>
     <lastmod>2017-08-04T18:47:59+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2017/04/15/672.html/</loc>
-    <lastmod>2017-08-04T18:47:49+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/terraform/</loc>
     <lastmod>2017-08-04T18:47:49+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2017/04/02/663.html/</loc>
-    <lastmod>2017-08-04T18:47:34+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2017/04/15/672.html/</loc>
+    <lastmod>2017-08-04T18:47:49+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/english/</loc>
     <lastmod>2017-08-06T15:58:56+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2017/04/02/663.html/</loc>
+    <lastmod>2017-08-04T18:47:34+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/03/31/662.html/</loc>
     <lastmod>2017-08-04T19:07:53+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/03/28/661.html/</loc>
     <lastmod>2017-08-04T18:47:16+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/03/25/660.html/</loc>
     <lastmod>2017-08-04T18:47:10+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/03/24/657.html/</loc>
     <lastmod>2017-08-04T19:07:35+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/oss/</loc>
     <lastmod>2017-08-04T19:07:35+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/03/19/649.html/</loc>
     <lastmod>2017-08-04T18:46:54+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/poem/</loc>
     <lastmod>2017-08-04T18:46:54+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/03/16/648.html/</loc>
     <lastmod>2017-08-04T18:46:42+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/03/15/647.html/</loc>
     <lastmod>2017-08-04T18:46:30+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/03/12/639.html/</loc>
     <lastmod>2017-08-04T19:07:23+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/esa/</loc>
     <lastmod>2017-08-04T19:07:23+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/03/12/638.html/</loc>
     <lastmod>2017-08-04T18:46:08+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/03/03/628.html/</loc>
     <lastmod>2017-08-04T18:45:51+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/03/03/627.html/</loc>
     <lastmod>2017-08-04T18:45:44+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/03/01/626.html/</loc>
     <lastmod>2017-08-04T18:45:34+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2017/02/25/624.html/</loc>
-    <lastmod>2017-08-04T18:45:18+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/btrfs/</loc>
     <lastmod>2017-08-04T18:45:18+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2017/02/25/624.html/</loc>
+    <lastmod>2017-08-04T18:45:18+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/%E8%87%AA%E5%AE%85%E3%82%B5%E3%83%BC%E3%83%90/</loc>
     <lastmod>2017-08-04T18:45:18+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/02/23/622.html/</loc>
     <lastmod>2017-08-04T18:44:54+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/02/23/621.html/</loc>
     <lastmod>2017-08-04T18:44:42+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/02/22/618.html/</loc>
     <lastmod>2017-08-06T15:58:20+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/02/22/616.html/</loc>
     <lastmod>2017-08-04T19:07:06+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/02/21/615.html/</loc>
     <lastmod>2017-08-06T15:58:56+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/02/16/609.html/</loc>
     <lastmod>2017-08-06T15:59:05+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/01/16/570.html/</loc>
     <lastmod>2017-08-04T18:43:35+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/mruby/</loc>
     <lastmod>2017-08-04T18:43:21+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/01/05/560.html/</loc>
     <lastmod>2017-08-04T18:43:21+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2017/01/02/558.html/</loc>
     <lastmod>2017-08-04T19:06:26+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/</loc>
     <lastmod>2017-08-06T15:59:14+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/11/19/531.html/</loc>
     <lastmod>2017-08-04T18:42:16+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/11/17/528.html/</loc>
     <lastmod>2017-08-04T18:41:59+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/11/16/526.html/</loc>
     <lastmod>2017-08-04T18:41:44+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2016/11/11/522.html/</loc>
-    <lastmod>2017-08-04T18:41:25+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/angular/</loc>
     <lastmod>2017-08-04T18:41:25+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2016/11/11/522.html/</loc>
+    <lastmod>2017-08-04T18:41:25+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/11/10/521.html/</loc>
     <lastmod>2017-08-04T18:42:30+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/fluentd/</loc>
     <lastmod>2017-08-04T18:41:14+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/11/04/516.html/</loc>
     <lastmod>2017-08-04T18:41:14+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/10/08/489.html/</loc>
     <lastmod>2017-08-04T18:36:34+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/10/05/487.html/</loc>
     <lastmod>2017-08-04T18:36:18+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/10/05/486.html/</loc>
     <lastmod>2017-08-04T18:36:04+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/10/04/485.html/</loc>
     <lastmod>2017-08-04T18:35:40+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2016/09/23/474.html/</loc>
-    <lastmod>2017-08-04T18:33:55+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/cssmodules/</loc>
     <lastmod>2017-08-04T18:33:55+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2016/09/23/474.html/</loc>
+    <lastmod>2017-08-04T18:33:55+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/githubpages/</loc>
     <lastmod>2017-08-04T18:33:55+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/react/</loc>
     <lastmod>2017-08-04T18:33:55+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/webpack/</loc>
     <lastmod>2017-08-04T18:33:55+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/09/15/462.html/</loc>
     <lastmod>2017-08-06T15:59:14+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/09/15/461.html/</loc>
     <lastmod>2017-08-04T18:33:11+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/09/13/457.html/</loc>
     <lastmod>2017-08-04T18:35:26+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2016/08/30/420.html/</loc>
-    <lastmod>2017-08-04T18:33:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/assembly/</loc>
     <lastmod>2017-08-04T18:33:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2016/08/30/420.html/</loc>
+    <lastmod>2017-08-04T18:33:00+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/jspm/</loc>
     <lastmod>2017-08-04T18:32:45+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/08/27/416.html/</loc>
     <lastmod>2017-08-04T18:32:45+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/08/24/415.html/</loc>
     <lastmod>2017-08-04T18:32:17+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/08/23/413.html/</loc>
     <lastmod>2017-08-04T18:31:59+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2016/08/16/408.html/</loc>
-    <lastmod>2017-08-04T18:31:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/ffi/</loc>
     <lastmod>2017-08-04T18:31:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/rust/</loc>
     <lastmod>2017-08-04T18:31:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2016/08/07/403.html/</loc>
-    <lastmod>2017-08-04T18:31:19+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2016/08/16/408.html/</loc>
+    <lastmod>2017-08-04T18:31:39+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/json/</loc>
     <lastmod>2017-08-04T18:31:19+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/ruboty/</loc>
     <lastmod>2017-08-04T18:31:19+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2016/08/07/403.html/</loc>
+    <lastmod>2017-08-04T18:31:19+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/08/05/401.html/</loc>
     <lastmod>2017-08-04T18:30:26+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/08/03/400.html/</loc>
     <lastmod>2017-08-04T18:29:56+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/github-pages/</loc>
     <lastmod>2016-07-26T23:57:51+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/markdown/</loc>
     <lastmod>2016-07-26T23:57:51+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/07/31/hatena16.html/</loc>
     <lastmod>2016-07-26T23:57:51+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2016/07/31/hatena15.html/</loc>
-    <lastmod>2016-07-24T15:31:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/postgresql/</loc>
     <lastmod>2016-07-24T15:31:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2016/07/31/hatena15.html/</loc>
+    <lastmod>2016-07-24T15:31:39+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/07/31/hatena14.html/</loc>
     <lastmod>2016-07-22T00:47:58+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/machine-learning/</loc>
     <lastmod>2016-07-22T00:44:19+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/07/31/hatena13.html/</loc>
     <lastmod>2016-07-22T00:44:19+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/elixir/</loc>
     <lastmod>2016-05-24T00:36:44+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/07/31/hatena12.html/</loc>
     <lastmod>2016-05-24T00:36:44+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2016/07/31/hatena11.html/</loc>
-    <lastmod>2015-08-31T01:11:48+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/gem-in-a-box/</loc>
     <lastmod>2015-08-31T01:11:48+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2016/07/31/hatena11.html/</loc>
+    <lastmod>2015-08-31T01:11:48+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/dns/</loc>
     <lastmod>2015-08-10T23:46:12+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/idcf-cloud/</loc>
     <lastmod>2015-08-10T23:46:12+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/07/31/hatena10.html/</loc>
     <lastmod>2015-08-10T23:46:12+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/07/31/hatena09.html/</loc>
     <lastmod>2015-08-09T00:21:18+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/itamae/</loc>
     <lastmod>2015-05-21T00:47:50+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/07/31/hatena08.html/</loc>
     <lastmod>2015-05-21T00:47:50+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/07/31/hatena07.html/</loc>
     <lastmod>2015-05-20T00:53:44+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/rubygems/</loc>
     <lastmod>2015-05-20T00:53:44+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/07/31/hatena06.html/</loc>
     <lastmod>2015-04-19T23:55:16+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/07/31/hatena05.html/</loc>
     <lastmod>2015-03-14T04:04:43+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/07/31/hatena04.html/</loc>
     <lastmod>2015-03-08T02:02:14+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2016/07/31/hatena03.html/</loc>
-    <lastmod>2015-03-07T02:15:01+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/easy_settings/</loc>
     <lastmod>2015-03-07T02:15:01+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nownabe.com/2016/07/31/hatena02.html/</loc>
-    <lastmod>2015-03-01T19:10:15+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2016/07/31/hatena03.html/</loc>
+    <lastmod>2015-03-07T02:15:01+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/tags/leveldb/</loc>
     <lastmod>2015-03-01T19:10:15+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://blog.nownabe.com/2016/07/31/hatena02.html/</loc>
+    <lastmod>2015-03-01T19:10:15+09:00</lastmod>
+  </url><url>
     <loc>https://blog.nownabe.com/2016/07/31/hatena01.html/</loc>
     <lastmod>2015-03-01T00:46:24+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://blog.nownabe.com/categories/</loc>
-    <priority>0</priority>
   </url>
-  
 </urlset>

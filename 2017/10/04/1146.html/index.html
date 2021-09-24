@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,84 +48,84 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/10/04/1146.html/">GCP updates | September 19, 2017</a></h2>
     <span class="date">Posted on Oct 4, 2017</span>
   </div>
-  <div class="body">
-    
-
-<p>すっかり遅れましたが</p>
-
-<h1 id="storage-databases">Storage &amp; Databases</h1>
-
-<h2 id="cloud-datastore-managed-export-and-import-via-admin-api-beta-https-cloud-google-com-datastore-docs-export-import-entities"><a href="https://cloud.google.com/datastore/docs/export-import-entities">Cloud Datastore: Managed Export and Import via Admin API Beta</a></h2>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>すっかり遅れましたが</p>
+<h1 id="storage--databases">Storage &amp; Databases</h1>
+<h2 id="cloud-datastore-managed-export-and-import-via-admin-api-betahttpscloudgooglecomdatastoredocsexport-import-entities"><a href="https://cloud.google.com/datastore/docs/export-import-entities">Cloud Datastore: Managed Export and Import via Admin API Beta</a></h2>
 <blockquote>
 <p>The Beta release of the Admin API for the Google Cloud Datastore now lets you export data to Cloud Storage and import data into Cloud Datastore.</p>
-
 <p>betaリリースとしてCloud DatastoreのAdmin APIでCloud StorageへのデータエクスポートとCloud Datastoreへのデータインポートができるようになりました。</p>
 </blockquote>
-
 <h1 id="networking">Networking</h1>
-
-<h2 id="cloud-firewall-service-account-beta-https-cloud-google-com-compute-docs-vpc-firewalls"><a href="https://cloud.google.com/compute/docs/vpc/firewalls">Cloud Firewall Service Account Beta</a></h2>
-
+<h2 id="cloud-firewall-service-account-betahttpscloudgooglecomcomputedocsvpcfirewalls"><a href="https://cloud.google.com/compute/docs/vpc/firewalls">Cloud Firewall Service Account Beta</a></h2>
 <blockquote>
 <p>GCP firewall rules let you fine-tune security by creating rules that apply only to instances owned by a particular service account—for both inbound and outbound connections.</p>
-
 <p>betaリリースとして、Firewallルールでターゲットに特定のサービスアカウントを指定できるようになりました。</p>
 </blockquote>
-
 <p>「サービスアカウント = 権限」なので、権限ごとにFirewallが設定できるのはよさそうですね。</p>
-
 <p><a href="https://cloud.google.com/compute/docs/vpc/firewalls#serviceaccounts">Firewall Rules Overview  |  Compute Engine Documentation  |  Google Cloud Platform</a></p>
-
-<p><img src="/images/2017/10/04/1.png" alt="スクリーンショット 2017-10-04 15.01.04.png (45.6 kB)" /></p>
-
-<h1 id="identity-security">Identity &amp; Security</h1>
-
-<h2 id="cloud-kms-in-singapore-asia-southeast1-region-ga-https-cloud-google-com-kms-docs"><a href="https://cloud.google.com/kms/docs/">Cloud KMS in Singapore (asia-southeast1 region) GA</a></h2>
-
+<p><img src="/images/2017/10/04/1.png" alt="スクリーンショット 2017-10-04 15.01.04.png (45.6 kB)"></p>
+<h1 id="identity--security">Identity &amp; Security</h1>
+<h2 id="cloud-kms-in-singapore-asia-southeast1-region-gahttpscloudgooglecomkmsdocs"><a href="https://cloud.google.com/kms/docs/">Cloud KMS in Singapore (asia-southeast1 region) GA</a></h2>
 <blockquote>
 <p>Google Cloud Key Management Service is now available to customers creating resources in the Singapore (asia-southeast1 region) region.</p>
-
 <p>KMSがシンガポールリージョン (asia-southeast1)で使えるようになりました。</p>
 </blockquote>
-
 <h1 id="management-tools">Management Tools</h1>
-
-<h2 id="stackdriver-logging-exclusion-filters-beta-https-cloud-google-com-logging-docs-exclusions"><a href="https://cloud.google.com/logging/docs/exclusions">Stackdriver Logging Exclusion Filters Beta</a></h2>
-
+<h2 id="stackdriver-logging-exclusion-filters-betahttpscloudgooglecomloggingdocsexclusions"><a href="https://cloud.google.com/logging/docs/exclusions">Stackdriver Logging Exclusion Filters Beta</a></h2>
 <blockquote>
 <p>Minimize overage charges by excluding <a href="https://cloudplatform.googleblog.com/2017/08/announcing-new-Stackdriver-Logging-features-and-expanded-free-logs-limits.html">unwanted log entries</a> with the Beta version of Stackdriver Logging Exclusion Filters.</p>
-
 <p>Stackdriver LoggingのExclusion Filters (beta)を使うことで欲しくないログエントリを排除して超過料金を最小化できます。</p>
 </blockquote>
-
 <p>GCP以外からのログは除外できないようです。明らかに不必要なログがあるときなんかは便利そうですね。</p>
-
-<h2 id="gce-reporting-audit-logs-ga-https-cloud-google-com-compute-docs-audit-logging"><a href="https://cloud.google.com/compute/docs/audit-logging">GCE reporting Audit Logs GA</a></h2>
-
+<h2 id="gce-reporting-audit-logs-gahttpscloudgooglecomcomputedocsaudit-logging"><a href="https://cloud.google.com/compute/docs/audit-logging">GCE reporting Audit Logs GA</a></h2>
 <blockquote>
 <p>Track who did what, where, and when with Google Compute Engine admin activity and data access logs GA.</p>
-
 <p>Audit LogのGCEの管理アクティビティとデータアクセスログがGAになりました。</p>
 </blockquote>
-
 <h1 id="account-services">Account Services</h1>
-
-<h2 id="license-mobility-updates-for-gce-windows-vms-ga-https-cloud-google-com-compute-docs-instances-windows-ms-licensing"><a href="https://cloud.google.com/compute/docs/instances/windows/ms-licensing">License Mobility Updates for GCE Windows VMs GA</a></h2>
-
+<h2 id="license-mobility-updates-for-gce-windows-vms-gahttpscloudgooglecomcomputedocsinstanceswindowsms-licensing"><a href="https://cloud.google.com/compute/docs/instances/windows/ms-licensing">License Mobility Updates for GCE Windows VMs GA</a></h2>
 <blockquote>
 <p>Customers who migrate Microsoft Server applications like SQL Server to Google Cloud Platform by the License Mobility through Software Assurance program can now submit license mobility verification information to Microsoft directly from the Google Cloud Platform console.</p>
-
 <p>SQL ServerなどのMicrosoftサーバ製品をLicense MobilityによってGCPに移行するカスタマーはGCPコンソールから直接ライセンス検証情報を送信できます。</p>
 </blockquote>
-
 <p><a href="https://www.microsoft.com/ja-jp/licensing/licensing-programs/software-assurance-license-mobility.aspx">ソフトウェア アシュアランスによるライセンス モビリティ - マイクロソフト ボリューム ライセンス</a></p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#cloud-datastore-managed-export-and-import-via-admin-api-betahttpscloudgooglecomdatastoredocsexport-import-entities"><a href="https://cloud.google.com/datastore/docs/export-import-entities">Cloud Datastore: Managed Export and Import via Admin API Beta</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-firewall-service-account-betahttpscloudgooglecomcomputedocsvpcfirewalls"><a href="https://cloud.google.com/compute/docs/vpc/firewalls">Cloud Firewall Service Account Beta</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-kms-in-singapore-asia-southeast1-region-gahttpscloudgooglecomkmsdocs"><a href="https://cloud.google.com/kms/docs/">Cloud KMS in Singapore (asia-southeast1 region) GA</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#stackdriver-logging-exclusion-filters-betahttpscloudgooglecomloggingdocsexclusions"><a href="https://cloud.google.com/logging/docs/exclusions">Stackdriver Logging Exclusion Filters Beta</a></a></li>
+    <li><a href="#gce-reporting-audit-logs-gahttpscloudgooglecomcomputedocsaudit-logging"><a href="https://cloud.google.com/compute/docs/audit-logging">GCE reporting Audit Logs GA</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#license-mobility-updates-for-gce-windows-vms-gahttpscloudgooglecomcomputedocsinstanceswindowsms-licensing"><a href="https://cloud.google.com/compute/docs/instances/windows/ms-licensing">License Mobility Updates for GCE Windows VMs GA</a></a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

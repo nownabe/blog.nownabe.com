@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,33 +48,37 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/11/29/1443.html/">Beautiful Soup 4でうまくパースできなかった</a></h2>
     <span class="date">Posted on Nov 29, 2018</span>
   </div>
-  <div class="body">
-    <p>Beautiful Soupで<code>html.parser</code>を使うのはやめましょう 😇</p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>Beautiful Soupで<code>html.parser</code>を使うのはやめましょう 😇</p>
 <p><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#">Beautiful Soup</a>でスクレイピングしてると、<code>tbody</code>要素がなかったことになってたり、同じ種類の子要素が5番目移行消えてたりと全然うまくパースできない問題がありました。</p>
-
 <p>パーサを<code>html.parser</code>から<code>lxml</code>にするだけで解決しました。</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># soup = BeautifulSoup(html, &#34;html.parser&#34;)</span>
-<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s2">&#34;lxml&#34;</span><span class="p">)</span></code></pre></div>
-<p>ドキュメントによると4つのパーサが使えるみたいです。</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># soup = BeautifulSoup(html, &#34;html.parser&#34;)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s2">&#34;lxml&#34;</span><span class="p">)</span>
+</code></pre></div><p>ドキュメントによると4つのパーサが使えるみたいです。</p>
 <ul>
 <li>Python&rsquo;s html.parser: <code>html.parser</code></li>
 <li>lxml&rsquo;s HTML parser: <code>lxml</code></li>
 <li>lxml&rsquo;s XML parser: <code>lxml-xml</code></li>
 <li>html5lib: <code>html5lib</code></li>
 </ul>
-
 <p><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-a-parser">Beautiful Soup Documentation — Beautiful Soup 4.4.0 documentation</a></p>
-
 <p>Beautiful Soup以外のライブラリに依存することになりますが、基本的に<code>lxml</code>を使うでよさそうですね。
 場合によっては<code>html5lib</code>って感じでしょうか。</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

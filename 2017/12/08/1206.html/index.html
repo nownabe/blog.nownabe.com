@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,227 +48,212 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/12/08/1206.html/">Pythonではじめる機械学習  6回目</a></h2>
     <span class="date">Posted on Dec 4, 2017</span>
   </div>
-  <div class="body">
-    
-
-<p><a href="https://blog.nownabe.com/2017/12/08/1200.html">nownab.log | Pythonではじめる機械学習 5回目</a></p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p><a href="https://blog.nownabe.com/2017/12/08/1200.html">nownab.log | Pythonではじめる機械学習 5回目</a></p>
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=4873117984&linkId=05656b0761603e4e9f88423f102e42c6"></iframe>
-
 <p>週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。</p>
-
 <p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。
 <a href="https://github.com/Wondershake/machine-learning-study">Wondershake/machine-learning-study: 機械学習勉強会</a></p>
-
 <p>この記事は資料作りの下書き的扱い。</p>
-
 <h1 id="5章-モデルの評価と改良">5章 モデルの評価と改良</h1>
-
-<h2 id="5-3-評価基準とスコア">5.3 評価基準とスコア</h2>
-
-<h3 id="5-3-1-最終的な目標を見失わないこと">5.3.1 最終的な目標を見失わないこと</h3>
-
-<h3 id="5-3-2-2クラス分類における基準">5.3.2 2クラス分類における基準</h3>
-
-<h4 id="5-3-2-1-エラーの種類">5.3.2.1 エラーの種類</h4>
-
+<h2 id="53-評価基準とスコア">5.3 評価基準とスコア</h2>
+<h3 id="531-最終的な目標を見失わないこと">5.3.1 最終的な目標を見失わないこと</h3>
+<h3 id="532-2クラス分類における基準">5.3.2 2クラス分類における基準</h3>
+<h4 id="5321-エラーの種類">5.3.2.1 エラーの種類</h4>
 <ul>
 <li><strong>偽陽性 (false positive)</strong>: FP
-
 <ul>
 <li>陽性でないのに陽性と判断してしまう間違い</li>
 <li><strong>タイプIエラー</strong></li>
-</ul></li>
+</ul>
+</li>
 <li><strong>偽陰性 (false negative)</strong>: FN
-
 <ul>
 <li>陰性でないのに陰性と判断してしまう間違い</li>
 <li><strong>タイプIIエラー</strong></li>
-</ul></li>
 </ul>
-
-<h4 id="5-3-2-2-偏ったデータセット">5.3.2.2 偏ったデータセット</h4>
-
+</li>
+</ul>
+<h4 id="5322-偏ったデータセット">5.3.2.2 偏ったデータセット</h4>
 <ul>
 <li>偏ったデータセットの場合「精度」は評価基準として適さない
-
 <ul>
 <li>例えば99%が陰性のデータに対してすべて陰性と予測すれば99%の精度が得られる</li>
-</ul></li>
 </ul>
-
-<h4 id="5-3-2-3-混同行列">5.3.2.3 混同行列</h4>
-
+</li>
+</ul>
+<h4 id="5323-混同行列">5.3.2.3 混同行列</h4>
 <ul>
 <li><strong>真陽性 (true positive)</strong>: TP</li>
 <li><strong>真陰性 (true negative)</strong>: TN</li>
 <li><strong>混同行列 (confusion matrix)</strong>
-
 <ul>
 <li>真陽性、真陰性、偽陽性、偽陰性を表にまとめたもの</li>
-</ul></li>
+</ul>
+</li>
 <li>$精度 = \displaystyle \frac{TP + TN}{TP + TN + FP + FN}$</li>
 <li>$適合率 = \displaystyle \frac{TP}{TP + FP}$</li>
 <li>$再現率 = \displaystyle \frac{TP}{TP + FN}$</li>
 <li>$F値 = \displaystyle 2 \times \frac{適合率 \times 再現率}{適合率 + 再現率}$</li>
 </ul>
-
-<h4 id="5-3-2-4-不確実性を考慮に入れる">5.3.2.4 不確実性を考慮に入れる</h4>
-
+<h4 id="5324-不確実性を考慮に入れる">5.3.2.4 不確実性を考慮に入れる</h4>
 <ul>
 <li>予測の閾値を調整することで適合率と再現率のトレードオフの調整が可能</li>
 <li>調整にテストデータは使わないようにする</li>
 <li><code>predict_proba</code>、<code>decision_function</code>を使う</li>
 </ul>
-
-<h4 id="5-2-3-5-適合率-再現率カーブとrocカーブ">5.2.3.5 適合率-再現率カーブとROCカーブ</h4>
-
+<h4 id="5235-適合率-再現率カーブとrocカーブ">5.2.3.5 適合率-再現率カーブとROCカーブ</h4>
 <ul>
 <li><strong>適合率-再現率カーブ (precision-recall curve)</strong>
-
 <ul>
 <li>予測の閾値を変化させ、適合率と再現率をプロットしたもの</li>
 <li>右上にいくほど良い</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>平均適合率 (average precision)</strong>
-
 <ul>
 <li>適合率-再現率カーブを積分したもの</li>
-</ul></li>
 </ul>
-
-<h4 id="5-2-3-6-受信者動作特性-roc-とauc">5.2.3.6 受信者動作特性(ROC)とAUC</h4>
-
+</li>
+</ul>
+<h4 id="5236-受信者動作特性rocとauc">5.2.3.6 受信者動作特性(ROC)とAUC</h4>
 <ul>
 <li><strong>受信者動作特性カーブ (receiver operating characteristics curve: ROCカーブ)</strong>
-
 <ul>
 <li>予測の閾値を変化させ、真陽性率(再現率)と偽陽性率をプロットしたもの</li>
 <li>左上にいくほど良い</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>AUC (area under the curve)</strong>
-
 <ul>
 <li>ROCカーブの下側を積分した値</li>
 <li>偏ったデータを評価するときはAUCが良い</li>
-</ul></li>
 </ul>
-
-<h3 id="5-3-3-多クラス分類の基準">5.3.3 多クラス分類の基準</h3>
-
+</li>
+</ul>
+<h3 id="533-多クラス分類の基準">5.3.3 多クラス分類の基準</h3>
 <ul>
 <li>2値分類の基準から導出される</li>
 <li>F値
-
 <ul>
 <li>マクロ平均: クラスごとのF値を平均する</li>
 <li>マイクロ平均: 全クラスのFP, FN, TPの総数を計算して、それらからF値を計算する</li>
 <li>重み付き平均: クラスごとのデータ数で重みを付けて平均する</li>
-</ul></li>
 </ul>
-
-<h3 id="5-3-4-回帰の基準">5.3.4 回帰の基準</h3>
-
+</li>
+</ul>
+<h3 id="534-回帰の基準">5.3.4 回帰の基準</h3>
 <ul>
 <li>今までも使ってきた$R^2$が最も良い</li>
 </ul>
-
-<h3 id="5-3-5-評価基準を用いたモデル選択">5.3.5 評価基準を用いたモデル選択</h3>
-
+<h3 id="535-評価基準を用いたモデル選択">5.3.5 評価基準を用いたモデル選択</h3>
 <ul>
 <li>scikit-learnでは簡単に交差検証やグリッドサーチのスコアリングにAUCなどが使える</li>
 </ul>
-
-<h2 id="5-4-まとめと展望">5.4 まとめと展望</h2>
-
+<h2 id="54-まとめと展望">5.4 まとめと展望</h2>
 <ul>
 <li>見落としがちなこと
-
 <ul>
 <li>交差検証は評価方法。モデルやパラメータ選択には使えない</li>
 <li>テストデータを使ってモデルやパラメータ選択してはダメ</li>
 <li>モデル選択やモデル評価における、評価基準、スコア関数の重要性</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h1 id="6章-アルゴリズムチェーンとパイプライン">6章 アルゴリズムチェーンとパイプライン</h1>
-
 <ul>
 <li>機械学習ではデータの表現は非常に重要</li>
 <li>機械学習アプリケーションでは様々な処理と複数の機械学習アルゴリズムを連鎖的に実行する必要がある</li>
 </ul>
-
-<h2 id="6-1-前処理を行う際のパラメータ選択">6.1 前処理を行う際のパラメータ選択</h2>
-
+<h2 id="61-前処理を行う際のパラメータ選択">6.1 前処理を行う際のパラメータ選択</h2>
 <ul>
 <li>交差検証の前に前処理をしてしまうと、間違った前処理になってしまう</li>
 <li>scikit-learnではPipelineクラスで複数の処理をまとめることで解決できる</li>
 </ul>
-
-<h2 id="6-2-パイプラインの構築">6.2 パイプラインの構築</h2>
-
-<h2 id="6-3-パイプラインを用いたグリッドサーチ">6.3 パイプラインを用いたグリッドサーチ</h2>
-
+<h2 id="62-パイプラインの構築">6.2 パイプラインの構築</h2>
+<h2 id="63-パイプラインを用いたグリッドサーチ">6.3 パイプラインを用いたグリッドサーチ</h2>
 <ul>
 <li>パイプラインのパラメータグリッドを指定するときは<code>__</code>でパイプライン名とパラメータ名をつなげる</li>
 </ul>
-
-<h2 id="6-4-汎用パイプラインインターフェイス">6.4 汎用パイプラインインターフェイス</h2>
-
+<h2 id="64-汎用パイプラインインターフェイス">6.4 汎用パイプラインインターフェイス</h2>
 <ul>
 <li>Pipelineは任意の個数のEstimatorを連結できる</li>
 <li>最後以外のステップには<code>fit</code>メソッドと<code>transform</code>メソッドが実装されている必要がある</li>
 <li>最後のステップは<code>fit</code>メソッドが実装されている必要がある</li>
 </ul>
-
-<h3 id="6-4-1-make-pipelineによる簡便なパイプライン生成">6.4.1 make_pipelineによる簡便なパイプライン生成</h3>
-
+<h3 id="641-make_pipelineによる簡便なパイプライン生成">6.4.1 make_pipelineによる簡便なパイプライン生成</h3>
 <ul>
 <li><code>make_pipeline</code>関数を使うとステップ名を自動生成する</li>
 </ul>
-
-<h3 id="6-4-2-ステップ属性へのアクセス">6.4.2 ステップ属性へのアクセス</h3>
-
+<h3 id="642-ステップ属性へのアクセス">6.4.2 ステップ属性へのアクセス</h3>
 <ul>
 <li><code>named_step</code>属性で各ステップにアクセスできる</li>
 </ul>
-
-<h3 id="6-4-3-gridsearchcv内のパイプラインの属性へのアクセス">6.4.3 GridSearchCV内のパイプラインの属性へのアクセス</h3>
-
+<h3 id="643-gridsearchcv内のパイプラインの属性へのアクセス">6.4.3 GridSearchCV内のパイプラインの属性へのアクセス</h3>
 <ul>
 <li>通常通り<code>best_estimator_</code>でパイプラインにアクセスできる</li>
 </ul>
-
-<h2 id="6-5-前処理ステップとモデルパラメータに対するグリッドサーチ">6.5 前処理ステップとモデルパラメータに対するグリッドサーチ</h2>
-
+<h2 id="65-前処理ステップとモデルパラメータに対するグリッドサーチ">6.5 前処理ステップとモデルパラメータに対するグリッドサーチ</h2>
 <ul>
 <li>パイプラインを使うことで、前処理のパラメータとモデルのパラメータを同時にグリッドサーチで探索できる</li>
 </ul>
-
-<h2 id="6-6-グリッドサーチによるモデルの選択">6.6 グリッドサーチによるモデルの選択</h2>
-
+<h2 id="66-グリッドサーチによるモデルの選択">6.6 グリッドサーチによるモデルの選択</h2>
 <ul>
 <li>GirdSearchCVとPipelineを組み合わせると、さらに柔軟な探索も可能</li>
 <li>各ステップのモデルも探索可能</li>
 </ul>
-
-<h2 id="6-7-まとめと展望">6.7 まとめと展望</h2>
-
+<h2 id="67-まとめと展望">6.7 まとめと展望</h2>
 <ul>
 <li>Pipelineで複数の処理を適切にまとめることは非常に重要</li>
 </ul>
-
 <h1 id="所感">所感</h1>
-
 <ul>
 <li>特にグリッドサーチ、これが学生時代にあれば…という感じ</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-math" data-lang="math"></code></pre></div>
+<pre tabindex="0"><code class="language-math" data-lang="math"></code></pre>
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#53-評価基準とスコア">5.3 評価基準とスコア</a>
+      <ul>
+        <li><a href="#531-最終的な目標を見失わないこと">5.3.1 最終的な目標を見失わないこと</a></li>
+        <li><a href="#532-2クラス分類における基準">5.3.2 2クラス分類における基準</a></li>
+        <li><a href="#533-多クラス分類の基準">5.3.3 多クラス分類の基準</a></li>
+        <li><a href="#534-回帰の基準">5.3.4 回帰の基準</a></li>
+        <li><a href="#535-評価基準を用いたモデル選択">5.3.5 評価基準を用いたモデル選択</a></li>
+      </ul>
+    </li>
+    <li><a href="#54-まとめと展望">5.4 まとめと展望</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#61-前処理を行う際のパラメータ選択">6.1 前処理を行う際のパラメータ選択</a></li>
+    <li><a href="#62-パイプラインの構築">6.2 パイプラインの構築</a></li>
+    <li><a href="#63-パイプラインを用いたグリッドサーチ">6.3 パイプラインを用いたグリッドサーチ</a></li>
+    <li><a href="#64-汎用パイプラインインターフェイス">6.4 汎用パイプラインインターフェイス</a>
+      <ul>
+        <li><a href="#641-make_pipelineによる簡便なパイプライン生成">6.4.1 make_pipelineによる簡便なパイプライン生成</a></li>
+        <li><a href="#642-ステップ属性へのアクセス">6.4.2 ステップ属性へのアクセス</a></li>
+        <li><a href="#643-gridsearchcv内のパイプラインの属性へのアクセス">6.4.3 GridSearchCV内のパイプラインの属性へのアクセス</a></li>
+      </ul>
+    </li>
+    <li><a href="#65-前処理ステップとモデルパラメータに対するグリッドサーチ">6.5 前処理ステップとモデルパラメータに対するグリッドサーチ</a></li>
+    <li><a href="#66-グリッドサーチによるモデルの選択">6.6 グリッドサーチによるモデルの選択</a></li>
+    <li><a href="#67-まとめと展望">6.7 まとめと展望</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

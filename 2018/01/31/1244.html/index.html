@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,55 +48,40 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/01/31/1244.html/">Python機械学習プログラミング  第5章</a></h2>
     <span class="date">Posted on Jan 29, 2018</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="概要">概要</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="概要">概要</h1>
 <p>Python機械学習プログラミングの学習メモです。
 勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。</p>
-
 <p>今回は、第5章 次元削減でデータを圧縮する</p>
-
 <p>前回: <a href="https://blog.nownabe.com/2018/01/24/1242.html">nownab.log | Python機械学習プログラミング 第4章</a></p>
-
 <h1 id="資料">資料</h1>
-
 <ul>
-<li>[5.1]()</li>
-<li>[5.2]()</li>
+<li><a href="">5.1</a></li>
+<li><a href="">5.2</a></li>
 <li><a href="https://nownabe.github.io/slides/20180201-python-ml-ch05/index.html#/">5.3</a></li>
 </ul>
-
 <h1 id="環境">環境</h1>
-
 <p>本書の各バージョンは結構古いので、できるだけ新しいバージョンを使うようにしている。</p>
-
 <ul>
 <li>Python 3.6.4</li>
 <li>scikit-learn 0.19.1</li>
 <li>matplotlib 2.1.1</li>
 </ul>
-
 <h1 id="メモ">メモ</h1>
-
-<h2 id="5-1-主成分分析による教師なし次元削減">5.1 主成分分析による教師なし次元削減</h2>
-
+<h2 id="51-主成分分析による教師なし次元削減">5.1 主成分分析による教師なし次元削減</h2>
 <p>急に共分散行列とか固有値が出てきて、は？ってなったけど下の記事がだいぶわかりやすかった。</p>
-
 <p><a href="http://postd.cc/a-beginners-guide-to-eigenvectors-pca-covariance-and-entropy/">固有ベクトル、主成分分析、共分散、エントロピー入門 | コンピュータサイエンス | POSTD</a></p>
-
-<h3 id="5-1-1-共分散行列の固有対を求める">5.1.1 共分散行列の固有対を求める</h3>
-
-<h3 id="5-1-2-特徴変換">5.1.2 特徴変換</h3>
-
+<h3 id="511-共分散行列の固有対を求める">5.1.1 共分散行列の固有対を求める</h3>
+<h3 id="512-特徴変換">5.1.2 特徴変換</h3>
 <p><code>np.newaxis</code>とはなんぞ。ということで調べてみた。<code>np.newaxis</code>自体はただの<code>None</code>。numpyのsliceに自動でshapeをよろしくやってくれる機能があって、<code>None</code>のかわりに<code>np.newaxis</code>って書くとかっこいいぜってことらしい。</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
 <span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span>
@@ -104,7 +89,7 @@ if (!doNotTrack) {
        <span class="p">[</span><span class="mi">3</span><span class="p">]])</span>
 
 <span class="c1"># Noneでも同じ</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
 <span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span>
        <span class="p">[</span><span class="mi">2</span><span class="p">],</span>
        <span class="p">[</span><span class="mi">3</span><span class="p">]])</span>
@@ -120,61 +105,75 @@ if (!doNotTrack) {
 <span class="o">&gt;&gt;&gt;</span> <span class="n">c</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
   <span class="n">File</span> <span class="s2">&#34;&lt;stdin&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">TypeError</span><span class="p">:</span> <span class="nb">list</span> <span class="n">indices</span> <span class="n">must</span> <span class="n">be</span> <span class="n">integers</span> <span class="ow">or</span> <span class="n">slices</span><span class="p">,</span> <span class="ow">not</span> <span class="nb">tuple</span></code></pre></div>
-<h3 id="5-1-3-scikit-learn-の主成分分析">5.1.3 scikit-learn の主成分分析</h3>
-
-<h2 id="5-2-線形判別分析による教師ありデータ圧縮">5.2 線形判別分析による教師ありデータ圧縮</h2>
-
+<span class="ne">TypeError</span><span class="p">:</span> <span class="nb">list</span> <span class="n">indices</span> <span class="n">must</span> <span class="n">be</span> <span class="n">integers</span> <span class="ow">or</span> <span class="n">slices</span><span class="p">,</span> <span class="ow">not</span> <span class="nb">tuple</span>
+</code></pre></div><h3 id="513-scikit-learn-の主成分分析">5.1.3 scikit-learn の主成分分析</h3>
+<h2 id="52-線形判別分析による教師ありデータ圧縮">5.2 線形判別分析による教師ありデータ圧縮</h2>
 <p>ここでのLDAはLinear Discriminant Analysisで、Latent Dirichlet Allocationとは別物</p>
-
 <p>全然関係ないけどなんでnotesにも同じこと書いてあるんだ…？誤植？</p>
-
-<h3 id="5-2-1-変動行列を計算する">5.2.1 変動行列を計算する</h3>
-
-<h3 id="5-2-2-新しい特徴部分空間の線形判別を選択する">5.2.2 新しい特徴部分空間の線形判別を選択する</h3>
-
-<h3 id="5-2-3-新しい特徴空間にサンプルを射影する">5.2.3 新しい特徴空間にサンプルを射影する</h3>
-
-<h3 id="5-2-4-scikit-learn-による-lda">5.2.4 scikit-learn による LDA</h3>
-
+<h3 id="521-変動行列を計算する">5.2.1 変動行列を計算する</h3>
+<h3 id="522-新しい特徴部分空間の線形判別を選択する">5.2.2 新しい特徴部分空間の線形判別を選択する</h3>
+<h3 id="523-新しい特徴空間にサンプルを射影する">5.2.3 新しい特徴空間にサンプルを射影する</h3>
+<h3 id="524-scikit-learn-による-lda">5.2.4 scikit-learn による LDA</h3>
 <p><code>sklearn.lda.LDA</code>はもうなくなってたので、<code>sklearn.discriminant_analysis.LinearDiscriminantAnalysis</code>を使った。
 ディリクレさんのLDAが実装されたのと同じタイミングで名前変わったっぽいから混同しないようにかな。</p>
-
-<h2 id="5-3-カーネル主成分分析を使った非線形写像">5.3 カーネル主成分分析を使った非線形写像</h2>
-
-<h3 id="5-3-1-カーネル関数とカーネルトリック">5.3.1 カーネル関数とカーネルトリック</h3>
-
-<h3 id="5-3-2-pythonでカーネル主成分分析を実装する">5.3.2 Pythonでカーネル主成分分析を実装する</h3>
-
+<h2 id="53-カーネル主成分分析を使った非線形写像">5.3 カーネル主成分分析を使った非線形写像</h2>
+<h3 id="531-カーネル関数とカーネルトリック">5.3.1 カーネル関数とカーネルトリック</h3>
+<h3 id="532-pythonでカーネル主成分分析を実装する">5.3.2 Pythonでカーネル主成分分析を実装する</h3>
 <p><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.pdist.html">scipy.spatial.distance.pdist — SciPy v1.0.0 Reference Guide</a></p>
-
 <p>seuclideanは標準化されたユークリッド距離</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">pdist</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">array</span><span class="p">([</span> <span class="mf">5.19615242</span><span class="p">,</span> <span class="mf">10.39230485</span><span class="p">,</span>  <span class="mf">5.19615242</span><span class="p">])</span></code></pre></div>
-<p><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.squareform.html">scipy.spatial.distance.squareform — SciPy v1.0.0 Reference Guide</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">sq_dists</span>
+<span class="n">array</span><span class="p">([</span> <span class="mf">5.19615242</span><span class="p">,</span> <span class="mf">10.39230485</span><span class="p">,</span>  <span class="mf">5.19615242</span><span class="p">])</span>
+</code></pre></div><p><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.squareform.html">scipy.spatial.distance.squareform — SciPy v1.0.0 Reference Guide</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">sq_dists</span>
 <span class="n">array</span><span class="p">([</span> <span class="mf">5.19615242</span><span class="p">,</span> <span class="mf">10.39230485</span><span class="p">,</span>  <span class="mf">5.19615242</span><span class="p">])</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">squareform</span><span class="p">(</span><span class="n">sq_dists</span><span class="p">)</span>
 <span class="n">array</span><span class="p">([[</span> <span class="mf">0.</span>        <span class="p">,</span>  <span class="mf">5.19615242</span><span class="p">,</span> <span class="mf">10.39230485</span><span class="p">],</span>
        <span class="p">[</span> <span class="mf">5.19615242</span><span class="p">,</span>  <span class="mf">0.</span>        <span class="p">,</span>  <span class="mf">5.19615242</span><span class="p">],</span>
-       <span class="p">[</span><span class="mf">10.39230485</span><span class="p">,</span>  <span class="mf">5.19615242</span><span class="p">,</span>  <span class="mf">0.</span>        <span class="p">]])</span></code></pre></div>
-<h3 id="5-3-3-新しいデータ点を射影する">5.3.3 新しいデータ点を射影する</h3>
-
-<h3 id="5-3-4-scikit-learn-のカーネル主成分分析">5.3.4 scikit-learn のカーネル主成分分析</h3>
-
+       <span class="p">[</span><span class="mf">10.39230485</span><span class="p">,</span>  <span class="mf">5.19615242</span><span class="p">,</span>  <span class="mf">0.</span>        <span class="p">]])</span>
+</code></pre></div><h3 id="533-新しいデータ点を射影する">5.3.3 新しいデータ点を射影する</h3>
+<h3 id="534-scikit-learn-のカーネル主成分分析">5.3.4 scikit-learn のカーネル主成分分析</h3>
 <h1 id="python機械学習プログラミング">Python機械学習プログラミング</h1>
-
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B01HGIPIAK&linkId=ef8aa25f336a01f62b00fce21e6f952a"></iframe>
-
 <h1 id="機械学習勉強会について">機械学習勉強会について</h1>
-
 <p>社内で毎週開催している。本書は輪読形式でまわしているが、題材によって形式は柔軟に変えている。
 毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。</p>
-
 <p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。
 <a href="https://github.com/Wondershake/machine-learning-study">Wondershake/machine-learning-study: 機械学習勉強会</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-math" data-lang="math"></code></pre></div>
+<pre tabindex="0"><code class="language-math" data-lang="math"></code></pre>
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#51-主成分分析による教師なし次元削減">5.1 主成分分析による教師なし次元削減</a>
+      <ul>
+        <li><a href="#511-共分散行列の固有対を求める">5.1.1 共分散行列の固有対を求める</a></li>
+        <li><a href="#512-特徴変換">5.1.2 特徴変換</a></li>
+        <li><a href="#513-scikit-learn-の主成分分析">5.1.3 scikit-learn の主成分分析</a></li>
+      </ul>
+    </li>
+    <li><a href="#52-線形判別分析による教師ありデータ圧縮">5.2 線形判別分析による教師ありデータ圧縮</a>
+      <ul>
+        <li><a href="#521-変動行列を計算する">5.2.1 変動行列を計算する</a></li>
+        <li><a href="#522-新しい特徴部分空間の線形判別を選択する">5.2.2 新しい特徴部分空間の線形判別を選択する</a></li>
+        <li><a href="#523-新しい特徴空間にサンプルを射影する">5.2.3 新しい特徴空間にサンプルを射影する</a></li>
+        <li><a href="#524-scikit-learn-による-lda">5.2.4 scikit-learn による LDA</a></li>
+      </ul>
+    </li>
+    <li><a href="#53-カーネル主成分分析を使った非線形写像">5.3 カーネル主成分分析を使った非線形写像</a>
+      <ul>
+        <li><a href="#531-カーネル関数とカーネルトリック">5.3.1 カーネル関数とカーネルトリック</a></li>
+        <li><a href="#532-pythonでカーネル主成分分析を実装する">5.3.2 Pythonでカーネル主成分分析を実装する</a></li>
+        <li><a href="#533-新しいデータ点を射影する">5.3.3 新しいデータ点を射影する</a></li>
+        <li><a href="#534-scikit-learn-のカーネル主成分分析">5.3.4 scikit-learn のカーネル主成分分析</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

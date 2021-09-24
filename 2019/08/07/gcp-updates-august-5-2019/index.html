@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,99 +48,96 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2019/08/07/gcp-updates-august-5-2019/">GCP Updates | August 5, 2019</a></h2>
     <span class="date">Posted on Aug 7, 2019</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="storage-databases">STORAGE &amp; DATABASES</h1>
-
-<h2 id="cloud-storage-dual-regional-bucket-locations-ga">Cloud Storage – dual-regional bucket locations: GA</h2>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="storage--databases">STORAGE &amp; DATABASES</h1>
+<h2 id="cloud-storage--dual-regional-bucket-locations-ga">Cloud Storage – dual-regional bucket locations: GA</h2>
 <blockquote>
 <p>Combine the performance boost of having two specific regional locations for object data storage with the advantages of geo-redundancy. <a href="https://cloud.google.com/storage/docs/locations">Documentation</a></p>
 </blockquote>
-
 <p>dual-regional は multi-regional の特別なやつらしい。Console で試してみると、</p>
-
 <ul>
 <li>nam4 (Iowa and South Carolina)</li>
 <li>us (multiple region in United States)</li>
 </ul>
-
 <p>みたいになってた。</p>
-
 <p>リージョン間で冗長化したいけど、Regional と同じパフォーマンスが欲しい場合に使うらしい。いいね。</p>
-
 <h1 id="data-analytics">DATA ANALYTICS</h1>
-
-<h2 id="bigquery-persistent-user-defined-functions-beta">BigQuery – persistent user-defined functions: beta</h2>
-
+<h2 id="bigquery--persistent-user-defined-functions-beta">BigQuery – persistent user-defined functions: beta</h2>
 <blockquote>
 <p>Now you can create persistent user-defined functions (UDFs) in BigQuery using a SQL expression or JavaScript. This allows you to reuse functions across queries and share them with others. You can also create a shared UDF library that anyone with access to your dataset can call up in queries. <a href="https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_function_statement">Documentation</a></p>
 </blockquote>
-
 <p>BigQuery で使えるのいいよなー。</p>
-
-<h2 id="cloud-pub-sub-authenticated-push-ga">Cloud Pub/Sub – authenticated push: GA</h2>
-
+<h2 id="cloud-pubsub--authenticated-push-ga">Cloud Pub/Sub – authenticated push: GA</h2>
 <blockquote>
 <p>With this release, you can configure push subscriptions to provide an authentication token that allows the endpoints to authorize the requests. Authorization using these tokens is currently supported by Cloud Run natively. <a href="https://cloud.google.com/pubsub/docs/push">Documentation</a></p>
 </blockquote>
-
 <h2 id="bigquery-data-transfer-service-for-google-merchant-center-beta">BigQuery Data Transfer Service for Google Merchant Center: beta</h2>
-
 <blockquote>
 <p>This service allows you to automatically schedule and manage recurring daily load jobs into BigQuery for Google Merchant Center reporting data. Currently, the BigQuery Data Transfer Service supports product catalog and diagnostic data provided to Merchant Center. <a href="https://cloud.google.com/bigquery/docs/merchant-center-transfer">Documentation</a></p>
 </blockquote>
-
 <p>Merchant Center なんてあるのか。</p>
-
-<h2 id="bigquery-ml-prediction-with-tensorflow-beta">BigQuery ML – prediction with TensorFlow: beta</h2>
-
+<h2 id="bigquery-ml--prediction-with-tensorflow-beta">BigQuery ML – prediction with TensorFlow: beta</h2>
 <blockquote>
 <p>To make predictions from a SQL query, you can import TensorFlow models into a BigQuery ML dataset using your Google Cloud Platform Console, the bq query CLI command, or the BigQuery API. <a href="https://cloud.google.com/bigquery-ml/docs/making-predictions-with-imported-tensorflow-models">Documentation</a></p>
 </blockquote>
-
 <p>おー、ついに TensorFlow のモデル使えるようになったのかー。</p>
-
 <h1 id="compute">COMPUTE</h1>
-
-<h2 id="compute-engine-compute-optimized-vm-instance-beta">Compute Engine – compute-optimized VM instance: beta</h2>
-
+<h2 id="compute-engine--compute-optimized-vm-instance-beta">Compute Engine – compute-optimized VM instance: beta</h2>
 <blockquote>
 <p>Now you can use compute-optimized VM instance types on Compute Engine. Designed for compute-intensive workloads, these VMs offer the highest performance per core with Intel Scalable processors (Cascade Lake) and up to 3.8 GHz of sustained all-core turbo. <a href="https://cloud.google.com/compute/docs/machine-types">Documentation</a></p>
 </blockquote>
-
 <p>新しい CPU 使うようになったってこと？</p>
-
-<h2 id="compute-engine-guest-attributes-ga">Compute Engine – guest attributes: GA</h2>
-
+<h2 id="compute-engine--guest-attributes-ga">Compute Engine – guest attributes: GA</h2>
 <blockquote>
 <p>Guest attributes are a specific type of custom metadata that your applications can both rggead from and write to while running on your instance. They work well for low-volume data and for use cases that require small amounts of data that change infrequetly. <a href="https://cloud.google.com/compute/docs/storing-retrieving-metadata#guest_attributes">Documentation</a></p>
 </blockquote>
-
 <p>インスタンスから書き込めるメタデータってことか。</p>
-
-<h2 id="app-engine-ruby-2-5-standard-environment-beta">App Engine Ruby 2.5 standard environment: beta</h2>
-
+<h2 id="app-engine-ruby-25-standard-environment-beta">App Engine Ruby 2.5 standard environment: beta</h2>
 <blockquote>
 <p>Now you can easily build and deploy an application that can reliably run under heavy loads with large amounts of data. Your application can run in its own secure, reliable environment that’s independent of the hardware, operating system, and physical location of the server. <a href="https://cloud.google.com/appengine/docs/standard/ruby/">Documentation</a></p>
 </blockquote>
-
 <p>Ruby の Standard Environment きた！！！！！ 🎉</p>
-
 <h1 id="management-tools">MANAGEMENT TOOLS</h1>
-
-<h2 id="cloud-firestore-stackdriver-monitoring-metrics-for-real-time-updates-beta">Cloud Firestore – Stackdriver Monitoring metrics for real-time updates: beta</h2>
-
+<h2 id="cloud-firestore--stackdriver-monitoring-metrics-for-real-time-updates-beta">Cloud Firestore – Stackdriver Monitoring metrics for real-time updates: beta</h2>
 <blockquote>
 <p>This release brings two new metrics from Cloud Firestore into Stackdriver Monitoring that measure your usage of real-time updates. You can now see the number of active connections to your database and the number of snapshot listeners across all active connections. <a href="https://firebase.google.com/docs/firestore/monitor-usage#stackdriver-monitoring">Documentation</a></p>
 </blockquote>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#cloud-storage--dual-regional-bucket-locations-ga">Cloud Storage – dual-regional bucket locations: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#bigquery--persistent-user-defined-functions-beta">BigQuery – persistent user-defined functions: beta</a></li>
+    <li><a href="#cloud-pubsub--authenticated-push-ga">Cloud Pub/Sub – authenticated push: GA</a></li>
+    <li><a href="#bigquery-data-transfer-service-for-google-merchant-center-beta">BigQuery Data Transfer Service for Google Merchant Center: beta</a></li>
+    <li><a href="#bigquery-ml--prediction-with-tensorflow-beta">BigQuery ML – prediction with TensorFlow: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#compute-engine--compute-optimized-vm-instance-beta">Compute Engine – compute-optimized VM instance: beta</a></li>
+    <li><a href="#compute-engine--guest-attributes-ga">Compute Engine – guest attributes: GA</a></li>
+    <li><a href="#app-engine-ruby-25-standard-environment-beta">App Engine Ruby 2.5 standard environment: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-firestore--stackdriver-monitoring-metrics-for-real-time-updates-beta">Cloud Firestore – Stackdriver Monitoring metrics for real-time updates: beta</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

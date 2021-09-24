@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,49 +48,39 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2016/08/30/420.html/">Mac OS Xで逆アセンブル</a></h2>
     <span class="date">Posted on Aug 30, 2016</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="objdump">objdump</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="objdump">objdump</h1>
 <p>Linuxで有名なobjdumpというツールが使えます。
 objdumpは</p>
-
-<pre><code>objdump - display information from object files.
-</code></pre>
-
-<p>とありますが、逆アセンブルもしてくれます。</p>
-
+<pre tabindex="0"><code>objdump - display information from object files.
+</code></pre><p>とありますが、逆アセンブルもしてくれます。</p>
 <h1 id="インストール">インストール</h1>
-
 <p>Homebrewでいれます。<code>binutils</code>というパッケージに含まれています。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew install binutils</code></pre></div>
-<p>コマンドは<code>gobjdump</code>になります。</p>
-
-<pre><code>$ gobjdump -v
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">brew install binutils
+</code></pre></div><p>コマンドは<code>gobjdump</code>になります。</p>
+<pre tabindex="0"><code>$ gobjdump -v
 GNU objdump (GNU Binutils) 2.26.1
 Copyright (C) 2015 Free Software Foundation, Inc.
 This program is free software; you may redistribute it under the terms of
 the GNU General Public License version 3 or (at your option) any later version.
 This program has absolutely no warranty.
-</code></pre>
-
-<h1 id="使い方">使い方</h1>
-
+</code></pre><h1 id="使い方">使い方</h1>
 <p>適当なプログラムを作って逆アセンブルしてみます。
 ただ終了するだけのプログラムです。</p>
-<div class="highlight"><pre class="chroma"><code class="language-c:exit0.c" data-lang="c:exit0.c"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c:exit0.c" data-lang="c:exit0.c"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span></code></pre></div>
-<p>コンパイルします。<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gcc-6 exit0.c -o exit0</code></pre></div>
-<p>objdumpで逆アセンブルします。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gobjdump -d -M intel exit0
+<span class="p">}</span>
+</code></pre></div><p>コンパイルします。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">gcc-6 exit0.c -o exit0
+</code></pre></div><p>objdumpで逆アセンブルします。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ gobjdump -d -M intel exit0
 
 exit0:     ファイル形式 mach-o-x86-64
 
@@ -102,18 +92,16 @@ exit0:     ファイル形式 mach-o-x86-64
    100000fa6:	<span class="m">48</span> <span class="m">89</span> e5             	mov    rbp,rsp
    100000fa9:	b8 <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>       	mov    eax,0x0
    100000fae:	5d                   	pop    rbp
-   100000faf:	c3                   	ret</code></pre></div>
-<p>いい感じですね！</p>
-
-<h1 id="c-アセンブリ">C =&gt; アセンブリ</h1>
-
+   100000faf:	c3                   	ret
+</code></pre></div><p>いい感じですね！</p>
+<h1 id="c--アセンブリ">C =&gt; アセンブリ</h1>
 <p>Cからアセンブリに直接変換もできます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gcc -S exit0.c
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ gcc -S exit0.c
 $ cat exit0.s
 	.section	__TEXT,__text,regular,pure_instructions
-	.macosx_version_min <span class="m">10</span>, <span class="m">11</span>
+	.macosx_version_min 10, <span class="m">11</span>
 	.globl	_main
-	.align	<span class="m">4</span>, 0x90
+	.align	4, 0x90
 _main:                                  <span class="c1">## @main</span>
 	.cfi_startproc
 <span class="c1">## BB#0:</span>
@@ -132,17 +120,14 @@ Ltmp2:
 	.cfi_endproc
 
 
-.subsections_via_symbols</code></pre></div>
-<h1 id="ソースコードに対応するアセンブリ">ソースコードに対応するアセンブリ</h1>
-
+.subsections_via_symbols
+</code></pre></div><h1 id="ソースコードに対応するアセンブリ">ソースコードに対応するアセンブリ</h1>
 <p>C言語のソースコードと、対応するアセンブリをわかりやすく表示することもできます。</p>
-
 <p>まずコンパイルします。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gcc -c -g exit0.c</code></pre></div>
-<p><code>-c</code>はリンクしないオプション、<code>-g</code>はデバッグ情報を付与します。</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">gcc -c -g exit0.c
+</code></pre></div><p><code>-c</code>はリンクしないオプション、<code>-g</code>はデバッグ情報を付与します。</p>
 <p><code>gobjdump</code>で表示します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gobjdump -d -S -M intel exit0.o
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ gobjdump -d -S -M intel exit0.o
 exit0.o:     ファイル形式 mach-o-x86-64
 
 
@@ -150,24 +135,30 @@ exit0.o:     ファイル形式 mach-o-x86-64
 
 <span class="m">0000000000000000</span> &lt;_main&gt;:
 int main<span class="o">()</span> <span class="o">{</span>
-   <span class="m">0</span>:	<span class="m">55</span>                   	push   rbp
-   <span class="m">1</span>:	<span class="m">48</span> <span class="m">89</span> e5             	mov    rbp,rsp
-  <span class="k">return</span> <span class="m">0</span><span class="p">;</span>
-   <span class="m">4</span>:	b8 <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>       	mov    eax,0x0
+   0:	<span class="m">55</span>                   	push   rbp
+   1:	<span class="m">48</span> <span class="m">89</span> e5             	mov    rbp,rsp
+  <span class="k">return</span> 0<span class="p">;</span>
+   4:	b8 <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>       	mov    eax,0x0
 <span class="o">}</span>
-   <span class="m">9</span>:	5d                   	pop    rbp
-   a:	c3                   	ret</code></pre></div>
-<p>いい感じですね 😁</p>
-<div class="footnotes">
-
-<hr />
-
+   9:	5d                   	pop    rbp
+   a:	c3                   	ret
+</code></pre></div><p>いい感じですね 😁</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1">Macだと<code>gcc</code>が<code>clang</code>になってしまってるので、<code>gcc-6</code>というコマンドでgccを使ってます。
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p>Macだと<code>gcc</code>が<code>clang</code>になってしまってるので、<code>gcc-6</code>というコマンドでgccを使ってます。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

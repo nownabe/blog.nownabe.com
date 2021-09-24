@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>releasenote on nownab.log</title>
@@ -6,11 +6,7 @@
     <description>Recent content in releasenote on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sat, 02 Dec 2017 12:15:16 +0900</lastBuildDate>
-    
-	<atom:link href="https://blog.nownabe.com/tags/releasenote/feed.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 02 Dec 2017 12:15:16 +0900</lastBuildDate><atom:link href="https://blog.nownabe.com/tags/releasenote/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>nownabe release note v2017.12</title>
       <link>https://blog.nownabe.com/2017/12/02/1205.html/</link>

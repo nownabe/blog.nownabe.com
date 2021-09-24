@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,121 +48,126 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2019/01/15/1450.html/">GCP updates  | January 7, 2019</a></h2>
     <span class="date">Posted on Jan 15, 2019</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="management-tools">MANAGEMENT TOOLS</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="management-tools">MANAGEMENT TOOLS</h1>
 <h2 id="istio-on-kubernetes-engine-beta">Istio on Kubernetes Engine: beta</h2>
-
 <blockquote>
 <p>Get one-click Istio deployment on Kubernetes Engine – or add Istio to an existing Kubernetes Engine cluster. Quickly create all the components you need to run an open-source service mesh to connect, manage, and secure microservices in a uniform way. <a href="https://cloud.google.com/istio/docs/istio-on-gke/overview">Documentation</a></p>
 </blockquote>
-
 <p>GKEにマネージドのIstioをデプロイできるようになったってやつです。いいですね！！ 🎉
 既存のクラスタにも追加できて、AddonにIstioがあるのでそれをEnableにするだけです。</p>
-
-<hr />
-
+<hr>
 <p>Additional Releases</p>
-
 <h1 id="compute">COMPUTE</h1>
-
 <h2 id="kubernetes-engine-flexible-pod-cidr">Kubernetes Engine: flexible Pod CIDR</h2>
-
 <blockquote>
 <p>Optimize IP utilization by controlling the use of Pod CIDR ranges across nodes by allowing users to specify the maximum number of Pods per node that they want to run. This feature allows for a more efficient allocation of Pod CIDR ranges from cluster-level CIDR for containers, and it helps reduce IP utilization. <a href="https://cloud.google.com/kubernetes-engine/docs/how-to/flexible-pod-cidr">Documentation</a></p>
 </blockquote>
-
 <p>各Nodeに割り当てるCIDRブロックを変更できる機能です。デフォルトでは<code>/24</code>を割り当て、Pod数は上限110ですがこれを<code>/28</code>まで減らせる感じです。</p>
-
-<h2 id="app-engine-standard-environment-python-3-7-ga">App Engine standard environment – Python 3.7: GA</h2>
-
+<h2 id="app-engine-standard-environment--python-37-ga">App Engine standard environment – Python 3.7: GA</h2>
 <blockquote>
 <p>Use the latest versions of popular libraries with Python 3 on Titanium. Features include the ability to access the file system and install third-party packages and dependencies that rely on native code – all with reduced cost and latency, and improved code portability. <a href="https://cloud.google.com/appengine/docs/standard/python3/">Documentation</a></p>
 </blockquote>
-
 <p>filesystemやネイティブコードが動くのはgVisorの恩恵ですね。</p>
-
-<h2 id="compute-engine-control-the-location-of-persistent-disk-snapshots-beta">Compute Engine – control the location of Persistent Disk snapshots: beta</h2>
-
+<h2 id="compute-engine--control-the-location-of-persistent-disk-snapshots-beta">Compute Engine – control the location of Persistent Disk snapshots: beta</h2>
 <blockquote>
 <p>Gain a greater level of control over your Persistent Disk snapshots by specifying their storage location down to regional and multi-regional Cloud Storage locations. This feature can help you meet data-residency, regulatory, and compliance requirements. <a href="https://cloud.google.com/blog/products/storage-data-transfer/new-in-compute-engine-control-the-storage-location-of-your-snapshots">Blog</a> | <a href="https://cloud.google.com/storage/docs/locations">Storage locations</a></p>
 </blockquote>
-
-<h2 id="app-engine-standard-environment-node-js-8-ga">App Engine standard environment – Node.js 8: GA</h2>
-
+<h2 id="app-engine-standard-environment--nodejs-8-ga">App Engine standard environment – Node.js 8: GA</h2>
 <blockquote>
 <p>The Node.js 8 runtime is now ready to use for your App Engine standard environment projects. <a href="https://cloud.google.com/appengine/docs/standard/nodejs/">Documentation</a></p>
 </blockquote>
-
 <h1 id="databases">DATABASES</h1>
-
-<h2 id="cloud-bigtable-tables-list-ga">Cloud Bigtable – tables list: GA</h2>
-
+<h2 id="cloud-bigtable--tables-list-ga">Cloud Bigtable – tables list: GA</h2>
 <blockquote>
 <p>Use the Google Cloud Platform Console to display a list of all your tables in Cloud Bigtable. The new tables-list feature also shows the size and replication status of each table, along with monitoring metrics. <a href="https://cloud.google.com/bigtable/docs/managing-tables#viewing_a_list_of_tables">Documentation</a></p>
 </blockquote>
-
 <h1 id="networking">NETWORKING</h1>
-
-<h2 id="cloud-dns-dns-forwarding-open-beta">Cloud DNS – DNS forwarding: open beta</h2>
-
+<h2 id="cloud-dns--dns-forwarding-open-beta">Cloud DNS – DNS forwarding: open beta</h2>
 <blockquote>
 <p>Link your cloud and on-premises environments with bidirectional forwarding zones between your name servers and internal GCP name servers – and use the same DNS service for all your workloads and resources. <a href="https://cloud.google.com/blog/products/networking/announcing-cloud-dns-forwarding-unifying-hybrid-cloud-naming">Blog</a></p>
 </blockquote>
-
 <h1 id="management-tools-1">MANAGEMENT TOOLS</h1>
-
-<h2 id="cloud-billing-reconcile-billing-export-to-the-invoice">Cloud Billing – reconcile billing export to the invoice</h2>
-
+<h2 id="cloud-billing--reconcile-billing-export-to-the-invoice">Cloud Billing – reconcile billing export to the invoice</h2>
 <blockquote>
 <p>Export your billing data to BigQuery to view a broad range of new data fields – and see all invoice-level costs. To reconcile your invoice to the penny, see the “cost_type” field. Or to query costs by folder, see the “project.ancestry_numbers” field. <a href="https://cloud.google.com/billing/docs/how-to/export-data-bigquery#billing_data_in">Documentation</a> | <a href="https://cloud.google.com/billing/docs/how-to/bq-examples">Example queries</a></p>
 </blockquote>
-
 <h1 id="security">SECURITY</h1>
-
 <h2 id="access-transparency-beta">Access Transparency: beta</h2>
-
 <blockquote>
 <p>Access Transparency logs actions taken by Google staff when accessing your data. This helps you confirm that your data is being accessed only for valid business reasons, such as addressing a support issue. <a href="https://cloud.google.com/logging/docs/audit/access-transparency-overview">Documentation</a></p>
 </blockquote>
-
 <h2 id="vpc-service-controls-beta">VPC Service Controls: beta</h2>
-
 <blockquote>
 <p>Define security perimeters for sensitive data in GCP services and establish virtual security perimeters for API-based services. VPC Service Controls lets you keep data private and mitigate data exfiltration risks, while maintaining your access to fully managed services on GCP. <a href="https://cloud.google.com/vpc-service-controls/docs/">Documentation</a></p>
 </blockquote>
-
 <h2 id="cloud-identity-for-customers-and-partners-beta">Cloud Identity for Customers and Partners: beta</h2>
-
 <blockquote>
 <p>Add identity and access management functionality to your applications, protect user accounts, and easily scale on Google Cloud with Cloud Identity for Customers and Partners, our new identity and access management platform. <a href="https://cloud.google.com/identity-cp/">Product page</a> | <a href="https://cloud.google.com/identity-cp/docs/">Documentation</a></p>
 </blockquote>
-
 <p>いろいろカスタマイズできるAuthentication as a Serviceらしいです。</p>
-
 <h1 id="internet-of-things">INTERNET OF THINGS</h1>
-
-<h2 id="cloud-iot-core-gateways-beta">Cloud IoT Core – gateways: beta</h2>
-
+<h2 id="cloud-iot-core--gateways-beta">Cloud IoT Core – gateways: beta</h2>
 <blockquote>
 <p>This feature introduces gateways as a new device type to Cloud IoT Core. A gateway is a hub or proxy device that connects Cloud IoT Core services to devices that cannot natively connect to Cloud IoT Core. <a href="https://cloud.google.com/iot/docs/how-tos/gateways/">Documentation</a></p>
 </blockquote>
-
-<h1 id="ai-machine-learning">AI &amp; MACHINE LEARNING</h1>
-
-<h2 id="cloud-vision-api-handwriting-ocr-ga">Cloud Vision API – Handwriting OCR: GA</h2>
-
+<h1 id="ai--machine-learning">AI &amp; MACHINE LEARNING</h1>
+<h2 id="cloud-vision-api--handwriting-ocr-ga">Cloud Vision API – Handwriting OCR: GA</h2>
 <blockquote>
 <p>Add the ability to detect and decipher handwritten text to your apps with the optical character recognition features in the Cloud Vision API. <a href="https://cloud.google.com/vision/docs/handwriting">Documentation</a></p>
 </blockquote>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#istio-on-kubernetes-engine-beta">Istio on Kubernetes Engine: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#kubernetes-engine-flexible-pod-cidr">Kubernetes Engine: flexible Pod CIDR</a></li>
+    <li><a href="#app-engine-standard-environment--python-37-ga">App Engine standard environment – Python 3.7: GA</a></li>
+    <li><a href="#compute-engine--control-the-location-of-persistent-disk-snapshots-beta">Compute Engine – control the location of Persistent Disk snapshots: beta</a></li>
+    <li><a href="#app-engine-standard-environment--nodejs-8-ga">App Engine standard environment – Node.js 8: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-bigtable--tables-list-ga">Cloud Bigtable – tables list: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-dns--dns-forwarding-open-beta">Cloud DNS – DNS forwarding: open beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-billing--reconcile-billing-export-to-the-invoice">Cloud Billing – reconcile billing export to the invoice</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#access-transparency-beta">Access Transparency: beta</a></li>
+    <li><a href="#vpc-service-controls-beta">VPC Service Controls: beta</a></li>
+    <li><a href="#cloud-identity-for-customers-and-partners-beta">Cloud Identity for Customers and Partners: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-iot-core--gateways-beta">Cloud IoT Core – gateways: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-vision-api--handwriting-ocr-ga">Cloud Vision API – Handwriting OCR: GA</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

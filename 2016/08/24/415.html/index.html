@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,44 +48,36 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2016/08/24/415.html/">Mac OS Xでアセンブリ</a></h2>
     <span class="date">Posted on Aug 24, 2016</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="はじめに">はじめに</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="はじめに">はじめに</h1>
 <p>Mac OS Xでの、</p>
-
 <ul>
 <li>アセンブラのインストール</li>
 <li>アセンブリを実行形式まで</li>
 </ul>
-
 <p>です。</p>
-
 <h1 id="アセンブラインストール">アセンブラインストール</h1>
-
 <p>まずはアセンブラをインストールします。
-今回は<a href="http://www.nasm.us/">NASM</a>というアセンブラを使います。<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></p>
-
+今回は<a href="http://www.nasm.us/">NASM</a>というアセンブラを使います。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <p>Homebrewで入るのは古いので、ソースからビルドします。
 パスは適当に通してください。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">wget http://www.nasm.us/pub/nasm/releasebuilds/2.12.02/nasm-2.12.02.tar.gz
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">wget http://www.nasm.us/pub/nasm/releasebuilds/2.12.02/nasm-2.12.02.tar.gz
 tar zxvf nasm-2.12.02.tar.gz
 <span class="nb">cd</span> nasm-2.12.02
 ./configure --prefix<span class="o">=</span><span class="nv">$HOME</span>
 make -j4
-make install</code></pre></div>
-<h1 id="アセンブル">アセンブル</h1>
-
+make install
+</code></pre></div><h1 id="アセンブル">アセンブル</h1>
 <p>アセンブリのプログラムを書いて、アセンブルしてみます。</p>
-
-<p>x86_64アセンブリ<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>のHello Worldです。</p>
-<div class="highlight"><pre class="chroma"><code class="language-helloworld.asm" data-lang="helloworld.asm"><span class="k">section</span> <span class="nv">.data</span>
+<p>x86_64アセンブリ<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>のHello Worldです。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-helloworld.asm" data-lang="helloworld.asm"><span class="k">section</span> <span class="nv">.data</span>
 <span class="nf">hello_world</span> <span class="nv">db</span> <span class="s">&#34;Hello World!&#34;</span><span class="p">,</span> <span class="mh">0x0a</span>
 
 <span class="k">section</span> <span class="nv">.text</span>
@@ -99,32 +91,39 @@ make install</code></pre></div>
 <span class="nf">syscall</span>
 <span class="nf">mov</span> <span class="nb">rax</span><span class="p">,</span> <span class="mh">0x2000001</span>
 <span class="nf">mov</span> <span class="nb">rdi</span><span class="p">,</span> <span class="mi">0</span>
-<span class="nf">syscall</span></code></pre></div>
-<p>アセンブルは次のコマンドです。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">~/bin/nasm -f macho64 helloworld.asm</code></pre></div>
-<p><code>-f</code>は出力形式を示すオプションです。Macだと<code>macho64</code>にしておくのが無難です。</p>
-
+<span class="nf">syscall</span>
+</code></pre></div><p>アセンブルは次のコマンドです。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">~/bin/nasm -f macho64 helloworld.asm
+</code></pre></div><p><code>-f</code>は出力形式を示すオプションです。Macだと<code>macho64</code>にしておくのが無難です。</p>
 <p>そうすると、<code>helloworld.o</code>というオブジェクトファイルが出力されます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ls
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ ls
 helloworld.asm  helloworld.o
 $ file helloworld.o
-helloworld.o: Mach-O <span class="m">64</span>-bit object x86_64</code></pre></div>
-<p>最後に、オブジェクトファイルをリンクします。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ld helloworld.o</code></pre></div>
-<p><code>a.out</code>という実行ファイルが出力されるので、そいつを実行すれば<code>Hello World!</code>と表示されます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ./a.out
-Hello World!</code></pre></div><div class="footnotes">
-
-<hr />
-
+helloworld.o: Mach-O 64-bit object x86_64
+</code></pre></div><p>最後に、オブジェクトファイルをリンクします。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ld helloworld.o
+</code></pre></div><p><code>a.out</code>という実行ファイルが出力されるので、そいつを実行すれば<code>Hello World!</code>と表示されます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ ./a.out
+Hello World!
+</code></pre></div><section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1"><a href="http://www.ibm.com/developerworks/jp/linux/library/l-gas-nasm.html">http://www.ibm.com/developerworks/jp/linux/library/l-gas-nasm.html</a>
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-<li id="fn:2"><a href="https://software.intel.com/en-us/articles/introduction-to-x64-assembly">https://software.intel.com/en-us/articles/introduction-to-x64-assembly</a>
- <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p><a href="http://www.ibm.com/developerworks/jp/linux/library/l-gas-nasm.html">http://www.ibm.com/developerworks/jp/linux/library/l-gas-nasm.html</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><a href="https://software.intel.com/en-us/articles/introduction-to-x64-assembly">https://software.intel.com/en-us/articles/introduction-to-x64-assembly</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

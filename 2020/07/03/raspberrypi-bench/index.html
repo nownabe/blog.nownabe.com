@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,25 +48,21 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2020/07/03/raspberrypi-bench/">Raspberry Pi 4 のベンチマーク</a></h2>
     <span class="date">Posted on Jul 4, 2020</span>
   </div>
-  <div class="body">
-    
-
-<p>Raspberry Pi 4 の各種ベンチマークを取ってみました。
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>Raspberry Pi 4 の各種ベンチマークを取ってみました。
 UnixBenchとfioです。
 雑にほぼデフォルト設定で計測ました。
 チューニング等もまったくしてません。</p>
-
 <p>Raspberry Pi 4 の生の結果は最後にまとめて貼っておきます。</p>
-
 <h2 id="比較対象">比較対象</h2>
-
 <p>何かしら比較対象がほしかったので、この辺りを使いました。</p>
-
 <table>
 <thead>
 <tr>
@@ -79,7 +75,6 @@ UnixBenchとfioです。
 <th>Kernel</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><a href="https://amzn.to/2NS7WCG">Raspberry Pi 4 Model B</a></td>
@@ -90,7 +85,6 @@ UnixBenchとfioです。
 <td>Raspberry OS buster</td>
 <td>Linux 4.19.118</td>
 </tr>
-
 <tr>
 <td><a href="https://amzn.to/2ZtDG6w">Raspberry Pi 3 Model B</a></td>
 <td>Arm Cortex-A53 1.2GHz 4 cores</td>
@@ -100,7 +94,6 @@ UnixBenchとfioです。
 <td>Raspberry OS</td>
 <td>?</td>
 </tr>
-
 <tr>
 <td>Server</td>
 <td><a href="https://amzn.to/3grgxsw">Core i3-2100T 2.5GHz 2 cores 4 threads</a></td>
@@ -110,7 +103,6 @@ UnixBenchとfioです。
 <td>Debian buster</td>
 <td>Linux 4.19.0</td>
 </tr>
-
 <tr>
 <td>Desktop PC</td>
 <td><a href="https://amzn.to/3eTKfG6">Core i7-8700K 3.7GHz 6 cores 12 threads</a></td>
@@ -122,36 +114,26 @@ UnixBenchとfioです。
 </tr>
 </tbody>
 </table>
-
-<p>注意点として、Raspberry Pi 4は多分電力が足りてません。<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></p>
-
+<p>注意点として、Raspberry Pi 4は多分電力が足りてません。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <h2 id="unixbench">UnixBench</h2>
-
 <h3 id="セットアップ">セットアップ</h3>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install git
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt install git
 git clone https://github.com/kdlucas/byte-unixbench
 <span class="nb">cd</span> byte-unixbench/UnixBench
-./Run</code></pre></div>
-<h3 id="結果">結果</h3>
-
+./Run
+</code></pre></div><h3 id="結果">結果</h3>
 <p>Raspberry Pi 3に比べるとだいぶ良い結果が出てますね。
 System Call Overheadだけなぜか負けてます。</p>
-
 <p>一番お金かかってるデスクトップPCが圧倒的に勝ってて安心しました。</p>
-
 <p>グラフはIndex Scoreです。</p>
-
-<p><img src="/images/2020/07/04/unix_bench_single.png" alt="UnixBench Single Core" />
-<img src="/images/2020/07/04/unix_bench_multi.png" alt="UnixBench Multi Core" /></p>
-
+<p><img src="/images/2020/07/04/unix_bench_single.png" alt="UnixBench Single Core">
+<img src="/images/2020/07/04/unix_bench_multi.png" alt="UnixBench Multi Core"></p>
 <h2 id="fio">fio</h2>
-
 <h3 id="セットアップ-1">セットアップ</h3>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install libaio-dev fio</code></pre></div>
-<p>fioのバージョンは3.12。</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt install libaio-dev fio
+</code></pre></div><p>fioのバージョンは3.12。</p>
 <h3 id="設定">設定</h3>
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">[sequential_read]
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt">[sequential_read]
 rw=read
 size=1g
 ioengine=libaio
@@ -177,21 +159,15 @@ rw=randwrite
 size=1g
 ioengine=libaio
 direct=1
-group_reporting</code></pre></div>
-<h3 id="結果-1">結果</h3>
-
+group_reporting
+</code></pre></div><h3 id="結果-1">結果</h3>
 <p>今回Evo PlusというそこそこいいSDカードを使ってますが、Seqeuntial、RandomともにReadが2500IOPS、Writeが600IPS程度でした。</p>
-
 <p>Raspberry Pi 3 は遅すぎたので計測してません。</p>
-
-<p><img src="/images/2020/07/04/fio.png" alt="fio" /></p>
-
+<p><img src="/images/2020/07/04/fio.png" alt="fio"></p>
 <h2 id="ログ">ログ</h2>
-
 <p>以下、Raspberry Pi 4の計測ログです。</p>
-
 <h3 id="unixbench-1">UnixBench</h3>
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">========================================================================
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt">========================================================================
    BYTE UNIX Benchmarks (Version 5.1.3)
 
    System: raspberrypi: GNU/Linux
@@ -264,9 +240,9 @@ Shell Scripts (1 concurrent)                     42.4       8076.0   1904.7
 Shell Scripts (8 concurrent)                      6.0       1090.8   1818.0
 System Call Overhead                          15000.0    1070133.2    713.4
                                                                    ========
-System Benchmarks Index Score                                        1056.0</code></pre></div>
-<h3 id="fio-1">fio</h3>
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">$ fio sequential_read.fio
+System Benchmarks Index Score                                        1056.0
+</code></pre></div><h3 id="fio-1">fio</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt">$ fio sequential_read.fio
 sequential_read: (g=0): rw=read, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=1
 fio-3.12
 Starting 1 process
@@ -397,16 +373,46 @@ Run status group 0 (all jobs):
   WRITE: bw=2530KiB/s (2591kB/s), 2530KiB/s-2530KiB/s (2591kB/s-2591kB/s), io=1024MiB (1074MB), run=414491-414491msec
 
 Disk stats (read/write):
-  mmcblk0: ios=0/262251, merge=0/83, ticks=0/398727, in_queue=393828, util=94.97%</code></pre></div><div class="footnotes">
-
-<hr />
-
+  mmcblk0: ios=0/262251, merge=0/83, ticks=0/398727, in_queue=393828, util=94.97%
+</code></pre></div><section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1"><a href="https://blog.nownabe.com/2020/06/28/home-kubernetes-1/#%E6%9D%90%E6%96%99">おうちKubernetes構築日記その1 Raspberry Pi編 - nownab.log</a>
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://blog.nownabe.com/2020/06/28/home-kubernetes-1/#%E6%9D%90%E6%96%99">おうちKubernetes構築日記その1 Raspberry Pi編 - nownab.log</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#比較対象">比較対象</a></li>
+    <li><a href="#unixbench">UnixBench</a>
+      <ul>
+        <li><a href="#セットアップ">セットアップ</a></li>
+        <li><a href="#結果">結果</a></li>
+      </ul>
+    </li>
+    <li><a href="#fio">fio</a>
+      <ul>
+        <li><a href="#セットアップ-1">セットアップ</a></li>
+        <li><a href="#設定">設定</a></li>
+        <li><a href="#結果-1">結果</a></li>
+      </ul>
+    </li>
+    <li><a href="#ログ">ログ</a>
+      <ul>
+        <li><a href="#unixbench-1">UnixBench</a></li>
+        <li><a href="#fio-1">fio</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

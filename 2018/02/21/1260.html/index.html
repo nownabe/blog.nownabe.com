@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,74 +48,74 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/02/21/1260.html/">言語処理のための機械学習入門 第1回</a></h2>
     <span class="date">Posted on Feb 19, 2018</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="概要">概要</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="概要">概要</h1>
 <p>機械学習勉強会で輪読してる<a href="http://amzn.to/2BFQSee">言語処理のための機械学習入門</a>の学習メモです。
 勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。</p>
-
 <h1 id="範囲">範囲</h1>
-
 <ul>
-<li>1. 必要な数学的知識
-
+<li>
+<ol>
+<li>必要な数学的知識</li>
+</ol>
 <ul>
 <li>1.1 準備と本書における約束事</li>
 <li>1.2 最適化問題</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h1 id="資料">資料</h1>
-
 <p><a href="https://nownabe.github.io/slides/20180222-ml4nlp-01/index.html#/">https://nownabe.github.io/slides/20180222-ml4nlp-01/index.html#/</a></p>
-
 <h1 id="1-必要な数学的知識">1. 必要な数学的知識</h1>
-
 <blockquote>
 <p>ラグランジュ乗数法は、言語処理において確率モデルや機械学習を用いるうえで必要不可欠なテクニックである。</p>
 </blockquote>
-
 <p>やべぇまったく覚えてない 😱</p>
-
-<h2 id="1-1-準備と本書における約束事">1.1 準備と本書における約束事</h2>
-
-<h2 id="1-2-最適化問題">1.2 最適化問題</h2>
-
-<h3 id="1-2-1-凸集合と凸関数">1.2.1 凸集合と凸関数</h3>
-
-<h3 id="1-2-2-凸計画問題">1.2.2 凸計画問題</h3>
-
-<h3 id="1-2-3-等式制約付き凸計画問題">1.2.3 等式制約付き凸計画問題</h3>
-
+<h2 id="11-準備と本書における約束事">1.1 準備と本書における約束事</h2>
+<h2 id="12-最適化問題">1.2 最適化問題</h2>
+<h3 id="121-凸集合と凸関数">1.2.1 凸集合と凸関数</h3>
+<h3 id="122-凸計画問題">1.2.2 凸計画問題</h3>
+<h3 id="123-等式制約付き凸計画問題">1.2.3 等式制約付き凸計画問題</h3>
 <p>法線ベクトルの求め方:</p>
-<div class="highlight"><pre class="chroma"><code class="language-math" data-lang="math">f(x, y) = 0</code></pre></div>
-<p>で表される曲線の$(x, y)$における法線ベクトルは$(f_x, f_y)$</p>
-
+<pre tabindex="0"><code class="language-math" data-lang="math">f(x, y) = 0
+</code></pre><p>で表される曲線の$(x, y)$における法線ベクトルは$(f_x, f_y)$</p>
 <p><a href="https://mathtrain.jp/gradient">法線ベクトルの求め方と応用 | 高校数学の美しい物語</a></p>
-
 <p>$\nabla_x f(x)$が等高線の法線ベクトルってのはどういうことなんだ。と思ったけど、普通に勾配って考えると理解した。</p>
-
-<h3 id="1-2-4-不等式制約付き凸計画問題">1.2.4 不等式制約付き凸計画問題</h3>
-
+<h3 id="124-不等式制約付き凸計画問題">1.2.4 不等式制約付き凸計画問題</h3>
 <h1 id="言語処理のための機械学習入門">言語処理のための機械学習入門</h1>
-
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=4339027510&linkId=1c6291b86381f20d113796257356ef1b"></iframe>
-
 <h1 id="機械学習勉強会について">機械学習勉強会について</h1>
-
 <p>社内で毎週開催している。本書は輪読形式でまわしているが、題材によって形式は柔軟に変えている。
 毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。</p>
-
 <p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。
 <a href="https://github.com/Wondershake/machine-learning-study">Wondershake/machine-learning-study: 機械学習勉強会</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-math" data-lang="math"></code></pre></div>
+<pre tabindex="0"><code class="language-math" data-lang="math"></code></pre>
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#11-準備と本書における約束事">1.1 準備と本書における約束事</a></li>
+    <li><a href="#12-最適化問題">1.2 最適化問題</a>
+      <ul>
+        <li><a href="#121-凸集合と凸関数">1.2.1 凸集合と凸関数</a></li>
+        <li><a href="#122-凸計画問題">1.2.2 凸計画問題</a></li>
+        <li><a href="#123-等式制約付き凸計画問題">1.2.3 等式制約付き凸計画問題</a></li>
+        <li><a href="#124-不等式制約付き凸計画問題">1.2.4 不等式制約付き凸計画問題</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

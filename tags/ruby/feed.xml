@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ruby on nownab.log</title>
@@ -6,11 +6,7 @@
     <description>Recent content in ruby on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Tue, 09 Oct 2018 10:18:58 +0900</lastBuildDate>
-    
-	<atom:link href="https://blog.nownabe.com/tags/ruby/feed.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 09 Oct 2018 10:18:58 +0900</lastBuildDate><atom:link href="https://blog.nownabe.com/tags/ruby/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Google CloudのRubyクライアントのRailsログを無効化する</title>
       <link>https://blog.nownabe.com/2018/10/09/1419.html/</link>
@@ -26,7 +22,7 @@
       <pubDate>Fri, 22 Sep 2017 04:08:42 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/2017/09/22/1133.html/</guid>
-      <description>Cookpad Ruby Hack Challengeに参加したのでイベントの様子と後日談を。 イベント自体は8月に開催されたが、イベントで取り組んだ課題をその後もほそぼそ</description>
+      <description>[Cookpad Ruby Hack Challenge](Cookpad Ruby Hack Challenge)に参加したのでイベントの様子と後日談を。 イベント自体は8月に開催されたが、イベントで取り組んだ課題をその後も</description>
     </item>
     
     <item>

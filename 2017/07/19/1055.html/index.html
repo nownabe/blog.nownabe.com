@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,15 +48,15 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/07/19/1055.html/">機械学習勉強会 20170629</a></h2>
     <span class="date">Posted on Jul 19, 2017</span>
   </div>
-  <div class="body">
-    
-
-<div class="asin">
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <div class="asin">
 <div class="asin-image"><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/" rel="nofollow noopener" target="_blank"><img src="http://images-jp.amazon.com/images/P/4130420658.09._SL160_.jpg" alt="統計学入門 (基礎統計学Ⅰ)" title="統計学入門 (基礎統計学Ⅰ)"></a></div>
 <div class="asin-detail">
 <p><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/" rel="nofollow noopener" target="_blank">統計学入門 (基礎統計学Ⅰ)</a></p>
@@ -65,64 +65,52 @@ if (!doNotTrack) {
 <li>東京大学出版会</li>
 </ul>
 </div>
-
-<p><p></p>
-</div></p>
-
+<p></p>
+</div>
 <p>今は<a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/">統計学入門</a>。
 週一で1時間程度各自でもくもくして、章末問題で同期を取るという方法でやってみている。</p>
-
 <h1 id="今回の内容">今回の内容</h1>
-
 <h2 id="第3章-2次元のデータ">第3章 2次元のデータ</h2>
-
-<h3 id="3-1-2次元のデータとは">3.1 2次元のデータとは</h3>
-
+<h3 id="31-2次元のデータとは">3.1 2次元のデータとは</h3>
 <ul>
 <li><strong>多次元データ (multi-dimensional data)</strong>
-
 <ul>
 <li>複数個の変数を観測したデータ</li>
 <li>$p$個の変数をとるとき、$p$次元データという</li>
-<li>多次元データの統計学は変数間の<strong>関係 (relation)</strong>を扱うもので、1次元のデータの分析を$p$回繰り返すものではない</li>
-</ul></li>
+<li>多次元データの統計学は変数間の**関係 (relation)**を扱うもので、1次元のデータの分析を$p$回繰り返すものではない</li>
+</ul>
+</li>
 <li><strong>相関 (correlation)</strong>: $x$と$y$を対等に見る見方や方法。$x$と$y$の間の相互関係を扱う</li>
 <li><strong>回帰 (regression)</strong>: $x$から$y$を見る。$x$から$y$が決定される様子や程度を扱う</li>
 </ul>
-
-<h3 id="3-2-散布図と分割表">3.2 散布図と分割表</h3>
-
+<h3 id="32-散布図と分割表">3.2 散布図と分割表</h3>
 <ul>
 <li><strong>散布図 (scattergram)</strong>
-
 <ul>
 <li>$(x_i, y_i)$のデータの両方が量的データである場合、横軸に$x$、縦軸に$y$をとってプロットした図</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>相関関係</strong>: 2つの変数間の関係
-
 <ul>
 <li>散布図で直線関係に近い傾向があるとき「相関関係がある」という</li>
 <li>単調増加的な傾向は「正の相関関係がある」。単調減少的な傾向は「負の相関関係がある」</li>
 <li>直線度合いが強いと「強い相関関係がある」。広がりがあると「弱い相関関係がある」</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>分割表 (contingency table)</strong>
-
 <ul>
 <li>片方あるいは両方が質的データの場合に使う</li>
-<li><strong>クロス表 (cross table)</strong>とも呼ばれる</li>
+<li>**クロス表 (cross table)**とも呼ばれる</li>
 <li>片方が量的データの場合は適当な階級に分ける</li>
 <li>両方が量的データで階級に分けて表にしたものは<strong>相関表</strong>と呼ばれる</li>
-</ul></li>
 </ul>
-
-<h3 id="3-3-相関係数">3.3 相関係数</h3>
-
-<h4 id="3-3-1-積率相関係数">3.3.1 積率相関係数</h4>
-
+</li>
+</ul>
+<h3 id="33-相関係数">3.3 相関係数</h3>
+<h4 id="331-積率相関係数">3.3.1 積率相関係数</h4>
 <ul>
 <li><strong>相関係数 (correlation coefficient)</strong>: 相関の程度を示す指標</li>
 <li>ピアソンの<strong>積率相関係数 (product-moment correlation coefficient)</strong>
-
 <ul>
 <li>$r_{xy}=\frac{\sum(x_i-\overline{x})(y_i-\overline{y})/n}{\sqrt{\sum(x_i-\overline{x})^2/n}\sqrt{\sum(y_i-\overline{y})^2/n}}=\frac{\sum(x_i-\overline{x})(y_i-\overline{y})}{\sqrt{\sum(x_i-\overline{x})^2}\sqrt{\sum(y_i-\overline{y})^2}}$</li>
 <li>常に$-1\leq r_{xy}\leq1$</li>
@@ -130,85 +118,90 @@ if (!doNotTrack) {
 <li>$r_{xy}=\pm1$をとるのは$(x_i, y_i)$がすべて$y_i=\pm\frac{S_y}{S_x}(x_i-\overline{x})+\overline{y}$の直線にのるとき</li>
 <li><strong>正の完全相関</strong>: $r_{xy}=+1$のとき</li>
 <li><strong>負の完全相関</strong>: $r_{xy}=-1$のとき</li>
-</ul></li>
 </ul>
-
-<h4 id="3-3-2-相関関係と因果関係">3.3.2 相関関係と因果関係</h4>
-
+</li>
+</ul>
+<h4 id="332-相関関係と因果関係">3.3.2 相関関係と因果関係</h4>
 <ul>
 <li><strong>因果関係 (causality)</strong>
-
 <ul>
 <li>相関係数が高いと強い相関関係があるということだが、必ずしも因果関係があるということではない</li>
 <li>因果関係であっても相関関係にない場合もある</li>
-</ul></li>
 </ul>
-
-<h4 id="3-3-3-みかけ上の相関と偏相関係数">3.3.3 みかけ上の相関と偏相関係数</h4>
-
+</li>
+</ul>
+<h4 id="333-みかけ上の相関と偏相関係数">3.3.3 みかけ上の相関と偏相関係数</h4>
 <ul>
 <li><strong>みかけ上の相関 (spurious correlation)</strong>
-
 <ul>
 <li>昼間人口をはさんで飲食店数と金融機関店舗数の間に生じるような相関関係</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>偏相関係数 (partial correlation coefficient)</strong>
-
 <ul>
 <li>変数が3つあるとき、1つの変数を除いたあとの残りの変数間の相関係数</li>
-<li>$r<em>{12\cdot3}=\frac{r</em>{12}-r<em>{13}r</em>{23}}{\sqrt{1-r<em>{13}^2}\sqrt{1-r</em>{23}^2}}$</li>
-</ul></li>
+<li>$r_{12\cdot3}=\frac{r_{12}-r_{13}r_{23}}{\sqrt{1-r_{13}^2}\sqrt{1-r_{23}^2}}$</li>
 </ul>
-
-<h4 id="3-3-4-層別と相関">3.3.4 層別と相関</h4>
-
+</li>
+</ul>
+<h4 id="334-層別と相関">3.3.4 層別と相関</h4>
 <ul>
 <li><strong>層別 (stratification)</strong>: データをグループ分けすること
-
 <ul>
 <li>層別したら相関が現れることがある</li>
-</ul></li>
 </ul>
-
-<h4 id="3-3-5-順位相関係数">3.3.5 順位相関係数</h4>
-
+</li>
+</ul>
+<h4 id="335-順位相関係数">3.3.5 順位相関係数</h4>
 <ul>
 <li><strong>順位相関係数 (rank correlation coefficient)</strong>
-
 <ul>
 <li>2つの大小関係がある質的変数間の相関を示す指標</li>
-<li><strong>スピアマン (C.Spearman)</strong>の順位相関係数</li>
-<li><strong>ケンドール (M. G. Kendall)</strong>の順位相関係数</li>
-</ul></li>
+<li>**スピアマン (C.Spearman)**の順位相関係数</li>
+<li>**ケンドール (M. G. Kendall)**の順位相関係数</li>
 </ul>
-
-<h4 id="3-3-6-時系列と自己相関">3.3.6 時系列と自己相関</h4>
-
+</li>
+</ul>
+<h4 id="336-時系列と自己相関">3.3.6 時系列と自己相関</h4>
 <ul>
 <li><strong>時系列 (time series)</strong>
-
 <ul>
 <li>時間的に観測されたデータ $x_1, x_2, \dots, x_n$</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>自己相関係数 (auto-correlation coefficient)</strong>、<strong>系列相関係数 (serial correlation coefficient)</strong>
-
 <ul>
 <li>系列の異時点間の相関関係を示す指標</li>
-<li><strong>遅れ (lag)</strong> 1の自己相関係数: $r<em>1=\frac{\sum</em>{i=1}^{n-1}(x<em>i-\overline{x})(x</em>{i+1}-\overline{x})/(n-1)}{\sum_{i=1}^n(x_i-\overline{x})^2}$</li>
+<li><strong>遅れ (lag)</strong> 1の自己相関係数: $r_1=\frac{\sum_{i=1}^{n-1}(x_i-\overline{x})(x_{i+1}-\overline{x})/(n-1)}{\sum_{i=1}^n(x_i-\overline{x})^2}$</li>
 <li>$r_1&lt;0$なら各時点の傾向は1時点先には反転する様子が見られることを示す</li>
-<li>遅れ$h$の自己相関係数は: $r<em>h=\frac{\sum</em>{i=1}^{n-h}(x<em>i-\overline{x})(x</em>{i+h}-\overline{x})/(n-h)}{\sum_{i=1}^n(x_i-\overline{x})^2}$</li>
+<li>遅れ$h$の自己相関係数は: $r_h=\frac{\sum_{i=1}^{n-h}(x_i-\overline{x})(x_{i+h}-\overline{x})/(n-h)}{\sum_{i=1}^n(x_i-\overline{x})^2}$</li>
 <li><strong>コレログラム (correlogram)</strong>: 自己相関係数をグラフにしたもの</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h1 id="所感">所感</h1>
-
 <ul>
 <li>TeXが久しぶりで楽しくて書きすぎた感が 😱</li>
 </ul>
-
 <h1 id="次回">次回</h1>
-<div class="highlight"><pre class="chroma"><code class="language-math" data-lang="math"></code></pre></div>
+<pre tabindex="0"><code class="language-math" data-lang="math"></code></pre>
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#第3章-2次元のデータ">第3章 2次元のデータ</a>
+      <ul>
+        <li><a href="#31-2次元のデータとは">3.1 2次元のデータとは</a></li>
+        <li><a href="#32-散布図と分割表">3.2 散布図と分割表</a></li>
+        <li><a href="#33-相関係数">3.3 相関係数</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,38 +48,33 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2016/11/17/528.html/">RubyVMの最適化を無効にする</a></h2>
     <span class="date">Posted on Nov 17, 2016</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="はじめに">はじめに</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="はじめに">はじめに</h1>
 <p><a href="https://blog.nownabe.com/2016/11/16/526.html">RubyVMの様子を観察したい</a>ではRubyVMのスタックを表示させつつ命令単位でステップ実行する方法を紹介しました。</p>
-
 <p>これらの命令列は高速化のためコンパイル時に様々な最適化が施されています。
 普段はもちろん無効化することはありませんが、純粋なRubyVMの動作を理解するために邪魔だったので無効化する方法を調べました。</p>
-
 <h1 id="rubyプログラム内で無効化する">Rubyプログラム内で無効化する</h1>
-
 <p>Rubyプログラム内で最適化を無効化する方法です。
 <code>RubyVM::InstructionSequence</code>にオプションとして指定します。</p>
-
 <p>次のような方法で指定できます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># デフォルトのオプションを指定する</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># デフォルトのオプションを指定する</span>
 <span class="no">RubyVM</span><span class="o">::</span><span class="no">InstructionSequence</span><span class="o">.</span><span class="n">compile_option</span> <span class="o">=</span> <span class="n">options</span>
 
 <span class="c1"># Iseqインスタンス生成時に指定する</span>
 <span class="n">iseq</span> <span class="o">=</span> <span class="no">RubyVM</span><span class="o">::</span><span class="no">InstructionSequence</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&#34;1 + 2&#34;</span><span class="p">,</span> <span class="kp">nil</span><span class="p">,</span> <span class="kp">nil</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
-<span class="n">iseq</span> <span class="o">=</span> <span class="no">RubyVM</span><span class="o">::</span><span class="no">InstructionSequence</span><span class="o">.</span><span class="n">compile_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span></code></pre></div>
-<p>最適化あり/なしではこのような変化があります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># あり</span>
+<span class="n">iseq</span> <span class="o">=</span> <span class="no">RubyVM</span><span class="o">::</span><span class="no">InstructionSequence</span><span class="o">.</span><span class="n">compile_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+</code></pre></div><p>最適化あり/なしではこのような変化があります。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># あり</span>
 $ ruby -e <span class="s1">&#39;puts RubyVM::InstructionSequence.new(&#34;1 + 2&#34;).disasm&#39;</span>
 <span class="o">==</span> disasm: <span class="c1">#&lt;ISeq:&lt;compiled&gt;@&lt;compiled&gt;&gt;================================</span>
-<span class="m">0000</span> trace            <span class="m">1</span>                                               <span class="o">(</span>   <span class="m">1</span><span class="o">)</span>
+<span class="m">0000</span> trace            <span class="m">1</span>                                               <span class="o">(</span>   1<span class="o">)</span>
 <span class="m">0002</span> putobject_OP_INT2FIX_O_1_C_
 <span class="m">0003</span> putobject        <span class="m">2</span>
 <span class="m">0005</span> opt_plus         &lt;callinfo!mid:+, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
@@ -88,27 +83,30 @@ $ ruby -e <span class="s1">&#39;puts RubyVM::InstructionSequence.new(&#34;1 + 2&
 <span class="c1"># なし</span>
 $ ruby -e <span class="s1">&#39;puts RubyVM::InstructionSequence.new(&#34;1 + 2&#34;, nil, nil, 1, false).disasm&#39;</span>
 <span class="o">==</span> disasm: <span class="c1">#&lt;ISeq:&lt;compiled&gt;@&lt;compiled&gt;&gt;================================</span>
-<span class="m">0000</span> putobject        <span class="m">1</span>                                               <span class="o">(</span>   <span class="m">1</span><span class="o">)</span>
+<span class="m">0000</span> putobject        <span class="m">1</span>                                               <span class="o">(</span>   1<span class="o">)</span>
 <span class="m">0002</span> putobject        <span class="m">2</span>
 <span class="m">0004</span> send             &lt;callinfo!mid:+, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;, nil
-<span class="m">0008</span> leave</code></pre></div>
-<p>最適化ありだと<code>1.+(2)</code>が通常のメソッド呼び出しではなく、<code>opt_plus</code>という最適化命令になっていることがわかります。</p>
-
+<span class="m">0008</span> leave
+</code></pre></div><p>最適化ありだと<code>1.+(2)</code>が通常のメソッド呼び出しではなく、<code>opt_plus</code>という最適化命令になっていることがわかります。</p>
 <h1 id="ビルド時に無効化する">ビルド時に無効化する</h1>
-
 <p>これは結構無理やりな感じです。</p>
-
 <p>Ruby実行前にコンパイルオプションを指定するやり方を調べたんですが、<code>ruby</code>コマンドのオプションにも<code>./configure</code>にもそれっぽいのがなかったのでソースコードを書き換えました。</p>
-
 <p><a href="https://github.com/nownabe/ruby/tree/2.3.2_disable_optimization">こちら</a>です。 (<a href="https://github.com/nownabe/ruby/commit/3030118fe15b51247968a1e6cc267ac75bc3b081">diff</a>)</p>
-
 <p>これをビルドすると、こんな感じで最初から最適化が無効化されてることがわかります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ./ruby --disable-gems -e <span class="s1">&#39;puts RubyVM::InstructionSequence.new(&#34;1 + 2&#34;).disasm&#39;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ ./ruby --disable-gems -e <span class="s1">&#39;puts RubyVM::InstructionSequence.new(&#34;1 + 2&#34;).disasm&#39;</span>
 <span class="o">==</span> disasm: <span class="c1">#&lt;ISeq:&lt;compiled&gt;@&lt;compiled&gt;&gt;================================</span>
-<span class="m">0000</span> putobject        <span class="m">1</span>                                               <span class="o">(</span>   <span class="m">1</span><span class="o">)</span>
+<span class="m">0000</span> putobject        <span class="m">1</span>                                               <span class="o">(</span>   1<span class="o">)</span>
 <span class="m">0002</span> putobject        <span class="m">2</span>
 <span class="m">0004</span> send             &lt;callinfo!mid:+, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;, nil
-<span class="m">0008</span> leave</code></pre></div>
+<span class="m">0008</span> leave
+</code></pre></div>
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,28 +48,24 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2016/08/27/416.html/">jspmでReactなセットアップ</a></h2>
     <span class="date">Posted on Aug 27, 2016</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="はじめに">はじめに</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="はじめに">はじめに</h1>
 <p>jspmを使ったReact開発をするまでの準備です。</p>
-
 <h1 id="プロジェクト作成">プロジェクト作成</h1>
-
 <p>適当なディレクトリで<code>npm init</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm init</code></pre></div>
-<p>jspmインストール</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm install --save-dev jspm</code></pre></div>
-<h1 id="jspm初期化">jspm初期化</h1>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">npm init
+</code></pre></div><p>jspmインストール</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">npm install --save-dev jspm
+</code></pre></div><h1 id="jspm初期化">jspm初期化</h1>
 <p>jspmの初期化。適当に答える</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ jspm init
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ jspm init
 Would you like jspm to prefix the jspm package.json properties under jspm? <span class="o">[</span>yes<span class="o">]</span>:
 Enter server baseURL <span class="o">(</span>public folder path<span class="o">)</span> <span class="o">[</span>./<span class="o">]</span>:
 Enter jspm packages folder <span class="o">[</span>./jspm_packages<span class="o">]</span>:
@@ -77,11 +73,10 @@ Enter config file path <span class="o">[</span>./config.js<span class="o">]</spa
 Configuration file config.js doesn<span class="err">&#39;</span>t exist, create it? <span class="o">[</span>yes<span class="o">]</span>:
 Enter client baseURL <span class="o">(</span>public folder URL<span class="o">)</span> <span class="o">[</span>/<span class="o">]</span>:
 Do you wish to use a transpiler? <span class="o">[</span>yes<span class="o">]</span>:
-Which ES6 transpiler would you like to use, Babel, TypeScript or Traceur? <span class="o">[</span>babel<span class="o">]</span>:</code></pre></div>
-<h1 id="index-html">index.html</h1>
-
+Which ES6 transpiler would you like to use, Babel, TypeScript or Traceur? <span class="o">[</span>babel<span class="o">]</span>:
+</code></pre></div><h1 id="indexhtml">index.html</h1>
 <p>なんの変哲もない<code>index.html</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-html:index.html" data-lang="html:index.html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html:index.html" data-lang="html:index.html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
@@ -93,29 +88,26 @@ Which ES6 transpiler would you like to use, Babel, TypeScript or Traceur? <span 
     <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;jspm_packages/system.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;config.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-      <span class="nx">System</span><span class="p">.</span><span class="k">import</span><span class="p">(</span><span class="s2">&#34;src/index.js&#34;</span><span class="p">)</span>
+      <span class="nx">System</span><span class="p">.</span><span class="kr">import</span><span class="p">(</span><span class="s2">&#34;src/index.js&#34;</span><span class="p">)</span>
     <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></code></pre></div>
-<h1 id="開発用サーバ">開発用サーバ</h1>
-
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div><h1 id="開発用サーバ">開発用サーバ</h1>
 <p>なんでもいいんですが、今回は開発用のサーバとして<code>live-server</code>を使うことにします。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm install --save-dev live-server</code></pre></div>
-<p><code>npm start</code>で起動できるように。</p>
-<div class="highlight"><pre class="chroma"><code class="language-js:package.json" data-lang="js:package.json">  <span class="s2">&#34;scripts&#34;</span><span class="err">:</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">npm install --save-dev live-server
+</code></pre></div><p><code>npm start</code>で起動できるように。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js:package.json" data-lang="js:package.json">  <span class="s2">&#34;scripts&#34;</span><span class="err">:</span> <span class="p">{</span>
     <span class="nt">&#34;start&#34;</span><span class="p">:</span> <span class="s2">&#34;./node_modules/.bin/live-server&#34;</span><span class="p">,</span>
-  <span class="p">}</span><span class="err">,</span></code></pre></div>
-<h1 id="react">React</h1>
-
+  <span class="p">}</span><span class="err">,</span>
+</code></pre></div><h1 id="react">React</h1>
 <p>とりあえず何か表示させます。</p>
-
 <p>まずはjspmでパッケージをインストール。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">jspm install npm:react npm:react-dom</code></pre></div>
-<p><code>src/index.js</code>を作ります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-js:src/index.js" data-lang="js:src/index.js"><span class="k">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&#34;react&#34;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;react-dom&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">jspm install npm:react npm:react-dom
+</code></pre></div><p><code>src/index.js</code>を作ります。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js:src/index.js" data-lang="js:src/index.js"><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&#34;react&#34;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;react-dom&#34;</span>
 
-<span class="k">class</span> <span class="nx">Hello</span> <span class="k">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<span class="kr">class</span> <span class="nx">Hello</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="p">,</span> <span class="nx">world</span><span class="o">!&lt;</span><span class="err">/h1&gt;</span>
   <span class="p">}</span>
@@ -125,13 +117,18 @@ Which ES6 transpiler would you like to use, Babel, TypeScript or Traceur? <span 
   <span class="o">&lt;</span><span class="nx">Hello</span> <span class="o">/&gt;</span><span class="p">,</span>
   <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;app&#34;</span><span class="p">)</span>
 <span class="p">)</span>
-</code></pre></div>
-<p>これでブラウザで表示させることができるようになったので、次のコマンドで確認できます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm start</code></pre></div>
-<h1 id="おわりに">おわりに</h1>
-
+</code></pre></div><p>これでブラウザで表示させることができるようになったので、次のコマンドで確認できます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">npm start
+</code></pre></div><h1 id="おわりに">おわりに</h1>
 <p>ボイラープレート作っとけって話ですね 😃</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

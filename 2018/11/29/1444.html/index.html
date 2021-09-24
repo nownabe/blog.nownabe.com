@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,102 +48,107 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/11/29/1444.html/">GCP updates  | November 26, 2018</a></h2>
     <span class="date">Posted on Nov 29, 2018</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="databases">DATABASES</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="databases">DATABASES</h1>
 <h2 id="cloud-bigtable-now-available-in-all-three-london-europe-west2-zones-ga">Cloud Bigtable now available in all three London (europe-west2) zones: GA</h2>
-
 <blockquote>
 <p>Cloud Bigtable is a massively scalable, fully managed NoSQL database service for large analytical and operational workloads. <a href="https://cloud.google.com/bigtable/">Product page</a></p>
 </blockquote>
-
 <h1 id="developer-tools">DEVELOPER TOOLS</h1>
-
 <h2 id="cloud-scheduler-beta">Cloud Scheduler: beta</h2>
-
 <blockquote>
 <p>Cloud Scheduler is a fully managed enterprise-grade cron job scheduler. You can schedule nearly any job, including batch and big data, as well as automate manual tasks, such as retries, all in one place. <a href="https://cloud.google.com/scheduler/">Product page</a></p>
 </blockquote>
-
 <p>きたーーー！🎉
 GCPでcron的なことしようと思ったらGAEのcron機能を使うしかなかったのでGAEでhttpアプリを作る必要がありましたが、Cloud Schedulerで不要になります！
 App EngineにHTTPリクエストを送る、その他にHTTPリクエストを送る、Pub/Subのメッセージを送る、が可能です。</p>
-
 <h1 id="migration">MIGRATION</h1>
-
 <h2 id="transfer-appliance-now-available-in-the-european-union-beta">Transfer Appliance now available in the European Union: beta</h2>
-
 <blockquote>
 <p>Transfer Appliance is a hardware appliance that allows you to securely migrate large volumes of data up to a petabyte to Google Cloud Platform without disrupting operations. <a href="https://cloud.google.com/blog/products/storage-data-transfer/introducing-transfer-appliance-in-the-eu-for-cloud-data-migration">Blog</a></p>
 </blockquote>
-
-<hr />
-
+<hr>
 <p>Additional Releases</p>
-
 <h1 id="compute">COMPUTE</h1>
-
-<h2 id="kubernetes-engine-container-optimized-os-with-containerd-beta">Kubernetes Engine – Container-Optimized OS with containerd: beta</h2>
-
+<h2 id="kubernetes-engine--container-optimized-os-with-containerd-beta">Kubernetes Engine – Container-Optimized OS with containerd: beta</h2>
 <blockquote>
 <p>Now you can use containerd, the core runtime component of Docker, as your main container runtime in Kubernetes Engine. You can debug or troubleshoot on the node using crictl, the portable command-line tool, built for Kubernetes container runtimes. <a href="https://cloud.google.com/kubernetes-engine/docs/concepts/node-images#container-optimized_os_with_containerd_cos_containerd">Documentation</a> | <a href="https://containerd.io/">Website</a></p>
 </blockquote>
-
 <p>Dockerを使わず直接containerdとCRIでやりとりするってやつですかね。リソース節約できてオーバーヘッド減るってやつかな。</p>
-
 <p>kanikoとかともあわせて脱Dockerが進んでいきそうですね。</p>
-
-<h2 id="compute-engine-detachable-boot-disks-for-vm-instances-beta">Compute Engine – detachable boot disks for VM instances: beta</h2>
-
+<h2 id="compute-engine--detachable-boot-disks-for-vm-instances-beta">Compute Engine – detachable boot disks for VM instances: beta</h2>
 <blockquote>
 <p>Now you can detach boot disks from VM instances. This allows you to mount a boot disk to another VM instance to simplify the repair process, or replace boot disks without having to recreate an entire VM instance. <a href="https://cloud.google.com/compute/docs/disks/detach-reattach-boot-disk">Documentation</a></p>
 </blockquote>
-
 <p>ほー。起動しているVMのブートディスクに他のVMからアタッチできるようになるってことか(read onlyだとは思うけど)。
 インスタンス作り直さざるを得ない変更でもBootディスク引き継げるようになるのはよさそう。
 VM再作成せずにブートディスク入れ替えるってのはメリットがよくわからんな</p>
-
-<h2 id="compute-engine-private-google-access-for-windows-server-instances-ga">Compute Engine – Private Google Access for Windows Server instances: GA</h2>
-
+<h2 id="compute-engine--private-google-access-for-windows-server-instances-ga">Compute Engine – Private Google Access for Windows Server instances: GA</h2>
 <blockquote>
 <p>This launch allows you to create a Windows Server instance that has an internal-only IP address. You must configure the instance to access the kms.windows.googlecloud.com server using Private Google Access. <a href="https://cloud.google.com/compute/docs/instances/windows/creating-managing-windows-instances#internal_ip_activation">Documentation</a></p>
 </blockquote>
-
 <h1 id="data-analytics">DATA ANALYTICS</h1>
-
 <h2 id="bigquery-now-available-in-singapore-ga">BigQuery now available in Singapore: GA</h2>
-
 <blockquote>
 <p>BigQuery is now generally available in the asia-southeast1 region. With regional availability, you can run large-scale workloads quickly in the same local Google Cloud regions you already use for storage, compute, and machine learning. <a href="https://cloud.google.com/bigquery/docs/locations">Documentation</a></p>
 </blockquote>
-
 <p>着々と広げてますね 🌎</p>
-
 <h1 id="databases-1">DATABASES</h1>
-
 <h2 id="query-statistics-in-cloud-spanner-ga">Query statistics in Cloud Spanner: GA</h2>
-
 <blockquote>
 <p>Now you can view summary statistics for queries that had the highest total CPU usage within a Cloud Spanner database. The statistics include execution count, average latency, average CPU seconds during a recent period of time, and more. <a href="https://cloud.google.com/spanner/docs/query-statistics">Documentation</a></p>
 </blockquote>
-
 <p>Spanner使ってみたくて料金調べたけど、個人で使えるような額じゃないですね。。。</p>
-
 <h1 id="developer-tools-1">DEVELOPER TOOLS</h1>
-
-<h2 id="cloud-source-repositories-cloud-pub-sub-notifications-ga">Cloud Source Repositories – Cloud Pub/Sub Notifications: GA</h2>
-
+<h2 id="cloud-source-repositories--cloud-pubsub-notifications-ga">Cloud Source Repositories – Cloud Pub/Sub Notifications: GA</h2>
 <blockquote>
 <p>This new feature allows you to set up notifications for when your repository’s state changes, such as when new code is pushed. You can also configure roles and permissions to control how users interact with the Cloud Pub/Sub events that your repository generates. <a href="https://cloud.google.com/source-repositories/docs/pubsub-notifications">Documentation</a></p>
 </blockquote>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#cloud-bigtable-now-available-in-all-three-london-europe-west2-zones-ga">Cloud Bigtable now available in all three London (europe-west2) zones: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-scheduler-beta">Cloud Scheduler: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#transfer-appliance-now-available-in-the-european-union-beta">Transfer Appliance now available in the European Union: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#kubernetes-engine--container-optimized-os-with-containerd-beta">Kubernetes Engine – Container-Optimized OS with containerd: beta</a></li>
+    <li><a href="#compute-engine--detachable-boot-disks-for-vm-instances-beta">Compute Engine – detachable boot disks for VM instances: beta</a></li>
+    <li><a href="#compute-engine--private-google-access-for-windows-server-instances-ga">Compute Engine – Private Google Access for Windows Server instances: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#bigquery-now-available-in-singapore-ga">BigQuery now available in Singapore: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#query-statistics-in-cloud-spanner-ga">Query statistics in Cloud Spanner: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-source-repositories--cloud-pubsub-notifications-ga">Cloud Source Repositories – Cloud Pub/Sub Notifications: GA</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

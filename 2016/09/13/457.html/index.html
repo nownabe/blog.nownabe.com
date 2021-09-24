@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,73 +48,60 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2016/09/13/457.html/">ReactとReduxでx86のエミュレータを作った</a></h2>
     <span class="date">Posted on Sep 13, 2016</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="はじめに">はじめに</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="はじめに">はじめに</h1>
 <p>こちらです。herokuの無料プランなので、起動に時間がかかる場合があります。
 <a href="https://x86-emulator.nownabe.com/">https://x86-emulator.nownabe.com/</a></p>
-
 <p>レポジトリはこちらです。
 <a href="https://github.com/nownabe/x86-emulator-js">https://github.com/nownabe/x86-emulator-js</a></p>
-
 <p>この記事はこいつの紹介記事になります。アセンブリのことやCPUの仕組みやReact/Reduxの話はあまりでてきません。</p>
-
-<p><img width="1276" alt="スクリーンショット 2016-09-13 21.12.42.png (434.4 kB)" src="/images/2016/09/13/1.png"></p>
-
+<img width="1276" alt="スクリーンショット 2016-09-13 21.12.42.png (434.4 kB)" src="/images/2016/09/13/1.png">
 <h1 id="なに">なに？</h1>
-
-<p>x86 CPUをエミュレートするやつです。ブラウザでx86の32bit<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>プログラム(バイナリ)を実行することができるJavaScriptのプログラムです。</p>
-
+<p>x86 CPUをエミュレートするやつです。ブラウザでx86の32bit<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>プログラム(バイナリ)を実行することができるJavaScriptのプログラムです。</p>
 <p>といってもまだまだ未完成品で、命令などが全然足りてませんがある程度基本的な機能は実装できたので公開しました。
 もし足りてないのがあれば<a href="https://github.com/nownabe/x86-emulator-js/issues">Issue</a>ください 😅</p>
-
 <p>完全なPCを目指すというよりは、アセンブリ教育用のマイコンボード的位置づけのアプリケーションになっていて、レジスタやメモリの内容を表示できるようになっています。
 また、そういう位置づけなのでバイナリを入力するのではなく、ブラウザでx86のアセンブリを入力してそれを直接実行できるという形にしています。ステップ実行できるのも特徴かと思います。</p>
-
 <h1 id="なぜ">なぜ？</h1>
-
-<p>弊社の変態プログラマが「バイナリで短歌を詠みたい」<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>とわけのわからないことを言い出したのがそもそものきっかけです。
+<p>弊社の変態プログラマが「バイナリで短歌を詠みたい」<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>とわけのわからないことを言い出したのがそもそものきっかけです。
 気づいたら作ってました。</p>
-
 <p>まったく目的もなく、一体全体どこからモチベーションがわいてきたのかさっぱりわかりません。</p>
-
 <p>はじめはこの本を読みながらC言語で作ってました。</p>
-
 <div class="asin"><div class="asin-image"><a href="https://www.amazon.co.jp/exec/obidos/ASIN/B0148FQNVC/nownabe0c-22/"><img src="http://images-jp.amazon.com/images/P/B0148FQNVC.09._SL160_.jpg" alt="自作エミュレータで学ぶx86アーキテクチャ　コンピュータが動く仕組みを徹底理解！" title="自作エミュレータで学ぶx86アーキテクチャ　コンピュータが動く仕組みを徹底理解！"></a></div><div class="asin-detail"><p><a href="https://www.amazon.co.jp/exec/obidos/ASIN/B0148FQNVC/nownabe0c-22/">自作エミュレータで学ぶx86アーキテクチャ　コンピュータが動く仕組みを徹底理解！</a></p><ul><li>内田 公太, 上川 大介</li><li>マイナビ出版</li></ul></div></div>
-
 <h1 id="しくみ">しくみ</h1>
-
 <p>メモリやレジスタはすべてReduxのStoreとしていて、命令を実行するたびにImmutableな感じで新しいメモリやレジスタのオブジェクトを生成しています。
 メモリやレジスタはそもそもMutableなものなのでここはちょっと無理してる感がありました。</p>
-
 <p>特にメモリは1Byteごとに描画する必要があり、React/Reduxではギガバイトのメモリとか夢物語でした 😇</p>
-
 <p>アセンブリプログラムはAssembleボタンをクリックすると裏側のSinatraアプリに送られ、NASMというアセンブルでバイナリに変換し、それをBase64エンコードしてJavaScriptに返しています。</p>
-
 <h1 id="おわりに">おわりに</h1>
-
 <p>React/Reduxでエミュレータ作る方法とか、JavaScriptでバイナリを扱う方法とかは需要ないと思いますが別途書けたらなーと思ってます 📝</p>
-
 <p>次はファミコンのエミュレータ作りたいです 😋</p>
-<div class="footnotes">
-
-<hr />
-
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1">i386なんて言ったりもします。
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-<li id="fn:2"><a href="http://kozos.jp/asm-tanka/">http://kozos.jp/asm-tanka/</a>
- <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p>i386なんて言ったりもします。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><a href="http://kozos.jp/asm-tanka/">http://kozos.jp/asm-tanka/</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

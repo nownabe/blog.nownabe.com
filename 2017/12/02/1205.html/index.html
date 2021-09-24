@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,23 +48,19 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/12/02/1205.html/">nownabe release note v2017.12</a></h2>
     <span class="date">Posted on Dec 2, 2017</span>
   </div>
-  <div class="body">
-    
-
-<p><a href="http://blog.a-know.me/entry/2017/12/01/100000">a-knowさんがやって</a>て振り返りにいいなぁと思ったので真似してみた。</p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p><a href="http://blog.a-know.me/entry/2017/12/01/100000">a-knowさんがやって</a>て振り返りにいいなぁと思ったので真似してみた。</p>
 <h1 id="tech">Tech</h1>
-
 <p>10〜11月のアップデート。</p>
-
 <ul>
 <li>GAE/Goのアプリをいくつかデプロイして、次のようなことがわかってきた
-
 <ul>
 <li>GAE/Goのデプロイどうすればいいか</li>
 <li>ディレクトリ構成どうすればいいか</li>
@@ -72,43 +68,40 @@ if (!doNotTrack) {
 <li>App Engine SDKはいろいろあるけどどれを使えばいいのか</li>
 <li>これらをMakefileにまとめる方法</li>
 <li>GCPのAPIを使う方法</li>
-</ul></li>
+</ul>
+</li>
 <li>Cloud Dataflowのレベルが上がった
-
 <ul>
 <li>テンプレートの使い方</li>
 <li>様々なLimitation</li>
 <li>ValueProviderの使い方</li>
 <li>APIの使い方</li>
-</ul></li>
+</ul>
+</li>
 <li>Cloud Functionを本番導入した</li>
 <li>AWS Batchを本番導入した</li>
 <li>AWSのレベルアップ
-
 <ul>
 <li>OpsWorks</li>
 <li>CloudWatch + Lambda</li>
 <li>Batch</li>
-</ul></li>
+</ul>
+</li>
 <li>DataflowでサーバサイドKotlinを使い始めた
-
 <ul>
 <li>Kotlinこそは真のBetter Javaって感じがする</li>
-</ul></li>
+</ul>
+</li>
 <li>RailsのViewテンプレート探索のコードを読んだ
-
 <ul>
 <li>versioncakeとともに</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h1 id="work">Work</h1>
-
 <p>仕事の振り返り。</p>
-
 <ul>
 <li>インフラとか運用の改善が多かった。おかげでピーク時に不安定になることはなくなった
-
 <ul>
 <li>パフォーマンスチューニング</li>
 <li>EC2インスタンス、オートスケールの最適化</li>
@@ -116,125 +109,125 @@ if (!doNotTrack) {
 <li>MySQLのSlow Query分析</li>
 <li>セキュリティ改善</li>
 <li>データ分析基盤構築</li>
-</ul></li>
+</ul>
+</li>
 <li>引き続き、社内技術LT会の企画・運用をしている</li>
 <li>インフラ屋さんをしてたので、機械学習系の仕事があまりできていない</li>
 <li>ミーティングもリモートでやることが増えて、会社に行く頻度が2週間に1回ぐらいになった</li>
 <li>最近使われてないSlackチャンネルを自動でアーカイブするやつとか、BigQueryの課金額を通知するやつとかをGAE/Goで作った</li>
 </ul>
-
 <h1 id="private">Private</h1>
-
 <ul>
 <li>遠い親戚の結婚式で福岡に行って、その後神戸の実家で1週間仕事して、地元の友達の結婚式に出席して、こっちに帰ってきた
-
 <ul>
 <li>実家でも問題なく仕事できた</li>
-</ul></li>
+</ul>
+</li>
 <li>神戸空港使いやすくてよかった
-
 <ul>
 <li>実家帰るときは飛行機でよさそう</li>
-</ul></li>
+</ul>
+</li>
 <li>3年ぶりぐらいにバンドっぽいバンドの練習をした
-
 <ul>
 <li>バンド？は？なにそれ？ぐらいのタイムスリップ感があった</li>
-</ul></li>
+</ul>
+</li>
 <li>車を処分した
-
 <ul>
 <li>そんなに乗らないし、維持費がもったいなかった</li>
-</ul></li>
+</ul>
+</li>
 <li>漫画をダンボール1箱分処分した</li>
 </ul>
-
 <h1 id="books">Books</h1>
-
 <ul>
 <li><a href="http://amzn.to/2zFZiyG">Kotlinスタートブック</a>を読み始めた
-
 <ul>
 <li>Kotlin書き心地良いのでAndroidアプリでも作るかーという気分</li>
-</ul></li>
+</ul>
+</li>
 <li><a href="http://amzn.to/2zFSZv4">アド・アストラ</a>を読み始めた
-
 <ul>
 <li>ハンニバルとスキピオの漫画</li>
 <li>面白い</li>
-</ul></li>
+</ul>
+</li>
 <li><a href="http://amzn.to/2zG0eTI">BLUE GIANT</a>を読んだ
-
 <ul>
 <li>Jazzのアツい漫画</li>
 <li>面白かった。続編も読みたい</li>
 <li><a href="http://amzn.to/2i7joun">全10巻</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="http://amzn.to/2BD5WHi">Duo 3.0</a>をちょっとずつやり始めた
-
 <ul>
 <li>学生のときに買った英単語集</li>
 <li>全単語がいい感じに例文になってて、全例文<a href="http://amzn.to/2BtfsM6">CD</a>になってる</li>
 <li>CD聞きながら散歩しつつぶつぶつ復唱してる</li>
-</ul></li>
+</ul>
+</li>
 <li>こち亀を50巻481話まで読んだ</li>
 </ul>
-
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B06XHJMR65&linkId=ed6f68c6a978fbc1e820c49c075300b6"></iframe><iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B00BCY592C&linkId=c87142d928cad6e6fbb9189b8ff43b15"></iframe><iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B00GSMDY48&linkId=6277f1ca3ba732ac1b465cf776005aff"></iframe><iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=4900790052&linkId=152d568ec6f3930585ad4b38aeb751ff"></iframe><iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=4900790079&linkId=cd2026b6051cc00e6d68fb6bbce4a8dd"></iframe>
-
 <h1 id="retrospective">Retrospective</h1>
-
 <h2 id="good">Good</h2>
-
 <ul>
 <li>機械学習勉強会を継続できている</li>
 <li>GAE/Goを使い始めるとき迷わなくなった</li>
 <li>朝、昼に散歩して陽の光を浴びる</li>
 <li>神戸空港</li>
 </ul>
-
 <h2 id="not-good">Not Good</h2>
-
 <ul>
 <li>機械学習の仕事ができていない
-
 <ul>
 <li>インフラがだいぶ落ち着いたので、やり始めてはいる</li>
-</ul></li>
+</ul>
+</li>
 <li>最近はメインの言語としてJava、Kotlin、Go、Python、Ruby、Node、Bashを使ってて、つまりメインの言語がない
-
 <ul>
 <li>できればどれか1つの言語に集中してレベルアップしたい</li>
-</ul></li>
+</ul>
+</li>
 <li>RubyのGemTesterを放置している
-
 <ul>
 <li>2.5のリリースが終わってからやればいいかと思っている</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="action">Action</h2>
-
 <ul>
 <li>趣味で使う言語を絞りたい
-
 <ul>
 <li>Kotlin, Go, Ruby, TypeScriptぐらい？あんまり絞れてない</li>
 <li>仕事では相変わらずいろんな言語を書く必要がありそう</li>
-</ul></li>
+</ul>
+</li>
 <li>単発の小さなアプリじゃなくて、画面があってDBもそれなりに使うぐらいのアプリケーションをGAE/Goで書きたい
-
 <ul>
 <li>GAE/Kotlinもやってみたさはある</li>
-</ul></li>
+</ul>
+</li>
 <li>そろそろ初めての確定申告の準備をしたほうがよさそう…</li>
 <li>機械学習の仕事で進捗だす</li>
 </ul>
-
 <h1 id="まとめ">まとめ</h1>
-
 <p>初めてやってみたけど振り返りができるし、今後の行動の指針にもなりそうで良い。あとこっから今後のブログのネタを拾うとかもできそう。</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#good">Good</a></li>
+    <li><a href="#not-good">Not Good</a></li>
+    <li><a href="#action">Action</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,42 +48,34 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/01/16/570.html/">Golangの標準sqlパッケージ</a></h2>
     <span class="date">Posted on Jan 12, 2017</span>
   </div>
-  <div class="body">
-    
-
-<p><a href="http://go-database-sql.org/index.html">http://go-database-sql.org/index.html</a></p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p><a href="http://go-database-sql.org/index.html">http://go-database-sql.org/index.html</a></p>
 <p>を読んだ。のでまとめてみた 😃</p>
-
 <p>内容はちょっと古いっぽい。</p>
-
 <h1 id="overview">Overview</h1>
-
 <ul>
 <li><code>sql.DB</code>はDB connectionではない</li>
 <li><code>sql.DB</code>はインターフェイスの抽象であり、DBの存在である</li>
 <li><code>sql.DB</code>は次のことをやってくれる
-
 <ul>
 <li>コネクションの管理</li>
 <li>コネクションプールの管理</li>
-</ul></li>
+</ul>
+</li>
 <li>コネクションはちゃんと閉じよう</li>
 </ul>
-
 <h1 id="importing-a-database-driver">Importing a Database Driver</h1>
-
 <ul>
 <li>driverは直接使うな</li>
 </ul>
-
 <h1 id="accessing-the-database">Accessing the Database</h1>
-
 <ul>
 <li><code>sql.Open()</code>は<code>*sql.DB</code>を返す</li>
 <li><code>sql.Open()</code>ではコネクションは確立しない</li>
@@ -91,16 +83,12 @@ if (!doNotTrack) {
 <li><code>sql.DB</code>は長生きするようにデザインされている</li>
 <li>頻繁にOpen/Closeするな</li>
 </ul>
-
 <h1 id="retrieving-result-sets">Retrieving Result Sets</h1>
-
 <ul>
 <li><code>database/sql</code>の関数名は大きな意味を持つ</li>
 <li>例えば<code>Query</code>って単語を含んでいれば、DBに問い合わせて行のセットを返す</li>
 </ul>
-
 <h2 id="fetching-data-from-the-database">Fetching Data from the Database</h2>
-
 <ul>
 <li>結果を受け取るには適切な型の変数のポインタを<code>rows.Scan()</code>に渡す</li>
 <li><code>db.Query()</code>で返る<code>rows</code>はコネクションを占領し続けるので適切に<code>rows.Close()</code>する</li>
@@ -109,171 +97,170 @@ if (!doNotTrack) {
 <li>とりあえず<code>defer rows.Close()</code>しときましょう</li>
 <li>ループの中でクエリして結果を受け取るような場合は、ループの中で<code>defer</code>を使わず明示的に<code>rows.Close()</code>しましょう</li>
 </ul>
-
 <h2 id="how-scan-works">How Scan() Works</h2>
-
 <ul>
 <li><code>Scan()</code>使えばクエリ結果をよろしく型変換してくれる</li>
 </ul>
-
 <h2 id="preparing-queries">Preparing Queries</h2>
-
 <ul>
 <li>何回も同じクエリを実行するときは<code>db.Prepare()</code>しましょう</li>
 </ul>
-
 <h2 id="single-row-queries">Single-Row Queries</h2>
-
 <ul>
 <li><code>err = db.QueryRow().Scan()</code>でエラーが起きると、<code>Scan()</code>までdeferされる</li>
 </ul>
-
 <h1 id="modifying-data-and-using-transactions">Modifying Data and Using Transactions</h1>
-
 <h2 id="statements-that-modify-data">Statements that Modify Data</h2>
-
 <ul>
 <li>行を返さないinsertとかdeleteには<code>Exec()</code>を使う</li>
 <li><code>Query()</code>は行を返さないSQLでも<code>sql.Rows</code>を返し、それは実行後もコネクションを確保している</li>
 </ul>
-
 <h2 id="working-with-transactions">Working with Transactions</h2>
-
 <ul>
 <li><code>db.Begin()</code>から<code>Commint()</code>か<code>Rollback()</code>までが1つのトランザクションとなる</li>
 <li>トランザクションの中で<code>Db</code>を操作しちゃダメ。<code>Tx</code>を使う。<code>Tx</code>はトランザクション内にいるけど、<code>Db</code>はトランザクション外</li>
 <li>コネクションの状態を変えるような複数のStatementを使う時はトランザクションが必要なくても<code>Tx</code>が必要
-
 <ul>
 <li>temporary table</li>
 <li><code>SET @var := value</code></li>
 <li>charset, timeoutみたいな接続オプションとか</li>
-</ul></li>
+</ul>
+</li>
 <li>シングルコネクションでごにょごにょする方法がGoには<code>Tx</code>しかない</li>
 </ul>
-
 <h1 id="using-prepared-statements">Using Prepared Statements</h1>
-
 <h2 id="prepared-statements-and-connections">Prepared Statements And Connections</h2>
-
 <ul>
 <li>Prepared Statementは、特定のコネクションと紐づく</li>
 <li>database/sqlでは、statementがどのコネクションと紐付いているかを<code>Stmt</code>オブジェクトが記憶している</li>
 <li><code>Stmt</code>を実行するとき、<code>Stmt</code>がそのコネクションを使おうとする
-
 <ul>
 <li>もしコネクションが閉じてたり、busyだった場合は他のコネクションに再度prepareし直す</li>
-</ul></li>
+</ul>
+</li>
 <li>こうすることでhigh-concurrencyを実現してる</li>
 </ul>
-
 <h2 id="avoiding-prepared-statements">Avoiding Prepared Statements</h2>
-
 <ul>
 <li><code>db.Query(sql, param)</code>でも背後でPrepared Statementしてる</li>
 <li>Prepared Statementが好ましくないときもある
-
 <ul>
 <li>RDBMSがサポートしてないとき</li>
 <li>パフォーマンスが厳しいとき(セキュリティは別の方法でなんとかする)</li>
-</ul></li>
+</ul>
+</li>
 <li>Prepared Statementしたくないときは、<code>fmt.Sprint()</code>とかで整形して、<code>db.Query()</code>とかに渡す</li>
 </ul>
-
 <h2 id="prepared-statements-in-transactions">Prepared Statements in Transactions</h2>
-
 <ul>
 <li><code>Tx</code>で作られたPrepared Statementsはその<code>Tx</code>にのみ紐づく</li>
 <li>同様に<code>DB</code>上で作られたPrepared Statementはトランザクション内では使えない</li>
 <li>トランザクション外で準備されたPrepared Statementを使うには<code>Tx.Stmt()</code>を使う</li>
 <li>あんま使わない方がいい (今も？)</li>
 </ul>
-
 <h2 id="parameter-placeholder-syntax">Parameter Placeholder Syntax</h2>
-
 <h1 id="handling-errors">Handling Errors</h1>
-
 <ul>
 <li><code>database/sql</code>のほぼすべての機能は返り値でエラーを返すから無視すんなよ</li>
 </ul>
-
 <h2 id="errors-from-iterating-resultsets">Errors From Iterating Resultsets</h2>
-
 <ul>
 <li>ループ後<code>rows.Err()</code>で確認する</li>
 <li>異常終了した時自動で<code>rows.Close()</code>される</li>
 </ul>
-
 <h2 id="errors-from-closing-resultsets">Errors From Closing Resultsets</h2>
-
 <ul>
 <li><code>rows.Next()</code>が最後までいくと勝手に<code>rows.Close()</code>されるけど、途中で抜けた時のために明示的にループ後で<code>rows.Close()</code>する</li>
 <li><code>rows.Close()</code>によるエラーは、何をすべきか明確でないので、ログとったりpanicしたりする</li>
 </ul>
-
 <h2 id="errors-from-queryrow">Errors From QueryRow()</h2>
-
 <ul>
 <li><code>QueryRow()</code>で結果が空のとき<code>sql.ErrNoRows</code>というエラーを返す</li>
 <li>結果が空なのはエラーじゃないことがほとんどなので、適切にハンドルする必要がある</li>
 </ul>
-
 <h2 id="identifying-specific-database-errors">Identifying Specific Database Errors</h2>
-
 <ul>
 <li>エラーのハンドルはエラーメッセージじゃなくエラー番号で</li>
 <li>ドライバごとに方法は異なる</li>
 <li>エラー番号はデータベースによる</li>
 <li>数字をそのまま使うのは臭うので、定数を使おう</li>
 </ul>
-
 <h2 id="handling-connection-errors">Handling Connection Errors</h2>
-
 <ul>
 <li>10回を上限に自動で再接続する</li>
 </ul>
-
 <h1 id="working-with-nulls">Working with NULLs</h1>
-
 <ul>
 <li>NULLABLEな値を扱う時、database/sqlに用意されている特別な型を使う</li>
 <li>トリッキーかつ将来性ないので、あんま使わない方がいい</li>
 <li>デフォルト値を設定した方がいい</li>
 <li>どうしてもNULLを避けられなかったら、SQLで<code>COALESCE()</code>を使うのもあり</li>
 </ul>
-
 <h1 id="working-with-unknown-columns">Working with Unknown Columns</h1>
-
 <ul>
 <li><code>Scan()</code>は渡す変数の数がクエリ結果の列数と一致してないといけない</li>
 <li>クエリ結果の列数がわからないときは、<code>Columns()</code>が使える</li>
 <li>なんもわからんときは<code>sql.RawBytes</code>を使う</li>
 </ul>
-
 <h1 id="the-connection-pool">The Connection Pool</h1>
-
 <ul>
 <li>デフォルトで接続数に上限はない</li>
 <li><code>db.SetMaxOpenConns(N)</code>で接続数の上限を設定できる</li>
 <li>db.SetMaxIdleConns(N)`はうまく調整する</li>
 </ul>
-
 <h1 id="surprises-antipatterns-and-limitations">Surprises, Antipatterns and Limitations</h1>
-
 <h2 id="resource-exhaustion">Resource Exhaustion</h2>
-
 <h2 id="large-uint64-values">Large uint64 Values</h2>
-
 <h2 id="connection-state-mismatch">Connection State Mismatch</h2>
-
 <h2 id="database-specific-syntax">Database-Specific Syntax</h2>
-
 <h2 id="multiple-result-sets">Multiple Result Sets</h2>
-
 <h2 id="invoking-stored-procedures">Invoking Stored Procedures</h2>
-
 <h2 id="multiple-statement-support">Multiple Statement Support</h2>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#fetching-data-from-the-database">Fetching Data from the Database</a></li>
+    <li><a href="#how-scan-works">How Scan() Works</a></li>
+    <li><a href="#preparing-queries">Preparing Queries</a></li>
+    <li><a href="#single-row-queries">Single-Row Queries</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#statements-that-modify-data">Statements that Modify Data</a></li>
+    <li><a href="#working-with-transactions">Working with Transactions</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#prepared-statements-and-connections">Prepared Statements And Connections</a></li>
+    <li><a href="#avoiding-prepared-statements">Avoiding Prepared Statements</a></li>
+    <li><a href="#prepared-statements-in-transactions">Prepared Statements in Transactions</a></li>
+    <li><a href="#parameter-placeholder-syntax">Parameter Placeholder Syntax</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#errors-from-iterating-resultsets">Errors From Iterating Resultsets</a></li>
+    <li><a href="#errors-from-closing-resultsets">Errors From Closing Resultsets</a></li>
+    <li><a href="#errors-from-queryrow">Errors From QueryRow()</a></li>
+    <li><a href="#identifying-specific-database-errors">Identifying Specific Database Errors</a></li>
+    <li><a href="#handling-connection-errors">Handling Connection Errors</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#resource-exhaustion">Resource Exhaustion</a></li>
+    <li><a href="#large-uint64-values">Large uint64 Values</a></li>
+    <li><a href="#connection-state-mismatch">Connection State Mismatch</a></li>
+    <li><a href="#database-specific-syntax">Database-Specific Syntax</a></li>
+    <li><a href="#multiple-result-sets">Multiple Result Sets</a></li>
+    <li><a href="#invoking-stored-procedures">Invoking Stored Procedures</a></li>
+    <li><a href="#multiple-statement-support">Multiple Statement Support</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

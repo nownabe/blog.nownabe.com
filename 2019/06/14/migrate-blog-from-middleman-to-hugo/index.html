@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -76,76 +76,61 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2019/06/14/migrate-blog-from-middleman-to-hugo/">ブログの静的サイトジェネレータをMiddlemanからHugoに変えた</a></h2>
     <span class="date">Posted on Jun 14, 2019</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="概要">概要</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="概要">概要</h1>
 <p>このブログを生成してる静的サイトジェネレータをMiddlemanからHugoに変えました。</p>
-
 <h1 id="なぜmiddlemanをやめたのか">なぜMiddlemanをやめたのか</h1>
-
 <p>アップデートがつらかったのでやめました。
 久々にMiddlemanアップデートしようとして<code>bundle update</code>したら、解決できるGemのバージョンねーよ！と言われてやめるのを決意しました。</p>
-
 <p>アップデートがつらいのは次のような理由でした。</p>
-
 <ul>
 <li>Middlemanも本体だけでなく<code>middleman-blog</code>や<code>middleman-deploy</code>などもあってそもそも依存関係がめんどくさかった</li>
 <li>esa.ioで記事を書いていたので、MarkdownのRendererに親和性の高いqiita-markdownを使えるようにするGemを独自で作ってた</li>
 <li>Emojiを使うためにそこをさらに拡張していた</li>
 <li>esa.ioのfrontmatterでは正確な投稿日が取れないのでGitから取るようにMiddlemanにパッチを当ててた</li>
 </ul>
-
 <p>いろいろパッチあててるのだるかったし、他にもPythonの2.7に依存があったり、いつのまにかシンタックスハイライト効かなくなってたり、使ってたCIのWerckerがOracleに買収されたり(関係ない)と以前からやめたいとは思ってたので良い機会でした。</p>
-
 <h1 id="なぜhugoにしたのか">なぜHugoにしたのか</h1>
-
 <p>Go製のジェネレータで特に問題がなかったからです。</p>
-
 <p>他と比較してないのでなんとも言えませんが、Go製ということで最初に試して、十分に早いし特に拡張することなくやりたいことができたのでHugoにしました。</p>
-
 <p>心配していたこの辺はなんなくクリアしました。</p>
-
 <ul>
 <li>今までのURLがそのまま使えるか</li>
 <li>Pythonへ依存してないか</li>
 <li>Emojiが使えるか</li>
 <li>テーマ作るの難しくないか</li>
 </ul>
-
 <p>この辺はどうでも良い部分でした。</p>
-
 <ul>
 <li>SlimやSCSSで書いてたけど、頻繁には変えないし量も少ないのでのHTMLやCSSで書いてもいい</li>
 <li>esaの吐くFrontmatterとMarkdownを解釈する必要があったけど、esaはすでにやめていたのでHugoが解釈できるMarkdownで書けばいい</li>
 </ul>
-
 <p>後者について既存の記事を変換する必要はあったので、Rubyでスクリプトを書いて変換しました。</p>
-
 <p>テーマはMiddlemanのときのものをそのまま流用して作りました。</p>
-
 <h1 id="デプロイ">デプロイ</h1>
-
 <p>ついでにCI/CDをWerckerからGitHub Actionsに変えました。
 Werckerもいろいろ変わったけどOracleに買収されてて追従する気はないし、GitHubで完結してれば一番うれしいのでActionsを使うことにしました。</p>
-
 <p>GitHub Actionsは初めて使ったんですが、シンプルでいいですね。</p>
-
 <h1 id="おわりに">おわりに</h1>
-
 <p>MiddlemanからHugoに変わって依存関係がなくなったし変なパッチもなくなったしビルドは早くなったしシンタックスもハイライトされて万々歳です。
 スッキリしました。</p>
-
 <p>ビルドの遅さやパッチうんぬんはMiddlemanのせいではなくて自分の使い方が悪かったせいなんですけどね 😅</p>
-
 <p>esaをやめるときにもスクリプトでいろいろ変換してて移行しやすくなってたのもあってスムーズに移行できてよかったです ✨</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

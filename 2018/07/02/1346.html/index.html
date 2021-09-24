@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,89 +48,59 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/07/02/1346.html/">RDB as a Serviceのベンチマーク</a></h2>
     <span class="date">Posted on Jul 2, 2018</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="はじめに">はじめに</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="はじめに">はじめに</h1>
 <p>最近古くなったWebアプリケーションインフラの刷新プロジェクトをやっていて、AWSとGCPそれぞれのパフォーマンスが気になっていたところにIDCFのRDBサービスがリリースされたのでベンチマークを取ってみました。</p>
-
 <p>ベンチマークしたのサービスは以下の4つで、すべてMySQL互換です。</p>
-
 <ul>
 <li><a href="https://aws.amazon.com/jp/rds/aurora/">Amazon Aurora</a></li>
 <li><a href="https://aws.amazon.com/jp/rds/">Amazon RDS</a></li>
 <li><a href="https://cloud.google.com/sql/">Cloud SQL</a></li>
 <li><a href="https://www.idcf.jp/cloud/rdb/">IDCFクラウド RDB</a></li>
 </ul>
-
 <p>ベンチマークログ、Terraformのコードは次のレポジトリにあります。</p>
-
 <p><a href="https://gitlab.com/nownabe/rdb-bench">https://gitlab.com/nownabe/rdb-bench</a></p>
-
 <h1 id="tl-dr">TL; DR</h1>
-
 <p>おおむね、</p>
-
 <p>IDCF &gt; Aurora &gt; Cloud SQL &gt; RDS</p>
-
 <p>でした。IDCFはやい。</p>
-
 <h1 id="ベンチマーク方法">ベンチマーク方法</h1>
-
 <p>ベンチマークツールはtpcc-mysqlとsysbenchを使いました。MySQLのパラメータはすべてサービスのデフォルトのままです。また、それぞれ計測は1回のみとなります。</p>
-
 <h2 id="構築">構築</h2>
-
 <p>それぞれのクラウドでRDBのインスタンスとベンチマークをかけるクライアントとなるVMインスタンスを立ち上げました。</p>
-
 <p>AWSとGCPの構築はTerraformで自動化してあります。</p>
-
 <p><a href="https://gitlab.com/nownabe/rdb-bench/tree/master/terraform">https://gitlab.com/nownabe/rdb-bench/tree/master/terraform</a></p>
-
 <h2 id="tpcc-mysql">tpcc-mysql</h2>
-
-<p><a href="https://github.com/Percona-Lab/tpcc-mysql">tpcc-mysql</a>はPerconaが提供しているベンチマークツールで、TPC-Cというベンチマーク仕様の実装です。<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></p>
-
+<p><a href="https://github.com/Percona-Lab/tpcc-mysql">tpcc-mysql</a>はPerconaが提供しているベンチマークツールで、TPC-Cというベンチマーク仕様の実装です。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <p>tpcc-mysqlでは以下の設定で計測をしました。</p>
-
 <ul>
 <li>Warehouseは50, 100</li>
 <li>同時接続数は20, 40, 60, 80, 100</li>
 <li>ウォーミングアップ時間は300秒</li>
 <li>計測時間は600秒</li>
 </ul>
-
 <p><a href="https://gitlab.com/nownabe/rdb-bench/blob/master/run-tpcc.sh">https://gitlab.com/nownabe/rdb-bench/blob/master/run-tpcc.sh</a></p>
-
 <h2 id="sysbench">sysbench</h2>
-
 <p><a href="https://github.com/akopytov/sysbench">sysbench</a>はLuaスクリプトでベンチマークを定義できるベンチマークツールです。CPUやメモリなどに加えて、MySQLとPostgreSQLの性能も計測できます。</p>
-
 <p>sysbenchでは以下の設定で計測をしました。</p>
-
 <ul>
 <li>シナリオはoltp_read_write.lua</li>
 <li>Table sizeは10k, 100k, 1m</li>
 <li>Threadsは2, 4, 8, 16, 32, 64, 128, 256</li>
 <li>計測時間は300秒</li>
 </ul>
-
 <p><a href="https://gitlab.com/nownabe/rdb-bench/blob/master/run-sysbench.sh">https://gitlab.com/nownabe/rdb-bench/blob/master/run-sysbench.sh</a></p>
-
 <h1 id="結果">結果</h1>
-
 <p>細かい結果が気になる方はレポジトリにログが全部あるので見てみてください。</p>
-
 <h2 id="インスタンスタイプ">インスタンスタイプ</h2>
-
 <p>それぞれのサービスで次の表のインスタンスタイプを使いました。</p>
-
 <table>
 <thead>
 <tr>
@@ -140,7 +110,6 @@ if (!doNotTrack) {
 <th>Memory</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>RDS</td>
@@ -148,21 +117,18 @@ if (!doNotTrack) {
 <td>8</td>
 <td>61</td>
 </tr>
-
 <tr>
 <td>Aurora</td>
 <td>db.r4.2xlarge</td>
 <td>8</td>
 <td>61</td>
 </tr>
-
 <tr>
 <td>Cloud SQL</td>
 <td>db-n1-highmem-8</td>
 <td>8</td>
 <td>52</td>
 </tr>
-
 <tr>
 <td>IDCF RDB</td>
 <td>highmem.XL64</td>
@@ -171,40 +137,47 @@ if (!doNotTrack) {
 </tr>
 </tbody>
 </table>
-
 <h2 id="tpcc-mysql-1">tpcc-mysql</h2>
-
-<p><img src="/images/2018/07/02/1.png" alt="tpcc-mysql-50.png (15.3 kB)" /></p>
-
-<p><img src="/images/2018/07/02/2.png" alt="tpcc-mysql-100.png (13.4 kB)" /></p>
-
+<p><img src="/images/2018/07/02/1.png" alt="tpcc-mysql-50.png (15.3 kB)"></p>
+<p><img src="/images/2018/07/02/2.png" alt="tpcc-mysql-100.png (13.4 kB)"></p>
 <p>RDSはデータのロードがおそすぎて待ち時間がやばかったのでWarehouse = 100は計測してません。</p>
-
 <h2 id="sysbench-1">sysbench</h2>
-
-<p><img src="/images/2018/07/02/3.png" alt="oltp_read_write-10k.png (18.3 kB)" /></p>
-
-<p><img src="/images/2018/07/02/4.png" alt="oltp_read_write-100k.png (18.8 kB)" /></p>
-
-<p><img src="/images/2018/07/02/5.png" alt="oltp_read_write-1m.png (17.4 kB)" /></p>
-
+<p><img src="/images/2018/07/02/3.png" alt="oltp_read_write-10k.png (18.3 kB)"></p>
+<p><img src="/images/2018/07/02/4.png" alt="oltp_read_write-100k.png (18.8 kB)"></p>
+<p><img src="/images/2018/07/02/5.png" alt="oltp_read_write-1m.png (17.4 kB)"></p>
 <p>IDCFはデフォルトで<code>max_connections</code>が151だったのでThreads = 256は計測できていません。ちなみに、RDSは5100、Auroraは3000、Cloud SQLは4000でした。</p>
-
 <h1 id="まとめ">まとめ</h1>
-
 <p>IDCFめっちゃ速いですね。
 Auroraもさすがという感じで、ある程度トラフィックがあるようなサービスだとコスパ的にもわざわざAWSでRDSを選択する意味はあまりなさそうです。
 Cloud SQLは概ねRDSよりはやくて、特にデータが多くて同時接続数が多いときが得意そうです。</p>
-<div class="footnotes">
-
-<hr />
-
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1">厳密ではないらしい
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p>厳密ではないらしい&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#構築">構築</a></li>
+    <li><a href="#tpcc-mysql">tpcc-mysql</a></li>
+    <li><a href="#sysbench">sysbench</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#インスタンスタイプ">インスタンスタイプ</a></li>
+    <li><a href="#tpcc-mysql-1">tpcc-mysql</a></li>
+    <li><a href="#sysbench-1">sysbench</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

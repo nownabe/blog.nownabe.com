@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,27 +48,22 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/03/12/639.html/">Blogのタイムスタンプをごにょごにょした</a></h2>
     <span class="date">Posted on Mar 12, 2017</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="弊blog">弊blog</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="弊blog">弊blog</h1>
 <p>弊blogはesaで記事を書き、esaのGitHub WebhookでGitHubにPushしてMiddlemanでHTML化している。
 詳しくはQiitaに書いた。</p>
-
 <p><a href="http://qiita.com/nownabe/items/915c44f19d5806058419">esaで書いた記事をGitHub Pagesでブログとして公開する</a></p>
-
 <p>この仕組みだとタイムスタンプまわりに少し問題があったので改善した。</p>
-
 <h1 id="タイムスタンプ">タイムスタンプ</h1>
-
 <p>esaのGitHub Webhookは優秀で、PushするときはMiddlemanなどで扱いやすいように記事のMarkdownにfrontmatterを付与してくれる。</p>
-<div class="highlight"><pre class="chroma"><code class="language-markdown:article.html.md" data-lang="markdown:article.html.md">---
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown:article.html.md" data-lang="markdown:article.html.md">---
 title: &#34;たいとる&#34;
 category: かてごり
 tags: 
@@ -79,56 +74,39 @@ number: 123
 
 <span class="gh"># 記事本文
 </span><span class="gh"></span>
-hogehoge</code></pre></div>
-<p>このうち、</p>
-
+hogehoge
+</code></pre></div><p>このうち、</p>
 <ul>
 <li><code>created_at</code>はesaでの記事作成日時</li>
 <li><code>updated_at</code>はesaでの記事更新日時</li>
 </ul>
-
 <p>になっている。</p>
-
 <p>Middlemanの場合はこれらの日時を自動で記事のタイムスタンプとして扱ってくれる。</p>
-
 <h1 id="問題点">問題点</h1>
-
 <p>何が問題かというとblog記事をWIPで下書きしたときである。下書きをWIPで保存したとき、</p>
-
 <ul>
 <li>GitHubにはまだPushされない(blogには投稿されない)</li>
 <li>esaでは記事が作成されたことになるので<code>created_at</code>はそのときの日時となる</li>
 </ul>
-
 <p>という動作になる。</p>
-
 <p>その後blog投稿のためShip It!すると、</p>
-
 <ul>
 <li>GitHubにPushされる(blogに投稿される)</li>
 <li><code>updated_at</code>は更新されるが<code>created_at</code>は更新されない</li>
 </ul>
-
 <p>という動作になる。
 そのため、下書き後にblogへ投稿すると<code>created_at</code>は実際のblog投稿日時より過去の日時となってしまう。</p>
-
 <p>本来であればblogの投稿日時としてはblogに投稿された日時を使いたい。(当たり前)</p>
-
 <h1 id="解決策1">解決策1</h1>
-
 <p>解決策その1はそもそもblogに投稿日時を表示しないことである。
 弊blogも今までは<code>created_at</code>を使わず<code>updated_at</code>のみを使っていた。</p>
-
 <p>が、やはり昔の記事のタイポを修正しただけでトップに来るのはいただけないのでなんとかしたいと考えていた。</p>
-
 <h1 id="解決策2">解決策2</h1>
-
 <p>現在採用しているのはGitのログから日時を取得する方法である。
 GitHubにPushされたとき、はじめてblogに投稿される。
 なので、記事ファイルが始めてGitにコミットされた日時を得ることができれば、blogに正しく投稿日時を表示することができる。</p>
-
 <p>Gitの日時を使うため<code>config.rb</code>でMiddlemanに次のようなパッチをあてた。</p>
-<div class="highlight"><pre class="chroma"><code class="language-rb:config.rb" data-lang="rb:config.rb"><span class="nb">require</span> <span class="s2">&#34;time&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rb:config.rb" data-lang="rb:config.rb"><span class="nb">require</span> <span class="s2">&#34;time&#34;</span>
 
 <span class="k">module</span> <span class="nn">EsaFrontmatter</span>
   <span class="no">WORK_DIR</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s2">&#34;../&#34;</span><span class="p">,</span> <span class="bp">__FILE__</span><span class="p">)</span><span class="o">.</span><span class="n">freeze</span>
@@ -145,13 +123,18 @@ GitHubにPushされたとき、はじめてblogに投稿される。
   <span class="k">end</span>
 <span class="k">end</span>
 
-<span class="no">Middleman</span><span class="o">::</span><span class="no">Sitemap</span><span class="o">::</span><span class="no">Resource</span><span class="o">.</span><span class="n">prepend</span><span class="p">(</span><span class="no">EsaFrontmatter</span><span class="p">)</span></code></pre></div>
-<p>これで無事に記事の<code>created_at</code>としてblogに投稿された日時を使うことができた。</p>
-
+<span class="no">Middleman</span><span class="o">::</span><span class="no">Sitemap</span><span class="o">::</span><span class="no">Resource</span><span class="o">.</span><span class="n">prepend</span><span class="p">(</span><span class="no">EsaFrontmatter</span><span class="p">)</span>
+</code></pre></div><p>これで無事に記事の<code>created_at</code>としてblogに投稿された日時を使うことができた。</p>
 <h1 id="おわりに">おわりに</h1>
-
 <p>だんだん複雑になっていってあんまり好ましくはない… 😭</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,128 +48,128 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/04/20/1286.html/">Product updates | April 9, 2018</a></h2>
     <span class="date">Posted on Apr 20, 2018</span>
   </div>
-  <div class="body">
-    
-
-<p>気が向いたときにやるスタイル</p>
-
-<h1 id="identity-security">IDENTITY &amp; SECURITY</h1>
-
-<h2 id="access-transparency-https-cloud-google-com-access-transparency"><a href="https://cloud.google.com/access-transparency/">Access Transparency</a></h2>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>気が向いたときにやるスタイル</p>
+<h1 id="identity--security">IDENTITY &amp; SECURITY</h1>
+<h2 id="access-transparencyhttpscloudgooglecomaccess-transparency"><a href="https://cloud.google.com/access-transparency/">Access Transparency</a></h2>
 <blockquote>
 <p>Now in beta, Access Transparency gives customers near real-time logs when Google Cloud Platform admins access their content. This further helps customers gain visibility over what happens to their data on Google Cloud.</p>
-
 <p>beta機能のAccess TransparencyはGCPの管理者がコンテンツにアクセスしたときにリアルタイムなログを提供します. この機能によりカスタマーはGoogle Cloud上のデータに何が起こるかを把握できます.</p>
 </blockquote>
-
 <p>GCPの管理者というのは, 例えばGCPのサポートにおけるサポートエンジニアとか, 要するにGoogleの中の人を指すようです. 今まではAudit Logにも反映されてなかったんですね.</p>
-
 <h1 id="management-tools">MANAGEMENT TOOLS</h1>
-
-<h2 id="get-insight-into-gcp-usage-https-cloudplatform-googleblog-com-2018-03-understand-your-spending-at-a-glance-with-google-cloud-billing-reports-beta-html"><a href="https://cloudplatform.googleblog.com/2018/03/understand-your-spending-at-a-glance-with-Google-Cloud-Billing-reports-beta.html">Get insight into GCP usage</a></h2>
-
+<h2 id="get-insight-into-gcp-usagehttpscloudplatformgoogleblogcom201803understand-your-spending-at-a-glance-with-google-cloud-billing-reports-betahtml"><a href="https://cloudplatform.googleblog.com/2018/03/understand-your-spending-at-a-glance-with-Google-Cloud-Billing-reports-beta.html">Get insight into GCP usage</a></h2>
 <blockquote>
 <p>Now in beta, billing reports let customers view GCP usage costs at a glance, as well as discover and analyze trends.</p>
-
 <p>ベータ機能のBilling Reportsではひと目でGCPの利用料がわかるようになりなり, 傾向の分析や発見もできます.</p>
 </blockquote>
-
 <p>リンク先の動画がわかりやすいです.</p>
-
-<h2 id="programmatic-budget-notifications-https-cloud-google-com-billing-docs-how-to-budgets"><a href="https://cloud.google.com/billing/docs/how-to/budgets">Programmatic budget notifications</a></h2>
-
+<h2 id="programmatic-budget-notificationshttpscloudgooglecombillingdocshow-tobudgets"><a href="https://cloud.google.com/billing/docs/how-to/budgets">Programmatic budget notifications</a></h2>
 <blockquote>
 <p>With this beta release, customers can now receive budget notifications programmatically, in addition to the current email-only alerts.</p>
-
 <p>予算アラートは現在メールのみですが, プログラムで予算通知を受け取る機能がベータリリースされています.</p>
 </blockquote>
-
 <p>Pub/Subで受け取るみたいですね. コンソールから設定できるようになっています.</p>
-
-<p><img width="739" alt="スクリーンショット_2018-04-20_12_12_07.png (296.9 kB)" src="/images/2018/04/20/1.png"></p>
-
-<h2 id="tenancy-units-https-cloud-google-com-service-consumer-management-tenancy-units-docs-overview"><a href="https://cloud.google.com/service-consumer-management/tenancy-units/docs/overview">Tenancy units</a></h2>
-
+<img width="739" alt="スクリーンショット_2018-04-20_12_12_07.png (296.9 kB)" src="/images/2018/04/20/1.png">
+<h2 id="tenancy-unitshttpscloudgooglecomservice-consumer-managementtenancy-unitsdocsoverview"><a href="https://cloud.google.com/service-consumer-management/tenancy-units/docs/overview">Tenancy units</a></h2>
 <blockquote>
 <p>Now available, tenancy units enable customers to isolate data for individual managed service consumers within each project.</p>
 </blockquote>
-
-<h1 id="storage-databases">STORAGE &amp; DATABASES</h1>
-
-<h2 id="new-cloud-bigtable-region-in-oregon-https-cloud-google-com-bigtable-docs-locations"><a href="https://cloud.google.com/bigtable/docs/locations">New Cloud Bigtable region in Oregon</a></h2>
-
+<h1 id="storage--databases">STORAGE &amp; DATABASES</h1>
+<h2 id="new-cloud-bigtable-region-in-oregonhttpscloudgooglecombigtabledocslocations"><a href="https://cloud.google.com/bigtable/docs/locations">New Cloud Bigtable region in Oregon</a></h2>
 <blockquote>
 <p>New Cloud Bigtable region us-west1 has been launched in Oregon.</p>
-
 <p>Cloud Bigtableの新しいリージョン us-west1 (オレゴン) がローンチされました.</p>
 </blockquote>
-
 <h1 id="compute">COMPUTE</h1>
-
-<h2 id="new-go-1-9-runtime-in-google-app-engine-standard-environment-https-cloud-google-com-appengine-docs-standard-go-release-notes"><a href="https://cloud.google.com/appengine/docs/standard/go/release-notes">New Go 1.9 runtime in Google App Engine standard environment</a></h2>
-
+<h2 id="new-go-19-runtime-in-google-app-engine-standard-environmenthttpscloudgooglecomappenginedocsstandardgorelease-notes"><a href="https://cloud.google.com/appengine/docs/standard/go/release-notes">New Go 1.9 runtime in Google App Engine standard environment</a></h2>
 <blockquote>
 <p>The beta launch of Go 1.9 for GAE standard environment adds support for type aliases, and provides other fixes and improvements.</p>
-
 <p>GAEのStandard enrivonmentでGo 1.9がベータとしてサポートされました. Type aliasesや他の修正, 改善が提供されます.</p>
 </blockquote>
-
 <h1 id="cloud-ai">CLOUD AI</h1>
-
-<h2 id="high-fidelity-speech-synthesis-with-cloud-text-to-speech-https-cloud-google-com-text-to-speech"><a href="https://cloud.google.com/text-to-speech/">High-fidelity speech synthesis with Cloud Text-to-Speech</a></h2>
-
+<h2 id="high-fidelity-speech-synthesis-with-cloud-text-to-speechhttpscloudgooglecomtext-to-speech"><a href="https://cloud.google.com/text-to-speech/">High-fidelity speech synthesis with Cloud Text-to-Speech</a></h2>
 <blockquote>
 <p>With this beta release, customers can use the Google Cloud Text-to-Speech API to synthesize natural-sounding speech with 30 voices in multiple languages and variants.</p>
-
 <p>ベータリリースです. Google Cloud Text-to-Speech APIで複数の言語について30の声で自然な発音を合成できます.</p>
 </blockquote>
-
 <h1 id="big-data">BIG DATA</h1>
-
-<h2 id="updated-cloud-dataproc-iam-meta-support-https-cloud-google-com-dataproc-docs-concepts-iam-iam"><a href="https://cloud.google.com/dataproc/docs/concepts/iam/iam">Updated Cloud Dataproc IAM meta support</a></h2>
-
+<h2 id="updated-cloud-dataproc-iam-meta-supporthttpscloudgooglecomdataprocdocsconceptsiamiam"><a href="https://cloud.google.com/dataproc/docs/concepts/iam/iam">Updated Cloud Dataproc IAM meta support</a></h2>
 <blockquote>
 <p>This beta release adds support for Cloud Dataproc identity and access management policies on operations, jobs, and workflow resources.</p>
-
 <p>このベータリリースではCloud Dataprocのオペレーション, ジョブ, ワークフローリソースのidentityとアクセス管理ポリシーをサポートします.</p>
 </blockquote>
-
 <h1 id="identity-amp-security">IDENTITY &amp; SECURITY</h1>
-
-<h2 id="cloud-data-loss-prevention-api-https-cloudplatform-googleblog-com-2018-03-take-charge-of-your-sensitive-data-with-the-cloud-dlp-api-html"><a href="https://cloudplatform.googleblog.com/2018/03/take-charge-of-your-sensitive-data-with-the-Cloud-DLP-API.html">Cloud Data Loss Prevention API</a></h2>
-
+<h2 id="cloud-data-loss-prevention-apihttpscloudplatformgoogleblogcom201803take-charge-of-your-sensitive-data-with-the-cloud-dlp-apihtml"><a href="https://cloudplatform.googleblog.com/2018/03/take-charge-of-your-sensitive-data-with-the-Cloud-DLP-API.html">Cloud Data Loss Prevention API</a></h2>
 <blockquote>
 <p>Cloud DLP API, which provides fast, scalable classification and redaction for sensitive data elements, is now generally available.</p>
-
 <p>機密データに対して高速でスケーラブルな分類と修正を提供するCloud DLP APIがGAとなりました.</p>
 </blockquote>
-
 <h1 id="networking">NETWORKING</h1>
-
-<h2 id="whitelist-and-blacklist-user-traffic-https-cloud-google-com-armor"><a href="https://cloud.google.com/armor/">Whitelist and blacklist user traffic</a></h2>
-
+<h2 id="whitelist-and-blacklist-user-traffichttpscloudgooglecomarmor"><a href="https://cloud.google.com/armor/">Whitelist and blacklist user traffic</a></h2>
 <blockquote>
 <p>Now in beta, the Cloud Armor 1.0 whitelist and blacklist feature enables customers to allow or restrict user traffic based on IP addresses and ranges.</p>
-
 <p>ベータのCloud Armor 1.0のホワイトリスト/ブラックリスト機能ではユーザのトラフィックをIPアドレス, IPアドレス範囲で許可/拒否することができます.</p>
 </blockquote>
-
 <h1 id="storage-amp-databases">STORAGE &amp; DATABASES</h1>
-
-<h2 id="new-cloud-bigtable-zone-in-taiwan-https-cloud-google-com-bigtable"><a href="https://cloud.google.com/bigtable/">New Cloud Bigtable zone in Taiwan</a></h2>
-
+<h2 id="new-cloud-bigtable-zone-in-taiwanhttpscloudgooglecombigtable"><a href="https://cloud.google.com/bigtable/">New Cloud Bigtable zone in Taiwan</a></h2>
 <blockquote>
 <p>A new Cloud Bigtable zone, asia-east1-c, has been added to to the asia-east1 region in Taiwan.</p>
-
 <p>Cloud Bigtableの新しいゾーン asia-east1-c が asia-east1 リージョン(台湾)に追加されました.</p>
 </blockquote>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#access-transparencyhttpscloudgooglecomaccess-transparency"><a href="https://cloud.google.com/access-transparency/">Access Transparency</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#get-insight-into-gcp-usagehttpscloudplatformgoogleblogcom201803understand-your-spending-at-a-glance-with-google-cloud-billing-reports-betahtml"><a href="https://cloudplatform.googleblog.com/2018/03/understand-your-spending-at-a-glance-with-Google-Cloud-Billing-reports-beta.html">Get insight into GCP usage</a></a></li>
+    <li><a href="#programmatic-budget-notificationshttpscloudgooglecombillingdocshow-tobudgets"><a href="https://cloud.google.com/billing/docs/how-to/budgets">Programmatic budget notifications</a></a></li>
+    <li><a href="#tenancy-unitshttpscloudgooglecomservice-consumer-managementtenancy-unitsdocsoverview"><a href="https://cloud.google.com/service-consumer-management/tenancy-units/docs/overview">Tenancy units</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#new-cloud-bigtable-region-in-oregonhttpscloudgooglecombigtabledocslocations"><a href="https://cloud.google.com/bigtable/docs/locations">New Cloud Bigtable region in Oregon</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#new-go-19-runtime-in-google-app-engine-standard-environmenthttpscloudgooglecomappenginedocsstandardgorelease-notes"><a href="https://cloud.google.com/appengine/docs/standard/go/release-notes">New Go 1.9 runtime in Google App Engine standard environment</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#high-fidelity-speech-synthesis-with-cloud-text-to-speechhttpscloudgooglecomtext-to-speech"><a href="https://cloud.google.com/text-to-speech/">High-fidelity speech synthesis with Cloud Text-to-Speech</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#updated-cloud-dataproc-iam-meta-supporthttpscloudgooglecomdataprocdocsconceptsiamiam"><a href="https://cloud.google.com/dataproc/docs/concepts/iam/iam">Updated Cloud Dataproc IAM meta support</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-data-loss-prevention-apihttpscloudplatformgoogleblogcom201803take-charge-of-your-sensitive-data-with-the-cloud-dlp-apihtml"><a href="https://cloudplatform.googleblog.com/2018/03/take-charge-of-your-sensitive-data-with-the-Cloud-DLP-API.html">Cloud Data Loss Prevention API</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#whitelist-and-blacklist-user-traffichttpscloudgooglecomarmor"><a href="https://cloud.google.com/armor/">Whitelist and blacklist user traffic</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#new-cloud-bigtable-zone-in-taiwanhttpscloudgooglecombigtable"><a href="https://cloud.google.com/bigtable/">New Cloud Bigtable zone in Taiwan</a></a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

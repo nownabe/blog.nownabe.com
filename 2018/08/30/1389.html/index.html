@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,113 +48,103 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/08/30/1389.html/">ゼロから作るDeep Learning 2 第3回</a></h2>
     <span class="date">Posted on Aug 30, 2018</span>
   </div>
-  <div class="body">
-    
-
-<p><a href="https://blog.nownabe.com/2018/08/18/1375.html">nownab.log | ゼロから作るDeep Learning 2 第2回</a></p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p><a href="https://blog.nownabe.com/2018/08/18/1375.html">nownab.log | ゼロから作るDeep Learning 2 第2回</a></p>
 <h1 id="概要">概要</h1>
-
 <p>機械学習勉強会でもくもくしてる<a href="https://amzn.to/2MqPxy3">ゼロから作るDeep Learning 2 自然言語処理編</a>の学習メモです。</p>
-
 <p>書いたコードのリポジトリはこちら。
 <a href="https://github.com/nownabe/DeepLearningFromScratch2">https://github.com/nownabe/DeepLearningFromScratch2</a></p>
-
 <h1 id="資料置き場">資料置き場</h1>
-
 <p>今回のコードはこちら。
 <a href="https://github.com/nownabe/DeepLearningFromScratch2/pull/2">https://github.com/nownabe/DeepLearningFromScratch2/pull/2</a></p>
-
 <h1 id="範囲">範囲</h1>
-
 <ul>
 <li>1章 ニューラルネットワークの復習
-
 <ul>
 <li>1.4 ニューラルネットワークで問題を解く</li>
 <li>1.5 計算の高速化</li>
 <li>1.6 まとめ</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h1 id="1章-ニューラルネットワークの復習">1章 ニューラルネットワークの復習</h1>
-
-<h2 id="1-4-ニューラルネットワークで問題を解く">1.4 ニューラルネットワークで問題を解く</h2>
-
-<h3 id="1-4-1-スパイラル-データセット">1.4.1 スパイラル・データセット</h3>
-
-<h3 id="1-4-2-ニューラルネットワークの実装">1.4.2 ニューラルネットワークの実装</h3>
-
-<h3 id="1-4-3-学習用のソースコード">1.4.3 学習用のソースコード</h3>
-
+<h2 id="14-ニューラルネットワークで問題を解く">1.4 ニューラルネットワークで問題を解く</h2>
+<h3 id="141-スパイラルデータセット">1.4.1 スパイラル・データセット</h3>
+<h3 id="142-ニューラルネットワークの実装">1.4.2 ニューラルネットワークの実装</h3>
+<h3 id="143-学習用のソースコード">1.4.3 学習用のソースコード</h3>
 <p>グラフは次の節のコードを実行すると表示される。</p>
-
 <p>非線形のデータがきれいに分類できてて感動した 😳</p>
-
-<h3 id="1-4-4-trainer-クラス">1.4.4 Trainer クラス</h3>
-
-<h2 id="1-5-計算の高速化">1.5 計算の高速化</h2>
-
-<h3 id="1-5-1-ビット精度">1.5.1 ビット精度</h3>
-
-<h3 id="1-5-2-gpu-cupy">1.5.2 GPU (CuPy)</h3>
-
+<h3 id="144-trainer-クラス">1.4.4 Trainer クラス</h3>
+<h2 id="15-計算の高速化">1.5 計算の高速化</h2>
+<h3 id="151-ビット精度">1.5.1 ビット精度</h3>
+<h3 id="152-gpu-cupy">1.5.2 GPU (CuPy)</h3>
 <p>実行可能なコードは4章から登場とのことだったが、せっかくなので早く試したくて1章のコードもGPU対応して実行してみた。</p>
-
 <p>対応のコミットはこれ。
 <a href="https://github.com/nownabe/DeepLearningFromScratch2/pull/2/commits/534aa1487251dd33ac7aa423c6478e95389e25f5">https://github.com/nownabe/DeepLearningFromScratch2/pull/2/commits/534aa1487251dd33ac7aa423c6478e95389e25f5</a></p>
-
 <p>結果と実行速度はこんな感じ。この章の学習だとCPUの方が10倍ぐらい速い。</p>
-
 <h3 id="cpu">CPU</h3>
-
-<pre><code>real    0m0.655s
+<pre tabindex="0"><code>real    0m0.655s
 user    0m0.770s
 sys     0m0.650s
-</code></pre>
-
-<p><img src="/images/2018/08/30/1.png" alt="cpu.png (33.8 kB)" /></p>
-
+</code></pre><p><img src="/images/2018/08/30/1.png" alt="cpu.png (33.8 kB)"></p>
 <h3 id="gpu">GPU</h3>
-
-<pre><code>real    0m6.779s
+<pre tabindex="0"><code>real    0m6.779s
 user    0m6.709s
 sys     0m0.792s
-</code></pre>
-
-<p><img src="/images/2018/08/30/2.png" alt="gpu.png (33.7 kB)" /></p>
-
-<h2 id="1-6-まとめ">1.6 まとめ</h2>
-
+</code></pre><p><img src="/images/2018/08/30/2.png" alt="gpu.png (33.7 kB)"></p>
+<h2 id="16-まとめ">1.6 まとめ</h2>
 <h1 id="所感">所感</h1>
-
 <ul>
 <li>ビット精度のことをきちんと説明してあったりして素晴らしい</li>
 <li>グラフがカラーで見やすい</li>
 <li>CuPyでの実行を試せてよかった
-
 <ul>
 <li>そのままだと実行できないが、簡単な変更で対応できた</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h1 id="ゼロから作るdeep-learning-2-自然言語処理編">ゼロから作るDeep Learning 2 自然言語処理編</h1>
-
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&language=ja_JP&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=4873118360&linkId=d14125aa558825386ea0429a369ee855"></iframe>
-
 <h1 id="機械学習勉強会について">機械学習勉強会について</h1>
-
 <p>有志で毎週開催している。本書はもくもく形式だが、題材によって形式は柔軟に変えている。
 毎週読む範囲を決めてもくもくして、終わらなかったら次の週までにやってくるという形。</p>
-
 <p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。
 <a href="https://github.com/Wondershake/machine-learning-study">Wondershake/machine-learning-study: 機械学習勉強会</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-math" data-lang="math"></code></pre></div>
+<pre tabindex="0"><code class="language-math" data-lang="math"></code></pre>
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#14-ニューラルネットワークで問題を解く">1.4 ニューラルネットワークで問題を解く</a>
+      <ul>
+        <li><a href="#141-スパイラルデータセット">1.4.1 スパイラル・データセット</a></li>
+        <li><a href="#142-ニューラルネットワークの実装">1.4.2 ニューラルネットワークの実装</a></li>
+        <li><a href="#143-学習用のソースコード">1.4.3 学習用のソースコード</a></li>
+        <li><a href="#144-trainer-クラス">1.4.4 Trainer クラス</a></li>
+      </ul>
+    </li>
+    <li><a href="#15-計算の高速化">1.5 計算の高速化</a>
+      <ul>
+        <li><a href="#151-ビット精度">1.5.1 ビット精度</a></li>
+        <li><a href="#152-gpu-cupy">1.5.2 GPU (CuPy)</a></li>
+        <li><a href="#cpu">CPU</a></li>
+        <li><a href="#gpu">GPU</a></li>
+      </ul>
+    </li>
+    <li><a href="#16-まとめ">1.6 まとめ</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

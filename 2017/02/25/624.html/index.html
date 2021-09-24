@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,71 +48,66 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/02/25/624.html/">RAID1なbtrfsでストレージ組んだ</a></h2>
     <span class="date">Posted on Feb 25, 2017</span>
   </div>
-  <div class="body">
-    
-
-<p>自宅サーバをリプレースしたので、ストレージ用に2TB x 2のHDDを使ってRAID1なbtrfsを組んでみました。</p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>自宅サーバをリプレースしたので、ストレージ用に2TB x 2のHDDを使ってRAID1なbtrfsを組んでみました。</p>
 <h1 id="なぜ">なぜ</h1>
-
 <p>最初はRAID1 + LVM + &hellip; な構成にしようと思ってたけど、どうせなら新しいものを触ってみたいということでbtrfsを選んだ。</p>
-
 <p>btrfs vs zfsでちょっと迷ったけど、将来性があってLinuxとの親和性が高そうなbtrfsを選択。</p>
-
 <h1 id="構築">構築</h1>
-
 <p><code>/dev/sdb</code>と<code>/dev/sdc</code>が対象ディスク。</p>
-
 <p>RAID1構成のbtrfsを組むにはこれだけ。パーティションも何も作成されてない状態で実行する。
 ラベル(<code>STORAGE</code>)を設定しとくとこれでマウントできるようになるのでおいしい。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkfs.btrfs -L STORAGE -d raid1 -f /dev/sdb /dev/sdc</code></pre></div>
-<h1 id="マウント">マウント</h1>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mkfs.btrfs -L STORAGE -d raid1 -f /dev/sdb /dev/sdc
+</code></pre></div><h1 id="マウント">マウント</h1>
 <p>最終的なマウントオプションはこんな感じ。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">LABEL</span><span class="o">=</span>STORAGE /mnt/storage btrfs noatime,autodefrag,compress-force<span class="o">=</span>lzo,space_cache <span class="m">0</span> <span class="m">0</span></code></pre></div>
-<ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">LABEL</span><span class="o">=</span>STORAGE /mnt/storage btrfs noatime,autodefrag,compress-force<span class="o">=</span>lzo,space_cache <span class="m">0</span> <span class="m">0</span>
+</code></pre></div><ul>
 <li><code>noatime</code> - atimeを更新しないようにする。パフォーマンスがめっちゃあがる。特にbtrfsだとそうらしい。</li>
 <li><code>autodefrag</code> - 自動でデフラグしてくれる。</li>
 <li><code>compress-force=lzo</code> - 圧縮を有効化する。lzoは速いやつ。</li>
 <li><code>space_cache</code> - キャッシュを高速化する。</li>
 </ul>
-
 <p>参考: <a href="https://btrfs.wiki.kernel.org/index.php/Mount_options">https://btrfs.wiki.kernel.org/index.php/Mount_options</a></p>
-
 <h1 id="確認">確認</h1>
-
 <p>こんな感じになる。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ df -h /mnt/storage
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ df -h /mnt/storage
 ファイルシス   サイズ  使用  残り 使用% マウント位置
-/dev/sdb         <span class="m">1</span>.9T   17M  <span class="m">1</span>.9T    <span class="m">1</span>% /mnt/storage</code></pre></div>
-<p><code>/dev/sdb</code>がマウントされてることになってる。ちゃんとRAID1になってるのか…？
+/dev/sdb         1.9T   17M  1.9T    1% /mnt/storage
+</code></pre></div><p><code>/dev/sdb</code>がマウントされてることになってる。ちゃんとRAID1になってるのか…？
 ってことで確認してみた。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo btrfs filesystem show /mnt/storage
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ sudo btrfs filesystem show /mnt/storage
 Label: <span class="s1">&#39;STORAGE&#39;</span>  uuid: b1193efc-ef62-4633-bca1-d3f61b79a2fe
-	Total devices <span class="m">2</span> FS bytes used <span class="m">640</span>.00KiB
-	devid    <span class="m">1</span> size <span class="m">1</span>.82TiB used <span class="m">2</span>.01GiB path /dev/sdb
-	devid    <span class="m">2</span> size <span class="m">1</span>.82TiB used <span class="m">2</span>.01GiB path /dev/sdc
+	Total devices <span class="m">2</span> FS bytes used 640.00KiB
+	devid    <span class="m">1</span> size 1.82TiB used 2.01GiB path /dev/sdb
+	devid    <span class="m">2</span> size 1.82TiB used 2.01GiB path /dev/sdc
 
 <span class="c1"># 圧縮されないように /dev/urandom</span>
 $ sudo dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">of</span><span class="o">=</span>/mnt/storage/dummy <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">10240</span>
 
 $ btrfs filesystem show /mnt/storage
 Label: <span class="s1">&#39;STORAGE&#39;</span>  uuid: b1193efc-ef62-4633-bca1-d3f61b79a2fe
-	Total devices <span class="m">2</span> FS bytes used <span class="m">10</span>.02GiB
-	devid    <span class="m">1</span> size <span class="m">1</span>.82TiB used <span class="m">12</span>.01GiB path /dev/sdb
-	devid    <span class="m">2</span> size <span class="m">1</span>.82TiB used <span class="m">12</span>.01GiB path /dev/sdc</code></pre></div>
-<p>見る限りレプリケーションはされてるっぽい ✨</p>
-
+	Total devices <span class="m">2</span> FS bytes used 10.02GiB
+	devid    <span class="m">1</span> size 1.82TiB used 12.01GiB path /dev/sdb
+	devid    <span class="m">2</span> size 1.82TiB used 12.01GiB path /dev/sdc
+</code></pre></div><p>見る限りレプリケーションはされてるっぽい ✨</p>
 <h1 id="所感">所感</h1>
-
 <p>思ってた以上に簡単で未来を感じた 😌
 パフォーマンスとか安定性はこれからどうなるかですね 😎</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

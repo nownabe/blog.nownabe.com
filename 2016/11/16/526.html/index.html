@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,78 +48,62 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2016/11/16/526.html/">RubyVMの様子を観察したい</a></h2>
     <span class="date">Posted on Nov 16, 2016</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="はじめに">はじめに</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="はじめに">はじめに</h1>
 <p>Rubyのプログラムは内部的にはコンパイルされてバイトコードとなり、RubyVM上で実行されます。
 RubyVMはスタックマシンというタイプのVMで、オブジェクトをスタックに積み上げて演算を行っています。</p>
-
 <p>諸事情によりスタックの様子を観察しながらRubyVMの命令単位でRubyプログラムを実行したかったのでやってみました。</p>
-
 <p>いい記事があったのでこちらの記事を参考にさせていただきました。
 <a href="http://www.callcc.net/diary/20121216.html">RubyプログラムをVM命令単位で実行する</a></p>
-
 <p>環境はMacです。</p>
-
 <h1 id="gdbセットアップ">gdbセットアップ</h1>
-
 <p>gdbというデバッグツールを使います。</p>
-
 <p>まずはHomebrewでインストールします。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew install gdb</code></pre></div>
-<p>Macだとgdbにコード署名とやらをする必要があります。次の記事を参考に署名しました。
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">brew install gdb
+</code></pre></div><p>Macだとgdbにコード署名とやらをする必要があります。次の記事を参考に署名しました。
 <a href="http://qiita.com/takahashim/items/204ffa698afe09bd4e28">OS XでGDBを使う（ためにコード署名をする）</a></p>
-
 <p>taskgatedの再起動とありますが、プロセスをkillしてやればOKです。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo pkill taskgated</code></pre></div>
-<p>最後に署名します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">codesign -s gdb-cert <span class="k">$(</span>which gdb<span class="k">)</span></code></pre></div>
-<h1 id="rubyをビルド">Rubyをビルド</h1>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo pkill taskgated
+</code></pre></div><p>最後に署名します。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">codesign -s gdb-cert <span class="k">$(</span>which gdb<span class="k">)</span>
+</code></pre></div><h1 id="rubyをビルド">Rubyをビルド</h1>
 <p>Rubyのソースコードを持ってきて、ちょろっとデバッグ用のコードを追加します。
 今回は<a href="https://github.com/nownabe/ruby/tree/2.3.2_trace">2.3.2にパッチをあてたもの</a>をGitHubにコミットしています。 (<a href="https://github.com/nownabe/ruby/commit/d21082f0d183f8770b17afd37bdcd508d685be8a">diff</a>)</p>
-
 <p>このパッチはかんたんに言うと、<code>tool/instructions.rb</code>という<code>insns.def</code>からRubyVMの命令の実体を自動生成するツールを修正して、各命令の先頭に<code>rb_vmdebug_stack_dump_raw_current()</code>の実行と、命令名の出力を追加しています。</p>
-
 <p>今回はこれを使います。まずはcloneします。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git clone git://github.com/nownabe/ruby.git -b <span class="m">2</span>.3.2_trace --depth <span class="m">1</span>
-<span class="nb">cd</span> ruby</code></pre></div>
-<p><code>configure</code>を作ります。<code>autoconf</code>コマンドが入ってなければ<code>brew install autoconf</code>でインストールできます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">autoconf</code></pre></div>
-<p>configureします。ここでデバッグ情報を付与してコンパイルされるように指定します。rubyのREADMEに</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git clone git://github.com/nownabe/ruby.git -b 2.3.2_trace --depth <span class="m">1</span>
+<span class="nb">cd</span> ruby
+</code></pre></div><p><code>configure</code>を作ります。<code>autoconf</code>コマンドが入ってなければ<code>brew install autoconf</code>でインストールできます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">autoconf
+</code></pre></div><p>configureします。ここでデバッグ情報を付与してコンパイルされるように指定します。rubyのREADMEに</p>
 <blockquote>
 <p>Some C compiler flags may be added by default depending on your environment. Specify <code>optflags=..</code> and <code>warnflags=..</code> as necessary to override them.</p>
 </blockquote>
-
 <p>とあったので<code>optflags</code>を使うのがいいみたいです。<code>--enable-debug-env</code>で<code>debug.c</code>もビルドされてデバッグが便利な感じになります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">./configure --enable-debug-env <span class="nv">optflags</span><span class="o">=</span><span class="s2">&#34;-g -O0&#34;</span></code></pre></div>
-<p>makeします。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">make -j8</code></pre></div>
-<h1 id="試す">試す</h1>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">./configure --enable-debug-env <span class="nv">optflags</span><span class="o">=</span><span class="s2">&#34;-g -O0&#34;</span>
+</code></pre></div><p>makeします。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">make -j8
+</code></pre></div><h1 id="試す">試す</h1>
 <p>実際にRubyのプログラムを実行してみます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">ENABLE_TRAP</span><span class="o">=</span><span class="nb">true</span> gdb --args ./ruby --disable-gems -e <span class="s1">&#39;puts &#34;Hello, gdb&#34;&#39;</span></code></pre></div>
-<p>実行するとこんな感じになります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nv">ENABLE_TRAP</span><span class="o">=</span><span class="nb">true</span> gdb --args ./ruby --disable-gems -e <span class="s1">&#39;puts &#34;Hello, gdb&#34;&#39;</span>
-GNU gdb <span class="o">(</span>GDB<span class="o">)</span> <span class="m">7</span>.12
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">ENABLE_TRAP</span><span class="o">=</span><span class="nb">true</span> gdb --args ./ruby --disable-gems -e <span class="s1">&#39;puts &#34;Hello, gdb&#34;&#39;</span>
+</code></pre></div><p>実行するとこんな感じになります。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nv">ENABLE_TRAP</span><span class="o">=</span><span class="nb">true</span> gdb --args ./ruby --disable-gems -e <span class="s1">&#39;puts &#34;Hello, gdb&#34;&#39;</span>
+GNU gdb <span class="o">(</span>GDB<span class="o">)</span> 7.12
 Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2016</span> Free Software Foundation, Inc.
 License GPLv3+: GNU GPL version <span class="m">3</span> or later &lt;http://gnu.org/licenses/gpl.html&gt;
 <span class="c1"># ...省略...</span>
 Reading symbols from ./ruby...done.
-<span class="o">(</span>gdb<span class="o">)</span></code></pre></div>
-<p><code>(gdb)</code>ってところで指示を待ってます。</p>
-
+<span class="o">(</span>gdb<span class="o">)</span>
+</code></pre></div><p><code>(gdb)</code>ってところで指示を待ってます。</p>
 <p><code>r</code>を入力してRubyプログラムを開始すると、スタックと次に実行されるRubyVMの命令が表示されます。</p>
-
-<pre><code>(gdb) r
+<pre tabindex="0"><code>(gdb) r
 Starting program: /Users/nownabe/src/github.com/nownabe/ruby/ruby --disable-gems -e puts\ \&quot;Hello,\ gdb\&quot;
 -- stack frame ------------
 0000 (0x101100000): 10187f300
@@ -136,12 +120,9 @@ c:0001 p:0000 s:0002 E:0023f0 (none) [FINISH]
 Thread 1 received signal SIGTRAP, Trace/breakpoint trap.
 0x00007fff9386c8ea in __kill () from /usr/lib/system/libsystem_kernel.dylib
 (gdb)
-</code></pre>
-
-<p>RubyVMのスタックとコントロールフレーム、次の命令が表示されています。
+</code></pre><p>RubyVMのスタックとコントロールフレーム、次の命令が表示されています。
 <code>c</code>で次の命令を実行できます。</p>
-
-<pre><code>(gdb) c
+<pre tabindex="0"><code>(gdb) c
 Continuing.
 -- stack frame ------------
 0000 (0x101100000): 10187f300
@@ -157,11 +138,8 @@ c:0001 p:0000 s:0002 E:0023f0 (none) [FINISH]
 Thread 1 received signal SIGTRAP, Trace/breakpoint trap.
 0x00007fff9386c8ea in __kill () from /usr/lib/system/libsystem_kernel.dylib
 (gdb)
-</code></pre>
-
-<p><code>trace</code>命令が実行されました。もう一度<code>c</code>で進んでみます。</p>
-
-<pre><code>(gdb) c
+</code></pre><p><code>trace</code>命令が実行されました。もう一度<code>c</code>で進んでみます。</p>
+<pre tabindex="0"><code>(gdb) c
 Continuing.
 -- stack frame ------------
 0000 (0x101100000): 10187f300
@@ -178,22 +156,15 @@ c:0001 p:0000 s:0002 E:0023f0 (none) [FINISH]
 Thread 1 received signal SIGTRAP, Trace/breakpoint trap.
 0x00007fff9386c8ea in __kill () from /usr/lib/system/libsystem_kernel.dylib
 (gdb)
-</code></pre>
-
-<p><code>putself</code>命令が実行されて、スタックに何か積まれました。
+</code></pre><p><code>putself</code>命令が実行されて、スタックに何か積まれました。
 これが何かを確かめてみましょう。スタックの値を使い、<code>rb_p 0x1018d6628</code>と入力してみます。
 <code>rb_p</code>はいわゆるRubyの<code>p</code>メソッドです。</p>
-
-<pre><code>(gdb) rb_p 0x1018d6628
+<pre tabindex="0"><code>(gdb) rb_p 0x1018d6628
 main
 (gdb)
-</code></pre>
-
-<p><code>main</code>と表示されました。<code>putself</code>命令で<code>main</code>が積まれたことがわかります。</p>
-
+</code></pre><p><code>main</code>と表示されました。<code>putself</code>命令で<code>main</code>が積まれたことがわかります。</p>
 <p><code>putstring</code>を実行してみましょう。</p>
-
-<pre><code>(gdb) c
+<pre tabindex="0"><code>(gdb) c
 Continuing.
 -- stack frame ------------
 0000 (0x101100000): 10187f300
@@ -210,21 +181,21 @@ c:0001 p:0000 s:0002 E:0023f0 (none) [FINISH]
 
 Thread 1 received signal SIGTRAP, Trace/breakpoint trap.
 0x00007fff9386c8ea in __kill () from /usr/lib/system/libsystem_kernel.dylib
-</code></pre>
-
-<p>さらにスタックに積まれました。これを確認してみると、文字列を確認できます。</p>
-
-<pre><code>(gdb) rb_p 0x10185f988
+</code></pre><p>さらにスタックに積まれました。これを確認してみると、文字列を確認できます。</p>
+<pre tabindex="0"><code>(gdb) rb_p 0x10185f988
 &quot;Hello, gdb&quot;
 (gdb)
-</code></pre>
-
-<p><img src="/images/2016/11/16/1.gif" alt="tty.gif (878.7 kB)" /></p>
-
+</code></pre><p><img src="/images/2016/11/16/1.gif" alt="tty.gif (878.7 kB)"></p>
 <h1 id="おわりに">おわりに</h1>
-
 <p>これでいろいろ捗りそうです！</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

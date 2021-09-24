@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,103 +48,85 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/08/15/1096.html/">できるだけシンプルにFlake8でPython修行</a></h2>
     <span class="date">Posted on Aug 15, 2017</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="はじめに">はじめに</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="はじめに">はじめに</h1>
 <p>この記事ではPythonの良い書き方を身につけるためにVimからLintツールを使う方法を紹介する。</p>
-
 <p>Pythonは前から使う必要があるときに書いていたが、これから書く機会も増えるだろうから本格的に学ぼうと考えている。
 そこで、良い書き方を身につけるためにLint系のツールを導入した。</p>
-
 <h1 id="結論">結論</h1>
-
 <p>Flake8に以下のプラグインを入れて使うのが最強っぽい。</p>
-
 <ul>
 <li>hacking</li>
 <li>flake8-import-order</li>
 <li>flake8-docstrings</li>
 </ul>
-
 <h1 id="flake8">Flake8</h1>
-
 <p><a href="http://flake8.pycqa.org/en/latest/">Flake8: Your Tool For Style Guide Enforcement — flake8 3.4.1 documentation</a></p>
-
 <p>Flake8はPythonのコードチェックツールである。
 複数のコードチェックツールのラッパーであり、つまり広範囲のコードチェックをやってくれる。</p>
-
 <p>PythonのLintで調べるとPEP 8やらpyflakesやら色々見つかるが、とりあえずFlake8だけ入れておけば良い。</p>
-
 <p>参考:</p>
-
 <ul>
 <li><a href="http://wonderwall.hatenablog.com/entry/2017/02/05/214004">Vimメモ : flake8でPythonのコードをチェックする - もた日記</a></li>
 <li><a href="http://tech.sideci.com/entry/2016/12/01/130459">Flake8 のプラグイン機構についてのお話 - SideCI TechBlog</a></li>
 </ul>
-
 <h1 id="flake8のプラグイン">Flake8のプラグイン</h1>
-
 <p>Flake8はプラグイン機構を持っており、プラグインによってより厳しくチェックできる。</p>
-
 <p>有名なプラグインにOpenStackのStyle Guildelinesのルールをチェックするhackingがある。
 <a href="https://docs.openstack.org/hacking/latest/">OpenStack Docs: hacking: OpenStack Hacking Guideline Enforcement</a></p>
-
 <p>今回の目的は修行で厳しければ厳しいほどありがたいため以下のプラグインを導入した。</p>
-
 <ul>
 <li>hacking</li>
 <li>flake8-import-order</li>
-<li>flake8-docstrings<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></li>
+<li>flake8-docstrings<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></li>
 <li>pep8-naming</li>
 <li>flake8-double-quotes</li>
 </ul>
-
 <p>参考: <a href="http://qiita.com/kitsuyui/items/5ab4608003a29ff7689f">Python の Lint (文法チェッカ) まとめ - flake8 + hacking を使う - - Qiita</a></p>
-
 <h1 id="インストール">インストール</h1>
-
 <p>pipでインストールする。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pip install flake8 hacking flake8-import-order flake8-docstrings pep8-naming flake8-double-quotes</code></pre></div>
-<h1 id="vimで使う">Vimで使う</h1>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pip install flake8 hacking flake8-import-order flake8-docstrings pep8-naming flake8-double-quotes
+</code></pre></div><h1 id="vimで使う">Vimで使う</h1>
 <p>とりあえずここではシンプルに、syntasticを使って保存時にチェックするようにする。
 いろいろカスタマイズはできると思う。</p>
-<div class="highlight"><pre class="chroma"><code class="language-vim:~/.vimrc" data-lang="vim:~/.vimrc"><span class="c">&#34; ...</span><span class="err">
-</span><span class="err"></span><span class="nx">NeoBundle</span> <span class="s1">&#39;scrooloose/syntastic&#39;</span><span class="c">
-</span><span class="c">&#34; ...</span><span class="err">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim:~/.vimrc" data-lang="vim:~/.vimrc"><span class="c">&#34; ...</span><span class="err">
+</span><span class="err"></span><span class="nx">NeoBundle</span> <span class="s1">&#39;scrooloose/syntastic&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; ...</span><span class="err">
 </span><span class="err">
-</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span><span class="p">:</span><span class="nx">syntastic_mode_map</span> <span class="p">=</span> { <span class="s1">&#39;mode&#39;</span><span class="p">:</span> <span class="s1">&#39;passive&#39;</span><span class="p">,</span> <span class="s1">&#39;active_filetypes&#39;</span><span class="p">:</span> [<span class="s1">&#39;python&#39;</span>] }<span class="err">
-</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span><span class="p">:</span><span class="nx">syntastic_python_checkers</span> <span class="p">=</span> [<span class="s1">&#39;flake8&#39;</span>]</code></pre></div>
-<p><code>NeoBundle</code>を使っている場合はこんな感じ。</p>
-
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">syntastic_mode_map</span> <span class="p">=</span> { <span class="s1">&#39;mode&#39;</span>: <span class="s1">&#39;passive&#39;</span><span class="p">,</span> <span class="s1">&#39;active_filetypes&#39;</span>: [<span class="s1">&#39;python&#39;</span>] }<span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">syntastic_python_checkers</span> <span class="p">=</span> [<span class="s1">&#39;flake8&#39;</span>]<span class="err">
+</span></code></pre></div><p><code>NeoBundle</code>を使っている場合はこんな感じ。</p>
 <p>参考:</p>
-
 <ul>
-<li><a href="http://wonderwall.hatenablog.com/entry/2017/02/05/214004#vim-flake8によりVimでflake8を実行">Vimメモ : flake8でPythonのコードをチェックする - もた日記</a></li>
+<li><a href="http://wonderwall.hatenablog.com/entry/2017/02/05/214004#vim-flake8%E3%81%AB%E3%82%88%E3%82%8AVim%E3%81%A7flake8%E3%82%92%E5%AE%9F%E8%A1%8C">Vimメモ : flake8でPythonのコードをチェックする - もた日記</a></li>
 <li><a href="http://tk0miya.hatenablog.com/entry/2013/12/12/140240">vim で python を書いてる時に flake8 をいい感じに実行する - Hack like a rolling stone</a></li>
 </ul>
-
 <h1 id="おわりに">おわりに</h1>
-
 <p>これでだめな書き方は指摘されるようになったので、指摘を潰していけばまぁまぁ良い書き方ができるようになるのではないかと思う。
 Python書いていくぞい 💪</p>
-<div class="footnotes">
-
-<hr />
-
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1">flake8-pep257は古くてルールがコンフリクトしてる
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p>flake8-pep257は古くてルールがコンフリクトしてる&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

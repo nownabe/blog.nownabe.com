@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,97 +48,73 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/02/05/1248.html/">Google Cloud Endpoints for gRPCの認証まわり</a></h2>
     <span class="date">Posted on Feb 5, 2018</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="はじめに">はじめに</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="はじめに">はじめに</h1>
 <p>Cloud Endpoints for gRPCの認証まわりでちょっと引っかかったので整理しました。
 GCPのドキュメントは大元の英語版であっても間違ってる箇所が多いので注意が必要です。</p>
-
 <p>言語はGolangです。</p>
-
 <h1 id="cloud-endpoints">Cloud Endpoints</h1>
-
 <p><a href="https://cloud.google.com/endpoints/?hl=ja">Cloud Endpoints</a>はAPIを管理するためのサービスです。いまいちわかりにくいですが、こんなことをやってくれます。</p>
-
 <ul>
 <li>gRPC APIをREST APIに変換して提供</li>
 <li>APIのモニタリング</li>
 <li>Auth0やFirebaseでの認証</li>
 </ul>
-
 <p>Cloud Endpointsは大きく3つの形式で利用できます。</p>
-
 <ul>
 <li><a href="https://cloud.google.com/endpoints/docs/openapi/?hl=ja">OpenAPI (JSON/REST API)</a>
-
 <ul>
 <li>一般的なREST APIをCloud Endpointsで管理する感じ</li>
 <li>旧Swagger</li>
-</ul></li>
+</ul>
+</li>
 <li><a href="https://cloud.google.com/endpoints/docs/frameworks/about-cloud-endpoints-frameworks?hl=ja">Endpoints Framework</a>
-
 <ul>
 <li>アプリケーションに組み込んで使うタイプ</li>
 <li>App Engine Standard、Java or Python</li>
-</ul></li>
+</ul>
+</li>
 <li><a href="https://cloud.google.com/endpoints/docs/grpc/about-grpc?hl=ja">gRPC</a></li>
 </ul>
-
 <h1 id="extensible-service-proxy">Extensible Service Proxy</h1>
-
 <p>for gRPCではリクエストは<a href="https://cloud.google.com/endpoints/docs/frameworks-extensible-service-proxy?hl=ja">Extensible Service Proxy</a>(以下ESP)を経由することになります。ESPはNginxベースのリバースプロキシでCloud Endpointsの機能を提供します。</p>
-
 <p>このESPをサイドカーコンテナとしてアプリケーションと一緒にデプロイすることでCloud Endpointsの機能を利用できます。</p>
-
 <h1 id="認証">認証</h1>
-
 <p>Cloud Endpointsの認証には大きくわけて2種類あります。</p>
-
 <ul>
 <li>APIキー
-
 <ul>
 <li>呼び出し元を識別する</li>
-</ul></li>
+</ul>
+</li>
 <li>認証スキーム (Firebase、Auth0など)
-
 <ul>
 <li>エンドユーザを識別する</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="apiキー">APIキー</h2>
-
 <p><a href="https://cloud.google.com/endpoints/docs/restricting-api-access-with-api-keys-grpc?hl=ja">API キーで API アクセスを制限する（gRPC）  |  Cloud Endpoints  |  Google Cloud Platform</a></p>
-
 <p>APIキーの認証を有効化するには<a href="https://cloud.google.com/endpoints/docs/grpc/grpc-service-config?hl=ja">サービス設定</a>の<code>usage.rules</code>で<code>allow_unregistered_calls</code>を<code>false</code>にします。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">usage<span class="p">:</span><span class="w">
-</span><span class="w">  </span>rules<span class="p">:</span><span class="w">
-</span><span class="w">    </span>-<span class="w"> </span>selector<span class="p">:</span><span class="w"> </span><span class="s2">&#34;*&#34;</span><span class="w">
-</span><span class="w">      </span>allow_unregistered_calls<span class="p">:</span><span class="w"> </span><span class="kc">false</span></code></pre></div>
-<p>クライアント側はmetadataの<code>x-api-key</code>にAPIキーをセットしてリクエストします。また、例えばAPIキーの制限としてリファラを設定している場合は、metadataの<code>referer</code>にリファラをセットする必要があります。</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">usage</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">selector</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;*&#34;</span><span class="w">
+</span><span class="w">      </span><span class="nt">allow_unregistered_calls</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></code></pre></div><p>クライアント側はmetadataの<code>x-api-key</code>にAPIキーをセットしてリクエストします。また、例えばAPIキーの制限としてリファラを設定している場合は、metadataの<code>referer</code>にリファラをセットする必要があります。</p>
 <h2 id="認証スキーム">認証スキーム</h2>
-
 <p><a href="https://cloud.google.com/endpoints/docs/grpc/authenticating-users-grpc?hl=ja">ユーザーの認証  |  gRPC を使用する Cloud Endpoints  |  Google Cloud Platform</a></p>
-
 <p>認証スキームではより細い認証を行うことができます。Firebaseやサービスアカウント、Auth0などで認証することができます。有効化するにはサービス設定の<code>authentication</code>を設定します。</p>
-
 <p>クライアント側ではmetadataの<code>authorization</code>に<code>Baarer + token</code>をセットします。</p>
-
 <h1 id="やってみる">やってみる</h1>
-
 <p>実際に実装して認証結果をみていきます。細かい部分はかなり適当なのでそのままプロダクションでは使わないでください。</p>
-
 <p>gRPCのメソッドはEcho1〜4までの4つを用意して、次のように認証を設定します。</p>
-
 <table>
 <thead>
 <tr>
@@ -147,26 +123,22 @@ GCPのドキュメントは大元の英語版であっても間違ってる箇�
 <th>認証スキーム認証</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Echo1</td>
 <td>なし</td>
 <td>なし</td>
 </tr>
-
 <tr>
 <td>Echo2</td>
 <td>なし</td>
 <td>あり</td>
 </tr>
-
 <tr>
 <td>Echo3</td>
 <td>あり</td>
 <td>なし</td>
 </tr>
-
 <tr>
 <td>Echo4</td>
 <td>あり</td>
@@ -174,17 +146,12 @@ GCPのドキュメントは大元の英語版であっても間違ってる箇�
 </tr>
 </tbody>
 </table>
-
 <p>認証スキームにはサービスアカウントを利用します。</p>
-
 <p>ここではGCPのプロジェクトとして<code>cloud-endpoints-grpc-auth</code>を使っています。適宜書き換えてください。</p>
-
 <p>完成コードは<a href="https://github.com/nownabe/examples/tree/master/cloud-endpoints-grpc-authentication">こちら</a>にあります。</p>
-
-<h2 id="サービスの定義-実装">サービスの定義・実装</h2>
-
+<h2 id="サービスの定義実装">サービスの定義・実装</h2>
 <p>まず、gRPCのサービスを定義してGoのコードとデスクリプタファイルを生成します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-proto:echo.proto" data-lang="proto:echo.proto"><span class="n">syntax</span> <span class="o">=</span> <span class="s">&#34;proto3&#34;</span><span class="p">;</span><span class="err">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-proto:echo.proto" data-lang="proto:echo.proto"><span class="n">syntax</span> <span class="o">=</span> <span class="s">&#34;proto3&#34;</span><span class="p">;</span><span class="err">
 </span><span class="err">
 </span><span class="err"></span><span class="kn">package</span> <span class="nn">echo</span><span class="p">;</span><span class="err">
 </span><span class="err"></span><span class="k">option</span> <span class="n">go_package</span> <span class="o">=</span> <span class="s">&#34;main&#34;</span><span class="p">;</span><span class="err">
@@ -202,18 +169,19 @@ GCPのドキュメントは大元の英語版であっても間違ってる箇�
 </span><span class="err">
 </span><span class="err"></span><span class="kd">message</span> <span class="nc">Response</span> <span class="p">{</span><span class="err">
 </span><span class="err"></span>  <span class="kt">string</span> <span class="kd">message</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="err">
-</span><span class="err"></span><span class="p">}</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">protoc <span class="se">\
+</span><span class="err"></span><span class="p">}</span><span class="err">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">protoc <span class="se">\
 </span><span class="se"></span>  -I<span class="o">=</span>. <span class="se">\
 </span><span class="se"></span>  --include_source_info <span class="se">\
 </span><span class="se"></span>  --descriptor_set_out<span class="o">=</span>echo.pb <span class="se">\
 </span><span class="se"></span>  --go_out<span class="o">=</span><span class="nv">plugins</span><span class="o">=</span>grpc:. <span class="se">\
-</span><span class="se"></span>  echo.proto</code></pre></div>
-<p>次に、サーバとクライアントを実装します。まだ認証部分は実装しません。それぞれのディレクトリを作成します。ここではめんどくさいのでpbファイルはコピーします。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir server client
+</span><span class="se"></span>  echo.proto
+</code></pre></div><p>次に、サーバとクライアントを実装します。まだ認証部分は実装しません。それぞれのディレクトリを作成します。ここではめんどくさいのでpbファイルはコピーします。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mkdir server client
 cp echo.pb.go server
-cp echo.pb.go client</code></pre></div>
-<p>サーバの実装です。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go:server/main.go" data-lang="go:server/main.go"><span class="kn">package</span> <span class="nx">main</span>
+cp echo.pb.go client
+</code></pre></div><p>サーバの実装です。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go:server/main.go" data-lang="go:server/main.go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;fmt&#34;</span>
@@ -270,15 +238,14 @@ cp echo.pb.go client</code></pre></div>
 	<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nf">Serve</span><span class="p">(</span><span class="nx">lis</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
 		<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
 	<span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<p>metadataの<code>x-endpoint-api-userinfo</code>には認証したユーザの情報が入ります。</p>
-
+<span class="p">}</span>
+</code></pre></div><p>metadataの<code>x-endpoint-api-userinfo</code>には認証したユーザの情報が入ります。</p>
 <p>起動してみましょう。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> server
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> server
 go get .
-go run *.go</code></pre></div>
-<p>クライアントの実装です。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go:client/main.go" data-lang="go:client/main.go"><span class="kn">package</span> <span class="nx">main</span>
+go run *.go
+</code></pre></div><p>クライアントの実装です。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go:client/main.go" data-lang="go:client/main.go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;flag&#34;</span>
@@ -332,177 +299,158 @@ go run *.go</code></pre></div>
 	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Echo4: failed:&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
 	<span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<p>サーバが起動していることを確認して、クライアントを実行してみます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> client
-go run *.go</code></pre></div>
-<p>次のような出力が得られます。</p>
+<span class="p">}</span>
 
-<pre><code>Echo1: succeeded: message:&quot;Hello&quot;
+</code></pre></div><p>サーバが起動していることを確認して、クライアントを実行してみます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> client
+go run *.go
+</code></pre></div><p>次のような出力が得られます。</p>
+<pre tabindex="0"><code>Echo1: succeeded: message:&quot;Hello&quot;
 Echo2: succeeded: message:&quot;Hello&quot;
 Echo3: succeeded: message:&quot;Hello&quot;
 Echo4: succeeded: message:&quot;Hello&quot;
-</code></pre>
-
-<p>これでgRPCサービスの定義と実装がおわりました。</p>
-
+</code></pre><p>これでgRPCサービスの定義と実装がおわりました。</p>
 <h2 id="cloud-endpointsのデプロイ">Cloud Endpointsのデプロイ</h2>
-
 <p>Cloud Endpointsをデプロイする前に、認証に必要なサービスアカウントを作成しておきます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gcloud iam service-accounts create client1 --display-name<span class="o">=</span>client1
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">gcloud iam service-accounts create client1 --display-name<span class="o">=</span>client1
 gcloud iam service-accounts add-iam-policy-binding <span class="se">\
 </span><span class="se"></span>  client1@cloud-endpoints-grpc-auth.iam.gserviceaccount.com <span class="se">\
 </span><span class="se"></span>  --member serviceAccount:client1@cloud-endpoints-grpc-auth.iam.gserviceaccount.com <span class="se">\
-</span><span class="se"></span>  --role roles/iam.serviceAccountUser</code></pre></div>
-<p>前述の表を満たすようにサービス設定をYAMLで書きます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml:api_config.yaml" data-lang="yaml:api_config.yaml">type<span class="p">:</span><span class="w"> </span>google.api.Service<span class="w">
-</span><span class="w"></span>config_version<span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">
+</span><span class="se"></span>  --role roles/iam.serviceAccountUser
+</code></pre></div><p>前述の表を満たすようにサービス設定をYAMLで書きます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml:api_config.yaml" data-lang="yaml:api_config.yaml"><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">google.api.Service</span><span class="w">
+</span><span class="w"></span><span class="nt">config_version</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">
 </span><span class="w">
-</span><span class="w"></span>name<span class="p">:</span><span class="w"> </span>echo.endpoints.cloud-endpoints-grpc-auth.cloud.goog<span class="w">
+</span><span class="w"></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">echo.endpoints.cloud-endpoints-grpc-auth.cloud.goog</span><span class="w">
 </span><span class="w">
-</span><span class="w"></span>title<span class="p">:</span><span class="w"> </span>Echo<span class="w"> </span>API<span class="w">
-</span><span class="w"></span>apis<span class="p">:</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>echo.EchoService<span class="w">
+</span><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">Echo API</span><span class="w">
+</span><span class="w"></span><span class="nt">apis</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">echo.EchoService</span><span class="w">
 </span><span class="w">
-</span><span class="w"></span>usage<span class="p">:</span><span class="w">
-</span><span class="w">  </span>rules<span class="p">:</span><span class="w">
-</span><span class="w">    </span>-<span class="w"> </span>selector<span class="p">:</span><span class="w"> </span><span class="s2">&#34;echo.EchoService.Echo1&#34;</span><span class="w">
-</span><span class="w">      </span>allow_unregistered_calls<span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">    </span>-<span class="w"> </span>selector<span class="p">:</span><span class="w"> </span><span class="s2">&#34;echo.EchoService.Echo2&#34;</span><span class="w">
-</span><span class="w">      </span>allow_unregistered_calls<span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">    </span>-<span class="w"> </span>selector<span class="p">:</span><span class="w"> </span><span class="s2">&#34;echo.EchoService.Echo3&#34;</span><span class="w">
-</span><span class="w">      </span>allow_unregistered_calls<span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="w">    </span>-<span class="w"> </span>selector<span class="p">:</span><span class="w"> </span><span class="s2">&#34;echo.EchoService.Echo4&#34;</span><span class="w">
-</span><span class="w">      </span>allow_unregistered_calls<span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w"></span><span class="nt">usage</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">selector</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;echo.EchoService.Echo1&#34;</span><span class="w">
+</span><span class="w">      </span><span class="nt">allow_unregistered_calls</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">selector</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;echo.EchoService.Echo2&#34;</span><span class="w">
+</span><span class="w">      </span><span class="nt">allow_unregistered_calls</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">selector</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;echo.EchoService.Echo3&#34;</span><span class="w">
+</span><span class="w">      </span><span class="nt">allow_unregistered_calls</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">selector</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;echo.EchoService.Echo4&#34;</span><span class="w">
+</span><span class="w">      </span><span class="nt">allow_unregistered_calls</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span><span class="w">
-</span><span class="w"></span>authentication<span class="p">:</span><span class="w">
-</span><span class="w">  </span>providers<span class="p">:</span><span class="w">
-</span><span class="w">    </span>-<span class="w"> </span>id<span class="p">:</span><span class="w"> </span>client1<span class="w">
-</span><span class="w">      </span>issuer<span class="p">:</span><span class="w"> </span>client1@cloud-endpoints-grpc-auth.iam.serviceaccount.com<span class="w">
-</span><span class="w">      </span>jwks_uri<span class="p">:</span><span class="w"> </span>https<span class="p">:</span>//www.googleapis.com/robot/v1/metadata/x509/client1@cloud-endpoints-grpc-auth.iam.gserviceaccount.com<span class="w">
-</span><span class="w">  </span>rules<span class="p">:</span><span class="w">
-</span><span class="w">    </span>-<span class="w"> </span>selector<span class="p">:</span><span class="w"> </span><span class="s2">&#34;echo.EchoService.Echo2&#34;</span><span class="w">
-</span><span class="w">      </span>requirements<span class="p">:</span><span class="w">
-</span><span class="w">        </span>-<span class="w"> </span>provider_id<span class="p">:</span><span class="w"> </span>client1<span class="w">
-</span><span class="w">    </span>-<span class="w"> </span>selector<span class="p">:</span><span class="w"> </span><span class="s2">&#34;echo.EchoService.Echo4&#34;</span><span class="w">
-</span><span class="w">      </span>requirements<span class="p">:</span><span class="w">
-</span><span class="w">        </span>-<span class="w"> </span>provider_id<span class="p">:</span><span class="w"> </span>client1</code></pre></div>
-<p>Cloud Endpointsをデプロイします。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gcloud endpoints services deploy api_config.yaml echo.pb</code></pre></div>
-<p>成功すると次のようなメッセージが表示されます。</p>
-
-<pre><code>Service Configuration [2018-02-05r0] uploaded for service [echo.endpoints.cloud-endpoints-grpc-auth.cloud.goog]
+</span><span class="w"></span><span class="nt">authentication</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">providers</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l">client1</span><span class="w">
+</span><span class="w">      </span><span class="nt">issuer</span><span class="p">:</span><span class="w"> </span><span class="l">client1@cloud-endpoints-grpc-auth.iam.serviceaccount.com</span><span class="w">
+</span><span class="w">      </span><span class="nt">jwks_uri</span><span class="p">:</span><span class="w"> </span><span class="l">https://www.googleapis.com/robot/v1/metadata/x509/client1@cloud-endpoints-grpc-auth.iam.gserviceaccount.com</span><span class="w">
+</span><span class="w">  </span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">selector</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;echo.EchoService.Echo2&#34;</span><span class="w">
+</span><span class="w">      </span><span class="nt">requirements</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">provider_id</span><span class="p">:</span><span class="w"> </span><span class="l">client1</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">selector</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;echo.EchoService.Echo4&#34;</span><span class="w">
+</span><span class="w">      </span><span class="nt">requirements</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">provider_id</span><span class="p">:</span><span class="w"> </span><span class="l">client1</span><span class="w">
+</span></code></pre></div><p>Cloud Endpointsをデプロイします。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">gcloud endpoints services deploy api_config.yaml echo.pb
+</code></pre></div><p>成功すると次のようなメッセージが表示されます。</p>
+<pre tabindex="0"><code>Service Configuration [2018-02-05r0] uploaded for service [echo.endpoints.cloud-endpoints-grpc-auth.cloud.goog]
 
 To manage your API, go to: https://console.cloud.google.com/endpoints/api/echo.endpoints.cloud-endpoints-grpc-auth.cloud.goog/overview?project=cloud-endpoints-grpc-auth
-</code></pre>
-
-<p>この<code>2018-02-05r0</code>と<code>echo.endpoints.cloud-endpoints-grpc-auth.cloud.goog</code>は後で必要になります。また、最後のURLにアクセスするとAPIのダッシュボードが表示され、モニタリング結果を確認できます。</p>
-
+</code></pre><p>この<code>2018-02-05r0</code>と<code>echo.endpoints.cloud-endpoints-grpc-auth.cloud.goog</code>は後で必要になります。また、最後のURLにアクセスするとAPIのダッシュボードが表示され、モニタリング結果を確認できます。</p>
 <h2 id="apiのデプロイ">APIのデプロイ</h2>
-
 <p>実装したAPI(サービス)をデプロイします。今回はGKEにデプロイします。また、Cloud Endpointsを有効にするため、サイドカーコンテナとしてESPを使います。</p>
-
 <p>まずはサーバのDockerfileを定義します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-dockerfile:server/Dockerfile" data-lang="dockerfile:server/Dockerfile"><span class="k">FROM</span><span class="s"> golang:1.9</span><span class="err">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dockerfile:server/Dockerfile" data-lang="dockerfile:server/Dockerfile"><span class="k">FROM</span><span class="s"> golang:1.9</span><span class="err">
 </span><span class="err">
 </span><span class="err"></span><span class="k">WORKDIR</span><span class="s"> /go/src/app</span><span class="err">
-</span><span class="err"></span><span class="k">ADD</span><span class="s"> . .</span><span class="err">
+</span><span class="err"></span><span class="k">ADD</span> . .<span class="err">
 </span><span class="err"></span><span class="k">RUN</span> go get .<span class="err">
 </span><span class="err">
 </span><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 50051</span><span class="err">
 </span><span class="err">
-</span><span class="err"></span><span class="k">CMD</span><span class="s"> [&#34;go&#34;, &#34;run&#34;, &#34;main.go&#34;, &#34;echo.pb.go&#34;]</span></code></pre></div>
-<p>Dockerイメージをレジストリにプッシュします。コンソールでContainer Registry APIを有効にしておく必要があります。<a href="https://console.cloud.google.com/apis/api/containerregistry.googleapis.com/overview?project=cloud-endpoints-grpc-auth">https://console.cloud.google.com/apis/api/containerregistry.googleapis.com/overview?project=cloud-endpoints-grpc-auth</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> server
+</span><span class="err"></span><span class="k">CMD</span> <span class="p">[</span><span class="s2">&#34;go&#34;</span><span class="p">,</span> <span class="s2">&#34;run&#34;</span><span class="p">,</span> <span class="s2">&#34;main.go&#34;</span><span class="p">,</span> <span class="s2">&#34;echo.pb.go&#34;</span><span class="p">]</span><span class="err">
+</span></code></pre></div><p>Dockerイメージをレジストリにプッシュします。コンソールでContainer Registry APIを有効にしておく必要があります。https://console.cloud.google.com/apis/api/containerregistry.googleapis.com/overview?project=cloud-endpoints-grpc-auth</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> server
 docker build -t gcr.io/cloud-endpoints-grpc-auth/echo .
-gcloud docker -- push gcr.io/cloud-endpoints-grpc-auth/echo</code></pre></div>
-<p>KubernetesのDeploymentとServiceの設定ファイルを作ります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml:server/k8s.yaml" data-lang="yaml:server/k8s.yaml">apiVersion<span class="p">:</span><span class="w"> </span>extensions/v1beta1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Deployment<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>echo<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>replicas<span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
-</span><span class="w">  </span>template<span class="p">:</span><span class="w">
-</span><span class="w">    </span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">      </span>labels<span class="p">:</span><span class="w">
-</span><span class="w">        </span>service<span class="p">:</span><span class="w"> </span>echo<span class="w">
-</span><span class="w">    </span>spec<span class="p">:</span><span class="w">
-</span><span class="w">      </span>containers<span class="p">:</span><span class="w">
-</span><span class="w">        </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>esp<span class="w">
-</span><span class="w">          </span>image<span class="p">:</span><span class="w"> </span>gcr.io/endpoints-release/endpoints-runtime<span class="p">:</span><span class="m">1</span><span class="w">
-</span><span class="w">          </span>imagePullPolicy<span class="p">:</span><span class="w"> </span>Always<span class="w">
-</span><span class="w">          </span>args<span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+gcloud docker -- push gcr.io/cloud-endpoints-grpc-auth/echo
+</code></pre></div><p>KubernetesのDeploymentとServiceの設定ファイルを作ります。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml:server/k8s.yaml" data-lang="yaml:server/k8s.yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">extensions/v1beta1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">echo</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l">echo</span><span class="w">
+</span><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">esp</span><span class="w">
+</span><span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">gcr.io/endpoints-release/endpoints-runtime:1</span><span class="w">
+</span><span class="w">          </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Always</span><span class="w">
+</span><span class="w">          </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
 </span><span class="w">            </span><span class="s2">&#34;-P&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;9000&#34;</span><span class="p">,</span><span class="w">
 </span><span class="w">            </span><span class="s2">&#34;-a&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;grpc://127.0.0.1:50051&#34;</span><span class="p">,</span><span class="w">
 </span><span class="w">            </span><span class="s2">&#34;-s&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;echo.endpoints.cloud-endpoints-grpc-auth.cloud.goog&#34;</span><span class="p">,</span><span class="w">
 </span><span class="w">            </span><span class="s2">&#34;-v&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;2018-02-05r0&#34;</span><span class="p">,</span><span class="w">
 </span><span class="w">          </span><span class="p">]</span><span class="w">
-</span><span class="w">          </span>ports<span class="p">:</span><span class="w">
-</span><span class="w">            </span>-<span class="w"> </span>containerPort<span class="p">:</span><span class="w"> </span><span class="m">9000</span><span class="w">
-</span><span class="w">        </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>echo<span class="w">
-</span><span class="w">          </span>image<span class="p">:</span><span class="w"> </span>gcr.io/cloud-endpoints-grpc-auth/echo<span class="w">
-</span><span class="w">          </span>ports<span class="p">:</span><span class="w">
-</span><span class="w">            </span>-<span class="w"> </span>containerPort<span class="p">:</span><span class="w"> </span><span class="m">50051</span><span class="w">
-</span><span class="w"></span>---<span class="w">
-</span><span class="w"></span>apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Service<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>echo<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>type<span class="p">:</span><span class="w"> </span>LoadBalancer<span class="w">
-</span><span class="w">  </span>ports<span class="p">:</span><span class="w">
-</span><span class="w">    </span>-<span class="w"> </span>port<span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
-</span><span class="w">      </span>targetPort<span class="p">:</span><span class="w"> </span><span class="m">9000</span><span class="w">
-</span><span class="w">      </span>protocol<span class="p">:</span><span class="w"> </span>TCP<span class="w">
-</span><span class="w">  </span>selector<span class="p">:</span><span class="w">
-</span><span class="w">    </span>service<span class="p">:</span><span class="w"> </span>echo</code></pre></div>
-<p>ESPの<code>args</code>の<code>-s</code>はサービス名、<code>-v</code>は設定IDです。Endpointをデプロイしたときに表示されたものを使います。</p>
-
+</span><span class="w">          </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">9000</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">echo</span><span class="w">
+</span><span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">gcr.io/cloud-endpoints-grpc-auth/echo</span><span class="w">
+</span><span class="w">          </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">50051</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">echo</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">LoadBalancer</span><span class="w">
+</span><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">9000</span><span class="w">
+</span><span class="w">      </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
+</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l">echo</span><span class="w">
+</span></code></pre></div><p>ESPの<code>args</code>の<code>-s</code>はサービス名、<code>-v</code>は設定IDです。Endpointをデプロイしたときに表示されたものを使います。</p>
 <p>GKEクラスタを作成してAPIをデプロイします。Kubernetes Engine APIを有効にしておく必要があります。
 <a href="https://console.cloud.google.com/apis/api/container.googleapis.com/overview?project=cloud-endpoints-grpc-auth">https://console.cloud.google.com/apis/api/container.googleapis.com/overview?project=cloud-endpoints-grpc-auth</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># GKEクラスタ作成</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># GKEクラスタ作成</span>
 gcloud container clusters create cluster-1 <span class="se">\
-</span><span class="se"></span>  --cluster-version <span class="m">1</span>.8.7-gke.0 <span class="se">\
+</span><span class="se"></span>  --cluster-version 1.8.7-gke.0 <span class="se">\
 </span><span class="se"></span>  --num-nodes <span class="m">1</span> <span class="se">\
 </span><span class="se"></span>  --zone asia-northeast1-a
 
 <span class="c1"># APIデプロイ</span>
 gcloud container clusters get-credentials cluster-1 --zone asia-northeast1-a
-kubectl create -f k8s.yaml</code></pre></div>
-<p>しばらくするとGCEのロードバランサが作成されてIPが取得できるので、クライアントでリクエストしてみます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">ADDRESS</span><span class="o">=</span><span class="k">$(</span>kubectl get service <span class="nb">echo</span> --output <span class="nv">jsonpath</span><span class="o">=</span><span class="s2">&#34;{.status.loadBalancer.ingress[0].ip}&#34;</span><span class="k">)</span>
+kubectl create -f k8s.yaml
+</code></pre></div><p>しばらくするとGCEのロードバランサが作成されてIPが取得できるので、クライアントでリクエストしてみます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">ADDRESS</span><span class="o">=</span><span class="k">$(</span>kubectl get service <span class="nb">echo</span> --output <span class="nv">jsonpath</span><span class="o">=</span><span class="s2">&#34;{.status.loadBalancer.ingress[0].ip}&#34;</span><span class="k">)</span>
 <span class="nb">cd</span> client
-go run *.go -addr<span class="o">=</span><span class="si">${</span><span class="nv">ADDRESS</span><span class="si">}</span>:80</code></pre></div>
-<p>次のように出力されます。</p>
-
-<pre><code>Echo1: succeeded: message:&quot;Hello&quot;
+go run *.go -addr<span class="o">=</span><span class="si">${</span><span class="nv">ADDRESS</span><span class="si">}</span>:80
+</code></pre></div><p>次のように出力されます。</p>
+<pre tabindex="0"><code>Echo1: succeeded: message:&quot;Hello&quot;
 Echo2: failed: rpc error: code = Unauthenticated desc = JWT validation failed: Missing or invalid credentials
 Echo3: failed: rpc error: code = Unauthenticated desc = Method doesn't allow unregistered callers (callers without established identity). Please use API Key or other form of API consumer identity to call this API.
 Echo4: failed: rpc error: code = Unauthenticated desc = JWT validation failed: Missing or invalid credentials
-</code></pre>
-
-<p>なんの認証もかかっていないEcho1だけレスポンスを返します。他はESPで拒否されています。</p>
-
+</code></pre><p>なんの認証もかかっていないEcho1だけレスポンスを返します。他はESPで拒否されています。</p>
 <p>ログを見るとESPで401を返していることがわかります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ kubectl logs -lservice<span class="o">=</span><span class="nb">echo</span> -c esp
-<span class="m">10</span>.52.0.1 - - <span class="o">[</span><span class="m">05</span>/Feb/2018:05:50:59 +0000<span class="o">]</span> <span class="s2">&#34;POST /echo.EchoService/Echo1 HTTP/2.0&#34;</span> <span class="m">200</span> <span class="m">12</span> <span class="s2">&#34;-&#34;</span> <span class="s2">&#34;grpc-go/1.10.0-dev&#34;</span>
-<span class="m">2018</span>/02/05 <span class="m">05</span>:50:59 <span class="o">[</span>warn<span class="o">]</span> <span class="m">9</span><span class="c1">#9: *1 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000001, client: 10.52.0.1, server: , request: &#34;POST /echo.EchoService/Echo1 HTTP/2.0&#34;, host: &#34;35.189.159.64:80&#34;</span>
-<span class="m">2018</span>/02/05 <span class="m">05</span>:50:59<span class="o">[</span>warn<span class="o">]</span><span class="m">9</span><span class="c1">#9: Received non-matching report response service config ID: &#39;&#39;, requested: &#39;2018-02-05r0&#39;</span>
-<span class="m">10</span>.52.0.1 - - <span class="o">[</span><span class="m">05</span>/Feb/2018:05:50:59 +0000<span class="o">]</span> <span class="s2">&#34;POST /echo.EchoService/Echo2 HTTP/2.0&#34;</span> <span class="m">401</span> <span class="m">0</span> <span class="s2">&#34;-&#34;</span> <span class="s2">&#34;grpc-go/1.10.0-dev&#34;</span>
-<span class="m">10</span>.52.0.1 - - <span class="o">[</span><span class="m">05</span>/Feb/2018:05:50:59 +0000<span class="o">]</span> <span class="s2">&#34;POST /echo.EchoService/Echo3 HTTP/2.0&#34;</span> <span class="m">401</span> <span class="m">0</span> <span class="s2">&#34;-&#34;</span> <span class="s2">&#34;grpc-go/1.10.0-dev&#34;</span>
-<span class="m">10</span>.52.0.1 - - <span class="o">[</span><span class="m">05</span>/Feb/2018:05:50:59 +0000<span class="o">]</span> <span class="s2">&#34;POST /echo.EchoService/Echo4 HTTP/2.0&#34;</span> <span class="m">401</span> <span class="m">0</span> <span class="s2">&#34;-&#34;</span> <span class="s2">&#34;grpc-go/1.10.0-dev&#34;</span></code></pre></div>
-<h2 id="apiキーで認証">APIキーで認証</h2>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ kubectl logs -lservice<span class="o">=</span><span class="nb">echo</span> -c esp
+10.52.0.1 - - <span class="o">[</span>05/Feb/2018:05:50:59 +0000<span class="o">]</span> <span class="s2">&#34;POST /echo.EchoService/Echo1 HTTP/2.0&#34;</span> <span class="m">200</span> <span class="m">12</span> <span class="s2">&#34;-&#34;</span> <span class="s2">&#34;grpc-go/1.10.0-dev&#34;</span>
+2018/02/05 05:50:59 <span class="o">[</span>warn<span class="o">]</span> 9#9: *1 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000001, client: 10.52.0.1, server: , request: <span class="s2">&#34;POST /echo.EchoService/Echo1 HTTP/2.0&#34;</span>, host: <span class="s2">&#34;35.189.159.64:80&#34;</span>
+2018/02/05 05:50:59<span class="o">[</span>warn<span class="o">]</span>9#9: Received non-matching report response service config ID: <span class="s1">&#39;&#39;</span>, requested: <span class="s1">&#39;2018-02-05r0&#39;</span>
+10.52.0.1 - - <span class="o">[</span>05/Feb/2018:05:50:59 +0000<span class="o">]</span> <span class="s2">&#34;POST /echo.EchoService/Echo2 HTTP/2.0&#34;</span> <span class="m">401</span> <span class="m">0</span> <span class="s2">&#34;-&#34;</span> <span class="s2">&#34;grpc-go/1.10.0-dev&#34;</span>
+10.52.0.1 - - <span class="o">[</span>05/Feb/2018:05:50:59 +0000<span class="o">]</span> <span class="s2">&#34;POST /echo.EchoService/Echo3 HTTP/2.0&#34;</span> <span class="m">401</span> <span class="m">0</span> <span class="s2">&#34;-&#34;</span> <span class="s2">&#34;grpc-go/1.10.0-dev&#34;</span>
+10.52.0.1 - - <span class="o">[</span>05/Feb/2018:05:50:59 +0000<span class="o">]</span> <span class="s2">&#34;POST /echo.EchoService/Echo4 HTTP/2.0&#34;</span> <span class="m">401</span> <span class="m">0</span> <span class="s2">&#34;-&#34;</span> <span class="s2">&#34;grpc-go/1.10.0-dev&#34;</span>
+</code></pre></div><h2 id="apiキーで認証">APIキーで認証</h2>
 <p>クライアントが認証できるようにしていきます。</p>
-
 <p>まず、APIキーを取得します。コンソールのAPIとサービスの認証情報から、APIキーを作成します。
 <a href="https://console.cloud.google.com/apis/credentials?project=cloud-endpoints-grpc-auth">https://console.cloud.google.com/apis/credentials?project=cloud-endpoints-grpc-auth</a></p>
-
 <p>なんらかの制限をかけるように警告されるので、ここではHTTP リファラーを設定してみます。とりあえず<code>dummy.example.com</code>としておきます。</p>
-
 <p>クライアントのコードを次のように修正します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go:client/main.go" data-lang="go:client/main.go"><span class="c1">// 省略
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go:client/main.go" data-lang="go:client/main.go"><span class="c1">// 省略
 </span><span class="c1"></span>
 <span class="kd">type</span> <span class="nx">credential</span> <span class="kd">struct</span> <span class="p">{</span>
 	<span class="nx">key</span>     <span class="kt">string</span>
@@ -540,25 +488,20 @@ Echo4: failed: rpc error: code = Unauthenticated desc = JWT validation failed: M
 	<span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
 
         <span class="c1">// 省略
-</span><span class="c1"></span><span class="p">}</span></code></pre></div>
-<p>認証情報をリクエストに付加する方法は何通りかありますが、grpcパッケージのAPIを見る限りこれがよさそうな気がします。</p>
-
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>認証情報をリクエストに付加する方法は何通りかありますが、grpcパッケージのAPIを見る限りこれがよさそうな気がします。</p>
 <p>これを実行すると、次のようにAPIキーでの認証が成功していることがわかります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go run *.go -addr<span class="o">=</span><span class="si">${</span><span class="nv">ADDRESS</span><span class="si">}</span>:80 -key<span class="o">=</span><span class="si">${</span><span class="nv">API_KEY</span><span class="si">}</span> -referer<span class="o">=</span>dummy.example.com
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go run *.go -addr<span class="o">=</span><span class="si">${</span><span class="nv">ADDRESS</span><span class="si">}</span>:80 -key<span class="o">=</span><span class="si">${</span><span class="nv">API_KEY</span><span class="si">}</span> -referer<span class="o">=</span>dummy.example.com
 Echo1: succeeded: message:<span class="s2">&#34;Hello&#34;</span>
 Echo2: failed: rpc error: <span class="nv">code</span> <span class="o">=</span> Unauthenticated <span class="nv">desc</span> <span class="o">=</span> JWT validation failed: Missing or invalid credentials
 Echo3: succeeded: message:<span class="s2">&#34;Hello&#34;</span>
-Echo4: failed: rpc error: <span class="nv">code</span> <span class="o">=</span> Unauthenticated <span class="nv">desc</span> <span class="o">=</span> JWT validation failed: Missing or invalid credentials</code></pre></div>
-<p>認証はESPが行うのでサーバのコードは変更不要です。</p>
-
+Echo4: failed: rpc error: <span class="nv">code</span> <span class="o">=</span> Unauthenticated <span class="nv">desc</span> <span class="o">=</span> JWT validation failed: Missing or invalid credentials
+</code></pre></div><p>認証はESPが行うのでサーバのコードは変更不要です。</p>
 <h2 id="サービスアカウントで認証">サービスアカウントで認証</h2>
-
 <p>次にサービスアカウントで認証します。認証にはトークンが必要になるので、まずサービスアカウントの秘密鍵でJSON Web Tokenを生成します。</p>
-
 <p>サービスアカウントの秘密鍵はJSONで生成して<code>client/service_account.json</code>に保存しておいてください。</p>
-
-<p>JWT生成にはPythonスクリプトを使います。このスクリプトは<a href="https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/endpoints/bookstore-grpc/jwt_token_gen.py">Google公式のもの</a>を少し修正しています。公式のものだとIssuerとSubjectが異なるため認証できません。<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></p>
-<div class="highlight"><pre class="chroma"><code class="language-python:client/gen_jwt.py" data-lang="python:client/gen_jwt.py"><span class="kn">import</span> <span class="nn">argparse</span>
+<p>JWT生成にはPythonスクリプトを使います。このスクリプトは<a href="https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/endpoints/bookstore-grpc/jwt_token_gen.py">Google公式のもの</a>を少し修正しています。公式のものだとIssuerとSubjectが異なるため認証できません。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python:client/gen_jwt.py" data-lang="python:client/gen_jwt.py"><span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
@@ -601,14 +544,13 @@ Echo4: failed: rpc error: <span class="nv">code</span> <span class="o">=</span> 
 
     <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 
-    <span class="n">signed_jwt</span> <span class="o">=</span> <span class="n">generate_jwt</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="nb">file</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">issuer</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">audiences</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">signed_jwt</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span></code></pre></div>
-<p>実行します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">JWT</span><span class="o">=</span><span class="k">$(</span>python gen_jwt.py --file service_account.json --audience echo.endpoints.cloud-endpoints-grpc-auth.cloud.goog --issuer client1@cloud-endpoints-grpc-auth.iam.serviceaccount.com<span class="k">)</span></code></pre></div>
-<p><code>audience</code>はCloud Endpointsのサービス名 (サービス設定の<code>name</code>)、<code>issuer</code>はサービス設定で設定した<code>issuer</code>と一致する必要があります。</p>
-
+    <span class="n">signed_jwt</span> <span class="o">=</span> <span class="n">generate_jwt</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">file</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">issuer</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">audiences</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">signed_jwt</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+</code></pre></div><p>実行します。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">JWT</span><span class="o">=</span><span class="k">$(</span>python gen_jwt.py --file service_account.json --audience echo.endpoints.cloud-endpoints-grpc-auth.cloud.goog --issuer client1@cloud-endpoints-grpc-auth.iam.serviceaccount.com<span class="k">)</span>
+</code></pre></div><p><code>audience</code>はCloud Endpointsのサービス名 (サービス設定の<code>name</code>)、<code>issuer</code>はサービス設定で設定した<code>issuer</code>と一致する必要があります。</p>
 <p>クライアントを次のように修正します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go:client/main.go" data-lang="go:client/main.go"><span class="c1">// 適当に省略
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go:client/main.go" data-lang="go:client/main.go"><span class="c1">// 適当に省略
 </span><span class="c1"></span>
 <span class="kd">type</span> <span class="nx">credential</span> <span class="kd">struct</span> <span class="p">{</span>
 	<span class="nx">key</span>     <span class="kt">string</span>
@@ -633,28 +575,22 @@ Echo4: failed: rpc error: <span class="nv">code</span> <span class="o">=</span> 
 		<span class="nx">referer</span><span class="p">:</span> <span class="nx">referer</span><span class="p">,</span>
 		<span class="nx">jwt</span><span class="p">:</span>     <span class="nx">jwt</span><span class="p">,</span>
 	<span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<p>これを実行するとすべての認証が成功します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go run *.go -addr<span class="o">=</span><span class="si">${</span><span class="nv">ADDRESS</span><span class="si">}</span>:80 -key<span class="o">=</span><span class="si">${</span><span class="nv">API_KEY</span><span class="si">}</span> -referer<span class="o">=</span>dummy.example.com -jwt<span class="o">=</span><span class="si">${</span><span class="nv">JWT</span><span class="si">}</span>
+<span class="p">}</span>
+</code></pre></div><p>これを実行するとすべての認証が成功します。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">go run *.go -addr<span class="o">=</span><span class="si">${</span><span class="nv">ADDRESS</span><span class="si">}</span>:80 -key<span class="o">=</span><span class="si">${</span><span class="nv">API_KEY</span><span class="si">}</span> -referer<span class="o">=</span>dummy.example.com -jwt<span class="o">=</span><span class="si">${</span><span class="nv">JWT</span><span class="si">}</span>
 Echo1: succeeded: message:<span class="s2">&#34;Hello&#34;</span>
 Echo2: succeeded: message:<span class="s2">&#34;Hello&#34;</span>
 Echo3: succeeded: message:<span class="s2">&#34;Hello&#34;</span>
-Echo4: succeeded: message:<span class="s2">&#34;Hello&#34;</span></code></pre></div>
-<p>サーバのログを見ると、それぞれの認証でMetadataがどうなっているか確認できます。JWTやAPIキーがそのまま格納されるようです。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl logs -lservice<span class="o">=</span><span class="nb">echo</span> -c echo</code></pre></div>
-<h1 id="認証の組合せ">認証の組合せ</h1>
-
+Echo4: succeeded: message:<span class="s2">&#34;Hello&#34;</span>
+</code></pre></div><p>サーバのログを見ると、それぞれの認証でMetadataがどうなっているか確認できます。JWTやAPIキーがそのまま格納されるようです。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">kubectl logs -lservice<span class="o">=</span><span class="nb">echo</span> -c <span class="nb">echo</span>
+</code></pre></div><h1 id="認証の組合せ">認証の組合せ</h1>
 <p>確認するため雑な表にしてみました。</p>
-
-<p><img width="994" alt="スクリーンショット 2018-02-05 16.15.16.png (270.9 kB)" src="/images/2018/02/05/1.png"></p>
-
+<img width="994" alt="スクリーンショット 2018-02-05 16.15.16.png (270.9 kB)" src="/images/2018/02/05/1.png">
 <p>どちらも認証がかかっている場合は、どちらかが不正だとエラーになりました。また、両方不正な場合はサービスアカウント認証のエラーが返ってきました。</p>
-
 <p>APIキー、JWTともにフォーマットが不正だとその旨のエラーが返ってきます。</p>
-
 <p>APIキーの認証エラーは次のような感じで結構細かくメッセージが返ってきました。</p>
-
-<pre><code># フォーマット不正
+<pre tabindex="0"><code># フォーマット不正
 code = InvalidArgument desc = API key not valid. Please pass a valid API key.
 
 # 違うプロジェクトのAPIキー
@@ -662,21 +598,37 @@ code = PermissionDenied desc = API echo.endpoints.cloud-endpoints-grpc-auth.clou
 
 # 削除した
 code = InvalidArgument desc = API key expired. Please renew the API key.
-</code></pre>
-
-<h1 id="おわりに">おわりに</h1>
-
+</code></pre><h1 id="おわりに">おわりに</h1>
 <p>サンプルがなかったりドキュメントが間違ってたりしますが、認証を自分で持たなくていいのはとても楽ですね。</p>
-<div class="footnotes">
-
-<hr />
-
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1"><a href="https://github.com/grpc/grpc/blob/master/src/core/lib/security/credentials/jwt/jwt_verifier.cc#L298-L306">https://github.com/grpc/grpc/blob/master/src/core/lib/security/credentials/jwt/jwt_verifier.cc#L298-L306</a>
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://github.com/grpc/grpc/blob/master/src/core/lib/security/credentials/jwt/jwt_verifier.cc#L298-L306">https://github.com/grpc/grpc/blob/master/src/core/lib/security/credentials/jwt/jwt_verifier.cc#L298-L306</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#apiキー">APIキー</a></li>
+    <li><a href="#認証スキーム">認証スキーム</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#サービスの定義実装">サービスの定義・実装</a></li>
+    <li><a href="#cloud-endpointsのデプロイ">Cloud Endpointsのデプロイ</a></li>
+    <li><a href="#apiのデプロイ">APIのデプロイ</a></li>
+    <li><a href="#apiキーで認証">APIキーで認証</a></li>
+    <li><a href="#サービスアカウントで認証">サービスアカウントで認証</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

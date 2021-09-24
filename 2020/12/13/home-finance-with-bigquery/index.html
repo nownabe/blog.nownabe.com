@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,177 +48,130 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2020/12/13/home-finance-with-bigquery/">我が家の BigQuery による台所事情分析</a></h2>
     <span class="date">Posted on Dec 13, 2020</span>
   </div>
-  <div class="body">
-    
-
-<p><a href="/images/2020/12/13/og.png"><img src="/images/2020/12/13/og.png" alt="dashboard" /></a></p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p><a href="/images/2020/12/13/og.png"><img src="/images/2020/12/13/og.png" alt="dashboard"></a></p>
 <p>弊家では銀行やクレジットカードの明細を BigQuery に取り込んでダッシュボードを作ったりしています。
 また、そのために作った BigQuery 向けの Go 製 ETL フレームワークを OSS として公開しました。
 本記事ではざっくりどんなもんかを紹介して、どう作るのかを説明します。</p>
-
 <p><a href="https://qiita.com/advent-calendar/2020/gcp">Google Cloud Platform Advent Calendar 2020</a> の 13 日目の記事です。</p>
-
 <p><a href="https://medium.com/google-cloud-jp/google-cloud-japan-customer-engineer-advent-calendar-2020-1c78e07e1871">Google Cloud Japan の Customer Engineer の Advent Calendar</a> もぜひご覧ください。</p>
-
 <h2 id="tl-dr">TL; DR</h2>
-
 <ul>
 <li>明細が BigQuery にあると、可視化もできるしアラートも出せるし、まぁなんでもできて便利</li>
 <li>銀行明細レベルのデータならほぼ無料で保存、ETL、分析できる</li>
 <li>ETL フレームワーク <a href="https://github.com/nownabe/go-bqloader">bqloader</a> を OSS として公開したから使ってくれよな 💪</li>
 </ul>
-
 <p>説明しないこと:</p>
-
 <ul>
 <li>我が家の台所事情</li>
 <li>BigQuery のクエリの書き方</li>
 </ul>
-
 <h2 id="対象読者">対象読者</h2>
-
 <ul>
 <li>GCP を触ったことがある人</li>
 <li>お金まわりを分析したいと思っている人</li>
 <li>身近な題材で BigQuery を触ってみたい人</li>
 </ul>
-
 <h2 id="ざっくり紹介">ざっくり紹介</h2>
-
 <h3 id="何が嬉しいの">何が嬉しいの？</h3>
-
 <p>BigQuery でできることができるようになります。
 で終わらせるのもアレなので、弊家でのユースケースを列挙します。</p>
-
 <ul>
 <li>ダッシュボード
-
 <ul>
 <li>資産推移</li>
 <li>出費分析</li>
 <li>でかい出費ランキング</li>
-</ul></li>
+</ul>
+</li>
 <li>アラート (銀行残高、クレジットカード)</li>
 <li>予算管理</li>
 </ul>
-
 <p>例えばダッシュボードはこんな感じです。(記事用に加工してます)</p>
-
-<p><a href="/images/2020/12/13/dashboard.png"><img src="/images/2020/12/13/dashboard.png" alt="dashboard" /></a></p>
-
+<p><a href="/images/2020/12/13/dashboard.png"><img src="/images/2020/12/13/dashboard.png" alt="dashboard"></a></p>
 <p>BigQuery を使うことで、手動でやってたことを自動化できるようになったり、今までできなかったことができるようになったりしました。
 SQL を書けばほしいデータをほしい形ですぐに手に入れることができて、それを簡単に様々なシステムと連携できるので超便利です。
 おかげで自動化もできたし、良い感じのダッシュボードも作ることができて節約を頑張れそうです。</p>
-
 <h3 id="money-forward-でええんちゃうの">Money Forward でええんちゃうの？</h3>
-
 <p>いいです 😂</p>
-
 <p>本記事の内容は劣化版 Money Forward の再実装と言える部分もあります。</p>
-
 <p>Money Forward はとてもいいサービスなので弊家でも使っていますが、かゆいところに手が届かなかったり、使いたい機能が有料だったりしたので自分でも作りました。</p>
-
 <p>自分で作ると手間はかかりますが Money Forward 以上のやりたいことがだいたい実現できるようになります。
 BigQuery でクエリを書いて好きな結果を得られるというのは大きいですね。</p>
-
 <h3 id="アーキテクチャ">アーキテクチャ</h3>
-
 <p>こんな感じです。</p>
-
-<p><a href="/images/2020/12/13/architecture.png"><img src="/images/2020/12/13/architecture.png" alt="architecture" /></a></p>
-
+<p><a href="/images/2020/12/13/architecture.png"><img src="/images/2020/12/13/architecture.png" alt="architecture"></a></p>
 <h3 id="課題">課題</h3>
-
 <p>大きな課題が 2 点あります。</p>
-
 <ul>
 <li>CSV のダウンロード/アップロードが手動
-
 <ul>
-<li>銀行やクレジットカードの明細の CSV を手動でダウンロードしてアップロードしています<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></li>
-</ul></li>
+<li>銀行やクレジットカードの明細の CSV を手動でダウンロードしてアップロードしています<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></li>
+</ul>
+</li>
 <li>リアルタイム性がない
-
 <ul>
 <li>CSV を月イチで手動アップロードしてるので、リアルタイム性がありません</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>以前はスプレッドシートに手入力していた部分もあったので自分としては手間は減ってるし、できることは増えたし、お金はかかっていないしでハッピーなんですがめんどくささは残ります。
 銀行が API 公開してくれたらいいんですけどね。</p>
-
 <h3 id="無料なの">無料なの？</h3>
-
 <p>無料ではないです。毎月 1 円請求が発生しています。
-Cloud Functions のコンテナイメージを管理している Container Registry のバックエンドの Cloud Storage に料金がかかっています。<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup></p>
-
+Cloud Functions のコンテナイメージを管理している Container Registry のバックエンドの Cloud Storage に料金がかかっています。<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
 <p>下の画像は実際に弊家で使っているプロジェクトの Billing Report です。
 (Subtotal は 4 ヶ月分が加算されて 4 円と表示されています)</p>
-
-<p><a href="/images/2020/12/13/billing_report.png"><img src="/images/2020/12/13/billing_report.png" alt="billing report" /></a></p>
-
+<p><a href="/images/2020/12/13/billing_report.png"><img src="/images/2020/12/13/billing_report.png" alt="billing report"></a></p>
 <p>Cloud Storage や Cloud Functions や BigQuery は<a href="https://cloud.google.com/free">無料枠</a>におさまっています。
 もし既に無料枠を使い切っている場合は料金が発生します。それぞれ以下のように無料枠があります。</p>
-
 <ul>
 <li>Cloud Storage: 5GB-月 (us-east1, us-west1, us-central1)</li>
 <li>Cloud Functions: 200 万回/月</li>
 <li>BigQuery: 1TB クエリ/月</li>
 </ul>
-
 <p>Cloud Storage の無料枠はリージョンが限定されています。
 リージョンが異なると余計なネットワーク料金が発生したりするのでリージョンを揃えておくのもポイントです。
 弊家ではすべてを使えるリージョンとして <code>us-east1</code> を選択しました。</p>
-
 <p>銀行の明細は 1 ヶ月分でせいぜい数 KB、クエリもたかがしれてるのでなかなか無料枠を超えることはなさそうです。</p>
-
 <h2 id="etl-フレームワーク-bqloader">ETL フレームワーク bqloader</h2>
-
 <h3 id="bqloader-概要">bqloader 概要</h3>
-
 <p><a href="https://github.com/nownabe/go-bqloader">bqloader</a>は Go 製のシンプルな ETL フレームワークです。
 弊家の ETL をフレームワークとして切り出したものになります。
 以下のような特徴があります。</p>
-
 <ul>
 <li>1 行を 1 行への変換に特化</li>
 <li>ユーザは行単位の変換ロジックのみ実装</li>
 <li>簡単な設定で文字コード変換、不要な行のスキップ、成功・失敗通知が可能</li>
-<li>今のところ Cloud Storage、Cloud Functions、BigQuery 専用<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup></li>
+<li>今のところ Cloud Storage、Cloud Functions、BigQuery 専用<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></li>
 <li>1 つの Function で複数種のデータに対応</li>
 </ul>
-
 <p>Go で実装することになるので Go の知識はあった方がいいですが、なくても Hello, world ぐらいできればサンプル見ながら実装できるんじゃないでしょうか。</p>
-
 <p>以下のような利点があります。</p>
-
 <ul>
 <li>ほぼ無料で使える</li>
 <li>必要最低限の機能しかない</li>
 <li>Go で書ける</li>
 <li>複数種のデータの ETL を一箇所で管理できる</li>
 </ul>
-
 <h3 id="bqloader-使い方">bqloader 使い方</h3>
-
 <p><a href="https://github.com/nownabe/go-bqloader/tree/main/examples/quickstart">サンプルプロジェクト</a>を見てもらうのがはやいです。
 このサンプルの中で Service Account の作成や Function のデプロイ、BigQuery への ETL まで一通りカバーしています。</p>
-
 <p>以下ではフレームワークのさわりだけ丁寧に説明していきます。
 詳しくは<a href="https://pkg.go.dev/go.nownabe.dev/bqloader">godoc</a>やサンプルを見てください。</p>
-
 <p>まず import します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="s">&#34;go.nownabe.dev/bqloader&#34;</span></code></pre></div>
-<p>保存先テーブルごとに <code>bqloader.Handler</code> を設定します。
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="s">&#34;go.nownabe.dev/bqloader&#34;</span>
+</code></pre></div><p>保存先テーブルごとに <code>bqloader.Handler</code> を設定します。
 Cloud Storage にアップロードされたファイルが Handler の Pattern に一致する場合に処理されてテーブルにロードされます。
 Handler を複数定義すればひとつの Pattern に複数の Handler を対応させることもできます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">handler</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">bqloader</span><span class="p">.</span><span class="nx">Handler</span><span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">handler</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">bqloader</span><span class="p">.</span><span class="nx">Handler</span><span class="p">{</span>
   <span class="nx">Name</span><span class="p">:</span>     <span class="s">&#34;main_bank&#34;</span><span class="p">,</span>          <span class="c1">// 通知などで使われる
 </span><span class="c1"></span>  <span class="nx">Encoding</span><span class="p">:</span> <span class="nx">japanese</span><span class="p">.</span><span class="nx">ShiftJIS</span><span class="p">,</span>    <span class="c1">// 入力ファイルをShiftJISとして扱う
 </span><span class="c1"></span>  <span class="nx">Parser</span><span class="p">:</span>   <span class="nx">bqloader</span><span class="p">.</span><span class="nf">CSVParser</span><span class="p">(),</span> <span class="c1">// 入力ファイルをCSVとして扱う
@@ -237,9 +190,9 @@ Handler を複数定義すればひとつの Pattern に複数の Handler を対
   <span class="c1">// 後述
 </span><span class="c1"></span>  <span class="nx">Notifier</span><span class="p">:</span>  <span class="nx">notifier</span><span class="p">,</span>
   <span class="nx">Projector</span><span class="p">:</span> <span class="nx">projector</span><span class="p">,</span>
-<span class="p">}</span></code></pre></div>
-<p>変換のコアは<code>projector</code>です。<code>projector</code>は行単位の変換を実現する関数です。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="cm">/*
+<span class="p">}</span>
+</code></pre></div><p>変換のコアは<code>projector</code>です。<code>projector</code>は行単位の変換を実現する関数です。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="cm">/*
 </span><span class="cm">  例えば次のようなCSVの各行をBigQueryが理解できる形式に変換する。
 </span><span class="cm">
 </span><span class="cm">  日付,内容,出金金額,入金金額,残高
@@ -262,14 +215,14 @@ Handler を複数定義すればひとつの Pattern に複数の Handler を対
   <span class="nx">row</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">ReplaceAll</span><span class="p">(</span><span class="nx">row</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="s">&#34;,&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
 
   <span class="k">return</span> <span class="nx">row</span><span class="p">,</span> <span class="kc">nil</span>
-<span class="p">}</span></code></pre></div>
-<p><code>notifier</code>は通知です。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">notifier</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">bqloader</span><span class="p">.</span><span class="nx">SlackNotifier</span><span class="p">{</span>
+<span class="p">}</span>
+</code></pre></div><p><code>notifier</code>は通知です。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">notifier</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">bqloader</span><span class="p">.</span><span class="nx">SlackNotifier</span><span class="p">{</span>
   <span class="nx">Token</span><span class="p">:</span>   <span class="s">&#34;xxxx&#34;</span><span class="p">,</span>
   <span class="nx">Channel</span><span class="p">:</span> <span class="s">&#34;#bqloader&#34;</span><span class="p">,</span>
-<span class="p">}</span></code></pre></div>
-<p>この Handler を利用して Cloud Functions のエントリーポイントとなる関数を実装します。<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup></p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">MyFunc</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">e</span> <span class="nx">bqloader</span><span class="p">.</span><span class="nx">Event</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+<span class="p">}</span>
+</code></pre></div><p>この Handler を利用して Cloud Functions のエントリーポイントとなる関数を実装します。<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">MyFunc</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">e</span> <span class="nx">bqloader</span><span class="p">.</span><span class="nx">Event</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
   <span class="nx">loader</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">bqloader</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
 
   <span class="c1">// 上述のmain_bank Handler
@@ -280,23 +233,16 @@ Handler を複数定義すればひとつの Pattern に複数の Handler を対
 
   <span class="c1">// イベントを処理する
 </span><span class="c1"></span>  <span class="k">return</span> <span class="nx">loader</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span>
-<span class="p">}</span></code></pre></div>
-<p>Cloud Storage へのファイルアップロードなどのイベントで実行されます。<sup class="footnote-ref" id="fnref:4"><a href="#fn:4">4</a></sup></p>
-
+<span class="p">}</span>
+</code></pre></div><p>Cloud Storage へのファイルアップロードなどのイベントで実行されます。<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
 <p>こんな感じで bqloader による関数を Cloud Functions にデプロイして、対応するバケットにファイルをアップロードすればデータが BigQuery にロードされます。</p>
-
 <h2 id="bigquery-による台所事情分析の始め方">BigQuery による台所事情分析の始め方</h2>
-
 <p>では銀行の明細を BigQuery にロードする ETL システムを構築してダッシュボードを作ってみましょう。</p>
-
 <p>銀行の明細は<a href="https://docs.google.com/spreadsheets/d/1vTK8w2pA4Rrdi1fTBB9nq_dZ9VOIdGW35CdWQxzfWc4/edit?usp=sharing">このサンプル</a>を利用します。このデータを多くの銀行に倣って ShiftJIS の CSV として扱います。</p>
-
 <p>前提として、Google Cloud のプロジェクトが必要になるので用意してください。
 以下ではプロジェクト ID が <code>GCP_PROJECT</code> 環境変数にあるものとして説明します。
 また、Go 環境と<a href="https://cloud.google.com/sdk/docs/install">Google Cloud SDK</a>はセットアップ済みとします。</p>
-
 <p>作成するリソースはそれぞれ次の名前を使用します。</p>
-
 <ul>
 <li>Service Account: <code>bqloader</code></li>
 <li>BigQuery Dataset: <code>bqloader_dataset</code></li>
@@ -304,23 +250,19 @@ Handler を複数定義すればひとつの Pattern に複数の Handler を対
 <li>Cloud Storage Bucket: <code>gs://$GCP_PROJECT-source</code></li>
 <li>Cloud Functions: <code>bqloader-func</code></li>
 </ul>
-
 <p>今回ダッシュボードには無料で簡単に使える Data Studio を使います。</p>
-
 <h3 id="service-account-作成">Service Account 作成</h3>
-
 <p>Cloud Functions 用の Service Account を作ります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gcloud iam service-accounts create bqloader --project <span class="nv">$GCP_PROJECT</span></code></pre></div>
-<p>後で何回か使うので、Service Account の環境変数も設定しておきます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">SERVICE_ACCOUNT</span><span class="o">=</span>bqloader@<span class="nv">$GCP_PROJECT</span>.iam.gserviceaccount.com</code></pre></div>
-<p>BigQuery の Job を実行する権限が必要になるので <code>roles/bigquery.jobUser</code> Role を付与します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gcloud projects add-iam-policy-binding <span class="nv">$GCP_PROJECT</span> <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">gcloud iam service-accounts create bqloader --project <span class="nv">$GCP_PROJECT</span>
+</code></pre></div><p>後で何回か使うので、Service Account の環境変数も設定しておきます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">SERVICE_ACCOUNT</span><span class="o">=</span>bqloader@<span class="nv">$GCP_PROJECT</span>.iam.gserviceaccount.com
+</code></pre></div><p>BigQuery の Job を実行する権限が必要になるので <code>roles/bigquery.jobUser</code> Role を付与します。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">gcloud projects add-iam-policy-binding <span class="nv">$GCP_PROJECT</span> <span class="se">\
 </span><span class="se"></span>  --member serviceAccount:<span class="nv">$SERVICE_ACCOUNT</span> <span class="se">\
-</span><span class="se"></span>  --role roles/bigquery.jobUser</code></pre></div>
-<h3 id="bigquery-table-作成">BigQuery Table 作成</h3>
-
+</span><span class="se"></span>  --role roles/bigquery.jobUser
+</code></pre></div><h3 id="bigquery-table-作成">BigQuery Table 作成</h3>
 <p>スキーマの JSON を作成します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cat <span class="s">&lt;&lt;EOF &gt;schema.json
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">cat <span class="s">&lt;&lt;EOF &gt;schema.json
 </span><span class="s">[
 </span><span class="s">  {
 </span><span class="s">    &#34;name&#34;: &#34;date&#34;,
@@ -348,32 +290,30 @@ Handler を複数定義すればひとつの Pattern に複数の Handler を対
 </span><span class="s">    &#34;mode&#34;: &#34;REQUIRED&#34;
 </span><span class="s">  }
 </span><span class="s">]
-</span><span class="s">EOF</span></code></pre></div>
-<p>BigQuery の Dataset と Table を作成します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Dataset作成</span>
+</span><span class="s">EOF</span>
+</code></pre></div><p>BigQuery の Dataset と Table を作成します。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Dataset作成</span>
 bq --location us-east1 mk --dataset <span class="nv">$GCP_PROJECT</span>:bqloader_dataset
 
 <span class="c1"># Table作成</span>
-bq mk --table <span class="nv">$GCP_PROJECT</span>:bqloader_dataset.main_bank schema.json</code></pre></div>
-<p>先程作った Service Account に書き込み権限を付与します。<sup class="footnote-ref" id="fnref:5"><a href="#fn:5">5</a></sup></p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">bq add-iam-policy-binding <span class="se">\
+bq mk --table <span class="nv">$GCP_PROJECT</span>:bqloader_dataset.main_bank schema.json
+</code></pre></div><p>先程作った Service Account に書き込み権限を付与します。<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">bq add-iam-policy-binding <span class="se">\
 </span><span class="se"></span>  --member serviceAccount:<span class="nv">$SERVICE_ACCOUNT</span> <span class="se">\
 </span><span class="se"></span>  --role roles/bigquery.dataEditor <span class="se">\
-</span><span class="se"></span>  <span class="nv">$GCP_PROJECT</span>:bqloader_dataset.main_bank</code></pre></div>
-<h3 id="cloud-storage-bucket-作成">Cloud Storage Bucket 作成</h3>
-
+</span><span class="se"></span>  <span class="nv">$GCP_PROJECT</span>:bqloader_dataset.main_bank
+</code></pre></div><h3 id="cloud-storage-bucket-作成">Cloud Storage Bucket 作成</h3>
 <p>生データを保存する Bucket を作成します。
 Cloud Functions のトリガーとなるイベントを発行するソースにもなります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gsutil mb -p <span class="nv">$GCP_PROJECT</span> -l US-EAST1 gs://<span class="nv">$GCP_PROJECT</span>-source</code></pre></div>
-<p>Service Account に読み込み権限を付与します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gsutil iam ch <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">gsutil mb -p <span class="nv">$GCP_PROJECT</span> -l US-EAST1 gs://<span class="nv">$GCP_PROJECT</span>-source
+</code></pre></div><p>Service Account に読み込み権限を付与します。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">gsutil iam ch <span class="se">\
 </span><span class="se"></span>  serviceAccount:<span class="si">${</span><span class="nv">SERVICE_ACCOUNT</span><span class="si">}</span>:roles/storage.objectViewer <span class="se">\
-</span><span class="se"></span>  gs://<span class="nv">$GCP_PROJECT</span>-source</code></pre></div>
-<h3 id="cloud-functions-実装">Cloud Functions 実装</h3>
-
+</span><span class="se"></span>  gs://<span class="nv">$GCP_PROJECT</span>-source
+</code></pre></div><h3 id="cloud-functions-実装">Cloud Functions 実装</h3>
 <p>まずは Handler を実装します。
 今回は 1 つですが、Handler が増えたときにメンテしやすいように Handler ごとにファイルをわけておきます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// main_bank_handler.go
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// main_bank_handler.go
 </span><span class="c1"></span>
 <span class="kn">package</span> <span class="nx">myfunc</span>
 
@@ -424,9 +364,9 @@ Cloud Functions のトリガーとなるイベントを発行するソースに�
                 <span class="nx">Dataset</span><span class="p">:</span> <span class="s">&#34;bqloader_dataset&#34;</span><span class="p">,</span>
                 <span class="nx">Table</span><span class="p">:</span>   <span class="s">&#34;main_bank&#34;</span><span class="p">,</span>
         <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<p>エントリーポイントとなる関数を実装します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// func.go
+<span class="p">}</span>
+</code></pre></div><p>エントリーポイントとなる関数を実装します。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// func.go
 </span><span class="c1"></span>
 <span class="kn">package</span> <span class="nx">myfunc</span>
 
@@ -445,19 +385,18 @@ Cloud Functions のトリガーとなるイベントを発行するソースに�
 
 <span class="kd">func</span> <span class="nf">MyFunc</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">e</span> <span class="nx">bqloader</span><span class="p">.</span><span class="nx">Event</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">loader</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span>
-<span class="p">}</span></code></pre></div>
-<p>Cloud Functions は Go Modules を理解してくれるので go.mod を作ります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go mod init
-go mod tidy</code></pre></div>
-<h3 id="function-デプロイ">Function デプロイ</h3>
-
+<span class="p">}</span>
+</code></pre></div><p>Cloud Functions は Go Modules を理解してくれるので go.mod を作ります。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">go mod init
+go mod tidy
+</code></pre></div><h3 id="function-デプロイ">Function デプロイ</h3>
 <p>必要な API を有効化します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gcloud services <span class="nb">enable</span> <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">gcloud services <span class="nb">enable</span> <span class="se">\
 </span><span class="se"></span>  --project <span class="nv">$GCP_PROJECT</span> <span class="se">\
 </span><span class="se"></span>  cloudfunctions.googleapis.com <span class="se">\
-</span><span class="se"></span>  cloudbuild.googleapis.com</code></pre></div>
-<p>デプロイします。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gcloud functions deploy bqloader-func <span class="se">\
+</span><span class="se"></span>  cloudbuild.googleapis.com
+</code></pre></div><p>デプロイします。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">gcloud functions deploy bqloader-func <span class="se">\
 </span><span class="se"></span>  --project <span class="nv">$GCP_PROJECT</span> <span class="se">\
 </span><span class="se"></span>  --region us-east1 <span class="se">\
 </span><span class="se"></span>  --runtime go113 <span class="se">\
@@ -465,55 +404,91 @@ go mod tidy</code></pre></div>
 </span><span class="se"></span>  --trigger-event google.storage.object.finalize <span class="se">\
 </span><span class="se"></span>  --entry-point MyFunc <span class="se">\
 </span><span class="se"></span>  --service-account <span class="nv">$SERVICE_ACCOUNT</span> <span class="se">\
-</span><span class="se"></span>  --set-env-vars <span class="s2">&#34;GCP_PROJECT=</span><span class="nv">$GCP_PROJECT</span><span class="s2">&#34;</span></code></pre></div>
-<h3 id="csv-アップロード">CSV アップロード</h3>
-
+</span><span class="se"></span>  --set-env-vars <span class="s2">&#34;GCP_PROJECT=</span><span class="nv">$GCP_PROJECT</span><span class="s2">&#34;</span>
+</code></pre></div><h3 id="csv-アップロード">CSV アップロード</h3>
 <p>CSV ファイルをアップロードして、Cloud Functions にデプロイした bqloader を起動します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">curl https://blog.nownabe.com/files/2020/12/13/sample.csv <span class="se">\
-</span><span class="se"></span>  <span class="p">|</span> gsutil cp - gs://<span class="nv">$GCP_PROJECT</span>-source/main_bank/sample.csv</code></pre></div>
-<h3 id="bigquery-確認">BigQuery 確認</h3>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">curl https://blog.nownabe.com/files/2020/12/13/sample.csv <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> gsutil cp - gs://<span class="nv">$GCP_PROJECT</span>-source/main_bank/sample.csv
+</code></pre></div><h3 id="bigquery-確認">BigQuery 確認</h3>
 <p>うまくいけば、ShiftJIS の銀行明細 CSV がいい感じに変換されて BigQuery にロードされています。
 bq コマンドで確認します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">bq --project_id <span class="nv">$GCP_PROJECT</span> <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">bq --project_id <span class="nv">$GCP_PROJECT</span> <span class="se">\
 </span><span class="se"></span>  query --nouse_legacy_sql <span class="se">\
-</span><span class="se"></span>  <span class="s2">&#34;SELECT * FROM </span><span class="nv">$GCP_PROJECT</span><span class="s2">.bqloader_dataset.main_bank LIMIT 5&#34;</span></code></pre></div>
-<h3 id="ダッシュボード作成">ダッシュボード作成</h3>
-
-<p>最後に<a href="https://datastudio.google.com/">Data Studio</a><sup class="footnote-ref" id="fnref:6"><a href="#fn:6">6</a></sup>でダッシュボードを作成します。
+</span><span class="se"></span>  <span class="s2">&#34;SELECT * FROM </span><span class="nv">$GCP_PROJECT</span><span class="s2">.bqloader_dataset.main_bank LIMIT 5&#34;</span>
+</code></pre></div><h3 id="ダッシュボード作成">ダッシュボード作成</h3>
+<p>最後に<a href="https://datastudio.google.com/">Data Studio</a><sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>でダッシュボードを作成します。
 が、Data Studio は操作が GUI で説明がめんどくさいのでフィーリングでやってみてください。
 画面をポチポチやっていけば、なんとなく BigQuery の銀行明細データを読み込んでグラフが作れそうな雰囲気は感じてもらえると思います。</p>
-
 <p>適当ですがこんな感じのダッシュボードを作れます。</p>
-
-<p><a href="/images/2020/12/13/datastudio.png"><img src="/images/2020/12/13/datastudio.png" alt="data studio" /></a></p>
-
+<p><a href="/images/2020/12/13/datastudio.png"><img src="/images/2020/12/13/datastudio.png" alt="data studio"></a></p>
 <h2 id="おわりに">おわりに</h2>
-
 <p>やってみると意外と簡単で楽しいのでぜひやってみてください。
 弊家では今後もどんどんデータを増やして Data Driven な家庭を目指していきます。</p>
-
-<p>あ、<a href="https://github.com/nownabe/go-bqloader">nownabe/go-bqloader</a> に Star くれると嬉しいです！⭐️</p>
-<div class="footnotes">
-
-<hr />
-
+<p>あ、<a href="https://github.com/nownabe/go-bqloader">nownabe/go-bqloader</a> に Star くれると嬉しいです！⭐</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1">アップロードはコマンド一発 <code>gsutil rsync</code> なので楽なんですが。
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-<li id="fn:2">コンテナイメージは Cloud Functions によって古いものは自動で削除されるので、何回デプロイしても 1 円で済むと予想しています。
- <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
-<li id="fn:3">実際使うときはエラー処理とかちゃんとしましょう。<a href="https://github.com/nownabe/go-bqloader/blob/main/examples/quickstart/bqload.go">参考</a>
- <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
-<li id="fn:4">イベントについての詳細は<a href="https://cloud.google.com/functions/docs/calling/storage">Cloud Functions のドキュメント</a>を参照してください。
- <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
-<li id="fn:5"><code>bq add-iam-policy-binding</code> でエラーが出る場合は <code>gcloud components update</code> してみてください。
- <a class="footnote-return" href="#fnref:5"><sup>[return]</sup></a></li>
-<li id="fn:6">大人の事情で日本語だとデータポータルになってます。
- <a class="footnote-return" href="#fnref:6"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p>アップロードはコマンド一発 <code>gsutil rsync</code> なので楽なんですが。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>コンテナイメージは Cloud Functions によって古いものは自動で削除されるので、何回デプロイしても 1 円で済むと予想しています。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>Pull Request お待ちしています！&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p>イベントについての詳細は<a href="https://cloud.google.com/functions/docs/calling/storage">Cloud Functions のドキュメント</a>を参照してください。&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5" role="doc-endnote">
+<p><code>bq add-iam-policy-binding</code> でエラーが出る場合は <code>gcloud components update</code> してみてください。&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6" role="doc-endnote">
+<p>大人の事情で日本語だとデータポータルになってます。&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tl-dr">TL; DR</a></li>
+    <li><a href="#対象読者">対象読者</a></li>
+    <li><a href="#ざっくり紹介">ざっくり紹介</a>
+      <ul>
+        <li><a href="#何が嬉しいの">何が嬉しいの？</a></li>
+        <li><a href="#money-forward-でええんちゃうの">Money Forward でええんちゃうの？</a></li>
+        <li><a href="#アーキテクチャ">アーキテクチャ</a></li>
+        <li><a href="#課題">課題</a></li>
+        <li><a href="#無料なの">無料なの？</a></li>
+      </ul>
+    </li>
+    <li><a href="#etl-フレームワーク-bqloader">ETL フレームワーク bqloader</a>
+      <ul>
+        <li><a href="#bqloader-概要">bqloader 概要</a></li>
+        <li><a href="#bqloader-使い方">bqloader 使い方</a></li>
+      </ul>
+    </li>
+    <li><a href="#bigquery-による台所事情分析の始め方">BigQuery による台所事情分析の始め方</a>
+      <ul>
+        <li><a href="#service-account-作成">Service Account 作成</a></li>
+        <li><a href="#bigquery-table-作成">BigQuery Table 作成</a></li>
+        <li><a href="#cloud-storage-bucket-作成">Cloud Storage Bucket 作成</a></li>
+        <li><a href="#cloud-functions-実装">Cloud Functions 実装</a></li>
+        <li><a href="#function-デプロイ">Function デプロイ</a></li>
+        <li><a href="#csv-アップロード">CSV アップロード</a></li>
+        <li><a href="#bigquery-確認">BigQuery 確認</a></li>
+        <li><a href="#ダッシュボード作成">ダッシュボード作成</a></li>
+      </ul>
+    </li>
+    <li><a href="#おわりに">おわりに</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

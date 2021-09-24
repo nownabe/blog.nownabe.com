@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,52 +48,36 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/02/06/1250.html/">Python機械学習プログラミング  第8章</a></h2>
     <span class="date">Posted on Feb 6, 2018</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="概要">概要</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="概要">概要</h1>
 <p>Python機械学習プログラミングの学習メモです。
 勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。</p>
-
 <p>今回は、第8章 機械学習の適用1 - 感情分析</p>
-
 <p>前回: <a href="https://blog.nownabe.com/2018/01/31/1244.html">nownab.log | Python機械学習プログラミング 第5章</a></p>
-
 <h1 id="資料">資料</h1>
-
 <h1 id="環境">環境</h1>
-
 <p>本書の各バージョンは結構古いので、できるだけ新しいバージョンを使うようにしている。</p>
-
 <ul>
 <li>Python 3.6.4</li>
 <li>scikit-learn 0.19.1</li>
 <li>matplotlib 2.1.1</li>
 </ul>
-
 <h1 id="メモ">メモ</h1>
-
 <!-- coc -->
-
-<h2 id="8-1-imdbの映画レビューデータセットの取得">8.1 IMDbの映画レビューデータセットの取得</h2>
-
-<h2 id="8-2-bowモデルの紹介">8.2 BoWモデルの紹介</h2>
-
-<h3 id="8-2-1-単語を特徴ベクトルに変換する">8.2.1 単語を特徴ベクトルに変換する</h3>
-
-<h3 id="8-2-2-tf-idf-を使って単語の関連性を評価する">8.2.2 TF-IDF を使って単語の関連性を評価する</h3>
-
+<h2 id="81-imdbの映画レビューデータセットの取得">8.1 IMDbの映画レビューデータセットの取得</h2>
+<h2 id="82-bowモデルの紹介">8.2 BoWモデルの紹介</h2>
+<h3 id="821-単語を特徴ベクトルに変換する">8.2.1 単語を特徴ベクトルに変換する</h3>
+<h3 id="822-tf-idf-を使って単語の関連性を評価する">8.2.2 TF-IDF を使って単語の関連性を評価する</h3>
 <p>idfの引数に文書があるのはなぜ？</p>
-
 <p>計算結果もなんか変だなーと思ってみてたら正規化の影響だったっぽい。<code>TfidfTransformer</code>の正規化を無効化して<code>sklearn.preprocessing.Normalizer</code>を使うと同じ結果が得られる。<code>Normalizer</code>は単純に個々のベクトルを正規化する(L2ノルムを1にする)。</p>
-
-<pre><code># TfidfTransformer(use_idf=True, norm=&quot;l2&quot;, smooth_idf=True)
+<pre tabindex="0"><code># TfidfTransformer(use_idf=True, norm=&quot;l2&quot;, smooth_idf=True)
 [[0.   0.43 0.   0.56 0.56 0.   0.43 0.   0.  ]
  [0.   0.43 0.   0.   0.   0.56 0.43 0.   0.56]
  [0.5  0.45 0.5  0.19 0.19 0.19 0.3  0.25 0.19]]
@@ -107,46 +91,54 @@ if (!doNotTrack) {
 [[0.   0.43 0.   0.56 0.56 0.   0.43 0.   0.  ]
  [0.   0.43 0.   0.   0.   0.56 0.43 0.   0.56]
  [0.5  0.45 0.5  0.19 0.19 0.19 0.3  0.25 0.19]]
-</code></pre>
-
-<p>っていうのが後ろに書いてあった。説明の順序が悪い。。。</p>
-
-<h3 id="8-2-3-テキストデータのクレンジング">8.2.3 テキストデータのクレンジング</h3>
-
+</code></pre><p>っていうのが後ろに書いてあった。説明の順序が悪い。。。</p>
+<h3 id="823-テキストデータのクレンジング">8.2.3 テキストデータのクレンジング</h3>
 <p>教科書のコードだと顔文字がくっついてしまうので、顔文字の<code>join</code>はwhitespaceを使うようにした。</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">preprocessor</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">preprocessor</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
     <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&#34;&lt;[^&gt;]*&gt;&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
     <span class="n">emoticons</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&#34;(?::|;|=)(?:-)?(?:\)|\(|D|P)&#34;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
     <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&#34;[\W]+&#34;</span><span class="p">,</span> <span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">emoticons</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;-&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">text</span></code></pre></div>
-<h3 id="8-2-4-ドキュメントをトークン化する">8.2.4 ドキュメントをトークン化する</h3>
-
-<h3 id="8-2-5-ドキュメントを分類するロジスティック回帰モデルのトレーニング">8.2.5 ドキュメントを分類するロジスティック回帰モデルのトレーニング</h3>
-
+    <span class="k">return</span> <span class="n">text</span>
+</code></pre></div><h3 id="824-ドキュメントをトークン化する">8.2.4 ドキュメントをトークン化する</h3>
+<h3 id="825-ドキュメントを分類するロジスティック回帰モデルのトレーニング">8.2.5 ドキュメントを分類するロジスティック回帰モデルのトレーニング</h3>
 <p>学習には1時間ぐらいみといた方がいいかも。</p>
-
-<h2 id="8-3-さらに大規模なデータの処理-オンラインアルゴリズムとアウトオブコア学習">8.3 さらに大規模なデータの処理: オンラインアルゴリズムとアウトオブコア学習</h2>
-
+<h2 id="83-さらに大規模なデータの処理-オンラインアルゴリズムとアウトオブコア学習">8.3 さらに大規模なデータの処理: オンラインアルゴリズムとアウトオブコア学習</h2>
 <p>次章までセッションを維持しろと言われてもファイルを分けているので、pickleしといた。</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pickle</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pickle</span>
 
 <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">stop</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;stopwords.pkl&#34;</span><span class="p">,</span> <span class="s2">&#34;wb&#34;</span><span class="p">),</span> <span class="n">protocol</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;classifier.pkl&#34;</span><span class="p">,</span> <span class="s2">&#34;wb&#34;</span><span class="p">),</span> <span class="n">protocol</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span></code></pre></div>
-<p>word2vecの提案者による実装らしい。
+<span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;classifier.pkl&#34;</span><span class="p">,</span> <span class="s2">&#34;wb&#34;</span><span class="p">),</span> <span class="n">protocol</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</code></pre></div><p>word2vecの提案者による実装らしい。
 <a href="https://code.google.com/archive/p/word2vec/">Google Code Archive - Long-term storage for Google Code Project Hosting.</a></p>
-
 <h1 id="python機械学習プログラミング">Python機械学習プログラミング</h1>
-
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B01HGIPIAK&linkId=ef8aa25f336a01f62b00fce21e6f952a"></iframe>
-
 <h1 id="機械学習勉強会について">機械学習勉強会について</h1>
-
 <p>社内で毎週開催している。本書は輪読形式でまわしているが、題材によって形式は柔軟に変えている。
 毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。</p>
-
 <p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。
 <a href="https://github.com/Wondershake/machine-learning-study">Wondershake/machine-learning-study: 機械学習勉強会</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-math" data-lang="math"></code></pre></div>
+<pre tabindex="0"><code class="language-math" data-lang="math"></code></pre>
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#81-imdbの映画レビューデータセットの取得">8.1 IMDbの映画レビューデータセットの取得</a></li>
+    <li><a href="#82-bowモデルの紹介">8.2 BoWモデルの紹介</a>
+      <ul>
+        <li><a href="#821-単語を特徴ベクトルに変換する">8.2.1 単語を特徴ベクトルに変換する</a></li>
+        <li><a href="#822-tf-idf-を使って単語の関連性を評価する">8.2.2 TF-IDF を使って単語の関連性を評価する</a></li>
+        <li><a href="#823-テキストデータのクレンジング">8.2.3 テキストデータのクレンジング</a></li>
+        <li><a href="#824-ドキュメントをトークン化する">8.2.4 ドキュメントをトークン化する</a></li>
+        <li><a href="#825-ドキュメントを分類するロジスティック回帰モデルのトレーニング">8.2.5 ドキュメントを分類するロジスティック回帰モデルのトレーニング</a></li>
+      </ul>
+    </li>
+    <li><a href="#83-さらに大規模なデータの処理-オンラインアルゴリズムとアウトオブコア学習">8.3 さらに大規模なデータの処理: オンラインアルゴリズムとアウトオブコア学習</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

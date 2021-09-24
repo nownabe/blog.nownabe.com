@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,45 +48,33 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2016/11/11/522.html/">Angular 2 Tour of Heroes: 1. Introduction</a></h2>
     <span class="date">Posted on Nov 11, 2016</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="はじめに">はじめに</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="はじめに">はじめに</h1>
 <p><a href="https://angular.io/docs/ts/latest/tutorial/">Angular 2のチュートリアル</a>をやろうと思ったので、適当な和訳&amp;メモとして記録していきます。</p>
-
 <p>画像とか全部持ってきてます。</p>
-
 <h1 id="tutorial-tour-of-heroes">TUTORIAL: TOUR OF HEROES</h1>
-
 <blockquote>
 <p>TypeScriptでAngular Applicationを作るチュートリアルです。</p>
 </blockquote>
-
 <h2 id="tour-of-heroes-the-vision">Tour of Heroes: the vision</h2>
-
 <blockquote>
 <p>私達の最終ゴールは、人材派遣会社がヒーローの安定を管理するのに役立つアプリケーションを構築することです。ヒーローたちでさえも仕事を見つける必要があります。</p>
 </blockquote>
-
 <p>世知辛い世の中ですね。</p>
-
 <blockquote>
 <p>もちろん、このチュートリアルで私たちは少しだけの進捗を作ります。私たちが作るべきものは多くの機能を持つでしょう。私たちはそれらの特徴を、ヒーローのリストを取得・表示し、選択したヒーローの詳細情報を編集し、様々なヒーローデータ表示をナビゲートするような、本格的でデータドリヴンなアプリケーションの中に見つけることを期待しています。</p>
-
 <p>Tour of HeroesはAngularの主要な基礎をカバーしています。私たちは要素を表示したり隠したり、ヒーローデータのリストを表示するためにビルトインなディレクティブを使うことになります。ヒーローたちの配列やヒーローの詳細を表示するためにコンポーネントを作ります。リードオンリーデータに対しては一方向データバインディングを使います。モデルを更新するために、両方向データバインディングを使って編集可能なフィールドを追加します。コンポーネントのメソッドをキーストロークやクリックのようなユーザイベントにバインドします。マスターリストからのヒーロー選択やそのヒーローの編集を詳細ビューの中で学びます。パイプを使ってデータを整形します。ヒーローを集めるために共有サービスを作ります。異なるビュー間やそのコンポーネント間を移動するためにルーティングを使います。</p>
-
 <p>私たちはAngularが必要なことはなんでもできることを信用するためにAngularの十分なコアを学びます。私たちは多くの入門レベルのことはカバーすることになりますが、さらに深く知るために多くのリンクが各章にあります。</p>
 </blockquote>
-
 <p>普通のチュートリアルってことですね！
 改めてリストにするとこんな感じ？</p>
-
 <ul>
 <li>built-in directives</li>
 <li>components</li>
@@ -96,61 +84,54 @@ if (!doNotTrack) {
 <li>shared services</li>
 <li>routing</li>
 </ul>
-
 <blockquote>
 <p><a href="https://angular.io/resources/live-examples/toh-6/ts/plnkr.html">サンプル</a>を触ってみてください。</p>
 </blockquote>
-
 <h3 id="the-end-game">The End Game</h3>
-
 <blockquote>
 <p>ここではこのツアーでどこに行けばいいのかを示すビジュアルアイディアを紹介します。まずは、私たちの最も英雄的な英雄を表示するダッシュボードから始めましょう。</p>
-
-<p><img src="/images/2016/11/11/1.png" alt="heroes-dashboard-1.png (14.5 kB)" /></p>
-
-<p>ダッシュボードには&rdquo;Dashboard&rdquo;と&rdquo;Heroes&rdquo;という2つのリンクがあります。これらのリンクでDashboardとヒーロービューを行き来できます。</p>
-
-<p>ヒーロー名の&rdquo;Magneta&rdquo;をクリックすると、ルーターによってヒーロー名を変更できる&rdquo;Hero Details&rdquo;ビューに移動します。</p>
-
-<p><img src="/images/2016/11/11/2.png" alt="hero-details-1.png (13.0 kB)" /></p>
-
-<p>&ldquo;Back&rdquo;ボタンをクリックすると、&rdquo;Dashboard&rdquo;に戻ります。上にあるリンクでメインビューのどちらかに移動できます。&rdquo;Heroes&rdquo;をクリックすると、&rdquo;Heroes&rdquo;のマスターリストビューへ移動します。</p>
-
-<p><img src="/images/2016/11/11/3.png" alt="heroes-list-2.png (24.3 kB)" /></p>
-
+<p><img src="/images/2016/11/11/1.png" alt="heroes-dashboard-1.png (14.5 kB)"></p>
+<p>ダッシュボードには&quot;Dashboard&quot;と&quot;Heroes&quot;という2つのリンクがあります。これらのリンクでDashboardとヒーロービューを行き来できます。</p>
+<p>ヒーロー名の&quot;Magneta&quot;をクリックすると、ルーターによってヒーロー名を変更できる&quot;Hero Details&quot;ビューに移動します。</p>
+<p><img src="/images/2016/11/11/2.png" alt="hero-details-1.png (13.0 kB)"></p>
+<p>&ldquo;Back&quot;ボタンをクリックすると、&ldquo;Dashboard&quot;に戻ります。上にあるリンクでメインビューのどちらかに移動できます。&ldquo;Heroes&quot;をクリックすると、&ldquo;Heroes&quot;のマスターリストビューへ移動します。</p>
+<p><img src="/images/2016/11/11/3.png" alt="heroes-list-2.png (24.3 kB)"></p>
 <p>違うヒーローをクリックすると、リストの下でリードオンリーなミニ詳細が私たちの選択を反映させます。</p>
-
-<p>&ldquo;View Details&rdquo;ボタンをクリックすると、選択したヒーローの編集画面に移動します。</p>
-
+<p>&ldquo;View Details&quot;ボタンをクリックすると、選択したヒーローの編集画面に移動します。</p>
 <p>次のダイアグラムはすべてのナビゲーションを表しています。</p>
-
-<p><img src="/images/2016/11/11/4.png" alt="nav-diagram.png (39.0 kB)" /></p>
-
+<p><img src="/images/2016/11/11/4.png" alt="nav-diagram.png (39.0 kB)"></p>
 <p>これは実行中の私たちのアプリです。</p>
-
-<p><img src="/images/2016/11/11/5.gif" alt="toh-anim.gif (274.8 kB)" /></p>
+<p><img src="/images/2016/11/11/5.gif" alt="toh-anim.gif (274.8 kB)"></p>
 </blockquote>
-
 <h3 id="up-next">Up Next</h3>
-
 <blockquote>
 <p>私たちはステップバイステップでこのTour of Heroesを一緒に構築していきます。私たちは各ステップをこれまで私たちが数え切れないアプリケーションで出会ってきた要件で動機付けます。全てに理由があります。</p>
-
 <p>そしてこの方法で多くのAngularのコア機能に触れます。</p>
-
 <p><a href="https://angular.io/docs/ts/latest/tutorial/toh-pt1.html">さぁ始めましょう！</a></p>
-
 <blockquote>
 <h4 id="next-step">Next Step</h4>
-
 <p><a href="https://angular.io/docs/ts/latest/tutorial/toh-pt1.html">The Hero Editor</a></p>
 </blockquote>
 </blockquote>
-
 <h1 id="所感">所感</h1>
-
 <p>コード書かなかった 😃</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tour-of-heroes-the-vision">Tour of Heroes: the vision</a>
+      <ul>
+        <li><a href="#the-end-game">The End Game</a></li>
+        <li><a href="#up-next">Up Next</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

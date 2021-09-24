@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,81 +48,82 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2019/10/10/gce-machine-types-overview/">GCE Machine Types Overview</a></h2>
     <span class="date">Posted on Oct 10, 2019</span>
   </div>
-  <div class="body">
-    
-
-<p><a href="http://localhost:1313/2019/10/09/gcp-updates-semtember-30-2019/#compute-engine-name-change-for-memory-optimized-vms-ga">GCP Updates | Semtember 30, 2019 - nownab.log</a> で
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p><a href="http://localhost:1313/2019/10/09/gcp-updates-semtember-30-2019/#compute-engine-name-change-for-memory-optimized-vms-ga">GCP Updates | Semtember 30, 2019 - nownab.log</a> で
 memory-optimized マシンタイプの名前がn1からm1に変わったという項目があったので、マシンタイプのprefixを整理してみた。</p>
-
 <h1 id="prefixes">Prefixes</h1>
-
 <h2 id="n1-第1世代汎用マシンタイプ">n1: 第1世代汎用マシンタイプ</h2>
-
 <ul>
 <li>最大96vCPU、6.5GB/vCPU memory</li>
 <li>Sandy Bridge, Ivy Bridge, Haswell, Broadwell, Skylake</li>
 <li>割引きがn2よりでかい</li>
 <li>GPUが使える</li>
 </ul>
-
 <h2 id="n2-第2世代汎用マシンタイプ">n2: 第2世代汎用マシンタイプ</h2>
-
 <ul>
 <li>最大80vCPU</li>
 <li>8GB/vCPU memory</li>
 <li>Cascade Lake</li>
 <li>特定のリージョン、ゾーンのみ</li>
 </ul>
-
 <h2 id="m1-第1世代メモリ最適化マシンタイプ">m1: 第1世代メモリ最適化マシンタイプ</h2>
-
 <ul>
 <li>n1-highmemよりさらにhighmem</li>
 <li>regional persistent diskが使えない</li>
 <li>特定のリージョン、ゾーンのみ</li>
 <li>Broadwell, Skylake</li>
 </ul>
-
 <h2 id="m2-第2世代メモリ最適化マシンタイプ">m2: 第2世代メモリ最適化マシンタイプ</h2>
-
 <ul>
 <li>長期でつかう場合はCommitted use contractが必要</li>
 <li>短期でつかう場合はquotaの申請をする？</li>
 <li>Cascade Lake</li>
 </ul>
-
 <h2 id="c2-計算最適化マシンタイプ">c2: 計算最適化マシンタイプ</h2>
-
 <ul>
 <li>c1はない</li>
 <li>Cascade Lake</li>
 <li>基本3.1GHz、全コアターボ3.8GHz、1コアターボ3.9GHz
-
 <ul>
 <li>n2-highcpuは基本2.8GHz、全コアターボ3.4GHz、1コアターボ3.9GHz</li>
-</ul></li>
+</ul>
+</li>
 <li>regional persistent diskが使えない</li>
 <li>特定のリージョン、ゾーンのみ</li>
 </ul>
-
-<h2 id="f1-g1-shared-core">f1 / g1: Shared-core</h2>
-
+<h2 id="f1--g1-shared-core">f1 / g1: Shared-core</h2>
 <ul>
 <li>CPUコアを他のVMと共有</li>
 </ul>
-
 <h1 id="参考">参考</h1>
-
 <ul>
 <li><a href="https://cloud.google.com/compute/docs/machine-types#m1_machine_types">Machine types  |  Compute Engine Documentation  |  Google Cloud</a></li>
 <li><a href="https://cloud.google.com/compute/docs/cpu-platforms">CPU platforms  |  Compute Engine Documentation  |  Google Cloud</a></li>
 </ul>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#n1-第1世代汎用マシンタイプ">n1: 第1世代汎用マシンタイプ</a></li>
+    <li><a href="#n2-第2世代汎用マシンタイプ">n2: 第2世代汎用マシンタイプ</a></li>
+    <li><a href="#m1-第1世代メモリ最適化マシンタイプ">m1: 第1世代メモリ最適化マシンタイプ</a></li>
+    <li><a href="#m2-第2世代メモリ最適化マシンタイプ">m2: 第2世代メモリ最適化マシンタイプ</a></li>
+    <li><a href="#c2-計算最適化マシンタイプ">c2: 計算最適化マシンタイプ</a></li>
+    <li><a href="#f1--g1-shared-core">f1 / g1: Shared-core</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

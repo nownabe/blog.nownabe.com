@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2018s on nownab.log</title>
@@ -6,11 +6,7 @@
     <description>Recent content in 2018s on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Tue, 18 Dec 2018 10:17:06 +0900</lastBuildDate>
-    
-	<atom:link href="https://blog.nownabe.com/2018/feed.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 18 Dec 2018 10:17:06 +0900</lastBuildDate><atom:link href="https://blog.nownabe.com/2018/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GCP updates | December 17, 2018</title>
       <link>https://blog.nownabe.com/2018/12/18/1447.html/</link>
@@ -449,7 +445,7 @@
       <pubDate>Sat, 17 Feb 2018 17:01:53 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/2018/02/17/1259.html/</guid>
-      <description>Dockerイメージを公開するのにGitLabが最⭐️高だったので紹介します。GitHubとDockerHubを使うより遥かに良いです。 以前</description>
+      <description>Dockerイメージを公開するのにGitLabが最⭐高だったので紹介します。GitHubとDockerHubを使うより遥かに良いです。 以前G</description>
     </item>
     
     <item>

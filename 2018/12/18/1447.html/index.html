@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,112 +48,114 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/12/18/1447.html/">GCP updates | December 17, 2018</a></h2>
     <span class="date">Posted on Dec 18, 2018</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="security">SECURITY</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="security">SECURITY</h1>
 <h2 id="cloud-security-command-center-beta">Cloud Security Command Center: beta</h2>
-
 <blockquote>
 <p>Monitor your cloud resources and quickly mitigate threats to them from a single, centralized dashboard. Track your cloud asset inventory, scan storage systems for sensitive data, detect common web vulnerabilities, and review access rights to your critical resources. <a href="https://cloud.google.com/security-command-center/">Product page</a></p>
 </blockquote>
-
 <p>beta期間は無料とのことで使ってみました。SCC自体に何か特別な機能があるってわけではなくて、セキュリティ関連の機能のダッシュボード的なサービスみたいですね。</p>
-
-<hr />
-
+<hr>
 <p>Additional Releases</p>
-
 <h1 id="compute">COMPUTE</h1>
-
-<h2 id="cloud-functions-per-function-identities-beta">Cloud Functions – per-function identities: beta</h2>
-
+<h2 id="cloud-functions--per-function-identities-beta">Cloud Functions – per-function identities: beta</h2>
 <blockquote>
 <p>This feature allows you to set service accounts on a per-function basis, so that each function is assigned the appropriate level of access. This helps you more easily manage permissions when multiple functions are accessing different resources. <a href="https://cloud.google.com/functions/docs/securing/function-identity#per-function_identity">Documentation</a></p>
 </blockquote>
-
 <p>Cloud FunctionsのFunctionごとにサービスアカウントを割り当てられるやつ。ありがたい。</p>
-
-<h2 id="kubernetes-engine-usage-metering-beta">Kubernetes Engine – usage metering: beta</h2>
-
+<h2 id="kubernetes-engine--usage-metering-beta">Kubernetes Engine – usage metering: beta</h2>
 <blockquote>
 <p>You can now break down Kubernetes Engine cluster usage by namespace, label, or a combination of both. This helps you more easily manage multitenant clusters by tying usage to individual teams or business units within your organization. <a href="https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-usage-metering">Documentation</a></p>
 </blockquote>
-
 <p>GCP内のマネージドサービスのみでこういった情報が楽に見れるのは助かりますね。</p>
-
-<h2 id="cloud-functions-environment-variables-ga">Cloud Functions – environment variables: GA</h2>
-
+<h2 id="cloud-functions--environment-variables-ga">Cloud Functions – environment variables: GA</h2>
 <blockquote>
 <p>Environment variables allow you to specify arbitrary key-value pairs during deployment, which will surface as literal environment variables accessible by your code at runtime. Environment variables are stored in the Cloud Functions backend and are bound to a single function. <a href="https://cloud.google.com/functions/docs/env-var">Documentation</a></p>
 </blockquote>
-
 <p>🎉</p>
-
 <h1 id="data-analytics">DATA ANALYTICS</h1>
-
 <h2 id="cloud-composer-for-python-3-ga">Cloud Composer for Python 3: GA</h2>
-
 <blockquote>
 <p>Cloud Composer, a fully managed workflow orchestration service, based on Apache Airflow, now supports Python 3. You can create reliable Python 3–based Cloud Composer environments, then write new Python 3 workflows or lift and shift existing Python 3 workflows from local environments to Cloud Composer. <a href="https://cloud.google.com/composer/docs/concepts/python-version">Documentation</a></p>
 </blockquote>
-
 <p>🐍 🐍 🐍</p>
-
 <h1 id="api-management">API MANAGEMENT</h1>
-
 <h2 id="apigee-edge-api-client-library-for-php-ga">Apigee Edge API Client Library for PHP: GA</h2>
-
 <blockquote>
 <p>Build your own fully customized developer portal with the Apigee Edge Client Library for PHP. Used in conjunction with your Apigee Edge module for Drupal 8, this allows your portal and your API management platform to communicate and keep your data synced. <a href="https://docs.apigee.com/release/notes/18112700-apigee-developer-portal-release-notes">Documentation</a></p>
 </blockquote>
-
-<h2 id="apigee-edge-drupal-8-open-source-module-beta">Apigee Edge – Drupal 8 open-source module: beta</h2>
-
+<h2 id="apigee-edge--drupal-8-open-source-module-beta">Apigee Edge – Drupal 8 open-source module: beta</h2>
 <blockquote>
 <p>Drupal 8 provides a reliable open-source, enterprise-level content management system. This module allows you to build a fully customizable developer portal that includes API key management, role-based access control, and API documentation rendering. <a href="https://docs.apigee.com/api-platform/publish/drupal/open-source-drupal-8">Documentation</a></p>
 </blockquote>
-
 <p>ApigeeもGCPのマネージドサービスとして出てくるっぽいので見たほうがよさそうだなー。</p>
-
 <h1 id="developer-tools">DEVELOPER TOOLS</h1>
-
-<h2 id="cloud-source-repositories-new-user-interface-ga">Cloud Source Repositories – new user interface: GA</h2>
-
+<h2 id="cloud-source-repositories--new-user-interface-ga">Cloud Source Repositories – new user interface: GA</h2>
 <blockquote>
 <p>Cloud Source Repositories provides a place for teams to store, manage, and track code. This second release offers an updated UI, additional features, and private Git repositories hosted on Google Cloud Platform. <a href="https://cloud.google.com/source-repositories/docs/">Documentation</a></p>
 </blockquote>
-
 <p>新ダッシュボード出たばっかりのときはGitHubのミラー作れなかったりいろいろ不便だったけど、今はできるようになってますね。よかった。</p>
-
 <h1 id="internet-of-things">INTERNET OF THINGS</h1>
-
-<h2 id="cloud-iot-core-commands-ga">Cloud IoT Core – commands: GA</h2>
-
+<h2 id="cloud-iot-core--commands-ga">Cloud IoT Core – commands: GA</h2>
 <blockquote>
 <p>Now you can use Cloud IoT Core to send commands to devices. Commands are transitory, one-time directives sent to devices that are connected to Cloud IoT Core and subscribed to the commands topic. <a href="https://cloud.google.com/iot/docs/how-tos/commands">Documentation</a> | <a href="https://cloud.google.com/blog/products/iot-devices/introducing-cloud-iot-core-commands-increased-flexibility-to-control-your-fleet-of-embedded-devices">Blog</a></p>
 </blockquote>
-
-<h2 id="cloud-iot-core-device-logging-ga">Cloud IoT Core – device logging: GA</h2>
-
+<h2 id="cloud-iot-core--device-logging-ga">Cloud IoT Core – device logging: GA</h2>
 <blockquote>
 <p>Cloud IoT Core now includes device logging to aid in troubleshooting and help you find information about device connections, errors, and other lifecycle events. The logs are configurable for use with millions of devices. <a href="https://cloud.google.com/iot/docs/how-tos/logging-monitoring">Documentation</a></p>
 </blockquote>
-
 <h1 id="google-cloud-platform-support">GOOGLE CLOUD PLATFORM SUPPORT</h1>
-
-<h2 id="google-cloud-platform-support-for-firebase-beta">Google Cloud Platform – support for Firebase: beta</h2>
-
+<h2 id="google-cloud-platform--support-for-firebase-beta">Google Cloud Platform – support for Firebase: beta</h2>
 <blockquote>
 <p>Firebase support is now available through the GCP support console. When this graduates to general availability, it will include target response times, technical account management for the enterprise tier, and more. <a href="https://cloud.google.com/support/">Product page</a></p>
 </blockquote>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#cloud-security-command-center-beta">Cloud Security Command Center: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-functions--per-function-identities-beta">Cloud Functions – per-function identities: beta</a></li>
+    <li><a href="#kubernetes-engine--usage-metering-beta">Kubernetes Engine – usage metering: beta</a></li>
+    <li><a href="#cloud-functions--environment-variables-ga">Cloud Functions – environment variables: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-composer-for-python-3-ga">Cloud Composer for Python 3: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#apigee-edge-api-client-library-for-php-ga">Apigee Edge API Client Library for PHP: GA</a></li>
+    <li><a href="#apigee-edge--drupal-8-open-source-module-beta">Apigee Edge – Drupal 8 open-source module: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-source-repositories--new-user-interface-ga">Cloud Source Repositories – new user interface: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-iot-core--commands-ga">Cloud IoT Core – commands: GA</a></li>
+    <li><a href="#cloud-iot-core--device-logging-ga">Cloud IoT Core – device logging: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#google-cloud-platform--support-for-firebase-beta">Google Cloud Platform – support for Firebase: beta</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

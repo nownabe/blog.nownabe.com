@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,77 +48,70 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2019/06/15/read-designing-distributed-systems/">『分散システムデザインパターン』を読んだ</a></h2>
     <span class="date">Posted on Jun 15, 2019</span>
   </div>
-  <div class="body">
-    
-
-<p>分散システムデザインパターンを読みました。</p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>分散システムデザインパターンを読みました。</p>
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&language=ja_JP&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=4873118751&linkId=339b848407093bcf66332b2b34510ec3"></iframe>
-
 <h1 id="感想">感想</h1>
-
 <p>分散システムのインフラ構成のデザインパターンの解説本です。
 分散システムといっても難しいものではなくて、ロードバランスやシャーディングといったおなじみのアーキテクチャの粒度の話です。</p>
-
 <p>本書でも言及してますがデザインパターンの最大の効果は共通言語の獲得で、本書はその効果が十分得られると思います。</p>
-
 <p>内容はインフラ構成の汎用的なパターンと具体例です。
 なぜかやたら詳しいキャッシュの説明なんかもあります。</p>
-
 <p>全体的に図が非常にわかりづらいのが残念でした。</p>
-
 <p>Kubernetes上で構築するワークキューの例なんかは、おーなるほど！Kubernetesだ！って感じで興味深かったです。
 実際あんな感じで構築することはないと思いますが。</p>
-
 <h1 id="こういう人におすすめ">こういう人におすすめ</h1>
-
 <ul>
 <li>イチからインフラ構成を設計したことがないバックエンド・インフラエンジニア</li>
 <li>目次を見てもわからない項目があるバックエンド・インフラエンジニア</li>
 </ul>
-
 <p>前者のインフラを設計したことがないエンジニアには最もリターンがあると思います。
 本書を読んで何かができるようになるというわけではないですが「こういう汎用的な設計手法があるのか」という知識が手に入ります。
 また、その汎用的な設計手法の名前もわかります。
 今後インフラを構築するときには設計に説得力を持てるし、バックエンドを実装するときには多様な手段を選択肢として考えることができるようになると思います。</p>
-
 <p>本書の内容はインフラ寄りの話ではありますが、バックエンドの実装にも密接に関わる話です。
 なのでインフラをやらないバックエンドエンジニアでも、本書の知識を持っているか持っていないかでバックエンドの実装で取れる手段の幅が大きく変わってきます。
 そういうエンジニアにはぜひ読んでほしい本です。</p>
-
 <p>ある程度インフラの経験がある人にとっては、デザインパターンなだけあって「ああ、これ作ったことあるな」というものばかりです。
 内容的には物足りないですが、共通言語を得るという意味では読む価値はあると思います。</p>
-
 <p>全体を通してKubernetesが例として使われているのでKubernetesがわからないと例を理解するのが難しいかもしれません。
 逆に、Kubernetesを使った構築手法を知ることができるかもしれません。</p>
-
 <h1 id="著者紹介">著者紹介</h1>
-
 <h2 id="brendan-burns">Brendan Burns</h2>
-
 <ul>
 <li>Kubernetesの創始者</li>
 <li>GCP, Microsoft</li>
 <li>Twitter: <a href="https://twitter.com/brendandburns">@brendanburns</a></li>
 <li>GitHub: <a href="https://github.com/brendandburns">@brendanburns</a></li>
 </ul>
-
 <h2 id="松浦-隼人">松浦 隼人</h2>
-
 <ul>
 <li><a href="https://yakst.com/ja">Yakst</a> 管理人</li>
 <li>インフラエンジニア</li>
 <li>Twitter: <a href="https://twitter.com/dblmkt">@dblmkt</a></li>
 <li>GitHub: <a href="https://github.com/doublemarket">@doublemarket</a></li>
 </ul>
-
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&language=ja_JP&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=4873118751&linkId=339b848407093bcf66332b2b34510ec3"></iframe>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#brendan-burns">Brendan Burns</a></li>
+    <li><a href="#松浦-隼人">松浦 隼人</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,26 +48,22 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/03/04/1267.html/">Reactをやめた</a></h2>
     <span class="date">Posted on Mar 4, 2018</span>
   </div>
-  <div class="body">
-    <p>自分の個人のサイトをリニューアルしてReactを排除しました。</p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>自分の個人のサイトをリニューアルしてReactを排除しました。</p>
 <p><a href="https://nownabe.github.io/">https://nownabe.github.io/</a></p>
-
 <p>これ作ったときはちょうどReactにはまってる時期で、どんな妄想が働いたのかわかりませんが静的サイトもReactで組んだら楽なんじゃね？と思って作ったんですが、いろいろアレだったのでほぼJavaScriptなしのプレーンなHTML/CSSで書き換えました。</p>
-
 <p>以前のサイトも、完全に静的なページを毎回Reactでレンダリングするのはさすがによろしくないので<a href="https://github.com/zeit/next.js/">Next.js</a>っていうサーバーサイドレンダリングができたり、静的ファイルに出力できたりするのを使ってました。がしかし、Next.jsの吐くコードもなんか変なJSいっぱいのってるし、HTMLタグは汚いし、Next.jsのバグかなんかで複数ページ出力できずシングルページになっててGitHub Pagesだったので<code>/</code>から遷移したページにはリダイレクトできず直接アクセスできなかったりしたので辞めたかったんですが、当時はReactで作ったとこで飽きて放置してました。</p>
-
 <p>こないだ社内で「JavaScriptはクソだ」みたいな発表を聞いて、そういえば自分もクソJSサイト持ってるわと思い出し、重い腰をあげて書き換えました。</p>
-
 <p>当時JSを結構触ってたのでpackage.jsonがあったりwebpack.config.jsがあったりyarn.lockがあったり.eslintrcがあったりしても違和感なかったんですが、普通に考えたら異常だったので一掃できてよかったです。</p>
-
 <p>リニューアル後はただ1枚の<code>index.html</code>があるだけで外部CSSや外部JSはもちろん読み込んでないし、CSSは<code>&lt;head&gt;</code>に直接書いています。JavaScriptは書かないつもりだったんですが、WebFontを遅延読み込みするコードだけ入れました。</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js">    <span class="k">const</span> <span class="nx">font</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FontFace</span><span class="p">(</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js">    <span class="kr">const</span> <span class="nx">font</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FontFace</span><span class="p">(</span>
       <span class="s2">&#34;Noto Sans Light&#34;</span><span class="p">,</span>
       <span class="s2">&#34;url(fonts/NotoSans-Light.ttf)&#34;</span><span class="p">,</span> <span class="p">{</span>
         <span class="nx">style</span><span class="o">:</span> <span class="s2">&#34;normal&#34;</span><span class="p">,</span>
@@ -77,11 +73,16 @@ if (!doNotTrack) {
       <span class="nb">document</span><span class="p">.</span><span class="nx">fonts</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">ff</span><span class="p">);</span>
       <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontFamily</span> <span class="o">=</span> <span class="nx">ff</span><span class="p">.</span><span class="nx">family</span><span class="p">;</span>
     <span class="p">});</span>
-</code></pre></div>
-<p>CSSでフォントをURLで指定すると、フォントを読み込むまで文字が表示されません。そのせいでかなり表示が遅かったんですが、JavaScriptの<a href="https://developer.mozilla.org/en-US/docs/Web/API/FontFace">FontFace</a>で遅延読み込みすることで表示がはやくなりました。まだWorking Draftっぽいですが、まぁ内容には関係ないので大丈夫。</p>
-
+</code></pre></div><p>CSSでフォントをURLで指定すると、フォントを読み込むまで文字が表示されません。そのせいでかなり表示が遅かったんですが、JavaScriptの<a href="https://developer.mozilla.org/en-US/docs/Web/API/FontFace">FontFace</a>で遅延読み込みすることで表示がはやくなりました。まだWorking Draftっぽいですが、まぁ内容には関係ないので大丈夫。</p>
 <p>リニューアルしたのはいいんですが、内容がだいぶ古いので更新しないといけないんですが、例のごとく飽きてしまったのでそのままです。。。 😅</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

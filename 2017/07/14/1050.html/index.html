@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,32 +48,24 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/07/14/1050.html/">Spacemacsを使い始めた</a></h2>
     <span class="date">Posted on Jul 14, 2017</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="はじめに">はじめに</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="はじめに">はじめに</h1>
 <p><a href="https://github.com/syl20bnr/spacemacs">Spacemacs</a>を使い始めた。</p>
-
 <p>今、エディタはTypeScriptはVisual Studio Code、JavaはIntelliJ IDEA、その他はVimを使っている。
 IDE系はいいとして、Vimの後釜として使い始めた。</p>
-
 <p>VimはVimで気に入ってるのだが、いろいろ設定しないといけないのがめんどくさい。
 ほとんどカスタマイズはしない方なのだが、それでもめんどくさい。</p>
-
 <p>設定するのが楽しいという人もいるとは思うが自分はそこに楽しさを見いだせないので、とことん自分好みにカスタマイズするよりはデフォルトでいい感じになってるものに自分を合わせていくほうが良い。</p>
-
 <p>というわけで、標準でいい感じらしいというSpacemacsを使ってみることにした。</p>
-
 <p>そのうちシェルもzshからfishに乗り換えようかと考えている。</p>
-
 <h1 id="tl-dr">TL; DR</h1>
-
 <ul>
 <li>Vimと同じ感じで使える</li>
 <li>インサートステートから素早く<code>fd</code>押下でノーマルステートに変わるのが良い</li>
@@ -81,63 +73,47 @@ IDE系はいいとして、Vimの後釜として使い始めた。</p>
 <li>デフォルトである程度いい感じに使えるっぽい</li>
 <li>調整は必要っぽい</li>
 </ul>
-
 <h1 id="インストール">インストール</h1>
-
 <p>SpacemacsはEmacs上に実装されている。</p>
-
 <p>それEmacsじゃねーのという感じだがまったくそ通りで、便利設定をパッケージングして名前をつけたものっぽい。
 なのでSpacemacsは<code>~/.emacs.d</code>として配布されている。</p>
-
 <p>インストールはEmacsをインストールして<a href="https://github.com/syl20bnr/spacemacs">syl20bnr/spacemacs</a>を<code>~/.emacs.d</code>に<code>git clone</code>する。</p>
-
 <p>Emacsを使うのは高校時代以来でめちゃくちゃ久しぶりだ。</p>
-
 <h1 id="初期設定">初期設定</h1>
-
 <p>起動はやはり<code>emacs</code>コマンドを使う。
 <code>emacs</code>コマンドで最初に起動すると3つの質問とそれぞれの選択肢が表示される。</p>
-
 <ul>
 <li>編集スタイルは何がいい？
-
 <ul>
 <li><strong>Vim</strong> / Emacs</li>
 <li>もちろんVimを選択</li>
-</ul></li>
+</ul>
+</li>
 <li>Spacemacsのディストリビューションは何がいい？
-
 <ul>
 <li><strong>Standard</strong> / Minimal</li>
 <li>めんどくさくないのが一番なのでStandardを選択</li>
-</ul></li>
+</ul>
+</li>
 <li>補完フレームワークは何がいい？
-
 <ul>
 <li><strong>Ivy</strong> / Helm / None</li>
 <li>よくわかってないが、新しくて軽いっぽいIvyを選択</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>これらをそれぞれ選ぶと、Spacemacsが依存しているパッケージがダウンロード、インストールされる。
 インストール後、ショートカット一覧といくつかチュートリアルへのリンクが表示される。</p>
-
 <h1 id="evil-tutor">Evil Tutor</h1>
-
 <p><a href="https://www.emacswiki.org/emacs/Evil">Evil</a>はEmacs上でVimを再現するというなんとも悪そうな拡張である。
 SpacemacsでもEvilを使ってVimの操作性を再現している。</p>
-
 <p>Evil TutorはEvilの使い方を説明するチュートリアルで、まぁVim Tutorと同じものだ。
 Vimに馴染みがある人はスキップしてもいいと思う。
 全部で30分ぐらいかかる。</p>
-
 <p>通常のEmacs画面からEvil Tutorを起動するには<code>M-x evil-tutor-start</code>とすればいい。(<code>M-x</code>は<code>Alt + x</code>)
 自分の環境では初回だけ<code>M-x</code>のあとにスペースキーを押す必要があった。</p>
-
 <h1 id="ちょっと書いてみた">ちょっと書いてみた</h1>
-
 <p>ちょっとだけRubyとGoを書いてみた。</p>
-
 <ul>
 <li>go-modeやruby-modeは<code>.go</code>、<code>.rb</code>を開いたときに自動でインストールされる</li>
 <li>書き心地は良い</li>
@@ -145,12 +121,17 @@ Vimに馴染みがある人はスキップしてもいいと思う。
 <li>Rubocop用の何かは入ってるっぽいけど使い方がわからん</li>
 <li>gofmtはやってくれるけどgoimportsではない</li>
 </ul>
-
 <h1 id="感想">感想</h1>
-
 <p>評判通り、最初からVimっぽいしVimのめんどくさいところをある程度やってくれてる感があって良い。
 そもそもEmacsがよくわかってないのでそれに慣れる必要はあるが、最初の手触りはいい感じなのでしばらく使ってみたい。</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,112 +48,95 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2016/07/31/hatena07.html/">Gem in a Boxに簡単にリリースできるGem作ったけどいっぱいあったのでまとめ</a></h2>
     <span class="date">Posted on May 20, 2015</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="はじめに">はじめに</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="はじめに">はじめに</h1>
 <p>プライベートなGem Serverというか、<a href="https://github.com/geminabox/geminabox">Gem in a Box</a>に手軽にGemをリリースできるようにする<a href="https://github.com/nownabe/geminabox-rake_tasks">geminabox-rake_tasks</a>というGemを作りました。</p>
-
 <p><a href="https://github.com/nownabe/geminabox-rake_tasks">https://github.com/nownabe/geminabox-rake_tasks</a></p>
-
 <p>このGemを使うと、次の2点が実現できます。</p>
-
 <ul>
 <li>Rubygems.orgにリリースできない</li>
 <li>通常のrakeタスクと同じコマンドでGem in a Boxサーバにリリースできる</li>
 </ul>
-
 <p>社内でプライベートなGem ServerをGem in a Boxで構築してる場合など手軽でいいんじゃないかと思います。</p>
-
 <h1 id="使い方">使い方</h1>
-
 <p>まず、gemspecファイルに次の行を追加します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">spec</span><span class="o">.</span><span class="n">add_development_dependency</span> <span class="s2">&#34;geminabox-rake_tasks&#34;</span></code></pre></div>
-<p>お決まりのbundle installしてください。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ bundle</code></pre></div>
-<p>Rakefileの<code>require &quot;bundler/gem_tasks&quot;</code>を削除して、次の行を追加します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s2">&#34;geminabox/rake_tasks&#34;</span></code></pre></div>
-<p>リリースする前に、Gem in a Boxサーバの設定が必要になります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ bundle <span class="nb">exec</span> gem inabox -c
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">spec</span><span class="o">.</span><span class="n">add_development_dependency</span> <span class="s2">&#34;geminabox-rake_tasks&#34;</span>
+</code></pre></div><p>お決まりのbundle installしてください。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ bundle
+</code></pre></div><p>Rakefileの<code>require &quot;bundler/gem_tasks&quot;</code>を削除して、次の行を追加します。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s2">&#34;geminabox/rake_tasks&#34;</span>
+</code></pre></div><p>リリースする前に、Gem in a Boxサーバの設定が必要になります。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ bundle <span class="nb">exec</span> gem inabox -c
 Enter the root url <span class="k">for</span> your personal geminabox instance <span class="o">(</span>e.g. http://gems/<span class="o">)</span>.
-Host:  http://yourgeminabox/</code></pre></div>
-<p>このコマンドで、<code>./gem/geminabox</code>が設定されます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cat ~/.gem/geminabox
+Host:  http://yourgeminabox/
+</code></pre></div><p>このコマンドで、<code>./gem/geminabox</code>が設定されます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ cat ~/.gem/geminabox
 ---
-:host: http://yourgeminabox/</code></pre></div>
-<p>これでリリースできるようになってます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ bundle <span class="nb">exec</span> rake release
-testgem <span class="m">0</span>.1.0 built to pkg/testgem-0.1.0.gem.
+:host: http://yourgeminabox/
+</code></pre></div><p>これでリリースできるようになってます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ bundle <span class="nb">exec</span> rake release
+testgem 0.1.0 built to pkg/testgem-0.1.0.gem.
 Tagged v0.1.0.
 Pushed git commits and tags.
-Pushed testgem <span class="m">0</span>.1.0</code></pre></div>
-<p><img src="/images/articles/hatena07/01.png" alt="01" /></p>
-
+Pushed testgem 0.1.0
+</code></pre></div><p><img src="/images/articles/hatena07/01.png" alt="01"></p>
 <p>他にも、<code>bundler/gem_tasks</code>と同じタスクが使えます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ bundle <span class="nb">exec</span> rake -T
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ bundle <span class="nb">exec</span> rake -T
 rake build          <span class="c1"># Build testgem-0.1.0.gem into the pkg directory</span>
 rake install        <span class="c1"># Build and install testgem-0.1.0.gem into system gems</span>
 rake install:local  <span class="c1"># Build and install testgem-0.1.0.gem into system gems without network access</span>
-rake release        <span class="c1"># Create tag v0.1.0 and build and push testgem-0.1.0.gem to your gem in a box server</span></code></pre></div>
-<h1 id="競合">競合</h1>
-
+rake release        <span class="c1"># Create tag v0.1.0 and build and push testgem-0.1.0.gem to your gem in a box server</span>
+</code></pre></div><h1 id="競合">競合</h1>
 <p>よく調べもせずに作ったので、同じようなのがいっぱいありました。</p>
-
 <h2 id="geminabox-release">geminabox-release</h2>
-
 <p><a href="https://github.com/dfherr/geminabox-release">https://github.com/dfherr/geminabox-release</a></p>
-
 <p>Rakefile:</p>
-<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s2">&#34;geminabox-release&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s2">&#34;geminabox-release&#34;</span>
 <span class="no">GeminaboxRelease</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="ss">use_config</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span>
 
-<span class="c1"># か、 GeminaboxRelease.path(host: &#34;http://yourgeminabox/&#34;)</span></code></pre></div>
-<p>Rake Tasks:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ bundle <span class="nb">exec</span> rake -T
+<span class="c1"># か、 GeminaboxRelease.path(host: &#34;http://yourgeminabox/&#34;)</span>
+</code></pre></div><p>Rake Tasks:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ bundle <span class="nb">exec</span> rake -T
 rake build             <span class="c1"># Build testgem-0.1.0.gem into the pkg directory</span>
 rake inabox:forcepush  <span class="c1"># Build &amp; push testgem-0.1.0.gem overwriting same version to http://localhost:8080</span>
 rake inabox:push       <span class="c1"># Build &amp; push testgem-0.1.0.gem to http://localhost:8080</span>
 rake inabox:release    <span class="c1"># Create tag v0.1.0 and build and push testgem-0.1.0.gem to http://localhost:8080</span>
 rake install           <span class="c1"># Build and install testgem-0.1.0.gem into system gems</span>
 rake install:local     <span class="c1"># Build and install testgem-0.1.0.gem into system gems without network access</span>
-rake release           <span class="c1"># Create tag v0.1.0 and build and push testgem-0.1.0.gem to Rubygems</span></code></pre></div>
-<h2 id="geminabox-rake">geminabox-rake</h2>
-
+rake release           <span class="c1"># Create tag v0.1.0 and build and push testgem-0.1.0.gem to Rubygems</span>
+</code></pre></div><h2 id="geminabox-rake">geminabox-rake</h2>
 <p><a href="https://github.com/jgraichen/geminabox-rake">https://github.com/jgraichen/geminabox-rake</a></p>
-
 <p>Rakefile:</p>
-<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s2">&#34;geminabox/rake&#34;</span>
-<span class="no">GeminaboxRake</span><span class="o">.</span><span class="n">install</span></code></pre></div>
-<p>Rake Tasks:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ bundle <span class="nb">exec</span> rake -T
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s2">&#34;geminabox/rake&#34;</span>
+<span class="no">GeminaboxRake</span><span class="o">.</span><span class="n">install</span>
+</code></pre></div><p>Rake Tasks:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ bundle <span class="nb">exec</span> rake -T
 rake geminabox:build          <span class="c1"># Build testgem-0.1.0.gem into the pkg directory</span>
 rake geminabox:install        <span class="c1"># Build and install testgem-0.1.0.gem into system gems</span>
 rake geminabox:install:local  <span class="c1"># Build and install testgem-0.1.0.gem into system gems without network access</span>
-rake geminabox:release        <span class="c1"># Create tag v0.1.0 and build and push testgem-0.1.0.gem to Rubygems</span></code></pre></div>
-<h2 id="bundler-geminabox">bundler-geminabox</h2>
-
+rake geminabox:release        <span class="c1"># Create tag v0.1.0 and build and push testgem-0.1.0.gem to Rubygems</span>
+</code></pre></div><h2 id="bundler-geminabox">bundler-geminabox</h2>
 <p><a href="https://github.com/sonots/bundler-geminabox">https://github.com/sonots/bundler-geminabox</a></p>
-
 <p>Rakefile:</p>
-<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s2">&#34;bundler/geminabox/gem_tasks&#34;</span></code></pre></div>
-<p>Rake Tasks:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ bundle <span class="nb">exec</span> rake -T
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s2">&#34;bundler/geminabox/gem_tasks&#34;</span>
+</code></pre></div><p>Rake Tasks:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ bundle <span class="nb">exec</span> rake -T
 rake build              <span class="c1"># Build testgem-0.1.0.gem into the pkg directory</span>
 rake geminabox_release  <span class="c1"># Create tag v0.1.0 and build and push testgem-0.1.0.gem to https://your.rubygems.org</span>
 rake install            <span class="c1"># Build and install testgem-0.1.0.gem into system gems</span>
 rake install:local      <span class="c1"># Build and install testgem-0.1.0.gem into system gems without network access</span>
-rake release            <span class="c1"># [WARN] Release to rubygems.org is prohibited, use rake geminabox_release</span></code></pre></div>
-<p>このGemは<code>bundle gem</code>の所から面倒みてくれるみたいです。
+rake release            <span class="c1"># [WARN] Release to rubygems.org is prohibited, use rake geminabox_release</span>
+</code></pre></div><p>このGemは<code>bundle gem</code>の所から面倒みてくれるみたいです。
 こっちのほうがうっかりrubygems.orgにリリースすることはないかもしれません。</p>
-
 <p>というかこのGemでいいような気がしてきました。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">GEMINABOX</span><span class="o">=</span>https://your.rubygems.org bundle-geminabox gem foo
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">GEMINABOX</span><span class="o">=</span>https://your.rubygems.org bundle-geminabox gem foo
       create  foo/Gemfile
       create  foo/.gitignore
       create  foo/lib/foo.rb
@@ -164,25 +147,35 @@ rake release            <span class="c1"># [WARN] Release to rubygems.org is pro
       create  foo/Rakefile
       create  foo/README.md
        force  foo/Gemfile
-       force  foo/Rakefile</code></pre></div>
-<h2 id="bundler-geminabox-1">bundler_geminabox</h2>
-
+       force  foo/Rakefile
+</code></pre></div><h2 id="bundler_geminabox">bundler_geminabox</h2>
 <p><a href="https://github.com/joshkrueger/bundler_geminabox">https://github.com/joshkrueger/bundler_geminabox</a></p>
-
 <p>Rakefile:</p>
-<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s2">&#34;bundler_geminabox/gem_tasks&#34;</span></code></pre></div>
-<p>Rake Tasks:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ bundle <span class="nb">exec</span> rake -T
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s2">&#34;bundler_geminabox/gem_tasks&#34;</span>
+</code></pre></div><p>Rake Tasks:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ bundle <span class="nb">exec</span> rake -T
 rake build          <span class="c1"># Build testgem-0.1.0.gem into the pkg directory</span>
 rake install        <span class="c1"># Build and install testgem-0.1.0.gem into system gems</span>
 rake install:local  <span class="c1"># Build and install testgem-0.1.0.gem into system gems without network access</span>
-rake release        <span class="c1"># Create tag v0.1.0 and build and push testgem-0.1.0.gem to your geminabox server</span></code></pre></div>
-<p>ほぼ同じでした。</p>
-
+rake release        <span class="c1"># Create tag v0.1.0 and build and push testgem-0.1.0.gem to your geminabox server</span>
+</code></pre></div><p>ほぼ同じでした。</p>
 <h1 id="おわりに">おわりに</h1>
-
 <p>急いでたのでろくに調べずに作ってしまったんですが、まあ普通に考えたら誰か作りますよねw</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#geminabox-release">geminabox-release</a></li>
+    <li><a href="#geminabox-rake">geminabox-rake</a></li>
+    <li><a href="#bundler-geminabox">bundler-geminabox</a></li>
+    <li><a href="#bundler_geminabox">bundler_geminabox</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

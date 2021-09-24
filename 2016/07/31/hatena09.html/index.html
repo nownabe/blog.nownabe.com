@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,87 +48,72 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2016/07/31/hatena09.html/">今更Raspberry PiでLチカやってみた</a></h2>
     <span class="date">Posted on Aug 9, 2015</span>
   </div>
-  <div class="body">
-    
-
-<p><img src="/images/articles/hatena09/01.jpg" alt="Lチカ" /></p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p><img src="/images/articles/hatena09/01.jpg" alt="Lチカ"></p>
 <p>流行りにのってRaspberry PiでLチカやってみました！（だいぶ乗り遅れてる）</p>
-
 <p>Raspberry Piは<a href="http://svfes2015.ds.jp-east.idcfcloud.com/index.html">サバフェス</a>の賞品でもらったまま眠ってたのがあったので引っ張り出してきました。
 LEDとかは家にあったものを拾い集めました。</p>
-
 <h1 id="raspberry-pi準備">Raspberry Pi準備</h1>
-
 <p>OSのインストールや初期設定はQiitaにまとめました。</p>
-
 <p><a href="http://qiita.com/nownabe/items/e16b962fcdb1a702093e">MacOSXでRasberry PiにRaspbianをインストールする - Qiita</a></p>
-
 <p><a href="http://qiita.com/nownabe/items/a6ec3dfcfcb6ab37ea1e">Raspberry PiをWLI-UC-GNMEで無線LANに接続する - Qiita</a></p>
-
 <p>これ以外でやったのはパッケージのアップデートと、</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get update -y
-sudo apt-get upgrade -y</code></pre></div>
-<p>NTP設定です。
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get update -y
+sudo apt-get upgrade -y
+</code></pre></div><p>NTP設定です。
 NTPは<code>/etc/ntp.conf</code>の<code>server</code>の行をコメントアウトして<code>pool ntp.nict.jp iburst</code>を追加します。</p>
-
-<pre><code>#server 0.debian.pool.ntp.org iburst
+<pre tabindex="0"><code>#server 0.debian.pool.ntp.org iburst
 #server 1.debian.pool.ntp.org iburst
 #server 2.debian.pool.ntp.org iburst
 #server 3.debian.pool.ntp.org iburst
 pool ntp.nict.jp iburst
-</code></pre>
-
-<h1 id="lピカ">Lピカ</h1>
-
+</code></pre><h1 id="lピカ">Lピカ</h1>
 <p>GPIOの4番ピンを使います。</p>
-
 <p>まずはGPIOの4番ピンを使うことを宣言します
 これで<code>/sys/class/gpio/gpio4</code>というリンクが作成されます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pi@raspberrypi ~ $ sudo <span class="nb">echo</span> <span class="m">4</span> &gt; /sys/class/gpio/export
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pi@raspberrypi ~ $ sudo <span class="nb">echo</span> <span class="m">4</span> &gt; /sys/class/gpio/export
 pi@raspberrypi ~ $ ls /sys/class/gpio
-<span class="nb">export</span>  gpio4  gpiochip0  unexport</code></pre></div>
-<p>GPIO4を出力用に設定します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pi@raspberrypi ~ $ sudo <span class="nb">echo</span> out &gt; /sys/class/gpio/gpio4/direction
+<span class="nb">export</span>  gpio4  gpiochip0  unexport
+</code></pre></div><p>GPIO4を出力用に設定します。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pi@raspberrypi ~ $ sudo <span class="nb">echo</span> out &gt; /sys/class/gpio/gpio4/direction
 pi@raspberrypi ~ $ sudo cat /sys/class/gpio/gpio4/direction
-out</code></pre></div>
-<p><code>/sys/class/gpio/gpio4/value</code>に1/0を出力することで、ON/OFFします。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pi@raspberrypi ~ $ sudo <span class="nb">echo</span> <span class="m">1</span> &gt; /sys/class/gpio/gpio4/value
+out
+</code></pre></div><p><code>/sys/class/gpio/gpio4/value</code>に1/0を出力することで、ON/OFFします。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pi@raspberrypi ~ $ sudo <span class="nb">echo</span> <span class="m">1</span> &gt; /sys/class/gpio/gpio4/value
 pi@raspberrypi ~ $ sudo <span class="nb">echo</span> <span class="m">0</span> &gt; /sys/class/gpio/gpio4/value
 pi@raspberrypi ~ $ sudo <span class="nb">echo</span> <span class="m">1</span> &gt; /sys/class/gpio/gpio4/value
-pi@raspberrypi ~ $ sudo <span class="nb">echo</span> <span class="m">0</span> &gt; /sys/class/gpio/gpio4/value</code></pre></div>
-<p>LEDが光ったり消えたりします。</p>
-
-<p><img src="/images/articles/hatena09/01.jpg" alt="Lチカ" /></p>
-
+pi@raspberrypi ~ $ sudo <span class="nb">echo</span> <span class="m">0</span> &gt; /sys/class/gpio/gpio4/value
+</code></pre></div><p>LEDが光ったり消えたりします。</p>
+<p><img src="/images/articles/hatena09/01.jpg" alt="Lチカ"></p>
 <h1 id="lチカ">Lチカ</h1>
-
 <p>点滅させてみます。とりあえずbashで。。。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">while</span> :<span class="p">;</span> <span class="k">do</span> sudo <span class="nb">echo</span> <span class="m">1</span> &gt; /sys/class/gpio/gpio4/value<span class="p">;</span> sleep <span class="m">0</span>.001<span class="p">;</span> sudo <span class="nb">echo</span> <span class="m">0</span> &gt; /sys/class/gpio/gpio4/value<span class="p">;</span> sleep <span class="m">0</span>.001<span class="p">;</span> <span class="k">done</span></code></pre></div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/jThq1LOG9IQ" frameborder="0" allowfullscreen></iframe>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="k">while</span> :<span class="p">;</span> <span class="k">do</span> sudo <span class="nb">echo</span> <span class="m">1</span> &gt; /sys/class/gpio/gpio4/value<span class="p">;</span> sleep 0.001<span class="p">;</span> sudo <span class="nb">echo</span> <span class="m">0</span> &gt; /sys/class/gpio/gpio4/value<span class="p">;</span> sleep 0.001<span class="p">;</span> <span class="k">done</span>
+</code></pre></div><iframe width="560" height="315" src="https://www.youtube.com/embed/jThq1LOG9IQ" frameborder="0" allowfullscreen></iframe>
 <h1 id="電圧">電圧？</h1>
-
 <p>電圧を測ってみると5Vピンも3Vピンも3.3Vでした。
 う〜んなんでだろう。</p>
-
-<p><img src="/images/articles/hatena09/02.jpg" alt="02" /></p>
-
+<p><img src="/images/articles/hatena09/02.jpg" alt="02"></p>
 <p>GNDと畳の電位差はほとんどなかったのでGNDはちゃんととれてるみたいですw
-<img src="/images/articles/hatena09/03.jpg" alt="03" /></p>
-
+<img src="/images/articles/hatena09/03.jpg" alt="03"></p>
 <h1 id="おわりに">おわりに</h1>
-
 <p>高専時代にやったZ80ぶりのLチカでした。</p>
-
 <p>最初トランジスタも発見したのでトランジスタでスイッチングしようと思ったんですがうまく行かず。。。
 すっかりもう色々忘れてて歳を感じてやばいのでそのうちやりますw</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

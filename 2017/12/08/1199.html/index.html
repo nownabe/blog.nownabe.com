@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,226 +48,218 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/12/08/1199.html/">Pythonではじめる機械学習  4回目</a></h2>
     <span class="date">Posted on Nov 27, 2017</span>
   </div>
-  <div class="body">
-    
-
-<p><a href="https://blog.nownabe.com/2017/11/19/1185.html">nownab.log | Pythonではじめる機械学習 3回目</a></p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p><a href="https://blog.nownabe.com/2017/11/19/1185.html">nownab.log | Pythonではじめる機械学習 3回目</a></p>
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=4873117984&linkId=05656b0761603e4e9f88423f102e42c6"></iframe>
-
 <p>週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。</p>
-
 <p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。
 <a href="https://github.com/Wondershake/machine-learning-study">Wondershake/machine-learning-study: 機械学習勉強会</a></p>
-
 <p>この記事は資料作りの下書き的扱い。</p>
-
 <h1 id="3章-教師なし学習と前処理">3章 教師なし学習と前処理</h1>
-
-<h2 id="3-5-クラスタリング">3.5 クラスタリング</h2>
-
-<h3 id="3-5-2-凝集型クラスタリング">3.5.2 凝集型クラスタリング</h3>
-
+<h2 id="35-クラスタリング">3.5 クラスタリング</h2>
+<h3 id="352-凝集型クラスタリング">3.5.2 凝集型クラスタリング</h3>
 <ul>
 <li><strong>凝集型クラスタリング (agglomerative clustering)</strong>
-
 <ul>
 <li>個々のデータポイントを1つのクラスタとして開始し、類似するクラスタを併合していくようなクラスタリングのアルゴリズム</li>
-</ul></li>
+</ul>
+</li>
 <li>様々な類似度がある
-
 <ul>
 <li>ward / average / complete</li>
 <li>だいたいward使っとけばOK</li>
-</ul></li>
+</ul>
+</li>
 <li>新しいデータに対する予測はできない</li>
 </ul>
-
-<h4 id="3-5-2-1-階層型クラスタリングとデンドログラム">3.5.2.1 階層型クラスタリングとデンドログラム</h4>
-
+<h4 id="3521-階層型クラスタリングとデンドログラム">3.5.2.1 階層型クラスタリングとデンドログラム</h4>
 <ul>
-<li>凝集型クラスタリングは<strong>階層型クラスタリング (hierarchical clustering)</strong>を行う</li>
-<li><strong>デンドログラム (dendrogram)</strong>で可視化できる</li>
+<li>凝集型クラスタリングは**階層型クラスタリング (hierarchical clustering)**を行う</li>
+<li>**デンドログラム (dendrogram)**で可視化できる</li>
 </ul>
-
-<h3 id="3-5-3-dbscan">3.5.3 DBSCAN</h3>
-
+<h3 id="353-dbscan">3.5.3 DBSCAN</h3>
 <ul>
 <li><strong>DBSCAN (dencity-based spatial clustering of applications with noise)</strong>
-
 <ul>
 <li>密度に基づくノイズあり空間クラスタリング</li>
-</ul></li>
+</ul>
+</li>
 <li>クラスタ数を自動決定する</li>
 <li>k-meansより遅い</li>
 <li>比較的大きなデータセットにも適用できる</li>
 <li>どのクラスタにも属さないデータポイントをノイズとする
-
 <ul>
 <li>外れ値検出に使える</li>
-</ul></li>
+</ul>
+</li>
 <li>近さの閾値とクラスタを構成する最小のデータ数がパラメータ</li>
 </ul>
-
-<h3 id="3-5-4-クラスタリングアルゴリズムの比較と評価">3.5.4 クラスタリングアルゴリズムの比較と評価</h3>
-
-<h4 id="3-5-4-1-正解データを用いたクラスタリングの評価">3.5.4.1 正解データを用いたクラスタリングの評価</h4>
-
+<h3 id="354-クラスタリングアルゴリズムの比較と評価">3.5.4 クラスタリングアルゴリズムの比較と評価</h3>
+<h4 id="3541-正解データを用いたクラスタリングの評価">3.5.4.1 正解データを用いたクラスタリングの評価</h4>
 <ul>
 <li>重要な指標
-
 <ul>
 <li><strong>調整ランド指数 (adjusted rand index: ARI)</strong></li>
 <li><strong>正規化相互情報量 (normalized mutual information: NMI)</strong></li>
-</ul></li>
+</ul>
+</li>
 <li>Accuracyは評価に適さない</li>
 </ul>
-
-<h4 id="3-5-4-2-正解データを用いないクラスタリングの評価">3.5.4.2 正解データを用いないクラスタリングの評価</h4>
-
+<h4 id="3542-正解データを用いないクラスタリングの評価">3.5.4.2 正解データを用いないクラスタリングの評価</h4>
 <ul>
 <li>クラスタリングタスクでは正解データがない場合が多い</li>
 <li><strong>シルエット係数 (silhouette coefficient)</strong>
-
 <ul>
 <li>正解データを必要としないクラスタリングの評価指標</li>
 <li>実際にはうまく評価できない</li>
-</ul></li>
+</ul>
+</li>
 <li>頑健性を用いた評価指標がある</li>
 </ul>
-
-<h4 id="3-5-4-3-顔画像データセットを用いたアルゴリズムの比較">3.5.4.3 顔画像データセットを用いたアルゴリズムの比較</h4>
-
-<h3 id="3-5-5-クラスタリング手法のまとめ">3.5.5 クラスタリング手法のまとめ</h3>
-
+<h4 id="3543-顔画像データセットを用いたアルゴリズムの比較">3.5.4.3 顔画像データセットを用いたアルゴリズムの比較</h4>
+<h3 id="355-クラスタリング手法のまとめ">3.5.5 クラスタリング手法のまとめ</h3>
 <ul>
 <li>クラスタリングは評価も含めて定性的</li>
 <li>データの探索的な解析に最も役立つ</li>
 <li>k-means
-
 <ul>
 <li>クラスタセンタでクラスタの特徴を表すことが可能</li>
-</ul></li>
+</ul>
+</li>
 <li>凝集型クラスタリング
-
 <ul>
 <li>階層的なクラスタリングが可能</li>
-</ul></li>
+</ul>
+</li>
 <li>DBSCAN
-
 <ul>
 <li>クラスタ数を自動決定</li>
 <li>ノイズ検出が可能</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h1 id="4章-データの表現と特徴量エンジニアリング">4章 データの表現と特徴量エンジニアリング</h1>
-
 <ul>
-<li><strong>連続値特徴量 (continuous feature)</strong>だけでなく、<strong>カテゴリ特徴量 (categorical feature)</strong>も扱う必要がある</li>
+<li>**連続値特徴量 (continuous feature)**だけでなく、**カテゴリ特徴量 (categorical feature)**も扱う必要がある</li>
 <li><strong>特徴量エンジニアリング (feature engineering)</strong>
-
 <ul>
 <li>最良のデータ表現を模索すること</li>
-</ul></li>
 </ul>
-
-<h2 id="4-1-カテゴリ変数">4.1 カテゴリ変数</h2>
-
+</li>
+</ul>
+<h2 id="41-カテゴリ変数">4.1 カテゴリ変数</h2>
 <ul>
 <li>性別や学歴などはそのままではロジスティック回帰などのアルゴリズムで学習できない</li>
 </ul>
-
-<h3 id="4-1-1-ワンホットエンコーディング-ダミー変数">4.1.1 ワンホットエンコーディング (ダミー変数)</h3>
-
+<h3 id="411-ワンホットエンコーディング-ダミー変数">4.1.1 ワンホットエンコーディング (ダミー変数)</h3>
 <ul>
 <li><strong>ワンホットエンコーディング (one-hot-encoding)</strong>
-
 <ul>
 <li>カテゴリ変数を1つ以上の、0か1を取る新しい特徴量で置き換える方法</li>
 <li>性別の場合は次のような2つの特徴量として表す
-
 <ul>
 <li>男の場合は1、それ以外は0</li>
 <li>女の場合は1、それ以外は0</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>pandasを使うと簡単</li>
 </ul>
-
-<h4 id="4-1-1-1-文字列で表されているカテゴリデータのチェック">4.1.1.1 文字列で表されているカテゴリデータのチェック</h4>
-
+<h4 id="4111-文字列で表されているカテゴリデータのチェック">4.1.1.1 文字列で表されているカテゴリデータのチェック</h4>
 <ul>
 <li>表記ゆれなどを前処理する必要がある</li>
 <li>Seriesクラスの<code>value_counts</code>メソッドでチェックできる</li>
 <li><code>get_dummies</code>関数でワンホットエンコーディングできる</li>
 </ul>
-
-<h3 id="4-1-2-数値でエンコードされているカテゴリ">4.1.2 数値でエンコードされているカテゴリ</h3>
-
+<h3 id="412-数値でエンコードされているカテゴリ">4.1.2 数値でエンコードされているカテゴリ</h3>
 <ul>
 <li>そのままではpandasにカテゴリ変数として解釈されない
-
 <ul>
 <li>scikit-learnのOneHotEncoderを使う</li>
 <li>DataFrameの列名を文字列に変換する</li>
-</ul></li>
 </ul>
-
-<h2 id="4-2-ビニング-離散化-線形モデル-決定木">4.2 ビニング、離散化、線形モデル、決定木</h2>
-
+</li>
+</ul>
+<h2 id="42-ビニング離散化線形モデル決定木">4.2 ビニング、離散化、線形モデル、決定木</h2>
 <ul>
 <li><strong>ビニング (binning)</strong>
-
 <ul>
-<li><strong>離散化 (discretization)</strong>とも</li>
+<li>**離散化 (discretization)**とも</li>
 <li>線形モデルを連続データに対してより強力にする</li>
 <li>データのレンジを複数のビンとして分割し、そのデータがどのビンに入るかをワンホットエンコーディングで表す</li>
 <li>それぞれのビン内ではすべて同じ予測をする</li>
 <li>データが大きくて高次元な場合で、線形モデルを使って非線形なモデルを構築したいときに有効</li>
-</ul></li>
 </ul>
-
-<h2 id="4-3-交互作用と多項式">4.3 交互作用と多項式</h2>
-
+</li>
+</ul>
+<h2 id="43-交互作用と多項式">4.3 交互作用と多項式</h2>
 <ul>
 <li><strong>交互作用特徴量 (interaction feature)</strong>
-
 <ul>
 <li><code>x_product = np.hstack([x_binned, x * x_binned])</code></li>
-</ul></li>
+</ul>
+</li>
 <li><strong>多項式特徴量 (polynomial feature)</strong>
-
 <ul>
 <li><code>x ** 2</code>や<code>x ** 3</code>のような特徴量</li>
 <li><code>PolynomialFeatures</code>で実現可能</li>
-</ul></li>
 </ul>
-
-<h2 id="4-4-単変量非線形変換">4.4 単変量非線形変換</h2>
-
+</li>
+</ul>
+<h2 id="44-単変量非線形変換">4.4 単変量非線形変換</h2>
 <ul>
 <li><code>x ** 2</code>や<code>x ** 3</code>のような特徴量は線形回帰モデルで有用</li>
 <li><strong>単変量非線形変換</strong>
-
 <ul>
 <li>log, exp, sinなどを使ってデータを変換する</li>
 <li>元々非線形なデータを線形モデルで扱えるようにする</li>
 <li>ニューラルネットワークモデル等にも有効</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h1 id="所感">所感</h1>
-
 <ul>
 <li>まとめるの遅くなった 😞</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-math" data-lang="math"></code></pre></div>
+<pre tabindex="0"><code class="language-math" data-lang="math"></code></pre>
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#35-クラスタリング">3.5 クラスタリング</a>
+      <ul>
+        <li><a href="#352-凝集型クラスタリング">3.5.2 凝集型クラスタリング</a></li>
+        <li><a href="#353-dbscan">3.5.3 DBSCAN</a></li>
+        <li><a href="#354-クラスタリングアルゴリズムの比較と評価">3.5.4 クラスタリングアルゴリズムの比較と評価</a></li>
+        <li><a href="#355-クラスタリング手法のまとめ">3.5.5 クラスタリング手法のまとめ</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#41-カテゴリ変数">4.1 カテゴリ変数</a>
+      <ul>
+        <li><a href="#411-ワンホットエンコーディング-ダミー変数">4.1.1 ワンホットエンコーディング (ダミー変数)</a></li>
+        <li><a href="#412-数値でエンコードされているカテゴリ">4.1.2 数値でエンコードされているカテゴリ</a></li>
+      </ul>
+    </li>
+    <li><a href="#42-ビニング離散化線形モデル決定木">4.2 ビニング、離散化、線形モデル、決定木</a></li>
+    <li><a href="#43-交互作用と多項式">4.3 交互作用と多項式</a></li>
+    <li><a href="#44-単変量非線形変換">4.4 単変量非線形変換</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

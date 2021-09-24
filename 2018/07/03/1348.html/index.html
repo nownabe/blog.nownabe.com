@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,169 +48,154 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/07/03/1348.html/">GCP updates  |  July 2, 2018</a></h2>
     <span class="date">Posted on Jul 3, 2018</span>
   </div>
-  <div class="body">
-    
-
-<p>GCPのメルマガの雑な翻訳です。</p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>GCPのメルマガの雑な翻訳です。</p>
 <p><a href="https://blog.nownabe.com/2018/06/08/1327.html">nownab.log | GCP updates | June 6, 2018</a></p>
-
 <h1 id="account-services">Account Services</h1>
-
-<h2 id="finnish-google-cloud-platform-region-now-open-https-cloud-google-com-about-locations-finland"><a href="https://cloud.google.com/about/locations/finland/">Finnish Google Cloud Platform region now open</a></h2>
-
+<h2 id="finnish-google-cloud-platform-region-now-openhttpscloudgooglecomaboutlocationsfinland"><a href="https://cloud.google.com/about/locations/finland/">Finnish Google Cloud Platform region now open</a></h2>
 <blockquote>
 <p>The Finnish region, europe-north1, offering compute, storage, big data, and networking services, is now generally available. Users in the Nordics can reduce latency by up to 65%, those in Eastern Europe by up to 88%.</p>
-
 <p>フィンランドのeurope-north1リージョンがオープンしました。Compute、Storage、Big Data、 Networkサービスが使えます。北欧ユーザは最大65%のレイテンシ削減、東欧ユーザは最大88%のレイテンシ削減ができます。</p>
 </blockquote>
-
 <p>ヨーロッパの地理全然把握してなかったけど、東欧はドイツよりフィンランドのほうが近いんですね。</p>
-
 <h1 id="compute">Compute</h1>
-
-<h2 id="support-for-node-js-in-app-engine-standard-environment-https-cloudplatform-googleblog-com-2018-06-now-you-can-deploy-your-node-js-app-to-app-engine-standard-environment-html"><a href="https://cloudplatform.googleblog.com/2018/06/Now-you-can-deploy-your-Node-js-app-to-App-Engine-standard-environment.html">Support for Node.js in App Engine standard environment</a></h2>
-
+<h2 id="support-for-nodejs-in-app-engine-standard-environmenthttpscloudplatformgoogleblogcom201806now-you-can-deploy-your-node-js-app-to-app-engine-standard-environmenthtml"><a href="https://cloudplatform.googleblog.com/2018/06/Now-you-can-deploy-your-Node-js-app-to-App-Engine-standard-environment.html">Support for Node.js in App Engine standard environment</a></h2>
 <blockquote>
 <p>The beta release for Node.js on App Engine standard environment offers an idiomatic developer experience, fast deployment, autoscaling, and one-click certificate generation for custom domains.</p>
-
 <p>App Engine standard environmentのNode.jsベータリリースでは親しみのある開発体験、素早いデプロイ、オートスケーリング、ワンクリックでのカスタムドメインへの証明書生成が提供されます。</p>
 </blockquote>
-
-<h2 id="attach-gpus-to-preemptible-vm-instances-https-cloud-google-com-compute-docs-instances-preemptible"><a href="https://cloud.google.com/compute/docs/instances/preemptible">Attach GPUs to preemptible VM instances</a></h2>
-
+<h2 id="attach-gpus-to-preemptible-vm-instanceshttpscloudgooglecomcomputedocsinstancespreemptible"><a href="https://cloud.google.com/compute/docs/instances/preemptible">Attach GPUs to preemptible VM instances</a></h2>
 <blockquote>
 <p>This GA release allows users to add GPUs to preemptible virtual machine instances that function like standard GPUs but persist only for the life of the instance – at a cost of up to 70% less than on-demand GPUs.</p>
-
 <p>このGAリリースでユーザはPreemptible VMにGPUを追加できるようになります。標準のGPUと同じように使えますが、寿命はインスタンスとおなじです。オンデマンドGPUに比べて最大70%のコスト削減になります。</p>
 </blockquote>
-
-<h2 id="cloud-functions-adds-three-new-regions-https-cloud-google-com-functions-docs-locations"><a href="https://cloud.google.com/functions/docs/locations">Cloud Functions adds three new regions</a></h2>
-
+<h2 id="cloud-functions-adds-three-new-regionshttpscloudgooglecomfunctionsdocslocations"><a href="https://cloud.google.com/functions/docs/locations">Cloud Functions adds three new regions</a></h2>
 <blockquote>
 <p>Three new regions for Cloud Functions are available in beta: asia-northeast1, europe-west1, and us-east1.
 Cloud Functionsが新しくasia-northeast1、europe-west1、us-east1で使えるようになりました。</p>
 </blockquote>
-
 <p>やった！</p>
-
-<h2 id="compute-engine-trusted-images-policy-https-cloud-google-com-compute-docs-images-restricting-image-access"><a href="https://cloud.google.com/compute/docs/images/restricting-image-access">Compute Engine Trusted Images Policy</a></h2>
-
+<h2 id="compute-engine-trusted-images-policyhttpscloudgooglecomcomputedocsimagesrestricting-image-access"><a href="https://cloud.google.com/compute/docs/images/restricting-image-access">Compute Engine Trusted Images Policy</a></h2>
 <blockquote>
 <p>The Trusted Image Projects Organization Policy allows an organization to create images that meet quality and security criteria, share images securely, and ensure users do not use unapproved images. Now generally available.</p>
-
 <p>Trusted Image Projects Organization Policyはオーガニゼーションにおいてクオリティやセキュリティ基準を満たすイメージを作成し、安全に共有し、ユーザが許可されないイメージを使わないようにできます。すでにGAです。</p>
 </blockquote>
-
-<h2 id="sole-tenant-nodes-https-cloud-google-com-compute-docs-nodes"><a href="https://cloud.google.com/compute/docs/nodes/">Sole-tenant nodes</a></h2>
-
+<h2 id="sole-tenant-nodeshttpscloudgooglecomcomputedocsnodes"><a href="https://cloud.google.com/compute/docs/nodes/">Sole-tenant nodes</a></h2>
 <blockquote>
 <p>Normally, VM instances run on physical hosts shared by many. With sole-tenant nodes, users get the added security of having a VM instance and server dedicated solely to them.</p>
-
 <p>通常はVMインスタンスは多くのユーザによって共有される物理ホスト上で実行されます。Sole-tenantノードでは物理ホストをユーザが専有できます。</p>
 </blockquote>
-
-<h2 id="managed-ssl-certification-for-custom-domains-https-cloud-google-com-appengine-docs-standard-python-securing-custom-domains-with-ssl"><a href="https://cloud.google.com/appengine/docs/standard/python/securing-custom-domains-with-ssl">Managed SSL certification for custom domains</a></h2>
-
+<h2 id="managed-ssl-certification-for-custom-domainshttpscloudgooglecomappenginedocsstandardpythonsecuring-custom-domains-with-ssl"><a href="https://cloud.google.com/appengine/docs/standard/python/securing-custom-domains-with-ssl">Managed SSL certification for custom domains</a></h2>
 <blockquote>
 <p>Managed SSL support for custom domains automatically provisions SSL certificates for App Engine apps and renews them before they expire, allowing you to securely serve apps to a worldwide audience. Now generally available.</p>
-
 <p>Managed SSLはApp Engineアプリのための独自ドメインのSSL証明書を自動で提供します。期限前に更新し、ワールドワイドなエンドユーザに対してセキュアにアプリケーションを提供できます。現在GAです。</p>
 </blockquote>
-
-<h1 id="storage-databases">Storage &amp; Databases</h1>
-
-<h2 id="cloud-spanner-struct-object-support-https-cloud-google-com-spanner-docs-structs"><a href="https://cloud.google.com/spanner/docs/structs">Cloud Spanner STRUCT object support</a></h2>
-
+<h1 id="storage--databases">Storage &amp; Databases</h1>
+<h2 id="cloud-spanner-struct-object-supporthttpscloudgooglecomspannerdocsstructs"><a href="https://cloud.google.com/spanner/docs/structs">Cloud Spanner STRUCT object support</a></h2>
 <blockquote>
 <p>Cloud Spanner allows users to create STRUCT objects from data and use them as bound parameters when running an SQL query with Cloud Spanner client libraries. Now generally available.</p>
-
 <p>Cloud SpannerでSTRUCT型のオブジェクトが扱えるようになりました。クライアントライブラリでSQLクエリのパラメータとして使うことができます。現在GAです。</p>
 </blockquote>
-
 <p>はー、おもしろい。JSON型みたいに使えるのかなー。
 <a href="https://cloud.google.com/spanner/docs/data-types#struct-type">Data Types  |  Cloud Spanner Documentation  |  Google Cloud</a></p>
-
 <h1 id="management-tools">Management Tools</h1>
-
-<h2 id="configure-audit-logs-in-gcp-console-https-cloud-google-com-logging-docs-audit-configure-data-access"><a href="https://cloud.google.com/logging/docs/audit/configure-data-access">Configure audit logs in GCP Console</a></h2>
-
+<h2 id="configure-audit-logs-in-gcp-consolehttpscloudgooglecomloggingdocsauditconfigure-data-access"><a href="https://cloud.google.com/logging/docs/audit/configure-data-access">Configure audit logs in GCP Console</a></h2>
 <blockquote>
 <p>In this beta release, users can configure Data Access audit logs directly from the GCP Console without having to edit their Identity and Access Management policies.</p>
-
 <p>このベータリリースで、IAMポリシーを編集しなくてもGCPコンソールから直接Data Access監査ログを設定できるようになります。</p>
 </blockquote>
-
 <h1 id="networking">Networking</h1>
-
-<h2 id="quic-support-for-http-s-load-balancing-https-cloudplatform-googleblog-com-2018-06-introducing-quic-support-for-https-load-balancing-html"><a href="https://cloudplatform.googleblog.com/2018/06/Introducing-QUIC-support-for-HTTPS-load-balancing.html">QUIC support for HTTP(S) load balancing</a></h2>
-
+<h2 id="quic-support-for-https-load-balancinghttpscloudplatformgoogleblogcom201806introducing-quic-support-for-https-load-balancinghtml"><a href="https://cloudplatform.googleblog.com/2018/06/Introducing-QUIC-support-for-HTTPS-load-balancing.html">QUIC support for HTTP(S) load balancing</a></h2>
 <blockquote>
 <p>QUIC support for HTTP(S) load balancing is now generally available. QUIC is a UDP-based encrypted transport protocol optimized for HTTP(S) and features faster connections, stream-based multiplexing, and improved loss recovery.</p>
-
 <p>HTTP(S) LBのQUICサポートがGAになりました。QUICはHTTP(S)に最適化されたUDPベースの暗号化転送プロトコルで高速な接続、ストリームベースの多重化、損失回復の改善が特徴です。</p>
 </blockquote>
-
 <p>ほぼ設定いらずでLBがよろしくやってくれんのは便利ですねー。</p>
-
-<h2 id="cloud-interconnect-options-https-cloud-google-com-interconnect"><a href="https://cloud.google.com/interconnect/">Cloud Interconnect options</a></h2>
-
+<h2 id="cloud-interconnect-optionshttpscloudgooglecominterconnect"><a href="https://cloud.google.com/interconnect/">Cloud Interconnect options</a></h2>
 <blockquote>
 <p>Cloud Interconnect provides options to connect on-premises infrastructure to GCP, including Dedicated Interconnect, Partner Interconnect, and IPsec VPN. Now generally available.</p>
-
 <p>Cloud InterconnectはオンプレとGCPの接続を提供します。Dedicated Interconnect、Partner Interconnect、IPsec VPNがあります。現在GAです。</p>
 </blockquote>
-
 <h1 id="big-data">Big Data</h1>
-
-<h2 id="apache-parquet-and-apache-orc-ingestion-into-bigquery-https-cloud-google-com-bigquery-docs-loading-data-cloud-storage-parquet"><a href="https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-parquet">Apache Parquet and Apache ORC ingestion into BigQuery</a></h2>
-
+<h2 id="apache-parquet-and-apache-orc-ingestion-into-bigqueryhttpscloudgooglecombigquerydocsloading-data-cloud-storage-parquet"><a href="https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-parquet">Apache Parquet and Apache ORC ingestion into BigQuery</a></h2>
 <blockquote>
 <p>Native support for loading Parquet data from Cloud Storage into BigQuery is now generally available. And native support for loading ORC files into BigQuery is now in beta.</p>
-
 <p>Cloud StorageからParquet形式でのBigQueryへのデータロードのサポートはGAです。ORC形式のサポートはベータです。</p>
 </blockquote>
-
-<h2 id="cloud-dataflow-s-streaming-engine-https-cloud-google-com-dataflow-service-dataflow-service-desc-dataflow-streaming-engine"><a href="https://cloud.google.com/dataflow/service/dataflow-service-desc#dataflow-streaming-engine">Cloud Dataflow&rsquo;s Streaming Engine</a></h2>
-
+<h2 id="cloud-dataflows-streaming-enginehttpscloudgooglecomdataflowservicedataflow-service-descdataflow-streaming-engine"><a href="https://cloud.google.com/dataflow/service/dataflow-service-desc#dataflow-streaming-engine">Cloud Dataflow&rsquo;s Streaming Engine</a></h2>
 <blockquote>
 <p>Cloud Dataflow&rsquo;s Streaming Engine moves time window and shuffle storage from worker virtual machines to the Cloud Dataflow service backend. Benefits include more responsive autoscaling in streaming pipelines and better supportability. Now in beta.</p>
-
 <p>Cloud Dataflowのストリーミングエンジンは時間ウィンドウとシャッフルストレージをワーカーVMではなくCloud Dataflowのバックエンドで処理します。ストリーミングパイプラインにおいて応答性の高いオートスケーリングやサポート性の向上がメリットです。現在ベータです。</p>
 </blockquote>
-
-<h2 id="custom-service-accounts-for-cloud-dataflow">[Custom service accounts for Cloud Dataflow]()</h2>
-
+<h2 id="custom-service-accounts-for-cloud-dataflow"><a href="">Custom service accounts for Cloud Dataflow</a></h2>
 <blockquote>
 <p>To enhance security, Cloud Dataflow users can now specify a custom service account instead of using the default service account by using the service account pipeline option. Now generally available.</p>
-
 <p>セキュリティを高めるため、Cloud Dataflowではデフォルトのサービスアカウントではなく独自のサービスアカウントを使うことができます。現在GAです。</p>
 </blockquote>
-
 <h1 id="developer-tools">Developer Tools</h1>
-
-<h2 id="cloud-pub-sub-notifications-for-cloud-source-repositories-https-cloud-google-com-source-repositories-docs-quickstart-adding-pubsub-notifications"><a href="https://cloud.google.com/source-repositories/docs/quickstart-adding-pubsub-notifications">Cloud Pub/Sub notifications for Cloud Source Repositories</a></h2>
-
+<h2 id="cloud-pubsub-notifications-for-cloud-source-repositorieshttpscloudgooglecomsource-repositoriesdocsquickstart-adding-pubsub-notifications"><a href="https://cloud.google.com/source-repositories/docs/quickstart-adding-pubsub-notifications">Cloud Pub/Sub notifications for Cloud Source Repositories</a></h2>
 <blockquote>
 <p>This beta release lets users add Cloud Pub/Sub event notifications to Cloud Source Repositories projects or repositories using the gcloud command-line tool.</p>
-
 <p>このベータリリースで、gcloudによってCloud Source RepositoriesのイベントをCloud Pub/Subに流すことができるようになります。</p>
 </blockquote>
-
-<h2 id="cloud-source-repositories-private-security-key-detection-https-cloud-google-com-source-repositories-docs-detecting-security-keys"><a href="https://cloud.google.com/source-repositories/docs/detecting-security-keys">Cloud Source Repositories private security key detection</a></h2>
-
+<h2 id="cloud-source-repositories-private-security-key-detectionhttpscloudgooglecomsource-repositoriesdocsdetecting-security-keys"><a href="https://cloud.google.com/source-repositories/docs/detecting-security-keys">Cloud Source Repositories private security key detection</a></h2>
 <blockquote>
 <p>This beta release of pushblock for Cloud Source Repositories prevents users from storing security keys in Cloud Source Repositories by checking for GCP service account credentials and PEM-encoded private keys.
 このベータリリースでCloud Source RepositoryはGCPのサービスアカウントのクレデンシャルとPEM形式の秘密鍵をチェックし、レポジトリにPushされるのを防ぎます。</p>
 </blockquote>
-
 <p>Pushを防いでくれるのめっちゃいいですね。</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#finnish-google-cloud-platform-region-now-openhttpscloudgooglecomaboutlocationsfinland"><a href="https://cloud.google.com/about/locations/finland/">Finnish Google Cloud Platform region now open</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#support-for-nodejs-in-app-engine-standard-environmenthttpscloudplatformgoogleblogcom201806now-you-can-deploy-your-node-js-app-to-app-engine-standard-environmenthtml"><a href="https://cloudplatform.googleblog.com/2018/06/Now-you-can-deploy-your-Node-js-app-to-App-Engine-standard-environment.html">Support for Node.js in App Engine standard environment</a></a></li>
+    <li><a href="#attach-gpus-to-preemptible-vm-instanceshttpscloudgooglecomcomputedocsinstancespreemptible"><a href="https://cloud.google.com/compute/docs/instances/preemptible">Attach GPUs to preemptible VM instances</a></a></li>
+    <li><a href="#cloud-functions-adds-three-new-regionshttpscloudgooglecomfunctionsdocslocations"><a href="https://cloud.google.com/functions/docs/locations">Cloud Functions adds three new regions</a></a></li>
+    <li><a href="#compute-engine-trusted-images-policyhttpscloudgooglecomcomputedocsimagesrestricting-image-access"><a href="https://cloud.google.com/compute/docs/images/restricting-image-access">Compute Engine Trusted Images Policy</a></a></li>
+    <li><a href="#sole-tenant-nodeshttpscloudgooglecomcomputedocsnodes"><a href="https://cloud.google.com/compute/docs/nodes/">Sole-tenant nodes</a></a></li>
+    <li><a href="#managed-ssl-certification-for-custom-domainshttpscloudgooglecomappenginedocsstandardpythonsecuring-custom-domains-with-ssl"><a href="https://cloud.google.com/appengine/docs/standard/python/securing-custom-domains-with-ssl">Managed SSL certification for custom domains</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-spanner-struct-object-supporthttpscloudgooglecomspannerdocsstructs"><a href="https://cloud.google.com/spanner/docs/structs">Cloud Spanner STRUCT object support</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#configure-audit-logs-in-gcp-consolehttpscloudgooglecomloggingdocsauditconfigure-data-access"><a href="https://cloud.google.com/logging/docs/audit/configure-data-access">Configure audit logs in GCP Console</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#quic-support-for-https-load-balancinghttpscloudplatformgoogleblogcom201806introducing-quic-support-for-https-load-balancinghtml"><a href="https://cloudplatform.googleblog.com/2018/06/Introducing-QUIC-support-for-HTTPS-load-balancing.html">QUIC support for HTTP(S) load balancing</a></a></li>
+    <li><a href="#cloud-interconnect-optionshttpscloudgooglecominterconnect"><a href="https://cloud.google.com/interconnect/">Cloud Interconnect options</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#apache-parquet-and-apache-orc-ingestion-into-bigqueryhttpscloudgooglecombigquerydocsloading-data-cloud-storage-parquet"><a href="https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-parquet">Apache Parquet and Apache ORC ingestion into BigQuery</a></a></li>
+    <li><a href="#cloud-dataflows-streaming-enginehttpscloudgooglecomdataflowservicedataflow-service-descdataflow-streaming-engine"><a href="https://cloud.google.com/dataflow/service/dataflow-service-desc#dataflow-streaming-engine">Cloud Dataflow&rsquo;s Streaming Engine</a></a></li>
+    <li><a href="#custom-service-accounts-for-cloud-dataflow"><a href="">Custom service accounts for Cloud Dataflow</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-pubsub-notifications-for-cloud-source-repositorieshttpscloudgooglecomsource-repositoriesdocsquickstart-adding-pubsub-notifications"><a href="https://cloud.google.com/source-repositories/docs/quickstart-adding-pubsub-notifications">Cloud Pub/Sub notifications for Cloud Source Repositories</a></a></li>
+    <li><a href="#cloud-source-repositories-private-security-key-detectionhttpscloudgooglecomsource-repositoriesdocsdetecting-security-keys"><a href="https://cloud.google.com/source-repositories/docs/detecting-security-keys">Cloud Source Repositories private security key detection</a></a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

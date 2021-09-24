@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,56 +48,40 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/01/17/1240.html/">Python機械学習プログラミング  第3章</a></h2>
     <span class="date">Posted on Jan 15, 2018</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="概要">概要</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="概要">概要</h1>
 <p>Python機械学習プログラミングの学習メモです。
 勉強会用の資料があるのでこちらでは資料に載らなかったメモ等を。</p>
-
 <p>今回は、第3章 分類問題 - 機械学習ライブラリ scikit-learn の活用</p>
-
 <p>前回: <a href="https://blog.nownabe.com/2018/01/12/1238.html">nownab.log | Python機械学習プログラミング 第2章</a></p>
-
 <h1 id="資料">資料</h1>
-
 <ul>
-<li>[3.1-3.3]()</li>
+<li><a href="">3.1-3.3</a></li>
 <li><a href="https://nownabe.github.io/slides/20180118-python-ml-ch03/index.html">3.4-3.7</a></li>
 </ul>
-
 <h1 id="環境">環境</h1>
-
 <p>本書の各バージョンは結構古いので、できるだけ新しいバージョンを使うようにしている。</p>
-
 <ul>
 <li>Python 3.6.4</li>
 <li>scikit-learn 0.19.1</li>
 <li>matplotlib 2.1.1</li>
 </ul>
-
 <h1 id="メモ">メモ</h1>
-
-<h2 id="3-1-分類アルゴリズムの選択">3.1 分類アルゴリズムの選択</h2>
-
-<h2 id="3-2-scikit-learn活用へのファーストステップ">3.2 scikit-learn活用へのファーストステップ</h2>
-
-<h3 id="3-2-1-scikit-learnを使ったパーセプトロンのトレーニング">3.2.1 scikit-learnを使ったパーセプトロンのトレーニング</h3>
-
+<h2 id="31-分類アルゴリズムの選択">3.1 分類アルゴリズムの選択</h2>
+<h2 id="32-scikit-learn活用へのファーストステップ">3.2 scikit-learn活用へのファーストステップ</h2>
+<h3 id="321-scikit-learnを使ったパーセプトロンのトレーニング">3.2.1 scikit-learnを使ったパーセプトロンのトレーニング</h3>
 <p>プログラムを何箇所か修正した。</p>
-
 <p>cross_validationモジュールはscikit-learn 0.18から非推奨になのでmodel_selectionモジュールを使うようにした。</p>
-
 <p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Perceptron.html">Perceptron</a>の<code>n_iter</code>パラメータはscikit-learn 0.19から非推奨なので<code>max_iter</code>パラメータを使うようにした。</p>
-
-<p><code>plot_decision_regions</code>関数が本書のプログラムだとテストサンプルを囲う丸が表示されなかったので以下のように<code>edgecolors</code>を追加した。<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python">    <span class="k">if</span> <span class="n">test_idx</span><span class="p">:</span>
+<p><code>plot_decision_regions</code>関数が本書のプログラムだとテストサンプルを囲う丸が表示されなかったので以下のように<code>edgecolors</code>を追加した。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">    <span class="k">if</span> <span class="n">test_idx</span><span class="p">:</span>
         <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">test_idx</span><span class="p">,</span> <span class="p">:],</span> <span class="n">y</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
             <span class="n">X_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
@@ -109,104 +93,111 @@ if (!doNotTrack) {
             <span class="n">marker</span><span class="o">=</span><span class="s2">&#34;o&#34;</span><span class="p">,</span>
             <span class="n">s</span><span class="o">=</span><span class="mi">55</span><span class="p">,</span>
             <span class="n">label</span><span class="o">=</span><span class="s2">&#34;test set&#34;</span>
-        <span class="p">)</span></code></pre></div>
-<p>また、<code>plot_decision_regions</code>は結構使う予感がするので、トップディレクトリの<code>util.py</code>というファイルに定義した。各章でディレクトリを切っているので、使うときはこんな感じになる。<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup></p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+        <span class="p">)</span>
+</code></pre></div><p>また、<code>plot_decision_regions</code>は結構使う予感がするので、トップディレクトリの<code>util.py</code>というファイルに定義した。各章でディレクトリを切っているので、使うときはこんな感じになる。<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">pardir</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">util</span> <span class="kn">import</span> <span class="n">plot_decision_regions</span></code></pre></div>
-<h2 id="3-3-ロジスティック回帰を使ったクラスの確率のモデリング">3.3 ロジスティック回帰を使ったクラスの確率のモデリング</h2>
-
-<h3 id="3-3-1-ロジスティック回帰の直感的知識と条件付き確率">3.3.1 ロジスティック回帰の直感的知識と条件付き確率</h3>
-
+<span class="kn">from</span> <span class="nn">util</span> <span class="kn">import</span> <span class="n">plot_decision_regions</span>
+</code></pre></div><h2 id="33-ロジスティック回帰を使ったクラスの確率のモデリング">3.3 ロジスティック回帰を使ったクラスの確率のモデリング</h2>
+<h3 id="331-ロジスティック回帰の直感的知識と条件付き確率">3.3.1 ロジスティック回帰の直感的知識と条件付き確率</h3>
 <p>なんでlogit関数の方から説明してあるんだろうか…。</p>
-
-<h3 id="3-3-2-ロジスティック関数の重みの学習">3.3.2 ロジスティック関数の重みの学習</h3>
-
+<h3 id="332-ロジスティック関数の重みの学習">3.3.2 ロジスティック関数の重みの学習</h3>
 <p>尤度関数 $L(\boldsymbol{w})=P(\boldsymbol{y}|\boldsymbol{x; w})$ を使って最尤推定する。実際は負の対数尤度関数をコスト関数として勾配法でパラメータを求める。</p>
-
-<h3 id="3-3-3-scikit-learn-によるロジスティック回帰モデルのトレーニング">3.3.3 scikit-learn によるロジスティック回帰モデルのトレーニング</h3>
-
+<h3 id="333-scikit-learn-によるロジスティック回帰モデルのトレーニング">3.3.3 scikit-learn によるロジスティック回帰モデルのトレーニング</h3>
 <p><code>predict_proba</code>のところがそのままだと次のエラーが出る。</p>
-
-<pre><code>ValueError: Expected 2D array, got 1D array instead:
+<pre tabindex="0"><code>ValueError: Expected 2D array, got 1D array instead:
 array=[0.70793846 1.50872803].
 Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
-</code></pre>
-
-<p>次のように修正した。</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test_std</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]))</span></code></pre></div>
-<h3 id="3-3-4-正則化による化学週への対処">3.3.4 正則化による化学週への対処</h3>
-
+</code></pre><p>次のように修正した。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test_std</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]))</span>
+</code></pre></div><h3 id="334-正則化による化学週への対処">3.3.4 正則化による化学週への対処</h3>
 <p>3.3.22式と3.3.24式が等価じゃない気がするんですが…。</p>
-
 <p>正則化パラメータと重みをプロットするコードがそのままだと次のエラーが出る。</p>
-
-<pre><code>ValueError: Integers to negative integer powers are not allowed.
-</code></pre>
-
-<p>次の1行を追加した。</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">int</span><span class="p">(</span><span class="n">c</span><span class="p">)</span></code></pre></div>
-<p>ロジスティック回帰の詳しい説明はこの本がオススメらしい。</p>
-
+<pre tabindex="0"><code>ValueError: Integers to negative integer powers are not allowed.
+</code></pre><p>次の1行を追加した。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</code></pre></div><p>ロジスティック回帰の詳しい説明はこの本がオススメらしい。</p>
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=4320018672&linkId=c4f3bad11834727e6686d620fde154cd"></iframe>
-
-<h2 id="3-4-サポートベクトルマシンによる最大マージン分類">3.4 サポートベクトルマシンによる最大マージン分類</h2>
-
-<h3 id="3-4-1-最大マージンを直感的に理解する">3.4.1 最大マージンを直感的に理解する</h3>
-
+<h2 id="34-サポートベクトルマシンによる最大マージン分類">3.4 サポートベクトルマシンによる最大マージン分類</h2>
+<h3 id="341-最大マージンを直感的に理解する">3.4.1 最大マージンを直感的に理解する</h3>
 <p>詳しくは</p>
-
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=4061529064&linkId=390de8411a89fa3b9fee1455d8c57b82"></iframe>
-
-<h3 id="3-4-2-スラック変数を使った非線形分離可能なケースへの対処">3.4.2 スラック変数を使った非線形分離可能なケースへの対処</h3>
-
-<h3 id="3-4-3-scikit-learn-での代替実装">3.4.3 scikit-learn での代替実装</h3>
-
-<h2 id="3-5-カーネル-svm-を使った非線形問題の求解">3.5 カーネル SVM を使った非線形問題の求解</h2>
-
-<h3 id="3-5-1-カーネルトリックを使って分離超平面を高次元空間で特定する">3.5.1 カーネルトリックを使って分離超平面を高次元空間で特定する</h3>
-
-<h2 id="3-6-決定木学習">3.6 決定木学習</h2>
-
-<h3 id="3-6-1-情報利得の最大化-できるだけ高い効果を得る">3.6.1 情報利得の最大化: できるだけ高い効果を得る</h3>
-
-<h3 id="3-6-2-決定木の構築">3.6.2 決定木の構築</h3>
-
-<h3 id="3-6-3-ランダムフォレストを使って弱い学習アルゴリズムと強い学習アルゴリズムを結合する">3.6.3 ランダムフォレストを使って弱い学習アルゴリズムと強い学習アルゴリズムを結合する</h3>
-
+<h3 id="342-スラック変数を使った非線形分離可能なケースへの対処">3.4.2 スラック変数を使った非線形分離可能なケースへの対処</h3>
+<h3 id="343-scikit-learn-での代替実装">3.4.3 scikit-learn での代替実装</h3>
+<h2 id="35-カーネル-svm-を使った非線形問題の求解">3.5 カーネル SVM を使った非線形問題の求解</h2>
+<h3 id="351-カーネルトリックを使って分離超平面を高次元空間で特定する">3.5.1 カーネルトリックを使って分離超平面を高次元空間で特定する</h3>
+<h2 id="36-決定木学習">3.6 決定木学習</h2>
+<h3 id="361-情報利得の最大化-できるだけ高い効果を得る">3.6.1 情報利得の最大化: できるだけ高い効果を得る</h3>
+<h3 id="362-決定木の構築">3.6.2 決定木の構築</h3>
+<h3 id="363-ランダムフォレストを使って弱い学習アルゴリズムと強い学習アルゴリズムを結合する">3.6.3 ランダムフォレストを使って弱い学習アルゴリズムと強い学習アルゴリズムを結合する</h3>
 <p>なぜ復元抽出なんだろうか。一般的なブートストラップ法も復元抽出をするので、それを踏襲してるだけなのか。ブートストラップ法は非復元じゃだめなのか。</p>
-
 <p>元の分布と似た別のデータが手に入る、ってとこが重要なのかな。統計的には人工的にデータを増やして母集団を近似するって意味があるっぽい。</p>
-
 <p><a href="https://books.google.co.jp/books?id=gLlpIUxRntoC&amp;printsec=frontcover&amp;hl=ja&amp;source=gbs_ge_summary_r&amp;cad=0#v=onepage&amp;q&amp;f=false">An Introduction to the Bootstrap - Bradley Efron, R.J. Tibshirani - Google ブックス</a></p>
-
 <p>この辺に書いてあんのかな。。。</p>
-
-<h2 id="3-7-k近傍法-怠惰学習アルゴリズム">3.7 k近傍法: 怠惰学習アルゴリズム</h2>
-
+<h2 id="37-k近傍法-怠惰学習アルゴリズム">3.7 k近傍法: 怠惰学習アルゴリズム</h2>
 <h1 id="python機械学習プログラミング">Python機械学習プログラミング</h1>
-
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B01HGIPIAK&linkId=ef8aa25f336a01f62b00fce21e6f952a"></iframe>
-
 <h1 id="機械学習勉強会について">機械学習勉強会について</h1>
-
 <p>社内で毎週開催している。本書は輪読形式でまわしているが、題材によって形式は柔軟に変えている。
 毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。</p>
-
 <p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。
 <a href="https://github.com/Wondershake/machine-learning-study">Wondershake/machine-learning-study: 機械学習勉強会</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-math" data-lang="math"></code></pre></div><div class="footnotes">
-
-<hr />
-
+<pre tabindex="0"><code class="language-math" data-lang="math"></code></pre><section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1"><a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.scatter.html#matplotlib.pyplot.scatter">matplotlib.pyplot.scatter — Matplotlib 2.1.1 documentation</a>
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-<li id="fn:2">もっとましなimportの仕方はないのか…。
- <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.scatter.html#matplotlib.pyplot.scatter">matplotlib.pyplot.scatter — Matplotlib 2.1.1 documentation</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>もっとましなimportの仕方はないのか…。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#31-分類アルゴリズムの選択">3.1 分類アルゴリズムの選択</a></li>
+    <li><a href="#32-scikit-learn活用へのファーストステップ">3.2 scikit-learn活用へのファーストステップ</a>
+      <ul>
+        <li><a href="#321-scikit-learnを使ったパーセプトロンのトレーニング">3.2.1 scikit-learnを使ったパーセプトロンのトレーニング</a></li>
+      </ul>
+    </li>
+    <li><a href="#33-ロジスティック回帰を使ったクラスの確率のモデリング">3.3 ロジスティック回帰を使ったクラスの確率のモデリング</a>
+      <ul>
+        <li><a href="#331-ロジスティック回帰の直感的知識と条件付き確率">3.3.1 ロジスティック回帰の直感的知識と条件付き確率</a></li>
+        <li><a href="#332-ロジスティック関数の重みの学習">3.3.2 ロジスティック関数の重みの学習</a></li>
+        <li><a href="#333-scikit-learn-によるロジスティック回帰モデルのトレーニング">3.3.3 scikit-learn によるロジスティック回帰モデルのトレーニング</a></li>
+        <li><a href="#334-正則化による化学週への対処">3.3.4 正則化による化学週への対処</a></li>
+      </ul>
+    </li>
+    <li><a href="#34-サポートベクトルマシンによる最大マージン分類">3.4 サポートベクトルマシンによる最大マージン分類</a>
+      <ul>
+        <li><a href="#341-最大マージンを直感的に理解する">3.4.1 最大マージンを直感的に理解する</a></li>
+        <li><a href="#342-スラック変数を使った非線形分離可能なケースへの対処">3.4.2 スラック変数を使った非線形分離可能なケースへの対処</a></li>
+        <li><a href="#343-scikit-learn-での代替実装">3.4.3 scikit-learn での代替実装</a></li>
+      </ul>
+    </li>
+    <li><a href="#35-カーネル-svm-を使った非線形問題の求解">3.5 カーネル SVM を使った非線形問題の求解</a>
+      <ul>
+        <li><a href="#351-カーネルトリックを使って分離超平面を高次元空間で特定する">3.5.1 カーネルトリックを使って分離超平面を高次元空間で特定する</a></li>
+      </ul>
+    </li>
+    <li><a href="#36-決定木学習">3.6 決定木学習</a>
+      <ul>
+        <li><a href="#361-情報利得の最大化-できるだけ高い効果を得る">3.6.1 情報利得の最大化: できるだけ高い効果を得る</a></li>
+        <li><a href="#362-決定木の構築">3.6.2 決定木の構築</a></li>
+        <li><a href="#363-ランダムフォレストを使って弱い学習アルゴリズムと強い学習アルゴリズムを結合する">3.6.3 ランダムフォレストを使って弱い学習アルゴリズムと強い学習アルゴリズムを結合する</a></li>
+      </ul>
+    </li>
+    <li><a href="#37-k近傍法-怠惰学習アルゴリズム">3.7 k近傍法: 怠惰学習アルゴリズム</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

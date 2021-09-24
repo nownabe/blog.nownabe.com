@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>nownab.log</title>
@@ -6,11 +6,7 @@
     <description>Recent content on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 13 Dec 2020 00:00:00 +0900</lastBuildDate>
-    
-	<atom:link href="https://blog.nownabe.com/feed.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 13 Dec 2020 00:00:00 +0900</lastBuildDate><atom:link href="https://blog.nownabe.com/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>我が家の BigQuery による台所事情分析</title>
       <link>https://blog.nownabe.com/2020/12/13/home-finance-with-bigquery/</link>
@@ -751,7 +747,7 @@ esaをやめるときにもスクリプトでいろいろ変換してて移行�
       <pubDate>Sat, 17 Feb 2018 17:01:53 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/2018/02/17/1259.html/</guid>
-      <description>Dockerイメージを公開するのにGitLabが最⭐️高だったので紹介します。GitHubとDockerHubを使うより遥かに良いです。 以前</description>
+      <description>Dockerイメージを公開するのにGitLabが最⭐高だったので紹介します。GitHubとDockerHubを使うより遥かに良いです。 以前G</description>
     </item>
     
     <item>
@@ -1039,7 +1035,7 @@ esaをやめるときにもスクリプトでいろいろ変換してて移行�
       <pubDate>Fri, 22 Sep 2017 04:08:42 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/2017/09/22/1133.html/</guid>
-      <description>Cookpad Ruby Hack Challengeに参加したのでイベントの様子と後日談を。 イベント自体は8月に開催されたが、イベントで取り組んだ課題をその後もほそぼそ</description>
+      <description>[Cookpad Ruby Hack Challenge](Cookpad Ruby Hack Challenge)に参加したのでイベントの様子と後日談を。 イベント自体は8月に開催されたが、イベントで取り組んだ課題をその後も</description>
     </item>
     
     <item>
@@ -1300,7 +1296,7 @@ esaをやめるときにもスクリプトでいろいろ変換してて移行�
       <pubDate>Sat, 25 Mar 2017 13:46:53 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/2017/03/25/660.html/</guid>
-      <description>はじめに なぜかbrainf*ckを実装した。 ついでに誰でもオリジナルなbrainf*ckっぽいプログラムを実行できるようにしてみた 💡 https://github.com/nownabe/brainfuck-go 使い方</description>
+      <description>はじめに なぜかbrainfckを実装した。 ついでに誰でもオリジナルなbrainfckっぽいプログラムを実行できるようにしてみた 💡 https://github.com/nownabe/brainfuck-go 使い方 まず</description>
     </item>
     
     <item>

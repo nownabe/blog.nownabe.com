@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,90 +48,63 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/11/28/1442.html/">GCP updates  | November 12, 2018</a></h2>
     <span class="date">Posted on Nov 28, 2018</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="compute">COMPUTE</h1>
-
-<h2 id="compute-engine-logging-serial-port-output-to-stackdriver-beta">Compute Engine – logging serial port output to Stackdriver: beta</h2>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="compute">COMPUTE</h1>
+<h2 id="compute-engine--logging-serial-port-output-to-stackdriver-beta">Compute Engine – logging serial port output to Stackdriver: beta</h2>
 <blockquote>
 <p>This feature enables you to configure your VM instances to automatically log serial port output to Stackdriver, allowing it to persist beyond the lifetime of the VMs. Logging this data to Stackdriver makes it easier for you to analyze and troubleshoot VMs that have crashed or terminated. <a href="https://cloud.google.com/compute/docs/instances/viewing-serial-port-output">Documentation</a></p>
 </blockquote>
-
 <p>おもしろいなw
 IaaSレイヤーで凝ったことしてたら必要になってくるんですね。</p>
-
-<h2 id="compute-engine-mounting-persistent-disks-into-containers-beta">Compute Engine – mounting persistent disks into containers: beta</h2>
-
+<h2 id="compute-engine--mounting-persistent-disks-into-containers-beta">Compute Engine – mounting persistent disks into containers: beta</h2>
 <blockquote>
 <p>With Container-Optimized OS 69 or newer, you can now mount persistent disks from a host VM into a container automatically, no coding required. This is similar to using the gcePersistentDisk volume type in Kubernetes. <a href="https://cloud.google.com/compute/docs/containers/configuring-options-to-run-containers#mounting_a_persistent_disk_as_a_data_volume">Documentation</a></p>
 </blockquote>
-
 <p>GCEのコンテナを起動できる機能に関して、APIとかコンソール一発でコンテナからPersistent Diskをマウントできるようになったって感じかな。
 コンテナなのにGCEを使うってときはステートフルなあれが多いと思うので、あると嬉しいのかもしれませんね。</p>
-
 <h1 id="data-analytics">DATA ANALYTICS</h1>
-
 <h2 id="bigquery-sandbox-available-through-firebase-beta">BigQuery sandbox available through Firebase: beta</h2>
-
 <blockquote>
 <p>Firebase users on the free Spark plan can now export their project data to a BigQuery sandbox for analysis. You can export to BigQuery without a billable account to access up to 10 GB of active storage and 1 TB of processed query data per month. <a href="https://cloud.google.com/bigquery/docs/sandbox">Documentation</a></p>
 </blockquote>
-
 <p>課金してなくてもFirebase -&gt; BigQueryを試せるようになったってことかな。</p>
-
 <h1 id="networking">NETWORKING</h1>
-
 <h2 id="content-based-https-health-checks-ga">Content-based HTTPS health checks: GA</h2>
-
 <blockquote>
 <p>Health-checking mechanisms determine whether VM instances are responding properly to traffic. You can now specify the content that should be seen in the response string of an HTTPS health check for Google Cloud Platform load balancers. <a href="https://cloud.google.com/load-balancing/docs/health-check-concepts#content-based_health_checks">Documentation</a></p>
 </blockquote>
-
 <p>ふむ。</p>
-
-<h2 id="cloud-dns-private-dns-zones-beta">Cloud DNS – private DNS zones: beta</h2>
-
+<h2 id="cloud-dns--private-dns-zones-beta">Cloud DNS – private DNS zones: beta</h2>
 <blockquote>
 <p>Private DNS zones provide a simple-to-manage internal DNS solution for your private networks on GCP. This GCP-native and managed private zone capability removes the need to provision and manage additional software and compute resources. <a href="https://cloud.google.com/blog/products/networking/introducing-private-dns-zones-resolve-to-keep-internal-networks-concealed">Blog</a></p>
 </blockquote>
-
 <h2 id="private-google-access-from-on-premises-beta">Private Google Access from on-premises: beta</h2>
-
 <blockquote>
 <p>This feature enables your on-premises hosts to reach Google APIs and services through a Cloud VPN tunnel or Cloud Interconnect connection. <a href="https://cloud.google.com/vpc/docs/configure-private-google-access-hybrid">Documentation</a></p>
 </blockquote>
-
 <p>今までできなかったんですね。
 こーゆーオンプレまわりの機能強化って日本企業の要望が強かったりするんだろうか。</p>
-
 <h1 id="storage">STORAGE</h1>
-
 <h2 id="cloud-firestore-emulator-beta">Cloud Firestore emulator: beta</h2>
-
 <blockquote>
 <p>By running a binary of Cloud Firestore within a local environment, you can safely test how code will interact with your apps and check the behavior of your Cloud Firestore Security Rules. <a href="https://cloud.google.com/firestore/docs/security/test-rules-emulator">Documentation</a></p>
 </blockquote>
-
 <p>いいですね。Firestoreへの移行が着々と進んでますね。</p>
-
-<h1 id="identity-security">IDENTITY &amp; SECURITY</h1>
-
-<h2 id="compute-engine-new-cloud-identity-and-access-management-features-beta">Compute Engine – new Cloud Identity and Access Management features: beta</h2>
-
+<h1 id="identity--security">IDENTITY &amp; SECURITY</h1>
+<h2 id="compute-engine--new-cloud-identity-and-access-management-features-beta">Compute Engine – new Cloud Identity and Access Management features: beta</h2>
 <blockquote>
 <p>A new resource-level IAM feature allows you to control access by setting policies on individual resources, such as VM instances or disks. And with the new IAM conditions feature you can also grant access based on predefined conditions, such as resource name prefix or time frame. <a href="https://cloud.google.com/blog/products/identity-security/get-more-control-over-your-compute-engine-resources-with-new-cloud-iam-features">Blog</a></p>
 </blockquote>
-
 <p>より細かくIAMで権限をコントロールできるようになるみたいですね。
 ブログの例だとリソースタイプとリソースの名前の前方一致という条件でポリシーを設定しています。</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
    <span class="nt">&#34;policy&#34;</span><span class="p">:</span> <span class="p">{</span>
      <span class="nt">&#34;bindings&#34;</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
@@ -147,9 +120,39 @@ IaaSレイヤーで凝ったことしてたら必要になってくるんです�
         <span class="p">}</span>
       <span class="p">}</span>
     <span class="err">}</span>
-  <span class="err">}</span></code></pre></div>
-<p>もうちょっと細かく権限管理したいなぁと思うことはあったけど、あんまり多用はしたくないですね 😅</p>
+  <span class="err">}</span>
+</code></pre></div><p>もうちょっと細かく権限管理したいなぁと思うことはあったけど、あんまり多用はしたくないですね 😅</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#compute-engine--logging-serial-port-output-to-stackdriver-beta">Compute Engine – logging serial port output to Stackdriver: beta</a></li>
+    <li><a href="#compute-engine--mounting-persistent-disks-into-containers-beta">Compute Engine – mounting persistent disks into containers: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#bigquery-sandbox-available-through-firebase-beta">BigQuery sandbox available through Firebase: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#content-based-https-health-checks-ga">Content-based HTTPS health checks: GA</a></li>
+    <li><a href="#cloud-dns--private-dns-zones-beta">Cloud DNS – private DNS zones: beta</a></li>
+    <li><a href="#private-google-access-from-on-premises-beta">Private Google Access from on-premises: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-firestore-emulator-beta">Cloud Firestore emulator: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#compute-engine--new-cloud-identity-and-access-management-features-beta">Compute Engine – new Cloud Identity and Access Management features: beta</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

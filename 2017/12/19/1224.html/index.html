@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,22 +48,19 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/12/19/1224.html/">Cloud Endpoints with gRPCで複数パッケージを使う</a></h2>
     <span class="date">Posted on Dec 18, 2017</span>
   </div>
-  <div class="body">
-    
-
-<p><a href="https://cloud.google.com/endpoints/">Cloud Endpoints with gRPC</a>で1つのエンドポイントに複数のパッケージ<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>を使おうとしてちょっと躓いたのでそのメモです。</p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p><a href="https://cloud.google.com/endpoints/">Cloud Endpoints with gRPC</a>で1つのエンドポイントに複数のパッケージ<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>を使おうとしてちょっと躓いたのでそのメモです。</p>
 <h1 id="問題">問題</h1>
-
 <p>まず、普通に複数の名前空間を使ってProtocol Buffersの定義ファイルを書くと、2つのファイルを作成することになります。1つのファイルに複数のパッケージを指定するとコンパイルエラーになるためです。</p>
-
 <p>今回は<code>ping</code>と<code>echo</code>という2つのパッケージでテストしました。</p>
-<div class="highlight"><pre class="chroma"><code class="language-proto:ping.proto" data-lang="proto:ping.proto"><span class="n">syntax</span> <span class="o">=</span> <span class="s">&#34;proto3&#34;</span><span class="p">;</span><span class="err">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-proto:ping.proto" data-lang="proto:ping.proto"><span class="n">syntax</span> <span class="o">=</span> <span class="s">&#34;proto3&#34;</span><span class="p">;</span><span class="err">
 </span><span class="err"></span><span class="kn">package</span> <span class="nn">ping</span><span class="p">;</span><span class="err">
 </span><span class="err"></span><span class="kd">service</span> <span class="n">PingService</span> <span class="p">{</span><span class="err">
 </span><span class="err"></span>  <span class="k">rpc</span> <span class="n">Ping</span> <span class="p">(</span><span class="n">PingRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">PingResponse</span><span class="p">)</span> <span class="p">{}</span><span class="err">
@@ -71,7 +68,8 @@ if (!doNotTrack) {
 </span><span class="err"></span><span class="kd">message</span> <span class="nc">PingRequest</span> <span class="p">{}</span><span class="err">
 </span><span class="err"></span><span class="kd">message</span> <span class="nc">PingResponse</span> <span class="p">{</span><span class="err">
 </span><span class="err"></span>  <span class="kt">string</span> <span class="kd">message</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="err">
-</span><span class="err"></span><span class="p">}</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-proto:echo.proto" data-lang="proto:echo.proto"><span class="n">syntax</span> <span class="o">=</span> <span class="s">&#34;proto3&#34;</span><span class="p">;</span><span class="err">
+</span><span class="err"></span><span class="p">}</span><span class="err">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-proto:echo.proto" data-lang="proto:echo.proto"><span class="n">syntax</span> <span class="o">=</span> <span class="s">&#34;proto3&#34;</span><span class="p">;</span><span class="err">
 </span><span class="err"></span><span class="kn">package</span> <span class="nn">echo</span><span class="p">;</span><span class="err">
 </span><span class="err"></span><span class="kd">service</span> <span class="n">EchoService</span> <span class="p">{</span><span class="err">
 </span><span class="err"></span>  <span class="k">rpc</span> <span class="n">Echo</span> <span class="p">(</span><span class="n">EchoRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">EchoResponse</span><span class="p">)</span> <span class="p">{}</span><span class="err">
@@ -81,47 +79,52 @@ if (!doNotTrack) {
 </span><span class="err"></span><span class="p">}</span><span class="err">
 </span><span class="err"></span><span class="kd">message</span> <span class="nc">EchoResponse</span> <span class="p">{</span><span class="err">
 </span><span class="err"></span>  <span class="kt">string</span> <span class="kd">message</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="err">
-</span><span class="err"></span><span class="p">}</span></code></pre></div>
-<p>そして、これらをデプロイするCloud Endpointsの設定ファイルは次のようになります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml:api_config.yaml" data-lang="yaml:api_config.yaml">type<span class="p">:</span><span class="w"> </span>google.api.Service<span class="w">
-</span><span class="w"></span>config_version<span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">
+</span><span class="err"></span><span class="p">}</span><span class="err">
+</span></code></pre></div><p>そして、これらをデプロイするCloud Endpointsの設定ファイルは次のようになります。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml:api_config.yaml" data-lang="yaml:api_config.yaml"><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">google.api.Service</span><span class="w">
+</span><span class="w"></span><span class="nt">config_version</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">
 </span><span class="w">
-</span><span class="w"></span>name<span class="p">:</span><span class="w"> </span>api.endpoints.myproject.cloud.goog<span class="w">
+</span><span class="w"></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">api.endpoints.myproject.cloud.goog</span><span class="w">
 </span><span class="w">
-</span><span class="w"></span>title<span class="p">:</span><span class="w"> </span>My<span class="w"> </span>APIs<span class="w">
-</span><span class="w"></span>apis<span class="p">:</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>echo.EchoService<span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>ping.PingService<span class="w">
+</span><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">My APIs</span><span class="w">
+</span><span class="w"></span><span class="nt">apis</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">echo.EchoService</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ping.PingService</span><span class="w">
 </span><span class="w">
-</span><span class="w"></span>usage<span class="p">:</span><span class="w">
-</span><span class="w">  </span>rules<span class="p">:</span><span class="w">
-</span><span class="w">    </span>-<span class="w"> </span>selector<span class="p">:</span><span class="w"> </span><span class="s2">&#34;*&#34;</span><span class="w">
-</span><span class="w">      </span>allow_unregistered_calls<span class="p">:</span><span class="w"> </span><span class="kc">true</span></code></pre></div>
-<p>このときに別々にコンパイルしてしまうと、デプロイできなくなります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ protoc -o echo.pb echo.proto
+</span><span class="w"></span><span class="nt">usage</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">selector</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;*&#34;</span><span class="w">
+</span><span class="w">      </span><span class="nt">allow_unregistered_calls</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></code></pre></div><p>このときに別々にコンパイルしてしまうと、デプロイできなくなります。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ protoc -o echo.pb echo.proto
 $ protoc -o ping.pb ping.proto
 $ gcloud endpoints services deploy api_config.yaml ping.pb echo.pb
 ERROR: <span class="o">(</span>gcloud.endpoints.services.deploy<span class="o">)</span> INVALID_ARGUMENT: Cannot convert to service config.
-<span class="s1">&#39;ERROR: api_config.yaml:9: Cannot resolve api &#39;</span>ping.PingService<span class="s1">&#39;.&#39;</span></code></pre></div>
-<h1 id="解決策">解決策</h1>
-
+<span class="s1">&#39;ERROR: api_config.yaml:9: Cannot resolve api &#39;</span>ping.PingService<span class="s1">&#39;.&#39;</span>
+</code></pre></div><h1 id="解決策">解決策</h1>
 <p>これを解決するには出力を1つのファイルにまとめます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ protoc -o services.pb echo.proto ping.proto
-$ gcloud endpoints services deploy api_config.yaml services.pb</code></pre></div>
-<p>これで問題なくデプロイできました。</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ protoc -o services.pb echo.proto ping.proto
+$ gcloud endpoints services deploy api_config.yaml services.pb
+</code></pre></div><p>これで問題なくデプロイできました。</p>
 <p>ちなみに、既に複数の<code>.pb</code>ファイルがある場合は次のように結合してもデプロイできます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cat echo.pb ping.pb &gt; services.pb
-$ gcloud endpoints services deploy api_config.yaml services.pb</code></pre></div><div class="footnotes">
-
-<hr />
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ cat echo.pb ping.pb &gt; services.pb
+$ gcloud endpoints services deploy api_config.yaml services.pb
+</code></pre></div><section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1"><a href="https://developers.google.com/protocol-buffers/docs/proto3#packages">Language Guide (proto3)  |  Protocol Buffers  |  Google Developers</a>
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://developers.google.com/protocol-buffers/docs/proto3#packages">Language Guide (proto3)  |  Protocol Buffers  |  Google Developers</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

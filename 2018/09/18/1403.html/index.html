@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,90 +48,88 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/09/18/1403.html/">GCP updates  | September 17, 2018</a></h2>
     <span class="date">Posted on Sep 18, 2018</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="account-services">ACCOUNT SERVICES</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="account-services">ACCOUNT SERVICES</h1>
 <h2 id="google-cloud-platform-arrives-in-the-nordics-with-a-new-region-in-finland">Google Cloud Platform arrives in the Nordics with a new region in Finland</h2>
-
 <blockquote>
 <p>The Finland GCP region, europe-north1, is the first Nordic cloud region from a major public cloud provider. Hosting applications in the new region can reduce latency by up to 65% for end users in the Nordics, and by up to 88% for end users in Eastern Europe, compared to hosting them in what was previously the closest region. <a href="https://cloudplatform.googleblog.com/2018/06/GCP-arrives-in-the-Nordics-with-a-new-region-in-Finland.html">Blog</a></p>
 </blockquote>
-
 <p>あれ、前もアナウンスなかったっけ？</p>
-
-<hr />
-
+<hr>
 <p>Additional releases</p>
-
 <h1 id="compute">COMPUTE</h1>
-
-<h2 id="php-7-2-runtime-for-app-engine-standard-environment-beta">PHP 7.2 runtime for App Engine standard environment: beta</h2>
-
+<h2 id="php-72-runtime-for-app-engine-standard-environment-beta">PHP 7.2 runtime for App Engine standard environment: beta</h2>
 <blockquote>
 <p>This launch enables you to create applications in App Engine standard environment using PHP 7.2. <a href="https://cloud.google.com/appengine/docs/standard/php7/building-app/">Documentation</a> | <a href="https://cloud.google.com/blog/products/application-development/introducing-php-7-2-runtime-on-the-app-engine-standard-environment">Blog</a></p>
 </blockquote>
-
 <p>最近はいろんなサービスで対応言語が増えてていいですね。</p>
-
 <h2 id="compute-engine-simulated-maintenance-events-ga">Compute Engine simulated maintenance events: GA</h2>
-
 <blockquote>
 <p>Simulated maintenance events let you test the impact of a live migration on any VM instance. You can also test or validate automations built to react to live migration advance notices, or live migration events themselves, as well as terminate and restart events for VM instances configured to be excluded from live migration. <a href="https://cloud.google.com/compute/docs/instances/setting-instance-scheduling-options#testingpolicies">Documentation</a></p>
 </blockquote>
-
 <p>シミュレートってどういうことだろ。実際にやってみるってことかな。</p>
-
 <h2 id="nvidia-tesla-v100-gpu-ga">NVIDIA Tesla V100 GPU: GA</h2>
-
 <blockquote>
 <p>The NVIDIA Tesla V100 GPU is a powerful processing tool for machine learning training and inference workloads. Each chip has 640 tensor cores and offers up to 125 teraflops of mixed-precision ML performance. This means that you can get up to a petaflop of ML performance in a single virtual machine. Blog](<a href="https://cloud.google.com/blog/products/compute/tesla-v100-gpus-are-now-generally-available">https://cloud.google.com/blog/products/compute/tesla-v100-gpus-are-now-generally-available</a>)</p>
 </blockquote>
-
 <h1 id="api-management">API MANAGEMENT</h1>
-
 <h2 id="cloud-endpoints-portal-ga">Cloud Endpoints Portal: GA</h2>
-
 <blockquote>
 <p>Use Cloud Endpoints to manage your APIs and publish documentation for your team with a single click in the GCP Console. After that, any API that gets pushed to your GCP project through the gcloud command-line tool will be automatically updated with SmartDocs. <a href="https://cloud.google.com/endpoints/docs/openapi/dev-portal-update-ref-docs">Documentation</a> | <a href="https://cloud.google.com/blog/products/application-development/automatic-documentation-for-your-cloud-endpoints-api-now-in-ga">Blog</a></p>
 </blockquote>
-
 <p>いいですね。<a href="https://endpointsportal.endpoints-portal-demo.cloud.goog/docs/echo-api.endpoints.endpoints-portal-demo.cloud.goog/v1/routes/echo/post">デモ</a>もあります。Forbiddenって出ますが、自分のOpenAPIの定義ファイルをアップロードすればこんな感じのドキュメントが生成されます。</p>
-
-<p><img src="/images/2018/09/18/1.png" alt="Screenshot from 2018-09-18 10-48-49.png (96.6 kB)" /></p>
-
-<h1 id="ai-machine-learning">AI &amp; MACHINE LEARNING</h1>
-
+<p><img src="/images/2018/09/18/1.png" alt="Screenshot from 2018-09-18 10-48-49.png (96.6 kB)"></p>
+<h1 id="ai--machine-learning">AI &amp; MACHINE LEARNING</h1>
 <h2 id="cloud-machine-learning-engine-developer-forum-ga">Cloud Machine Learning Engine developer forum: GA</h2>
-
 <blockquote>
 <p>With the Cloud ML Engine developer forum, you can access experimental features, get help from other developers, and shape Cloud ML Engine to meet your needs. <a href="https://cloud.google.com/ml-engine/docs/tensorflow/support#discuss_questions_and_feedback_in_the_developer_forum">Documentation</a> | <a href="https://groups.google.com/forum/#!forum/ml-engine">Forum</a></p>
 </blockquote>
-
 <p>こんなのあるんですね。</p>
-
 <h2 id="cloud-ml-engine-training-with-gpus-ga-and-beta">Cloud ML Engine training with GPUs: GA and beta</h2>
-
 <blockquote>
 <p>Additional support for NVIDIA Tesla V100 GPUs in beta and NVIDIA Tesla P100 GPUs now GA for Cloud ML Engine training is available. With GPUs, you can train deep learning models in hours rather than days. <a href="https://cloud.google.com/ml-engine/docs/tensorflow/using-gpus">Documentation</a></p>
 </blockquote>
-
 <p>学習外だしの環境がどんどん整ってていいですね。</p>
-
 <h2 id="cloud-ml-engine-online-prediction-price-reduction-ga">Cloud ML Engine online prediction price reduction: GA</h2>
-
 <blockquote>
 <p>The price of Cloud ML Engine online prediction has been reduced to US$0.056–$0.071 per node hour from US$0.300–$0.348 per node hour. <a href="https://cloud.google.com/ml-engine/docs/pricing">Pricing</a> | <a href="https://cloud.google.com/ml-engine/docs/tensorflow/online-predict">Documentation</a></p>
 </blockquote>
-
 <p>がっつり値下げされましたね。学習だけじゃなくて予測もどんどんマネージド化がすすみそうですねー。</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#google-cloud-platform-arrives-in-the-nordics-with-a-new-region-in-finland">Google Cloud Platform arrives in the Nordics with a new region in Finland</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#php-72-runtime-for-app-engine-standard-environment-beta">PHP 7.2 runtime for App Engine standard environment: beta</a></li>
+    <li><a href="#compute-engine-simulated-maintenance-events-ga">Compute Engine simulated maintenance events: GA</a></li>
+    <li><a href="#nvidia-tesla-v100-gpu-ga">NVIDIA Tesla V100 GPU: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-endpoints-portal-ga">Cloud Endpoints Portal: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-machine-learning-engine-developer-forum-ga">Cloud Machine Learning Engine developer forum: GA</a></li>
+    <li><a href="#cloud-ml-engine-training-with-gpus-ga-and-beta">Cloud ML Engine training with GPUs: GA and beta</a></li>
+    <li><a href="#cloud-ml-engine-online-prediction-price-reduction-ga">Cloud ML Engine online prediction price reduction: GA</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

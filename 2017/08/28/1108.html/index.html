@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,125 +48,116 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/08/28/1108.html/">GCP updates | August 24, 2017</a></h2>
     <span class="date">Posted on Aug 28, 2017</span>
   </div>
-  <div class="body">
-    
-
-<p>少し遅れました</p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>少し遅れました</p>
 <h1 id="compute">Compute</h1>
-
-<h2 id="zync-render-support-for-autodesk-3ds-max-https-www-zyncrender-com"><a href="https://www.zyncrender.com/">ZYNC Render support for Autodesk 3ds Max</a></h2>
-
+<h2 id="zync-render-support-for-autodesk-3ds-maxhttpswwwzyncrendercom"><a href="https://www.zyncrender.com/">ZYNC Render support for Autodesk 3ds Max</a></h2>
 <blockquote>
 <p>The beta release of Google Cloud Platform (GCP) ZYNC Render now supports Autodesk 3ds Max, the 3D modeling and animation software used for gaming, visual effects, animation, and architecture.</p>
-
 <p>GCPのZYNC RenderはAutodesk社の3ds Maxのサポートをベータリリースしました。3ds Maxは3Dモデリングとアニメーションのソフトウェアです。ゲーム、ビジュアルエフェクト、アニメ、建築などに使われます。</p>
 </blockquote>
-
 <p>こんなサービスもあるんですね 😳</p>
-
-<h2 id="ssh-using-internal-ip-address-ingcloud-https-cloud-google-com-sdk-gcloud-reference-beta-compute-ssh-internal-ip"><a href="https://cloud.google.com/sdk/gcloud/reference/beta/compute/ssh#--internal-ip">SSH using internal IP address ingcloud</a></h2>
-
+<h2 id="ssh-using-internal-ip-address-ingcloudhttpscloudgooglecomsdkgcloudreferencebetacomputessh--internal-ip"><a href="https://cloud.google.com/sdk/gcloud/reference/beta/compute/ssh#--internal-ip">SSH using internal IP address ingcloud</a></h2>
 <blockquote>
 <p>The new feature allows gcloud beta compute SSH to connect to private IP-only instances, giving users a familiar, secure, and consistent mechanism for using SSH.</p>
-
 <p>プライベートIPしかもたないインスタンスにも<code>gcloud beta compute ssh</code>でSSH接続できるようになりました。わかりやすく、セキュアで一貫性のある方法です。</p>
 </blockquote>
-
 <p>こんな感じでプライベートIPを使ってSSHできるようになります。
 SSH鍵を転送する必要がなくなりました。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gcloud beta compute ssh --internal-ip instance-1</code></pre></div>
-<h1 id="big-data">Big Data</h1>
-
-<h2 id="cloud-dataproc-1-2-https-cloud-google-com-dataproc-docs-release-notes-service-july-21-2017"><a href="https://cloud.google.com/dataproc/docs/release-notes/service#july_21_2017">Cloud Dataproc 1.2</a></h2>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">gcloud beta compute ssh --internal-ip instance-1
+</code></pre></div><h1 id="big-data">Big Data</h1>
+<h2 id="cloud-dataproc-12httpscloudgooglecomdataprocdocsrelease-notesservicejuly_21_2017"><a href="https://cloud.google.com/dataproc/docs/release-notes/service#july_21_2017">Cloud Dataproc 1.2</a></h2>
 <blockquote>
 <p>Cloud <a href="https://cloud.google.com/blog/big-data/2017/07/cloud-dataproc-is-now-even-faster-and-easier-to-use-for-running-apache-spark-and-apache-hadoop">Dataproc 1.2 becomes the default image</a> version for new clusters and includes updates to OSS, Apache Hadoop 2.8x, and Apache Spark 2.2x, as well as configuration changes.</p>
-
 <p>Cloud Dataprocで新しいクラスタの標準イメージが1.2になります。これは、Apache Hadoop 2.8.x、Apache Spark 2.2.xなどのOSSのアップデートを含みます。</p>
 </blockquote>
-
-<h2 id="cloud-dataproc-graceful-decommissioning-beta-https-cloud-google-com-dataproc-docs-concepts-scaling-clusters"><a href="https://cloud.google.com/dataproc/docs/concepts/scaling-clusters">Cloud Dataproc Graceful Decommissioning beta</a></h2>
-
+<h2 id="cloud-dataproc-graceful-decommissioning-betahttpscloudgooglecomdataprocdocsconceptsscaling-clusters"><a href="https://cloud.google.com/dataproc/docs/concepts/scaling-clusters">Cloud Dataproc Graceful Decommissioning beta</a></h2>
 <blockquote>
 <p>The Cloud Dataproc <a href="https://cloud.google.com/blog/big-data/2017/07/cloud-dataproc-is-now-even-faster-and-easier-to-use-for-running-apache-spark-and-apache-hadoop">Graceful Decommissioning feature</a> allows the removal of worker nodes in a cluster without interrupting jobs in progress. This support applies only to Cloud Dataproc image versions 1.2 or later.</p>
-
 <p>Cloud DataprocのGraceful Decommissioning featureは実行中のジョブに影響を与えずにクラスタのワーカーノードを削除できます。この機能はバージョン1.2以降のイメージで利用できます。</p>
 </blockquote>
-
 <h1 id="machine-learning">Machine Learning</h1>
-
-<h2 id="cloud-natural-language-api-v1-1-ga-https-cloud-google-com-natural-language-docs-languages"><a href="https://cloud.google.com/natural-language/docs/languages">Cloud Natural Language API v1.1 GA</a></h2>
-
+<h2 id="cloud-natural-language-api-v11-gahttpscloudgooglecomnatural-languagedocslanguages"><a href="https://cloud.google.com/natural-language/docs/languages">Cloud Natural Language API v1.1 GA</a></h2>
 <blockquote>
 <p>Cloud Natural Language API v1.1 offers extended language support for syntax, document-level sentiment, and entity analysis. New languages include German, Italian, French, Korean, Chinese, and Portuguese.</p>
-
 <p>Cloud Natural Language APIのバージョン1．1では、構文解析、感情分析、エンティティ分析の対応言語を拡張しました。新しく、ドイツ語、イタリア語、フランス語、韓国語、中国語、ポルトガル語に対応しました。</p>
 </blockquote>
-
 <p>日本語は前からGAでしたが、ベータだった言語がGAになりました。</p>
-
-<h2 id="cloud-speech-api-v1-add-timestamp-ga-https-cloud-google-com-speech-docs-async-time-offsets"><a href="https://cloud.google.com/speech/docs/async-time-offsets">Cloud Speech API v1 - add timestamp GA</a></h2>
-
+<h2 id="cloud-speech-api-v1---add-timestamp-gahttpscloudgooglecomspeechdocsasync-time-offsets"><a href="https://cloud.google.com/speech/docs/async-time-offsets">Cloud Speech API v1 - add timestamp GA</a></h2>
 <blockquote>
 <p>The Cloud Speech API now provides support for <a href="https://cloudplatform.googleblog.com/2017/08/Cloud-Speech-API-improves-longform-audio-recognition-and-adds-30-new-language-variants.html">word-level timestamps</a>, enabling users to jump to the moment in the audio when the text was spoken or display the relevant text while audio is playing.</p>
-
 <p>Cloud Speech APIは単語レベルのタイムスタンプを提供します。あるテキストが喋られている瞬間にジャンプしたり、オーディオが再生中に関連テキストを表示したりできるようになります。</p>
 </blockquote>
-
 <p>単語ごとにタイムスタンプがあると色々おもしろいことができそうですね。</p>
-
-<h2 id="cloud-speech-api-v1-max-time-limit-increase-https-cloud-google-com-speech-limits"><a href="https://cloud.google.com/speech/limits">Cloud Speech API v1 - max time limit increase</a></h2>
-
+<h2 id="cloud-speech-api-v1---max-time-limit-increasehttpscloudgooglecomspeechlimits"><a href="https://cloud.google.com/speech/limits">Cloud Speech API v1 - max time limit increase</a></h2>
 <blockquote>
 <p>To help users with long-form audio needs, <a href="https://cloudplatform.googleblog.com/2017/08/Cloud-Speech-API-improves-longform-audio-recognition-and-adds-30-new-language-variants.html">the time limit of the Cloud Speech API has been increased</a> from 80 minutes to 3 hours. Users with files longer than 3 hours can apply for a quota extension through <a href="https://cloud.google.com/support/">Cloud Support</a>.</p>
-
 <p>長時間の音声を処理できるように、最大時間制限を80分から3時間に増加しました。サポートに連絡すればさらに長時間の音声の処理も可能です。</p>
 </blockquote>
-
-<h2 id="cloud-speech-api-v1-expanded-language-coverage-https-cloud-google-com-speech-docs-languages"><a href="https://cloud.google.com/speech/docs/languages">Cloud Speech API v1 - expanded language coverage</a></h2>
-
+<h2 id="cloud-speech-api-v1---expanded-language-coveragehttpscloudgooglecomspeechdocslanguages"><a href="https://cloud.google.com/speech/docs/languages">Cloud Speech API v1 - expanded language coverage</a></h2>
 <blockquote>
 <p>Cloud Speech API has added support for <a href="https://cloudplatform.googleblog.com/2017/08/Cloud-Speech-API-improves-longform-audio-recognition-and-adds-30-new-language-variants.html">30 new languages</a>, giving customers access to more users in more countries for an almost global reach. Check out the complete list of <a href="https://cloud.google.com/speech/docs/languages">supported languages</a>.</p>
-
 <p>Cloud Speech APIは30の新しい言語へ対応しました。</p>
 </blockquote>
-
 <p>もはや言語一覧みてもさっぱりわかりませんね。</p>
-
-<h1 id="identity-security">Identity &amp; Security</h1>
-
-<h2 id="organization-policy-service-ga-https-cloud-google-com-resource-manager-docs-organization-policy-overview"><a href="https://cloud.google.com/resource-manager/docs/organization-policy/overview">Organization Policy service GA</a></h2>
-
+<h1 id="identity--security">Identity &amp; Security</h1>
+<h2 id="organization-policy-service-gahttpscloudgooglecomresource-managerdocsorganization-policyoverview"><a href="https://cloud.google.com/resource-manager/docs/organization-policy/overview">Organization Policy service GA</a></h2>
 <blockquote>
 <p>The GA release of the Organization Policy service provides centralized control over resource policies, enabling admins to set constraints on GCP services. See the complete list of <a href="https://cloud.google.com/resource-manager/docs/organization-policy/understanding-constraints#available_constraints">available constraints</a>.</p>
-
 <p>組織ポリシーサービスのGAではリソースポリシーの集中管理を提供し、管理者がGCPサービスへの制限を設定できるようになりました。</p>
 </blockquote>
-
 <h1 id="management-tools">Management Tools</h1>
-
-<h2 id="stackdriver-trace-ui-non-google-app-engine-log-integration-https-cloud-google-com-trace-docs-viewing-details-log-entries"><a href="https://cloud.google.com/trace/docs/viewing-details#log_entries">Stackdriver Trace UI non-Google App Engine log integration</a></h2>
-
+<h2 id="stackdriver-trace-ui-non-google-app-engine-log-integrationhttpscloudgooglecomtracedocsviewing-detailslog_entries"><a href="https://cloud.google.com/trace/docs/viewing-details#log_entries">Stackdriver Trace UI non-Google App Engine log integration</a></h2>
 <blockquote>
 <p>Applications not hosted on Google App Engine can now link traces to logs and have those links appear in the Stackdriver Trace UI.</p>
-
 <p>Google App Engineにホストされてないアプリケーションでも、ログへリンクできるようになり、Stackdriver TraceのUIにリンクが表示されるようになりました。</p>
 </blockquote>
-
-<h2 id="stackdriver-for-node-js-https-cloud-google-com-nodejs-docs-stackdriver"><a href="https://cloud.google.com/nodejs/docs/stackdriver">Stackdriver for Node.js</a></h2>
-
+<h2 id="stackdriver-for-nodejshttpscloudgooglecomnodejsdocsstackdriver"><a href="https://cloud.google.com/nodejs/docs/stackdriver">Stackdriver for Node.js</a></h2>
 <blockquote>
 <p>The beta release of Stackdriver for Node.js expands its capabilities to include new Stackdriver libraries for Stackdriver Logging, Debugger, Trace, and Error Reporting.</p>
-
 <p>StackdriverのNode.js対応がベータリリースされました。Logging、Debugger、Trace、Error Reportingのライブラリを含んでいます。</p>
 </blockquote>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#zync-render-support-for-autodesk-3ds-maxhttpswwwzyncrendercom"><a href="https://www.zyncrender.com/">ZYNC Render support for Autodesk 3ds Max</a></a></li>
+    <li><a href="#ssh-using-internal-ip-address-ingcloudhttpscloudgooglecomsdkgcloudreferencebetacomputessh--internal-ip"><a href="https://cloud.google.com/sdk/gcloud/reference/beta/compute/ssh#--internal-ip">SSH using internal IP address ingcloud</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-dataproc-12httpscloudgooglecomdataprocdocsrelease-notesservicejuly_21_2017"><a href="https://cloud.google.com/dataproc/docs/release-notes/service#july_21_2017">Cloud Dataproc 1.2</a></a></li>
+    <li><a href="#cloud-dataproc-graceful-decommissioning-betahttpscloudgooglecomdataprocdocsconceptsscaling-clusters"><a href="https://cloud.google.com/dataproc/docs/concepts/scaling-clusters">Cloud Dataproc Graceful Decommissioning beta</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-natural-language-api-v11-gahttpscloudgooglecomnatural-languagedocslanguages"><a href="https://cloud.google.com/natural-language/docs/languages">Cloud Natural Language API v1.1 GA</a></a></li>
+    <li><a href="#cloud-speech-api-v1---add-timestamp-gahttpscloudgooglecomspeechdocsasync-time-offsets"><a href="https://cloud.google.com/speech/docs/async-time-offsets">Cloud Speech API v1 - add timestamp GA</a></a></li>
+    <li><a href="#cloud-speech-api-v1---max-time-limit-increasehttpscloudgooglecomspeechlimits"><a href="https://cloud.google.com/speech/limits">Cloud Speech API v1 - max time limit increase</a></a></li>
+    <li><a href="#cloud-speech-api-v1---expanded-language-coveragehttpscloudgooglecomspeechdocslanguages"><a href="https://cloud.google.com/speech/docs/languages">Cloud Speech API v1 - expanded language coverage</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#organization-policy-service-gahttpscloudgooglecomresource-managerdocsorganization-policyoverview"><a href="https://cloud.google.com/resource-manager/docs/organization-policy/overview">Organization Policy service GA</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#stackdriver-trace-ui-non-google-app-engine-log-integrationhttpscloudgooglecomtracedocsviewing-detailslog_entries"><a href="https://cloud.google.com/trace/docs/viewing-details#log_entries">Stackdriver Trace UI non-Google App Engine log integration</a></a></li>
+    <li><a href="#stackdriver-for-nodejshttpscloudgooglecomnodejsdocsstackdriver"><a href="https://cloud.google.com/nodejs/docs/stackdriver">Stackdriver for Node.js</a></a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

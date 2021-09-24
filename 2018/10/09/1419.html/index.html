@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,28 +48,32 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/10/09/1419.html/">Google CloudのRubyクライアントのRailsログを無効化する</a></h2>
     <span class="date">Posted on Oct 9, 2018</span>
   </div>
-  <div class="body">
-    <p>RailsのRakeタスクでGoogle Cloud Storageを操作するバッチを動かしてたら頼んでもないのにRailsのログ (<code>log/development.log</code>みたいなやつ) にHTTPリクエストのログやらオブジェクトが吐かれててあっという間に数十GBになり、ディスクが枯渇して死んだということがあった。</p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>RailsのRakeタスクでGoogle Cloud Storageを操作するバッチを動かしてたら頼んでもないのにRailsのログ (<code>log/development.log</code>みたいなやつ) にHTTPリクエストのログやらオブジェクトが吐かれててあっという間に数十GBになり、ディスクが枯渇して死んだということがあった。</p>
 <p>必要なログはRailsログとは別にバッチ用のログに吐くようにしてたし、そもそも頼んでもないログがでてる。(<code>ClientOptions.log_http_request = true</code>の挙動をしてた)</p>
-
 <p>これを無効化するには、<code>GOOGLE_API_USE_RAILS_LOGGER</code>という環境変数を<code>true</code>以外にすれば良い。</p>
-
 <ul>
 <li><a href="https://github.com/googleapis/google-api-ruby-client/blob/1fd5929d7cc6d3c556be26f487f438bb30270905/lib/google/apis.rb#L47-L55">google-api-ruby-client/apis.rb at master · googleapis/google-api-ruby-client</a></li>
 <li><a href="https://github.com/googleapis/google-api-ruby-client#logging">googleapis/google-api-ruby-client</a></li>
 </ul>
-
 <p><code>log_http_request</code>の方は謎のまま&hellip; 🤔</p>
+<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">ディスク容量いっぱいになってまじかと思ったら、/homeに2TB割り当てたつもりが/var/homeにマウントされてたので修正中</p>&mdash; wownabe (@nownabe) <a href="https://twitter.com/nownabe/status/1048270451955265536?ref_src=twsrc%5Etfw">2018年10月5日</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">ディスク容量いっぱいになってまじかと思ったら、/homeに2TB割り当てたつもりが/var/homeにマウントされてたので修正中</p>&mdash; wownabe (@nownabe) <a href="https://twitter.com/nownabe/status/1048270451955265536?ref_src=twsrc%5Etfw">2018年10月5日</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
-
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

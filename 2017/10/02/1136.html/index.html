@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,16 +48,15 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/10/02/1136.html/">統計学入門  第10章 正規分布からの標本</a></h2>
     <span class="date">Posted on Sep 25, 2017</span>
   </div>
-  <div class="body">
-    
-
-<p><a href="https://blog.nownabe.com/2017/09/22/1126.html">nownab.log | 統計学入門 第9章 標本分布</a></p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p><a href="https://blog.nownabe.com/2017/09/22/1126.html">nownab.log | 統計学入門 第9章 標本分布</a></p>
 <div class="asin">
 <div class="asin-image"><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/" rel="nofollow noopener" target="_blank"><img src="http://images-jp.amazon.com/images/P/4130420658.09._SL160_.jpg" alt="統計学入門 (基礎統計学Ⅰ)" title="統計学入門 (基礎統計学Ⅰ)"></a></div>
 <div class="asin-detail">
@@ -67,27 +66,19 @@ if (!doNotTrack) {
 <li>東京大学出版会</li>
 </ul>
 </div>
-
-<p><p></p>
-</div></p>
-
+<p></p>
+</div>
 <p>機械学習勉強会として今は<a href="https://www.amazon.co.jp/exec/obidos/ASIN/4130420658/nownabe0c-22/">統計学入門</a>をやっている。
 週一でやっていて、今週から輪読形式で進めてみることになった。</p>
-
 <p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。
 <a href="https://github.com/Wondershake/ml-statistics-intro">Wondershake/ml-statistics-intro: 基礎統計学 I 統計学入門 (東京大学出版会)</a></p>
-
 <h1 id="今回の内容">今回の内容</h1>
-
 <ul>
 <li><strong>正規標本論</strong>: 正規母集団から得られた標本に基づく統計量の標本分布を計算するためのもの</li>
 </ul>
-
-<h2 id="10-1-正規分布の性質">10.1 正規分布の性質</h2>
-
+<h2 id="101-正規分布の性質">10.1 正規分布の性質</h2>
 <ul>
 <li>統計分析を行うとき正規分布を仮定する理由
-
 <ul>
 <li>慎重の分布や実験誤差の分布などわれわれが分析対象とする現象は正規分布で表せるものが多い</li>
 <li>変数の変換によって正規分布で表せるものも多い</li>
@@ -95,179 +86,181 @@ if (!doNotTrack) {
 <li>数学的な扱いが容易</li>
 <li>$X$が$N(\mu, \sigma^2)$に従うとき$aX+b$は$N(a\mu+b, a^2\sigma^2)$に従う</li>
 <li>$X, Y$がそれぞれ$N(\mu_1, \sigma_1^2), N(\mu_2, \sigma_2^2)$に従うとき、$X+Y$は$N(\mu_1+\mu_2, \sigma_1^2+\sigma_2^2)$に従い、$X-Y$は$N(\mu_1-\mu_2, \sigma_1^2+\sigma_2^2)$に従う</li>
-</ul></li>
 </ul>
-
-<h2 id="10-2-分散が既知のときの標本平均の標本分布">10.2 分散が既知のときの標本平均の標本分布</h2>
-
+</li>
+</ul>
+<h2 id="102-分散が既知のときの標本平均の標本分布">10.2 分散が既知のときの標本平均の標本分布</h2>
 <ul>
 <li><strong>パーセント点 (percentage point)</strong>
-
 <ul>
-<li>$N(0, 1)$においてその点より上側の確率が$100\alpha\%$となる点</li>
+<li>$N(0, 1)$においてその点より上側の確率が$100\alpha%$となる点</li>
 <li>$Z_\alpha$と書く</li>
-</ul></li>
+</ul>
+</li>
 <li>標本平均$\bar{X}$の標準偏差は$\frac{\sigma}{\sqrt{n}}$である
-
 <ul>
 <li>$n$が増加するに従い正確な推定値となる</li>
 <li>推定の誤差は$\frac{1}{\sqrt{n}}$のオーダーでしか減少しない</li>
-</ul></li>
+</ul>
+</li>
 <li>反覆数の原理
-
 <ul>
 <li>標本平均を取ると単独の測定よりも正確さが増す</li>
 <li>幾何平均にはない性質</li>
-</ul></li>
 </ul>
-
-<h2 id="10-3-標本分散の標本分布">10.3 標本分散の標本分布</h2>
-
+</li>
+</ul>
+<h2 id="103-標本分散の標本分布">10.3 標本分散の標本分布</h2>
 <ul>
 <li><strong>$\chi^2$分布</strong>
-
 <ul>
 <li>$Z_1, Z_2, \dots, Z_k$を独立な標準正規分布$N(0, 1)$に従う確率変数とする</li>
 <li>$\chi^2=Z_1+Z_2+\dots+Z_k$</li>
 <li>確率変数$\chi^2$が従う確率分布を<strong>自由度$k$の$\chi^2$分布</strong>という</li>
 <li>$\chi^2(k)$で表す</li>
 <li>$\chi^2(k)$の上側確率が$\alpha$となる値を$\chi^2_\alpha(k)$と書く</li>
-</ul></li>
 </ul>
-
-<h2 id="10-4-分散が未知のときの標本平均の標本分布">10.4 分散が未知のときの標本平均の標本分布</h2>
-
+</li>
+</ul>
+<h2 id="104-分散が未知のときの標本平均の標本分布">10.4 分散が未知のときの標本平均の標本分布</h2>
 <ul>
 <li><strong>t統計量 (Student&rsquo;s t-statistic)</strong>
-
 <ul>
 <li>$t=\frac{\bar{X}-\mu}{\sqrt{s^2/n}}$</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>t分布</strong>
-
 <ul>
 <li>2つの確率変数$Y$と$Z$が次の条件を満たすものとする
-
 <ul>
 <li>$Z$は標準正規分布に従う</li>
 <li>$Y$は$\chi^2(k)$に従う</li>
 <li>$Z$と$Y$は独立である</li>
-</ul></li>
+</ul>
+</li>
 <li>$t=\frac{Z}{\sqrt{Y/k}}$とすると、$t$が従う確率分布を<strong>自由度$k$の$t$分布</strong>という</li>
 <li>$t(k)$で表す</li>
-</ul></li>
+</ul>
+</li>
 <li>$t=\frac{\bar{X}-\mu}{\sqrt{s^2/n}}$は$t(n-1)$に従う</li>
-<li>$\bar{X}$の標準偏差$\frac{s}{\sqrt{n}}$を<strong>標準誤差 (standard error)</strong>という</li>
+<li>$\bar{X}$の標準偏差$\frac{s}{\sqrt{n}}$を**標準誤差 (standard error)**という</li>
 <li>t分布は(標準)正規分布の代用品
-
 <ul>
 <li>密度関数$f(x)$は$x=0$について対称</li>
 <li>$k$が大きい場合(例えば30以上)は標準正規分布とほとんど変わらない</li>
 <li>$k=\infty$のとき標準正規分布と一致する</li>
-</ul></li>
-<li>$t(k)$の上側確率$100\alpha\%$のパーセント点を$t_\alpha(k)$と書く</li>
 </ul>
-
-<h2 id="10-5-2標本問題">10.5 2標本問題</h2>
-
+</li>
+<li>$t(k)$の上側確率$100\alpha%$のパーセント点を$t_\alpha(k)$と書く</li>
+</ul>
+<h2 id="105-2標本問題">10.5 2標本問題</h2>
 <ul>
 <li><strong>2標本問題 (two-sample problem)</strong>: 2種の標本による2母集団の比較を扱う問題</li>
 <li>母集団分布$N(\mu_1, \sigma_1^2)$に従う大きさ$m$の標本$X_1, \dots, X_m$と$N(\mu_2, \sigma_2^2)$に従う大きさ$n$の標本$Y_1, \dots, Y_n$を考える</li>
 </ul>
-
-<h3 id="10-5-1-標本平均の差の標本分布">10.5.1 標本平均の差の標本分布</h3>
-
+<h3 id="1051-標本平均の差の標本分布">10.5.1 標本平均の差の標本分布</h3>
 <ul>
 <li>$\mu_1-\mu_2$を分析する
-
 <ul>
 <li>分散$\sigma_1, \sigma_2$が既知のとき</li>
 <li>分散$\sigma_1, \sigma_2$が未知であるが等しいとき</li>
 <li>分散$\sigma_1, \sigma_2$が未知であり等しいとは限らないとき</li>
-</ul></li>
+</ul>
+</li>
 <li>母分散が既知のとき
-
 <ul>
 <li>$\bar{X}-\bar{Y}$は$N(\mu_1-\mu_2, \frac{\sigma_1^2}{m}+\frac{\sigma_2^2}{n})$に従う</li>
-</ul></li>
+</ul>
+</li>
 <li>母分散は未知であるが等しいとき
-
 <ul>
 <li>$\sigma_1^2=\sigma_2^2=\sigma^2$</li>
 <li>$\bar{X}-\bar{Y}$は$N(\mu_1-\mu_2, (\frac{1}{m}+\frac{1}{n})\sigma^2)$に従う</li>
 <li><strong>合併した分散 (pooled variance)</strong>
-
 <ul>
-<li>$s^2=\frac{\displaystyle \sum_{i=1}^{m}(X<em>i-\bar{X})^2 + \sum</em>{j=1}^{n}(Y_j-\bar{Y})^2}{m+n-2}=\frac{\displaystyle (m-1)s_1^2+(n-1)s_2^2}{m+n-2}$</li>
-</ul></li>
+<li>$s^2=\frac{\displaystyle \sum_{i=1}^{m}(X_i-\bar{X})^2 + \sum_{j=1}^{n}(Y_j-\bar{Y})^2}{m+n-2}=\frac{\displaystyle (m-1)s_1^2+(n-1)s_2^2}{m+n-2}$</li>
+</ul>
+</li>
 <li><strong>2標本t統計量 (two-sample t statistic)</strong>
-
 <ul>
 <li>$t=\frac{\displaystyle (\bar{X}-\bar{Y})-(\mu_1-\mu_2)}{\displaystyle s\sqrt{\frac{1}{m}+\frac{1}{n}}}$</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>母分散が未知であり等しいとは限らないとき
-
 <ul>
 <li>母分散によらない統計量を作ることは出来ない</li>
 <li><strong>ウェルチの近似法</strong></li>
-</ul></li>
 </ul>
-
-<h3 id="10-5-2-標本分散の比の標本分布">10.5.2 標本分散の比の標本分布</h3>
-
+</li>
+</ul>
+<h3 id="1052-標本分散の比の標本分布">10.5.2 標本分散の比の標本分布</h3>
 <ul>
 <li>標本平均の差の分布を求めるとき、2つの標本分散の相対的な比が手がかりとなる</li>
 <li><strong>F分布</strong>
-
 <ul>
 <li>$\chi^2$分布に従う確率変数の比</li>
 <li>確率変数$U, V$が次の条件を満たすとする
-
 <ul>
 <li>$U$は$\chi^2(k_1)$に従う</li>
 <li>$V$は$\chi^2(k_2)$に従う</li>
 <li>$U$と$V$は独立である</li>
-</ul></li>
+</ul>
+</li>
 <li>フィッシャーの分散比 $F=\frac{U/k_1}{V/k_2}$</li>
 <li>$F$が従う確率分布を自由度$(k_1, k_2)$のF分布という</li>
 <li>$F(k1, k_2)$で表す</li>
-</ul></li>
+</ul>
+</li>
 <li>母分散が等しいときF分布は<strong>標本の分散比 (variance ratio)</strong> $F=s_1^2/s_2^2$の標本分布となる</li>
 <li>$t$が$t(k)$に従うとき、$t^2$は$F(1, k)$に従う</li>
 </ul>
-
-<h3 id="10-6-標本相関係数の標本分布">10.6 標本相関係数の標本分布</h3>
-
+<h3 id="106-標本相関係数の標本分布">10.6 標本相関係数の標本分布</h3>
 <ul>
 <li>2次元正規分布$N((\mu_X, \mu_Y), (\sigma_X^2, \sigma_Y^2))$に従う2次元正規母集団を考える</li>
 <li>2次元無作為標本$(X_1, Y_2), \dots, (X_n, Y_n)$</li>
-<li>標本共分散$s<em>{XY}=\frac{1}{n-1}\sum</em>{i=1}{n}(X_i-\bar{X})(Y_i-\bar{Y})$</li>
-<li>標本相関係数$r<em>{XY}=\frac{s</em>{XY}}{s_X\cdot s_Y}$</li>
+<li>標本共分散$s_{XY}=\frac{1}{n-1}\sum_{i=1}{n}(X_i-\bar{X})(Y_i-\bar{Y})$</li>
+<li>標本相関係数$r_{XY}=\frac{s_{XY}}{s_X\cdot s_Y}$</li>
 <li><strong>フィッシャーのz変換 (Fisher&rsquo;s z-transformation)</strong>
-
 <ul>
 <li>$z=\frac{1}{2}\log\frac{1+r}{1-r}$</li>
 <li>$\eta=\frac{1}{2}\log\frac{1+\rho}{1-\rho}$</li>
 <li>$z$の標本分布が$n$が大きいときに$N(\eta, 1/(n-3))$となる</li>
 <li>$\sqrt{n-3}(z-\eta)$が$N(0, 1)$に従う</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h1 id="練習問題">練習問題</h1>
-
 <p><a href="https://github.com/Wondershake/ml-statistics-intro/issues/20">第10章 正規分布からの標本 · Issue #20 · Wondershake/ml-statistics-intro</a></p>
-
 <h1 id="所感">所感</h1>
-
 <ul>
 <li>よく聞くtとかカイ二乗とかがなんなのかわかった</li>
 </ul>
-
 <h1 id="次回">次回</h1>
-
 <p>第11章 推定</p>
-<div class="highlight"><pre class="chroma"><code class="language-math" data-lang="math"></code></pre></div>
+<pre tabindex="0"><code class="language-math" data-lang="math"></code></pre>
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#101-正規分布の性質">10.1 正規分布の性質</a></li>
+    <li><a href="#102-分散が既知のときの標本平均の標本分布">10.2 分散が既知のときの標本平均の標本分布</a></li>
+    <li><a href="#103-標本分散の標本分布">10.3 標本分散の標本分布</a></li>
+    <li><a href="#104-分散が未知のときの標本平均の標本分布">10.4 分散が未知のときの標本平均の標本分布</a></li>
+    <li><a href="#105-2標本問題">10.5 2標本問題</a>
+      <ul>
+        <li><a href="#1051-標本平均の差の標本分布">10.5.1 標本平均の差の標本分布</a></li>
+        <li><a href="#1052-標本分散の比の標本分布">10.5.2 標本分散の比の標本分布</a></li>
+        <li><a href="#106-標本相関係数の標本分布">10.6 標本相関係数の標本分布</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

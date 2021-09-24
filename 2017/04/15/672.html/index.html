@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,67 +48,53 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/04/15/672.html/">Terraform 0.9を使ってみた</a></h2>
     <span class="date">Posted on Apr 15, 2017</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="はじめに">はじめに</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="はじめに">はじめに</h1>
 <p>Terraformはあんまり好きではないんですが選択肢がないんで仕方なし、って感じで使ってます。
 更新がはやくてちょっと使わないと色々変わってたりしますね。</p>
-
 <p>今回使ったバージョンは0.9.3でした。</p>
-
 <p>ちょっと躓いたのでメモを残しておきます。</p>
-
 <h1 id="状況">状況</h1>
-
 <p>対象のクラウドプロバイダはGoogle Cloud Platform。
 Terraform使う前にいくつか手動で作ったリソースもあるという状況。</p>
-
 <p>なのでTerraformでリソースを追加するために次の2ステップが必要。</p>
-
 <ul>
 <li>Stateを既存リソースと同期させる</li>
 <li>新規Resourceを追加する</li>
 </ul>
-
 <h1 id="インストール">インストール</h1>
-
 <p>Homebrewでインストール。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew install terraform</code></pre></div>
-<h1 id="手順">手順</h1>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">brew install terraform
+</code></pre></div><h1 id="手順">手順</h1>
 <p>手順をまとめるとこんな感じ。</p>
-
 <ul>
 <li>設定ファイルを作る
-
 <ul>
 <li>Provider</li>
 <li>Backend</li>
-</ul></li>
+</ul>
+</li>
 <li>初期化 <code>terraform init</code></li>
 <li>既存リソースの同期
-
 <ul>
 <li><code>terraform import</code></li>
 <li>手動でごにょごにょ</li>
 <li><code>terraform refresh</code></li>
-</ul></li>
+</ul>
+</li>
 <li>新規リソースを追加</li>
 </ul>
-
 <h2 id="設定ファイルを作る">設定ファイルを作る</h2>
-
 <p>ProviderとBackendの設定をtfファイルとして作成する。
 Providerは対象のクラウドプロバイダ、BackendはStateを管理する場所を設定する。Backendを設定することでStateをマシンローカルではなくS3やGCSで管理できる。</p>
-
-<pre><code>terraform {
+<pre tabindex="0"><code>terraform {
   backend &quot;gcs&quot; {
     project = &quot;myproject&quot;
     bucket  = &quot;mybucket&quot;
@@ -120,63 +106,52 @@ provider &quot;google&quot; {
   project     = &quot;myproject&quot;
   region      = &quot;asia-northeast1&quot;
 }
-</code></pre>
-
-<p>なぜかBackendの方はファイルを読み込めず(String interpolationができない)、設定ファイル内でJSONキーを指定することができなかった。環境変数で指定するのがいいっぽい。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">GOOGLE_CREDENTIALS</span><span class="o">=</span>credential.json</code></pre></div>
-<h2 id="初期化">初期化</h2>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">terraform init</code></pre></div>
-<p><code>.terraform/terraform.tfstate</code>というファイルが作成される。tfstateとあるがStateを管理するファイルではない。</p>
-<div class="highlight"><pre class="chroma"><code class="language-:.terraform/terraform.tfstate" data-lang=":.terraform/terraform.tfstate">{
-    &#34;version&#34;: 3,
-    &#34;serial&#34;: 0,
-    &#34;lineage&#34;: &#34;1d9b8d9e-f6b3-4078-acfb-52d352f2cb02&#34;,
-    &#34;backend&#34;: {
-        &#34;type&#34;: &#34;gcs&#34;,
-        &#34;config&#34;: {
-            &#34;bucket&#34;: &#34;mybucket&#34;,
-            &#34;path&#34;: &#34;terraform/terraform.tfstate&#34;,
-            &#34;project&#34;: &#34;myproject&#34;
+</code></pre><p>なぜかBackendの方はファイルを読み込めず(String interpolationができない)、設定ファイル内でJSONキーを指定することができなかった。環境変数で指定するのがいいっぽい。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">GOOGLE_CREDENTIALS</span><span class="o">=</span>credential.json
+</code></pre></div><h2 id="初期化">初期化</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">terraform init
+</code></pre></div><p><code>.terraform/terraform.tfstate</code>というファイルが作成される。tfstateとあるがStateを管理するファイルではない。</p>
+<pre tabindex="0"><code class="language-:.terraform/terraform.tfstate" data-lang=":.terraform/terraform.tfstate">{
+    &quot;version&quot;: 3,
+    &quot;serial&quot;: 0,
+    &quot;lineage&quot;: &quot;1d9b8d9e-f6b3-4078-acfb-52d352f2cb02&quot;,
+    &quot;backend&quot;: {
+        &quot;type&quot;: &quot;gcs&quot;,
+        &quot;config&quot;: {
+            &quot;bucket&quot;: &quot;mybucket&quot;,
+            &quot;path&quot;: &quot;terraform/terraform.tfstate&quot;,
+            &quot;project&quot;: &quot;myproject&quot;
         },
-        &#34;hash&#34;: 9958457764213601045
+        &quot;hash&quot;: 9958457764213601045
     },
-    &#34;modules&#34;: [
+    &quot;modules&quot;: [
         {
-            &#34;path&#34;: [
-                &#34;root&#34;
+            &quot;path&quot;: [
+                &quot;root&quot;
             ],
-            &#34;outputs&#34;: {},
-            &#34;resources&#34;: {},
-            &#34;depends_on&#34;: []
+            &quot;outputs&quot;: {},
+            &quot;resources&quot;: {},
+            &quot;depends_on&quot;: []
         }
     ]
-}</code></pre></div>
-<h2 id="既存リソースの同期">既存リソースの同期</h2>
-
+}
+</code></pre><h2 id="既存リソースの同期">既存リソースの同期</h2>
 <p>完全に新規でクラウド構築する場合以外はこの手順が一番めんどくさいはず。</p>
-
 <p>Terraformは実行時に実在のResourceを取得して設定ファイルにあるResourceとの差分を計算するわけではなく、手元のStateとResourceを照らし合わせて差分を埋めるという挙動になっている。
 例えば<code>myapp</code>というVMが実在する状態で、<code>myapp</code>というVMを作成するTerraformを書いてしまうと、TerraformはStateに<code>myapp</code>が存在しないのでエラーになったりVMを無理やり再作成したりする。</p>
-
 <p>こういったことを防ぐためにはStateと既存Resourceとを同期する必要がある。</p>
-
 <p>既存ResourceをStateに反映させる公式な手段として<a href="https://www.terraform.io/docs/commands/import.html"><code>terraform import</code></a>がある。
 ただし対応してないResourceもある上Resource定義(tfファイル)は出力してくれない。</p>
-
 <p>今回はダミーResourceを定義してapplyし、生成されたダミーResourceのStateを手作業で修正して既存ResourceのStateを作成するという地道な作業を行った。</p>
-
 <p>例えば既存のGCSのバケットをTerraformで管理するまでの手順は次のようになる。
 まずはダミーのResourceを定義する。</p>
-
-<pre><code>resource &quot;google_storage_bucket&quot; &quot;nownabe-mybucket&quot; {
+<pre tabindex="0"><code>resource &quot;google_storage_bucket&quot; &quot;nownabe-mybucket&quot; {
   name          = &quot;nownabe-mybucket-dummy&quot;
   location      = &quot;ASIA-NORTHEAST1&quot;
   storage_class = &quot;REGIONAL&quot;
 }
-</code></pre>
-
-<p>このResouceをapplyする。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ terraform plan
+</code></pre><p>このResouceをapplyする。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ terraform plan
 + google_storage_bucket.nownabe-mybucket
     force_destroy: <span class="s2">&#34;false&#34;</span>
     location:      <span class="s2">&#34;ASIA-NORTHEAST1&#34;</span>
@@ -197,13 +172,13 @@ google_storage_bucket.nownabe-mybucket: Creating...
   storage_class: <span class="s2">&#34;&#34;</span> <span class="o">=</span>&gt; <span class="s2">&#34;REGIONAL&#34;</span>
 google_storage_bucket.nownabe-mybucket: Creation <span class="nb">complete</span> <span class="o">(</span>ID: nownabe-mybucket-dummy<span class="o">)</span>
 
-Apply complete! Resources: <span class="m">1</span> added, <span class="m">0</span> changed, <span class="m">0</span> destroyed.</code></pre></div>
-<p>Stateを取得する。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ terraform state pull
+Apply complete! Resources: <span class="m">1</span> added, <span class="m">0</span> changed, <span class="m">0</span> destroyed.
+</code></pre></div><p>Stateを取得する。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ terraform state pull
 <span class="o">{</span>
-    <span class="s2">&#34;version&#34;</span>: <span class="m">3</span>,
+    <span class="s2">&#34;version&#34;</span>: 3,
     <span class="s2">&#34;terraform_version&#34;</span>: <span class="s2">&#34;0.9.3&#34;</span>,
-    <span class="s2">&#34;serial&#34;</span>: <span class="m">0</span>,
+    <span class="s2">&#34;serial&#34;</span>: 0,
     <span class="s2">&#34;lineage&#34;</span>: <span class="s2">&#34;ceab6126-6537-4726-ad0d-f60243c11f65&#34;</span>,
     <span class="s2">&#34;modules&#34;</span>: <span class="o">[</span>
         <span class="o">{</span>
@@ -235,20 +210,29 @@ Apply complete! Resources: <span class="m">1</span> added, <span class="m">0</sp
             <span class="s2">&#34;depends_on&#34;</span>: <span class="o">[]</span>
         <span class="o">}</span>
     <span class="o">]</span>
-<span class="o">}</span></code></pre></div>
-<p>これをローカルに保存して、ID等を既存の正しいものに書き換える。
+<span class="o">}</span>
+</code></pre></div><p>これをローカルに保存して、ID等を既存の正しいものに書き換える。
 書き換えが終わったらBackendにUploadする。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">terraform state push</code></pre></div>
-<p>最後にダミーのResourceは忘れずに削除しておく。</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">terraform state push
+</code></pre></div><p>最後にダミーのResourceは忘れずに削除しておく。</p>
 <p>こんな感じで地道に既存リソースとStateを同期させていく。</p>
-
 <p><code>terraform refresh</code>という今実在しているResourceを正としてStateを修正してくれるコマンドもあるが今回は必要なかったので使っていない。</p>
-
 <h1 id="おわりに">おわりに</h1>
-
 <p>Terraform、ようやく0.9まできたかという感じでした。</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#設定ファイルを作る">設定ファイルを作る</a></li>
+    <li><a href="#初期化">初期化</a></li>
+    <li><a href="#既存リソースの同期">既存リソースの同期</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,380 +48,371 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/12/14/1217.html/">Pythonではじめる機械学習  7回目</a></h2>
     <span class="date">Posted on Dec 11, 2017</span>
   </div>
-  <div class="body">
-    
-
-<p><a href="https://blog.nownabe.com/2017/12/08/1206.html">nownab.log | Pythonではじめる機械学習 6回目</a></p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p><a href="https://blog.nownabe.com/2017/12/08/1206.html">nownab.log | Pythonではじめる機械学習 6回目</a></p>
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=4873117984&linkId=05656b0761603e4e9f88423f102e42c6"></iframe>
-
 <p>週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。</p>
-
 <p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。
 <a href="https://github.com/Wondershake/machine-learning-study">Wondershake/machine-learning-study: 機械学習勉強会</a></p>
-
 <p>この記事は資料作りの下書き的扱い。</p>
-
 <h1 id="7章-テキストデータの処理">7章 テキストデータの処理</h1>
-
 <ul>
 <li>連続値特徴量とカテゴリ特徴量の他に、多くのアプリケーションに現れる第3の特徴量としてテキストがある</li>
 </ul>
-
-<h2 id="7-1-文字列として表現されているデータのタイプ">7.1 文字列として表現されているデータのタイプ</h2>
-
+<h2 id="71-文字列として表現されているデータのタイプ">7.1 文字列として表現されているデータのタイプ</h2>
 <ul>
 <li>文字列データには次の4種がある
-
 <ul>
 <li>カテゴリデータ
-
 <ul>
 <li>色など</li>
-</ul></li>
+</ul>
+</li>
 <li>意味的にはカテゴリデータだが自由記述な文字列
-
 <ul>
 <li>自由記述で得られた色など</li>
-</ul></li>
+</ul>
+</li>
 <li>構造化された文字列
-
 <ul>
 <li>住所や人名、電話番号など</li>
-</ul></li>
+</ul>
+</li>
 <li>テキストデータ
-
 <ul>
 <li>ツイート、レビュー、チャットログなど</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><strong>コーパス (corpus)</strong>
-
 <ul>
 <li>テキスト解析におけるデータセットのこと</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>文書 (document)</strong>
-
 <ul>
 <li>1つのテキストとして表現されるデータポイント</li>
-</ul></li>
 </ul>
-
-<h2 id="7-2-例題アプリケーション-映画レビューのセンチメント分析">7.2 例題アプリケーション: 映画レビューのセンチメント分析</h2>
-
+</li>
+</ul>
+<h2 id="72-例題アプリケーション-映画レビューのセンチメント分析">7.2 例題アプリケーション: 映画レビューのセンチメント分析</h2>
 <ul>
 <li>例題としてIMDb (Internet Moview Database)を使う</li>
 <li>scikit-learnの<code>load_files</code>関数はサブディレクトリとラベルを対応付けてデータを読み込む</li>
 <li>テキストのままだと機械学習アルゴリズムは扱えないので変換する必要がある</li>
 </ul>
-
-<h2 id="7-3-bag-of-wordsによるテキスト表現">7.3 Bag of Wordsによるテキスト表現</h2>
-
+<h2 id="73-bag-of-wordsによるテキスト表現">7.3 Bag of Wordsによるテキスト表現</h2>
 <ul>
 <li><strong>BoW (bag-of-words)</strong>
-
 <ul>
 <li>最も単純で効率がよく、機械学習で広く用いられているテキストデータ表現</li>
 <li>単語の出現回数だけをみる</li>
 <li>語順などテキストの構造は失われる</li>
-</ul></li>
+</ul>
+</li>
 <li>BoW表現を作る手順
-
 <ul>
 <li><strong>トークン分割 (tokenize)</strong>: 文書を単語に分割する</li>
 <li><strong>ボキャブラリ構築 (vocabulary building)</strong>: 全文書に現れる各単語にユニークな番号を割り当てる</li>
 <li><strong>エンコード</strong>: 各文書に対してボキャブラリの単語の出現回数を数える</li>
-</ul></li>
 </ul>
-
-<h3 id="7-3-1-トイデータセットに対するbow">7.3.1 トイデータセットに対するBoW</h3>
-
+</li>
+</ul>
+<h3 id="731-トイデータセットに対するbow">7.3.1 トイデータセットに対するBoW</h3>
 <ul>
 <li>scikit-learnでは<code>CountVectorizer</code>でBoWに変換できる</li>
 </ul>
-
-<h3 id="7-3-2-映画レビューのbow">7.3.2 映画レビューのBoW</h3>
-
+<h3 id="732-映画レビューのbow">7.3.2 映画レビューのBoW</h3>
 <ul>
 <li><code>CountVectorizer</code>の<code>get_feature_names</code>でボキャブラリを得られる</li>
 <li><code>CountVectorizer</code>の<code>min_df</code>オプションで文書頻度によるフィルタリングができる</li>
 </ul>
-
-<h2 id="7-4-ストップワード">7.4 ストップワード</h2>
-
+<h2 id="74-ストップワード">7.4 ストップワード</h2>
 <ul>
 <li>scikit-learnでは英語のストップワードリストが<code>feature_extraction.text</code>モジュールに用意されている</li>
 </ul>
-
-<h2 id="7-5-tf-idfを用いたデータのスケール変換">7.5 tf-idfを用いたデータのスケール変換</h2>
-
+<h2 id="75-tf-idfを用いたデータのスケール変換">7.5 tf-idfを用いたデータのスケール変換</h2>
 <ul>
 <li><strong>tf-idf (term frequency-inverse document frequency)</strong>
-
 <ul>
 <li>$tfidf(w, d) = tf \times \log(\displaystyle \frac{N + 1}{N_w + 1}) + 1$</li>
-</ul></li>
+</ul>
+</li>
 <li>scikit-learnでは<code>TfidfTransformer</code>と<code>TfidfVectorizer</code>が用意されている</li>
 </ul>
-
-<h2 id="7-6-モデル係数の調査">7.6 モデル係数の調査</h2>
-
-<h2 id="7-7-1単語よりも大きい単位のbag-of-words-n-グラム">7.7 1単語よりも大きい単位のBag-of-Words (n-グラム)</h2>
-
+<h2 id="76-モデル係数の調査">7.6 モデル係数の調査</h2>
+<h2 id="77-1単語よりも大きい単位のbag-of-words-n-グラム">7.7 1単語よりも大きい単位のBag-of-Words (n-グラム)</h2>
 <ul>
 <li>単語Nグラムを特徴量として加えるとコンテキストを学習できる
-
 <ul>
 <li><strong>バイグラム (bigram)</strong>: 連続する2つのトークン</li>
 <li><strong>トリグラム (trigram)</strong>: 連続する3つのトークン</li>
-</ul></li>
+</ul>
+</li>
 <li><code>CountVectorizer</code>や<code>TfidfVectorizer</code>の<code>ngram_range</code>オプションで設定できる</li>
 </ul>
-
-<h2 id="7-8-より進んだトークン分割-語幹処理-見出し語化">7.8 より進んだトークン分割、語幹処理、見出し語化</h2>
-
+<h2 id="78-より進んだトークン分割語幹処理見出し語化">7.8 より進んだトークン分割、語幹処理、見出し語化</h2>
 <ul>
 <li><strong>語幹処理 (stemming)</strong>
-
 <ul>
-<li>単語を<strong>語幹 (word stem)</strong>を使って表現する</li>
-</ul></li>
+<li>単語を**語幹 (word stem)**を使って表現する</li>
+</ul>
+</li>
 <li><strong>見出し語化 (lemmatization)</strong>
-
 <ul>
 <li>単語を<strong>見出し語 (lemma)</strong> を使って表現する</li>
-</ul></li>
+</ul>
+</li>
 <li>見出し語化のほうが高度でより良い結果が得られる</li>
 </ul>
-
-<h2 id="7-9-トピックモデリングと文書クラスタリング">7.9 トピックモデリングと文書クラスタリング</h2>
-
+<h2 id="79-トピックモデリングと文書クラスタリング">7.9 トピックモデリングと文書クラスタリング</h2>
 <ul>
 <li><strong>トピックモデリング (topic modeling)</strong>
-
 <ul>
 <li>テキストデータによく用いられる</li>
 <li>それぞれの文書に1つ以上のトピックを割り当てる</li>
-</ul></li>
 </ul>
-
-<h3 id="7-9-1-lda-latent-dirichlet-allocation">7.9.1 LDA (Latent Dirichlet Allocation)</h3>
-
+</li>
+</ul>
+<h3 id="791-lda-latent-dirichlet-allocation">7.9.1 LDA (Latent Dirichlet Allocation)</h3>
 <ul>
 <li>LDAは同時に現れる頻度の高いトピック(単語の集合)を探す</li>
 <li>それぞれの文書をトピックの重み付き和として表現する</li>
 <li>大規模なデータを理解するのに有用</li>
 <li>教師データが少ないときにLDAの結果を教師データありとすると有効</li>
 </ul>
-
-<h2 id="7-10-まとめと展望">7.10 まとめと展望</h2>
-
+<h2 id="710-まとめと展望">7.10 まとめと展望</h2>
 <ul>
-<li><strong>自然言語処理 (NLP: natural language processing)</strong>について、映画レビューのクラス分類を例に説明した</li>
+<li>**自然言語処理 (NLP: natural language processing)**について、映画レビューのクラス分類を例に説明した</li>
 <li>BoW表現は以下で特に有効
-
 <ul>
 <li>SPAM検出</li>
 <li>詐欺検出</li>
 <li>センチメント分析</li>
 <li>テキストのクラス分類</li>
-</ul></li>
+</ul>
+</li>
 <li>オライリーの「<a href="http://amzn.to/2z2WNZk">入門 自然言語処理</a>」がオススメ</li>
 <li>「<a href="http://amzn.to/2AbQVeh">情報検索の基礎</a>」もオススメ</li>
 <li>自然言語処理はword2vecで飛躍的に進展した</li>
 <li>RNN (recurrent neural networks)が勢いある</li>
 </ul>
-
 <h1 id="8章-おわりに">8章 おわりに</h1>
-
-<h2 id="8-1-機械学習問題へのアプローチ">8.1 機械学習問題へのアプローチ</h2>
-
+<h2 id="81-機械学習問題へのアプローチ">8.1 機械学習問題へのアプローチ</h2>
 <ul>
 <li>機械学習は大きなデータ解析と意思決定過程のごく一部</li>
 <li>機械学習でゴールを達成したとき月数万ドル稼げるならやってもいい</li>
 <li>ステップ
-
 <ul>
 <li>問題定義</li>
 <li>効果の確認</li>
 <li>成功の測定方法の確認</li>
 <li>データ収集</li>
 <li>プロトタイプ構築</li>
-</ul></li>
+</ul>
+</li>
 <li>機械学習アプリケーションは本番投入しても大きなフィードバックループからは抜けられない</li>
 </ul>
-
-<h3 id="8-1-1-人間をループに組み込む">8.1.1 人間をループに組み込む</h3>
-
+<h3 id="811-人間をループに組み込む">8.1.1 人間をループに組み込む</h3>
 <ul>
 <li>簡単なものだけ機械が判断し、難しいものは人間が判断するというようなアプリケーションの設計もある</li>
 </ul>
-
-<h2 id="8-2-プロトタイプから運用システムへ">8.2 プロトタイプから運用システムへ</h2>
-
+<h2 id="82-プロトタイプから運用システムへ">8.2 プロトタイプから運用システムへ</h2>
 <ul>
 <li>scikit-learnやPythonは解析とプロトタイプ構築に有用だが、運用システムとしても用いられる</li>
 <li>運用システムは別のツールセットで構築することもある</li>
 <li>運用システムには使い捨ての解析スクリプトとは別の性質が要求される</li>
 <li>複雑な機械学習システムを構築するなら<a href="https://research.google.com/pubs/pub43146.html">Machine Learning: The High Interest Credit Card of Technical Debt</a>を読め</li>
 </ul>
-
-<h2 id="8-3-運用システムのテスト">8.3 運用システムのテスト</h2>
-
+<h2 id="83-運用システムのテスト">8.3 運用システムのテスト</h2>
 <ul>
 <li><strong>オフライン評価</strong>: 事前に収集したテストセットで評価する方法</li>
 <li><strong>ライブテスト</strong>: アルゴリズムを導入したシステム全体の評価
-
 <ul>
 <li><strong>A/Bテスト</strong></li>
-</ul></li>
 </ul>
-
-<h2 id="8-4-独自estimatorの構築">8.4 独自Estimatorの構築</h2>
-
+</li>
+</ul>
+<h2 id="84-独自estimatorの構築">8.4 独自Estimatorの構築</h2>
 <ul>
 <li>scikit-learnと互換性のあるEstimatorを実装すれば、独自アルゴリズムでもPipelineやGridSearchCVが使える</li>
 <li>前処理
-
 <ul>
 <li><code>BaseEstimator</code>と<code>TransformerMixin</code>を継承</li>
 <li><code>__init__</code>、<code>fit</code>、<code>transform</code>を実装</li>
-</ul></li>
+</ul>
+</li>
 <li>クラス分類器
-
 <ul>
 <li><code>BaseEstimator</code>と<code>ClassifierMixin</code>を継承</li>
 <li><code>__init__</code>、<code>fit</code>、<code>predict</code>を実装</li>
-</ul></li>
+</ul>
+</li>
 <li>回帰器
-
 <ul>
 <li><code>BaseEstimator</code>と<code>RegressorMixin</code>を継承</li>
 <li><code>__init__</code>、<code>fit</code>、<code>predict</code>を実装</li>
-</ul></li>
 </ul>
-
-<h2 id="8-5-ここからどこへ行くのか">8.5 ここからどこへ行くのか</h2>
-
-<h3 id="8-5-1-理論">8.5.1 理論</h3>
-
+</li>
+</ul>
+<h2 id="85-ここからどこへ行くのか">8.5 ここからどこへ行くのか</h2>
+<h3 id="851-理論">8.5.1 理論</h3>
 <ul>
 <li>理論を理解するために
-
 <ul>
 <li><a href="http://amzn.to/2yhgTeK">統計的学習の基礎: データマイニング・推論・予測</a></li>
 <li>Machine Learning: An Algorithmic Perspective</li>
 <li><a href="http://amzn.to/2BfsZui">パターン認識と機械学習</a></li>
 <li>Machine Learning: A Probabilistic Perspective</li>
-</ul></li>
 </ul>
-
-<h3 id="8-5-2-他の機械学習フレームワークとパッケージ">8.5.2 他の機械学習フレームワークとパッケージ</h3>
-
+</li>
+</ul>
+<h3 id="852-他の機械学習フレームワークとパッケージ">8.5.2 他の機械学習フレームワークとパッケージ</h3>
 <ul>
 <li><a href="http://www.statsmodels.org/stable/index.html">StatsModel</a>
-
 <ul>
 <li>Python製</li>
 <li>統計</li>
 <li>線形モデル</li>
-</ul></li>
+</ul>
+</li>
 <li>R</li>
 <li><a href="http://hunch.net/~vw/">Vowpal Wabbit</a>
-
 <ul>
 <li>コマンドラインから利用する</li>
 <li>C++製</li>
-</ul></li>
+</ul>
+</li>
 <li><a href="https://spark.apache.org/mllib/">MLlib</a>
-
 <ul>
 <li>Spark用</li>
-</ul></li>
 </ul>
-
-<h3 id="8-5-3-ランキング-推薦システム-その他の学習">8.5.3 ランキング、推薦システム、その他の学習</h3>
-
+</li>
+</ul>
+<h3 id="853-ランキング推薦システムその他の学習">8.5.3 ランキング、推薦システム、その他の学習</h3>
 <ul>
 <li>本書で紹介しなかった機械学習タスク
-
 <ul>
 <li>ランキング
-
 <ul>
 <li>例えばサーチエンジン</li>
-</ul></li>
-<li>推薦システム</li>
-</ul></li>
 </ul>
-
-<h3 id="8-5-4-確率モデル-推論-確率プログラミング">8.5.4 確率モデル、推論、確率プログラミング</h3>
-
+</li>
+<li>推薦システム</li>
+</ul>
+</li>
+</ul>
+<h3 id="854-確率モデル推論確率プログラミング">8.5.4 確率モデル、推論、確率プログラミング</h3>
 <ul>
 <li>既存のアルゴリズムを使わず、問題に特化したモデルを直接計算する</li>
 <li>確率プログラミング言語
-
 <ul>
 <li><a href="https://github.com/pymc-devs/pymc">PyMC</a></li>
 <li><a href="http://mc-stan.org/">Stan</a></li>
-</ul></li>
 </ul>
-
-<h3 id="8-5-5-ニューラルネットワーク">8.5.5 ニューラルネットワーク</h3>
-
+</li>
+</ul>
+<h3 id="855-ニューラルネットワーク">8.5.5 ニューラルネットワーク</h3>
 <ul>
 <li>最近の人工知能技術のブレークスルーはすべてニューラルネットワークによるもの</li>
 </ul>
-
-<h3 id="8-5-6-大規模データセットへのスケール">8.5.6 大規模データセットへのスケール</h3>
-
+<h3 id="856-大規模データセットへのスケール">8.5.6 大規模データセットへのスケール</h3>
 <ul>
 <li>メモリが足りない場合の戦略は2つ
-
 <ul>
 <li><strong>アウトオブコア学習</strong>
-
 <ul>
 <li>メインメモリに入り切らないデータを1台の計算機で処理する</li>
 <li>外部記憶装置から1サンプルもしくは複数サンプルずつ学習し、逐次モデルを更新する</li>
 <li>時間がかかる</li>
 <li>実装できないアルゴリズムもある</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>クラスタ並列化</strong>
-
 <ul>
 <li>Hadoop、Spark</li>
 <li>vw</li>
-</ul></li>
-</ul></li>
 </ul>
-
-<h3 id="8-5-7-名誉を得る">8.5.7 名誉を得る</h3>
-
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="857-名誉を得る">8.5.7 名誉を得る</h3>
 <ul>
 <li><a href="https://www.kaggle.com/">Kaggle</a>いいよ</li>
 </ul>
-
-<h3 id="8-6-結論">8.6 結論</h3>
-
+<h3 id="86-結論">8.6 結論</h3>
 <ul>
 <li>おつ！</li>
 </ul>
-
 <h1 id="所感">所感</h1>
-
 <ul>
 <li>おわったーーー！！ 🎉</li>
 <li>Scikit-learnの使い方が実践しながら学べてとてもよかった</li>
 <li>理論にはほぼ触れず、実践する方法にフォーカスしてたのも良い</li>
 <li>この本で学びながら同時に業務で活かせてたので良かった</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-math" data-lang="math"></code></pre></div>
+<pre tabindex="0"><code class="language-math" data-lang="math"></code></pre>
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#71-文字列として表現されているデータのタイプ">7.1 文字列として表現されているデータのタイプ</a></li>
+    <li><a href="#72-例題アプリケーション-映画レビューのセンチメント分析">7.2 例題アプリケーション: 映画レビューのセンチメント分析</a></li>
+    <li><a href="#73-bag-of-wordsによるテキスト表現">7.3 Bag of Wordsによるテキスト表現</a>
+      <ul>
+        <li><a href="#731-トイデータセットに対するbow">7.3.1 トイデータセットに対するBoW</a></li>
+        <li><a href="#732-映画レビューのbow">7.3.2 映画レビューのBoW</a></li>
+      </ul>
+    </li>
+    <li><a href="#74-ストップワード">7.4 ストップワード</a></li>
+    <li><a href="#75-tf-idfを用いたデータのスケール変換">7.5 tf-idfを用いたデータのスケール変換</a></li>
+    <li><a href="#76-モデル係数の調査">7.6 モデル係数の調査</a></li>
+    <li><a href="#77-1単語よりも大きい単位のbag-of-words-n-グラム">7.7 1単語よりも大きい単位のBag-of-Words (n-グラム)</a></li>
+    <li><a href="#78-より進んだトークン分割語幹処理見出し語化">7.8 より進んだトークン分割、語幹処理、見出し語化</a></li>
+    <li><a href="#79-トピックモデリングと文書クラスタリング">7.9 トピックモデリングと文書クラスタリング</a>
+      <ul>
+        <li><a href="#791-lda-latent-dirichlet-allocation">7.9.1 LDA (Latent Dirichlet Allocation)</a></li>
+      </ul>
+    </li>
+    <li><a href="#710-まとめと展望">7.10 まとめと展望</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#81-機械学習問題へのアプローチ">8.1 機械学習問題へのアプローチ</a>
+      <ul>
+        <li><a href="#811-人間をループに組み込む">8.1.1 人間をループに組み込む</a></li>
+      </ul>
+    </li>
+    <li><a href="#82-プロトタイプから運用システムへ">8.2 プロトタイプから運用システムへ</a></li>
+    <li><a href="#83-運用システムのテスト">8.3 運用システムのテスト</a></li>
+    <li><a href="#84-独自estimatorの構築">8.4 独自Estimatorの構築</a></li>
+    <li><a href="#85-ここからどこへ行くのか">8.5 ここからどこへ行くのか</a>
+      <ul>
+        <li><a href="#851-理論">8.5.1 理論</a></li>
+        <li><a href="#852-他の機械学習フレームワークとパッケージ">8.5.2 他の機械学習フレームワークとパッケージ</a></li>
+        <li><a href="#853-ランキング推薦システムその他の学習">8.5.3 ランキング、推薦システム、その他の学習</a></li>
+        <li><a href="#854-確率モデル推論確率プログラミング">8.5.4 確率モデル、推論、確率プログラミング</a></li>
+        <li><a href="#855-ニューラルネットワーク">8.5.5 ニューラルネットワーク</a></li>
+        <li><a href="#856-大規模データセットへのスケール">8.5.6 大規模データセットへのスケール</a></li>
+        <li><a href="#857-名誉を得る">8.5.7 名誉を得る</a></li>
+        <li><a href="#86-結論">8.6 結論</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

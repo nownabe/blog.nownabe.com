@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,37 +48,29 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/06/05/1321.html/">Dockerの実行ユーザ</a></h2>
     <span class="date">Posted on Jun 5, 2018</span>
   </div>
-  <div class="body">
-    <p>Dockerでコンテナを起動するとき、rootユーザでプロセスを起動してしまうと危険です。</p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>Dockerでコンテナを起動するとき、rootユーザでプロセスを起動してしまうと危険です。</p>
 <p>参考: <a href="https://qiita.com/muff1225/items/4edea7b039dd9f26098f#root%E6%A8%A9%E9%99%90%E3%82%92%E5%89%A5%E5%A5%AA%E3%81%99%E3%82%8B">Dockerコンテナを本番環境で使うためのセキュリティ設定 - Qiita</a></p>
-
 <p>公開されているDockerイメージの多くは何もしなければrootで実行するようになっているので、実行ユーザを変更する設定が必要になります。</p>
-
 <p>最も簡単で効果が高いのは、Dockerfile内でユーザを作成して実行ユーザに指定する方法です。
 コンテナ起動時に <code>docker run -u &lt;uid&gt;</code> でUIDを指定する方法や、KubernetesのSecurityContextを使う方法などもあります。</p>
-
 <p>例えば、次のような感じになります。</p>
-
-<pre><code>FROM debian
+<pre tabindex="0"><code>FROM debian
 
 RUN useradd docker
 USER docker
 
 CMD [&quot;bash&quot;]
-</code></pre>
-
-<p>これで <code>bash</code> が <code>docker</code> ユーザで実行されます。</p>
-
+</code></pre><p>これで <code>bash</code> が <code>docker</code> ユーザで実行されます。</p>
 <p>これだけでもまあいいのですが、<code>useradd</code>にはいろいろオプションがあり、どのオプションを指定すればいいのか考えてみました。</p>
-
 <p>Dockerfileでよく指定されるオプションには次のようなものがあります。</p>
-
 <ul>
 <li><code>-g</code>: name or ID of the primary group of the new account</li>
 <li><code>-l</code>: do not add the user to the lastlog and faillog databases</li>
@@ -89,48 +81,40 @@ CMD [&quot;bash&quot;]
 <li><code>-u</code>: user ID of the new account</li>
 <li><code>-U</code>: create a group with the same name as the user</li>
 </ul>
-
 <p>それぞれについてみていきます。</p>
-
 <p><code>-g</code>はグループを指定します。グループのgidもuidと同じにしていたほうがわかりやすいので <code>-g</code> で指定することになります。</p>
-
 <p><code>-l</code> ですが、lastlogとfaillogはほぼ意味がないのでつけといて思います。</p>
-
 <p><code>-m/-M</code> は、例えばそのユーザでシェルを起動して運用することが想定される場合はホームディレクトリは作成しておいた方が便利です。</p>
-
 <p><code>-r</code> を指定するとシステムアカウントとしてユーザが作成されます。<code>/etc/login.defs</code> に定義されているシステムアカウントの範囲でuidが設定されます。また、ホームディレクトリが作成されません。<code>-u</code> でuidを指定し、ホームディレクトリについては <code>-m/-M</code> で指定するのでこのオプションは不要です。</p>
-
 <p><code>-s /bin/false</code> でリモートログインを禁止できます。<code>/bin/false</code> や <code>/sbin/nologin</code> が指定してあっても、<code>docker exec -u &lt;uid&gt; sh</code> や <code>sudo -u &lt;user&gt; sh</code> によってそのユーザでシェルを実行できます。防げない攻撃がないこともないのでセキュリティ向上のために指定しておいてもいいでしょう。</p>
-
 <p><code>-u</code> で明示的にuidを設定できます。これを指定しない場合は自動で番号を割り振られます。コンテナ外でユーザを指定するときはuidが必要になったりするので、明示的に設定しておいたほうがいいです。</p>
-
 <p><code>-U</code>でユーザと同じ名前のグループを作成しますが、gidがuidと同じになるとは限らないのでグループは<code>-g</code>で指定した方がいいです。</p>
-
 <p>つまり、次のようにユーザを作成するといいと思います。</p>
-
-<pre><code>RUN groupadd -g 61000 docker
+<pre tabindex="0"><code>RUN groupadd -g 61000 docker
 RUN useradd -g 61000 -l -M -s /bin/false -u 61000 docker
-</code></pre>
-
-<p>ユーザでシェルを起動して運用が発生する場合<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>は、次のように<code>-M</code>ではなく<code>-m</code>を使ってホームディレクトリを作成した方が便利です。</p>
-
-<pre><code>RUN groupadd -g 61000 docker
+</code></pre><p>ユーザでシェルを起動して運用が発生する場合<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>は、次のように<code>-M</code>ではなく<code>-m</code>を使ってホームディレクトリを作成した方が便利です。</p>
+<pre tabindex="0"><code>RUN groupadd -g 61000 docker
 RUN useradd -g 61000 -l -m -s /bin/false -u 61000 docker
-</code></pre>
-
-<p>uidが61000なのは、だいたい自動で生成されるuidが1000〜60000に設定されている<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>ので、その範囲から外しているからです。ちなみにGKEのホストVMは5000〜60000になっていて、uidを5000とかにするとGKEが作ったユーザとuidがかぶる可能性があります。</p>
-<div class="footnotes">
-
-<hr />
-
+</code></pre><p>uidが61000なのは、だいたい自動で生成されるuidが1000〜60000に設定されている<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>ので、その範囲から外しているからです。ちなみにGKEのホストVMは5000〜60000になっていて、uidを5000とかにするとGKEが作ったユーザとuidがかぶる可能性があります。</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1">例えば、<code>bundle exec rails console</code>による運用があるとか
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-<li id="fn:2"><code>/etc/login.defs</code> に書いてある
- <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p>例えば、<code>bundle exec rails console</code>による運用があるとか&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><code>/etc/login.defs</code> に書いてある&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,22 +48,27 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/10/10/1149.html/">Linuxでepubを読む</a></h2>
     <span class="date">Posted on Oct 10, 2017</span>
   </div>
-  <div class="body">
-    <p>Fedoraでepubを読むのに<a href="https://chrome.google.com/webstore/detail/readium/fepbnnnkkadjhjahcafoaglimekefifl">Readium</a>というChrome Extensionを使った。</p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>Fedoraでepubを読むのに<a href="https://chrome.google.com/webstore/detail/readium/fepbnnnkkadjhjahcafoaglimekefifl">Readium</a>というChrome Extensionを使った。</p>
 <p>電子書籍を買ってPDFとepubがついてきて、最初はReaderがインストールされていたPDFで読んでいたがいろいろ融通がきかないのでepubで読むために導入した。</p>
-
 <p>最初は<a href="https://github.com/rschroll/beru">beru</a>というepubリーダを使おうとしたが、名前にUbuntuが入ってる通りビルドまわりがめんどくさかった。具体的にはQt5のバージョンが固定されていてビルドはできたけど実行時にImcompatibleエラーが出た。この辺で早々にあきらめてブラウザを使うことにした。</p>
-
 <p>Readiumは文字サイズもレイアウトも調整できて今の所満足している。英語の本なので日本語がちゃんと表示できるかわからない。また、他のExtensionとの比較はできていない。</p>
-
 <p>Chromeならプラットフォーム関係ないので、epub読むときはChrome Extensionがおすすめ。</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

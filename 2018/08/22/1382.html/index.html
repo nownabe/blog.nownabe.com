@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,19 +48,19 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/08/22/1382.html/">GoのKubernetesオブジェクトをYAMLからDeserializeする</a></h2>
     <span class="date">Posted on Aug 22, 2018</span>
   </div>
-  <div class="body">
-    <p>GoでKubernetesまわりのツールを作るときにYAMLを読んでKubernetesオブジェクトにしたいということがあったので調べました。</p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>GoでKubernetesまわりのツールを作るときにYAMLを読んでKubernetesオブジェクトにしたいということがあったので調べました。</p>
 <p>コードはGistにアップしました。
 <a href="https://gist.github.com/nownabe/4345d9b68f323ba30905c9dfe3460006">https://gist.github.com/nownabe/4345d9b68f323ba30905c9dfe3460006</a></p>
-
 <p>KubernetesのオブジェクトというのはKubernetesのソースで定義されているstructのことです。こんなやつ。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// A namespace provides a scope for Names.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// A namespace provides a scope for Names.
 </span><span class="c1">// Use of multiple namespaces is optional
 </span><span class="c1"></span><span class="kd">type</span> <span class="nx">Namespace</span> <span class="kd">struct</span> <span class="p">{</span>
 	<span class="nx">metav1</span><span class="p">.</span><span class="nx">TypeMeta</span>
@@ -74,18 +74,16 @@ if (!doNotTrack) {
 	<span class="c1">// Status describes the current status of a Namespace
 </span><span class="c1"></span>	<span class="c1">// +optional
 </span><span class="c1"></span>	<span class="nx">Status</span> <span class="nx">NamespaceStatus</span>
-<span class="p">}</span></code></pre></div>
-<p><a href="https://godoc.org/k8s.io/api/core/v1#Namespace">https://godoc.org/k8s.io/api/core/v1#Namespace</a></p>
-
+<span class="p">}</span>
+</code></pre></div><p><a href="https://godoc.org/k8s.io/api/core/v1#Namespace">https://godoc.org/k8s.io/api/core/v1#Namespace</a></p>
 <p>YAMLはこんなやつですね。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Namespace<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>my-namespace</code></pre></div>
-<p>このYAMLを上の<code>Namespace</code> structによろしくDeserializeする方法です。</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Namespace</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-namespace</span><span class="w">
+</span></code></pre></div><p>このYAMLを上の<code>Namespace</code> structによろしくDeserializeする方法です。</p>
 <p>まずはDeserializerを手に入れます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="p">(</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="p">(</span>
     <span class="s">&#34;k8s.io/apimachinery/pkg/runtime&#34;</span>
     <span class="s">&#34;k8s.io/apimachinery/pkg/runtime/serializer&#34;</span>
 <span class="p">)</span>
@@ -102,25 +100,21 @@ if (!doNotTrack) {
     <span class="c1">// Deserializer
 </span><span class="c1"></span>    <span class="c1">// https://godoc.org/k8s.io/apimachinery/pkg/runtime#Decoder
 </span><span class="c1"></span>    <span class="nx">deserializer</span> <span class="o">:=</span> <span class="nx">codecFactory</span><span class="p">.</span><span class="nf">UniversalDeserializer</span><span class="p">()</span>
-<span class="p">}</span></code></pre></div>
-<p><code>UniversalDeserializer()</code>はJSONとかYAMLとかを<a href="https://github.com/kubernetes/apimachinery/blob/d4e5f596ea6e79f9493060696ad6025c6c82599d/pkg/runtime/serializer/recognizer/recognizer.go#L84-L127">自動で認識</a>してDeserializeしてくれるやつをくれます。これを使っておけば問題ないと思いますが、それぞれのシリアライズ形式専用のDeserializerも簡単に手に入ります。<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></p>
-
+<span class="p">}</span>
+</code></pre></div><p><code>UniversalDeserializer()</code>はJSONとかYAMLとかを<a href="https://github.com/kubernetes/apimachinery/blob/d4e5f596ea6e79f9493060696ad6025c6c82599d/pkg/runtime/serializer/recognizer/recognizer.go#L84-L127">自動で認識</a>してDeserializeしてくれるやつをくれます。これを使っておけば問題ないと思いますが、それぞれのシリアライズ形式専用のDeserializerも簡単に手に入ります。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <p>いずれにしても<code>runtime.Decoder</code>というinterfaceのインスタンスが得られます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Decoder</span> <span class="kd">interface</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Decoder</span> <span class="kd">interface</span> <span class="p">{</span>
     <span class="nf">Decode</span><span class="p">(</span><span class="nx">data</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">defaults</span> <span class="o">*</span><span class="nx">schema</span><span class="p">.</span><span class="nx">GroupVersionKind</span><span class="p">,</span> <span class="nx">into</span> <span class="nx">Object</span><span class="p">)</span> <span class="p">(</span><span class="nx">Object</span><span class="p">,</span> <span class="o">*</span><span class="nx">schema</span><span class="p">.</span><span class="nx">GroupVersionKind</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
-<span class="p">}</span></code></pre></div>
-<p><a href="https://godoc.org/k8s.io/apimachinery/pkg/runtime#Decoder">https://godoc.org/k8s.io/apimachinery/pkg/runtime#Decoder</a></p>
-
+<span class="p">}</span>
+</code></pre></div><p><a href="https://godoc.org/k8s.io/apimachinery/pkg/runtime#Decoder">https://godoc.org/k8s.io/apimachinery/pkg/runtime#Decoder</a></p>
 <p><code>Decode</code>メソッドでDeserializeするわけですが、それぞれの引数はこんな感じになってます。</p>
-
 <ul>
 <li><code>data []byte</code>: Deserializeしたいデータ。YAMLとか</li>
 <li><code>defaults *schema.GroupVersionKind</code>: <code>nil</code>でよい。よくわからないときに使われるデフォルト値。Group、Version、Kindそれぞれの文字列が入る<a href="https://godoc.org/k8s.io/apimachinery/pkg/runtime/schema#GroupVersionKind">構造体</a></li>
 <li><code>into Object</code>: Deserializeしたい<a href="https://godoc.org/k8s.io/apimachinery/pkg/runtime#Object">オブジェクト</a>。<code>Namespace</code>とかのstructのポインタがこのinterfaceを実装している。</li>
 </ul>
-
 <p>例えばNamespaceのYAMLを<code>Namespace</code> structにDeserializeするのはこんな感じになります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
         <span class="s">&#34;fmt&#34;</span>
@@ -147,20 +141,25 @@ if (!doNotTrack) {
         <span class="p">}</span>
         <span class="nx">namespace</span> <span class="o">:=</span> <span class="nx">object</span><span class="p">.(</span><span class="o">*</span><span class="nx">corev1</span><span class="p">.</span><span class="nx">Namespace</span><span class="p">)</span>
         <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Name: %s\n&#34;</span><span class="p">,</span> <span class="nx">namespace</span><span class="p">.</span><span class="nx">ObjectMeta</span><span class="p">.</span><span class="nf">GetName</span><span class="p">())</span>
-<span class="p">}</span></code></pre></div>
-<p>他のオブジェクトも同様にできます。<a href="https://gist.github.com/nownabe/4345d9b68f323ba30905c9dfe3460006">Gistのコード</a>にはDeploymentのサンプルもあります。</p>
-
+<span class="p">}</span>
+</code></pre></div><p>他のオブジェクトも同様にできます。<a href="https://gist.github.com/nownabe/4345d9b68f323ba30905c9dfe3460006">Gistのコード</a>にはDeploymentのサンプルもあります。</p>
 <p>オブジェクトについては<a href="https://godoc.org/k8s.io/api">k8s.io/apiのgodoc</a>にあります。</p>
-<div class="footnotes">
-
-<hr />
-
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1"><a href="https://github.com/kubernetes/apimachinery/blob/d4e5f596ea6e79f9493060696ad6025c6c82599d/pkg/runtime/serializer/codec_factory.go#L98-L101">この辺</a>とか<a href="https://github.com/kubernetes/apimachinery/blob/d4e5f596ea6e79f9493060696ad6025c6c82599d/pkg/runtime/serializer/codec_factory.go#L47-L79">この辺</a>とか
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://github.com/kubernetes/apimachinery/blob/d4e5f596ea6e79f9493060696ad6025c6c82599d/pkg/runtime/serializer/codec_factory.go#L98-L101">この辺</a>とか<a href="https://github.com/kubernetes/apimachinery/blob/d4e5f596ea6e79f9493060696ad6025c6c82599d/pkg/runtime/serializer/codec_factory.go#L47-L79">この辺</a>とか&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents"></nav>
+      </aside>
+    </div>
   </div>
 </article>
 

@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,65 +48,64 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/06/08/1327.html/">GCP updates  |  June 6, 2018</a></h2>
     <span class="date">Posted on Jun 8, 2018</span>
   </div>
-  <div class="body">
-    
-
-<p>GCPのメルマガの雑な翻訳です。</p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>GCPのメルマガの雑な翻訳です。</p>
 <p><a href="https://blog.nownabe.com/2018/06/08/1327.html">nownab.log | GCP updates | June 6, 2018</a></p>
-
 <h1 id="compute">Compute</h1>
-
-<h2 id="regional-persistent-disks-for-google-kubernetes-engine-https-cloudplatform-googleblog-com-2018-05-get-higher-availability-with-regional-persistent-disks-on-google-kubernetes-engine-html"><a href="https://cloudplatform.googleblog.com/2018/05/Get-higher-availability-with-Regional-Persistent-Disks-on-Google-Kubernetes-Engine.html">Regional Persistent Disks for Google Kubernetes Engine</a></h2>
-
+<h2 id="regional-persistent-disks-for-google-kubernetes-enginehttpscloudplatformgoogleblogcom201805get-higher-availability-with-regional-persistent-disks-on-google-kubernetes-enginehtml"><a href="https://cloudplatform.googleblog.com/2018/05/Get-higher-availability-with-Regional-Persistent-Disks-on-Google-Kubernetes-Engine.html">Regional Persistent Disks for Google Kubernetes Engine</a></h2>
 <blockquote>
 <p>Now in beta, Regional Persistent Disks replicate data between two zones in one region, enabling high availability for stateful workloads. In the event of a zonal outage, failover is automatically handled by the other zone.</p>
-
 <p>β機能のリージョナル永続ディスクは同一リージョンの2つのゾーン間でデータを複製し、ステートフルワークロードの高可用性を実現します。ゾーン停止のときには他のゾーンへ自動でフェイルオーバーします。</p>
 </blockquote>
-
 <p>便利ですね！速度がどうなるのか気になる。</p>
-
-<h2 id="self-managed-encryption-keys-with-gce-and-cloud-kms-https-cloud-google-com-compute-docs-disks-customer-managed-encryption-hl-en"><a href="https://cloud.google.com/compute/docs/disks/customer-managed-encryption?hl=en/">Self-managed encryption keys with GCE and Cloud KMS</a></h2>
-
+<h2 id="self-managed-encryption-keys-with-gce-and-cloud-kmshttpscloudgooglecomcomputedocsdiskscustomer-managed-encryptionhlen"><a href="https://cloud.google.com/compute/docs/disks/customer-managed-encryption?hl=en/">Self-managed encryption keys with GCE and Cloud KMS</a></h2>
 <blockquote>
 <p>This beta launch allows customers to use Cloud Key Management Service to protect Google Compute Engine resources, such as disks, images, and snapshots.</p>
-
 <p>β機能として、Cloud Key ManagementサービスでCompute Engineのディスクやイメージ、スナップショットのようなリソースを保護できます。</p>
-
+</blockquote>
+<blockquote>
 <p><a href="https://cloud.google.com/kubernetes-engine/docs/how-to/ingress-multi-ssl">Support for TLS certificates on GKE Ingress</a>
 This beta release adds support for TLS certificates on GKE Ingress.</p>
-
 <p>GKEにおけるIngressでTLS証明書をβ機能としてサポートします。</p>
 </blockquote>
-
 <p>複数の証明書を使えるようになったってことみたいですね。これはありがたい。</p>
-
-<h2 id="new-regional-clusters-for-kubernetes-engine-https-cloud-google-com-kubernetes-engine-docs-concepts-multi-zone-and-regional-clusters"><a href="https://cloud.google.com/kubernetes-engine/docs/concepts/multi-zone-and-regional-clusters">New regional clusters for Kubernetes Engine</a></h2>
-
+<h2 id="new-regional-clusters-for-kubernetes-enginehttpscloudgooglecomkubernetes-enginedocsconceptsmulti-zone-and-regional-clusters"><a href="https://cloud.google.com/kubernetes-engine/docs/concepts/multi-zone-and-regional-clusters">New regional clusters for Kubernetes Engine</a></h2>
 <blockquote>
 <p>Users can now get 99.95% uptime and improve their clusters’ availability by creating regional clusters. Unlike other cluster types, regional clusters create three cluster masters across three zones within a region.</p>
-
 <p>リージョナルクラスタによって99.95%のアップタイムを得られ、クラスタの可用性を改善できます。他のクラスタタイプと異なり、リージョナルクラスタは同一リージョン内の3つのゾーンに3つのマスターを配置します。</p>
 </blockquote>
-
 <p>ようやくβが外れましたね。</p>
-
-<h1 id="storage-databases">Storage &amp; Databases</h1>
-
-<h2 id="faster-cloud-sql-ssl-certificate-rotation-https-cloud-google-com-sql-docs-postgres-configure-ssl-instance"><a href="https://cloud.google.com/sql/docs/postgres/configure-ssl-instance">Faster Cloud SQL SSL certificate rotation</a></h2>
-
+<h1 id="storage--databases">Storage &amp; Databases</h1>
+<h2 id="faster-cloud-sql-ssl-certificate-rotationhttpscloudgooglecomsqldocspostgresconfigure-ssl-instance"><a href="https://cloud.google.com/sql/docs/postgres/configure-ssl-instance">Faster Cloud SQL SSL certificate rotation</a></h2>
 <blockquote>
 <p>Users can now rotate SSL certificates used to connect to their Cloud SQL instances with no downtime.</p>
 </blockquote>
-
 <p>ダウンタイム無しでCloud SQLインスタンスに接続するためのSSL証明書をローテートできます。</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#regional-persistent-disks-for-google-kubernetes-enginehttpscloudplatformgoogleblogcom201805get-higher-availability-with-regional-persistent-disks-on-google-kubernetes-enginehtml"><a href="https://cloudplatform.googleblog.com/2018/05/Get-higher-availability-with-Regional-Persistent-Disks-on-Google-Kubernetes-Engine.html">Regional Persistent Disks for Google Kubernetes Engine</a></a></li>
+    <li><a href="#self-managed-encryption-keys-with-gce-and-cloud-kmshttpscloudgooglecomcomputedocsdiskscustomer-managed-encryptionhlen"><a href="https://cloud.google.com/compute/docs/disks/customer-managed-encryption?hl=en/">Self-managed encryption keys with GCE and Cloud KMS</a></a></li>
+    <li><a href="#new-regional-clusters-for-kubernetes-enginehttpscloudgooglecomkubernetes-enginedocsconceptsmulti-zone-and-regional-clusters"><a href="https://cloud.google.com/kubernetes-engine/docs/concepts/multi-zone-and-regional-clusters">New regional clusters for Kubernetes Engine</a></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#faster-cloud-sql-ssl-certificate-rotationhttpscloudgooglecomsqldocspostgresconfigure-ssl-instance"><a href="https://cloud.google.com/sql/docs/postgres/configure-ssl-instance">Faster Cloud SQL SSL certificate rotation</a></a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,82 +48,90 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2019/05/29/gcp-product-updates-may-28-2019.html/">GCP Updates | May 28, 2019</a></h2>
     <span class="date">Posted on May 29, 2019</span>
   </div>
-  <div class="body">
-    
-
-<p>再開しました。</p>
-
-<h1 id="hybrid-multi-cloud">HYBRID &amp; MULTI-CLOUD</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>再開しました。</p>
+<h1 id="hybrid--multi-cloud">HYBRID &amp; MULTI-CLOUD</h1>
 <h2 id="anthos-config-management-ga">Anthos Config Management: GA</h2>
-
 <blockquote>
 <p>Manage configuration and enforce policy across your clusters – whether they’re on-premises or in the cloud. Set a declarative configuration for role-based access controls, resource quotas, and Namespaces – all from a single place. <a href="https://cloud.google.com/anthos/docs/concepts/anthos-overview#centralized_config_management">Documentation</a> | <a href="https://cloud.google.com/blog/topics/hybrid-cloud/new-platform-for-managing-applications-in-todays-multi-cloud-world">Blog</a></p>
 </blockquote>
-
 <p>GitOpsみたいなことができるっぽいけどContact Salesになってる。。。</p>
-
 <h1 id="compute">COMPUTE</h1>
-
-<h2 id="kubernetes-engine-intranode-visibility-beta">Kubernetes Engine – Intranode Visibility: beta</h2>
-
+<h2 id="kubernetes-engine--intranode-visibility-beta">Kubernetes Engine – Intranode Visibility: beta</h2>
 <blockquote>
 <p>This feature makes all your network traffic visible to the GCP network. You can see flow logs for all traffic between Pods, including traffic between Pods on the same node. And you can create firewall rules that apply to all traffic between Pods. <a href="https://cloud.google.com/kubernetes-engine/docs/how-to/intranode-visibility">Documentation</a></p>
 </blockquote>
-
 <p>Pod間のトラフィックに対してflow logとファイアウォールを有効にするもの。既存クラスタも有効にできる。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gcloud beta container clusters update <span class="o">[</span>CLUSTER_NAME<span class="o">]</span> --enable-intra-node-visibility</code></pre></div>
-<p>ファイアウォールについては特に記載がなかった。</p>
-
-<h2 id="compute-engine-reserving-zonal-resources-beta">Compute Engine – reserving zonal resources: beta</h2>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">gcloud beta container clusters update <span class="o">[</span>CLUSTER_NAME<span class="o">]</span> --enable-intra-node-visibility
+</code></pre></div><p>ファイアウォールについては特に記載がなかった。</p>
+<h2 id="compute-engine--reserving-zonal-resources-beta">Compute Engine – reserving zonal resources: beta</h2>
 <blockquote>
 <p>Reserve VM instances in a specific zone to ensure they’re available for future increases in demand, such as planned or unplanned spikes, large migrations, backup and disaster recovery, or planned growth. You can create or cancel a reservation at any time, with no commitment. <a href="https://cloud.google.com/compute/docs/instances/reserving-zonal-resources">Documentation</a></p>
 </blockquote>
-
 <p>当然っちゃ当然ですが普通にお金かかるみたいですね。</p>
-
-<h1 id="api-platform-ecosystems">API PLATFORM &amp; ECOSYSTEMS</h1>
-
-<h2 id="apigee-developer-portal-audience-management-and-developer-teams-beta">Apigee Developer Portal – audience management and developer teams: beta</h2>
-
+<h1 id="api-platform--ecosystems">API PLATFORM &amp; ECOSYSTEMS</h1>
+<h2 id="apigee-developer-portal--audience-management-and-developer-teams-beta">Apigee Developer Portal – audience management and developer teams: beta</h2>
 <blockquote>
 <p>This release allows portal users to share responsibility for an app with other portal users, as well as segment individuals in order to control access to content. <a href="https://docs.apigee.com/release/notes/190507-apigee-edge-public-cloud-release-notes-ui#teams-audience-management">Documentation</a> | <a href="https://community.apigee.com/idea/68536/introducing-developer-programs-and-the-developer-t.html">Blog</a></p>
 </blockquote>
-
-<h1 id="ai-machine-learning">AI &amp; MACHINE LEARNING</h1>
-
+<h1 id="ai--machine-learning">AI &amp; MACHINE LEARNING</h1>
 <h2 id="ai-platform-notebooks-beta">AI Platform Notebooks: beta</h2>
-
 <blockquote>
 <p>This managed enterprise notebook service helps you get projects up and running in minutes. In one click, you can create instances in JupyterLab that come pre-installed with the latest data science and machine learning frameworks. The service is available through AI Platform in the Google Cloud Platform Console.
- <a href="https://cloud.google.com/ml-engine/docs/notebooks/">Documentation</a></p>
+<a href="https://cloud.google.com/ml-engine/docs/notebooks/">Documentation</a></p>
 </blockquote>
-
 <h1 id="mobile-app-development">MOBILE APP DEVELOPMENT</h1>
-
-<h2 id="firebase-shared-ios-keychain-beta">Firebase – shared iOS keychain: beta</h2>
-
+<h2 id="firebase--shared-ios-keychain-beta">Firebase – shared iOS keychain: beta</h2>
 <blockquote>
 <p>Share authentication states across multiple apps or extensions on iOS. This allows users to sign in or out once and have the action apply across all apps that belong to the same access group. <a href="https://firebase.google.com/docs/auth/ios/single-sign-on">Documentation</a></p>
 </blockquote>
-
-<h1 id="identity-security">IDENTITY &amp; SECURITY</h1>
-
+<h1 id="identity--security">IDENTITY &amp; SECURITY</h1>
 <h2 id="gke-sandbox-beta">GKE Sandbox: beta</h2>
-
 <blockquote>
 <p>Get increased security for your Kubernetes Engine containers – without added complexity. This managed service, based on the open-source project gVisor, is a container-isolation solution that provides a second layer of defense between your containerized workloads on Kubernetes Engine. <a href="https://cloud.google.com/kubernetes-engine/sandbox/">Product page</a> | <a href="https://cloud.google.com/blog/products/identity-security/increasing-trust-in-google-cloud-visibility-control-and-automation">Blog</a></p>
 </blockquote>
-
 <p>GKEでgVisorが使えるやつ。GKE Sandboxを有効にしたNode Poolを新しく作ってPod templateで<code>runtimeClassName: gvisor</code>とすれば使える。
 いろいろ制約があるみたいなので使うときは注意が必要ですね。</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#anthos-config-management-ga">Anthos Config Management: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#kubernetes-engine--intranode-visibility-beta">Kubernetes Engine – Intranode Visibility: beta</a></li>
+    <li><a href="#compute-engine--reserving-zonal-resources-beta">Compute Engine – reserving zonal resources: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#apigee-developer-portal--audience-management-and-developer-teams-beta">Apigee Developer Portal – audience management and developer teams: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#ai-platform-notebooks-beta">AI Platform Notebooks: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#firebase--shared-ios-keychain-beta">Firebase – shared iOS keychain: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#gke-sandbox-beta">GKE Sandbox: beta</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

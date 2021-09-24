@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,60 +48,46 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2020/07/19/home-kubernetes-2/">おうちKubernetes構築日記その2 Kubernetes構築編</a></h2>
     <span class="date">Posted on Jul 19, 2020</span>
   </div>
-  <div class="body">
-    
-
-<p><a href="https://blog.nownabe.com/2020/06/28/home-kubernetes-1/">前回</a>からだいぶ時間があいてしまいましたが、その2のKubernetes構築編です。
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p><a href="https://blog.nownabe.com/2020/06/28/home-kubernetes-1/">前回</a>からだいぶ時間があいてしまいましたが、その2のKubernetes構築編です。
 前回組み立てたマシンたちにKubernetesをインストールしました。</p>
-
 <h2 id="あらすじ">あらすじ</h2>
-
 <p>前回はWorkerノード用のRaspberry Pi 4 8GBを4台組み立てました。
 今回、それとは別のサーバを1台Control Planeとしました。</p>
-
-<p><img src="/images/2020/06/28/nodes.png" alt="nodes" /></p>
-
+<p><img src="/images/2020/06/28/nodes.png" alt="nodes"></p>
 <p>構築には<a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/">kubeadm</a>を使いました。</p>
-
 <h2 id="control-plane-構築">Control Plane 構築</h2>
-
 <p>基本的にドキュメントに従って構築していきます。
 kubeadmを使って簡単に構築できました。
 kubeadmはKubernetesクラスタを構築するためのツールです。</p>
-
 <p>公式ドキュメント的にはこの辺の内容になります。</p>
-
 <ul>
 <li><a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">Installing kubeadm | Kubernetes</a></li>
 <li><a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/">Creating a single control-plane cluster with kubeadm | Kubernetes</a></li>
 <li><a href="https://kubernetes.io/docs/setup/production-environment/container-runtimes/">Container runtimes | Kubernetes</a></li>
 </ul>
-
 <p>今回Control Planeとして使うサーバのOSはDebian Busterです。</p>
-
 <h3 id="ネットワーク設定">ネットワーク設定</h3>
-
 <p>Kubernetesからiptablesでブリッジのトラフィックを制御できるようにします。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">modprobe br_netfilter
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">modprobe br_netfilter
 cat <span class="s">&lt;&lt;EOF &gt; /etc/sysctl.d/k8s.conf
 </span><span class="s">net.bridge.bridge-nf-call-ip6tables = 1
 </span><span class="s">net.bridge.bridge-nf-call-iptables = 1
 </span><span class="s">EOF</span>
-sysctl --system</code></pre></div>
-<h3 id="dockerインストール">Dockerインストール</h3>
-
+sysctl --system
+</code></pre></div><h3 id="dockerインストール">Dockerインストール</h3>
 <p>コンテナを実行するためにDockerをインストールします。
 最初はcri-oでやってみたんですが、Kubernetesの最新バージョンに対応していなかったのと、構築でエラーが出たのでさっさと諦めてDockerにしました。</p>
-
 <p>ドキュメントに従ってインストールしていきます。</p>
-
 <p><a href="https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker">Container runtimes | Kubernetes</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 普通のDockerインストール</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 普通のDockerインストール</span>
 
 apt remove docker docker-engine docker.io runc
 apt-get install <span class="se">\
@@ -133,32 +119,28 @@ cat &gt; /etc/docker/daemon.json <span class="s">&lt;&lt;EOF
 
 mkdir -p /etc/systemd/system/docker.service.d
 systemctl daemon-reload
-systemctl restart docker</code></pre></div>
-<p><code>/etc/docker/daemon.json</code>のcgroup driverはkubeletと同じにする必要があります。
+systemctl restart docker
+</code></pre></div><p><code>/etc/docker/daemon.json</code>のcgroup driverはkubeletと同じにする必要があります。
 Dockerのデフォルトは<code>cgroupfs</code>ですが、kubeadmで構築するとkubeletは<code>systemd</code>に設定されるので<code>systemd</code>にあわせます。</p>
-
 <p>systemdのUnitファイルにはいろいろ書いてありますが、kubeletのcgroup driverを変更する場合は<code>/var/lib/kubelet/config.yaml</code>での設定が推奨のようです。</p>
-
 <h3 id="kubeadmインストール">kubeadmインストール</h3>
-
 <p>kubeadm、kubelet、kubectlをインストールします。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg <span class="p">|</span> apt-key add -
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg <span class="p">|</span> apt-key add -
 <span class="nb">echo</span> <span class="s1">&#39;deb https://apt.kubernetes.io/ kubernetes-xenial main&#39;</span> &gt; /etc/apt/sources.list.d/kubernetes.list
 apt update
 apt install -y kubeadm kubelet kubectl
-apt-mark hold kubelet kubeadm kubectl</code></pre></div>
-<h3 id="control-plane初期化">Control Plane初期化</h3>
-
+apt-mark hold kubelet kubeadm kubectl
+</code></pre></div><h3 id="control-plane初期化">Control Plane初期化</h3>
 <p>kubeadmでControl Planeを初期化します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubeadm init <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">kubeadm init <span class="se">\
 </span><span class="se"></span>  --dry-run <span class="se">\
 </span><span class="se"></span>  --control-plane-endpoint<span class="o">=</span>kube-master.cf.nownabe.in <span class="se">\
-</span><span class="se"></span>  --pod-network-cidr<span class="o">=</span><span class="m">10</span>.4.0.0/14 <span class="se">\
-</span><span class="se"></span>  --service-cidr<span class="o">=</span><span class="m">10</span>.2.0.0/15 <span class="se">\
-</span><span class="se"></span>  --service-dns-domain <span class="s2">&#34;kube.cf.nownabe.in&#34;</span></code></pre></div>
-<p>これはdry runコマンドなので、大丈夫そうなら<code>--dry-run</code>を消して実行します。
+</span><span class="se"></span>  --pod-network-cidr<span class="o">=</span>10.4.0.0/14 <span class="se">\
+</span><span class="se"></span>  --service-cidr<span class="o">=</span>10.2.0.0/15 <span class="se">\
+</span><span class="se"></span>  --service-dns-domain <span class="s2">&#34;kube.cf.nownabe.in&#34;</span>
+</code></pre></div><p>これはdry runコマンドなので、大丈夫そうなら<code>--dry-run</code>を消して実行します。
 うまくいったら次のようなメッセージが表示されます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">To start using your cluster, you need to run the following as a regular user:
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">To start using your cluster, you need to run the following as a regular user:
 
   mkdir -p <span class="nv">$HOME</span>/.kube
   sudo cp -i /etc/kubernetes/admin.conf <span class="nv">$HOME</span>/.kube/config
@@ -178,48 +160,40 @@ and service account keys on each node and <span class="k">then</span> running th
 Then you can join any number of worker nodes by running the following on each as root:
 
 kubeadm join kube-master.cf.nownabe.in:6443 --token XXXX <span class="se">\
-</span><span class="se"></span>    --discovery-token-ca-cert-hash sha256:XXXX</code></pre></div>
-<p>Control Planeは今回この1ノードだけなので、次にやることはこの3つですね。</p>
-
+</span><span class="se"></span>    --discovery-token-ca-cert-hash sha256:XXXX
+</code></pre></div><p>Control Planeは今回この1ノードだけなので、次にやることはこの3つですね。</p>
 <ul>
 <li>設定コピーしてkubectl使えるようにする</li>
 <li>Podネットワークadd-onデプロイ</li>
 <li>Workerノード追加</li>
 </ul>
-
 <p>設定を<code>/etc/kubernetes/admin.conf</code>からコピーして、別のマシンから<code>kubectl get po</code>してみました。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ kubectl version
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ kubectl version
 Client Version: version.Info<span class="o">{</span>Major:<span class="s2">&#34;1&#34;</span>, Minor:<span class="s2">&#34;13+&#34;</span>, GitVersion:<span class="s2">&#34;v1.13.11-dispatcher&#34;</span>, GitCommit:<span class="s2">&#34;2e298c7e992f83f47af60cf4830b11c7370f6668&#34;</span>, GitTreeState:<span class="s2">&#34;clean&#34;</span>, BuildDate:<span class="s2">&#34;2019-09-19T22:20:12Z&#34;</span>, GoVersion:<span class="s2">&#34;go1.11.13&#34;</span>, Compiler:<span class="s2">&#34;gc&#34;</span>, Platform:<span class="s2">&#34;linux/amd64&#34;</span><span class="o">}</span>
 Server Version: version.Info<span class="o">{</span>Major:<span class="s2">&#34;1&#34;</span>, Minor:<span class="s2">&#34;18&#34;</span>, GitVersion:<span class="s2">&#34;v1.18.3&#34;</span>, GitCommit:<span class="s2">&#34;2e7996e3e2712684bc73f0dec0200d64eec7fe40&#34;</span>, GitTreeState:<span class="s2">&#34;clean&#34;</span>, BuildDate:<span class="s2">&#34;2020-05-20T12:43:34Z&#34;</span>, GoVersion:<span class="s2">&#34;go1.13.9&#34;</span>, Compiler:<span class="s2">&#34;gc&#34;</span>, Platform:<span class="s2">&#34;linux/amd64&#34;</span><span class="o">}</span>
 $ kubectl get pods --all-namespaces
 NAMESPACE     NAME                                         READY   STATUS              RESTARTS   AGE
-kube-system   coredns-66bff467f8-7sr7t                     <span class="m">0</span>/1     ContainerCreating   <span class="m">0</span>          21h
-kube-system   coredns-66bff467f8-sh24v                     <span class="m">0</span>/1     ContainerCreating   <span class="m">0</span>          21h
-kube-system   etcd-sv-1.cf.nownabe.in                      <span class="m">1</span>/1     Running             <span class="m">0</span>          21h
-kube-system   kube-apiserver-sv-1.cf.nownabe.in            <span class="m">1</span>/1     Running             <span class="m">0</span>          21h
-kube-system   kube-controller-manager-sv-1.cf.nownabe.in   <span class="m">1</span>/1     Running             <span class="m">0</span>          21h
-kube-system   kube-proxy-t4hgb                             <span class="m">1</span>/1     Running             <span class="m">0</span>          21h
-kube-system   kube-scheduler-sv-1.cf.nownabe.in            <span class="m">1</span>/1     Running</code></pre></div>
-<p>おおー、動いてますね！！ 🎉
+kube-system   coredns-66bff467f8-7sr7t                     0/1     ContainerCreating   <span class="m">0</span>          21h
+kube-system   coredns-66bff467f8-sh24v                     0/1     ContainerCreating   <span class="m">0</span>          21h
+kube-system   etcd-sv-1.cf.nownabe.in                      1/1     Running             <span class="m">0</span>          21h
+kube-system   kube-apiserver-sv-1.cf.nownabe.in            1/1     Running             <span class="m">0</span>          21h
+kube-system   kube-controller-manager-sv-1.cf.nownabe.in   1/1     Running             <span class="m">0</span>          21h
+kube-system   kube-proxy-t4hgb                             1/1     Running             <span class="m">0</span>          21h
+kube-system   kube-scheduler-sv-1.cf.nownabe.in            1/1     Running
+</code></pre></div><p>おおー、動いてますね！！ 🎉
 クライアントのkubectlがやたら古いのが気になりますが、ちゃんとapiserverは動いてそうです。</p>
-
 <h2 id="workerノード構築">Workerノード構築</h2>
-
 <p>Control Planeができたので、Raspberry PiをWorkerノードとして構築してクラスタに追加していきます。</p>
-
 <p>Raspberry PiにインストールしたOSはRaspberry Pi OS Busterです。</p>
-
 <h3 id="swap無効化">Swap無効化</h3>
-
 <p>Raspberry Pi OSではデフォルトだとSwapが有効になっているので無効化します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">dphys-swapfile swapoff
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">dphys-swapfile swapoff
 systemctl stop dphys-swapfile
-systemctl disable dphys-swapfile</code></pre></div>
-<h3 id="いろいろ">いろいろ</h3>
-
+systemctl disable dphys-swapfile
+</code></pre></div><h3 id="いろいろ">いろいろ</h3>
 <p>Dockerインストールしたりkubeadmインストールしたりします。
 ここはControl Planeとほぼ同じなのでコマンドだけ。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">modprobe br_netfilter
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">modprobe br_netfilter
 modprobe overlay
 cat <span class="s">&lt;&lt;EOF &gt; /etc/sysctl.d/k8s.conf
 </span><span class="s">net.bridge.bridge-nf-call-ip6tables = 1
@@ -249,67 +223,87 @@ cat <span class="s">&lt;&lt;EOF &gt; /etc/apt/sources.list.d/kubernetes.list
 </span><span class="s">EOF</span>
 apt update
 apt install -y kubeadm kubelet kubectl
-apt-mark hold kubelet kubeadm kubectl</code></pre></div>
-<h3 id="workerノード初期化">Workerノード初期化</h3>
-
+apt-mark hold kubelet kubeadm kubectl
+</code></pre></div><h3 id="workerノード初期化">Workerノード初期化</h3>
 <p>kubeadmで初期化し、クラスタに参加します。
 Control Planeをkubeadmで初期化したときに表示されたコマンドを実行するだけです。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubeadm join kube-master.cf.nownabe.in:6443 --token XXXX <span class="se">\
-</span><span class="se"></span>    --discovery-token-ca-cert-hash sha256:XXXX</code></pre></div>
-<p>もしトークンの期限が切れていてエラーになる場合は、Control Planeでトークンを再発行します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubeadm token create --print-join-command</code></pre></div>
-<p>トークンの一覧もコマンドで確認できます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubeadm token list</code></pre></div>
-<p><a href="https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/">kubeadm token | Kubernetes</a></p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">kubeadm join kube-master.cf.nownabe.in:6443 --token XXXX <span class="se">\
+</span><span class="se"></span>    --discovery-token-ca-cert-hash sha256:XXXX
+</code></pre></div><p>もしトークンの期限が切れていてエラーになる場合は、Control Planeでトークンを再発行します。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">kubeadm token create --print-join-command
+</code></pre></div><p>トークンの一覧もコマンドで確認できます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">kubeadm token list
+</code></pre></div><p><a href="https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/">kubeadm token | Kubernetes</a></p>
 <p>無事実行できたら、kubectlで確認してみましょう。
 ちゃんと追加されてますね！やった！ 👏</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ kubectl get nodes --output wide
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ kubectl get nodes --output wide
 NAME                          STATUS   ROLES    AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION   CONTAINER-RUNTIME
-kube-worker-1.cf.nownabe.in   Ready    &lt;none&gt;   31d   v1.18.5   <span class="m">10</span>.0.1.101    &lt;none&gt;        Raspbian GNU/Linux <span class="m">10</span> <span class="o">(</span>buster<span class="o">)</span>   <span class="m">4</span>.19.118-v8+     docker://19.3.12
-kube-worker-2.cf.nownabe.in   Ready    &lt;none&gt;   30d   v1.18.4   <span class="m">10</span>.0.1.102    &lt;none&gt;        Raspbian GNU/Linux <span class="m">10</span> <span class="o">(</span>buster<span class="o">)</span>   <span class="m">4</span>.19.118-v8+     docker://19.3.11
-kube-worker-3.cf.nownabe.in   Ready    &lt;none&gt;   23d   v1.18.4   <span class="m">10</span>.0.1.103    &lt;none&gt;        Raspbian GNU/Linux <span class="m">10</span> <span class="o">(</span>buster<span class="o">)</span>   <span class="m">4</span>.19.118-v8+     docker://19.3.12
-kube-worker-4.cf.nownabe.in   Ready    &lt;none&gt;   23d   v1.18.4   <span class="m">10</span>.0.1.104    &lt;none&gt;        Raspbian GNU/Linux <span class="m">10</span> <span class="o">(</span>buster<span class="o">)</span>   <span class="m">4</span>.19.118-v8+     docker://19.3.12
-sv-1.cf.nownabe.in            Ready    master   31d   v1.18.3   <span class="m">10</span>.0.1.1      &lt;none&gt;        Debian GNU/Linux <span class="m">10</span> <span class="o">(</span>buster<span class="o">)</span>     <span class="m">4</span>.19.0-9-amd64   docker://19.3.11</code></pre></div>
-<h2 id="flannel-インストール">flannel インストール</h2>
-
+kube-worker-1.cf.nownabe.in   Ready    &lt;none&gt;   31d   v1.18.5   10.0.1.101    &lt;none&gt;        Raspbian GNU/Linux <span class="m">10</span> <span class="o">(</span>buster<span class="o">)</span>   4.19.118-v8+     docker://19.3.12
+kube-worker-2.cf.nownabe.in   Ready    &lt;none&gt;   30d   v1.18.4   10.0.1.102    &lt;none&gt;        Raspbian GNU/Linux <span class="m">10</span> <span class="o">(</span>buster<span class="o">)</span>   4.19.118-v8+     docker://19.3.11
+kube-worker-3.cf.nownabe.in   Ready    &lt;none&gt;   23d   v1.18.4   10.0.1.103    &lt;none&gt;        Raspbian GNU/Linux <span class="m">10</span> <span class="o">(</span>buster<span class="o">)</span>   4.19.118-v8+     docker://19.3.12
+kube-worker-4.cf.nownabe.in   Ready    &lt;none&gt;   23d   v1.18.4   10.0.1.104    &lt;none&gt;        Raspbian GNU/Linux <span class="m">10</span> <span class="o">(</span>buster<span class="o">)</span>   4.19.118-v8+     docker://19.3.12
+sv-1.cf.nownabe.in            Ready    master   31d   v1.18.3   10.0.1.1      &lt;none&gt;        Debian GNU/Linux <span class="m">10</span> <span class="o">(</span>buster<span class="o">)</span>     4.19.0-9-amd64   docker://19.3.11
+</code></pre></div><h2 id="flannel-インストール">flannel インストール</h2>
 <p>最後にNetwork Add-onとしてflannelをインストールしました。
 最初にCalico、次にCiliumをインストールしようとしたんですが上手く行かずにflannelになりました。
 調べてからインストールすればよかったんですが、Armの64bitに対応できてませんでした。</p>
-
 <p>flannelのインストールは公式で用意されているマニフェストYAMLをapplyでOKです。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">curl -O https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-kubectl apply -f kube-flannel.yml</code></pre></div>
-<p>するとこんな感じでDaemon Setとしてflannelがデプロイされます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ kubectl get po --output wide --all-namespaces
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">curl -O https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+kubectl apply -f kube-flannel.yml
+</code></pre></div><p>するとこんな感じでDaemon Setとしてflannelがデプロイされます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ kubectl get po --output wide --all-namespaces
 NAMESPACE     NAME                                         READY   STATUS    RESTARTS   AGE   IP           NODE                          NOMINATED NODE   READINESS GATES
-kube-system   coredns-66bff467f8-8dspl                     <span class="m">1</span>/1     Running   <span class="m">0</span>          20d   <span class="m">10</span>.4.4.2     kube-worker-3.cf.nownabe.in   &lt;none&gt;           &lt;none&gt;
-kube-system   coredns-66bff467f8-vfx8d                     <span class="m">1</span>/1     Running   <span class="m">0</span>          30d   <span class="m">10</span>.4.2.2     kube-worker-2.cf.nownabe.in   &lt;none&gt;           &lt;none&gt;
-kube-system   etcd-sv-1.cf.nownabe.in                      <span class="m">1</span>/1     Running   <span class="m">0</span>          31d   <span class="m">10</span>.0.1.1     sv-1.cf.nownabe.in            &lt;none&gt;           &lt;none&gt;
-kube-system   kube-apiserver-sv-1.cf.nownabe.in            <span class="m">1</span>/1     Running   <span class="m">0</span>          31d   <span class="m">10</span>.0.1.1     sv-1.cf.nownabe.in            &lt;none&gt;           &lt;none&gt;
-kube-system   kube-controller-manager-sv-1.cf.nownabe.in   <span class="m">1</span>/1     Running   <span class="m">193</span>        31d   <span class="m">10</span>.0.1.1     sv-1.cf.nownabe.in            &lt;none&gt;           &lt;none&gt;
-kube-system   kube-flannel-ds-amd64-dpw88                  <span class="m">1</span>/1     Running   <span class="m">10</span>         31d   <span class="m">10</span>.0.1.1     sv-1.cf.nownabe.in            &lt;none&gt;           &lt;none&gt;
-kube-system   kube-flannel-ds-arm-mld8c                    <span class="m">1</span>/1     Running   <span class="m">0</span>          23d   <span class="m">10</span>.0.1.104   kube-worker-4.cf.nownabe.in   &lt;none&gt;           &lt;none&gt;
-kube-system   kube-flannel-ds-arm-q2z9v                    <span class="m">1</span>/1     Running   <span class="m">0</span>          31d   <span class="m">10</span>.0.1.101   kube-worker-1.cf.nownabe.in   &lt;none&gt;           &lt;none&gt;
-kube-system   kube-flannel-ds-arm-qfqcs                    <span class="m">1</span>/1     Running   <span class="m">2</span>          23d   <span class="m">10</span>.0.1.103   kube-worker-3.cf.nownabe.in   &lt;none&gt;           &lt;none&gt;
-kube-system   kube-flannel-ds-arm-wgg4d                    <span class="m">1</span>/1     Running   <span class="m">2</span>          30d   <span class="m">10</span>.0.1.102   kube-worker-2.cf.nownabe.in   &lt;none&gt;           &lt;none&gt;
-kube-system   kube-proxy-429jm                             <span class="m">1</span>/1     Running   <span class="m">0</span>          31d   <span class="m">10</span>.0.1.1     sv-1.cf.nownabe.in            &lt;none&gt;           &lt;none&gt;
-kube-system   kube-proxy-55tgl                             <span class="m">1</span>/1     Running   <span class="m">0</span>          23d   <span class="m">10</span>.0.1.104   kube-worker-4.cf.nownabe.in   &lt;none&gt;           &lt;none&gt;
-kube-system   kube-proxy-f4msl                             <span class="m">1</span>/1     Running   <span class="m">0</span>          23d   <span class="m">10</span>.0.1.103   kube-worker-3.cf.nownabe.in   &lt;none&gt;           &lt;none&gt;
-kube-system   kube-proxy-fp6d2                             <span class="m">1</span>/1     Running   <span class="m">0</span>          30d   <span class="m">10</span>.0.1.102   kube-worker-2.cf.nownabe.in   &lt;none&gt;           &lt;none&gt;
-kube-system   kube-proxy-hntn9                             <span class="m">1</span>/1     Running   <span class="m">0</span>          31d   <span class="m">10</span>.0.1.101   kube-worker-1.cf.nownabe.in   &lt;none&gt;           &lt;none&gt;
-kube-system   kube-scheduler-sv-1.cf.nownabe.in            <span class="m">1</span>/1     Running   <span class="m">190</span>        31d   <span class="m">10</span>.0.1.1     sv-1.cf.nownabe.in            &lt;none&gt;           &lt;none&gt;</code></pre></div>
-<p>1ヶ月ブログ書くの先延ばしにしてたこともばっちりわかって素晴らしいですね 🙌</p>
-
+kube-system   coredns-66bff467f8-8dspl                     1/1     Running   <span class="m">0</span>          20d   10.4.4.2     kube-worker-3.cf.nownabe.in   &lt;none&gt;           &lt;none&gt;
+kube-system   coredns-66bff467f8-vfx8d                     1/1     Running   <span class="m">0</span>          30d   10.4.2.2     kube-worker-2.cf.nownabe.in   &lt;none&gt;           &lt;none&gt;
+kube-system   etcd-sv-1.cf.nownabe.in                      1/1     Running   <span class="m">0</span>          31d   10.0.1.1     sv-1.cf.nownabe.in            &lt;none&gt;           &lt;none&gt;
+kube-system   kube-apiserver-sv-1.cf.nownabe.in            1/1     Running   <span class="m">0</span>          31d   10.0.1.1     sv-1.cf.nownabe.in            &lt;none&gt;           &lt;none&gt;
+kube-system   kube-controller-manager-sv-1.cf.nownabe.in   1/1     Running   <span class="m">193</span>        31d   10.0.1.1     sv-1.cf.nownabe.in            &lt;none&gt;           &lt;none&gt;
+kube-system   kube-flannel-ds-amd64-dpw88                  1/1     Running   <span class="m">10</span>         31d   10.0.1.1     sv-1.cf.nownabe.in            &lt;none&gt;           &lt;none&gt;
+kube-system   kube-flannel-ds-arm-mld8c                    1/1     Running   <span class="m">0</span>          23d   10.0.1.104   kube-worker-4.cf.nownabe.in   &lt;none&gt;           &lt;none&gt;
+kube-system   kube-flannel-ds-arm-q2z9v                    1/1     Running   <span class="m">0</span>          31d   10.0.1.101   kube-worker-1.cf.nownabe.in   &lt;none&gt;           &lt;none&gt;
+kube-system   kube-flannel-ds-arm-qfqcs                    1/1     Running   <span class="m">2</span>          23d   10.0.1.103   kube-worker-3.cf.nownabe.in   &lt;none&gt;           &lt;none&gt;
+kube-system   kube-flannel-ds-arm-wgg4d                    1/1     Running   <span class="m">2</span>          30d   10.0.1.102   kube-worker-2.cf.nownabe.in   &lt;none&gt;           &lt;none&gt;
+kube-system   kube-proxy-429jm                             1/1     Running   <span class="m">0</span>          31d   10.0.1.1     sv-1.cf.nownabe.in            &lt;none&gt;           &lt;none&gt;
+kube-system   kube-proxy-55tgl                             1/1     Running   <span class="m">0</span>          23d   10.0.1.104   kube-worker-4.cf.nownabe.in   &lt;none&gt;           &lt;none&gt;
+kube-system   kube-proxy-f4msl                             1/1     Running   <span class="m">0</span>          23d   10.0.1.103   kube-worker-3.cf.nownabe.in   &lt;none&gt;           &lt;none&gt;
+kube-system   kube-proxy-fp6d2                             1/1     Running   <span class="m">0</span>          30d   10.0.1.102   kube-worker-2.cf.nownabe.in   &lt;none&gt;           &lt;none&gt;
+kube-system   kube-proxy-hntn9                             1/1     Running   <span class="m">0</span>          31d   10.0.1.101   kube-worker-1.cf.nownabe.in   &lt;none&gt;           &lt;none&gt;
+kube-system   kube-scheduler-sv-1.cf.nownabe.in            1/1     Running   <span class="m">190</span>        31d   10.0.1.1     sv-1.cf.nownabe.in            &lt;none&gt;           &lt;none&gt;
+</code></pre></div><p>1ヶ月ブログ書くの先延ばしにしてたこともばっちりわかって素晴らしいですね 🙌</p>
 <h2 id="おわりに">おわりに</h2>
-
 <p>Kubernetes構築編は以上です。
 無事にKubernetesが構築できて満足です 😆</p>
-
 <p>Networkに関してはflannelだけだとNetwork Policyが使えないので、またそのうちなんとかしたいと思います。</p>
-
 <p>次からはいろいろ機能追加していきたいので、まずはGitOpsですかねー。</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#あらすじ">あらすじ</a></li>
+    <li><a href="#control-plane-構築">Control Plane 構築</a>
+      <ul>
+        <li><a href="#ネットワーク設定">ネットワーク設定</a></li>
+        <li><a href="#dockerインストール">Dockerインストール</a></li>
+        <li><a href="#kubeadmインストール">kubeadmインストール</a></li>
+        <li><a href="#control-plane初期化">Control Plane初期化</a></li>
+      </ul>
+    </li>
+    <li><a href="#workerノード構築">Workerノード構築</a>
+      <ul>
+        <li><a href="#swap無効化">Swap無効化</a></li>
+        <li><a href="#いろいろ">いろいろ</a></li>
+        <li><a href="#workerノード初期化">Workerノード初期化</a></li>
+      </ul>
+    </li>
+    <li><a href="#flannel-インストール">flannel インストール</a></li>
+    <li><a href="#おわりに">おわりに</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

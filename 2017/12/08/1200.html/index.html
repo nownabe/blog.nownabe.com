@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,271 +48,256 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/12/08/1200.html/">Pythonではじめる機械学習  5回目</a></h2>
     <span class="date">Posted on Nov 27, 2017</span>
   </div>
-  <div class="body">
-    
-
-<p><a href="https://blog.nownabe.com/2017/12/08/1199.html">nownab.log | Pythonではじめる機械学習 4回目</a></p>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p><a href="https://blog.nownabe.com/2017/12/08/1199.html">nownab.log | Pythonではじめる機械学習 4回目</a></p>
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=4873117984&linkId=05656b0761603e4e9f88423f102e42c6"></iframe>
-
 <p>週一でやっていて、毎週読む範囲を決めて資料にまとめて発表するという感じでやっている。</p>
-
 <p>また、勉強会で書いたコードや疑問点などをまとめるためにGitHubのレポジトリを活用している。
 <a href="https://github.com/Wondershake/machine-learning-study">Wondershake/machine-learning-study: 機械学習勉強会</a></p>
-
 <p>この記事は資料作りの下書き的扱い。</p>
-
 <h1 id="4章-データの表現と特徴量エンジニアリング">4章 データの表現と特徴量エンジニアリング</h1>
-
-<h2 id="4-5-自動特徴量選択">4.5 自動特徴量選択</h2>
-
+<h2 id="45-自動特徴量選択">4.5 自動特徴量選択</h2>
 <ul>
 <li>特徴量を追加するとモデルは複雑になり過学習の可能性が高くなる</li>
 <li>最も有用な特徴量を選択して残りを捨てると汎化性能が向上する
-
 <ul>
 <li>新しい特徴量を加えるとき</li>
 <li>高次元データセットの場合</li>
-</ul></li>
+</ul>
+</li>
 <li>3つの戦略
-
 <ul>
 <li><strong>単変量統計 (univariate statistics)</strong></li>
 <li><strong>モデルベース選択 (model-based selection)</strong></li>
 <li><strong>反復選択 (iterative selection)</strong></li>
-</ul></li>
+</ul>
+</li>
 <li>これらの方法はすべて教師あり手法</li>
 <li>実世界のデータでは特徴量選択で大幅に性能が向上することはあまりない</li>
 </ul>
-
-<h3 id="4-5-1-単変量統計">4.5.1 単変量統計</h3>
-
+<h3 id="451-単変量統計">4.5.1 単変量統計</h3>
 <ul>
 <li>ターゲットとの間に統計的な関係が顕著な個々の特徴量を選択する</li>
 <li><strong>分散分析 (analysis of variance: ANOVA)</strong></li>
 <li>個々の特徴量を個別に考慮するので、複数組み合わさって意味のある特徴量は捨てられる</li>
 <li>計算が高速</li>
 </ul>
-
-<h3 id="4-5-2-モデルベース特徴量選択">4.5.2 モデルベース特徴量選択</h3>
-
+<h3 id="452-モデルベース特徴量選択">4.5.2 モデルベース特徴量選択</h3>
 <ul>
 <li>学習済みの教師あり学習モデルにおける特徴量の重要度から選択する
-
 <ul>
 <li>RandomForestの重要性</li>
 <li>正則化を施した線形モデルの係数</li>
-</ul></li>
 </ul>
-
-<h3 id="4-5-3-反復特徴量選択">4.5.3 反復特徴量選択</h3>
-
+</li>
+</ul>
+<h3 id="453-反復特徴量選択">4.5.3 反復特徴量選択</h3>
 <ul>
 <li>一連の教師あり学習モデルを学習して特徴量を選択する
-
 <ul>
 <li>0次元から1次元ずつ特徴量を加えていく方法</li>
 <li>全特徴量から1つずつ削っていく方法</li>
-</ul></li>
+</ul>
+</li>
 <li>**再帰的特徴量削減 (recursive feature elimination: RFE)
-
 <ul>
 <li>すべての特徴量からモデルを作る</li>
 <li>最も重要度が低い特徴量を削除する</li>
 <li>特徴量が指定された数になるまで繰り返す</li>
-</ul></li>
 </ul>
-
-<h2 id="4-6-専門家知識の利用">4.6 専門家知識の利用</h2>
-
+</li>
+</ul>
+<h2 id="46-専門家知識の利用">4.6 専門家知識の利用</h2>
 <ul>
-<li>特徴量エンジニアリングに<strong>専門家知識 (expert knowledge)</strong>を用いることがある</li>
+<li>特徴量エンジニアリングに**専門家知識 (expert knowledge)**を用いることがある</li>
 <li>例では、曜日周期性、時間周期性のある回帰問題で次のように特徴量を増やしていった
-
 <ul>
 <li>Unixtime</li>
 <li>1日の中での時刻</li>
 <li>1日の中での時刻 + 曜日</li>
 <li>(1日の中での時刻 + 曜日)のOneHot表現</li>
 <li>(1日の中での時刻 + 曜日)のOneHot表現の交互作用特徴量</li>
-</ul></li>
 </ul>
-
-<h2 id="4-7-まとめと展望">4.7 まとめと展望</h2>
-
+</li>
+</ul>
+<h2 id="47-まとめと展望">4.7 まとめと展望</h2>
 <ul>
 <li>機械学習アルゴリズムに適したデータ表現が重要
-
 <ul>
 <li>ワンホットエンコーディング</li>
-</ul></li>
+</ul>
+</li>
 <li>特徴量の追加
-
 <ul>
 <li>専門家知識</li>
-</ul></li>
+</ul>
+</li>
 <li>線形モデルはビニング、多項式特徴量、交互作用特徴量の追加の恩恵を受けやすい</li>
 <li>ランダムフォレストやSVMや特徴量空間の拡張なしで複雑なモデルを学習できる</li>
 </ul>
-
 <h1 id="5章-モデルの評価と改良">5章 モデルの評価と改良</h1>
-
-<h2 id="5-1-交差検証">5.1 交差検証</h2>
-
+<h2 id="51-交差検証">5.1 交差検証</h2>
 <ul>
 <li><strong>交差検証 (cross-validation)</strong>
-
 <ul>
 <li>汎化性能を評価する手法</li>
-</ul></li>
-<li><strong>k分割交差検証 (k-fold cross-validation)</strong>がよく用いられる
-
+</ul>
+</li>
+<li>**k分割交差検証 (k-fold cross-validation)**がよく用いられる
 <ul>
 <li>データセットをk個に分割し、順に1つの分割をテストデータとし、残りのk-1個の分割を訓練データとする</li>
-</ul></li>
 </ul>
-
-<h3 id="5-1-1-scikit-learnでの交差検証">5.1.1 scikit-learnでの交差検証</h3>
-
+</li>
+</ul>
+<h3 id="511-scikit-learnでの交差検証">5.1.1 scikit-learnでの交差検証</h3>
 <ul>
 <li><code>cross_val_score</code>関数で交差検証できる</li>
 </ul>
-
-<h3 id="5-1-2-交差検証の利点">5.1.2 交差検証の利点</h3>
-
+<h3 id="512-交差検証の利点">5.1.2 交差検証の利点</h3>
 <ul>
 <li>すべてのデータが正確に1度だけテストされる</li>
 <li>計算コストは単純にk倍になる</li>
 </ul>
-
-<h3 id="5-1-3-層化k分割交差検証と他の戦略">5.1.3 層化k分割交差検証と他の戦略</h3>
-
+<h3 id="513-層化k分割交差検証と他の戦略">5.1.3 層化k分割交差検証と他の戦略</h3>
 <ul>
-<li><strong>層化k分割交差検証 (stratified k-fold cross-validation)</strong>ではそれぞれの正解ラベルに対して均等に分割する</li>
+<li>**層化k分割交差検証 (stratified k-fold cross-validation)**ではそれぞれの正解ラベルに対して均等に分割する</li>
 <li>正解ラベルに対する分割の偏りをなくす</li>
 <li>クラス分類では層化k分割交差検証を、回帰ではk分割交差検証を用いる</li>
 </ul>
-
-<h4 id="5-1-3-1-交差検証のより詳細な制御">5.1.3.1 交差検証のより詳細な制御</h4>
-
+<h4 id="5131-交差検証のより詳細な制御">5.1.3.1 交差検証のより詳細な制御</h4>
 <ul>
 <li>データをシャッフルして分割するのもあり</li>
 </ul>
-
-<h4 id="5-1-3-2-1つ抜き交差検証">5.1.3.2 1つ抜き交差検証</h4>
-
+<h4 id="5132-1つ抜き交差検証">5.1.3.2 1つ抜き交差検証</h4>
 <ul>
 <li><strong>1つ抜き交差検証 (leave-one-out)</strong>
-
 <ul>
 <li>サンプルの数だけ分割する</li>
 <li>個々の分割が1サンプルのみ</li>
 <li>毎回1サンプルのみテストする</li>
-</ul></li>
+</ul>
+</li>
 <li>小さいデータセットでより良い推定ができる</li>
 </ul>
-
-<h4 id="5-1-3-3-シャッフル分割交差検証">5.1.3.3 シャッフル分割交差検証</h4>
-
+<h4 id="5133-シャッフル分割交差検証">5.1.3.3 シャッフル分割交差検証</h4>
 <ul>
 <li><strong>シャッフル分割交差検証 (shuffle-split cross-validation)</strong>
-
 <ul>
 <li>非常に柔軟な交差検証手法</li>
 <li>分割数やテストデータの割合、使用するデータの割合、繰り返し数などを指定できる</li>
 <li>層化バージョンもある</li>
-</ul></li>
+</ul>
+</li>
 <li>一部のデータのみ使うようにすれば大きいデータに有用</li>
 </ul>
-
-<h4 id="5-1-3-4-グループ付き交差検証">5.1.3.4 グループ付き交差検証</h4>
-
+<h4 id="5134-グループ付き交差検証">5.1.3.4 グループ付き交差検証</h4>
 <ul>
 <li>未知のグループに対する予測を検証したいとき</li>
 <li>例えば、
-
 <ul>
 <li>表情からの感情推定で新しい人に対する推定をする</li>
 <li>新しい患者に対する推定をする</li>
-</ul></li>
+</ul>
+</li>
 <li>それぞれのグループは分割されず、完全に訓練データかテストデータのどちらかになる</li>
 </ul>
-
-<h2 id="5-2-グリッドサーチ">5.2 グリッドサーチ</h2>
-
+<h2 id="52-グリッドサーチ">5.2 グリッドサーチ</h2>
 <ul>
 <li><strong>グリッドサーチ (grid search)</strong>
-
 <ul>
 <li>最良のパラメータを見つける方法</li>
 <li>最もよく用いられる</li>
 <li>すべてのパラメータの組み合わせを試す</li>
-</ul></li>
 </ul>
-
-<h3 id="5-2-1-単純なグリッドサーチ">5.2.1 単純なグリッドサーチ</h3>
-
-<h3 id="5-2-2-パラメータの過剰適合の危険性と検証セット">5.2.2 パラメータの過剰適合の危険性と検証セット</h3>
-
+</li>
+</ul>
+<h3 id="521-単純なグリッドサーチ">5.2.1 単純なグリッドサーチ</h3>
+<h3 id="522-パラメータの過剰適合の危険性と検証セット">5.2.2 パラメータの過剰適合の危険性と検証セット</h3>
 <ul>
 <li>グリッドサーチの検証で用いたテストデータは最終評価には使えない
-
 <ul>
 <li>そのテストデータに過剰適合してるから</li>
-</ul></li>
+</ul>
+</li>
 <li>グリッドサーチの検証用として訓練データをさらに分割して検証データを作る</li>
 </ul>
-
-<h3 id="5-2-3-交差検証を用いたグリッドサーチ">5.2.3 交差検証を用いたグリッドサーチ</h3>
-
+<h3 id="523-交差検証を用いたグリッドサーチ">5.2.3 交差検証を用いたグリッドサーチ</h3>
 <ul>
 <li>グリッドサーチで汎化性能をより良く見積もるために、それぞれのパラメータの組み合わせに対して交差検証を行う</li>
 </ul>
-
-<h4 id="5-2-3-1-交差検証の結果の解析">5.2.3.1 交差検証の結果の解析</h4>
-
+<h4 id="5231-交差検証の結果の解析">5.2.3.1 交差検証の結果の解析</h4>
 <ul>
 <li>2次元のグリッドサーチならヒートマップで可視化するといい</li>
 <li>グリッドサーチには適切なレンジの設定が必要</li>
 </ul>
-
-<h4 id="5-2-3-2-グリッドでないサーチ空間">5.2.3.2 グリッドでないサーチ空間</h4>
-
-<h4 id="5-2-3-3-異なる交差検証手法を用いたグリッドサーチ">5.2.3.3 異なる交差検証手法を用いたグリッドサーチ</h4>
-
-<h4 id="5-2-3-4-ネストした交差検証">5.2.3.4 ネストした交差検証</h4>
-
+<h4 id="5232-グリッドでないサーチ空間">5.2.3.2 グリッドでないサーチ空間</h4>
+<h4 id="5233-異なる交差検証手法を用いたグリッドサーチ">5.2.3.3 異なる交差検証手法を用いたグリッドサーチ</h4>
+<h4 id="5234-ネストした交差検証">5.2.3.4 ネストした交差検証</h4>
 <ul>
 <li>データセットを一度だけ評価用に分割すると、その分割に評価が依存してしまう</li>
 <li>最終的なスコアも交差検証によって求める</li>
 <li>未来予測には使えない</li>
 <li>あるモデルのあるデータセットに対する性能評価に有用</li>
 </ul>
-
-<h4 id="5-2-3-5-交差検証とグリッドサーチの並列化">5.2.3.5 交差検証とグリッドサーチの並列化</h4>
-
+<h4 id="5235-交差検証とグリッドサーチの並列化">5.2.3.5 交差検証とグリッドサーチの並列化</h4>
 <ul>
 <li>グリッドサーチは単純並列</li>
 <li>並列化できる</li>
 <li>scikit-learnでは複数マシンの並列化は実装されていない
-
 <ul>
 <li>IPythonの並列化フレームワークで可能</li>
-</ul></li>
+</ul>
+</li>
 <li>spark-sklearnではSparkクラスタでグリッドサーチを実行できる</li>
 </ul>
-
 <h1 id="所感">所感</h1>
-
 <ul>
 <li>特にグリッドサーチ、これが学生時代にあれば…という感じ</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-math" data-lang="math"></code></pre></div>
+<pre tabindex="0"><code class="language-math" data-lang="math"></code></pre>
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#45-自動特徴量選択">4.5 自動特徴量選択</a>
+      <ul>
+        <li><a href="#451-単変量統計">4.5.1 単変量統計</a></li>
+        <li><a href="#452-モデルベース特徴量選択">4.5.2 モデルベース特徴量選択</a></li>
+        <li><a href="#453-反復特徴量選択">4.5.3 反復特徴量選択</a></li>
+      </ul>
+    </li>
+    <li><a href="#46-専門家知識の利用">4.6 専門家知識の利用</a></li>
+    <li><a href="#47-まとめと展望">4.7 まとめと展望</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#51-交差検証">5.1 交差検証</a>
+      <ul>
+        <li><a href="#511-scikit-learnでの交差検証">5.1.1 scikit-learnでの交差検証</a></li>
+        <li><a href="#512-交差検証の利点">5.1.2 交差検証の利点</a></li>
+        <li><a href="#513-層化k分割交差検証と他の戦略">5.1.3 層化k分割交差検証と他の戦略</a></li>
+      </ul>
+    </li>
+    <li><a href="#52-グリッドサーチ">5.2 グリッドサーチ</a>
+      <ul>
+        <li><a href="#521-単純なグリッドサーチ">5.2.1 単純なグリッドサーチ</a></li>
+        <li><a href="#522-パラメータの過剰適合の危険性と検証セット">5.2.2 パラメータの過剰適合の危険性と検証セット</a></li>
+        <li><a href="#523-交差検証を用いたグリッドサーチ">5.2.3 交差検証を用いたグリッドサーチ</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

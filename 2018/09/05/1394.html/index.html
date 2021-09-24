@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,162 +48,161 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2018/09/05/1394.html/">GCP updates  | September 4, 2018</a></h2>
     <span class="date">Posted on Sep 5, 2018</span>
   </div>
-  <div class="body">
-    
-
-<h1 id="compute">COMPUTE</h1>
-
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h1 id="compute">COMPUTE</h1>
 <h2 id="nvidia-tesla-p4-gpus-for-compute-engine-beta">NVIDIA Tesla P4 GPUs for Compute Engine: beta</h2>
-
 <blockquote>
 <p>Compute Engine now offers NVIDIA Tesla P4 GPUs for 3D visualization, deep learning, video transcoding, and high-performance computing. NVIDIA Tesla P4 GPUs offer up to 5.5 teraflops of single-precision performance and 22 tera operations per second of INT8 performance. <a href="https://cloud.google.com/blog/products/gcp/introducing-nvidia-tesla-p4-gpus-accelerating-virtual-workstations-and-ml-inference-compute-engine">Blog</a> | <a href="https://cloud.google.com/gpu/">Product page</a></p>
 </blockquote>
-
 <h1 id="databases">DATABASES</h1>
-
 <h2 id="cloud-firestore-beta">Cloud Firestore: beta</h2>
-
 <blockquote>
 <p>Cloud Firestore, our serverless, NoSQL document database, is in the process of adding new hosting locations and is now available in the Google Cloud Platform Console. Current Cloud Firestore beta users will see their projects in consoles for both Firebase and GCP. <a href="https://cloud.google.com/blog/products/gcp/expanding-the-cloud-firestore-beta-to-more-users">Blog</a> | <a href="https://www.youtube.com/watch?v=jXlYaPS1Mzk">Video</a></p>
 </blockquote>
-
 <p>FirebaseとしてではなくGCPの一部として使えるようになったという話ですね。</p>
-
 <p>Firestoreを使おうとするとこんな比較表が表示されてデータベースサービスを選べるようになっています。</p>
-
-<p><img src="/images/2018/09/05/1.png" alt="Screenshot from 2018-09-05 09-52-07.png (57.3 kB)" /></p>
-
+<p><img src="/images/2018/09/05/1.png" alt="Screenshot from 2018-09-05 09-52-07.png (57.3 kB)"></p>
 <p>Firestoreは次世代のDatastoreで、FirestoreがGAになれば現在のDatastoreは自動でFirestoreに置き換わるそうです。</p>
-
-<hr />
-
+<hr>
 <p>Additional releases</p>
-
 <h1 id="compute-1">COMPUTE</h1>
-
 <h2 id="compute-engine-sole-tenant-nodes-ga">Compute Engine sole-tenant nodes: GA</h2>
-
 <blockquote>
 <p>Sole-tenant nodes are physical Compute Engine servers that offer you the same machine types and options as regular compute instances – including custom machine shapes and transparent maintenance – but on servers dedicated to a single user. <a href="https://cloud.google.com/compute/docs/nodes/">Documentation</a></p>
 </blockquote>
-
 <p>専有ノード (1ユーザ、複数VM) がGAに。</p>
-
-<h2 id="app-engine-standard-environment-python-3-7-beta">App Engine standard environment – Python 3.7: beta</h2>
-
+<h2 id="app-engine-standard-environment--python-37-beta">App Engine standard environment – Python 3.7: beta</h2>
 <blockquote>
 <p>Python 3.7 runtime on App Engine standard environment gives you the latest versions of popular libraries, an unrestricted runtime environment, reduced cost latency, and code that’s more portable and easier to maintain. <a href="https://cloud.google.com/blog/products/gcp/introducing-app-engine-second-generation-runtimes-and-python-3-7">Blog</a></p>
 </blockquote>
-
 <p>一時期FlexibleがでてStandardは終わるんじゃないかみたいな話もあったけど、順調にアップデートきてていいですね。Knativeとかも出てきたしFlexibleの方が微妙な立ち位置になっていく気がする。</p>
-
-<h1 id="identity-security">IDENTITY &amp; SECURITY</h1>
-
+<h1 id="identity--security">IDENTITY &amp; SECURITY</h1>
 <h2 id="binary-authorization-beta">Binary Authorization: beta</h2>
-
 <blockquote>
 <p>Binary Authorization is a deploy-time security control that allows you to define policies, ensuring only trusted containers are deployed to your environments on Kubernetes Engine. Binary Authorization supports both image signing as well as image whitelisting. <a href="https://cloud.google.com/blog/products/identity-security/deploy-only-what-you-trust-introducing-binary-authorization-for-google-kubernetes-engine">Product overview</a> | <a href="https://cloud.google.com/binary-authorization/docs/">Documentation</a></p>
 </blockquote>
-
 <p>こんな感じでPolicy設定したりPod作成時にDigestつけたりするみたいです。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">admissionWhitelistPatterns<span class="p">:</span><span class="w">
-</span><span class="w"></span>-<span class="w"> </span>namePattern<span class="p">:</span><span class="w"> </span>gcr.io/google_containers/*<span class="w">
-</span><span class="w"></span>-<span class="w"> </span>namePattern<span class="p">:</span><span class="w"> </span>gcr.io/google-containers/*<span class="w">
-</span><span class="w"></span>-<span class="w"> </span>namePattern<span class="p">:</span><span class="w"> </span>k8s.gcr.io/*<span class="w">
-</span><span class="w"></span>defaultAdmissionRule<span class="p">:</span><span class="w">
-</span><span class="w">  </span>evaluationMode<span class="p">:</span><span class="w"> </span>ALWAYS_ALLOW<span class="w">
-</span><span class="w">  </span>enforcementMode<span class="p">:</span><span class="w"> </span>ENFORCED_BLOCK_AND_AUDIT_LOG<span class="w">
-</span><span class="w"></span>name<span class="p">:</span><span class="w"> </span>projects/${PROJECT_ID}/policy</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Pod<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>pod-name<span class="w">
-</span><span class="w">  </span>annotations<span class="p">:</span><span class="w">
-</span><span class="w">    </span>alpha.image-policy.k8s.io/break-glass<span class="p">:</span><span class="w"> </span><span class="s2">&#34;true&#34;</span><span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>containers<span class="p">:</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>container-name<span class="w">
-</span><span class="w">    </span>image<span class="p">:</span><span class="w"> </span>gcr.io/google-samples/hello-app@sha256<span class="p">:</span>c62ead5b8c15c231f9e786250b07909daf6c266d0fcddd93fea882eb722c3be4</code></pre></div>
-<h2 id="cloud-data-loss-prevention-api-stored-custom-dictionary-detector-ga">Cloud Data Loss Prevention API stored custom dictionary detector: GA</h2>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">admissionWhitelistPatterns</span><span class="p">:</span><span class="w">
+</span><span class="w"></span>- <span class="nt">namePattern</span><span class="p">:</span><span class="w"> </span><span class="l">gcr.io/google_containers/*</span><span class="w">
+</span><span class="w"></span>- <span class="nt">namePattern</span><span class="p">:</span><span class="w"> </span><span class="l">gcr.io/google-containers/*</span><span class="w">
+</span><span class="w"></span>- <span class="nt">namePattern</span><span class="p">:</span><span class="w"> </span><span class="l">k8s.gcr.io/*</span><span class="w">
+</span><span class="w"></span><span class="nt">defaultAdmissionRule</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">evaluationMode</span><span class="p">:</span><span class="w"> </span><span class="l">ALWAYS_ALLOW</span><span class="w">
+</span><span class="w">  </span><span class="nt">enforcementMode</span><span class="p">:</span><span class="w"> </span><span class="l">ENFORCED_BLOCK_AND_AUDIT_LOG</span><span class="w">
+</span><span class="w"></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">projects/${PROJECT_ID}/policy</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">pod-name</span><span class="w">
+</span><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">alpha.image-policy.k8s.io/break-glass</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;true&#34;</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">container-name</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">gcr.io/google-samples/hello-app@sha256:c62ead5b8c15c231f9e786250b07909daf6c266d0fcddd93fea882eb722c3be4</span><span class="w">
+</span></code></pre></div><h2 id="cloud-data-loss-prevention-api-stored-custom-dictionary-detector-ga">Cloud Data Loss Prevention API stored custom dictionary detector: GA</h2>
 <blockquote>
 <p>Large dictionary detectors enable customers to create a custom detector that can search tens of millions of words or phrases. Common uses include discovery and classification, or redaction of sensitive data. <a href="https://cloud.google.com/dlp/docs/creating-stored-infotypes">Documentation</a></p>
 </blockquote>
-
 <h1 id="databases-1">DATABASES</h1>
-
 <h2 id="cloud-firestore-managed-export-and-import-service-beta">Cloud Firestore managed export and import service: beta</h2>
-
 <blockquote>
 <p>Use the Cloud Firestore managed export and import service to recover from accidental deletion of data, and to export data for offline processing. Import and export all documents at once, or just specific collections. <a href="https://cloud.google.com/firestore/docs/manage-data/export-import">Documentation</a></p>
 </blockquote>
-
 <p>BigQueryにもloadできるんですね。いいですね。</p>
-
-<h2 id="cloud-datastore-read-only-index-apis-ga">Cloud Datastore – read-only index APIs: GA</h2>
-
+<h2 id="cloud-datastore--read-only-index-apis-ga">Cloud Datastore – read-only index APIs: GA</h2>
 <blockquote>
 <p>REST and gRPC APIs are now available in the Cloud Datastore API to let you read a list of composite indexes for a given project, as well as information related to in-process builds within those indexes. <a href="https://cloud.google.com/datastore/docs/reference/admin/rest/">REST documentation</a> | <a href="https://cloud.google.com/datastore/docs/reference/admin/rpc/">gRPC documentation</a></p>
 </blockquote>
-
 <h1 id="api-management">API MANAGEMENT</h1>
-
 <h2 id="apigee-edge-customer-self-service-identity-provider-management-for-developer-portals-beta">Apigee Edge customer self-service identity provider management for developer portals: beta</h2>
-
 <blockquote>
 <p>API consumer-developers can now self-manage their accounts for Apigee’s integrated developer portals, and API providers can view and manage those users, configure automatic or manual approval, and add custom account registration fields. <a href="https://docs-new.apigee.com/whats-new#identity-service">Documentation</a></p>
 </blockquote>
-
-<h2 id="apigee-edge-integrated-developer-portal-smartdocs-api-beta">Apigee Edge integrated developer portal – SmartDocs API: beta</h2>
-
+<h2 id="apigee-edge-integrated-developer-portal--smartdocs-api-beta">Apigee Edge integrated developer portal – SmartDocs API: beta</h2>
 <blockquote>
 <p>SmartDocs API reference documentation is now part of the integrated developer portal. With its three-pane approach, the left pane helps you navigate between areas of the API, the center gives detailed documentation for a given operation, and the right pane enables you to make API requests directly from the docs. <a href="https://apigee.com/about/blog/api-technology/announcing-enhancements-apigee-integrated-developer-portal">Documentation</a></p>
 </blockquote>
-
 <p>Apigee謎だ…。力が働いてる雰囲気を感じる。</p>
-
 <h1 id="management-tools">MANAGEMENT TOOLS</h1>
-
-<h2 id="cloud-audit-logging-system-event-logs-ga">Cloud Audit Logging – System Event logs: GA</h2>
-
+<h2 id="cloud-audit-logging--system-event-logs-ga">Cloud Audit Logging – System Event logs: GA</h2>
 <blockquote>
 <p>Cloud Audit Logging maintains three audit logs for each project and organization: Admin Activity, Data Access, and now System Events. This new audit log type tracks Compute Engine system maintenance events, such as live migrations. <a href="https://cloud.google.com/logging/docs/audit/">Documentation</a></p>
 </blockquote>
-
 <p>こういうのが充実してるのはとてもいいですね。</p>
-
 <h1 id="developer-tools">DEVELOPER TOOLS</h1>
-
 <h2 id="cloud-console-out-of-box-experience-flow-and-cloud-shell-for-mobile-ga">Cloud Console out-of-box experience flow and Cloud Shell for mobile: GA</h2>
-
 <blockquote>
 <p>You can now access Cloud Shell features from the <a href="https://cloud.google.com/console-app/">Google Cloud Console mobile app</a>. Cloud Shell is an interactive shell environment for Google Cloud Platform that makes it easy for you to manage your projects and resources without having to install the Cloud SDK. <a href="https://cloud.google.com/shell/docs/features">Documentation</a></p>
 </blockquote>
-
 <p>これはアツい！やってみたけど普通につながりました ✨</p>
-
-<p><img src="/images/2018/09/05/2.PNG" height="400"></p>
-
+<img src="/images/2018/09/05/2.PNG" height="400">
 <h2 id="cloud-identity-aware-proxy-per-resource-policies-beta">Cloud Identity-Aware Proxy Per-Resource Policies: beta</h2>
-
 <blockquote>
 <p>You can now set Cloud IAP policies on a per-resource basis. This allows you to have multiple apps with different access policies within a project, including Compute Engine, Kubernetes Engine, and App Engine apps. <a href="https://cloud.google.com/iap/docs/managing-access">Documentation</a></p>
 </blockquote>
-
 <p>こないだ久しぶりに触ったけど、便利になってました 😃</p>
-
 <h1 id="support">SUPPORT</h1>
-
 <h2 id="gcp-role-based-support-ga">GCP Role-Based Support: GA</h2>
-
 <blockquote>
 <p>The per-seat pricing model of Role-Based Support lets you pay a flat fee per user per month instead of a variable percentage based on platform usage. It also lets you interact with support directly from your Cloud Console instead of the Cloud Support Center. <a href="https://cloud.google.com/support/">Documentation</a></p>
 </blockquote>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#nvidia-tesla-p4-gpus-for-compute-engine-beta">NVIDIA Tesla P4 GPUs for Compute Engine: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-firestore-beta">Cloud Firestore: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#compute-engine-sole-tenant-nodes-ga">Compute Engine sole-tenant nodes: GA</a></li>
+    <li><a href="#app-engine-standard-environment--python-37-beta">App Engine standard environment – Python 3.7: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#binary-authorization-beta">Binary Authorization: beta</a></li>
+    <li><a href="#cloud-data-loss-prevention-api-stored-custom-dictionary-detector-ga">Cloud Data Loss Prevention API stored custom dictionary detector: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-firestore-managed-export-and-import-service-beta">Cloud Firestore managed export and import service: beta</a></li>
+    <li><a href="#cloud-datastore--read-only-index-apis-ga">Cloud Datastore – read-only index APIs: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#apigee-edge-customer-self-service-identity-provider-management-for-developer-portals-beta">Apigee Edge customer self-service identity provider management for developer portals: beta</a></li>
+    <li><a href="#apigee-edge-integrated-developer-portal--smartdocs-api-beta">Apigee Edge integrated developer portal – SmartDocs API: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-audit-logging--system-event-logs-ga">Cloud Audit Logging – System Event logs: GA</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#cloud-console-out-of-box-experience-flow-and-cloud-shell-for-mobile-ga">Cloud Console out-of-box experience flow and Cloud Shell for mobile: GA</a></li>
+    <li><a href="#cloud-identity-aware-proxy-per-resource-policies-beta">Cloud Identity-Aware Proxy Per-Resource Policies: beta</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#gcp-role-based-support-ga">GCP Role-Based Support: GA</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 

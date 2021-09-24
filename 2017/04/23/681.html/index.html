@@ -8,7 +8,7 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="/css/ress.min.css">
-  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.cc9ff97dd93471d86f85490bc6154d99f2ca6b1f2d7a682da962739d273287f39dcf62fe7d05ce7261d49c079e640f782444f50e73cabeaa191774cc03185c53.css" integrity="sha512-zJ/5fdk0cdhvhUkLxhVNmfLKax8temgtqWJznScyh/Odz2L&#43;fQXOcmHUnAeeZA94JET1DnPKvqoZF3TMAxhcUw==">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.813c7c4694c1d450912f34bf8eb3ed2cd7039ea961620452367f1b508483025c.css" integrity="sha256-gTx8RpTB1FCRLzS/jrPtLNcDnqlhYgRSNn8bUISDAlw=">
 
   <meta name="author" content="nownabe">
   <meta name="description" content="the nownabe&#39;s life log">
@@ -48,77 +48,67 @@ if (!doNotTrack) {
 </div>
 <div id="content-container">
       <div class="container" role="main">
-<article>
+<article class="article-container">
   <div class="title">
     <h2><a href="https://blog.nownabe.com/2017/04/23/681.html/">Private Docker Registry比較</a></h2>
     <span class="date">Posted on Apr 23, 2017</span>
   </div>
-  <div class="body">
-    
-
-<p>PrivateなDocker Registryが欲しい時、昔は自分で建ててたけど今回はGoogle Container Registryを使った。
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>PrivateなDocker Registryが欲しい時、昔は自分で建ててたけど今回はGoogle Container Registryを使った。
 楽ちんでした。</p>
-
 <h1 id="private-docker-registry比較">Private Docker Registry比較</h1>
-
 <h2 id="docker-hub">Docker Hub</h2>
-
 <p><a href="https://hub.docker.com/">https://hub.docker.com/</a></p>
-
 <p>一応オフィシャルな老舗サービス。
 Dockerイメージを使うといったらたいていの場合はここからpublicなイメージを落として使うことになる。</p>
-
 <p>Privateリポジトリも1つまでなら無料。タグを頑張って使い分ければ好きなだけPrivateイメージをpushできる気もするけど、さすがに運用がつらそう。
 複数個のPrivateリポジトリを使いたければ<a href="https://hub.docker.com/account/billing-plans/">有料プラン</a>が必要で、Privateリポジトリ5つで月7ドルとなる。昔のGitHubみたいな料金体系。</p>
-
 <p>GitHubと連携して自動でビルドもできるし、Docker本家のサービスってところがいいところ。</p>
-
 <h2 id="docker-registry">Docker Registry</h2>
-
 <p><a href="https://hub.docker.com/_/registry/">https://hub.docker.com/_/registry/</a></p>
-
 <p>Docker RegistryはDockerイメージが公開されていて自分で構築することもできる。</p>
-
 <p>今だとほとんどの場合は運用が辛いだけなので選択肢にはならない。
 どうしてもイメージを外に出したくないとか、既に大規模なインフラ持っててコストを安くしたいってときの選択肢。</p>
-
 <p>昔これを使ってたときは証明書まわりとかストレージまわりがめんどくさかった。
 ストレージにS3やGCSも使えるけど、その場合は素直に外のサービスを使ったほうがいい。</p>
-
 <h2 id="amazon-ec2-container-registry">Amazon EC2 Container Registry</h2>
-
 <p><a href="https://aws.amazon.com/jp/ecr/">https://aws.amazon.com/jp/ecr/</a></p>
-
 <p>AWSのPrivate Container Registry。
 料金はストレージ料金と転送料金の従量課金。</p>
-
 <p>ストレージは月0.10ドル/GB。
 転送料は例によってややこしいけど、月0.14ドル/GBぐらいかと。</p>
-
 <p>AWSの指示に従って<code>docker</code>コマンドでログインすれば使えるようになる。</p>
-
 <p>AWS内でイメージをビルドしてECRにpushするには<a href="https://aws.amazon.com/jp/codebuild/">CodeBuild</a>を使うっぽい。</p>
-
 <h2 id="google-container-registry">Google Container Registry</h2>
-
 <p><a href="https://cloud.google.com/container-registry/">https://cloud.google.com/container-registry/</a></p>
-
 <p>GCPのPrivate Container Registry。
 料金は<a href="https://cloud.google.com/storage/pricing">GCSの料金</a>のみ。</p>
-
 <p>ストレージはデフォルトでMulti-Regionalが選択されるので、月0.026ドル/GB。
 転送料は月0.12ドル/GB。</p>
-
 <p>なので料金はECRより安いはず。</p>
-
 <p>GCRは<code>gcloud</code>コマンドで操作することが推奨されているが、ドキュメントに従ってログインすれば<code>docker</code>コマンドでも使えるようになる。
 例えば、JSONキーファイルを使ってログインする場合はこんな感じ。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker login -e <span class="m">1234</span>@5678.com -u _json_key -p <span class="s2">&#34;</span><span class="k">$(</span>cat keyfile.json<span class="k">)</span><span class="s2">&#34;</span> https://asia.gcr.io</code></pre></div>
-<h1 id="おわりに">おわりに</h1>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker login -e 1234@5678.com -u _json_key -p <span class="s2">&#34;</span><span class="k">$(</span>cat keyfile.json<span class="k">)</span><span class="s2">&#34;</span> https://asia.gcr.io
+</code></pre></div><h1 id="おわりに">おわりに</h1>
 <p>今回は料金のやすさやお手軽さなどからGCRを選択した。
 使いやすくて引っかかるところもなかったし、push/pullもはやいので満足している。</p>
 
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#docker-hub">Docker Hub</a></li>
+    <li><a href="#docker-registry">Docker Registry</a></li>
+    <li><a href="#amazon-ec2-container-registry">Amazon EC2 Container Registry</a></li>
+    <li><a href="#google-container-registry">Google Container Registry</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
   </div>
 </article>
 
