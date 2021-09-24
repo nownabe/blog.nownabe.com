@@ -35,10 +35,15 @@ a {
     text-decoration: underline; }
 
 /* Header Styles */
+  header {
+    h1 {
+      text-align: center;
+    }
+  }
   header h1 a {
     color: #3c4a60;
-    font-size: 3rem;
-    font-weight: normal;
+    font-size: 5rem;
+    font-weight: bold;
     vertical-align: middle; }
     header h1 a img {
       height: 3rem;
@@ -59,6 +64,11 @@ article.desc .title {
       text-decoration: underline; }
   article.desc .title .date {
     font-size: 0.8rem; }
+
+article.desc {
+  max-width: calc(857px - 4rem);
+  margin: 0 auto;
+}
 
 article .title {
   margin: 2rem 0; }
@@ -394,40 +404,45 @@ article .body {
     #footer-navigation #sns-buttons ul li.last-child::after {
       clear: both; }
 
+#sns-buttons ul {
+  list-style: none;
+}
 
 
 /* Footer Styles */
 #footer-container {
-  margin-bottom: 5rem; }
+  margin: 4rem auto;
+  /*margin-bottom: 5rem;*/
+  max-width: 500px;
 
-#author {
-  display: flex;
-  align-items: center;
+  #author {
+    display: flex;
+    align-items: center;
+  }
+
+  #author img {
+    width: 64px;
+    height: 64px;
+    border-radius: 64px;
+    margin-right: 1rem;
+  }
+
+  #author .name {
+    font-size: 1rem;
+  }
+
+  #author p {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 0.8rem;
+  }
+
+  footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+
+    text-align: center;
+  }
 }
-
-#author img {
-  width: 64px;
-  height: 64px;
-  border-radius: 64px;
-  margin-right: 1rem;
-}
-
-#author .name {
-  font-size: 1rem;
-}
-
-#author p {
-  color: rgba(0, 0, 0, 0.5);
-  font-size: 0.8rem;
-}
-
-footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.09);
-  padding-top: 1rem; }
-  footer .copyright img {
-    width: 1rem;
-    height: 1rem;
-    margin: 0 0.2rem; }
 
 #information #links li {
   display: inline-block;
