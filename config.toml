@@ -1,6 +1,5 @@
 baseURL = "https://blog.nownabe.com/"
 enableEmoji = true
-googleAnalytics = "UA-37580164-4"
 languageCode = "ja-JP"
 rssUri = "feed.xml"
 title = "nownab.log"
