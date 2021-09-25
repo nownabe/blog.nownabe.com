@@ -96,6 +96,7 @@ READMEすら書いてませんがソースコードは[こちら](https://github
 [![Function 1](/images/2021/09/25/function1.png)](/images/2021/09/25/function1.png)
 
 始めてから一年以上経ちますが、いまだにしょっちゅう草を確認してモチベーションを維持しています。
+芝生に穴を開けたくないがために毎日勉強しています。
 
 [^2]: 参考: [冴えない草(コントリビューション)の育てかた - Speaker Deck](https://speakerdeck.com/ktr_0731/hu-enaicao-kontoribiyusiyon-falseyu-tekata?slide=8)
 
