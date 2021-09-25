@@ -88,7 +88,7 @@ Pixelaがなかったらここまで勉強を続けられていなかったと�
 Pixelaだけでは勉強時間の入力が難しいので、勉強時間の記録には[Toggl Track](https://toggl.com/track/)を使っています。
 Togglはモバイルアプリもあるので手軽に勉強時間のトラッキングができます。
 
-また、Togglから勉強時間を取得してPixelaと連携するために[Google Cloud](https://cloud.google.com/)の[Cloud Functions](https://cloud.google.com/functions)と[Cloud Scheduler](https://cloud.google.com/scheduler)を使っています。
+また、TogglとPixelaでデータを連携するために[Google Cloud](https://cloud.google.com/)の[Cloud Functions](https://cloud.google.com/functions)と[Cloud Scheduler](https://cloud.google.com/scheduler)を使っています。TogglもPixelaもAPIがあるので簡単に連携できます。
 READMEすら書いてませんがソースコードは[こちら](https://github.com/nownabe/dailytoggl)です。需要があれば整えます。
 
 図にするとこんな感じです。ありがたいことにすべて無料で使わせてもらっています。
