@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2021s on nownab.log</title>
+    <link>https://blog.nownabe.com/2021/</link>
+    <description>Recent content in 2021s on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Sat, 25 Sep 2021 16:41:22 +0900</lastBuildDate><atom:link href="https://blog.nownabe.com/2021/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>勉強を続ける技術</title>
+      <link>https://blog.nownabe.com/2021/09/25/technology-to-continue/</link>
+      <pubDate>Sat, 25 Sep 2021 16:41:22 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2021/09/25/technology-to-continue/</guid>
+      <description>はじめに 継続も勉強も苦手な自分が英語の勉強を毎日1年以上続けられているので、そのためにやったことを紹介します。 今まで何度も何度も三日坊主を経</description>
+    </item>
+    
+  </channel>
+</rss>

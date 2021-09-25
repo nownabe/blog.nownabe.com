@@ -6,7 +6,16 @@
     <description>Recent content on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 13 Dec 2020 00:00:00 +0900</lastBuildDate><atom:link href="https://blog.nownabe.com/feed.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 25 Sep 2021 16:41:22 +0900</lastBuildDate><atom:link href="https://blog.nownabe.com/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>勉強を続ける技術</title>
+      <link>https://blog.nownabe.com/2021/09/25/technology-to-continue/</link>
+      <pubDate>Sat, 25 Sep 2021 16:41:22 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2021/09/25/technology-to-continue/</guid>
+      <description>はじめに 継続も勉強も苦手な自分が英語の勉強を毎日1年以上続けられているので、そのためにやったことを紹介します。 今まで何度も何度も三日坊主を経</description>
+    </item>
+    
     <item>
       <title>我が家の BigQuery による台所事情分析</title>
       <link>https://blog.nownabe.com/2020/12/13/home-finance-with-bigquery/</link>
