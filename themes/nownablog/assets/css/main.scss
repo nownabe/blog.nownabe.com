@@ -1,34 +1,66 @@
 @charset "UTF-8";
 /* Variables */
+
+$up-breakpoints: (
+  'xs': 'screen',
+  'sm': 'screen and (min-width: 600px)',
+  'md': 'screen and (min-width: 900px)',
+  'lg': 'screen and (min-width: 1200px)',
+  'xl': 'screen and (min-width: 1536px)',
+);
+
+$down-breakpoints: (
+  'xs': 'screen and (max-width: 599px)',
+  'sm': 'screen and (max-width: 899px)',
+  'md': 'screen and (max-width: 1199px)',
+  'lg': 'screen and (max-width: 1535px)',
+  'xl': 'screen',
+);
+
+@mixin up($breakpoint) {
+  @media #{map-get($up-breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin down($breakpoint) {
+  @media #{map-get($down-breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
 /* Base Styles */
 
-@media screen and (min-width: 1200px) {
-  .container {
+.container {
+  @include up(lg) {
     max-width: 1200px;
     margin: 4rem auto;
     padding: 0 40px;
   }
-}
 
-@media screen and (min-width: 857px) and (max-width: 1199px) {
-  .container {
-    max-width: calc(857px - 4rem);
-    margin: 4rem auto; } }
-@media screen and (max-width: 856px) {
-  .container {
-    width: calc(100% - 2rem);
-    margin: 1rem 1rem; } }
+  @include down(md) {
+    max-width: calc(900px - 4rem);
+    margin: 4rem auto;
+  }
+
+  @include down(sm) {
+    max-width: calc(100% - 2rem);
+    margin: 1rem 1rem;
+  }
+}
 
 html {
   font-size: 100%; }
 
 body {
   font-size: 1rem;
-  @media screen and (max-width: 856px) {
+  font-family: "Lato", Arial, "ヒラギノ角ゴPro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+  color: #3c4a60;
+
+  @include down(xs) {
     font-size: 0.95rem;
   }
-  font-family: "Lato", Arial, "ヒラギノ角ゴPro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
-  color: #3c4a60; }
+}
 
 /* Common Styles */
 a {
@@ -43,8 +75,8 @@ a {
       text-align: center;
       font-size: 5rem;
 
-      @media screen and (max-width: 856px) {
-        font-size: 3rem;
+      @include down(xs) {
+        font-size: 2rem;
       }
 
       a {
@@ -79,7 +111,8 @@ article.desc {
 
 article .title {
   margin: 2rem 0;
-  @media screen and (max-width: 856px) {
+
+  @include down(sm) {
     text-align: center;
   }
 }
@@ -101,7 +134,7 @@ article:last-child {
 
 article .body {
   margin-top: 2rem;
-  @media screen and (max-width: 856px) {
+  @include down(sm) {
     margin-top: 0;
   }
 }
@@ -137,7 +170,7 @@ article .body {
       color: rgba(0, 0, 0, 0.09); }
   article .body h2 {
     margin-top: 3rem;
-    @media screen and (max-width: 856px) {
+    @include down(sm) {
       margin-top: 1rem;
     }
     border-bottom: 3px solid rgba(0, 0, 0, 0.09);
@@ -300,16 +333,15 @@ article .body {
     justify-content: space-between;
 
     .article-content {
-      @media screen and (max-width: 1199px) {
-        width: 100%;
-      }
-      @media screen and (min-width: 1200px) {
+      width: 100%;
+
+      @include up(lg) {
         width: calc(100% - 330px);
       }
     }
 
     .article-toc-container {
-      @media screen and (max-width: 1199px) {
+      @include down(md) {
         display: none;
       }
 
