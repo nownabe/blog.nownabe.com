@@ -16,14 +16,17 @@
     margin: 4rem auto; } }
 @media screen and (max-width: 856px) {
   .container {
-    width: calc(100% - 4rem);
-    margin: 1rem 2rem; } }
+    width: calc(100% - 2rem);
+    margin: 1rem 1rem; } }
 
 html {
   font-size: 100%; }
 
 body {
   font-size: 1rem;
+  @media screen and (max-width: 856px) {
+    font-size: 0.95rem;
+  }
   font-family: "Lato", Arial, "ヒラギノ角ゴPro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
   color: #3c4a60; }
 
@@ -38,19 +41,23 @@ a {
   header {
     h1 {
       text-align: center;
+      font-size: 5rem;
+
+      @media screen and (max-width: 856px) {
+        font-size: 3rem;
+      }
+
+      a {
+        color: #3c4a60;
+        font-weight: bold;
+        vertical-align: middle;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
     }
   }
-  header h1 a {
-    color: #3c4a60;
-    font-size: 5rem;
-    font-weight: bold;
-    vertical-align: middle; }
-    header h1 a img {
-      height: 3rem;
-      margin-right: 1rem;
-      vertical-align: middle; }
-    header h1 a:hover {
-      text-decoration: none; }
 
 /* Article Styles */
 article.desc .title {
@@ -71,7 +78,11 @@ article.desc {
 }
 
 article .title {
-  margin: 2rem 0; }
+  margin: 2rem 0;
+  @media screen and (max-width: 856px) {
+    text-align: center;
+  }
+}
   article .title .date {
     color: rgba(0, 0, 0, 0.5);
     font-size: 1rem; }
@@ -87,8 +98,14 @@ article:first-child {
   margin-top: 2rem; }
 article:last-child {
   margin-bottom: 2rem; }
+
 article .body {
-  margin-top: 2rem; }
+  margin-top: 2rem;
+  @media screen and (max-width: 856px) {
+    margin-top: 0;
+  }
+}
+
   article .body * {
     margin: 1.5rem 0; }
   article .body p {
@@ -120,6 +137,9 @@ article .body {
       color: rgba(0, 0, 0, 0.09); }
   article .body h2 {
     margin-top: 3rem;
+    @media screen and (max-width: 856px) {
+      margin-top: 1rem;
+    }
     border-bottom: 3px solid rgba(0, 0, 0, 0.09);
     font-weight: normal;
     font-size: 2rem; }
