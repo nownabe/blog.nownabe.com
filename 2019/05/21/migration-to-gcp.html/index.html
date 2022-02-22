@@ -3,7 +3,7 @@
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><title>よくしらんRailsアプリとかをAWSのレガシーシステムからGCPのイケイケシステムに移行した話 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>RailsアプリとかをAWSのレガシーシステムからGCPのイケイケシステムに移行した話 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
 
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
@@ -21,8 +21,8 @@
   <meta property="twitter:creator" content="@nownabe">
 
   <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2019/05/21/migration-to-gcp.html/">
-  <meta property="og:title" content="よくしらんRailsアプリとかをAWSのレガシーシステムからGCPのイケイケシステムに移行した話 - nownab.log">
-  <meta property="og:description" content="はじめに Railsアプリケーションを中心とするシステムをAWSからGCPに移行しました。本記事ではその過程をできるだけ赤裸々に公開します。 本"><meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png"><meta property="twitter:title" content="よくしらんRailsアプリとかをAWSのレガシーシステムからGCPのイケイケシステムに移行した話 - nownab.log">
+  <meta property="og:title" content="RailsアプリとかをAWSのレガシーシステムからGCPのイケイケシステムに移行した話 - nownab.log">
+  <meta property="og:description" content="はじめに Railsアプリケーションを中心とするシステムをAWSからGCPに移行しました。本記事ではその過程をできるだけ赤裸々に公開します。 本"><meta property="og:image" content="https://blog.nownabe.com/img/nownabe.png"><meta property="twitter:title" content="RailsアプリとかをAWSのレガシーシステムからGCPのイケイケシステムに移行した話 - nownab.log">
   <meta property="twitter:description" content="はじめに Railsアプリケーションを中心とするシステムをAWSからGCPに移行しました。本記事ではその過程をできるだけ赤裸々に公開します。 本">
   <meta property="twitter:image" content="https://blog.nownabe.com/">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PWWXNZ0XM3"></script>
@@ -60,7 +60,7 @@ if (!doNotTrack) {
       <div class="container" role="main">
 <article class="article-container">
   <div class="title">
-    <h2><a href="https://blog.nownabe.com/2019/05/21/migration-to-gcp.html/">よくしらんRailsアプリとかをAWSのレガシーシステムからGCPのイケイケシステムに移行した話</a></h2>
+    <h2><a href="https://blog.nownabe.com/2019/05/21/migration-to-gcp.html/">RailsアプリとかをAWSのレガシーシステムからGCPのイケイケシステムに移行した話</a></h2>
     <span class="date">Posted on May 21, 2019</span>
   </div>
   <div class="article-columns">
@@ -291,29 +291,20 @@ if (!doNotTrack) {
 <h2 id="根回しとか稟議的なアレ">根回しとか稟議的なアレ</h2>
 <p>根回しというか、技術的な部分以外でプロジェクトを始めるまでにやったことと理由やコメントです。</p>
 <ul>
-<li>Googleの営業チームとミーティング
+<li>GCPの営業チームとミーティング
 <ul>
 <li>プロジェクト初期は定期的にやっていた</li>
-<li>社内へのGoogleさんと一緒にやってますよというアピールの意味合いが強かった</li>
+<li>社内へのGoogleさんと一緒にやってますよというアピールの意味合いも強かった</li>
 <li>今後リリースされるサービスのクローズドな情報を教えてもらえてよかった</li>
 <li>GCPを使う上での注意点など教えてもらえてよかった</li>
-<li>社内でインフラの技術的な話ができる人はいなかったので、Googleのエンジニアと同じレベル感で話せてコメントがもらえるのがよかった</li>
+<li>社内でインフラの技術的な話ができる人はいなかったので、GCPのエンジニアと同じレベル感で話せてコメントがもらえるのがよかった</li>
 <li>Googleオフィスに行くのは楽しかった ☺️</li>
-<li>ミーティングの内容自体は、今回みたいな小規模システムかつ自分で調査・検証できる人であれば必要ないと思う</li>
+<li>GCPのエンジニアに弊社にきてもらって技術ハンズオンしてもらった</li>
 </ul>
 </li>
-<li>Googleのエンジニアによるハンズオン
+<li>弊社とGCPの偉い人同士のミーティング
 <ul>
-<li>弊社にきてもらって技術ハンズオンしてもらった</li>
-<li>これも社内へのアピールのため</li>
-<li>内容は要望と異なるものだった</li>
-<li>社内のエンジニアはDockerに詳しくないのでDocker/Kubernetesとはなにか、どういうメリットがあるのかが理解できる入門的な内容がいいと依頼したが、アプリケーションのDockerイメージをCloud BuildでビルドしてSpinnakerでKubernetesにデプロイするというものを短時間に書いてある手順をただこなすだけのハンズオンだった</li>
-<li>要望をもっと丁寧に伝えるべきだった</li>
-</ul>
-</li>
-<li>弊社とGoogleの偉い人同士のミーティング
-<ul>
-<li>Googleの偉い人にきてもらって、弊社の偉い人に話をしてもらった</li>
+<li>GCPの偉い人にきてもらって、弊社の偉い人に話をしてもらった</li>
 </ul>
 </li>
 <li>新しい事業責任者にプロジェクトを説明
@@ -330,7 +321,7 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<p>率直な感想を書きましたが、最初のGoogleチームが丁寧に対応してくれていなかったらプロジェクトが開始できていなかったかもしれないので感謝しています 🙏</p>
+<p>最初のGoogleチームが丁寧に対応してくれていなかったらプロジェクトが開始できていなかったかもしれないので感謝しています 🙏</p>
 <h2 id="terraform整備">Terraform整備</h2>
 <p>新しいインフラの構築にはTerraformを使いました。GCPだけでなく新システムに必要なAWSやCDNのリソースもTerraform化しました。</p>
 <p>移行時のTerraform運用は単純で、Pull Requestを作ると<code>terraform plan</code>の結果がコメントされ、masterブランチにマージされると<code>terraform apply</code>されるというものでした。通知やコメントには<a href="https://github.com/mercari/tfnotify">mercari/tfnotify</a>を使っています。</p>
