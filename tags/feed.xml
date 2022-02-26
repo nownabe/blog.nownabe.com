@@ -6,7 +6,34 @@
     <description>Recent content in Tags on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 13 Dec 2020 00:00:00 +0900</lastBuildDate><atom:link href="https://blog.nownabe.com/tags/feed.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 26 Feb 2022 17:17:16 +0900</lastBuildDate><atom:link href="https://blog.nownabe.com/tags/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>react</title>
+      <link>https://blog.nownabe.com/tags/react/</link>
+      <pubDate>Sat, 26 Feb 2022 17:17:16 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/react/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Recoil</title>
+      <link>https://blog.nownabe.com/tags/recoil/</link>
+      <pubDate>Sat, 26 Feb 2022 17:17:16 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/recoil/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Redux</title>
+      <link>https://blog.nownabe.com/tags/redux/</link>
+      <pubDate>Sat, 26 Feb 2022 17:17:16 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/redux/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>BigQuery</title>
       <link>https://blog.nownabe.com/tags/bigquery/</link>
@@ -895,15 +922,6 @@
       <pubDate>Fri, 23 Sep 2016 03:49:30 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/tags/githubpages/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>react</title>
-      <link>https://blog.nownabe.com/tags/react/</link>
-      <pubDate>Fri, 23 Sep 2016 03:49:30 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/react/</guid>
       <description></description>
     </item>
     

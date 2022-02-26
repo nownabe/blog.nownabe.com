@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>5年前に書いた React/Redux アプリから Redux を処した - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.08e5db8e5d7ea2cf6c0d455756e0098f6341907c8ee253c4c161b7e1ca7cd556.css" integrity="sha256-COXbjl1&#43;os9sDUVXVuAJj2NBkHyO4lPEwWG34cp81VY=">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2022/02/26/brainfuck-board-escaped-from-redux/">
+  <meta property="og:title" content="5年前に書いた React/Redux アプリから Redux を処した - nownab.log">
+  <meta property="og:description" content="もっと気軽にブログを書いていこう記事第一弾。 第二弾もあってほしい。 やったこと 5年前に作った React と Redux で書いたウェブアプリを Next.js と Hooks と Recoil で動くように"><meta property="og:image" content="https://blog.nownabe.com/images/2022/02/26/brainfuck-board-escaped-from-redux.png"><meta property="twitter:title" content="5年前に書いた React/Redux アプリから Redux を処した - nownab.log">
+  <meta property="twitter:description" content="もっと気軽にブログを書いていこう記事第一弾。 第二弾もあってほしい。 やったこと 5年前に作った React と Redux で書いたウェブアプリを Next.js と Hooks と Recoil で動くように">
+  <meta property="twitter:image" content="https://blog.nownabe.com/images/2022/02/26/brainfuck-board-escaped-from-redux.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PWWXNZ0XM3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-PWWXNZ0XM3');
+  </script>
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container">
+    <h1>
+      <a href="/">
+        nownab.log
+      </a>
+    </h1>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article class="article-container">
+  <div class="title">
+    <h2><a href="https://blog.nownabe.com/2022/02/26/brainfuck-board-escaped-from-redux/">5年前に書いた React/Redux アプリから Redux を処した</a></h2>
+    <span class="date">Posted on Feb 26, 2022</span>
+  </div>
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p>もっと気軽にブログを書いていこう記事第一弾。
+第二弾もあってほしい。</p>
+<p><img src="/images/2022/02/26/brainfuck-board-escaped-from-redux.png" alt="brainfuck-board-escaped-from-redux"></p>
+<h2 id="やったこと">やったこと</h2>
+<p>5年前に作った React と Redux で書いたウェブアプリを Next.js と Hooks と Recoil で動くようにほぼ全て書き換えた。
+<a href="https://brainfuck-board.nownabe.com/">Brainfuck Board</a> という Brainfuck を実行できるウェブアプリで、Dependabot がうるさかったり、完成度が中途半端だったりでずっとなんとかしたいとは思っててようやく手を付けることができた。</p>
+<p><a href="https://github.com/nownabe/brainfuck-board">nownabe/brainfuck-board: Brainfuck Platform</a></p>
+<p>やったことを時系列に羅列するとこんな感じ。</p>
+<ul>
+<li>ソースコード見て当時の振り返り</li>
+<li>最新のナウい状態管理の調査。Recoil がいいらしい</li>
+<li>Redux から Hooks/Recoil にどうやって移行するか検討</li>
+<li>ちまちま変えていくのはだるそうだったので、スクラッチで書き換え</li>
+<li><a href="https://github.com/nownabe/brainfuck-board/pull/192">プルリク</a>をマージ</li>
+<li>Vercel にデプロイ</li>
+<li>細かいところ整えたり、バグ修正したり、新機能つけたり</li>
+<li>Renovate で automerge な設定</li>
+</ul>
+<h2 id="感想">感想</h2>
+<p>時代の進化を感じることができてとても良かった。
+Web フロント界隈は流れが早いだの落ち着かないだの言われてたけど、5年前の実装を思い出しながら書いてると正当に進化してるなーと改めて思った。</p>
+<ul>
+<li>Redux をやめて Hooks ベースになっただけでめっちゃスッキリしてさすがのこんまりもびっくりすると思う</li>
+<li>単純にファイル数・コードが減るし、レイヤードなアーキテクチャのまとまりがよくなる気がする</li>
+<li>Redux 関係だけじゃなくて、自分の窓から投げ捨てたくなるようなコードも捨てられて最高</li>
+<li>Suspense 使いたかったけど使いどころがなくて残念</li>
+<li>Firebase まわりの実装はまだ納得いってない</li>
+<li>内面だけじゃなくてアプリ自体も良くなってよかった</li>
+<li>今回はスクラッチで書き直したけど、地道な移行もできなくはなさそう (技術的には可能)</li>
+</ul>
+<h2 id="おわりに">おわりに</h2>
+<p>メンテは計画的に。</p>
+<p><img src="/images/2022/02/26/contribution.png" alt="Contribution"></p>
+
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#やったこと">やったこと</a></li>
+    <li><a href="#感想">感想</a></li>
+    <li><a href="#おわりに">おわりに</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+
+<div id="footer-navigation">
+  <div id="next-prev">
+    <div></div>
+    <div></div>
+  </div>
+  <div id="related-articles"><h2>See Also</h2>
+    <ul><li><a href="/2016/09/23/474.html/">GitHub PagesをReact &#43; CSS Modulesで</a></li><li><a href="/2016/08/27/416.html/">jspmでReactなセットアップ</a></li></ul></div>
+  <div id="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+      </div>
+    </div><div id="container">
+  <div id="footer-container">
+    <div id="author">
+      <p>
+        <a href="https://nownabe.com">
+          <img src="/img/profile_icon_2020.png" alt="profile icon">
+        </a>
+      </p>
+      <div>
+        <p class="name"><a href="https://nownabe.com">Shawn Watanabe</a></p>
+        <p>
+          A dog lover and a software engineer.
+          I now work as a Customer Engineer at Google Cloud in Japan.
+        </p>
+        <p>
+          Opinions are my own, NOT views of my employer.
+        </p>
+      </div>
+    </div>
+    <footer>
+      <p class="copyright">
+        Copyright &copy; 2016 nownabe All Right Reserved.
+      </p>
+    </footer>
+  </div>
+</div>
+<div id="fb-root"></div>
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" async="async"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      anchors.add(".body h1, .body h2, .body h3");
+    });
+  </script>
+</body>
+</html>
