@@ -3,7 +3,7 @@
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><title>5年前に書いた React/Redux アプリから Redux を処した - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>増えすぎた GitHub のリポジトリを一括で整理するツールを作った - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
 
   <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 
@@ -20,11 +20,11 @@
   <meta property="twitter:site" content="@nownabe">
   <meta property="twitter:creator" content="@nownabe">
 
-  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2022/02/26/brainfuck-board-escaped-from-redux/">
-  <meta property="og:title" content="5年前に書いた React/Redux アプリから Redux を処した - nownab.log">
-  <meta property="og:description" content="もっと気軽にブログを書いていこう記事第一弾。 第二弾もあってほしい。 やったこと 5年前に作った React と Redux で書いたウェブアプリを Next.js と Hooks と Recoil で動くように"><meta property="og:image" content="https://blog.nownabe.com/images/2022/02/26/brainfuck-board-escaped-from-redux.png"><meta property="twitter:title" content="5年前に書いた React/Redux アプリから Redux を処した - nownab.log">
-  <meta property="twitter:description" content="もっと気軽にブログを書いていこう記事第一弾。 第二弾もあってほしい。 やったこと 5年前に作った React と Redux で書いたウェブアプリを Next.js と Hooks と Recoil で動くように">
-  <meta property="twitter:image" content="https://blog.nownabe.com/images/2022/02/26/brainfuck-board-escaped-from-redux.png">
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2022/03/13/ghrepos-organizer/">
+  <meta property="og:title" content="増えすぎた GitHub のリポジトリを一括で整理するツールを作った - nownab.log">
+  <meta property="og:description" content="GitHub のリポジトリを一括で整理するための ghrepos-organizer というツールを作りました。 できること あるOwner (user or organization) のリポジトリのうち、選択したリポジトリに対して"><meta property="og:image" content="https://blog.nownabe.com/images/2022/03/13/ghrepos-organizer.png"><meta property="twitter:title" content="増えすぎた GitHub のリポジトリを一括で整理するツールを作った - nownab.log">
+  <meta property="twitter:description" content="GitHub のリポジトリを一括で整理するための ghrepos-organizer というツールを作りました。 できること あるOwner (user or organization) のリポジトリのうち、選択したリポジトリに対して">
+  <meta property="twitter:image" content="https://blog.nownabe.com/images/2022/03/13/ghrepos-organizer.png">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PWWXNZ0XM3"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -60,45 +60,51 @@ if (!doNotTrack) {
       <div class="container" role="main">
 <article class="article-container">
   <div class="title">
-    <h2><a href="https://blog.nownabe.com/2022/02/26/brainfuck-board-escaped-from-redux/">5年前に書いた React/Redux アプリから Redux を処した</a></h2>
-    <span class="date">Posted on Feb 26, 2022</span>
+    <h2><a href="https://blog.nownabe.com/2022/03/13/ghrepos-organizer/">増えすぎた GitHub のリポジトリを一括で整理するツールを作った</a></h2>
+    <span class="date">Posted on Mar 13, 2022</span>
   </div>
   <div class="article-columns">
     <div class="article-content">
       <div class="body">
-        <p>もっと気軽にブログを書いていこう記事第一弾。
-第二弾もあってほしい。</p>
-<p><img src="/images/2022/02/26/brainfuck-board-escaped-from-redux.png" alt="brainfuck-board-escaped-from-redux"></p>
-<h2 id="やったこと">やったこと</h2>
-<p>5年前に作った React と Redux で書いたウェブアプリを Next.js と Hooks と Recoil で動くようにほぼ全て書き換えた。
-<a href="https://brainfuck-board.nownabe.com/">Brainfuck Board</a> という Brainfuck を実行できるウェブアプリで、Dependabot がうるさかったり、完成度が中途半端だったりでずっとなんとかしたいとは思っててようやく手を付けることができた。</p>
-<p><a href="https://github.com/nownabe/brainfuck-board">nownabe/brainfuck-board: Brainfuck Platform</a></p>
-<p>やったことを時系列に羅列するとこんな感じ。</p>
+        <p>GitHub のリポジトリを一括で整理するための <a href="https://github.com/nownabe/ghrepos-organizer">ghrepos-organizer</a> というツールを作りました。</p>
+<iframe width="790" height="445" src="https://www.youtube.com/embed/f_KKVQlxmHw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="できること">できること</h2>
+<p>あるOwner (user or organization) のリポジトリのうち、選択したリポジトリに対して一括で以下の操作を適用できます。</p>
 <ul>
-<li>ソースコード見て当時の振り返り</li>
-<li>最新のナウい状態管理の調査。Recoil がいいらしい</li>
-<li>Redux から Hooks/Recoil にどうやって移行するか検討</li>
-<li>ちまちま変えていくのはだるそうだったので、スクラッチで書き換え</li>
-<li><a href="https://github.com/nownabe/brainfuck-board/pull/192">プルリク</a>をマージ</li>
-<li>Vercel にデプロイ</li>
-<li>細かいところ整えたり、バグ修正したり、新機能つけたり</li>
-<li>Renovate で automerge な設定</li>
+<li>削除</li>
+<li>すべての Issue を Close</li>
+<li>すべての Pull Request を Close</li>
+<li>属性の変更
+<ul>
+<li>Visibility (Public / Private)</li>
+<li>Wiki機能の On/Off</li>
+<li>Project機能の On/Off</li>
+<li>マージした時に自動でブランチを削除する機能の On/Off</li>
+<li>アーカイブ</li>
 </ul>
-<h2 id="感想">感想</h2>
-<p>時代の進化を感じることができてとても良かった。
-Web フロント界隈は流れが早いだの落ち着かないだの言われてたけど、5年前の実装を思い出しながら書いてると正当に進化してるなーと改めて思った。</p>
+</li>
+<li>他の Organization への Transfer</li>
+</ul>
+<h2 id="使い方">使い方</h2>
+<p>ghrepos-organizerを使うためには GitHub の Personal Access Token が必要に成ります。<code>repo</code> スコープがついていればOKです。リポジトリの削除を実行するためには <code>delete_repo</code> スコープも必要です。</p>
+<p>npx コマンドで実行できます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">npx ghrepos-organizer
+</code></pre></div><p>コマンドを実行すると対話式に色々聞かれるので、適用する操作を選んだり、操作対象のリポジトリを選んだりします。</p>
+<p>操作 (Action) を選ぶ様子:</p>
+<p><a href="/images/2022/03/13/choose-actions.png"><img src="/images/2022/03/13/choose-actions.png" alt="choose-actions"></a></p>
+<p>リポジトリを選ぶ様子:</p>
+<p><a href="/images/2022/03/13/choose-repositories.png"><img src="/images/2022/03/13/choose-repositories.png" alt="choose-repositories"></a></p>
+<p>最後に最終確認のプロンプトが出るので、Yes (<code>y</code>) を入力すると実行されます。</p>
+<h2 id="環境変数">環境変数</h2>
+<p>環境変数で一部の挙動を設定できるようになっています。</p>
 <ul>
-<li>Redux をやめて Hooks ベースになっただけでめっちゃスッキリしてさすがのこんまりもびっくりすると思う</li>
-<li>単純にファイル数・コードが減るし、レイヤードなアーキテクチャのまとまりがよくなる気がする</li>
-<li>Redux 関係だけじゃなくて、自分の窓から投げ捨てたくなるようなコードも捨てられて最高</li>
-<li>Suspense 使いたかったけど使いどころがなくて残念</li>
-<li>Firebase まわりの実装はまだ納得いってない</li>
-<li>内面だけじゃなくてアプリ自体も良くなってよかった</li>
-<li>今回はスクラッチで書き直したけど、地道な移行もできなくはなさそう (技術的には可能)</li>
+<li><code>GH_PAT</code> - Personal Access Token を環境変数で設定できます。</li>
+<li><code>CONCURRENCY</code> - 操作の並列数を設定できます。デフォルトは5です。</li>
+<li><code>ENABLE_DELETE</code> - 削除機能を有効化します。</li>
 </ul>
 <h2 id="おわりに">おわりに</h2>
-<p>メンテは計画的に。</p>
-<p><img src="/images/2022/02/26/contribution.png" alt="Contribution"></p>
+<p>昔のリポジトリをまるっとアーカイブしたい時や、ブランチ自動削除機能を一括で有効化したいときなんかにぜひ使ってみてください。</p>
+<p>今回初めてNodeでCLIを作ってみたので、そのことについての記事もまた書きたいと思います。</p>
 
       </div>
     </div>
@@ -106,8 +112,9 @@ Web フロント界隈は流れが早いだの落ち着かないだの言われ�
       <aside class="article-toc">
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#やったこと">やったこと</a></li>
-    <li><a href="#感想">感想</a></li>
+    <li><a href="#できること">できること</a></li>
+    <li><a href="#使い方">使い方</a></li>
+    <li><a href="#環境変数">環境変数</a></li>
     <li><a href="#おわりに">おわりに</a></li>
   </ul>
 </nav>
@@ -124,11 +131,11 @@ Web フロント界隈は流れが早いだの落ち着かないだの言われ�
 
 <div id="footer-navigation">
   <div id="next-prev">
+    <div><a href="https://blog.nownabe.com/2022/02/26/brainfuck-board-escaped-from-redux/">&lt; 5年前に書いた React/Redux アプリから Redux を処した</a></div>
     <div></div>
-    <div><a href="https://blog.nownabe.com/2022/03/13/ghrepos-organizer/">増えすぎた GitHub のリポジトリを一括で整理するツールを作った &gt;</a></div>
   </div>
   <div id="related-articles"><h2>See Also</h2>
-    <ul><li><a href="/2016/09/23/474.html/">GitHub PagesをReact &#43; CSS Modulesで</a></li><li><a href="/2016/08/27/416.html/">jspmでReactなセットアップ</a></li></ul></div>
+    <ul><li><a href="/2019/01/08/1448.html/">GitHubの有料プランを解約した</a></li><li><a href="/2016/10/08/489.html/">GitHubでコミットにVerifiedバッジをつけたい</a></li><li><a href="/2016/08/03/400.html/">Hatena BlogからGitHub Pagesに移行しました</a></li></ul></div>
   <div id="sns-buttons">
     <ul>
       <li>
