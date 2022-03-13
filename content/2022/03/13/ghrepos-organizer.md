@@ -15,6 +15,7 @@ image: images/2022/03/13/ghrepos-organizer.png
 
 
 GitHub のリポジトリを一括で整理するための [ghrepos-organizer](https://github.com/nownabe/ghrepos-organizer) というツールを作りました。
+元々は整理が目的でしたが、全リポジトリに対して自動ブランチ削除機能を有効化するみたいな使い方もできるようになりました。
 
 
 <iframe width="790" height="445" src="https://www.youtube.com/embed/f_KKVQlxmHw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
