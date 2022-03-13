@@ -13,7 +13,7 @@
       <pubDate>Sun, 13 Mar 2022 23:27:09 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/2022/03/13/ghrepos-organizer/</guid>
-      <description>GitHub のリポジトリを一括で整理するための ghrepos-organizer というツールを作りました。 できること あるOwner (user or organization) のリポジトリのうち、選択したリポジトリに対して</description>
+      <description>GitHub のリポジトリを一括で整理するための ghrepos-organizer というツールを作りました。 元々は整理が目的でしたが、全リポジトリに対して自動ブランチ削除機能を有効化す</description>
     </item>
     
     <item>
