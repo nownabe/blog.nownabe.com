@@ -1,5 +1,5 @@
 ---
-title: "増えすぎた GitHub のリポジトリを一括で整理するツールを作った"
+title: "GitHub のリポジトリを一括で整理するツールを作った"
 tags:
 - GitHub
 - TypeScript
