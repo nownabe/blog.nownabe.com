@@ -6,7 +6,34 @@
     <description>Recent content in Tags on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 13 Mar 2022 23:27:09 +0900</lastBuildDate><atom:link href="https://blog.nownabe.com/tags/feed.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Apr 2022 21:06:40 +0900</lastBuildDate><atom:link href="https://blog.nownabe.com/tags/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>K3s</title>
+      <link>https://blog.nownabe.com/tags/k3s/</link>
+      <pubDate>Wed, 06 Apr 2022 21:06:40 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/k3s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://blog.nownabe.com/tags/kubernetes/</link>
+      <pubDate>Wed, 06 Apr 2022 21:06:40 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>raspberry pi</title>
+      <link>https://blog.nownabe.com/tags/raspberry-pi/</link>
+      <pubDate>Wed, 06 Apr 2022 21:06:40 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/tags/raspberry-pi/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>CLI</title>
       <link>https://blog.nownabe.com/tags/cli/</link>
@@ -98,15 +125,6 @@
     </item>
     
     <item>
-      <title>kubernetes</title>
-      <link>https://blog.nownabe.com/tags/kubernetes/</link>
-      <pubDate>Sun, 19 Jul 2020 19:26:56 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/kubernetes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>CoreDNS</title>
       <link>https://blog.nownabe.com/tags/coredns/</link>
       <pubDate>Sat, 11 Jul 2020 20:30:44 +0900</pubDate>
@@ -130,15 +148,6 @@
       <pubDate>Sat, 04 Jul 2020 19:43:02 +0900</pubDate>
       
       <guid>https://blog.nownabe.com/tags/fio/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>raspberry pi</title>
-      <link>https://blog.nownabe.com/tags/raspberry-pi/</link>
-      <pubDate>Sat, 04 Jul 2020 19:43:02 +0900</pubDate>
-      
-      <guid>https://blog.nownabe.com/tags/raspberry-pi/</guid>
       <description></description>
     </item>
     

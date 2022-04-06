@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ja"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>おうち k3s - クラスタ構築編 - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.08e5db8e5d7ea2cf6c0d455756e0098f6341907c8ee253c4c161b7e1ca7cd556.css" integrity="sha256-COXbjl1&#43;os9sDUVXVuAJj2NBkHyO4lPEwWG34cp81VY=">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2022/04/06/home-k3s-bulding-cluster/">
+  <meta property="og:title" content="おうち k3s - クラスタ構築編 - nownab.log">
+  <meta property="og:description" content="概要 以前作った Kubernetes 用のラズパイクラスタが埃をかぶっていたので k3s クラスタとして蘇らせた。 ラズパイの初期設定も楽にできたし、k3s のインストールも"><meta property="og:image" content="https://blog.nownabe.com/images/2020/06/28/pi-stack.jpg"><meta property="twitter:title" content="おうち k3s - クラスタ構築編 - nownab.log">
+  <meta property="twitter:description" content="概要 以前作った Kubernetes 用のラズパイクラスタが埃をかぶっていたので k3s クラスタとして蘇らせた。 ラズパイの初期設定も楽にできたし、k3s のインストールも">
+  <meta property="twitter:image" content="https://blog.nownabe.com/images/2020/06/28/pi-stack.jpg">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PWWXNZ0XM3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-PWWXNZ0XM3');
+  </script>
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container">
+    <h1>
+      <a href="/">
+        nownab.log
+      </a>
+    </h1>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article class="article-container">
+  <div class="title">
+    <h2><a href="https://blog.nownabe.com/2022/04/06/home-k3s-bulding-cluster/">おうち k3s - クラスタ構築編</a></h2>
+    <span class="date">Posted on Apr 6, 2022</span>
+  </div>
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <p><a href="/images/2020/06/28/pi-stack.jpg"><img src="/images/2020/06/28/pi-stack.jpg" alt="Raspberry Pi stack"></a></p>
+<h2 id="概要">概要</h2>
+<p><a href="https://blog.nownabe.com/2020/06/28/home-kubernetes-1/">以前作った</a> Kubernetes 用のラズパイクラスタが埃をかぶっていたので k3s クラスタとして蘇らせた。
+ラズパイの初期設定も楽にできたし、k3s のインストールも感動するぐらい楽だった。</p>
+<p>この記事ではラズパイのセットアップから k3s のインストールまでの手順を紹介する。</p>
+<h2 id="やったこと">やったこと</h2>
+<ul>
+<li>ラズパイに OS インストール</li>
+<li>ラズパイの初期設定</li>
+<li>k3s のインストール</li>
+</ul>
+<h2 id="前提知識とか">前提知識とか</h2>
+<h3 id="ラズパイについて">ラズパイについて</h3>
+<p>最新 (と言っても出たのは 2 年以上前) の <a href="https://www.raspberrypi.com/products/raspberry-pi-4-model-b/">Raspberry Pi 4 Model B</a> を 4 台使っている。詳細は<a href="https://blog.nownabe.com/2020/06/28/home-kubernetes-1/">前回の記事</a>を参照してほしい。ラズパイ 4 はクアッドコアで最大 8GB のメモリが積めるのでそれなりに遊べるスペックを持っていて、4 台使えば 16 コア、32GB メモリのクラスタになるので Kubernetes クラスタとして個人で遊ぶには十分なものになる。</p>
+<p>今回は以前組んだものがあったので 4 台のラズパイでクラスタを組んだが、<strong>k3s は軽いので 1 台でも動作するし十分遊べる。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>とりあえず試してみたいって人は 1 台で試してみてほしい。</strong></p>
+<h3 id="k3s">K3s</h3>
+<p><a href="https://k3s.io/">K3s</a> は <a href="https://rancher.com/">Rancher</a> が立ち上げた軽量 Kubernetes ディストリビューションで、今は <a href="https://www.cncf.io/projects/k3s/">CNCF のサンドボックスプロジェクト</a>になっている。以下の特徴を謳っている。</p>
+<ul>
+<li>High availability (を達成するためのオプションがある)</li>
+<li><a href="https://www.cncf.io/certification/software-conformance/">認定 Kubernetes ディストリビューション</a></li>
+<li>IoT やエッジコンピューティングのための軽量 Kubernetes</li>
+<li>50MB に満たないシングルバイナリ</li>
+<li>ARM に最適化されている</li>
+</ul>
+<p>K3s はバイナリサイズを削るために本家 Kubernetes からレガシーな機能やアルファ・ベータ機能、k3s が想定しているユースケースに不要な機能を削除している。
+とはいえ、Ingress Controller がデフォルトでついてきたり、インストールがシングルバイナリでめっちゃ楽だったりで、普通に Kubernetes として使う分には本家 Kubernetes より手軽に使うことができる。</p>
+<h2 id="構成">構成</h2>
+<p>今回はこんな感じの構成で k3s クラスタを組んだ。</p>
+<p><img src="/images/2022/04/06/diagram.png" alt="Diagram"></p>
+<p>構築したとき、 k3s では control plane や worker node ではなく、server、agent と呼ぶということを知らなかったのでホスト名が間違っているが特に問題はないのでこのままにしている。</p>
+<p>この図では有線 LAN も存在しているが、有線 LAN を設定する必要はなく WiFi 接続があれば構築できる。
+元々組んだときに Wifi 環境がなくてもクラスタが動作するように物理ケーブルで接続していたためこのようになっている。</p>
+<h2 id="raspberry-pi-os-インストール">Raspberry Pi OS インストール</h2>
+<p>ここからは実際の手順。まずはラズパイに OS をクリーンインストールする。</p>
+<p>ラズパイの OS インストールは SD カードに OS イメージを書き込むという作業になる。
+今回はイメージ書き込みに Raspberry Pi Imager という公式ツールを使った。
+これが非常に楽で、<code>umount</code> コマンドや <code>dd</code> が不要かつ SSH までの初期設定を書き込み時にやってくれるため、GUI でポチポチとイメージを書き込んでラズパイに SD カードを挿せば SSH で接続できるようになる。</p>
+<p><img src="/images/2022/04/06/raspberry-pi-imager.png" alt="Raspberry Pi Imager"></p>
+<p>次のような設定で 4 枚の SD カードに OS イメージを書き込んだ。</p>
+<ul>
+<li>Operating System
+<ul>
+<li>Raspberry Pi OS Lite (64-bit)</li>
+</ul>
+</li>
+<li>Storage
+<ul>
+<li>各 SD カード</li>
+</ul>
+</li>
+<li>Advanced options
+<ul>
+<li>Set hostname
+<ul>
+<li><code>controlplane.k3s</code>, <code>worker-1.k3s</code>, &hellip;</li>
+<li>ここだけ SD カードごとに変更</li>
+</ul>
+</li>
+<li>Enable SSH
+<ul>
+<li>Use password authentication</li>
+<li>SSH 公開鍵を複数登録したかったができないっぽかったので一旦パスワードで</li>
+</ul>
+</li>
+<li>Set username and password
+<ul>
+<li>初期ユーザーは <code>pi</code> になっているので、<code>nownabe</code> に変更</li>
+</ul>
+</li>
+<li>Configure wireless LAN
+<ul>
+<li>自宅の WiFi を設定</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>SD カードにイメージを書き込んだら、それを各ラズパイに挿して起動。</p>
+<h2 id="raspberry-pi-os-の初期設定">Raspberry Pi OS の初期設定</h2>
+<p>すでに SSH でログインできるようになっているので、ラズパイの IP アドレスを調べて設定したユーザー名とパスワードでログインする。IP アドレスは WiFi のルーターを見ればわかるはず。</p>
+<p>まず、k3s の起動に必要な iptables のインストールと cgroup の有効化を行う。<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt upgrade
+
+<span class="c1"># iptables をインストール</span>
+sudo apt remove nftables
+sudo apt install iptables
+
+<span class="c1"># /boot/cmdline.txt に `cgroup_memory=1 cgroup_enable=memory` を追加する</span>
+sudo nano /boot/cmdline.txt
+</code></pre></div><p><code>/boot/cmdline.txt</code> はこんな感じになる。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">nownabe@controlplane:~ $ cat /boot/cmdline.txt
+<span class="nv">console</span><span class="o">=</span>serial0,115200 <span class="nv">console</span><span class="o">=</span>tty1 <span class="nv">root</span><span class="o">=</span><span class="nv">PARTUUID</span><span class="o">=</span>xxx <span class="nv">rootfstype</span><span class="o">=</span>ext4 fsck.repair<span class="o">=</span>yes rootwait <span class="nv">cgroup_memory</span><span class="o">=</span><span class="m">1</span> <span class="nv">cgroup_enable</span><span class="o">=</span>memory
+</code></pre></div><p>k3s の起動に必要な設定はこれだけなので次の設定は飛ばしてもらっても構わない。
+これらの必須設定以外では前述の通り有線 LAN と SSH を次のように設定した。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt upgrade
+sudo apt install vim
+
+<span class="c1"># 静的IPアドレスの設定</span>
+
+cat <span class="s">&lt;&lt;EOF &gt;&gt; /etc/dhcpcd.conf
+</span><span class="s">interface eth0
+</span><span class="s">static ip_address=192.168.3.1/24
+</span><span class="s">EOF</span>
+
+<span class="c1"># SSH鍵の設定: 公開鍵をGitHubからダウンロード</span>
+
+mkdir .ssh
+curl -o .ssh/authorized_keys https://github.com/nownabe.keys
+chmod <span class="m">700</span> .ssh
+chmod <span class="m">600</span> .ssh/authorized_keys
+
+<span class="c1"># sshdの設定: パスワードログインとrootログインを無効化</span>
+
+cat <span class="s">&lt;&lt;EOF | sudo tee -a /etc/ssh/sshd_config
+</span><span class="s">PasswordAuthentication no
+</span><span class="s">PermitRootLogin no
+</span><span class="s">EOF</span>
+
+<span class="c1"># /etc/hostsの設定: ラズパイ間で通信しやすいように</span>
+
+cat <span class="s">&lt;&lt;EOF | sudo tee -a /etc/hosts
+</span><span class="s">192.168.3.1 controlplane controlplane.k3s
+</span><span class="s">192.168.3.2 worker-1 worker-1.k3s
+</span><span class="s">192.168.3.3 worker-2 worker-2.k3s
+</span><span class="s">192.168.3.4 worker-3 worker-3.k3s
+</span><span class="s">EOF</span>
+</code></pre></div><h2 id="k3s-インストール">k3s インストール</h2>
+<p>いわゆるコントロールプレーン的な k3s server とワーカーノード的な k3s agent でインストール手順が微妙に異なるので、k3s server から順にインストールする。</p>
+<p><img src="/images/2022/04/06/k3s-architecture.png" alt="K3s architecture"></p>
+<p>1 台で試す場合は k3s server だけインストールすれば OK。</p>
+<h3 id="k3s-server-インストール">K3s server インストール</h3>
+<p><code>controlplane.k3s</code> に k3s server をインストールする。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">curl -sfL &lt;https://get.k3s.io&gt; <span class="p">|</span> sh -
+</code></pre></div><p>以上。めっちゃ簡単。<code>controlplane.k3s</code> に kubectl もインストールされているので、すぐに試すことができる。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo kubectl get nodes
+sudo kubectl get services
+sudo kubectl get pods
+</code></pre></div><p>また、kubeconfig が <code>/etc/rancher/k3s/k3s.yaml</code> にあるので、これをローカルに持ってきてリモートで kubectl することもできる。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ローカル (not ラズパイ) で</span>
+
+<span class="c1"># kubeconfig とってくる</span>
+ssh <span class="si">${</span><span class="nv">controlplan</span><span class="p">.k3sのIP</span><span class="si">}</span> sudo cat /etc/rancher/k3s/k3s.yaml &gt; k3s-kubeconfig
+
+<span class="c1"># serverのアドレスを書き換える (clusters.0.cluster.server)</span>
+vi k3s-kubeconfig
+
+<span class="c1"># kubectlする</span>
+kubectl --kubeconfig<span class="o">=</span>k3s-kubeconfig get nodes
+</code></pre></div><h3 id="k3s-agent-インストール">K3s agent インストール</h3>
+<p>残り 3 台は同じ操作。</p>
+<p>まず、<code>controlplane.k3s</code> から agent を追加するためのトークンを取得する。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># in controlplane.k3s</span>
+sudo cat /var/lib/rancher/k3s/server/node-token
+</code></pre></div><p>取得したトークンを使って、残りのラズパイに agent をインストールする。と言っても、環境変数で k3s server とトークンを指定する以外は k3s server のインストールと同じコマンドを使う。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># in worker-*.k3s</span>
+curl -sfL https://get.k3s.io <span class="p">|</span> <span class="se">\
+</span><span class="se"></span>  <span class="nv">K3S_URL</span><span class="o">=</span>https://<span class="si">${</span><span class="nv">k3s</span><span class="p"> server のIPアドレス</span><span class="si">}</span>:6443 <span class="se">\
+</span><span class="se"></span>  <span class="nv">K3S_TOKEN</span><span class="o">=</span><span class="si">${</span><span class="nv">token</span><span class="si">}</span> <span class="se">\
+</span><span class="se"></span>  sh -
+</code></pre></div><p>これで k3s agent のインストールとクラスタへの参加が完了する。<code>kubectl get nodes</code> 等で確認するとノードが増えていることがわかる。</p>
+<h2 id="おわりに">おわりに</h2>
+<p>本当に 1 回もエラーに遭遇することなく、前回苦労したのはなんだったのかというぐらい簡単に Kubernetes がセットアップできてしまった。</p>
+<p>本記事の手順だけでも Pod を作って Service で公開ということはできる。それだけだと LAN 内に閉じた話になるので、インターネットへサービスを公開したいとか外出先から <code>kubectl</code> したい、というニーズにはまだ応えられない。</p>
+<p>モチベが湧けば、次回は Cloudflare を使ってクラスターをセキュアにインターネットへ公開する記事を書きたいと思う。</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://rancher.com/docs/k3s/latest/en/installation/installation-requirements/#hardware">Rancher Docs: Installation Requirements</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><a href="https://rancher.com/docs/k3s/latest/en/advanced/#enabling-legacy-iptables-on-raspbian-buster">Rancher Docs: Advanced Options and Configuration</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#概要">概要</a></li>
+    <li><a href="#やったこと">やったこと</a></li>
+    <li><a href="#前提知識とか">前提知識とか</a>
+      <ul>
+        <li><a href="#ラズパイについて">ラズパイについて</a></li>
+        <li><a href="#k3s">K3s</a></li>
+      </ul>
+    </li>
+    <li><a href="#構成">構成</a></li>
+    <li><a href="#raspberry-pi-os-インストール">Raspberry Pi OS インストール</a></li>
+    <li><a href="#raspberry-pi-os-の初期設定">Raspberry Pi OS の初期設定</a></li>
+    <li><a href="#k3s-インストール">k3s インストール</a>
+      <ul>
+        <li><a href="#k3s-server-インストール">K3s server インストール</a></li>
+        <li><a href="#k3s-agent-インストール">K3s agent インストール</a></li>
+      </ul>
+    </li>
+    <li><a href="#おわりに">おわりに</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+
+<div id="footer-navigation">
+  <div id="next-prev">
+    <div><a href="https://blog.nownabe.com/2022/03/13/ghrepos-organizer/">&lt; GitHub のリポジトリを一括で整理するツールを作った</a></div>
+    <div></div>
+  </div>
+  <div id="related-articles"><h2>See Also</h2>
+    <ul><li><a href="/2020/07/19/home-kubernetes-2/">おうちKubernetes構築日記その2 Kubernetes構築編</a></li><li><a href="/2020/07/03/raspberrypi-bench/">Raspberry Pi 4 のベンチマーク</a></li><li><a href="/2020/06/28/home-kubernetes-1/">おうちKubernetes構築日記その1 Raspberry Pi編</a></li><li><a href="/2019/08/07/cloudnativedaystokyo2019/">CloudNative Days Tokyo 2019 参加メモ</a></li><li><a href="/2019/06/15/read-designing-distributed-systems/">『分散システムデザインパターン』を読んだ</a></li></ul></div>
+  <div id="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+      </div>
+    </div><div id="container">
+  <div id="footer-container">
+    <div id="author">
+      <p>
+        <a href="https://nownabe.com">
+          <img src="/img/profile_icon_2020.png" alt="profile icon">
+        </a>
+      </p>
+      <div>
+        <p class="name"><a href="https://nownabe.com">Shawn Watanabe</a></p>
+        <p>
+          A dog lover and a software engineer.
+          I now work as a Customer Engineer at Google Cloud in Japan.
+        </p>
+        <p>
+          Opinions are my own, NOT views of my employer.
+        </p>
+      </div>
+    </div>
+    <footer>
+      <p class="copyright">
+        Copyright &copy; 2016 nownabe All Right Reserved.
+      </p>
+    </footer>
+  </div>
+</div>
+<div id="fb-root"></div>
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" async="async"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      anchors.add(".body h1, .body h2, .body h3");
+    });
+  </script>
+</body>
+</html>

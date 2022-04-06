@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>K3s on nownab.log</title>
+    <link>https://blog.nownabe.com/tags/k3s/</link>
+    <description>Recent content in K3s on nownab.log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Wed, 06 Apr 2022 21:06:40 +0900</lastBuildDate><atom:link href="https://blog.nownabe.com/tags/k3s/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>おうち k3s - クラスタ構築編</title>
+      <link>https://blog.nownabe.com/2022/04/06/home-k3s-bulding-cluster/</link>
+      <pubDate>Wed, 06 Apr 2022 21:06:40 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2022/04/06/home-k3s-bulding-cluster/</guid>
+      <description>概要 以前作った Kubernetes 用のラズパイクラスタが埃をかぶっていたので k3s クラスタとして蘇らせた。 ラズパイの初期設定も楽にできたし、k3s のインストールも</description>
+    </item>
+    
+  </channel>
+</rss>
