@@ -18,7 +18,7 @@ image: images/2020/06/28/pi-stack.jpg
 ## 概要
 
 [以前作った](https://blog.nownabe.com/2020/06/28/home-kubernetes-1/) Kubernetes 用のラズパイクラスタが埃をかぶっていたので k3s クラスタとして蘇らせた。
-ラズパイの初期設定も楽にできたし、k3sのインストールも感動するぐらい楽だった。
+ラズパイの初期設定も楽にできたし、k3s のインストールも感動するぐらい楽だった。
 
 この記事ではラズパイのセットアップから k3s のインストールまでの手順を紹介する。
 
@@ -32,7 +32,7 @@ image: images/2020/06/28/pi-stack.jpg
 
 ### ラズパイについて
 
-最新 (と言っても出たのは2年以上前) の [Raspberry Pi 4 Model B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) を 4 台使っている。詳細は[前回の記事](https://blog.nownabe.com/2020/06/28/home-kubernetes-1/)を参照してほしい。ラズパイ 4 はクアッドコアで最大 8GB のメモリが積めるのでそれなりに遊べるスペックを持っていて、4台使えば 16コア、32GB メモリのクラスタになるので Kubernetes クラスタとして個人で遊ぶには十分なものになる。
+最新 (と言っても出たのは 2 年以上前) の [Raspberry Pi 4 Model B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) を 4 台使っている。詳細は[前回の記事](https://blog.nownabe.com/2020/06/28/home-kubernetes-1/)を参照してほしい。ラズパイ 4 はクアッドコアで最大 8GB のメモリが積めるのでそれなりに遊べるスペックを持っていて、4 台使えば 16 コア、32GB メモリのクラスタになるので Kubernetes クラスタとして個人で遊ぶには十分なものになる。
 
 今回は以前組んだものがあったので 4 台のラズパイでクラスタを組んだが、**k3s は軽いので 1 台でも動作するし十分遊べる。[^1]とりあえず試してみたいって人は 1 台で試してみてほしい。**
 
@@ -48,7 +48,8 @@ image: images/2020/06/28/pi-stack.jpg
 * 50MB に満たないシングルバイナリ
 * ARM に最適化されている
 
-K3s はバイナリサイズを削るために本家 Kubernetes からレガシーな機能やアルファ・ベータ機能、k3s が想定しているユースケースに不要な機能を削除している。とはいえ、Ingress Controller がデフォルトでついてきたり、そもそもインストールがシングルバイナリでめっちゃ楽なので、普通に Kubernetes として使う分には本家 Kubernetes より手っ取り早く一通りの機能を使うことができる。
+K3s はバイナリサイズを削るために本家 Kubernetes からレガシーな機能やアルファ・ベータ機能、k3s が想定しているユースケースに不要な機能を削除している。
+とはいえ、Ingress Controller がデフォルトでついてきたり、インストールがシングルバイナリでめっちゃ楽だったりで、普通に Kubernetes として使う分には本家 Kubernetes より手軽に使うことができる。
 
 
 
@@ -60,44 +61,44 @@ K3s はバイナリサイズを削るために本家 Kubernetes からレガシ�
 
 構築したとき、 k3s では control plane や worker node ではなく、server、agent と呼ぶということを知らなかったのでホスト名が間違っているが特に問題はないのでこのままにしている。
 
-この図では有線LANも存在しているが、有線LANを設定する必要はなくWiFi接続があれば構築できる。
-元々組んだときにWifi環境がなくてもクラスタが動作するように物理ケーブルで接続していたためこのようになっている。
+この図では有線 LAN も存在しているが、有線 LAN を設定する必要はなく WiFi 接続があれば構築できる。
+元々組んだときに Wifi 環境がなくてもクラスタが動作するように物理ケーブルで接続していたためこのようになっている。
 
 ## Raspberry Pi OS インストール
 
-ここからは実際の手順。まずはラズパイにOSをクリーンインストールする。
+ここからは実際の手順。まずはラズパイに OS をクリーンインストールする。
 
-ラズパイのOSインストールはSDカードにOSイメージを書き込むという作業になる。
+ラズパイの OS インストールは SD カードに OS イメージを書き込むという作業になる。
 今回はイメージ書き込みに Raspberry Pi Imager という公式ツールを使った。
-これが非常に楽で、`umount`コマンドも`dd`も不要かつSSHまでの初期設定を書き込み時にやってくれるため、Raspberry Pi Imager を使ってGUIでポチポチとイメージを書き込んでラズパイにSDカードを挿せばSSHで接続することができるようになる。
+これが非常に楽で、`umount` コマンドや `dd` が不要かつ SSH までの初期設定を書き込み時にやってくれるため、GUI でポチポチとイメージを書き込んでラズパイに SD カードを挿せば SSH で接続できるようになる。
 
 ![Raspberry Pi Imager](/images/2022/04/06/raspberry-pi-imager.png)
 
-次のような設定で4枚のSDカードにOSイメージを書き込んだ。
+次のような設定で 4 枚の SD カードに OS イメージを書き込んだ。
 
 * Operating System
     * Raspberry Pi OS Lite (64-bit)
 * Storage
-    * 各SDカード
+    * 各 SD カード
 * Advanced options
     * Set hostname
         * `controlplane.k3s`, `worker-1.k3s`, ...
-        * ここだけSDカードごとに変更
+        * ここだけ SD カードごとに変更
     * Enable SSH
         * Use password authentication
-        * SSH公開鍵を複数登録したかったができないっぽかったので一旦パスワードで
+        * SSH 公開鍵を複数登録したかったができないっぽかったので一旦パスワードで
     * Set username and password
-        * 初期ユーザーは `pi` になっているので、`nownabe`に変更
+        * 初期ユーザーは `pi` になっているので、`nownabe` に変更
     * Configure wireless LAN
-        * 自宅のWiFiを設定
+        * 自宅の WiFi を設定
 
-SDカードにイメージを書き込んだら、それを各ラズパイに挿して起動。
+SD カードにイメージを書き込んだら、それを各ラズパイに挿して起動。
 
 ## Raspberry Pi OS の初期設定
 
-すでにSSHでログインできるようになっているので、ラズパイのIPアドレスを調べて設定したユーザー名とパスワードでログインする。IPアドレスはWiFiのルーターを見ればわかるはず。
+すでに SSH でログインできるようになっているので、ラズパイの IP アドレスを調べて設定したユーザー名とパスワードでログインする。IP アドレスは WiFi のルーターを見ればわかるはず。
 
-まず、k3sの起動に必要な iptables のインストールと cgroup の有効化を行う。[^2]
+まず、k3s の起動に必要な iptables のインストールと cgroup の有効化を行う。[^2]
 
 ```bash
 sudo apt upgrade
@@ -120,7 +121,7 @@ console=serial0,115200 console=tty1 root=PARTUUID=xxx rootfstype=ext4 fsck.repai
 [^2]: [Rancher Docs: Advanced Options and Configuration](https://rancher.com/docs/k3s/latest/en/advanced/#enabling-legacy-iptables-on-raspbian-buster)
 
 k3s の起動に必要な設定はこれだけなので次の設定は飛ばしてもらっても構わない。
-これらの必須設定以外では前述の通り有線LANとSSHを次のように設定した。
+これらの必須設定以外では前述の通り有線 LAN と SSH を次のように設定した。
 
 ```bash
 sudo apt upgrade
@@ -163,7 +164,7 @@ EOF
 
 ![K3s architecture](/images/2022/04/06/k3s-architecture.png)
 
-1台で試す場合は k3s server だけインストールすればOK。
+1 台で試す場合は k3s server だけインストールすれば OK。
 
 ### K3s server インストール
 
@@ -198,9 +199,9 @@ kubectl --kubeconfig=k3s-kubeconfig get nodes
 
 ### K3s agent インストール
 
-残り3台は同じ操作。
+残り 3 台は同じ操作。
 
-まず、`controlplane.k3s`からagentを追加するためのトークンを取得する。
+まず、`controlplane.k3s` から agent を追加するためのトークンを取得する。
 
 ```bash
 # in controlplane.k3s
@@ -221,8 +222,8 @@ curl -sfL https://get.k3s.io | \
 
 ## おわりに
 
-本当に1回もエラーに遭遇することなく、前回苦労したのはなんだったのかというぐらい簡単に Kubernetes がセットアップできてしまった。
+本当に 1 回もエラーに遭遇することなく、前回苦労したのはなんだったのかというぐらい簡単に Kubernetes がセットアップできてしまった。
 
-本記事の手順だけでも Pod を作って Service で公開ということはできる。ただ、それだけだと LAN 内に閉じた話になるので、インターネットへサービスを公開したいとか、外出先から `kubectl` したい、というニーズにはまだ応えられない。
+本記事の手順だけでも Pod を作って Service で公開ということはできる。それだけだと LAN 内に閉じた話になるので、インターネットへサービスを公開したいとか外出先から `kubectl` したい、というニーズにはまだ応えられない。
 
-モチベが湧けば、次回は Cloudflare を使って クラスターをセキュアにインターネットへ公開する記事を書きたいと思う。
+モチベが湧けば、次回は Cloudflare を使ってクラスターをセキュアにインターネットへ公開する記事を書きたいと思う。
