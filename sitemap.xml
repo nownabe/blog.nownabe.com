@@ -3,15 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://blog.nownabe.com/2022/</loc>
-    <lastmod>2022-04-06T21:06:40+09:00</lastmod>
+    <lastmod>2022-04-18T23:41:48+09:00</lastmod>
+  </url><url>
+    <loc>https://blog.nownabe.com/</loc>
+    <lastmod>2022-04-18T23:41:48+09:00</lastmod>
+  </url><url>
+    <loc>https://blog.nownabe.com/2022/04/18/zfactory-programs/</loc>
+    <lastmod>2022-04-18T23:41:48+09:00</lastmod>
   </url><url>
     <loc>https://blog.nownabe.com/tags/k3s/</loc>
     <lastmod>2022-04-06T21:06:40+09:00</lastmod>
   </url><url>
     <loc>https://blog.nownabe.com/tags/kubernetes/</loc>
-    <lastmod>2022-04-06T21:06:40+09:00</lastmod>
-  </url><url>
-    <loc>https://blog.nownabe.com/</loc>
     <lastmod>2022-04-06T21:06:40+09:00</lastmod>
   </url><url>
     <loc>https://blog.nownabe.com/tags/raspberry-pi/</loc>

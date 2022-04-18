@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ja"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><title>ZUTOMAYO FACTORY「鷹は飢えても踊り忘れず」で表示されていたプログラムについて - nownab.log</title><link rel="alternate" type="application/rss+xml" href="https://blog.nownabe.com/feed.xml" title="nownab.log">
+
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/ress.min.css">
+  <link rel="stylesheet" href="/css/chroma.css"><link rel="stylesheet" href="/css/main.min.08e5db8e5d7ea2cf6c0d455756e0098f6341907c8ee253c4c161b7e1ca7cd556.css" integrity="sha256-COXbjl1&#43;os9sDUVXVuAJj2NBkHyO4lPEwWG34cp81VY=">
+
+  <meta name="author" content="nownabe">
+  <meta name="description" content="the nownabe&#39;s life log">
+
+  <meta property="og:site_name" content="nownab.log">
+  <meta property="og:type" content="article">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:site" content="@nownabe">
+  <meta property="twitter:creator" content="@nownabe">
+
+  <meta property="fb:app_id" content="1775541316016693"><meta property="og:url" content="https://blog.nownabe.com/2022/04/18/zfactory-programs/">
+  <meta property="og:title" content="ZUTOMAYO FACTORY「鷹は飢えても踊り忘れず」で表示されていたプログラムについて - nownab.log">
+  <meta property="og:description" content="はじめに ずっと真夜中でいいのに。のライブ Z FACTORY「鷹は飢えても踊り忘れず」 に参加してきました。ライブはもうただただ最高だったので感想"><meta property="og:image" content="https://blog.nownabe.com/images/2022/04/18/3.png"><meta property="twitter:title" content="ZUTOMAYO FACTORY「鷹は飢えても踊り忘れず」で表示されていたプログラムについて - nownab.log">
+  <meta property="twitter:description" content="はじめに ずっと真夜中でいいのに。のライブ Z FACTORY「鷹は飢えても踊り忘れず」 に参加してきました。ライブはもうただただ最高だったので感想">
+  <meta property="twitter:image" content="https://blog.nownabe.com/images/2022/04/18/3.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PWWXNZ0XM3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-PWWXNZ0XM3');
+  </script>
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-37580164-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+<body>
+  <div id="site-container"><div id="header-container">
+  <header class="container">
+    <h1>
+      <a href="/">
+        nownab.log
+      </a>
+    </h1>
+  </header>
+</div>
+<div id="content-container">
+      <div class="container" role="main">
+<article class="article-container">
+  <div class="title">
+    <h2><a href="https://blog.nownabe.com/2022/04/18/zfactory-programs/">ZUTOMAYO FACTORY「鷹は飢えても踊り忘れず」で表示されていたプログラムについて</a></h2>
+    <span class="date">Posted on Apr 18, 2022</span>
+  </div>
+  <div class="article-columns">
+    <div class="article-content">
+      <div class="body">
+        <h2 id="はじめに">はじめに</h2>
+<p>ずっと真夜中でいいのに。のライブ <a href="https://zutomayo.net/live/21/">Z FACTORY「鷹は飢えても踊り忘れず」</a> に参加してきました。ライブはもうただただ最高だったので感想も書きたいところですが、この記事ではライブに関連して現れたプログラムについて調べてみようと思います。また、できるだけプログラマーではなくてもわかるように噛み砕いて説明します。</p>
+<h2 id="注意点">注意点</h2>
+<p>私は歌詞やMVの考察はできないので、本記事で取り扱うのはあくまでもプログラムや<a href="http://ihihi.me/">ZTMY LEAKS</a>から読み取れる内容だけです。また、PHPについては素人同然なので的外れな部分があるかもしれませんがご了承ください。</p>
+<h2 id="ライブで現れた-3-つのプログラム">ライブで現れた 3 つのプログラム</h2>
+<p>私が確認できた範囲では今回のライブで3つのプログラムがあったようです。</p>
+<ul>
+<li>バナー画像のプログラム</li>
+<li>[day1 &ldquo;memory_limit = -1&rdquo;] のプログラム</li>
+<li>[day2 &ldquo;ob_start&rdquo;] のプログラム</li>
+</ul>
+<p>以下ではそれぞれについて調べてみます。[day1 &ldquo;memory_limit = -1&rdquo;] のプログラムと [day2 &ldquo;ob_start&rdquo;] のプログラムは非常に似ていますが、おそらくずとまよにおけるストーリーや世界観の中で重要な役割を持つ変更が追加されているので別のプログラムとして取り上げます。</p>
+<h2 id="バナー画像のプログラム">バナー画像のプログラム</h2>
+<p>1つ目は「バナー画像のプログラム」です。
+このプログラムはずとまよの<a href="https://zutomayo.net/live/21/">公式サイト</a>やグッズパンフレットの画像の中に登場しています。</p>
+<p><a href="/images/2022/04/18/1.jpg"><img src="/images/2022/04/18/1.jpg" alt="1"></a></p>
+<p><img src="/images/2022/04/18/2.jpg" alt="product lineup"></p>
+<p>バナーのプログラムは JavaScript というプログラミング言語で書かれています。
+JavaScript は Web サイトでよく使われるプログラミング言語で、バナーのプログラムも実際に<a href="https://zutomayo.net/">ずとまよ公式サイト</a>で使われている JavaScript プログラムから引用されています。
+例えば公式サイトのトップページでは再生ボタンをクリックしたらYouTubeの動画を再生できたり、お知らせウィンドウを移動できたりしますが、そういった部分の制御にこのプログラムが利用されています。</p>
+<p><img src="/images/2022/04/18/3.png" alt="3"></p>
+<p>公式サイトで使われている JavaScript プログラムの一部に次のような部分があります。(プログラム全文は<a href="https://zutomayo.net/themes/zutomayo/_assets/js/common.js?22021803">こちら</a>から確認できます)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript">  <span class="kd">var</span> <span class="nx">TopAnim</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+
+    <span class="kr">const</span> <span class="nx">topObj</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#articletop&#34;</span><span class="p">);</span>
+    <span class="kr">const</span> <span class="mi">_</span><span class="nx">menu</span> <span class="o">=</span> <span class="nx">topObj</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s2">&#34;.ztmy-top--nav li a span&#34;</span><span class="p">);</span>
+    <span class="kr">const</span> <span class="mi">_</span><span class="nx">news</span> <span class="o">=</span> <span class="nx">topObj</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s2">&#34;.ztmy-top--news&#34;</span><span class="p">);</span>
+    <span class="kr">const</span> <span class="mi">_</span><span class="nx">mv</span> <span class="o">=</span> <span class="nx">topObj</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s2">&#34;.ztmy-top--mv&#34;</span><span class="p">);</span>
+    <span class="c1">// const _rule = CSSRulePlugin.getRule(&#34;.ztmy-top--nav li a:before&#34;);
+</span><span class="c1"></span>
+    <span class="k">return</span><span class="p">{</span>
+        <span class="nx">Init</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">url</span><span class="p">){</span>
+
+          <span class="kr">const</span> <span class="nx">tl</span> <span class="o">=</span> <span class="nx">gsap</span><span class="p">.</span><span class="nx">timeline</span><span class="p">();</span>
+
+          <span class="c1">// tl.staggerTo(_rule, 0.3, {cssRule: {width: &#34;100%&#34;},delay: 0.5,stagger: 0.3});
+</span><span class="c1"></span>          <span class="c1">// tl.staggerTo(_rule, 0.2, {cssRule: {left: &#34;100%&#34;,width:0},delay: 0.2,stagger: 0.3});
+</span><span class="c1"></span>          <span class="nx">gsap</span><span class="p">.</span><span class="nx">to</span><span class="p">(</span><span class="mi">_</span><span class="nx">menu</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="p">{</span><span class="nx">width</span><span class="o">:</span> <span class="s2">&#34;100%&#34;</span><span class="p">,</span><span class="nx">delay</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span><span class="nx">stagger</span><span class="o">:</span> <span class="mf">0.1</span><span class="p">,</span><span class="nx">ease</span><span class="o">:</span> <span class="nx">Power2</span><span class="p">.</span><span class="nx">easeInOut</span><span class="p">});</span>
+
+          <span class="k">if</span><span class="p">(</span><span class="nx">isSmartPhone</span><span class="p">()){</span>
+            <span class="nx">gsap</span><span class="p">.</span><span class="nx">to</span><span class="p">(</span><span class="mi">_</span><span class="nx">news</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="p">{</span> <span class="nx">opacity</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">scale</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="nx">delay</span><span class="o">:</span> <span class="mf">0.5</span><span class="p">,</span><span class="nx">stagger</span><span class="o">:</span> <span class="mf">0.3</span><span class="p">,</span><span class="nx">ease</span><span class="o">:</span> <span class="nx">Sine</span><span class="p">.</span><span class="nx">easeOut</span> <span class="p">});</span>
+          <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">gsap</span><span class="p">.</span><span class="nx">to</span><span class="p">(</span><span class="mi">_</span><span class="nx">news</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="p">{</span> <span class="nx">opacity</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">scale</span><span class="o">:</span><span class="mf">1.5</span><span class="p">,</span> <span class="nx">delay</span><span class="o">:</span> <span class="mf">0.5</span><span class="p">,</span><span class="nx">stagger</span><span class="o">:</span> <span class="mf">0.3</span><span class="p">,</span><span class="nx">ease</span><span class="o">:</span> <span class="nx">Sine</span><span class="p">.</span><span class="nx">easeOut</span> <span class="p">});</span>
+          <span class="p">}</span>
+
+          <span class="nx">gsap</span><span class="p">.</span><span class="nx">to</span><span class="p">(</span><span class="mi">_</span><span class="nx">mv</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">{</span><span class="nx">right</span><span class="o">:</span> <span class="mi">25</span><span class="p">,</span><span class="nx">delay</span><span class="o">:</span> <span class="mf">2.5</span><span class="p">,</span><span class="nx">ease</span><span class="o">:</span> <span class="nx">Power2</span><span class="p">.</span><span class="nx">Back</span><span class="p">});</span>
+
+          <span class="c1">// var tl = gsap.timeline({ repeat: -1, yoyo: true });
+</span><span class="c1"></span>
+          <span class="c1">// tl.staggerTo(_rule, 1, {
+</span><span class="c1"></span>          <span class="c1">//   cssRule: { left: 100 },
+</span><span class="c1"></span>          <span class="c1">//   ease: Power2.easeInOut
+</span><span class="c1"></span>          <span class="c1">// }, 0.5);
+</span><span class="c1"></span>        <span class="p">}</span>
+      <span class="p">}</span>
+  <span class="p">})();</span>
+</code></pre></div><p>このプログラムはバナー画像の左列のプログラムと一致します。真ん中の列、右の列も同じプログラムの別の箇所が引用されています。</p>
+<p>ただし、公式サイトのプログラムとまったく同じではなく、バナーのプログラムには3つの英文と2つのことわざが追加されています。
+これらは引用元のプログラムにはなく、JavaScript の文法にも違反していることから画像のために追加されていることがわかります。</p>
+<ul>
+<li>[左列] Every second is of infinite value. (一秒一秒には無限の価値がある)</li>
+<li>[中列] Forever is composed of nows. (永遠は多くの今で構成される)</li>
+<li>[右列] It is not that we have a short time to live, but that we waste a lot of it. (生きる時間が短いということではなく、多くの時間を無駄にしているのである)</li>
+<li>雀百まで踊り忘れず (右列)</li>
+<li>鷹は飢えても穂を摘まず (右列)</li>
+</ul>
+<p>ことわざは今回のライブタイトルの元ネタでしょう。
+3つの英文は後述する [day1 &ldquo;memory_limit = -1&rdquo;] のプログラムと [day2 &ldquo;ob_start&rdquo;] のプログラムの内容とも一致します。
+そのため、ライブのテーマとして重要な意味を持つことが推測できます。
+ACAねさんのMCとも関連しているように思えます。</p>
+<h2 id="day1-memory_limit---1-のプログラム">[day1 &ldquo;memory_limit = -1&rdquo;] のプログラム</h2>
+<p>私が参戦したのは2日目だったので直接確認したわけではありませんが、ライブ開始前のディスプレイに表示されていたようです。
+また、ZTMY LEAKS にも 1日目 (2022年4月16日) に <a href="http://ihihi.me/?p=108">memory_limit = -1</a> というタイトルで、ディスプレイと同じものと思われるプログラムが投稿されています。</p>
+<p>ZTMY LEAKS から引用したプログラムの全文はこちらです。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="nv">$we</span> <span class="o">=</span> <span class="nx">Worker</span><span class="o">::</span><span class="na">getWorking</span><span class="p">();</span> <span class="c1">// 私達は存在している。
+</span><span class="c1"></span><span class="nx">define</span><span class="p">(</span><span class="nx">People</span><span class="o">::</span><span class="na">lifetime</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">every_second</span><span class="p">,</span> <span class="nx">INFINIT_VALUE</span><span class="p">);</span> <span class="c1">// 1秒1秒には無限の価値がある。
+</span><span class="c1"></span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$we</span><span class="o">-&gt;</span><span class="na">think</span><span class="p">(</span><span class="nx">People</span><span class="o">::</span><span class="na">lifetime</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">length</span> <span class="o">&gt;</span> <span class="nv">$we</span><span class="o">-&gt;</span><span class="na">lifetime</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">expected</span><span class="p">))</span> <span class="p">{</span> <span class="c1">// 私達の生きる時間が短いのではなく、
+</span><span class="c1"></span>  <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="nv">$we</span><span class="o">-&gt;</span><span class="na">die</span><span class="p">())</span> <span class="p">{</span> <span class="nv">$we</span><span class="o">-&gt;</span><span class="na">setRole</span><span class="p">(</span><span class="nx">Role</span><span class="o">::</span><span class="na">MACHINES</span><span class="p">);</span> <span class="p">}</span> <span class="c1">// 私達がその多くを無駄にしているのだ。
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="nv">$forever</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Forever</span><span class="p">([</span> <span class="c1">// 永遠は、いくつもの現在から成り立っている。
+</span><span class="c1"></span>  <span class="s2">&#34;params&#34;</span> <span class="o">=&gt;</span> <span class="nx">array_map</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nv">$someone</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$someone</span><span class="o">-&gt;</span><span class="na">lifetime</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">now</span><span class="p">;</span>
+  <span class="p">},</span> <span class="nv">$we</span><span class="p">)</span>
+<span class="p">]))</span><span class="o">-&gt;</span><span class="na">compose</span><span class="p">();</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="nv">$forever</span><span class="o">-&gt;</span><span class="na">night</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// どんな夜も、私達は踊り続ける。
+</span><span class="c1"></span>  <span class="nv">$we</span><span class="o">-&gt;</span><span class="na">dance</span><span class="p">(</span><span class="nx">Mode</span><span class="o">::</span><span class="na">DIGINIFIEDLY</span><span class="p">);</span> <span class="c1">// 尊厳を持ち、
+</span><span class="c1"></span>  <span class="nv">$we</span><span class="o">-&gt;</span><span class="na">dance</span><span class="p">(</span><span class="nx">Mode</span><span class="o">::</span><span class="na">COURTEOUSLY</span><span class="p">);</span> <span class="c1">// 礼節を重んじ、
+</span><span class="c1"></span>  <span class="nv">$we</span><span class="o">-&gt;</span><span class="na">dance</span><span class="p">(</span><span class="nx">Mode</span><span class="o">::</span><span class="na">TENACIOUSLY</span><span class="p">);</span> <span class="c1">// 粘り強く。
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="nx">assertSame</span><span class="p">(</span><span class="nx">TONIGHT</span><span class="p">,</span> <span class="nv">$forever</span><span class="o">-&gt;</span><span class="na">night</span><span class="p">());</span> <span class="c1">// この夜もそうでなければならない。
+</span><span class="c1"></span>
+<span class="sd">/** 2022.04.16 */</span>
+<span class="nx">memory_limit</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div><p>このプログラムは PHP というプログラミング言語で書かれています。
+PHP は Web サイトでよく使われる言語で、ずとまよの公式サイトやZTMY LEAKSでもPHPが使われているようです<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。例えばZUTOMAYO PREMIUMのログイン処理などで使われていると考えられます。</p>
+<p>また、この ZTMY LEAKS の記事に John Titer が次のように返信しています。</p>
+<blockquote>
+<p>時代は末期。そこは「灰版電機工業㈱」が権威を奮う世界。抑圧され感情が乏しくなった工場職員が労働を続けている。――。ふと電撃が走る。それに呼応して現れた見た事のない機械を構える職員、時空の歪み、別世界線との交差。工場のレーンにはこの世界にないものが流れ、やがて混ぜられた。そこには感情(bug)を持つ”人間”という種が生成された。</p>
+<p>memory_limit = -1</p>
+<p>感情(bug)の連鎖が始まる。工場職員たちも自分のメモリを開放し、世界に抗う。</p>
+<p>――。</p>
+</blockquote>
+<p>灰版電機工業は<a href="https://youtu.be/ugpywe34_30">勘ぐれい</a>、<a href="https://youtu.be/ouLndhBRL4w">Ham</a>、<a href="https://youtu.be/9PnCSI8ndws">袖のキルト</a>のMVに登場しています。</p>
+<h3 id="プログラムの解説">プログラムの解説</h3>
+<p>ここからプログラムを読み解いていきたいと思います。</p>
+<h4 id="前提">前提</h4>
+<p>まず、大きな前提として、プログラムとプログラムではない部分について理解しておく必要があります。
+例えば、1行目は次のように <code>//</code> で区切られています。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="nv">$we</span> <span class="o">=</span> <span class="nx">Worker</span><span class="o">::</span><span class="na">getWorking</span><span class="p">();</span> <span class="c1">// 私達は存在している。
+</span></code></pre></div><p><code>//</code> より右側の部分は「コメント」と呼ばれ、プログラム的な意味は持ちません。
+左側のPHPプログラムを読む人が理解しやすいように、日本語で補足をするコメントが書かれています。
+また、下から2行目の <code>/** 2022.04.16 */</code> もコメントです。</p>
+<h4 id="プログラムの内容">プログラムの内容</h4>
+<p>では1行ずつ見ていきます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="nv">$we</span> <span class="o">=</span> <span class="nx">Worker</span><span class="o">::</span><span class="na">getWorking</span><span class="p">();</span> <span class="c1">// 私達は存在している。
+</span></code></pre></div><p><code>$we</code> は変数と呼ばれ、データを格納します。例えば、<code>$pi = 3.14;</code> とすれば <code>$pi</code> 変数には <code>3.14</code> という数字が格納されます。</p>
+<p><code>Worker::getWorking()</code> は、全Workerのうち動いている (workingな) Workerを取得 (get) します。そのため、<code>$we</code> 変数には現在動作している Worker 全員のデータが格納されます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="nx">define</span><span class="p">(</span><span class="nx">People</span><span class="o">::</span><span class="na">lifetime</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">every_second</span><span class="p">,</span> <span class="nx">INFINIT_VALUE</span><span class="p">);</span> <span class="c1">// 1秒1秒には無限の価値がある。
+</span></code></pre></div><p><code>define(A, B)</code>はAをBとして定義します。例えば、<code>define(PI, 3.14)</code> とすれば <code>PI</code> が <code>3.14</code> として定義されるので、その後のプログラムでは <code>PI</code> を <code>3.14</code> と同じ意味で使うことができるようになります。</p>
+<p>ここでは、<code>People::lifetime()-&gt;every_second</code> (人間の一生の一秒一秒) を <code>INFINIT_VALUE</code> (無限の価値) として定義しています。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="k">if</span> <span class="p">(</span><span class="nv">$we</span><span class="o">-&gt;</span><span class="na">think</span><span class="p">(</span><span class="nx">People</span><span class="o">::</span><span class="na">lifetime</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">length</span> <span class="o">&gt;</span> <span class="nv">$we</span><span class="o">-&gt;</span><span class="na">lifetime</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">expected</span><span class="p">))</span> <span class="p">{</span> <span class="c1">// 私達の生きる時間が短いのではなく、
+</span><span class="c1"></span>  <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="nv">$we</span><span class="o">-&gt;</span><span class="na">die</span><span class="p">())</span> <span class="p">{</span> <span class="nv">$we</span><span class="o">-&gt;</span><span class="na">setRole</span><span class="p">(</span><span class="nx">Role</span><span class="o">::</span><span class="na">MACHINES</span><span class="p">);</span> <span class="p">}</span> <span class="c1">// 私達がその多くを無駄にしているのだ。
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>こちらはこのブロックでひとつの意味を成すプログラムですが、少し複雑なので日本語で表現してみます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">もしも (私達はこう考えるならば (人類の一生の長さ より 私達の一生の期待 が短いと)) {
+  死ぬまで繰り返す { 私達に役割を与える 機械であるという }
+}
+</code></pre></div><p>ここで、「私達」と表現しているのは <code>$we</code> であり、現在動いている Worker 全員を意味します。
+これをさらに日本語として意訳するとこんな感じでしょうか。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">もし、私達が人類の一生より自分たちの一生が短いと考えるならば、死ぬまで機械であることを繰り返す。
+</code></pre></div><p>プログラムの解釈としてはこうなりますが、意味したいところは「もし、自分たちの一生が短いと感じるのであれば、それは機械のように過ごすことを繰り返しているのだ」ということかなのかもしれません。
+こう解釈すると、コメントの「私達の生きる時間が短いのではなく、私達がその多くを無駄にしているのだ。」が理解できる気がします。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="nv">$forever</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Forever</span><span class="p">([</span> <span class="c1">// 永遠は、いくつもの現在から成り立っている。
+</span><span class="c1"></span>  <span class="s2">&#34;params&#34;</span> <span class="o">=&gt;</span> <span class="nx">array_map</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nv">$someone</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$someone</span><span class="o">-&gt;</span><span class="na">lifetime</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">now</span><span class="p">;</span>
+  <span class="p">},</span> <span class="nv">$we</span><span class="p">)</span>
+<span class="p">]))</span><span class="o">-&gt;</span><span class="na">compose</span><span class="p">();</span>
+</code></pre></div><p>こちらも複雑なのですが、キーとなるのは中心にあるこの部分です。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="nx">array_map</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nv">$someone</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nv">$someone</span><span class="o">-&gt;</span><span class="na">lifetime</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">now</span><span class="p">;</span>
+<span class="p">},</span> <span class="nv">$we</span><span class="p">)</span>
+</code></pre></div><p>こちらは、<code>$we</code> のそれぞれ、つまり、それぞれの Worker の「今」を列挙するというプログラムになっています。
+これを使いつつ、意味が変わらないようにわかりやすくプログラムを書き換えると次のように成ります。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="nv">$forever</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Forever</span><span class="p">(</span><span class="nx">それぞれの</span> <span class="nx">Worker</span> <span class="nx">の今</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">compose</span><span class="p">()</span>
+</code></pre></div><p>さらに日本語で書き換えるとこうなります。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="nv">$forever</span> <span class="o">=</span> <span class="nx">「それぞれの</span> <span class="nx">Worker</span> <span class="nx">の今」から永遠を構成する</span>
+</code></pre></div><p>つまり、<code>$forever</code> 変数には現在動いているWorkerそれぞれの今から構成された永遠が格納されます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="k">while</span> <span class="p">(</span><span class="nv">$forever</span><span class="o">-&gt;</span><span class="na">night</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// どんな夜も、私達は踊り続ける。
+</span><span class="c1"></span>  <span class="nv">$we</span><span class="o">-&gt;</span><span class="na">dance</span><span class="p">(</span><span class="nx">Mode</span><span class="o">::</span><span class="na">DIGINIFIEDLY</span><span class="p">);</span> <span class="c1">// 尊厳を持ち、
+</span><span class="c1"></span>  <span class="nv">$we</span><span class="o">-&gt;</span><span class="na">dance</span><span class="p">(</span><span class="nx">Mode</span><span class="o">::</span><span class="na">COURTEOUSLY</span><span class="p">);</span> <span class="c1">// 礼節を重んじ、
+</span><span class="c1"></span>  <span class="nv">$we</span><span class="o">-&gt;</span><span class="na">dance</span><span class="p">(</span><span class="nx">Mode</span><span class="o">::</span><span class="na">TENACIOUSLY</span><span class="p">);</span> <span class="c1">// 粘り強く。
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p><code>while (条件) { プログラム }</code> は条件が正しい限り <code>{}</code> で囲われたプログラムを繰り返すという意味になります。</p>
+<p><code>$we-&gt;dance(モード)</code> は指定されたモードで Worker 達が踊るという意味でしょう。モードには少なくとも<code>DIGINIFIEDLY</code> (dignifiedlyのミススペル？威厳のある、高貴な)、<code>COURTEOUSLY</code> (礼儀正しく)、<code>TENACIOUSLY</code> (粘り強く)という3つのモードがあるようです。</p>
+<p>なのでこのブロックは「永遠に夜がある限り高貴に踊り、礼儀正しく踊り、粘り強く踊ることを繰り返す」という意味になります。
+<code>$forever-&gt;night()</code>が具体的には何なのかによりますが、別の言い方をするとWorker達は夜が来る限り踊り続けることを止められないということになります。
+これより後ろにプログラムが続いていることから <code>$forever-&gt;night()</code> には終わりが来るということが推測できます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="nx">assertSame</span><span class="p">(</span><span class="nx">TONIGHT</span><span class="p">,</span> <span class="nv">$forever</span><span class="o">-&gt;</span><span class="na">night</span><span class="p">());</span> <span class="c1">// この夜もそうでなければならない。
+</span></code></pre></div><p><code>assertSame(A, B)</code> は <code>A</code> と <code>B</code> が等しいことを確認するためのものです。
+もし <code>A</code> と <code>B</code> が異なればエラーを報告します。
+つまりこのプログラムは <code>TONIGHT</code> と <code>$forever-&gt;night()</code> が等しいことを確認しています。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="sd">/** 2022.04.16 */</span>
+<span class="nx">memory_limit</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div><p>ようやく最後のパートです。
+<code>/** 2022.04.16 */</code> はコメントでありプログラム的な意味はないのですが、<code>memory_limit = -1</code> というプログラムを書き足した日付、もしくはこのプログラム全体を書いた日付ではないかと思います。
+プログラミングの世界では、プログラムを書いたときにその時の日付をコメントとして残す文化が存在します。</p>
+<p><code>memory_limit = -1</code> はプログラムに割り当てるメモリの上限を外す、つまり無制限にメモリを使えるようにするという意味です。</p>
+<p>パソコンやスマホのメモリがいっぱいになって動作が重くなったという経験を持つ人もいると思います。あるプログラムがメモリを使いすぎるとコンピュータ全体が重くなったり、他のプログラムが動作しなくなったりします。それを防ぐためにプログラムが使えるメモリの最大値を設定できるようになっているのですが、このプログラムではその制限外しています。</p>
+<h3 id="気になるポイント">気になるポイント</h3>
+<p>John Titer の記事に対する返信を再度引用します。</p>
+<blockquote>
+<p>時代は末期。そこは「灰版電機工業㈱」が権威を奮う世界。抑圧され感情が乏しくなった工場職員が労働を続けている。――。ふと電撃が走る。それに呼応して現れた見た事のない機械を構える職員、時空の歪み、別世界線との交差。工場のレーンにはこの世界にないものが流れ、やがて混ぜられた。そこには感情(bug)を持つ”人間”という種が生成された。</p>
+<p>memory_limit = -1</p>
+<p>感情(bug)の連鎖が始まる。工場職員たちも自分のメモリを開放し、世界に抗う。</p>
+<p>――。</p>
+</blockquote>
+<ul>
+<li>Worker は灰版電機工業の感情が乏しくなった工場職員のことか？</li>
+<li>People は感情(bug)を持つ&quot;人間&quot;のことか？</li>
+<li><code>$forever-&gt;night()</code> に終わりは来るのか？来るとしたら終わりとは何か？</li>
+<li>感情を持ち&quot;人間&quot;になった結果、2022年4月16日に<code>memory_limit = -1</code> を設定して世界(灰版電機工業？)に抗ったのか？</li>
+</ul>
+<h2 id="day2-ob_start-のプログラム">[day2 &ldquo;ob_start&rdquo;] のプログラム</h2>
+<p>私が参戦したのは2日目だったんですが、ディスプレイは遠くて見えなかったのでこれも直接確認したわけではありません。
+day1と同じく <a href="http://ihihi.me/?p=110">ZTMY LEAKS</a> にプログラムが投稿されています。</p>
+<p>ZTMY LEAKSから引用したプログラム全文はこちらです。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="nv">$we</span> <span class="o">=</span> <span class="nx">Worker</span><span class="o">::</span><span class="na">getWorking</span><span class="p">();</span> <span class="c1">// 私達は存在している。
+</span><span class="c1"></span><span class="nx">define</span><span class="p">(</span><span class="nx">People</span><span class="o">::</span><span class="na">lifetime</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">every_second</span><span class="p">,</span> <span class="nx">INFINIT_VALUE</span><span class="p">);</span> <span class="c1">// 1秒1秒には無限の価値がある。
+</span><span class="c1"></span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$we</span><span class="o">-&gt;</span><span class="na">think</span><span class="p">(</span><span class="nx">People</span><span class="o">::</span><span class="na">lifetime</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">length</span> <span class="o">&gt;</span> <span class="nv">$we</span><span class="o">-&gt;</span><span class="na">lifetime</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">expected</span><span class="p">))</span> <span class="p">{</span> <span class="c1">// 私達の生きる時間が短いのではなく、
+</span><span class="c1"></span><span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="nv">$we</span><span class="o">-&gt;</span><span class="na">die</span><span class="p">())</span> <span class="p">{</span> <span class="nv">$we</span><span class="o">-&gt;</span><span class="na">setRole</span><span class="p">(</span><span class="nx">Role</span><span class="o">::</span><span class="na">MACHINES</span><span class="p">);}</span> <span class="c1">// 私達がその多くを無駄にしているのだ。
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="nv">$forever</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Forever</span><span class="p">([</span> <span class="c1">// 永遠は、いくつもの現在から成り立っている。
+</span><span class="c1"></span><span class="nx">“params”</span> <span class="o">=&gt;</span> <span class="nx">array_map</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nv">$someone</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">return</span> <span class="nv">$someone</span><span class="o">-&gt;</span><span class="na">lifetime</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">now</span><span class="p">;</span>
+<span class="p">},</span> <span class="nv">$we</span><span class="p">)</span>
+<span class="p">]))</span><span class="o">-&gt;</span><span class="na">compose</span><span class="p">();</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="nv">$forever</span><span class="o">-&gt;</span><span class="na">night</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// どんな夜も、私達は踊り続ける。
+</span><span class="c1"></span><span class="nv">$we</span><span class="o">-&gt;</span><span class="na">dance</span><span class="p">(</span><span class="nx">Mode</span><span class="o">::</span><span class="na">DIGINIFIEDLY</span><span class="p">);</span> <span class="c1">// 尊厳を持ち、
+</span><span class="c1"></span><span class="nv">$we</span><span class="o">-&gt;</span><span class="na">dance</span><span class="p">(</span><span class="nx">Mode</span><span class="o">::</span><span class="na">COURTEOUSLY</span><span class="p">);</span> <span class="c1">// 礼節を重んじ、
+</span><span class="c1"></span><span class="nv">$we</span><span class="o">-&gt;</span><span class="na">dance</span><span class="p">(</span><span class="nx">Mode</span><span class="o">::</span><span class="na">TENACIOUSLY</span><span class="p">);</span> <span class="c1">// 粘り強く。
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="nx">assertSame</span><span class="p">(</span><span class="nx">TONIGHT</span><span class="p">,</span> <span class="nv">$forever</span><span class="o">-&gt;</span><span class="na">night</span><span class="p">());</span> <span class="c1">// この夜もそうでなければならない。
+</span><span class="c1"></span>
+<span class="sd">/** 2022.04.16 */</span>
+<span class="nx">memory_limit</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+<span class="o">---</span> <span class="mi">2022</span><span class="o">-</span><span class="mo">04</span><span class="o">-</span><span class="mi">16</span><span class="nx">T19</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mo">00</span><span class="o">+</span><span class="mi">0900</span>
+<span class="o">+++</span> <span class="mi">2122</span><span class="o">-</span><span class="mo">04</span><span class="o">-</span><span class="mi">17</span><span class="nx">T19</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mo">00</span><span class="o">+</span><span class="mi">0900</span>
+
+<span class="nv">$we2</span> <span class="o">=</span> <span class="nx">Worker</span><span class="o">::</span><span class="na">getWorking</span><span class="p">();</span> <span class="c1">// 私達は生きている。
+</span><span class="c1"></span><span class="nx">assertFalse</span><span class="p">(</span><span class="nv">$we</span><span class="o">-&gt;</span><span class="na">place</span> <span class="o">==</span> <span class="nv">$we2</span><span class="o">-&gt;</span><span class="na">place</span><span class="p">);</span> <span class="c1">// たとえ生きる居場所が違くたって
+</span><span class="c1"></span><span class="nx">assertFalse</span><span class="p">(</span><span class="nv">$we</span><span class="o">-&gt;</span><span class="na">period</span> <span class="o">==</span> <span class="nv">$we2</span><span class="o">-&gt;</span><span class="na">period</span><span class="p">);</span> <span class="c1">// たとえ生きる時代が違くたって
+</span><span class="c1"></span><span class="nx">assertSame</span><span class="p">(</span><span class="nv">$we</span><span class="o">-&gt;</span><span class="na">enthusiasm</span><span class="p">,</span> <span class="nv">$we2</span><span class="o">-&gt;</span><span class="na">enthusiasm</span><span class="p">);</span> <span class="c1">// 私達の熱を決して奪うことは出来ない
+</span><span class="c1"></span><span class="cm">/* 2122.04.17 */</span>
+<span class="nx">ob_start</span><span class="p">();</span>
+</code></pre></div><p>day1のプログラムに8行が追加されています。</p>
+<p>また、この記事にはJohn Titerが次のように返信しています。</p>
+<blockquote>
+<p>――。</p>
+<p>100年が経過し、世界は様相を変えた。
+いつしか権威は崩落する。
+朽ち果て緑覆われた工場、そこにはかつての活気はない。
+しかし、限界を突破し感情(BUG)を得た職員達は過去の遺物を手に持ち演奏を続けていた。
+世界が変わったとしても。
+体、形が変わったとしても。
+誰にもその熱を奪うことはできなかった。</p>
+<p>“ob_start”</p>
+<p>――。ふと電撃が走り、工場は再び稼働を始める。
+新たな歪みが生まれ、それは何処かへ向かった。</p>
+</blockquote>
+<h3 id="プログラムの解説-1">プログラムの解説</h3>
+<p>day2は追加された部分のみ調べます。</p>
+<h4 id="表示について">表示について</h4>
+<p>まず、ZTMY LEAKSでは追加された部分は次のように表示されています。</p>
+<p><img src="/images/2022/04/18/4.png" alt="4"></p>
+<p>しかし、元のテキストは次のようなものだったのではないかと予想しています。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="gd">--- 2022-04-16T19:00:00+0900
+</span><span class="gd"></span><span class="gi">+++ 2122-04-17T19:00:00+0900
+</span><span class="gi"></span>
+<span class="gi">+ $we2 = Worker::getWorking(); // 私達は生きている。
+</span><span class="gi">+ assertFalse($we-&gt;place == $we2-&gt;place); // たとえ生きる居場所が違くたって
+</span><span class="gi">+ assertFalse($we-&gt;period == $we2-&gt;period); // たとえ生きる時代が違くたって
+</span><span class="gi">+ assertSame($we-&gt;enthusiasm, $we2-&gt;enthusiasm); // 私達の熱を決して奪うことは出来ない
+</span><span class="gi">+ /* 2122.04.17 */
+</span><span class="gi">+ ob_start();
+</span></code></pre></div><p>これは diff というもので、プログラムの修正前後の差分を表現をする方法です。もしかしたらライブ会場のディスプレイにはこれに近い形で表示されていたのかもしれません。</p>
+<p>なぜZTMY LEAKSではこのような形で表示されてしまったのかは定かではありませんが、ZTMY LEAKSで使われている WordPress というブログツールのエディタが勝手に変換してしまったのではないかと考えています。</p>
+<p>day2のプログラムが diff 形式で表現されていたとすると、これは「2022年4月16日のプログラムに対して、2122年4月17日に6行が追加された」ということを意味します。
+以下はその仮定の元で内容を見ていきます。</p>
+<h4 id="内容">内容</h4>
+<p>day1のプログラムと同様にひとつずつ見ていきます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="gd">--- 2022-04-16T19:00:00+0900
+</span><span class="gd"></span><span class="gi">+++ 2122-04-17T19:00:00+0900
+</span></code></pre></div><p>diff では <code>---</code> の後ろには変更前のプログラムが作成された日付、<code>+++</code> の後ろには変更した日付が書かれます。
+つまり、2022年4月16日に作成されたプログラムに対して2122年4月17日に変更を加えた、ということになります。
+2022年4月16日は<code>memory_limit = -1</code>を書き加えた日、2122年4月17日はその100年と1日後ですね。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="nv">$we2</span> <span class="o">=</span> <span class="nx">Worker</span><span class="o">::</span><span class="na">getWorking</span><span class="p">();</span> <span class="c1">// 私達は生きている。
+</span></code></pre></div><p>day1のプログラムにもありました。
+これを書き加えたのが100年後なので、<code>$we2</code> には100年後に生きている Worker 全員が格納されるイメージでしょうか。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="nx">assertFalse</span><span class="p">(</span><span class="nv">$we</span><span class="o">-&gt;</span><span class="na">place</span> <span class="o">==</span> <span class="nv">$we2</span><span class="o">-&gt;</span><span class="na">place</span><span class="p">);</span> <span class="c1">// たとえ生きる居場所が違くたって
+</span><span class="c1"></span><span class="nx">assertFalse</span><span class="p">(</span><span class="nv">$we</span><span class="o">-&gt;</span><span class="na">period</span> <span class="o">==</span> <span class="nv">$we2</span><span class="o">-&gt;</span><span class="na">period</span><span class="p">);</span> <span class="c1">// たとえ生きる時代が違くたって
+</span></code></pre></div><p><code>assertFalse(A == B)</code> は <code>A</code> と <code>B</code> が等しくないことを確認します。
+なので、ここでは次の2つの事実を確認しています。</p>
+<ul>
+<li><code>$we</code> と <code>$we2</code> の <code>place</code> (場所) が違うこと</li>
+<li><code>$we</code> と <code>$we2</code> の <code>priod</code> (時代) が違うこと</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="nx">assertSame</span><span class="p">(</span><span class="nv">$we</span><span class="o">-&gt;</span><span class="na">enthusiasm</span><span class="p">,</span> <span class="nv">$we2</span><span class="o">-&gt;</span><span class="na">enthusiasm</span><span class="p">);</span> <span class="c1">// 私達の熱を決して奪うことは出来ない
+</span></code></pre></div><p><code>assertSame</code> は一度でてきましたね。
+ここでは <code>$we</code> と <code>$we2</code> の <code>enthusiasm</code> (熱意) が等しいことを確認しています。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="cm">/* 2122.04.17 */</span>
+<span class="nx">ob_start</span><span class="p">();</span>
+</code></pre></div><p><code>/* 2122.04.17 */</code> は <code>memory_limit = -1</code> のときと同じように追加した日付をコメントしたものと考えられます。</p>
+<p><code>ob_start()</code> は本来のPHPでは少し複雑な意味を持つのですが、簡単に説明すると「今からアウトプットを初めますよ」という宣言になります。</p>
+<h3 id="気になるポイント-1">気になるポイント</h3>
+<p>再度 John Titer の返信を引用します。</p>
+<blockquote>
+<p>――。</p>
+<p>100年が経過し、世界は様相を変えた。
+いつしか権威は崩落する。
+朽ち果て緑覆われた工場、そこにはかつての活気はない。
+しかし、限界を突破し感情(BUG)を得た職員達は過去の遺物を手に持ち演奏を続けていた。
+世界が変わったとしても。
+体、形が変わったとしても。
+誰にもその熱を奪うことはできなかった。</p>
+<p>“ob_start”</p>
+<p>――。ふと電撃が走り、工場は再び稼働を始める。
+新たな歪みが生まれ、それは何処かへ向かった。</p>
+</blockquote>
+<ul>
+<li>時系列を整理するとこんな感じ？
+<ul>
+<li>灰版電機工業が権威を奮う世界</li>
+<li>感情(bug)を持つ&quot;人間&quot;が現れ、2022年4月16日に <code>memory_limit = -1</code> して世界に抗う</li>
+<li>なんだかんだで灰版電機工業の権威が崩落して向上は朽ち果てる</li>
+<li>2122年4月17日に工場が再稼働して <code>ob_start()</code> する</li>
+</ul>
+</li>
+<li><a href="https://youtu.be/9PnCSI8ndws">袖のキルト</a>のMVが2122年4月17日だろうか？</li>
+<li><code>ob_start()</code>にはこれからアウトプットを始めるよ、活動を始めるよ、という意味が込められている？</li>
+</ul>
+<h2 id="おわりに">おわりに</h2>
+<p>以上です。</p>
+<p>本記事ではプログラムをプログラムとして理解するということを試みましたが、厳密にプログラムとして解釈するのではなくこのプログラムはどういう意図があって書かれたのか、ということを考えることが重要だと感じました。</p>
+<p>実はプログラミングという作業はプログラムを書く時間より読む時間の方が多いです。そして、読むときには表面上の意味だけでなく、どういう背景があり、書いた人がどういう意図で、どういう気持ちで書いたのか、という情報を収集・推測しながら読むことが非常に重要になります。
+今回はその対象がずとまよの世界観であり、非常に楽しくプログラムを読むことができました。</p>
+<p>もしこの記事を最後まで読んでくれた方で(いるのか？)、このMVを見ればこういうことも考えられるかも、とかこういう解釈があるかも、という情報があればぜひ教えてください。</p>
+<p>あと最後にもう一度、ライブ最高でした！！！！！ありがとう！！！</p>
+<p>テクノプアのチケットも当たってくれ〜〜〜〜 🙏 🙏 🙏
+というわけでZUTOMAYO PREMIUMに入会しました。</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>PHP の場合は JavaScript と違って直接プログラムを確認することはできません。しかし、URLやHTTPのレスポンスを手がかりにしてPHPが使われていることが推測できます。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+      </div>
+    </div>
+    <div class="article-toc-container">
+      <aside class="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#はじめに">はじめに</a></li>
+    <li><a href="#注意点">注意点</a></li>
+    <li><a href="#ライブで現れた-3-つのプログラム">ライブで現れた 3 つのプログラム</a></li>
+    <li><a href="#バナー画像のプログラム">バナー画像のプログラム</a></li>
+    <li><a href="#day1-memory_limit---1-のプログラム">[day1 &ldquo;memory_limit = -1&rdquo;] のプログラム</a>
+      <ul>
+        <li><a href="#プログラムの解説">プログラムの解説</a></li>
+        <li><a href="#気になるポイント">気になるポイント</a></li>
+      </ul>
+    </li>
+    <li><a href="#day2-ob_start-のプログラム">[day2 &ldquo;ob_start&rdquo;] のプログラム</a>
+      <ul>
+        <li><a href="#プログラムの解説-1">プログラムの解説</a></li>
+        <li><a href="#気になるポイント-1">気になるポイント</a></li>
+      </ul>
+    </li>
+    <li><a href="#おわりに">おわりに</a></li>
+  </ul>
+</nav>
+      </aside>
+    </div>
+  </div>
+</article>
+
+      </div>
+    </div>
+
+    <div id="navigation-container">
+      <div class="container">
+
+<div id="footer-navigation">
+  <div id="next-prev">
+    <div><a href="https://blog.nownabe.com/2022/04/06/home-k3s-bulding-cluster/">&lt; おうち k3s - クラスタ構築編</a></div>
+    <div></div>
+  </div>
+  <div id="related-articles"></div>
+  <div id="sns-buttons">
+    <ul>
+      <li>
+        <div class="twitter-button">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+        </div>
+      </li>
+      <li>
+        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      </li>
+      <li>
+        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+        </a>
+      </li>
+      <li>
+        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+      </div>
+    </div><div id="container">
+  <div id="footer-container">
+    <div id="author">
+      <p>
+        <a href="https://nownabe.com">
+          <img src="/img/profile_icon_2020.png" alt="profile icon">
+        </a>
+      </p>
+      <div>
+        <p class="name"><a href="https://nownabe.com">Shawn Watanabe</a></p>
+        <p>
+          A dog lover and a software engineer.
+          I now work as a Customer Engineer at Google Cloud in Japan.
+        </p>
+        <p>
+          Opinions are my own, NOT views of my employer.
+        </p>
+      </div>
+    </div>
+    <footer>
+      <p class="copyright">
+        Copyright &copy; 2016 nownabe All Right Reserved.
+      </p>
+    </footer>
+  </div>
+</div>
+<div id="fb-root"></div>
+  </div>
+  <script>
+    
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1775541316016693";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+
+  </script>
+  <script src="https://b.st-hatena.com/js/bookmark_button.js" async="async"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      anchors.add(".body h1, .body h2, .body h3");
+    });
+  </script>
+</body>
+</html>
