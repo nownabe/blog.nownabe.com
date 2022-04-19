@@ -13,7 +13,8 @@ module.exports = {
       "ja-space-around-code": {
         "before": true,
         "after": true
-      }
+      },
+      "textlint-rule-ja-no-space-around-parentheses": false
     },
 
     // https://github.com/textlint-ja/textlint-rule-preset-ja-technical-writing
