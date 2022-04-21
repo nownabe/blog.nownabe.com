@@ -3,10 +3,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://blog.nownabe.com/2022/</loc>
-    <lastmod>2022-04-19T22:38:00+09:00</lastmod>
+    <lastmod>2022-04-21T22:55:21+09:00</lastmod>
   </url><url>
     <loc>https://blog.nownabe.com/</loc>
-    <lastmod>2022-04-19T22:38:00+09:00</lastmod>
+    <lastmod>2022-04-21T22:55:21+09:00</lastmod>
+  </url><url>
+    <loc>https://blog.nownabe.com/2022/04/21/php-ob-start/</loc>
+    <lastmod>2022-04-21T22:55:21+09:00</lastmod>
+  </url><url>
+    <loc>https://blog.nownabe.com/tags/php/</loc>
+    <lastmod>2022-04-21T22:55:21+09:00</lastmod>
+  </url><url>
+    <loc>https://blog.nownabe.com/tags/</loc>
+    <lastmod>2022-04-21T22:55:21+09:00</lastmod>
   </url><url>
     <loc>https://blog.nownabe.com/2022/04/18/zfactory-programs/</loc>
     <lastmod>2022-04-19T22:38:00+09:00</lastmod>
@@ -18,9 +27,6 @@
     <lastmod>2022-04-06T21:06:40+09:00</lastmod>
   </url><url>
     <loc>https://blog.nownabe.com/tags/raspberry-pi/</loc>
-    <lastmod>2022-04-06T21:06:40+09:00</lastmod>
-  </url><url>
-    <loc>https://blog.nownabe.com/tags/</loc>
     <lastmod>2022-04-06T21:06:40+09:00</lastmod>
   </url><url>
     <loc>https://blog.nownabe.com/2022/04/06/home-k3s-bulding-cluster/</loc>

@@ -6,7 +6,16 @@
     <description>Recent content in 2022s on nownab.log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Mon, 18 Apr 2022 23:41:48 +0900</lastBuildDate><atom:link href="https://blog.nownabe.com/2022/feed.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Apr 2022 22:55:21 +0900</lastBuildDate><atom:link href="https://blog.nownabe.com/2022/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ob_start についての補足</title>
+      <link>https://blog.nownabe.com/2022/04/21/php-ob-start/</link>
+      <pubDate>Thu, 21 Apr 2022 22:55:21 +0900</pubDate>
+      
+      <guid>https://blog.nownabe.com/2022/04/21/php-ob-start/</guid>
+      <description>はじめに 先日 ZUTOMAYO FACTORY「鷹は飢えても踊り忘れず」で表示されていたプログラムについて という記事を書きました。 この記事ではずっと真夜中でい</description>
+    </item>
+    
     <item>
       <title>ZUTOMAYO FACTORY「鷹は飢えても踊り忘れず」で表示されていたプログラムについて</title>
       <link>https://blog.nownabe.com/2022/04/18/zfactory-programs/</link>
