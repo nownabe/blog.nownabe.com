@@ -12,16 +12,13 @@ image: images/2023/05/03/banner.png
 
 ![banner](/images/2023/05/03/banner.png)
 
-GitHub の [プロフィール](https://github.com/nownabe) の Markdown
-をレンダリングして[個人サイト](https://nownabe.com) と同期するようにした。
+GitHub の [プロフィール](https://github.com/nownabe) の Markdown をレンダリングして[個人サイト](https://nownabe.com)と同期するようにした。
 
 個人サイトあるけど、内容は薄いしデザインも凝ってないし、ちょっと前に作った GitHub の [profile README](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme) で内容ほぼカバーできてるしそっから同期させたい、ってのがモチベ。
 
-個人サイトを廃止していいのではという気もするが、GitHub
-というサービスに依存するのではなく自分のドメインをインデックスとしておきたいし、いろんな場所から既にリンクしてしまっているのでこういう方法を取ることにした。
+個人サイトを廃止していいのではという気もするが、GitHub というサービスに依存するのではなく自分のドメインをインデックスとしておきたいし、いろんな場所から既にリンクしてしまっているのでこういう方法を取ることにした。
 
-デザインに関しては、時間かけて考えたくないし、マスターは GitHub
-にあるんですよということがわかりやすいように GitHub のデザインを~~パクっ~~参考にした。
+デザインに関しては、時間かけて考えたくないし、マスターは GitHub にあるんですよということがわかりやすいように GitHub のデザインを~~パクっ~~参考にした。
 
 同期の方法は単純で、[nownabe/nownabe.com](https://github.com/nownabe/nownabe.com) リポジトリの GitHub Actions のワークフローを定期的に実行して、ワークフローでサイトの生成と GitHub Pages へのデプロイをしている。README の Push をトリガーにしていないのは、README が別リポジトリにあって連携がめんどくさいのと、同期に数時間や数日の遅延があっても構わないというのが理由。Pages を README のリポジトリに移行するというのも考えたけど、個人サイトはなんだかんだ変遷があってまたいつ別の方法を取るかわからないのでプロフィールから切り離しておいた方がいいだろうということでこの構成にした。
 
@@ -36,12 +33,9 @@ GitHub の [プロフィール](https://github.com/nownabe) の Markdown
 
 また、これをするために、リポジトリの Settings で Pages のソースを GitHub Actions に設定しておく。
 
-詳しく知りたいという人がもしいたら、[nownabe/nownabe.com](https://github.com/nownabe/nownabe.com)
-を見てもらうのが一番わかりやすいと思う。なにせワークフローの YAML と簡単な Ruby スクリプトしかない。
+詳しく知りたいという人がもしいたら、[nownabe/nownabe.com](https://github.com/nownabe/nownabe.com) を見てもらうのが一番わかりやすいと思う。なにせワークフローの YAML と簡単な Ruby スクリプトしかない。
 
-今回 Markdown パーサーに [Redcarpet](https://github.com/vmg/redcarpet) を使ったが、GitHub
-のパーサーと互換性がなくて、少し README を書き換えた。具体的には、次のような `<details>` の中の
-Markdown を解釈してくれなくて、`<details>` の中をすべて HTML に書き換えた。
+今回 Markdown パーサーに [Redcarpet](https://github.com/vmg/redcarpet) を使ったが、GitHub のパーサーと互換性がなくて、少し README を書き換えた。具体的には、次のような `<details>` の中の Markdown を解釈してくれなくて、`<details>` の中をすべて HTML に書き換えた。
 
 ```markdown
 ## Articles
