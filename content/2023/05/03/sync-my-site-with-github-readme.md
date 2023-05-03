@@ -13,9 +13,9 @@ image: images/2023/05/03/banner.png
 ![banner](/images/2023/05/03/banner.png)
 
 GitHub の [プロフィール](https://github.com/nownabe) の Markdown
-をレンダリングして[個人サイト](https://nownabe.com) に同期するようにした。
+をレンダリングして[個人サイト](https://nownabe.com) と同期するようにした。
 
-個人サイトあるけど、内容もそんなないしデザインも凝ってないし、ちょっと前に作った GitHub の [profile README](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme) で内容ほぼカバーできてるしそっから同期させたい、ってのがモチベ。
+個人サイトあるけど、内容は薄いしデザインも凝ってないし、ちょっと前に作った GitHub の [profile README](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme) で内容ほぼカバーできてるしそっから同期させたい、ってのがモチベ。
 
 個人サイトを廃止していいのではという気もするが、GitHub
 というサービスに依存するのではなく自分のドメインをインデックスとしておきたいし、いろんな場所から既にリンクしてしまっているのでこういう方法を取ることにした。
