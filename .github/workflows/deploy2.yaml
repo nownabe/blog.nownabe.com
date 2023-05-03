@@ -1,0 +1,34 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - source
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.88.1'
+          extended: true
+      - name: Build
+        run: hugo -t nownablog --minify
+      - uses: actions/upload-pages-artifact@v1
+        with:
+          path: public/
+
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/deploy-pages@v2
+        id: deployment
