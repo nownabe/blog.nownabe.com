@@ -1,5 +1,5 @@
 ---
-title: "マンタローに勇気をもらって Google Cloud をやめた話"
+title: "マンタローに勇気をもらって Google Cloud を辞めた話"
 tags:
 date: 2023-06-17T14:25:46+09:00
 lastmod: 2023-06-17T14:25:46+09:00
