@@ -25,7 +25,7 @@ image: images/2023/06/25/rinna-instructgpt.png
 
 ここでの GPU は NVIDIA のもので、GPU の環境構築は WSL で CUDA を使えるようにすることを意味する。また、WSL の Distribution は Ubuntu-22.04。
 
-LLM としては rinna 社の[日本語特化InstructGPT](https://rinna.co.jp/news/2023/05/20220531.html)を使った。
+LLM としては rinna 社の[日本語特化 InstructGPT](https://rinna.co.jp/news/2023/05/20220531.html) を使った。
 
 ## GPU on WSL
 
