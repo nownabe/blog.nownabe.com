@@ -491,7 +491,7 @@ li {
 
     code {
       font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-      background-color: var(--color-border);
+      background-color: #f0f3f3;
       border-radius: 0.25rem;
       padding: 0 0.25rem;
       margin: 0 0.25rem;
@@ -540,6 +540,10 @@ li {
     .footnotes {
       * {
         margin: 0;
+      }
+
+      hr {
+        border: 1px solid var(--color-border);
       }
 
       ol {

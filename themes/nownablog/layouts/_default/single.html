@@ -42,6 +42,7 @@
         </li>
       </ul>
     </div>
+    {{- if ne (.Site.RegularPages.Related .).Len 0 -}}
     <h2 class="related-posts">related posts</h2>
     <div id="cards">
       {{- $related := .Site.RegularPages.Related . | first 4 -}}
@@ -64,6 +65,7 @@
       {{- end -}}
       {{- end -}}
     </div>
+    {{- end -}}
   </nav>
 </div>
 {{ end }}
