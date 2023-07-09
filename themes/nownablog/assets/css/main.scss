@@ -129,7 +129,7 @@ li {
       a {
         color: var(--color-text);
         text-decoration: none;
-        transition: 0.1s;
+        transition: 0.2s;
 
         &:hover {
           background-color: var(--color-border);
@@ -563,6 +563,10 @@ li {
     top: 2rem;
 
     font-size: 0.9rem;
+
+    a {
+      transition: .2s;
+    }
 
     a:hover {
       background-color: var(--color-border);
