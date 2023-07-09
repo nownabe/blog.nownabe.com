@@ -4,7 +4,7 @@ googleAnalytics = "UA-37580164-4"
 languageCode = "ja-JP"
 rssUri = "feed.xml"
 title = "nownab.log"
-paginate = 20
+paginate = 10
 pygmentsUseClasses = true
 pygmentsCodefences = true
 

@@ -5,16 +5,11 @@
   <div id="site-container">
     {{- partial "header.html" . -}}
 
-    <div id="content-container">
-      <div class="container" role="main">
-        {{- block "main" . }}{{- end }}
-      </div>
+    <div id="main" role="main">
+      {{- block "main" .}}{{- end }}
     </div>
-
-    <div id="navigation-container">
-      <div class="container">
-        {{- block "footer" . }}{{- end }}
-      </div>
+    <div id="navigation">
+      {{- block "navigation" . }}{{- end }}
     </div>
 
     {{- partial "footer.html" . -}}
@@ -43,7 +38,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      anchors.add(".body h1, .body h2, .body h3");
+      anchors.add(".article-body h1, .article-body h2, .article-body h3, .article-body h4");
     });
   </script>
 </body>

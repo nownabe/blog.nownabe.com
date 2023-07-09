@@ -1,16 +1,26 @@
 {{ define "main" }}
-{{- range $page := .Paginator.Pages -}}
-<article class="desc">
-  <div class="title">
-    <h2><a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a></h2>
-    <span class="date">{{ dateFormat "Jan 2, 2006" $page.Date }}</span>
-  </div>
-</article>
-{{- end -}}
+<div id="cards" class="content">
+  {{- range $page := .Paginator.Pages -}}
+    <article class="card">
+      <a href="{{ $page.RelPermalink }}"></a>
+      <div class="card-img">
+          <img
+            src="{{- if (isset .Params "image") | and (not (eq .Params.image "")) -}}{{ .Site.BaseURL }}{{ .Params.image }}{{- else -}}{{ .Site.BaseURL }}img/nownabe.png{{- end -}}"
+            alt="{{ $page.Title }}"
+            class="card-img"
+          >
+      </div>
+      <div class="card-title">
+        <h2>{{ $page.Title }}</h2>
+        <p class="date">{{ dateFormat "Jan 2, 2006" $page.Date }}</p>
+      </div>
+    </article>
+  {{- end -}}
+</div>
 {{ end }}
 
-{{ define "footer" }}
-<div id="pagination">
+{{ define "navigation" }}
+<div id="pagination" class="content">
 {{ template "_internal/pagination.html" . }}
 </div>
 {{ end }}

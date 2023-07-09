@@ -1,69 +1,69 @@
 {{ define "main" }}
-<article class="article-container">
-  <div class="title">
-    <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-    <span class="date">Posted on {{ dateFormat "Jan 2, 2006" .Date }}</span>
-  </div>
-  <div class="article-columns">
-    <div class="article-content">
-      <div class="body">
-        {{ .Content }}
-      </div>
+<div class="article-container">
+  <article class="content">
+    <div class="article-title">
+      <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
+      <p class="date">Posted on {{ .Date.Format "Jan 2, 2006" }}</p>
     </div>
-    <div class="article-toc-container">
-      <aside class="article-toc">
-        {{ .TableOfContents }}
-      </aside>
+    <div class="article-body">
+      {{ .Content }}
     </div>
+  </article>
+  <div class="article-left"></div>
+  <div class="article-right">
+  <div class="article-toc">
+    {{ .TableOfContents }}
   </div>
-</article>
+  </div>
+</div>
 {{ end }}
 
-{{ define "footer" }}
+{{ define "navigation" }}
 
-<div id="footer-navigation">
-  <div id="next-prev">
-    <div>
-      {{- if .PrevInSection -}}
-      <a href="{{ .PrevInSection.Permalink }}">&lt; {{ .PrevInSection.Title }}</a>
-      {{- end -}}
+<div class="navigation-container">
+  <nav class="content">
+    <div class="sns-buttons">
+      <ul>
+        <li>
+          <div class="twitter-button">
+            <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
+          </div>
+        </li>
+        <li>
+          <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+        </li>
+        <li>
+          <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
+            <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+          </a>
+        </li>
+        <li>
+          <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
+        </li>
+      </ul>
     </div>
-    <div>
-      {{- if .NextInSection -}}
-      <a href="{{ .NextInSection.Permalink }}">{{ .NextInSection.Title }} &gt;</a>
-      {{- end -}}
-    </div>
-  </div>
-  <div id="related-articles">
-    {{- $related := .Site.RegularPages.Related . | first 5 -}}
-    {{- with $related -}}
-    <h2>See Also</h2>
-    <ul>
+    <h2 class="related-posts">related posts</h2>
+    <div id="cards">
+      {{- $related := .Site.RegularPages.Related . | first 4 -}}
+      {{- with $related -}}
       {{- range . -}}
-      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+        <article class="card">
+          <a href="{{ .RelPermalink }}"></a>
+          <div class="card-img">
+              <img
+                src="{{- if (isset .Params "image") | and (not (eq .Params.image "")) -}}{{ .Site.BaseURL }}{{ .Params.image }}{{- else -}}{{ .Site.BaseURL }}img/nownabe.png{{- end -}}"
+                alt="{{ .Title }}"
+                class="card-img"
+              >
+          </div>
+          <div class="card-title">
+            <h2>{{ .Title }}</h2>
+            <p class="date">{{ dateFormat "Jan 2, 2006" .Date }}</p>
+          </div>
+        </article>
       {{- end -}}
-    </ul>
-    {{- end -}}
-  </div>
-  <div id="sns-buttons">
-    <ul>
-      <li>
-        <div class="twitter-button">
-          <a class="twitter-share-button" href="https://twitter.com/share" data-via="nownabe" data-related="nownabe">Tweet</a>
-        </div>
-      </li>
-      <li>
-        <div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
-      </li>
-      <li>
-        <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
-          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
-        </a>
-      </li>
-      <li>
-        <a class="pocket-btn" data-pocket-label="pocket" data-pocket-count="horizontal" data-lang="en"></a>
-      </li>
-    </ul>
-  </div>
+      {{- end -}}
+    </div>
+  </nav>
 </div>
 {{ end }}
