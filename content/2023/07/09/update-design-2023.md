@@ -2,8 +2,7 @@
 title: "ブログのデザインを変えた (2023 年版)"
 tags:
 - design
-date: 2023-07-09T16:45:34+09:00
-lastmod: 2023-07-09T16:45:34+09:00
+date: 2023-07-09T17:24:34+09:00
 
 draft: false
 isCJKLanguage: true
