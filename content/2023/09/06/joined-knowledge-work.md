@@ -177,7 +177,7 @@ Google からの転職ということで基準は高く設定しました。Know
 * [SRE](https://herp.careers/v1/kwork/w4Ks8k8FyIrE)
 * [CRE](https://herp.careers/v1/kwork/fbVPqWUUiohM)
 
-また、10 月 6 日に Knowledge Work 主催で Encraft というイベントを開催します。ぜひ遊びにきてください。
+また、10 月 6 日に [Encraft #7 AppDev with Google Cloud](https://knowledgework.connpass.com/event/294440/) というイベントを開催します。ぜひ遊びにきてください。
 
 <a href="https://knowledgework.connpass.com/event/294440/"><img src="/images/2023/09/06/encraft.png" alt="Encraft #7" width="330" height="135"></a>
 <a href="https://youtrust.jp/recruitment_posts/5106bad7140a31a9a6653e8029e42518"><img src="/images/2023/09/06/youtrust.jpeg" alt="YOUTRUST カジュアル面談" width="257" height="135"></a>
