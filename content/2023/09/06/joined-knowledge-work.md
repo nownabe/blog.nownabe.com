@@ -37,7 +37,7 @@ NOTE: 本記事には、この記事を読んで Knowledge Work に興味を持�
 - Knowledge Work はとてもいい会社です
 - もし興味を持ってくださった方がいたら [Encraft](https://knowledgework.connpass.com/event/294440/) や [カジュアル面談](https://youtrust.jp/recruitment_posts/5106bad7140a31a9a6653e8029e42518) で気軽に話しましょう
 
-10 月 6 日に Knowledge Work 主催の [Encraft #7](https://knowledgework.connpass.com/event/294440/) というオフラインイベントに登壇します。懇親会でなんでも話すので少しでも興味ある方はぜひいらしてください。
+10 月 6 日に Knowledge Work 主催の [Encraft #7](https://knowledgework.connpass.com/event/294440/) というオフラインイベントに登壇します。懇親会もあるので興味がある方はぜひいらしてください。
 YOUTRUST の [カジュアル面談](https://youtrust.jp/recruitment_posts/5106bad7140a31a9a6653e8029e42518) も作ってみました。[X (Twitter)](https://twitter.com/nownabe) の DM でも大丈夫です。
 
 <a href="https://knowledgework.connpass.com/event/294440/"><img src="/images/2023/09/06/encraft.png" alt="Encraft #7" width="330" height="135"></a>
