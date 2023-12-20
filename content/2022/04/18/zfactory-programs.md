@@ -18,14 +18,13 @@ image: images/2022/04/18/3.png
 
 私は歌詞や MV の考察はできないので、本記事で取り扱うのはあくまでもプログラムや[ZTMY LEAKS](http://ihihi.me/)から読み取れる内容だけです。また、PHP については素人同然なので的外れな部分があるかもしれませんがご了承ください。
 
-
 ## ライブで現れた 3 つのプログラム
 
 私が確認できた範囲では今回のライブで 3 つのプログラムがあったようです。
 
-* バナー画像のプログラム
-* [day1 "memory_limit = -1"] のプログラム
-* [day2 "ob_start"] のプログラム
+- バナー画像のプログラム
+- [day1 "memory_limit = -1"] のプログラム
+- [day2 "ob_start"] のプログラム
 
 以下ではそれぞれについて調べてみます。[day1 "memory_limit = -1"] のプログラムと [day2 "ob_start"] のプログラムは非常に似ていますが、おそらくずとまよにおけるストーリーや世界観の中で重要な役割を持つ変更が追加されているので別のプログラムとして取り上げます。
 
@@ -44,44 +43,58 @@ JavaScript は Web サイトでよく使われるプログラミング言語で�
 
 ![3](/images/2022/04/18/3.png)
 
-
 公式サイトで使われている JavaScript プログラムの一部に次のような部分があります。(プログラム全文は[こちら](https://zutomayo.net/themes/zutomayo/_assets/js/common.js?22021803)から確認できます)
 
 ```javascript
-  var TopAnim = (function(){
+var TopAnim = (function () {
+  const topObj = $("#articletop");
+  const _menu = topObj.find(".ztmy-top--nav li a span");
+  const _news = topObj.find(".ztmy-top--news");
+  const _mv = topObj.find(".ztmy-top--mv");
+  // const _rule = CSSRulePlugin.getRule(".ztmy-top--nav li a:before");
 
-    const topObj = $("#articletop");
-    const _menu = topObj.find(".ztmy-top--nav li a span");
-    const _news = topObj.find(".ztmy-top--news");
-    const _mv = topObj.find(".ztmy-top--mv");
-    // const _rule = CSSRulePlugin.getRule(".ztmy-top--nav li a:before");
+  return {
+    Init: function (url) {
+      const tl = gsap.timeline();
 
-    return{
-        Init: function(url){
+      // tl.staggerTo(_rule, 0.3, {cssRule: {width: "100%"},delay: 0.5,stagger: 0.3});
+      // tl.staggerTo(_rule, 0.2, {cssRule: {left: "100%",width:0},delay: 0.2,stagger: 0.3});
+      gsap.to(_menu, 0.2, {
+        width: "100%",
+        delay: 1,
+        stagger: 0.1,
+        ease: Power2.easeInOut,
+      });
 
-          const tl = gsap.timeline();
-
-          // tl.staggerTo(_rule, 0.3, {cssRule: {width: "100%"},delay: 0.5,stagger: 0.3});
-          // tl.staggerTo(_rule, 0.2, {cssRule: {left: "100%",width:0},delay: 0.2,stagger: 0.3});
-          gsap.to(_menu, 0.2, {width: "100%",delay: 1,stagger: 0.1,ease: Power2.easeInOut});
-
-          if(isSmartPhone()){
-            gsap.to(_news, 0.5, { opacity: 1, scale:1, delay: 0.5,stagger: 0.3,ease: Sine.easeOut });
-          } else {
-            gsap.to(_news, 0.5, { opacity: 1, scale:1.5, delay: 0.5,stagger: 0.3,ease: Sine.easeOut });
-          }
-
-          gsap.to(_mv, 1, {right: 25,delay: 2.5,ease: Power2.Back});
-
-          // var tl = gsap.timeline({ repeat: -1, yoyo: true });
-
-          // tl.staggerTo(_rule, 1, {
-          //   cssRule: { left: 100 },
-          //   ease: Power2.easeInOut
-          // }, 0.5);
-        }
+      if (isSmartPhone()) {
+        gsap.to(_news, 0.5, {
+          opacity: 1,
+          scale: 1,
+          delay: 0.5,
+          stagger: 0.3,
+          ease: Sine.easeOut,
+        });
+      } else {
+        gsap.to(_news, 0.5, {
+          opacity: 1,
+          scale: 1.5,
+          delay: 0.5,
+          stagger: 0.3,
+          ease: Sine.easeOut,
+        });
       }
-  })();
+
+      gsap.to(_mv, 1, { right: 25, delay: 2.5, ease: Power2.Back });
+
+      // var tl = gsap.timeline({ repeat: -1, yoyo: true });
+
+      // tl.staggerTo(_rule, 1, {
+      //   cssRule: { left: 100 },
+      //   ease: Power2.easeInOut
+      // }, 0.5);
+    },
+  };
+})();
 ```
 
 このプログラムはバナー画像の左列のプログラムと一致します。真ん中の列、右の列も同じプログラムの別の箇所が引用されています。
@@ -89,11 +102,11 @@ JavaScript は Web サイトでよく使われるプログラミング言語で�
 ただし、公式サイトのプログラムとまったく同じではなく、バナーのプログラムには 3 つの英文と 2 つのことわざが追加されています。
 これらは引用元のプログラムにはなく、JavaScript の文法にも違反していることから画像のために追加されていることがわかります。
 
-* [左列] Every second is of infinite value. (一秒一秒には無限の価値がある)
-* [中列] Forever is composed of nows. (永遠は多くの今で構成される)
-* [右列] It is not that we have a short time to live, but that we waste a lot of it. (生きる時間が短いということではなく、多くの時間を無駄にしているのである)
-* 雀百まで踊り忘れず (右列)
-* 鷹は飢えても穂を摘まず (右列)
+- [左列] Every second is of infinite value. (一秒一秒には無限の価値がある)
+- [中列] Forever is composed of nows. (永遠は多くの今で構成される)
+- [右列] It is not that we have a short time to live, but that we waste a lot of it. (生きる時間が短いということではなく、多くの時間を無駄にしているのである)
+- [右列] 雀百まで踊り忘れず
+- [右列] 鷹は飢えても穂を摘まず
 
 ことわざは今回のライブタイトルの元ネタでしょう。
 3 つの英文は後述する [day1 "memory_limit = -1"] のプログラムと [day2 "ob_start"] のプログラムの内容とも一致します。
@@ -291,10 +304,10 @@ John Titer の記事に対する返信を再度引用します。
 >
 > ――。
 
-* Worker は灰版電機工業の感情が乏しくなった工場職員のことか？
-* People は感情(bug)を持つ"人間"のことか？
-* `$forever->night()` に終わりは来るのか？来るとしたら終わりとは何か？
-* 感情を持ち"人間"になった結果、2022 年 4 月 16 日に `memory_limit = -1` を設定して世界(灰版電機工業？)に抗ったのか？
+- Worker は灰版電機工業の感情が乏しくなった工場職員のことか？
+- People は感情(bug)を持つ"人間"のことか？
+- `$forever->night()` に終わりは来るのか？来るとしたら終わりとは何か？
+- 感情を持ち"人間"になった結果、2022 年 4 月 16 日に `memory_limit = -1` を設定して世界(灰版電機工業？)に抗ったのか？
 
 ## [day2 "ob_start"] のプログラム
 
@@ -418,8 +431,8 @@ assertFalse($we->period == $we2->period); // たとえ生きる時代が違く�
 `assertFalse(A == B)` は `A` と `B` が等しくないことを確認します。
 なので、ここでは次の 2 つの事実を確認しています。
 
-* `$we` と `$we2` の `place` (場所) が違うこと
-* `$we` と `$we2` の `priod` (時代) が違うこと
+- `$we` と `$we2` の `place` (場所) が違うこと
+- `$we` と `$we2` の `priod` (時代) が違うこと
 
 ```php
 assertSame($we->enthusiasm, $we2->enthusiasm); // 私達の熱を決して奪うことは出来ない
@@ -456,14 +469,13 @@ ob_start();
 > ――。ふと電撃が走り、工場は再び稼働を始める。
 > 新たな歪みが生まれ、それは何処かへ向かった。
 
-* 時系列を整理するとこんな感じ？
-    * 灰版電機工業が権威を奮う世界
-    * 感情(bug)を持つ"人間"が現れ、2022 年 4 月 16 日に `memory_limit = -1` して世界に抗う
-    * なんだかんだで灰版電機工業の権威が崩落して向上は朽ち果てる
-    * 2122 年 4 月 17 日に工場が再稼働して `ob_start()` する
-* [袖のキルト](https://youtu.be/9PnCSI8ndws)の MV が 2122 年 4 月 17 日だろうか？
-* `ob_start()` にはこれからアウトプットを始めるよ、活動を始めるよ、という意味が込められている？
-
+- 時系列を整理するとこんな感じ？
+  - 灰版電機工業が権威を奮う世界
+  - 感情(bug)を持つ"人間"が現れ、2022 年 4 月 16 日に `memory_limit = -1` して世界に抗う
+  - なんだかんだで灰版電機工業の権威が崩落して向上は朽ち果てる
+  - 2122 年 4 月 17 日に工場が再稼働して `ob_start()` する
+- [袖のキルト](https://youtu.be/9PnCSI8ndws)の MV が 2122 年 4 月 17 日だろうか？
+- `ob_start()` にはこれからアウトプットを始めるよ、活動を始めるよ、という意味が込められている？
 
 ## おわりに
 
@@ -478,5 +490,5 @@ ob_start();
 
 あと最後にもう一度、ライブ最高でした！！！！！ありがとう！！！
 
-テクノプアのチケットも当たってくれ〜〜〜〜 :pray: :pray: :pray: 
+テクノプアのチケットも当たってくれ〜〜〜〜 :pray: :pray: :pray:
 というわけで ZUTOMAYO PREMIUM に入会しました。
