@@ -40,3 +40,7 @@ weight = 10
 
 [markup.goldmark.renderer]
 unsafe = true
+
+[markup.highlight]
+codeFences = true
+noClasses = false

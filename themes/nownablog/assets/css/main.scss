@@ -2,19 +2,19 @@
 /* Variables */
 
 $up-breakpoints: (
-  'xs': 'screen',
-  'sm': 'screen and (min-width: 600px)',
-  'md': 'screen and (min-width: 900px)',
-  'lg': 'screen and (min-width: 1200px)',
-  'xl': 'screen and (min-width: 1536px)',
+  "xs": "screen",
+  "sm": "screen and (min-width: 600px)",
+  "md": "screen and (min-width: 900px)",
+  "lg": "screen and (min-width: 1200px)",
+  "xl": "screen and (min-width: 1536px)",
 );
 
 $down-breakpoints: (
-  'xs': 'screen and (max-width: 599px)',
-  'sm': 'screen and (max-width: 899px)',
-  'md': 'screen and (max-width: 1199px)',
-  'lg': 'screen and (max-width: 1535px)',
-  'xl': 'screen',
+  "xs": "screen and (max-width: 599px)",
+  "sm": "screen and (max-width: 899px)",
+  "md": "screen and (max-width: 1199px)",
+  "lg": "screen and (max-width: 1535px)",
+  "xl": "screen",
 );
 
 @mixin up($breakpoint) {
@@ -35,6 +35,8 @@ $down-breakpoints: (
     --color-border: #ddd;
     --color-text: #222;
     --color-text2: #999;
+    --color-code-text: #222;
+    --color-code-background: #f3f3f3;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -42,9 +44,12 @@ $down-breakpoints: (
     --color-border: #444;
     --color-text: #ddd;
     --color-text2: #999;
+    // TODO: Use dark mode for code background
+    // --color-code-background: #333;
+    --color-code-text: #222;
+    --color-code-background: #f3f3f3;
   }
 }
-
 
 /* Base Styles */
 
@@ -74,7 +79,8 @@ html {
 
 body {
   font-size: 1rem;
-  font-family: "Lato", Arial, "ヒラギノ角ゴPro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+  font-family: "Lato", Arial, "ヒラギノ角ゴPro W3", "Hiragino Kaku Gothic Pro",
+    "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
   color: var(--color-text);
   background-color: var(--color-bg);
 
@@ -103,7 +109,7 @@ li {
     z-index: -1;
     left: 0;
     bottom: 0.1rem;
-    content: '';
+    content: "";
     width: 100%;
     height: 0.3rem;
     background-color: var(--color-border);
@@ -189,7 +195,9 @@ li {
     flex-direction: column;
     width: calc(400px - 1rem);
     border-radius: 0.25rem;
-    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .02);
+    box-shadow:
+      0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
+      0 0 0 1px rgba(10, 10, 10, 0.02);
     transition: transform 0.2s;
 
     &:hover {
@@ -352,7 +360,7 @@ li {
       font-size: 2rem;
 
       &::before {
-        content: '# ';
+        content: "# ";
         color: var(--color-text2);
       }
     }
@@ -419,7 +427,7 @@ li {
       font-size: 2rem;
 
       &::before {
-        content: '# ';
+        content: "# ";
       }
     }
 
@@ -428,7 +436,7 @@ li {
       font-size: 1.5rem;
 
       &::before {
-        content: '## ';
+        content: "## ";
       }
     }
 
@@ -437,7 +445,7 @@ li {
       font-size: 1.2rem;
 
       &::before {
-        content: '### ';
+        content: "### ";
       }
     }
 
@@ -446,7 +454,7 @@ li {
       font-size: 1.1rem;
 
       &::before {
-        content: '#### ';
+        content: "#### ";
       }
     }
 
@@ -455,7 +463,7 @@ li {
       font-size: 1rem;
 
       &::before {
-        content: '##### ';
+        content: "##### ";
       }
     }
 
@@ -464,7 +472,7 @@ li {
       font-size: 1rem;
 
       &::before {
-        content: '###### ';
+        content: "###### ";
       }
     }
 
@@ -491,16 +499,18 @@ li {
 
     code {
       font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-      background-color: #f0f3f3;
+      background-color: var(--color-code-background);
       border-radius: 0.25rem;
       padding: 0 0.25rem;
       margin: 0 0.25rem;
+      color: var(--color-code-text);
     }
 
     .highlight {
       margin: 1.5rem 0;
 
       pre {
+        background-color: var(--color-code-background);
         padding: 1rem;
         border-radius: 0.5rem;
         overflow-x: auto;
@@ -525,7 +535,7 @@ li {
         z-index: -1;
         left: 0;
         bottom: 0.1rem;
-        content: '';
+        content: "";
         width: 100%;
         height: 0.3rem;
         background-color: var(--color-border);
@@ -569,7 +579,7 @@ li {
     font-size: 0.9rem;
 
     a {
-      transition: .2s;
+      transition: 0.2s;
     }
 
     a:hover {
@@ -588,7 +598,7 @@ li {
     ul {
       list-style-type: none;
       display: flex;
-      column-gap: .5rem;
+      column-gap: 0.5rem;
 
       li {
         margin-left: 0;
