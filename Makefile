@@ -10,6 +10,7 @@ new-with-date:
 	@echo
 	@read -p "Enter article's slug: " slug; \
 		hugo new $(shell date +%Y/%m/%d)/$$slug.md
+		mkdir -p static/images/$(shell date +%Y/%m/%d)
 
 .PHONY: new
 new:
@@ -17,3 +18,4 @@ new:
 	@echo
 	@read -p "Enter article's slug: " slug; \
 		hugo new $$slug.md
+		mkdir -p static/images/$$slug
