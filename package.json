@@ -3,7 +3,7 @@
     "lint": "textlint ."
   },
   "dependencies": {
-    "textlint": "^12.1.1",
+    "textlint": "^13.0.0",
     "textlint-rule-preset-ja-spacing": "^2.2.0",
     "textlint-rule-preset-ja-technical-writing": "^7.0.0"
   }
