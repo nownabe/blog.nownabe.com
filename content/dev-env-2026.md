@@ -20,7 +20,7 @@ image: /images/dev-env-2026/dev-env-2026.jpg
 
 ## きっかけ
 
-同僚から WezTerm や Nix の Home Manager を勧められていたところに、勤務先の貸与PCのリプレースのタイミングが重なり、SRE Kaigi でもらった熱量を活かして開発環境を見直すことにした。
+複数の同僚から WezTerm や Nix の Home Manager を勧められていたところに、貸与PCのリプレースのタイミングが重なり、SRE Kaigi でもらった熱量を活かして開発環境を見直すことにした。
 
 ## OS
 
@@ -36,6 +36,8 @@ OS についてはこんな感じの変遷のはず。
 Windows 時代から Dual Boot で RedHat 系の Linux を入れて、開発ではそちらを使っていた。CentOS や Fedora が多かったと思う。他にもドラゴンがテーマでやたら GUI がぐりんぐりんするオレオレディストリなんかも使ってみたりしていたが、結局はメジャーかつ標準で使いやすいものということで Ubuntu に落ち着いた。Docker で Debian が使われることが多かったのもある。WSL2 が安定してからは、Dual Boot もめんどくさかったのでやめて WSL 一本でやっている。
 
 Mac は勤務先から貸与される PC が Mac だったので個人でも買って使ってみてた事はあるが、Linux 以上の魅力が感じられずに Linux に戻った。
+
+本当は WSL ではなく素の Ubuntu を使いたいが、ゲームをするために Windows を使っている。
 
 ## dotfiles
 
