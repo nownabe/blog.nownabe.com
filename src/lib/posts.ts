@@ -85,21 +85,22 @@ function paragraphs(post: Post): string[] {
       continue;
     }
     if (inFence || !line) continue;
-    if (/^(#|!\[|<|>|\||[-*+]\s|\d+\.\s|---|\[\^)/.test(line)) continue;
-    out.push(line);
+    if (/^(#|!\[|\[!\[|<|>|\||[-*+]\s|\d+\.\s|---|\[\^)/.test(line)) continue;
+    const text = inlineText(line);
+    if (text) out.push(text);
   }
   return out;
 }
 
 // The opening sentence of the article, used as the one-line lead in lists.
 export function lead(post: Post, maxLength = 110): string {
-  const text = inlineText(paragraphs(post)[0] ?? "");
+  const text = paragraphs(post)[0] ?? "";
   return text.length > maxLength ? `${text.slice(0, maxLength)}…` : text;
 }
 
 // Longer plain-text opening for og:description and the feed.
 export function excerpt(post: Post, maxLength = 160): string {
-  const text = inlineText(paragraphs(post).slice(0, 3).join(" "));
+  const text = paragraphs(post).slice(0, 3).join(" ");
   return text.length > maxLength ? `${text.slice(0, maxLength)}…` : text;
 }
 

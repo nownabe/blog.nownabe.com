@@ -247,6 +247,10 @@ h6 {
   color: var(--ink);
 }
 
+.entry .lead:empty {
+  display: none;
+}
+
 .entry .lead {
   margin: 0;
   color: var(--muted);
@@ -289,7 +293,7 @@ h6 {
 }
 
 @media (min-width: 900px) {
-  .list {
+  .list:has(> .years) {
     grid-template-columns: 5rem minmax(0, 1fr);
   }
 
