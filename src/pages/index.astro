@@ -1,36 +1,18 @@
 ---
 import Base from "../layouts/Base.astro";
-import PostListByYear from "../components/PostListByYear.astro";
-import { getPublishedPosts, groupByYear, postYear } from "../lib/posts";
+import PostEntry from "../components/PostEntry.astro";
+import YearColumn from "../components/YearColumn.astro";
+import { getPublishedPosts, groupByYear } from "../lib/posts";
 
 const LATEST = 10;
 
 const posts = await getPublishedPosts();
 const years = groupByYear(posts).map(({ year }) => year);
-const latest = posts.slice(0, LATEST);
-const nextYear = years[years.indexOf(postYear(latest.at(-1)!)) + 1];
 ---
 
 <Base>
-  <h1 class="visually-hidden">Latest posts</h1>
-  <PostListByYear posts={latest} years={years}>
-    {
-      nextYear && (
-        <p class="older-posts">
-          <a href={`/${nextYear}/`}>Older posts <span class="mono">{nextYear}</span></a>
-        </p>
-      )
-    }
-  </PostListByYear>
+  <YearColumn years={years}>
+    <h1 class="year-heading">Latest</h1>
+    {posts.slice(0, LATEST).map((post) => <PostEntry post={post} />)}
+  </YearColumn>
 </Base>
-
-<style>
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-  }
-</style>

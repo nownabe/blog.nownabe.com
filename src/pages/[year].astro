@@ -1,7 +1,8 @@
 ---
 import type { GetStaticPaths } from "astro";
 import Base from "../layouts/Base.astro";
-import PostListByYear from "../components/PostListByYear.astro";
+import PostEntry from "../components/PostEntry.astro";
+import YearColumn from "../components/YearColumn.astro";
 import { getPublishedPosts, groupByYear, type Post } from "../lib/posts";
 
 // Hugo published section pages at /2016/ … /2023/; they are the year archives now.
@@ -18,27 +19,11 @@ interface Props {
 }
 
 const { year, posts, years } = Astro.props;
-const older = years[years.indexOf(year) + 1];
-const newer = years[years.indexOf(year) - 1];
 ---
 
 <Base title={year}>
-  <h1 class="visually-hidden">Posts from {year}</h1>
-  <PostListByYear posts={posts} years={years} currentYear={year}>
-    <p class="older-posts">
-      {newer && <a href={`/${newer}/`}>Newer posts <span class="mono">{newer}</span></a>}
-      {older && <a href={`/${older}/`}>Older posts <span class="mono">{older}</span></a>}
-    </p>
-  </PostListByYear>
+  <YearColumn years={years} currentYear={year}>
+    <h1 class="year-heading">{year}</h1>
+    {posts.map((post) => <PostEntry post={post} />)}
+  </YearColumn>
 </Base>
-
-<style>
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-  }
-</style>
