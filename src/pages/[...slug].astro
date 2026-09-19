@@ -85,42 +85,43 @@ const bannerSrc = bannerOpensBody(post) ? undefined : banner(post);
     }
   </div>
 
-  <div class="after-article">
-    {
-      related.length > 0 && (
-        <section class="related">
-          <h2>Related posts</h2>
-          <ol>
-            {related.map((r) => (
-              <li>
-                <span class="date mono">{formatYearMonth(r.data.date)}</span>
-                <a href={postPath(r)}>{r.data.title}</a>
-              </li>
-            ))}
-          </ol>
-        </section>
-      )
-    }
-    <nav class="post-nav" aria-label="Posts">
-      {
-        older && (
-          <a class="older" href={postPath(older)}>
-            <span class="label mono">Older</span>
-            <span class="title">{older.data.title}</span>
-          </a>
-        )
-      }
+  <nav class="read-next" aria-label="Read next">
+    <dl>
       {
         newer && (
-          <a class="newer" href={postPath(newer)}>
-            <span class="label mono">Newer</span>
-            <span class="title">{newer.data.title}</span>
-          </a>
+          <div>
+            <dt class="mono">Newer</dt>
+            <dd>
+              <a href={postPath(newer)}>{newer.data.title}</a>
+            </dd>
+          </div>
         )
       }
-      <a class="top mono" href="#top">Back to top</a>
-    </nav>
-  </div>
+      {
+        older && (
+          <div>
+            <dt class="mono">Older</dt>
+            <dd>
+              <a href={postPath(older)}>{older.data.title}</a>
+            </dd>
+          </div>
+        )
+      }
+      {
+        related.length > 0 && (
+          <div>
+            <dt class="mono">Related</dt>
+            {related.map((r) => (
+              <dd>
+                <a href={postPath(r)}>{r.data.title}</a>
+                <span class="date mono">{formatYearMonth(r.data.date)}</span>
+              </dd>
+            ))}
+          </div>
+        )
+      }
+    </dl>
+  </nav>
 </Base>
 
 <script>

@@ -169,8 +169,29 @@ h6 {
   font-size: 1rem;
 }
 
+.footer-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.footer-bar nav {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.footer-bar a {
+  color: var(--muted);
+}
+
+.footer-bar a:hover {
+  color: var(--ink);
+}
+
 .site-footer .copyright {
-  margin: 1.5rem 0 0;
+  margin: 0;
 }
 
 /* Post list (top page, year and tag pages) */
@@ -430,91 +451,63 @@ h6 {
   color: var(--ink);
 }
 
-.after-article {
+/* Read next: one table of newer / older / related under a double rule that closes the article. */
+
+.read-next {
   max-width: var(--measure);
   margin: 3rem auto 0;
+  padding-top: 1.25rem;
+  border-top: 3px double var(--rule);
 }
 
-.post-nav {
+.read-next dl {
+  margin: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--rule);
+  grid-template-columns: 5rem minmax(0, 1fr);
+  gap: 0.35rem 1rem;
 }
 
-.post-nav a {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  color: var(--ink);
+.read-next dl > div {
+  display: contents;
 }
 
-.post-nav .older {
-  grid-column: 1;
-}
-
-.post-nav .newer {
-  grid-column: 2;
-  text-align: right;
-}
-
-.post-nav .label {
+.read-next dt {
   color: var(--muted);
+  padding-top: 0.2rem;
 }
 
-.post-nav .title {
+.read-next dd {
+  margin: 0;
+  grid-column: 2;
   font-family: var(--serif);
   font-size: 1.05rem;
   line-height: 1.5;
 }
 
-.post-nav .top {
-  grid-column: 1 / -1;
-  align-items: center;
-  margin-top: 1rem;
+.read-next dd a {
+  color: var(--ink);
+}
+
+.read-next dd .date {
+  margin-left: 0.75rem;
   color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.75rem;
 }
 
 @media (max-width: 599px) {
-  .post-nav {
+  .read-next dl {
     grid-template-columns: 1fr;
+    gap: 0.15rem;
   }
 
-  .post-nav .older,
-  .post-nav .newer {
+  .read-next dt {
+    margin-top: 0.75rem;
+  }
+
+  .read-next dd {
     grid-column: 1;
-    text-align: left;
   }
-}
-
-.related {
-  border-top: 3px double var(--rule);
-  padding-top: 1rem;
-}
-
-.related h2 {
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 0 0 0.5rem;
-}
-
-.related ol {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.related li {
-  display: grid;
-  grid-template-columns: 5rem minmax(0, 1fr);
-  gap: 0.75rem;
-  padding: 0.35rem 0;
-}
-
-.related .date {
-  color: var(--muted);
 }
 
 @media (min-width: 1100px) {
@@ -532,7 +525,7 @@ h6 {
   }
 
   /* Line up with the article column, not the page center. */
-  .after-article {
+  .read-next {
     margin-left: 0;
   }
 
