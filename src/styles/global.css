@@ -86,6 +86,8 @@ a:hover {
 }
 
 .prose a:has(> img),
+.prose sup a,
+.prose a[data-footnote-backref],
 .site-footer .author > a {
   text-decoration-line: none;
 }
