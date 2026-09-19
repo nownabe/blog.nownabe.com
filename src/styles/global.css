@@ -1,13 +1,16 @@
 /* nownab.log */
 
 :root {
-  --paper: #f4f4f1;
-  --ink: #1b1b1b;
-  --muted: #6b6e67;
-  --rule: #cfd1cb;
-  --indigo: #2b4c7e;
-  --code-bg: #1f242b;
-  --code-ink: #d8dad6;
+  --paper: #ffffff;
+  --ink: #1b1b1f;
+  --muted: #6f7285;
+  --rule: #e2e3f0;
+  /* Periwinkle family: the brand hue for marks, a darker step for link text so it passes 4.5:1 on white. */
+  --accent: #9293fe;
+  --accent-soft: #b6b9ff;
+  --link: #5b5ce6;
+  --code-bg: #1f2130;
+  --code-ink: #dcdde8;
 
   --serif: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
   --sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "YuGothic", Meiryo, sans-serif;
@@ -22,12 +25,14 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #17191c;
-    --ink: #d8dad6;
-    --muted: #8c9088;
-    --rule: #33363a;
-    --indigo: #8fb0e3;
-    --code-bg: #0e1013;
+    --paper: #16171f;
+    --ink: #dcdde8;
+    --muted: #9093a8;
+    --rule: #33364a;
+    --accent: #9293fe;
+    --accent-soft: #4b4c8a;
+    --link: #b6b9ff;
+    --code-bg: #0e0f16;
   }
 }
 
@@ -55,17 +60,24 @@ body {
 }
 
 a {
-  color: var(--indigo);
+  color: var(--link);
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
   text-underline-offset: 0.2em;
 }
 
+::selection {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
 :focus-visible {
-  outline: 2px solid var(--indigo);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -225,6 +237,7 @@ h6 {
 
 .years a[aria-current="page"] {
   color: var(--ink);
+  border-bottom: 2px solid var(--accent);
 }
 
 
@@ -310,7 +323,7 @@ h6 {
 
 .tags a::before {
   content: "#";
-  opacity: 0.6;
+  color: var(--accent);
 }
 
 .entry .thumb {
@@ -461,7 +474,7 @@ h6 {
 }
 
 .toc li[aria-current="true"] {
-  border-left-color: var(--indigo);
+  border-left-color: var(--accent);
 }
 
 .toc li[aria-current="true"] a {
