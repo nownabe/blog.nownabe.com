@@ -1,0 +1,15 @@
+---
+import type { GetStaticPaths } from "astro";
+import PostList from "../../components/PostList.astro";
+import { getPublishedPosts, PAGE_SIZE } from "../../lib/posts";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = await getPublishedPosts();
+  // Page 1 lives at / (index.astro); /page/1/ redirects there via astro.config.
+  return paginate(posts, { pageSize: PAGE_SIZE }).filter(({ params }) => params.page !== "1");
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+---
+
+<PostList page={page} />
