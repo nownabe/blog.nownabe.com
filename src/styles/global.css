@@ -66,13 +66,23 @@ body {
  * sideways, so no two lines show the same colors at once. --seed (0–1, set per element
  * by the small script in the layout) staggers the phase and speed of each drift.
  */
-a,
-.site-header {
+a {
   background-image: var(--aurora);
   background-repeat: no-repeat;
   background-position: 0% 100%;
   background-size: 300% var(--underline, 0);
-  animation: aurora-drift calc(14s + var(--seed, 0) * 10s) ease-in-out infinite alternate;
+}
+
+/*
+ * Only lines that are on screen drift. Animating every link repainted the whole page
+ * each frame; .in-view is toggled by an IntersectionObserver in the layout.
+ */
+.site-header::after,
+.prose a.in-view,
+.years a[aria-current="page"],
+a:hover {
+  /* steps(): a dozen repaints a second is plenty for a soft gradient and far cheaper than sixty. */
+  animation: aurora-drift calc(14s + var(--seed, 0) * 10s) steps(240) infinite alternate;
   animation-delay: calc(var(--seed, 0) * -24s);
 }
 
@@ -83,6 +93,19 @@ a,
   to {
     background-position-x: 100%;
   }
+}
+
+/* The header rule is a separate 2px strip, so its drift repaints only the line, not the header text. */
+.site-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background-image: var(--aurora);
+  background-repeat: no-repeat;
+  background-size: 300% 100%;
 }
 
 a {
@@ -115,8 +138,10 @@ a:hover {
     transition: none;
   }
 
-  a,
-  .site-header {
+  .site-header::after,
+  .prose a.in-view,
+  .years a[aria-current="page"],
+  a:hover {
     animation: none;
   }
 }
@@ -170,8 +195,7 @@ h6 {
   justify-content: space-between;
   gap: 1rem;
   padding: 1.75rem 0 1.25rem;
-  /* Not via --underline: that would inherit into the header links. */
-  background-size: 300% 2px;
+  position: relative;
 }
 
 .site-header .logo {
