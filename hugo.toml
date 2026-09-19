@@ -1,19 +1,21 @@
 baseURL = "https://blog.nownabe.com/"
+title = "nownab.log"
+locale = "ja-JP"
 enableEmoji = true
 enableGitInfo = true
-googleAnalytics = "UA-37580164-4"
-languageCode = "ja-JP"
-rssUri = "feed.xml"
-title = "nownab.log"
-paginate = 10
-pygmentsUseClasses = true
-pygmentsCodefences = true
 
+[module.hugoVersion]
+min = "0.146.0"
+
+[pagination]
+pagerSize = 10
+
+[services.googleAnalytics]
+id = "G-PWWXNZ0XM3"
 
 [outputs]
 home = ["HTML", "RSS"]
 
-[outputFormats]
 [outputFormats.RSS]
 mediatype = "application/rss+xml"
 baseName = "feed"
