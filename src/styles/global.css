@@ -170,7 +170,8 @@ h6 {
   justify-content: space-between;
   gap: 1rem;
   padding: 1.75rem 0 1.25rem;
-  --underline: 2px;
+  /* Not via --underline: that would inherit into the header links. */
+  background-size: 300% 2px;
 }
 
 .site-header .logo {
