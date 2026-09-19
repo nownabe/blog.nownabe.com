@@ -10,7 +10,7 @@
   --accent-soft: #b6b9ff;
   --link: #5b5ce6;
   /* Aurora: periwinkle through lavender into mint, used for underlines and the header rule. */
-  --aurora: linear-gradient(90deg, #6d6ff5 0%, #9293fe 30%, #b6b9ff 55%, #8ee7d9 80%, #b6f0e6 100%);
+  --aurora: linear-gradient(90deg, #6d6ff5, #9293fe, #b6b9ff, #8ee7d9, #b6f0e6, #9293fe, #b6b9ff, #6d6ff5);
   --code-bg: #1f2130;
   --code-ink: #dcdde8;
 
@@ -61,38 +61,63 @@ body {
   font-feature-settings: "palt";
 }
 
+/*
+ * Aurora underline: the gradient is three times wider than the element and drifts
+ * sideways, so no two lines show the same colors at once. --seed (0–1, set per element
+ * by the small script in the layout) staggers the phase and speed of each drift.
+ */
+a,
+.site-header {
+  background-image: var(--aurora);
+  background-repeat: no-repeat;
+  background-position: 0% 100%;
+  background-size: 300% var(--underline, 0);
+  animation: aurora-drift calc(14s + var(--seed, 0) * 10s) ease-in-out infinite alternate;
+  animation-delay: calc(var(--seed, 0) * -24s);
+}
+
+@keyframes aurora-drift {
+  from {
+    background-position-x: 0%;
+  }
+  to {
+    background-position-x: 100%;
+  }
+}
+
 a {
   color: var(--link);
   text-decoration: none;
-  background-image: var(--aurora);
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 100% 0;
   transition: background-size 0.15s;
 }
 
 a:hover {
-  background-size: 100% 2px;
+  --underline: 2px;
 }
 
 /* Links inside article text always carry a thin aurora underline. */
 .prose a {
-  background-size: 100% 1px;
+  --underline: 1px;
   padding-bottom: 1px;
 }
 
 .prose a:hover {
-  background-size: 100% 2px;
+  --underline: 2px;
 }
 
 .prose a:has(> img),
 .site-footer .author > a {
-  background-size: 0 0;
+  --underline: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
   a {
     transition: none;
+  }
+
+  a,
+  .site-header {
+    animation: none;
   }
 }
 
@@ -145,8 +170,7 @@ h6 {
   justify-content: space-between;
   gap: 1rem;
   padding: 1.75rem 0 1.25rem;
-  border-bottom: 2px solid;
-  border-image: var(--aurora) 1;
+  --underline: 2px;
 }
 
 .site-header .logo {
@@ -263,7 +287,7 @@ h6 {
 
 .years a[aria-current="page"] {
   color: var(--ink);
-  background-size: 100% 2px;
+  --underline: 2px;
 }
 
 

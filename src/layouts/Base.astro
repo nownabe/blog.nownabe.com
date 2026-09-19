@@ -99,5 +99,11 @@ const nav = [
         </div>
       </footer>
     </div>
+    <script>
+      // Give each aurora underline its own random phase, so the lines drift out of step.
+      for (const el of document.querySelectorAll<HTMLElement>("a, .site-header")) {
+        el.style.setProperty("--seed", Math.random().toFixed(3));
+      }
+    </script>
   </body>
 </html>
