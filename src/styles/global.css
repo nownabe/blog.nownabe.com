@@ -63,32 +63,19 @@ body {
   font-feature-settings: "palt";
 }
 
+/* Links are the link color and nothing else; a thin underline appears on hover. */
 a {
   color: var(--link);
   text-decoration: none;
-  text-decoration-color: var(--accent);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
 }
 
 a:hover {
   text-decoration-line: underline;
 }
 
-/* Links inside article text: ink like the prose, a thin accent underline marks them; hover changes only the color. */
-.prose a {
-  color: var(--ink);
-  text-decoration-line: underline;
-  text-decoration-thickness: 1px;
-}
-
-.prose a:hover {
-  color: var(--link);
-}
-
 .prose a:has(> img),
-.prose sup a,
-.prose a[data-footnote-backref],
 .site-footer .author > a {
   text-decoration-line: none;
 }
