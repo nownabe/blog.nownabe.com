@@ -33,7 +33,6 @@ interface Props {
 const { post, related } = Astro.props;
 const { Content, headings } = await render(post);
 const toc = headings.filter((h) => h.depth >= 2 && h.depth <= 3 && h.slug !== "footnote-label");
-const url = new URL(postPath(post), Astro.site).href;
 const bannerSrc = bannerOpensBody(post) ? undefined : banner(post);
 ---
 
@@ -83,15 +82,6 @@ const bannerSrc = bannerOpensBody(post) ? undefined : banner(post);
   </div>
 
   <div class="after-article">
-    <ul class="share">
-      <li>
-        <a
-          href={`https://x.com/intent/post?url=${encodeURIComponent(url)}&text=${encodeURIComponent(post.data.title)}&via=nownabe`}
-          rel="noopener">Share on X</a
-        >
-      </li>
-      <li><a href={`https://b.hatena.ne.jp/entry/${url}`} rel="noopener">Hatena Bookmark</a></li>
-    </ul>
     {
       related.length > 0 && (
         <section class="related">
