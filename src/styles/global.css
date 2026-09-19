@@ -15,8 +15,7 @@
   --code-ink: #dcdde8;
 
   --serif: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
-  /* Body text uses installed fonts on purpose: a Japanese web font swapping in mid-render shifted the whole page. */
-  --sans: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "YuGothic", "Noto Sans CJK JP", "Noto Sans JP", Meiryo, sans-serif;
+  --sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "YuGothic", Meiryo, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
 
   --measure: 41rem; /* 41 characters at 1rem */
