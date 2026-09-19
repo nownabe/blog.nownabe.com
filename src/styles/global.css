@@ -261,6 +261,10 @@ h6 {
   border-bottom: 1px solid var(--rule);
 }
 
+.entry:first-child {
+  padding-top: 0.5rem;
+}
+
 .entry .date {
   display: block;
   color: var(--muted);

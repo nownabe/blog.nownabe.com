@@ -12,7 +12,18 @@ const years = groupByYear(posts).map(({ year }) => year);
 
 <Base>
   <YearColumn years={years}>
-    <h1 class="year-heading">Latest</h1>
+    <h1 class="visually-hidden">Latest posts</h1>
     {posts.slice(0, LATEST).map((post) => <PostEntry post={post} />)}
   </YearColumn>
 </Base>
+
+<style>
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+</style>
