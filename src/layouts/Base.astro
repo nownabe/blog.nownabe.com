@@ -68,7 +68,7 @@ const nav = [
     <div class="site">
       <header class="site-header">
         <p class="logo"><a href="/">{SITE_TITLE}</a></p>
-        <nav aria-label="サイト内">
+        <nav aria-label="Site">
           {nav.map((item) => <a href={item.href} aria-current={item.current ? "page" : undefined}>{item.label}</a>)}
         </nav>
       </header>

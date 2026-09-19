@@ -43,14 +43,14 @@ const bannerSrc = bannerOpensBody(post) ? undefined : banner(post);
       <h1 class="article-title">{post.data.title}</h1>
       <p class="article-meta mono">
         <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
-        <span aria-hidden="true"> · </span>約{readingMinutes(post)}分
+        <span aria-hidden="true"> · </span>{readingMinutes(post)} min read
       </p>
       <TagList tags={post.data.tags} class="article-tags" />
       {bannerSrc && <img class="banner" src={bannerSrc} alt="" width="800" height="420" />}
       {
         toc.length > 0 && (
           <details class="toc toc-inline">
-            <summary>目次</summary>
+            <summary>Contents</summary>
             <ol>
               {toc.map((h) => (
                 <li class={`depth-${h.depth}`}>
@@ -68,8 +68,8 @@ const bannerSrc = bannerOpensBody(post) ? undefined : banner(post);
 
     {
       toc.length > 0 && (
-        <nav class="toc toc-side" aria-label="目次" data-toc>
-          <p class="toc-label">目次</p>
+        <nav class="toc toc-side" aria-label="Contents" data-toc>
+          <p class="toc-label">Contents</p>
           <ol>
             {toc.map((h) => (
               <li class={`depth-${h.depth}`} data-slug={h.slug}>
@@ -87,15 +87,15 @@ const bannerSrc = bannerOpensBody(post) ? undefined : banner(post);
       <li>
         <a
           href={`https://x.com/intent/post?url=${encodeURIComponent(url)}&text=${encodeURIComponent(post.data.title)}&via=nownabe`}
-          rel="noopener">X で共有</a
+          rel="noopener">Share on X</a
         >
       </li>
-      <li><a href={`https://b.hatena.ne.jp/entry/${url}`} rel="noopener">はてなブックマーク</a></li>
+      <li><a href={`https://b.hatena.ne.jp/entry/${url}`} rel="noopener">Hatena Bookmark</a></li>
     </ul>
     {
       related.length > 0 && (
         <section class="related">
-          <h2>関連記事</h2>
+          <h2>Related posts</h2>
           <ol>
             {related.map((r) => (
               <li>

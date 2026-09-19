@@ -7,9 +7,9 @@ const groups = [...groupByTag(await getPublishedPosts()).values()].sort(
 );
 ---
 
-<Base title="タグ">
+<Base title="Tags">
   <div class="tag-index">
-    <h1 class="list-title">タグ</h1>
+    <h1 class="list-title">Tags</h1>
     <ul>
       {
         groups.map(({ tag, posts }) => (

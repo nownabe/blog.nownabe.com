@@ -20,11 +20,11 @@ interface Props {
 const { year, posts } = Astro.props;
 ---
 
-<Base title={`${year}年の記事`}>
+<Base title={year}>
   <div class="list">
     <div>
       <h1 class="list-title">{year}</h1>
-      <p class="note">{posts.length} 本の記事。<a href={`/#y${year}`}>記事一覧で他の年も見る</a></p>
+      <p class="note">{posts.length} {posts.length === 1 ? "post" : "posts"} · <a href={`/#y${year}`}>All years</a></p>
       {posts.map((post) => <PostEntry post={post} />)}
     </div>
   </div>

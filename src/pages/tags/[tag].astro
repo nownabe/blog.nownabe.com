@@ -24,7 +24,7 @@ const { tag, posts } = Astro.props;
   <div class="list">
     <div>
       <h1 class="list-title">#{tag}</h1>
-      <p class="note">{posts.length} 本の記事。<a href="/tags/">タグ一覧</a></p>
+      <p class="note">{posts.length} {posts.length === 1 ? "post" : "posts"} · <a href="/tags/">All tags</a></p>
       {posts.map((post) => <PostEntry post={post} />)}
     </div>
   </div>

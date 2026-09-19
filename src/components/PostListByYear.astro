@@ -14,7 +14,7 @@ const groups = groupByYear(posts);
 <div class="list">
   {
     showYears && groups.length > 1 && (
-      <ul class="years" aria-label="年">
+      <ul class="years" aria-label="Years">
         {groups.map(({ year }) => (
           <li>
             <a href={`#y${year}`}>{year}</a>
