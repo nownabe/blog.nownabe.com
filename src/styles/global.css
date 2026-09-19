@@ -14,9 +14,9 @@
   --code-bg: #1f2130;
   --code-ink: #dcdde8;
 
-  --display: "Zen Kaku Gothic New", "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "YuGothic", Meiryo, sans-serif;
+  --display: "IBM Plex Sans JP", "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "YuGothic", Meiryo, sans-serif;
   --sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "YuGothic", Meiryo, sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
 
   --measure: 41rem; /* 41 characters at 1rem */
   --aside: 14rem;
@@ -168,9 +168,8 @@ h4,
 h5,
 h6 {
   font-family: var(--display);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.4;
-  letter-spacing: -0.01em;
   margin: 0;
 }
 
@@ -208,6 +207,7 @@ h6 {
 
 .site-header .logo a {
   color: var(--ink);
+  text-decoration-line: none;
 }
 
 .site-header nav {
@@ -218,6 +218,8 @@ h6 {
 
 .site-header nav a {
   color: var(--ink);
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1px;
 }
 
 .site-header nav a[aria-current="page"] {
