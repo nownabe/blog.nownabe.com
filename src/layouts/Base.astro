@@ -35,7 +35,7 @@ const nav = [
     <!-- display=block: hold text until the web font arrives instead of swapping it in after first paint. -->
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400&display=block"
+      href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400&display=block"
     />
     <meta name="author" content="nownabe" />
     <meta name="description" content={description} />
@@ -101,15 +101,10 @@ const nav = [
       </footer>
     </div>
     <script>
-      // Give each aurora underline its own random phase, so the lines drift out of step.
-      for (const el of document.querySelectorAll<HTMLElement>("a, .site-header")) {
+      // Give each aurora line its own random phase, so they drift out of step.
+      for (const el of document.querySelectorAll<HTMLElement>(".site-header, .entry h2 a")) {
         el.style.setProperty("--seed", Math.random().toFixed(3));
       }
-      // Article links animate only while on screen.
-      const inView = new IntersectionObserver((entries) => {
-        for (const { target, isIntersecting } of entries) target.classList.toggle("in-view", isIntersecting);
-      });
-      for (const a of document.querySelectorAll(".prose a")) inView.observe(a);
     </script>
   </body>
 </html>

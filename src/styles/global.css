@@ -14,7 +14,7 @@
   --code-bg: #1f2130;
   --code-ink: #dcdde8;
 
-  --serif: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
+  --display: "Zen Kaku Gothic New", "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "YuGothic", Meiryo, sans-serif;
   --sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "YuGothic", Meiryo, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
 
@@ -61,29 +61,60 @@ body {
   font-feature-settings: "palt";
 }
 
-/*
- * Aurora underline: the gradient is three times wider than the element and drifts
- * sideways, so no two lines show the same colors at once. --seed (0–1, set per element
- * by the small script in the layout) staggers the phase and speed of each drift.
- */
 a {
-  background-image: var(--aurora);
-  background-repeat: no-repeat;
-  background-position: 0% 100%;
-  background-size: 300% var(--underline, 0);
+  color: var(--link);
+  text-decoration: none;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-line: underline;
+}
+
+/* Links inside article text are always underlined, thinly. */
+.prose a {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+}
+
+.prose a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.prose a:has(> img),
+.site-footer .author > a {
+  text-decoration-line: none;
 }
 
 /*
- * Only lines that are on screen drift. Animating every link repainted the whole page
- * each frame; .in-view is toggled by an IntersectionObserver in the layout.
+ * Aurora appears in two places only: the header rule and the underline of a post title
+ * in a list. The gradient is three times wider than the element and drifts sideways;
+ * --seed (0–1, set per element by the small script in the layout) staggers the phase
+ * and speed so the lines are never in step. steps() keeps repaints to a dozen a second.
  */
 .site-header::after,
-.prose a.in-view,
-.years a[aria-current="page"],
-a:hover {
-  /* steps(): a dozen repaints a second is plenty for a soft gradient and far cheaper than sixty. */
+.entry h2 a {
+  background-image: var(--aurora);
+  background-repeat: no-repeat;
+  background-position: 0% 100%;
+  background-size: 300% 0;
+}
+
+.site-header::after,
+.entry h2 a:hover {
   animation: aurora-drift calc(14s + var(--seed, 0) * 10s) steps(240) infinite alternate;
   animation-delay: calc(var(--seed, 0) * -24s);
+}
+
+.entry h2 a {
+  text-decoration-line: none;
+  transition: background-size 0.15s;
+}
+
+.entry h2 a:hover {
+  background-size: 300% 2px;
 }
 
 @keyframes aurora-drift {
@@ -103,46 +134,14 @@ a:hover {
   right: 0;
   bottom: 0;
   height: 2px;
-  background-image: var(--aurora);
-  background-repeat: no-repeat;
   background-size: 300% 100%;
 }
 
-a {
-  color: var(--link);
-  text-decoration: none;
-  transition: background-size 0.15s;
-}
-
-a:hover {
-  --underline: 2px;
-}
-
-/* Links inside article text always carry a thin aurora underline. */
-.prose a {
-  --underline: 1px;
-  padding-bottom: 1px;
-}
-
-.prose a:hover {
-  --underline: 2px;
-}
-
-.prose a:has(> img),
-.site-footer .author > a {
-  --underline: 0;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  a {
-    transition: none;
-  }
-
   .site-header::after,
-  .prose a.in-view,
-  .years a[aria-current="page"],
-  a:hover {
+  .entry h2 a {
     animation: none;
+    transition: none;
   }
 }
 
@@ -168,9 +167,10 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--serif);
-  font-weight: 600;
+  font-family: var(--display);
+  font-weight: 700;
   line-height: 1.4;
+  letter-spacing: -0.01em;
   margin: 0;
 }
 
@@ -200,7 +200,7 @@ h6 {
 
 .site-header .logo {
   margin: 0;
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -252,7 +252,7 @@ h6 {
 
 .site-footer .author .name {
   color: var(--ink);
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: 1rem;
 }
 
@@ -312,7 +312,7 @@ h6 {
 
 .years a[aria-current="page"] {
   color: var(--ink);
-  --underline: 2px;
+  text-decoration-line: underline;
 }
 
 
@@ -519,7 +519,7 @@ h6 {
 
 .toc-inline summary {
   cursor: pointer;
-  font-family: var(--serif);
+  font-family: var(--display);
   font-weight: 600;
 }
 
@@ -584,7 +584,7 @@ h6 {
 .read-next dd {
   margin: 0;
   grid-column: 2;
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: 1.05rem;
   line-height: 1.5;
 }
@@ -649,7 +649,7 @@ h6 {
 
   .toc-side .toc-label {
     margin: 0 0 0.25rem 0.75rem;
-    font-family: var(--serif);
+    font-family: var(--display);
     font-weight: 600;
     color: var(--muted);
   }
