@@ -17,7 +17,6 @@
   --code-ink: #dcdde8;
 
   --display: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Noto Sans JP", "Yu Gothic", "YuGothic", Meiryo, sans-serif;
-  --wordmark: "Unbounded", "Noto Sans JP", sans-serif;
   --sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "YuGothic", Meiryo, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
 
@@ -200,13 +199,13 @@ h6 {
   position: relative;
 }
 
-/* Wordmark: a wide geometric Latin, tight, with ".log" carrying the aurora as gradient text. */
+/* Wordmark: the heading face; only the period carries color, as an aurora dot. */
 .site-header .logo {
   margin: 0;
-  font-family: var(--wordmark);
+  font-family: var(--display);
   font-size: 1.5rem;
   font-weight: 700;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.01em;
   line-height: 1;
 }
 
@@ -215,19 +214,21 @@ h6 {
   text-decoration-line: none;
 }
 
-.site-header .logo .log {
+.site-header .logo .dot {
+  display: inline-block;
+  width: 0.32em;
+  height: 0.32em;
+  margin: 0 0.06em;
+  vertical-align: 0.02em;
+  border-radius: 50%;
   background-image: var(--aurora-text);
   background-size: 300% 100%;
-  background-position: 0% 0;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
   animation: aurora-drift calc(14s + var(--seed, 0) * 10s) steps(240) infinite alternate;
   animation-delay: calc(var(--seed, 0) * -24s);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .site-header .logo .log {
+  .site-header .logo .dot {
     animation: none;
   }
 }

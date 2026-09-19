@@ -35,7 +35,7 @@ const nav = [
     <!-- display=block: hold text until the web font arrives instead of swapping it in after first paint. -->
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Unbounded:wght@700&family=Noto+Sans+JP:wght@400;700&family=IBM+Plex+Mono:wght@400&display=block"
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Noto+Sans+JP:wght@400;700&family=IBM+Plex+Mono:wght@400&display=block"
     />
     <meta name="author" content="nownabe" />
     <meta name="description" content={description} />
@@ -70,7 +70,7 @@ const nav = [
   <body>
     <div class="site" id="top">
       <header class="site-header">
-        <p class="logo"><a href="/" aria-label={SITE_TITLE}>nownab<span class="log">.log</span></a></p>
+        <p class="logo"><a href="/" aria-label={SITE_TITLE}>nownab<span class="dot"></span>log</a></p>
         <nav aria-label="Site">
           {nav.map((item) => <a href={item.href} aria-current={item.current ? "page" : undefined}>{item.label}</a>)}
         </nav>
