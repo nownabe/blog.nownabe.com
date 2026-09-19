@@ -10,7 +10,7 @@
   --accent-soft: #b6b9ff;
   --link: #5b5ce6;
   /* Aurora: periwinkle through lavender into mint, used for underlines and the header rule. */
-  --aurora: linear-gradient(90deg, #6d6ff5, #9293fe, #b6b9ff, #8ee7d9, #b6f0e6, #9293fe, #b6b9ff, #6d6ff5);
+  --aurora: linear-gradient(90deg, #6d6ff5, #9293fe, #b6b9ff, #f0b3f7, #b6b9ff, #8ee7d9, #b6f0e6, #9293fe, #6d6ff5);
   --code-bg: #1f2130;
   --code-ink: #dcdde8;
 
