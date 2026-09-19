@@ -1,0 +1,21 @@
+---
+import TagList from "./TagList.astro";
+import { banner, formatDate, lead, postPath, type Post } from "../lib/posts";
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const thumb = banner(post);
+---
+
+<article class="entry">
+  <div>
+    <time class="date mono" datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+    <h2><a href={postPath(post)}>{post.data.title}</a></h2>
+    <p class="lead">{lead(post)}</p>
+    <TagList tags={post.data.tags} />
+  </div>
+  {thumb && <img class="thumb" src={thumb} alt="" loading="lazy" width="120" height="80" />}
+</article>

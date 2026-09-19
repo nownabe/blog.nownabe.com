@@ -1,5 +1,5 @@
 ---
-import "../styles/main.scss";
+import "../styles/global.css";
 import { SITE_TITLE, SITE_DESCRIPTION, DEFAULT_IMAGE } from "../lib/posts";
 
 interface Props {
@@ -12,6 +12,12 @@ const { title, description = SITE_DESCRIPTION, image = DEFAULT_IMAGE } = Astro.p
 const pageTitle = title ? `${title} - ${SITE_TITLE}` : SITE_TITLE;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const imageUrl = new URL(image, Astro.site);
+const path = Astro.url.pathname;
+const nav = [
+  { href: "/", label: "記事一覧", current: path === "/" || /^\/\d{4}\/$/.test(path) },
+  { href: "/tags/", label: "タグ", current: path.startsWith("/tags/") },
+  { href: "https://nownabe.com", label: "About", current: false },
+];
 ---
 
 <!doctype html>
@@ -23,7 +29,12 @@ const imageUrl = new URL(image, Astro.site);
     <link rel="alternate" type="application/rss+xml" href="/feed.xml" title={SITE_TITLE} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="/css/ress.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400&display=swap"
+    />
     <meta name="author" content="nownabe" />
     <meta name="description" content={description} />
     <meta property="og:site_name" content={SITE_TITLE} />
@@ -55,53 +66,29 @@ const imageUrl = new URL(image, Astro.site);
     }
   </head>
   <body>
-    <div id="site-container">
-      <div class="header-container">
-        <header class="content">
-          <h1><a href="/">{SITE_TITLE}</a></h1>
-          <p>nownabe's daily posts</p>
-        </header>
-      </div>
+    <div class="site">
+      <header class="site-header">
+        <p class="logo"><a href="/">{SITE_TITLE}</a></p>
+        <nav aria-label="サイト内">
+          {nav.map((item) => <a href={item.href} aria-current={item.current ? "page" : undefined}>{item.label}</a>)}
+        </nav>
+      </header>
 
-      <div id="main" role="main">
+      <main>
         <slot />
-      </div>
-      <div id="navigation">
-        <slot name="navigation" />
-      </div>
+      </main>
 
-      <div class="footer-container">
-        <footer class="content">
-          <div id="author">
-            <p>
-              <a href="https://nownabe.com">
-                <img src="/img/profile_icon_2022.jpg" alt="profile icon" width="64" height="64" />
-              </a>
-            </p>
-            <div class="bordered-link">
-              <p class="name"><a href="https://nownabe.com">Shogo Watanabe</a></p>
-              <p>
-                A dog lover. Software Engineer at
-                <a href="https://kwork.studio">Knowledge Work</a>. Ex-Googler.
-              </p>
-              <p>Opinions are my own, not views of my employer.</p>
-            </div>
+      <footer class="site-footer">
+        <div class="author">
+          <a href="https://nownabe.com"><img src="/img/profile_icon_2022.jpg" alt="" width="56" height="56" /></a>
+          <div>
+            <p class="name"><a href="https://nownabe.com">Shogo Watanabe</a></p>
+            <p>A dog lover. Software Engineer at <a href="https://kwork.studio">Knowledge Work</a>. Ex-Googler.</p>
+            <p>Opinions are my own, not views of my employer.</p>
           </div>
-          <div id="copyright">
-            <p class="copyright">Copyright &copy; 2016 Shogo Watanabe All Right Reserved.</p>
-          </div>
-        </footer>
-      </div>
+        </div>
+        <p class="copyright">© 2016 Shogo Watanabe</p>
+      </footer>
     </div>
-    <script
-      is:inline
-      src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js"
-      integrity="sha384-6dhz+LFvhiM4G9QxNyE07x2m2kV0EVfSRSnAaLtTNFSAMe2GA0MGr9r3Yghs03FG"
-      crossorigin="anonymous"></script>
-    <script is:inline>
-      document.addEventListener("DOMContentLoaded", function () {
-        anchors.add(".article-body h1, .article-body h2, .article-body h3, .article-body h4");
-      });
-    </script>
   </body>
 </html>

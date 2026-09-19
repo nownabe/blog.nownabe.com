@@ -1,18 +1,15 @@
 ---
 import type { GetStaticPaths } from "astro";
 import Base from "../layouts/Base.astro";
-import PostCards from "../components/PostCards.astro";
-import { getPublishedPosts, type Post } from "../lib/posts";
+import PostEntry from "../components/PostEntry.astro";
+import { getPublishedPosts, groupByYear, type Post } from "../lib/posts";
 
-// Hugo published (empty) section pages at /2016/ … /2023/; keep the URLs alive as year archives.
+// Hugo published section pages at /2016/ … /2023/; keep the URLs alive as year archives.
 export const getStaticPaths = (async () => {
-  const byYear = new Map<string, Post[]>();
-  for (const post of await getPublishedPosts()) {
-    const year = post.id.match(/^(\d{4})\//)?.[1];
-    if (!year) continue;
-    byYear.set(year, [...(byYear.get(year) ?? []), post]);
-  }
-  return [...byYear].map(([year, posts]) => ({ params: { year }, props: { year, posts } }));
+  return groupByYear(await getPublishedPosts()).map(({ year, posts }) => ({
+    params: { year },
+    props: { year, posts },
+  }));
 }) satisfies GetStaticPaths;
 
 interface Props {
@@ -23,10 +20,12 @@ interface Props {
 const { year, posts } = Astro.props;
 ---
 
-<Base title={year}>
-  <div class="tag-container content">
-    <h1>{year}</h1>
-    <p class="date">{posts.length} posts</p>
+<Base title={`${year}年の記事`}>
+  <div class="list">
+    <div>
+      <h1 class="list-title">{year}</h1>
+      <p class="note">{posts.length} 本の記事。<a href={`/#y${year}`}>記事一覧で他の年も見る</a></p>
+      {posts.map((post) => <PostEntry post={post} />)}
+    </div>
   </div>
-  <PostCards posts={posts} class="content" />
 </Base>

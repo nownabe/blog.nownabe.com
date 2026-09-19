@@ -1,7 +1,7 @@
 ---
 import type { GetStaticPaths } from "astro";
 import Base from "../../layouts/Base.astro";
-import PostCards from "../../components/PostCards.astro";
+import PostEntry from "../../components/PostEntry.astro";
 import { getPublishedPosts, groupByTag, type Post } from "../../lib/posts";
 
 export const getStaticPaths = (async () => {
@@ -21,9 +21,11 @@ const { tag, posts } = Astro.props;
 ---
 
 <Base title={`#${tag}`}>
-  <div class="tag-container content">
-    <h1>#{tag}</h1>
-    <p class="date">{posts.length} posts</p>
+  <div class="list">
+    <div>
+      <h1 class="list-title">#{tag}</h1>
+      <p class="note">{posts.length} 本の記事。<a href="/tags/">タグ一覧</a></p>
+      {posts.map((post) => <PostEntry post={post} />)}
+    </div>
   </div>
-  <PostCards posts={posts} class="content" />
 </Base>

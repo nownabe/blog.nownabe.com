@@ -1,0 +1,40 @@
+---
+import PostEntry from "./PostEntry.astro";
+import { groupByYear, type Post } from "../lib/posts";
+
+interface Props {
+  posts: Post[];
+  showYears?: boolean;
+}
+
+const { posts, showYears = true } = Astro.props;
+const groups = groupByYear(posts);
+---
+
+<div class="list">
+  {
+    showYears && groups.length > 1 && (
+      <ul class="years" aria-label="年">
+        {groups.map(({ year }) => (
+          <li>
+            <a href={`#y${year}`}>{year}</a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+  <div>
+    {
+      groups.map(({ year, posts }) => (
+        <section aria-labelledby={`y${year}`}>
+          <h2 class="year-heading" id={`y${year}`}>
+            {year}
+          </h2>
+          {posts.map((post) => (
+            <PostEntry post={post} />
+          ))}
+        </section>
+      ))
+    }
+  </div>
+</div>

@@ -1,15 +1,13 @@
 ---
 import type { GetStaticPaths } from "astro";
-import PostList from "../../components/PostList.astro";
-import { getPublishedPosts, PAGE_SIZE } from "../../lib/posts";
+import { getPublishedPosts } from "../../lib/posts";
 
-export const getStaticPaths = (async ({ paginate }) => {
-  const posts = await getPublishedPosts();
-  // Page 1 lives at / (index.astro); /page/1/ redirects there via astro.config.
-  return paginate(posts, { pageSize: PAGE_SIZE }).filter(({ params }) => params.page !== "1");
+// Hugo paginated the top page at /page/N/ (10 posts a page). The top page now
+// lists every post, so those URLs redirect there instead of disappearing.
+export const getStaticPaths = (async () => {
+  const pages = Math.ceil((await getPublishedPosts()).length / 10);
+  return Array.from({ length: pages }, (_, i) => ({ params: { page: String(i + 1) } }));
 }) satisfies GetStaticPaths;
 
-const { page } = Astro.props;
+return Astro.redirect("/", 301);
 ---
-
-<PostList page={page} />

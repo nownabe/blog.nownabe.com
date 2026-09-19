@@ -2,8 +2,20 @@
 import type { GetStaticPaths } from "astro";
 import { render } from "astro:content";
 import Base from "../layouts/Base.astro";
-import PostCards from "../components/PostCards.astro";
-import { excerpt, formatDate, getPublishedPosts, postImage, postPath, relatedPosts, type Post } from "../lib/posts";
+import TagList from "../components/TagList.astro";
+import {
+  banner,
+  bannerOpensBody,
+  excerpt,
+  formatDate,
+  formatYearMonth,
+  getPublishedPosts,
+  postPath,
+  readingMinutes,
+  relatedPosts,
+  socialImage,
+  type Post,
+} from "../lib/posts";
 
 export const getStaticPaths = (async () => {
   const posts = await getPublishedPosts();
@@ -20,80 +32,104 @@ interface Props {
 
 const { post, related } = Astro.props;
 const { Content, headings } = await render(post);
-const toc = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
-const shareUrl = new URL(postPath(post), Astro.site).href;
+const toc = headings.filter((h) => h.depth >= 2 && h.depth <= 3 && h.slug !== "footnote-label");
+const url = new URL(postPath(post), Astro.site).href;
+const bannerSrc = bannerOpensBody(post) ? undefined : banner(post);
 ---
 
-<Base title={post.data.title} description={excerpt(post)} image={postImage(post)}>
-  <div class="article-container">
-    <article class="content">
-      <div class="article-title">
-        <h1><a href={postPath(post)}>{post.data.title}</a></h1>
-        <p class="date">Posted on {formatDate(post.data.date)}</p>
-      </div>
-      <div class="article-body">
-        <Content />
-      </div>
-    </article>
-    <div class="article-left"></div>
-    <div class="article-right">
+<Base title={post.data.title} description={excerpt(post)} image={socialImage(post)}>
+  <div class="article">
+    <article class="article-main">
+      <h1 class="article-title">{post.data.title}</h1>
+      <p class="article-meta mono">
+        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+        <span aria-hidden="true"> · </span>約{readingMinutes(post)}分
+      </p>
+      <TagList tags={post.data.tags} class="article-tags" />
+      {bannerSrc && <img class="banner" src={bannerSrc} alt="" width="800" height="420" />}
       {
         toc.length > 0 && (
-          <nav class="article-toc" aria-label="Table of contents">
-            <ul>
+          <details class="toc toc-inline">
+            <summary>目次</summary>
+            <ol>
               {toc.map((h) => (
-                <li class={`toc-depth-${h.depth}`}>
+                <li class={`depth-${h.depth}`}>
                   <a href={`#${h.slug}`}>{h.text}</a>
                 </li>
               ))}
-            </ul>
-          </nav>
+            </ol>
+          </details>
         )
       }
-    </div>
+      <div class="prose">
+        <Content />
+      </div>
+    </article>
+
+    {
+      toc.length > 0 && (
+        <nav class="toc toc-side" aria-label="目次" data-toc>
+          <p class="toc-label">目次</p>
+          <ol>
+            {toc.map((h) => (
+              <li class={`depth-${h.depth}`} data-slug={h.slug}>
+                <a href={`#${h.slug}`}>{h.text}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )
+    }
   </div>
 
-  <div slot="navigation" class="navigation-container">
-    <nav class="content">
-      <div class="sns-buttons">
-        <ul>
-          <li>
-            <a
-              class="twitter-share-button"
-              href={`https://twitter.com/share?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(post.data.title)}&via=nownabe`}
-              data-via="nownabe"
-              data-related="nownabe">Tweet</a
-            >
-          </li>
-          <li>
-            <a
-              class="hatena-bookmark-button"
-              href={`https://b.hatena.ne.jp/entry/${shareUrl}`}
-              data-hatena-bookmark-layout="standard-balloon"
-              data-hatena-bookmark-lang="ja"
-              title="このエントリーをはてなブックマークに追加"
-            >
-              <img
-                src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
-                alt="このエントリーをはてなブックマークに追加"
-                width="20"
-                height="20"
-                style="border: none;"
-              />
-            </a>
-          </li>
-        </ul>
-      </div>
-      {
-        related.length > 0 && (
-          <>
-            <h2 class="related-posts">related posts</h2>
-            <PostCards posts={related} />
-          </>
-        )
-      }
-    </nav>
-    <script is:inline async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <script is:inline async src="https://b.st-hatena.com/js/bookmark_button.js"></script>
+  <div class="after-article">
+    <ul class="share">
+      <li>
+        <a
+          href={`https://x.com/intent/post?url=${encodeURIComponent(url)}&text=${encodeURIComponent(post.data.title)}&via=nownabe`}
+          rel="noopener">X で共有</a
+        >
+      </li>
+      <li><a href={`https://b.hatena.ne.jp/entry/${url}`} rel="noopener">はてなブックマーク</a></li>
+    </ul>
+    {
+      related.length > 0 && (
+        <section class="related">
+          <h2>関連記事</h2>
+          <ol>
+            {related.map((r) => (
+              <li>
+                <span class="date mono">{formatYearMonth(r.data.date)}</span>
+                <a href={postPath(r)}>{r.data.title}</a>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )
+    }
   </div>
 </Base>
+
+<script>
+  // Mark the table-of-contents entry for the section currently at the top of the viewport.
+  const toc = document.querySelector<HTMLElement>("[data-toc]");
+  if (toc) {
+    const items = new Map(
+      [...toc.querySelectorAll<HTMLLIElement>("li[data-slug]")].map((li) => [li.dataset.slug!, li]),
+    );
+    const headings = [...items.keys()].map((id) => document.getElementById(id)).filter((el): el is HTMLElement => !!el);
+    let current: HTMLLIElement | undefined;
+    const update = () => {
+      const line = window.scrollY + 96;
+      const active = headings.filter((h) => h.offsetTop <= line).at(-1) ?? headings[0];
+      const li = active && items.get(active.id);
+      if (li === current) return;
+      current?.removeAttribute("aria-current");
+      li?.setAttribute("aria-current", "true");
+      current = li;
+    };
+    update();
+    addEventListener("scroll", update, { passive: true });
+    addEventListener("resize", update);
+  }
+</script>

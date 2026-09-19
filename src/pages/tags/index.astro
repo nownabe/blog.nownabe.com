@@ -7,14 +7,15 @@ const groups = [...groupByTag(await getPublishedPosts()).values()].sort(
 );
 ---
 
-<Base title="Tags">
-  <div class="tag-container content">
-    <h1>Tags</h1>
-    <ul class="tag-list">
+<Base title="タグ">
+  <div class="tag-index">
+    <h1 class="list-title">タグ</h1>
+    <ul>
       {
         groups.map(({ tag, posts }) => (
           <li>
-            <a href={tagPath(tag)}>#{tag}</a> <span class="date">{posts.length}</span>
+            <a href={tagPath(tag)}>#{tag}</a>
+            <span class="count mono">{posts.length}</span>
           </li>
         ))
       }
