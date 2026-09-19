@@ -11,10 +11,13 @@
   --link: #5b5ce6;
   /* Aurora: periwinkle through lavender into mint, used for underlines and the header rule. */
   --aurora: linear-gradient(90deg, #6d6ff5, #9293fe, #b6b9ff, #f0b3f7, #b6b9ff, #8ee7d9, #b6f0e6, #9293fe, #6d6ff5);
+  /* Same hues, deeper stops: gradient text needs more contrast against the paper than a 2px line does. */
+  --aurora-text: linear-gradient(90deg, #5b5ce6, #9293fe, #d98bf0, #9293fe, #4fd3c2, #6d6ff5, #5b5ce6);
   --code-bg: #1f2130;
   --code-ink: #dcdde8;
 
-  --display: "IBM Plex Sans JP", "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "YuGothic", Meiryo, sans-serif;
+  --display: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Noto Sans JP", "Yu Gothic", "YuGothic", Meiryo, sans-serif;
+  --wordmark: "Unbounded", "Noto Sans JP", sans-serif;
   --sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "YuGothic", Meiryo, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
 
@@ -197,17 +200,36 @@ h6 {
   position: relative;
 }
 
+/* Wordmark: a wide geometric Latin, tight, with ".log" carrying the aurora as gradient text. */
 .site-header .logo {
   margin: 0;
-  font-family: var(--display);
+  font-family: var(--wordmark);
   font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 .site-header .logo a {
   color: var(--ink);
   text-decoration-line: none;
+}
+
+.site-header .logo .log {
+  background-image: var(--aurora-text);
+  background-size: 300% 100%;
+  background-position: 0% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: aurora-drift calc(14s + var(--seed, 0) * 10s) steps(240) infinite alternate;
+  animation-delay: calc(var(--seed, 0) * -24s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header .logo .log {
+    animation: none;
+  }
 }
 
 .site-header nav {
@@ -424,7 +446,7 @@ h6 {
   }
 
   .years a[aria-current="page"] {
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .years {
@@ -490,7 +512,7 @@ h6 {
 
 .article-title {
   font-size: 1.75rem;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.45;
 }
 
