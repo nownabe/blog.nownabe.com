@@ -1,0 +1,49 @@
+---
+import type { Page } from "astro";
+
+interface Props {
+  page: Page<unknown>;
+}
+
+const { page } = Astro.props;
+const pageUrl = (n: number) => (n === 1 ? "/" : `/page/${n}/`);
+const { currentPage, lastPage } = page;
+
+// Same window as Hugo's default pagination: current ±2, always first and last.
+const numbers = [...new Set([1, lastPage, ...[-2, -1, 0, 1, 2].map((d) => currentPage + d)])]
+  .filter((n) => n >= 1 && n <= lastPage)
+  .sort((a, b) => a - b);
+---
+
+<div id="pagination" class="content">
+  <ul>
+    <li class:list={{ disabled: currentPage === 1 }}>
+      <a href={pageUrl(1)} aria-label="First">«</a>
+    </li>
+    <li class:list={{ disabled: currentPage === 1 }}>
+      <a href={pageUrl(Math.max(1, currentPage - 1))} aria-label="Previous">‹</a>
+    </li>
+    {
+      numbers.map((n, i) => (
+        <>
+          {i > 0 && numbers[i - 1] !== n - 1 && (
+            <li class="disabled">
+              <a>…</a>
+            </li>
+          )}
+          <li class:list={{ active: n === currentPage }}>
+            <a href={pageUrl(n)} aria-current={n === currentPage ? "page" : undefined}>
+              {n}
+            </a>
+          </li>
+        </>
+      ))
+    }
+    <li class:list={{ disabled: currentPage === lastPage }}>
+      <a href={pageUrl(Math.min(lastPage, currentPage + 1))} aria-label="Next">›</a>
+    </li>
+    <li class:list={{ disabled: currentPage === lastPage }}>
+      <a href={pageUrl(lastPage)} aria-label="Last">»</a>
+    </li>
+  </ul>
+</div>

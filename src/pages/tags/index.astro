@@ -1,0 +1,23 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getPublishedPosts, groupByTag, tagPath } from "../../lib/posts";
+
+const groups = [...groupByTag(await getPublishedPosts()).values()].sort(
+  (a, b) => b.posts.length - a.posts.length || a.tag.localeCompare(b.tag, "ja"),
+);
+---
+
+<Base title="Tags">
+  <div class="tag-container content">
+    <h1>Tags</h1>
+    <ul class="tag-list">
+      {
+        groups.map(({ tag, posts }) => (
+          <li>
+            <a href={tagPath(tag)}>#{tag}</a> <span class="date">{posts.length}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Base>

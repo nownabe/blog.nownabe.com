@@ -1,4 +1,6 @@
 @charset "UTF-8";
+@use "sass:map";
+
 /* Variables */
 
 $up-breakpoints: (
@@ -18,58 +20,44 @@ $down-breakpoints: (
 );
 
 @mixin up($breakpoint) {
-  @media #{map-get($up-breakpoints, $breakpoint)} {
+  @media #{map.get($up-breakpoints, $breakpoint)} {
     @content;
   }
 }
 
 @mixin down($breakpoint) {
-  @media #{map-get($down-breakpoints, $breakpoint)} {
+  @media #{map.get($down-breakpoints, $breakpoint)} {
     @content;
   }
 }
 
 :root {
-  @media (prefers-color-scheme: light) {
-    --color-bg: #fff;
-    --color-border: #ddd;
-    --color-text: #222;
-    --color-text2: #999;
-    --color-code-text: #222;
-    --color-code-background: #f3f3f3;
-  }
+  --color-bg: #fff;
+  --color-border: #ddd;
+  --color-text: #222;
+  --color-text2: #999;
+  --color-code-text: #222;
+  --color-code-background: #f3f3f3;
 
   @media (prefers-color-scheme: dark) {
     --color-bg: #222;
     --color-border: #444;
     --color-text: #ddd;
     --color-text2: #999;
-    // TODO: Use dark mode for code background
-    // --color-code-background: #333;
-    --color-code-text: #222;
-    --color-code-background: #f3f3f3;
+    --color-code-text: #ddd;
+    --color-code-background: #333;
   }
 }
 
 /* Base Styles */
 
 .content {
-  @include up(lg) {
-    max-width: 800px;
-    margin-right: auto;
-    margin-left: auto;
-  }
-
-  @include down(md) {
-    max-width: 800px;
-    margin-right: auto;
-    margin-left: auto;
-  }
+  max-width: 800px;
+  margin-right: auto;
+  margin-left: auto;
 
   @include down(sm) {
     max-width: calc(100% - 2rem);
-    margin-right: auto;
-    margin-left: auto;
   }
 }
 
@@ -180,10 +168,6 @@ li {
   grid-template-columns: 1fr 1fr;
   grid-gap: 2rem 2rem;
 
-  @include up(lg) {
-    grid-template-columns: 1fr 1fr;
-  }
-
   @include down(sm) {
     grid-template-columns: 1fr;
     grid-gap: 1rem;
@@ -204,7 +188,7 @@ li {
       transform: scale(1.01);
     }
 
-    a {
+    > a {
       display: block;
       position: absolute;
       top: 0;
@@ -212,16 +196,15 @@ li {
       width: 100%;
       height: 100%;
       border-radius: 0.25rem;
+      z-index: 1;
     }
 
-    .card-img {
-      img {
-        width: calc(400px - 1rem);
-        height: calc(200px);
-        border-top-left-radius: 0.25rem;
-        border-top-right-radius: 0.25rem;
-        object-fit: cover;
-      }
+    .card-img img {
+      width: calc(400px - 1rem);
+      height: 200px;
+      border-top-left-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+      object-fit: cover;
     }
 
     .card-title {
@@ -240,29 +223,24 @@ li {
       flex-direction: row;
       width: 100%;
 
-      .card-img {
+      .card-img,
+      .card-img img {
         width: 240px;
         height: 180px;
+      }
 
-        img {
-          width: 240px;
-          height: 180px;
-          border-top-right-radius: 0;
-          border-top-left-radius: 0.25rem;
-          border-bottom-left-radius: 0.25rem;
-        }
+      .card-img img {
+        border-top-right-radius: 0;
+        border-top-left-radius: 0.25rem;
+        border-bottom-left-radius: 0.25rem;
       }
     }
 
     @include down(xs) {
-      .card-img {
+      .card-img,
+      .card-img img {
         width: 160px;
         height: 120px;
-
-        img {
-          width: 160px;
-          height: 120px;
-        }
       }
     }
   }
@@ -285,6 +263,7 @@ li {
       border-radius: 0.25rem;
       width: 10%;
       height: 2rem;
+      margin-left: 0;
 
       a {
         display: inline-block;
@@ -300,20 +279,42 @@ li {
       }
     }
 
-    li:not(.disabled) {
-      a:hover {
-        background-color: var(--color-border);
-      }
+    li:not(.disabled) a:hover {
+      background-color: var(--color-border);
     }
 
-    li.disabled {
-      a {
-        color: var(--color-border);
-      }
+    li.disabled a {
+      color: var(--color-border);
     }
 
     li.active {
       background-color: var(--color-border);
+    }
+  }
+}
+
+.tag-container {
+  margin-top: 2rem;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .date {
+    color: var(--color-text2);
+  }
+
+  .tag-list {
+    margin-top: 2rem;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+
+    li {
+      margin-left: 0;
+      line-height: 2;
     }
   }
 }
@@ -384,10 +385,7 @@ li {
       line-height: 1.8;
       margin: 1.5rem 0;
 
-      iframe {
-        margin: 0;
-      }
-
+      iframe,
       img {
         margin: 0;
       }
@@ -506,21 +504,51 @@ li {
       color: var(--color-code-text);
     }
 
-    .highlight {
+    .code-filename {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.1rem 0.75rem;
+      font-size: 0.8rem;
+      font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+      color: var(--color-text2);
+      background-color: var(--color-code-background);
+      border-radius: 0.25rem 0.25rem 0 0;
+
+      + pre {
+        margin-top: 0;
+        border-top-left-radius: 0;
+      }
+    }
+
+    pre {
       margin: 1.5rem 0;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      line-height: 1.2;
+      background-color: var(--color-code-background);
 
-      pre {
-        background-color: var(--color-code-background);
-        padding: 1rem;
-        border-radius: 0.5rem;
-        overflow-x: auto;
-        line-height: 1.2;
+      code {
+        background: none;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+      }
+    }
 
-        code {
-          background: none;
-          border-radius: 0;
-          padding: 0;
-          margin: 0;
+    // Shiki emits both themes as CSS variables; pick one per color scheme.
+    pre.astro-code {
+      background-color: var(--shiki-light-bg) !important;
+
+      span {
+        color: var(--shiki-light);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        background-color: var(--shiki-dark-bg) !important;
+
+        span {
+          color: var(--shiki-dark);
         }
       }
     }
@@ -575,8 +603,20 @@ li {
   .article-toc {
     position: sticky;
     top: 2rem;
-
     font-size: 0.9rem;
+
+    ul {
+      list-style-type: none;
+    }
+
+    li {
+      margin-left: 0;
+      line-height: 1.8;
+    }
+
+    .toc-depth-3 {
+      margin-left: 1rem;
+    }
 
     a {
       transition: 0.2s;

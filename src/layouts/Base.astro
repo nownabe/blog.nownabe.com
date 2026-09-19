@@ -1,0 +1,107 @@
+---
+import "../styles/main.scss";
+import { SITE_TITLE, SITE_DESCRIPTION, DEFAULT_IMAGE } from "../lib/posts";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const { title, description = SITE_DESCRIPTION, image = DEFAULT_IMAGE } = Astro.props;
+const pageTitle = title ? `${title} - ${SITE_TITLE}` : SITE_TITLE;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const imageUrl = new URL(image, Astro.site);
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title={SITE_TITLE} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/css/ress.min.css" />
+    <meta name="author" content="nownabe" />
+    <meta name="description" content={description} />
+    <meta property="og:site_name" content={SITE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@nownabe" />
+    <meta name="twitter:creator" content="@nownabe" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    {
+      import.meta.env.PROD && (
+        <>
+          <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-PWWXNZ0XM3" />
+          <script is:inline>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "G-PWWXNZ0XM3");
+          </script>
+        </>
+      )
+    }
+  </head>
+  <body>
+    <div id="site-container">
+      <div class="header-container">
+        <header class="content">
+          <h1><a href="/">{SITE_TITLE}</a></h1>
+          <p>nownabe's daily posts</p>
+        </header>
+      </div>
+
+      <div id="main" role="main">
+        <slot />
+      </div>
+      <div id="navigation">
+        <slot name="navigation" />
+      </div>
+
+      <div class="footer-container">
+        <footer class="content">
+          <div id="author">
+            <p>
+              <a href="https://nownabe.com">
+                <img src="/img/profile_icon_2022.jpg" alt="profile icon" width="64" height="64" />
+              </a>
+            </p>
+            <div class="bordered-link">
+              <p class="name"><a href="https://nownabe.com">Shogo Watanabe</a></p>
+              <p>
+                A dog lover. Software Engineer at
+                <a href="https://kwork.studio">Knowledge Work</a>. Ex-Googler.
+              </p>
+              <p>Opinions are my own, not views of my employer.</p>
+            </div>
+          </div>
+          <div id="copyright">
+            <p class="copyright">Copyright &copy; 2016 Shogo Watanabe All Right Reserved.</p>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script
+      is:inline
+      src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js"
+      integrity="sha384-6dhz+LFvhiM4G9QxNyE07x2m2kV0EVfSRSnAaLtTNFSAMe2GA0MGr9r3Yghs03FG"
+      crossorigin="anonymous"></script>
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", function () {
+        anchors.add(".article-body h1, .article-body h2, .article-body h3, .article-body h4");
+      });
+    </script>
+  </body>
+</html>

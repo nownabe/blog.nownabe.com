@@ -1,6 +1,6 @@
 [tools]
-hugo-extended = "0.166.0"
 node = "24.16.0"
+bun = "1.3.8"
 "aqua:betterleaks/betterleaks" = "1.8.1"
 
 [settings]
@@ -13,7 +13,7 @@ description = "Initialize the repository"
 run = [
   "mise install",
   "mise generate git-pre-commit --task pre-commit --write",
-  "npm ci",
+  "bun install --frozen-lockfile",
 ]
 
 [tasks.pre-commit]
@@ -22,20 +22,21 @@ run = "betterleaks git --staged --no-banner --redact"
 
 [tasks.server]
 description = "Run the dev server"
-run = "hugo server"
+run = "bun run dev"
 
 [tasks.build]
-description = "Build the site into public/"
-run = "hugo --minify"
+description = "Build the site into dist/"
+run = "bun run build"
+
+[tasks.check]
+description = "Type-check templates and scripts"
+run = "bun run check"
 
 [tasks.lint]
 description = "Lint articles with textlint"
-run = "npm run lint"
+run = "bun run lint"
 
 [tasks.new]
-description = "Create content/<slug>.md and static/images/<slug>/"
+description = "Create content/<slug>.md and public/images/<slug>/"
 usage = 'arg "<slug>"'
-run = [
-  "hugo new {{arg(name='slug')}}.md",
-  "mkdir -p static/images/{{arg(name='slug')}}",
-]
+run = "bun run new {{arg(name='slug')}}"
