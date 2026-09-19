@@ -531,6 +531,11 @@ h6 {
     display: none;
   }
 
+  /* Line up with the article column, not the page center. */
+  .after-article {
+    margin-left: 0;
+  }
+
   .toc-side {
     display: block;
     position: sticky;
