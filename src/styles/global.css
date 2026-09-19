@@ -265,6 +265,10 @@ h6 {
   padding-top: 0.5rem;
 }
 
+.entry:last-child {
+  border-bottom: 0;
+}
+
 .entry .date {
   display: block;
   color: var(--muted);
