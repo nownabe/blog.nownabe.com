@@ -7,7 +7,6 @@ date: 2020-02-05T23:40:00+09:00
 lastmod: 2020-02-05T23:40:00+09:00
 
 draft: false
-isCJKLanguage: true
 
 image: images/2020/02/05/join-google.png
 ---

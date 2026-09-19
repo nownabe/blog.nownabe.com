@@ -3,12 +3,8 @@ date: 2019-05-29T00:00:00+0900
 lastmod: 2019-05-29T00:00:00+0900
 tags: ["GCP", "GCP Updates"]
 draft: false
-isCJKLanguage: true
 
 title: GCP Updates | May 28, 2019
-
-created_at: 2019-05-29 00:00:00 +0900
-updated_at: 2019-05-29 00:00:00 +0900
 ---
 
 再開しました。

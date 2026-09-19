@@ -3,12 +3,8 @@ date: 2019-05-21T00:00:00+0900
 lastmod: 2019-05-21T00:00:00+0900
 tags: ["Ruby on Rails", "AWS", "GCP", "Docker", "Kubernetes"]
 draft: false
-isCJKLanguage: true
 
 title: RailsアプリとかをAWSのレガシーシステムからGCPのイケイケシステムに移行した話
-
-created_at: 2019-05-21 00:00:00 +0900
-updated_at: 2019-05-21 00:00:00 +0900
 ---
 
 

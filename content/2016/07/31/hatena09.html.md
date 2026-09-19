@@ -3,13 +3,9 @@ date: 2015-08-09T00:21:18+0900
 lastmod: 2015-08-09T00:21:18+0900
 tags: ["raspberry pi"]
 draft: false
-isCJKLanguage: true
 
 title: 今更Raspberry PiでLチカやってみた
 category: Diary
-
-created_at: 2015-08-09 00:21:18 +0900
-updated_at: 2015-08-09 00:21:18 +0900
 ---
 
 ![Lチカ](/images/articles/hatena09/01.jpg)

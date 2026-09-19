@@ -3,13 +3,9 @@ date: 2015-03-01T19:10:15+0900
 lastmod: 2015-03-01T19:10:15+0900
 tags: ["ruby", "leveldb", "ruboty"]
 draft: false
-isCJKLanguage: true
 
 title: RubotyのデータをLevelDBで永続化するruboty-leveldbというGemを作った
 category: Diary
-
-created_at: 2015-03-01 19:10:15 +0900
-updated_at: 2015-03-01 19:10:15 +0900
 ---
 
 # 経緯

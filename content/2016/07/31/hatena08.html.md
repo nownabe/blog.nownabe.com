@@ -3,13 +3,9 @@ date: 2015-05-21T00:47:50+0900
 lastmod: 2015-05-21T00:47:50+0900
 tags: ["idcf cloud", "itamae"]
 draft: false
-isCJKLanguage: true
 
 title: 超簡単にサーバのデータをIDCFオブストに定期バックアップするItamaeプラグイン
 category: Tech
-
-created_at: 2015-05-21 00:47:50
-updated_at: 2015-05-21 00:47:50
 ---
 
 # はじめに

@@ -7,7 +7,6 @@ date: 2019-08-07T17:08:23+09:00
 lastmod: 2019-08-07T17:08:23+09:00
 
 draft: false
-isCJKLanguage: true
 ---
 
 # STORAGE & DATABASES

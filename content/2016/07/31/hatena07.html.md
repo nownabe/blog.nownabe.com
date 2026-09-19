@@ -3,13 +3,9 @@ date: 2015-05-20T00:53:44+0900
 lastmod: 2015-05-20T00:53:44+0900
 tags: ["ruby", "rubygems", "gem in a box"]
 draft: false
-isCJKLanguage: true
 
 title: Gem in a Boxに簡単にリリースできるGem作ったけどいっぱいあったのでまとめ
 category: Tech
-
-created_at: 2015-05-20 00:53:44 +0900
-updated_at: 2015-05-20 00:53:44 +0900
 ---
 
 # はじめに

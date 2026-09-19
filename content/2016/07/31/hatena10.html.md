@@ -3,13 +3,9 @@ date: 2015-08-10T23:46:12+0900
 lastmod: 2015-08-10T23:46:12+0900
 tags: ["idcf cloud", "dns"]
 draft: false
-isCJKLanguage: true
 
 title: お名前.comからIDCF DNSに移行した話
 category: Tech
-
-created_at: 2015-08-10 23:46:12 +0900
-updated_at: 2015-08-10 23:46:12 +0900
 ---
 
 ネームサーバーをお名前.comからIDCF DNSに移行しました。

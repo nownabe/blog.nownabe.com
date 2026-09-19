@@ -8,7 +8,6 @@ date: 2020-05-30T14:19:10+09:00
 lastmod: 2020-05-30T14:19:10+09:00
 
 draft: false
-isCJKLanguage: true
 
 image: images/2020/05/30/tor-photo.png
 ---

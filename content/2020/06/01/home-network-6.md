@@ -8,7 +8,6 @@ date: 2020-06-01T22:18:28+09:00
 lastmod: 2020-06-01T22:18:28+09:00
 
 draft: false
-isCJKLanguage: true
 
 image: images/2020/06/01/compare-ipv4.png
 ---

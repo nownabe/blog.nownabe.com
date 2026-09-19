@@ -7,7 +7,6 @@ date: 2019-07-30T23:33:25+09:00
 lastmod: 2019-07-30T23:33:25+09:00
 
 draft: true
-isCJKLanguage: true
 ---
 
 # 全体の感想

@@ -7,7 +7,6 @@ date: 2019-10-19T16:12:39+09:00
 lastmod: 2019-10-19T16:12:39+09:00
 
 draft: false
-isCJKLanguage: true
 ---
 
 

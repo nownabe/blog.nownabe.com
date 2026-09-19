@@ -17,7 +17,6 @@ date: ${jst}
 lastmod: ${jst}
 
 draft: true
-isCJKLanguage: true
 
 image: img/nownabe.png
 ---

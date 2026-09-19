@@ -5,7 +5,6 @@ date: 2023-06-17T14:25:46+09:00
 lastmod: 2023-06-17T14:25:46+09:00
 
 draft: false
-isCJKLanguage: true
 
 image: images/2023/06/17/banner.jpg
 ---

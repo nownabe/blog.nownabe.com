@@ -8,7 +8,6 @@ date: 2022-04-06T21:06:40+09:00
 lastmod: 2022-04-06T21:06:40+09:00
 
 draft: false
-isCJKLanguage: true
 
 image: images/2020/06/28/pi-stack.jpg
 ---

@@ -5,7 +5,6 @@ tags:
 date: 2023-07-09T17:24:34+09:00
 
 draft: false
-isCJKLanguage: true
 
 image: images/2023/07/09/after-home.png
 ---

@@ -5,7 +5,6 @@ date: 2022-04-18T23:41:48+09:00
 lastmod: 2022-04-19T22:38:00+09:00
 
 draft: false
-isCJKLanguage: true
 
 image: images/2022/04/18/3.png
 ---
