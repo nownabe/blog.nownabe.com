@@ -14,7 +14,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 const imageUrl = new URL(image, Astro.site);
 const path = Astro.url.pathname;
 const nav = [
-  { href: "/tags/", label: "タグ", current: path.startsWith("/tags/") },
+  { href: "/tags/", label: "Tags", current: path.startsWith("/tags/") },
   { href: "https://nownabe.com", label: "About", current: false },
 ];
 ---
