@@ -1,26 +1,29 @@
 ---
-import type { Page } from "astro";
-import PostList from "../components/PostList.astro";
-import { getPublishedPosts, PAGE_SIZE, type Post } from "../lib/posts";
+import Base from "../layouts/Base.astro";
+import PostEntry from "../components/PostEntry.astro";
+import YearColumn from "../components/YearColumn.astro";
+import { getPublishedPosts, groupByYear } from "../lib/posts";
+
+const LATEST = 10;
 
 const posts = await getPublishedPosts();
-const lastPage = Math.max(1, Math.ceil(posts.length / PAGE_SIZE));
-const page: Page<Post> = {
-  data: posts.slice(0, PAGE_SIZE),
-  start: 0,
-  end: Math.min(PAGE_SIZE, posts.length) - 1,
-  size: PAGE_SIZE,
-  total: posts.length,
-  currentPage: 1,
-  lastPage,
-  url: {
-    current: "/",
-    prev: undefined,
-    next: lastPage > 1 ? "/page/2/" : undefined,
-    first: undefined,
-    last: lastPage > 1 ? `/page/${lastPage}/` : undefined,
-  },
-};
+const years = groupByYear(posts).map(({ year }) => year);
 ---
 
-<PostList page={page} />
+<Base>
+  <YearColumn years={years}>
+    <h1 class="visually-hidden">Latest posts</h1>
+    {posts.slice(0, LATEST).map((post) => <PostEntry post={post} />)}
+  </YearColumn>
+</Base>
+
+<style>
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+</style>

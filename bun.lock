@@ -10,7 +10,6 @@
         "@astrojs/sitemap": "^3.7.4",
         "astro": "^7.3.3",
         "gemoji": "^8.1.0",
-        "sass-embedded": "^1.104.1",
         "satteri": "^0.10.5",
       },
       "devDependencies": {

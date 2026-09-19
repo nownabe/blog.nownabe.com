@@ -1,17 +1,23 @@
 ---
-import "../styles/main.scss";
+import "../styles/global.css";
 import { SITE_TITLE, SITE_DESCRIPTION, DEFAULT_IMAGE } from "../lib/posts";
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
+  canonical?: string;
 }
 
-const { title, description = SITE_DESCRIPTION, image = DEFAULT_IMAGE } = Astro.props;
+const { title, description = SITE_DESCRIPTION, image = DEFAULT_IMAGE, canonical: canonicalPath } = Astro.props;
 const pageTitle = title ? `${title} - ${SITE_TITLE}` : SITE_TITLE;
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const canonical = new URL(canonicalPath ?? Astro.url.pathname, Astro.site);
 const imageUrl = new URL(image, Astro.site);
+const path = Astro.url.pathname;
+const nav = [
+  { href: "/tags/", label: "Tags", current: path.startsWith("/tags/") },
+  { href: "https://nownabe.com", label: "About", current: false },
+];
 ---
 
 <!doctype html>
@@ -20,10 +26,17 @@ const imageUrl = new URL(image, Astro.site);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
+    <link rel="canonical" href={canonical} />
     <link rel="alternate" type="application/rss+xml" href="/feed.xml" title={SITE_TITLE} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="/css/ress.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- display=block: hold text until the web font arrives instead of swapping it in after first paint. -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Noto+Sans+JP:wght@400;700&family=IBM+Plex+Mono:wght@400&display=block"
+    />
     <meta name="author" content="nownabe" />
     <meta name="description" content={description} />
     <meta property="og:site_name" content={SITE_TITLE} />
@@ -55,53 +68,43 @@ const imageUrl = new URL(image, Astro.site);
     }
   </head>
   <body>
-    <div id="site-container">
-      <div class="header-container">
-        <header class="content">
-          <h1><a href="/">{SITE_TITLE}</a></h1>
-          <p>nownabe's daily posts</p>
-        </header>
-      </div>
+    <div class="site" id="top">
+      <header class="site-header">
+        <p class="logo"><a href="/" aria-label={SITE_TITLE}>nownab<span class="dot"></span>log</a></p>
+        <nav aria-label="Site">
+          {nav.map((item) => <a href={item.href} aria-current={item.current ? "page" : undefined}>{item.label}</a>)}
+        </nav>
+      </header>
 
-      <div id="main" role="main">
+      <main>
         <slot />
-      </div>
-      <div id="navigation">
-        <slot name="navigation" />
-      </div>
+      </main>
 
-      <div class="footer-container">
-        <footer class="content">
-          <div id="author">
-            <p>
-              <a href="https://nownabe.com">
-                <img src="/img/profile_icon_2022.jpg" alt="profile icon" width="64" height="64" />
-              </a>
-            </p>
-            <div class="bordered-link">
-              <p class="name"><a href="https://nownabe.com">Shogo Watanabe</a></p>
-              <p>
-                A dog lover. Software Engineer at
-                <a href="https://kwork.studio">Knowledge Work</a>. Ex-Googler.
-              </p>
-              <p>Opinions are my own, not views of my employer.</p>
-            </div>
+      <footer class="site-footer">
+        <div class="author">
+          <a href="https://nownabe.com"><img src="/img/profile_icon_2022.jpg" alt="" width="56" height="56" /></a>
+          <div>
+            <p class="name"><a href="https://nownabe.com">Shogo Watanabe</a></p>
+            <p>A dog lover. Software Engineer at <a href="https://kwork.studio">Knowledge Work</a>. Ex-Googler.</p>
+            <p>Opinions are my own, not views of my employer.</p>
           </div>
-          <div id="copyright">
-            <p class="copyright">Copyright &copy; 2016 Shogo Watanabe All Right Reserved.</p>
-          </div>
-        </footer>
-      </div>
+        </div>
+        <div class="footer-bar">
+          <nav aria-label="Footer">
+            <a href="https://nownabe.com">About</a>
+            <a href="/tags/">Tags</a>
+            <a href="/feed.xml">RSS</a>
+            <a href="#top">Back to top</a>
+          </nav>
+          <p class="copyright">© 2016 Shogo Watanabe</p>
+        </div>
+      </footer>
     </div>
-    <script
-      is:inline
-      src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js"
-      integrity="sha384-6dhz+LFvhiM4G9QxNyE07x2m2kV0EVfSRSnAaLtTNFSAMe2GA0MGr9r3Yghs03FG"
-      crossorigin="anonymous"></script>
-    <script is:inline>
-      document.addEventListener("DOMContentLoaded", function () {
-        anchors.add(".article-body h1, .article-body h2, .article-body h3, .article-body h4");
-      });
+    <script>
+      // Give each aurora line its own random phase, so they drift out of step.
+      for (const el of document.querySelectorAll<HTMLElement>(".site-header, .entry h2 a")) {
+        el.style.setProperty("--seed", Math.random().toFixed(3));
+      }
     </script>
   </body>
 </html>

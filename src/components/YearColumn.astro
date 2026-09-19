@@ -1,0 +1,26 @@
+---
+// Year column plus whatever list the page puts next to it.
+interface Props {
+  years: string[];
+  currentYear?: string;
+}
+
+const { years, currentYear } = Astro.props;
+---
+
+<div class="list">
+  <ul class="years" aria-label="Years">
+    {
+      years.map((year) => (
+        <li>
+          <a href={`/${year}/`} aria-current={year === currentYear ? "page" : undefined}>
+            {year}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <div>
+    <slot />
+  </div>
+</div>

@@ -1,32 +1,29 @@
 ---
 import type { GetStaticPaths } from "astro";
 import Base from "../layouts/Base.astro";
-import PostCards from "../components/PostCards.astro";
-import { getPublishedPosts, type Post } from "../lib/posts";
+import PostEntry from "../components/PostEntry.astro";
+import YearColumn from "../components/YearColumn.astro";
+import { getPublishedPosts, groupByYear, type Post } from "../lib/posts";
 
-// Hugo published (empty) section pages at /2016/ … /2023/; keep the URLs alive as year archives.
+// Hugo published section pages at /2016/ … /2023/; they are the year archives now.
 export const getStaticPaths = (async () => {
-  const byYear = new Map<string, Post[]>();
-  for (const post of await getPublishedPosts()) {
-    const year = post.id.match(/^(\d{4})\//)?.[1];
-    if (!year) continue;
-    byYear.set(year, [...(byYear.get(year) ?? []), post]);
-  }
-  return [...byYear].map(([year, posts]) => ({ params: { year }, props: { year, posts } }));
+  const groups = groupByYear(await getPublishedPosts());
+  const years = groups.map(({ year }) => year);
+  return groups.map(({ year, posts }) => ({ params: { year }, props: { year, posts, years } }));
 }) satisfies GetStaticPaths;
 
 interface Props {
   year: string;
   posts: Post[];
+  years: string[];
 }
 
-const { year, posts } = Astro.props;
+const { year, posts, years } = Astro.props;
 ---
 
 <Base title={year}>
-  <div class="tag-container content">
-    <h1>{year}</h1>
-    <p class="date">{posts.length} posts</p>
-  </div>
-  <PostCards posts={posts} class="content" />
+  <YearColumn years={years} currentYear={year}>
+    <h1 class="year-heading">{year}</h1>
+    {posts.map((post) => <PostEntry post={post} />)}
+  </YearColumn>
 </Base>
