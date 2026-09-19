@@ -9,6 +9,8 @@
   --accent: #9293fe;
   --accent-soft: #b6b9ff;
   --link: #5b5ce6;
+  /* Aurora: periwinkle through lavender into mint, used for underlines and the header rule. */
+  --aurora: linear-gradient(90deg, #6d6ff5 0%, #9293fe 30%, #b6b9ff 55%, #8ee7d9 80%, #b6f0e6 100%);
   --code-bg: #1f2130;
   --code-ink: #dcdde8;
 
@@ -62,13 +64,36 @@ body {
 a {
   color: var(--link);
   text-decoration: none;
+  background-image: var(--aurora);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 0;
+  transition: background-size 0.15s;
 }
 
 a:hover {
-  text-decoration: underline;
-  text-decoration-color: var(--accent);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.2em;
+  background-size: 100% 2px;
+}
+
+/* Links inside article text always carry a thin aurora underline. */
+.prose a {
+  background-size: 100% 1px;
+  padding-bottom: 1px;
+}
+
+.prose a:hover {
+  background-size: 100% 2px;
+}
+
+.prose a:has(> img),
+.site-footer .author > a {
+  background-size: 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a {
+    transition: none;
+  }
 }
 
 ::selection {
@@ -120,7 +145,8 @@ h6 {
   justify-content: space-between;
   gap: 1rem;
   padding: 1.75rem 0 1.25rem;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 2px solid;
+  border-image: var(--aurora) 1;
 }
 
 .site-header .logo {
@@ -237,7 +263,7 @@ h6 {
 
 .years a[aria-current="page"] {
   color: var(--ink);
-  border-bottom: 2px solid var(--accent);
+  background-size: 100% 2px;
 }
 
 
