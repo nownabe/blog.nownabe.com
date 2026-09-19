@@ -75,14 +75,15 @@ a:hover {
   text-decoration-line: underline;
 }
 
-/* Links inside article text are always underlined, thinly. */
+/* Links inside article text: ink like the prose, a thin accent underline marks them; hover changes only the color. */
 .prose a {
+  color: var(--ink);
   text-decoration-line: underline;
   text-decoration-thickness: 1px;
 }
 
 .prose a:hover {
-  text-decoration-thickness: 2px;
+  color: var(--link);
 }
 
 .prose a:has(> img),
