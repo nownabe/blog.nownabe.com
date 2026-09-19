@@ -168,7 +168,7 @@ h4,
 h5,
 h6 {
   font-family: var(--display);
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.4;
   margin: 0;
 }
@@ -201,7 +201,7 @@ h6 {
   margin: 0;
   font-family: var(--display);
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.01em;
 }
 
@@ -424,7 +424,7 @@ h6 {
   }
 
   .years a[aria-current="page"] {
-    font-weight: 700;
+    font-weight: 600;
   }
 
   .years {
@@ -490,7 +490,7 @@ h6 {
 
 .article-title {
   font-size: 1.75rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.45;
 }
 
@@ -522,7 +522,7 @@ h6 {
 .toc-inline summary {
   cursor: pointer;
   font-family: var(--display);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .toc-side {
@@ -652,7 +652,7 @@ h6 {
   .toc-side .toc-label {
     margin: 0 0 0.25rem 0.75rem;
     font-family: var(--display);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--muted);
   }
 }
@@ -758,7 +758,7 @@ h6 {
 }
 
 .prose th {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .prose code {
