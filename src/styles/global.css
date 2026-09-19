@@ -223,6 +223,31 @@ h6 {
   color: var(--muted);
 }
 
+.years a[aria-current="page"] {
+  color: var(--ink);
+}
+
+.older-posts {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin: 1.5rem 0 0;
+}
+
+.older-posts a {
+  color: var(--ink);
+  font-family: var(--serif);
+}
+
+.older-posts .mono {
+  margin-left: 0.5rem;
+  color: var(--muted);
+}
+
+.older-posts a:last-child:not(:first-child) {
+  margin-left: auto;
+}
+
 .list-title {
   font-size: 2rem;
   margin: 0.5rem 0 0.25rem;
@@ -318,6 +343,10 @@ h6 {
 @media (min-width: 900px) {
   .list:has(> .years) {
     grid-template-columns: 5rem minmax(0, 1fr);
+  }
+
+  .years a[aria-current="page"] {
+    font-weight: 700;
   }
 
   .years {

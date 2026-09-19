@@ -4,25 +4,26 @@ import { groupByYear, type Post } from "../lib/posts";
 
 interface Props {
   posts: Post[];
-  showYears?: boolean;
+  years: string[];
+  currentYear?: string;
 }
 
-const { posts, showYears = true } = Astro.props;
+const { posts, years, currentYear } = Astro.props;
 const groups = groupByYear(posts);
 ---
 
 <div class="list">
-  {
-    showYears && groups.length > 1 && (
-      <ul class="years" aria-label="Years">
-        {groups.map(({ year }) => (
-          <li>
-            <a href={`#y${year}`}>{year}</a>
-          </li>
-        ))}
-      </ul>
-    )
-  }
+  <ul class="years" aria-label="Years">
+    {
+      years.map((year) => (
+        <li>
+          <a href={`/${year}/`} aria-current={year === currentYear ? "page" : undefined}>
+            {year}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
   <div>
     {
       groups.map(({ year, posts }) => (
@@ -36,5 +37,6 @@ const groups = groupByYear(posts);
         </section>
       ))
     }
+    <slot />
   </div>
 </div>

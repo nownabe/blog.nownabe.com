@@ -1,31 +1,44 @@
 ---
 import type { GetStaticPaths } from "astro";
 import Base from "../layouts/Base.astro";
-import PostEntry from "../components/PostEntry.astro";
+import PostListByYear from "../components/PostListByYear.astro";
 import { getPublishedPosts, groupByYear, type Post } from "../lib/posts";
 
-// Hugo published section pages at /2016/ … /2023/; keep the URLs alive as year archives.
+// Hugo published section pages at /2016/ … /2023/; they are the year archives now.
 export const getStaticPaths = (async () => {
-  return groupByYear(await getPublishedPosts()).map(({ year, posts }) => ({
-    params: { year },
-    props: { year, posts },
-  }));
+  const groups = groupByYear(await getPublishedPosts());
+  const years = groups.map(({ year }) => year);
+  return groups.map(({ year, posts }) => ({ params: { year }, props: { year, posts, years } }));
 }) satisfies GetStaticPaths;
 
 interface Props {
   year: string;
   posts: Post[];
+  years: string[];
 }
 
-const { year, posts } = Astro.props;
+const { year, posts, years } = Astro.props;
+const older = years[years.indexOf(year) + 1];
+const newer = years[years.indexOf(year) - 1];
 ---
 
 <Base title={year}>
-  <div class="list">
-    <div>
-      <h1 class="list-title">{year}</h1>
-      <p class="note">{posts.length} {posts.length === 1 ? "post" : "posts"} · <a href={`/#y${year}`}>All years</a></p>
-      {posts.map((post) => <PostEntry post={post} />)}
-    </div>
-  </div>
+  <h1 class="visually-hidden">Posts from {year}</h1>
+  <PostListByYear posts={posts} years={years} currentYear={year}>
+    <p class="older-posts">
+      {newer && <a href={`/${newer}/`}>Newer posts <span class="mono">{newer}</span></a>}
+      {older && <a href={`/${older}/`}>Older posts <span class="mono">{older}</span></a>}
+    </p>
+  </PostListByYear>
 </Base>
+
+<style>
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+</style>
