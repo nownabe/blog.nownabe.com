@@ -7,7 +7,8 @@ import emojiShortcodes from "./src/plugins/satteri-emoji.mjs";
 export default defineConfig({
   site: "https://blog.nownabe.com",
   trailingSlash: "always",
-  integrations: [sitemap({ filter: (page) => !page.includes("/page/") })],
+  // Redirect-only pages (old /page/N/ and legacy .html/ paths) stay out of the sitemap.
+  integrations: [sitemap({ filter: (page) => !page.includes("/page/") && !page.endsWith(".html/") })],
   markdown: {
     processor: satteri({
       // Articles were written for Hugo's Goldmark: no $math$ syntax.

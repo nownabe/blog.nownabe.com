@@ -10,6 +10,7 @@ import {
   formatDate,
   formatYearMonth,
   getPublishedPosts,
+  legacyPath,
   postPath,
   readingMinutes,
   relatedPosts,
@@ -19,24 +20,27 @@ import {
 
 export const getStaticPaths = (async () => {
   const posts = await getPublishedPosts();
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: { post, related: relatedPosts(post, posts) },
-  }));
+  return posts.flatMap((post, i) => {
+    const page = {
+      params: { slug: postPath(post).slice(1, -1) },
+      props: { post, related: relatedPosts(post, posts), newer: posts[i - 1], older: posts[i + 1] },
+    };
+    const legacy = legacyPath(post);
+    return legacy ? [page, { params: { slug: legacy.slice(1, -1) }, props: { redirectTo: postPath(post) } }] : [page];
+  });
 }) satisfies GetStaticPaths;
 
-interface Props {
-  post: Post;
-  related: Post[];
-}
+type Props = { post: Post; related: Post[]; newer?: Post; older?: Post } | { redirectTo: string };
 
-const { post, related } = Astro.props;
+if ("redirectTo" in Astro.props) return Astro.redirect(Astro.props.redirectTo, 301);
+
+const { post, related, newer, older } = Astro.props;
 const { Content, headings } = await render(post);
 const toc = headings.filter((h) => h.depth >= 2 && h.depth <= 3 && h.slug !== "footnote-label");
 const bannerSrc = bannerOpensBody(post) ? undefined : banner(post);
 ---
 
-<Base title={post.data.title} description={excerpt(post)} image={socialImage(post)}>
+<Base title={post.data.title} description={excerpt(post)} image={socialImage(post)} canonical={postPath(post)}>
   <div class="article">
     <article class="article-main">
       <h1 class="article-title">{post.data.title}</h1>
@@ -97,6 +101,25 @@ const bannerSrc = bannerOpensBody(post) ? undefined : banner(post);
         </section>
       )
     }
+    <nav class="post-nav" aria-label="Posts">
+      {
+        older && (
+          <a class="older" href={postPath(older)}>
+            <span class="label mono">Older</span>
+            <span class="title">{older.data.title}</span>
+          </a>
+        )
+      }
+      {
+        newer && (
+          <a class="newer" href={postPath(newer)}>
+            <span class="label mono">Newer</span>
+            <span class="title">{newer.data.title}</span>
+          </a>
+        )
+      }
+      <a class="top mono" href="#top">Back to top</a>
+    </nav>
   </div>
 </Base>
 

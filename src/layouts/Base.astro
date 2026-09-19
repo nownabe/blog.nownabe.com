@@ -6,11 +6,12 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  canonical?: string;
 }
 
-const { title, description = SITE_DESCRIPTION, image = DEFAULT_IMAGE } = Astro.props;
+const { title, description = SITE_DESCRIPTION, image = DEFAULT_IMAGE, canonical: canonicalPath } = Astro.props;
 const pageTitle = title ? `${title} - ${SITE_TITLE}` : SITE_TITLE;
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const canonical = new URL(canonicalPath ?? Astro.url.pathname, Astro.site);
 const imageUrl = new URL(image, Astro.site);
 const path = Astro.url.pathname;
 const nav = [
@@ -25,6 +26,7 @@ const nav = [
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
+    <link rel="canonical" href={canonical} />
     <link rel="alternate" type="application/rss+xml" href="/feed.xml" title={SITE_TITLE} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
@@ -65,7 +67,7 @@ const nav = [
     }
   </head>
   <body>
-    <div class="site">
+    <div class="site" id="top">
       <header class="site-header">
         <p class="logo"><a href="/">{SITE_TITLE}</a></p>
         <nav aria-label="Site">

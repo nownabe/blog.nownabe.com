@@ -12,8 +12,14 @@ export async function getPublishedPosts(): Promise<Post[]> {
   return posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 }
 
+// Legacy posts are named like 2016/07/31/hatena01.html.md; the canonical URL drops the .html
+// and the old path is kept as a redirect (see pages/[...slug].astro).
 export function postPath(post: Post): string {
-  return `/${post.id}/`;
+  return `/${post.id.replace(/\.html$/, "")}/`;
+}
+
+export function legacyPath(post: Post): string | undefined {
+  return post.id.endsWith(".html") ? `/${post.id}/` : undefined;
 }
 
 export function postYear(post: Post): string {
