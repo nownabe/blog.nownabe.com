@@ -1,7 +1,7 @@
 ---
 date: 2015-03-14T04:04:43+0900
 lastmod: 2015-03-14T04:04:43+0900
-tags: ["Diary","event"]
+tags: ["event"]
 draft: false
 
 title: サバフェス始まりました

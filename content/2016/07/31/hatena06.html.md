@@ -1,7 +1,7 @@
 ---
 date: 2015-04-19T23:55:16+0900
 lastmod: 2015-04-19T23:55:16+0900
-tags: ["Diary","github pages"]
+tags: ["github pages"]
 draft: false
 
 title: Github Pagesが便利すぎてイイ

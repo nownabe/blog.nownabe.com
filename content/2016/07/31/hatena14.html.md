@@ -1,7 +1,7 @@
 ---
 date: 2016-07-22T00:47:58+0900
 lastmod: 2016-07-22T00:47:58+0900
-tags: ["Diary","event","book"]
+tags: ["event","book"]
 draft: false
 
 title: プログラミングのための確率統計読み始めた

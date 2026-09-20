@@ -1,7 +1,7 @@
 ---
 date: 2015-08-31T01:11:48+0900
 lastmod: 2015-08-31T01:11:48+0900
-tags: ["Diary","gem in a box","ruby"]
+tags: ["gem in a box","ruby"]
 draft: false
 
 title: Gem in a Boxの冗長化

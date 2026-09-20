@@ -1,7 +1,7 @@
 ---
 date: 2016-07-26T23:57:51+0900
 lastmod: 2016-07-26T23:57:51+0900
-tags: ["Diary","ruby","middleman","markdown","github pages"]
+tags: ["ruby","middleman","markdown","github pages"]
 draft: false
 
 title: qiita-markdownをMiddlemanで使えるようにするGemを作った

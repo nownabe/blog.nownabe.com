@@ -1,7 +1,7 @@
 ---
 date: 2016-07-22T00:44:19+0900
 lastmod: 2016-07-22T00:44:19+0900
-tags: ["Diary","machine learning","event"]
+tags: ["machine learning","event"]
 draft: false
 
 title: 機械学習勉強会というものを始めた

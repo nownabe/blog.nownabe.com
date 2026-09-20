@@ -1,7 +1,7 @@
 ---
 date: 2015-08-09T00:21:18+0900
 lastmod: 2015-08-09T00:21:18+0900
-tags: ["Diary","raspberry pi"]
+tags: ["raspberry pi"]
 draft: false
 
 title: 今更Raspberry PiでLチカやってみた

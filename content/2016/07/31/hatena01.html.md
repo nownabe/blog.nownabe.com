@@ -1,7 +1,7 @@
 ---
 date: 2015-03-01T00:46:24+0900
 lastmod: 2015-03-01T00:46:24+0900
-tags: ["Diary"]
+tags: []
 draft: false
 
 title: "ブログはじめよう"
