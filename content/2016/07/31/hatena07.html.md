@@ -1,11 +1,11 @@
 ---
-title: Gem in a Boxに簡単にリリースできるGem作ったけどいっぱいあったのでまとめ
+title: "Gem in a Boxに簡単にリリースできるGem作ったけどいっぱいあったのでまとめ"
 tags: ["ruby","rubygems","gem in a box"]
 date: 2015-05-20T00:53:44+09:00
 lastmod: 2015-05-20T00:53:44+09:00
 ---
 
-# はじめに
+## はじめに
 プライベートな Gem Server というか、[Gem in a Box](https://github.com/geminabox/geminabox) に手軽に Gem をリリースできるようにする [geminabox-rake_tasks](https://github.com/nownabe/geminabox-rake_tasks) という Gem を作りました。
 
 https://github.com/nownabe/geminabox-rake_tasks
@@ -17,7 +17,7 @@ https://github.com/nownabe/geminabox-rake_tasks
 
 社内でプライベートな Gem Server を Gem in a Box で構築してる場合など手軽でいいんじゃないかと思います。
 
-# 使い方
+## 使い方
 まず、gemspec ファイルに次の行を追加します。
 
 ```ruby
@@ -74,10 +74,10 @@ rake install:local  # Build and install testgem-0.1.0.gem into system gems witho
 rake release        # Create tag v0.1.0 and build and push testgem-0.1.0.gem to your gem in a box server
 ```
 
-# 競合
+## 競合
 よく調べもせずに作ったので、同じようなのがいっぱいありました。
 
-## geminabox-release
+### geminabox-release
 https://github.com/dfherr/geminabox-release
 
 Rakefile:
@@ -102,7 +102,7 @@ rake install:local     # Build and install testgem-0.1.0.gem into system gems wi
 rake release           # Create tag v0.1.0 and build and push testgem-0.1.0.gem to Rubygems
 ```
 
-## geminabox-rake
+### geminabox-rake
 https://github.com/jgraichen/geminabox-rake
 
 Rakefile:
@@ -122,7 +122,7 @@ rake geminabox:install:local  # Build and install testgem-0.1.0.gem into system 
 rake geminabox:release        # Create tag v0.1.0 and build and push testgem-0.1.0.gem to Rubygems
 ```
 
-## bundler-geminabox
+### bundler-geminabox
 https://github.com/sonots/bundler-geminabox
 
 Rakefile:
@@ -162,7 +162,7 @@ GEMINABOX=https://your.rubygems.org bundle-geminabox gem foo
        force  foo/Rakefile
 ```
 
-## bundler_geminabox
+### bundler_geminabox
 https://github.com/joshkrueger/bundler_geminabox
 
 Rakefile:
@@ -183,5 +183,5 @@ rake release        # Create tag v0.1.0 and build and push testgem-0.1.0.gem to 
 
 ほぼ同じでした。
 
-# おわりに
+## おわりに
 急いでたのでろくに調べずに作ってしまったんですが、まあ普通に考えたら誰か作りますよね w

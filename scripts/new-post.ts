@@ -8,10 +8,8 @@ if (!slug || !/^[a-z0-9-]+$/.test(slug)) {
 
 const now = new Date();
 const jst = new Date(now.getTime() + 9 * 60 * 60 * 1000).toISOString().replace(/\.\d{3}Z$/, "+09:00");
-const title = slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-
 const frontmatter = `---
-title: "${title}"
+title: ""
 tags:
 date: ${jst}
 lastmod: ${jst}

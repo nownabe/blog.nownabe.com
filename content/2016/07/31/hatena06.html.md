@@ -1,5 +1,5 @@
 ---
-title: Github Pagesが便利すぎてイイ
+title: "Github Pagesが便利すぎてイイ"
 tags: ["github pages"]
 date: 2015-04-19T23:55:16+09:00
 lastmod: 2015-04-19T23:55:16+09:00

@@ -13,7 +13,7 @@ lastmod: 2019-06-15T19:27:08+09:00
 
 [分散システムデザインパターン ―コンテナを使ったスケーラブルなサービスの設計](https://www.amazon.co.jp/dp/4873118751?tag=nownabe02-22)
 
-# 感想
+## 感想
 
 分散システムのインフラ構成のデザインパターンの解説本です。
 分散システムといっても難しいものではなくて、ロードバランスやシャーディングといったおなじみのアーキテクチャの粒度の話です。
@@ -29,7 +29,7 @@ Kubernetes 上で構築するワークキューの例なんかは、おーなる
 実際あんな感じで構築することはないと思いますが。
 
 
-# こういう人におすすめ
+## こういう人におすすめ
 
 * イチからインフラ構成を設計したことがないバックエンド・インフラエンジニア
 * 目次を見てもわからない項目があるバックエンド・インフラエンジニア
@@ -51,16 +51,16 @@ Kubernetes 上で構築するワークキューの例なんかは、おーなる
 逆に、Kubernetes を使った構築手法を知ることができるかもしれません。
 
 
-# 著者紹介
+## 著者紹介
 
-## Brendan Burns
+### Brendan Burns
 
 * Kubernetes の創始者
 * GCP, Microsoft
 * Twitter: [@brendanburns](https://twitter.com/brendandburns)
 * GitHub: [@brendanburns](https://github.com/brendandburns)
 
-## 松浦 隼人
+### 松浦 隼人
 
 * [Yakst](https://yakst.com/ja) 管理人
 * インフラエンジニア

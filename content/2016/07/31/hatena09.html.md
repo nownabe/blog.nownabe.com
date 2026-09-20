@@ -1,5 +1,5 @@
 ---
-title: 今更Raspberry PiでLチカやってみた
+title: "今更Raspberry PiでLチカやってみた"
 tags: ["raspberry pi"]
 date: 2015-08-09T00:21:18+09:00
 lastmod: 2015-08-09T00:21:18+09:00
@@ -13,7 +13,7 @@ Raspberry Pi は [サバフェス](http://svfes2015.ds.jp-east.idcfcloud.com/ind
 LED とかは家にあったものを拾い集めました。
 
 
-# Raspberry Pi準備
+## Raspberry Pi準備
 OS のインストールや初期設定は Qiita にまとめました。
 
 [MacOSXでRasberry PiにRaspbianをインストールする - Qiita](http://qiita.com/nownabe/items/e16b962fcdb1a702093e)
@@ -38,7 +38,7 @@ NTP は `/etc/ntp.conf` の `server` の行をコメントアウトして `pool 
 pool ntp.nict.jp iburst
 ```
 
-# Lピカ
+## Lピカ
 GPIO の 4 番ピンを使います。
 
 まずは GPIO の 4 番ピンを使うことを宣言します
@@ -71,7 +71,7 @@ LED が光ったり消えたりします。
 
 ![Lチカ](/images/articles/hatena09/01.jpg)
 
-# Lチカ
+## Lチカ
 点滅させてみます。とりあえず bash で。。。
 
 ```bash
@@ -80,7 +80,7 @@ while :; do sudo echo 1 > /sys/class/gpio/gpio4/value; sleep 0.001; sudo echo 0 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/jThq1LOG9IQ" frameborder="0" allowfullscreen></iframe>
 
-# 電圧？
+## 電圧？
 電圧を測ってみると 5V ピンも 3V ピンも 3.3V でした。
 う〜んなんでだろう。
 
@@ -89,7 +89,7 @@ while :; do sudo echo 1 > /sys/class/gpio/gpio4/value; sleep 0.001; sudo echo 0 
 GND と畳の電位差はほとんどなかったので GND はちゃんととれてるみたいです w
 ![03](/images/articles/hatena09/03.jpg)
 
-# おわりに
+## おわりに
 高専時代にやった Z80 ぶりの L チカでした。
 
 最初トランジスタも発見したのでトランジスタでスイッチングしようと思ったんですがうまく行かず。。。
