@@ -20,6 +20,7 @@ mise run setup
 ```sh
 mise run server        # dev server
 mise run new <slug>    # create content/<slug>.md and public/images/<slug>/
+                       # public/images/<slug>/banner.png (or .jpg) becomes the list thumbnail and article banner
 mise run lint          # textlint, all articles (errors block CI; warnings are style hints)
 bunx textlint content/<slug>.md   # one article
 mise run test          # Markdown plugin and social card checks

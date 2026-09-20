@@ -7,10 +7,9 @@ tags:
 - Cloud Functions
 date: 2020-12-13T00:00:00+09:00
 lastmod: 2020-12-13T00:00:00+09:00
-image: images/2020/12/13/og.png
 ---
 
-[![dashboard](/images/2020/12/13/og.png)](/images/2020/12/13/og.png)
+[![dashboard](/images/2020/12/13/home-finance-with-bigquery/banner.png)](/images/2020/12/13/home-finance-with-bigquery/banner.png)
 
 弊家では銀行やクレジットカードの明細を BigQuery に取り込んでダッシュボードを作ったりしています。
 また、そのために作った BigQuery 向けの Go 製 ETL フレームワークを OSS として公開しました。

@@ -5,10 +5,9 @@ tags:
   - Google
 date: 2020-02-05T23:40:00+09:00
 lastmod: 2020-02-05T23:40:00+09:00
-image: images/2020/02/05/join-google.png
 ---
 
-![nownabe-google](/images/2020/02/05/join-google.png)
+![nownabe-google](/images/2020/02/05/join-google/banner.png)
 (GIMP で頑張って作った OGP 画像)
 
 

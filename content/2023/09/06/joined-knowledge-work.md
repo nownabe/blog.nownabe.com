@@ -4,7 +4,6 @@ tags:
 - Knowledge Work
 date: 2023-09-06T20:26:22+09:00
 lastmod: 2023-09-06T20:26:22+09:00
-image: images/2023/09/06/my-step.png
 ---
 
 ## はじめに

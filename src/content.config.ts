@@ -18,7 +18,6 @@ const posts = defineCollection({
       .array(z.coerce.string())
       .nullish()
       .transform((tags) => tags ?? []),
-    image: z.string().optional(),
   }),
 });
 

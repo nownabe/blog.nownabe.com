@@ -4,7 +4,6 @@ tags:
 - Kubernetes
 date: 2020-07-19T19:26:56+09:00
 lastmod: 2020-07-19T19:26:56+09:00
-image: images/2020/06/28/pi-stack.jpg
 ---
 
 [前回](https://blog.nownabe.com/2020/06/28/home-kubernetes-1/) からだいぶ時間があいてしまいましたが、その 2 の Kubernetes 構築編です。

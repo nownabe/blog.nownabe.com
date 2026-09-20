@@ -4,7 +4,6 @@ tags:
 - network
 date: 2020-05-26T21:28:14+09:00
 lastmod: 2020-05-26T21:28:14+09:00
-image: images/2020/05/26/physical-diagram.png
 ---
 
 今週末にいよいよ弊家に光回線が開通しそうなので、この機にネットワーク環境を全体的に見直すことにしました。
@@ -57,7 +56,7 @@ image: images/2020/05/26/physical-diagram.png
 自宅 LAN 刷新にあたってどの機器を置き換える必要があるのか調べました。
 物理構成図はこんな感じです。
 
-<img src="/images/2020/05/26/physical-diagram.png" width="800">
+<img src="/images/2020/05/26/home-network-1/banner.png" width="800">
 
 図の実線は LAN ケーブルで、水色が壁内配線の Cat5e ケーブル、青が自分で用意した Cat7 ケーブル、黄色は不明ケーブルです。
 マンションネットワークにつながる線も厳密には不明なんですが、壁内配線と同じだろうということで Cat5e だと判断してます。

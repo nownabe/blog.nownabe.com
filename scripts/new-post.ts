@@ -21,4 +21,4 @@ lastmod: ${jst}
 
 await writeFile(`content/${slug}.md`, frontmatter, { flag: "wx" });
 await mkdir(`public/images/${slug}`, { recursive: true });
-console.log(`created content/${slug}.md and public/images/${slug}/`);
+console.log(`created content/${slug}.md and public/images/${slug}/ (put banner.png there for a banner)`);

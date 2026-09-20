@@ -9,7 +9,6 @@ tags:
 - fio
 date: 2020-07-04T19:43:02+09:00
 lastmod: 2020-07-04T19:43:02+09:00
-image: images/2020/07/04/fio.png
 ---
 
 Raspberry Pi 4 の各種ベンチマークを取ってみました。
@@ -105,7 +104,7 @@ group_reporting
 
 Raspberry Pi 3 は遅すぎたので計測してません。
 
-![fio](/images/2020/07/04/fio.png)
+![fio](/images/2020/07/03/raspberrypi-bench/banner.png)
 
 ## ログ
 

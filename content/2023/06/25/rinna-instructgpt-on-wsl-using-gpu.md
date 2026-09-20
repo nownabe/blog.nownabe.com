@@ -12,7 +12,6 @@ tags:
 - JupyterLab
 date: 2023-06-25T13:06:47+09:00
 lastmod: 2023-06-25T13:06:47+09:00
-image: images/2023/06/25/rinna-instructgpt.png
 ---
 
 ## はじめに

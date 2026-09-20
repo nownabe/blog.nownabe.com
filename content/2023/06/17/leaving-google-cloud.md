@@ -3,10 +3,9 @@ title: "マンタローに勇気をもらって Google Cloud を辞めた話"
 tags:
 date: 2023-06-17T14:25:46+09:00
 lastmod: 2023-06-17T14:25:46+09:00
-image: images/2023/06/17/banner.jpg
 ---
 
-![banner](/images/2023/06/17/banner.jpg)
+![banner](/images/2023/06/17/leaving-google-cloud/banner.jpg)
 
 ## はじめに
 

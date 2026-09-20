@@ -3,10 +3,9 @@ title: "自分のウェブサイトを GitHub のプロフィール README と�
 tags: [github]
 date: 2023-05-03T23:21:28+09:00
 lastmod: 2023-05-03T23:21:28+09:00
-image: images/2023/05/03/banner.png
 ---
 
-![banner](/images/2023/05/03/banner.png)
+![banner](/images/2023/05/03/sync-my-site-with-github-readme/banner.png)
 
 GitHub の [プロフィール](https://github.com/nownabe) の Markdown をレンダリングして [個人サイト](https://nownabe.com) と同期するようにした。
 

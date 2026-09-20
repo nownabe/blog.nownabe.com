@@ -1,3 +1,4 @@
+import { existsSync } from "node:fs";
 import { getCollection, type CollectionEntry } from "astro:content";
 import { nameToEmoji } from "gemoji";
 
@@ -28,12 +29,14 @@ export function postYear(post: Post): string {
   return post.data.date.toLocaleDateString("en-CA", { year: "numeric", timeZone: "Asia/Tokyo" });
 }
 
-// A banner is an image the author chose for the post, shown in lists and at the top of the article.
+const BANNER_EXTENSIONS = ["png", "jpg", "jpeg", "webp"];
+
+// A banner is public/images/<post path>/banner.<ext>, shown in lists and at the top of the article.
 // It is not the social card: every post's og:image is the generated card at cardPath().
 export function banner(post: Post): string | undefined {
-  const image = post.data.image;
-  if (!image) return undefined;
-  return image.startsWith("/") ? image : `/${image}`;
+  const dir = `/images${postPath(post).slice(0, -1)}`;
+  const ext = BANNER_EXTENSIONS.find((ext) => existsSync(`public${dir}/banner.${ext}`));
+  return ext && `${dir}/banner.${ext}`;
 }
 
 export function cardPath(post: Post): string {
@@ -44,7 +47,7 @@ export function cardPath(post: Post): string {
 export function bannerOpensBody(post: Post): boolean {
   const image = banner(post);
   const firstLine = (post.body ?? "").trimStart().split("\n", 1)[0] ?? "";
-  return !!image && firstLine.includes(image.split("/").pop() ?? image);
+  return !!image && firstLine.includes(image);
 }
 
 const dotted = new Intl.DateTimeFormat("en-CA", {
