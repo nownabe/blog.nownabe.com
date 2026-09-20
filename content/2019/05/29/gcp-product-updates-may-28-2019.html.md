@@ -1,10 +1,8 @@
 ---
-date: 2019-05-29T00:00:00+0900
-lastmod: 2019-05-29T00:00:00+0900
-tags: ["GCP", "GCP Updates"]
-draft: false
-
 title: GCP Updates | May 28, 2019
+tags: ["GCP", "GCP Updates"]
+date: 2019-05-29T00:00:00+09:00
+lastmod: 2019-05-29T00:00:00+09:00
 ---
 
 再開しました。

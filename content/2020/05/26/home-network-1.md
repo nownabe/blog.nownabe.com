@@ -4,9 +4,6 @@ tags:
 - network
 date: 2020-05-26T21:28:14+09:00
 lastmod: 2020-05-26T21:28:14+09:00
-
-draft: false
-
 image: images/2020/05/26/physical-diagram.png
 ---
 

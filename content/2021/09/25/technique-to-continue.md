@@ -3,9 +3,6 @@ title: "勉強を続ける技術"
 tags:
 date: 2021-09-25T16:41:22+09:00
 lastmod: 2021-09-25T16:41:22+09:00
-
-draft: false
-
 image: images/2021/09/25/banner.png
 ---
 

@@ -7,7 +7,6 @@ tags:
   - Event
 date: 2019-08-07T16:00:00+09:00
 lastmod: 2019-08-07T16:00:00+09:00
-draft: false
 ---
 
 先日 [CloudNative Days Tokyo 2019](https://cloudnativedays.jp/cndt2019/) に参加してきました。

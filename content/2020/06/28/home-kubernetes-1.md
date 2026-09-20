@@ -4,9 +4,6 @@ tags:
 - Kubernetes
 date: 2020-06-28T19:55:52+09:00
 lastmod: 2020-06-28T19:55:52+09:00
-
-draft: false
-
 image: images/2020/06/28/pi-stack.jpg
 ---
 

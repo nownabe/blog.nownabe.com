@@ -6,9 +6,6 @@ tags:
 - JavaScript
 date: 2020-01-03T21:52:48+09:00
 lastmod: 2020-01-03T21:52:48+09:00
-
-draft: false
-
 image: images/2020/01/03/github-action-javascript.png
 ---
 

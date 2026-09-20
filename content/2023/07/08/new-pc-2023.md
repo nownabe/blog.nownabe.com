@@ -3,9 +3,6 @@ title: "PC を新調した (2023 年版)"
 tags:
 date: 2023-07-08T18:32:54+09:00
 lastmod: 2023-07-08T18:32:54+09:00
-
-draft: false
-
 image: images/2023/07/08/pc.jpg
 ---
 

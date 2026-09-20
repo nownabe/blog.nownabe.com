@@ -3,9 +3,6 @@ title: "開発環境式年遷宮 (2026年)"
 tags:
 date: 2026-02-23T22:45:00+09:00
 lastmod: 2026-02-23T21:45:00+09:00
-
-draft: false
-
 image: /images/dev-env-2026/dev-env-2026.jpg
 ---
 

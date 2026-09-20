@@ -7,9 +7,6 @@ tags:
 - Nest Wifi
 date: 2020-05-31T09:15:15+09:00
 lastmod: 2020-05-31T09:15:15+09:00
-
-draft: false
-
 image: images/2020/05/31/wifi-analyzer.png
 ---
 

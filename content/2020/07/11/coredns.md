@@ -4,9 +4,6 @@ tags:
 - CoreDNS
 date: 2020-07-11T20:30:44+09:00
 lastmod: 2020-07-11T20:30:44+09:00
-
-draft: false
-
 image: images/2020/07/11/coredns.png
 ---
 

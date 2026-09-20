@@ -5,8 +5,6 @@ tags:
 - GCP Updates
 date: 2019-10-09T12:24:12+09:00
 lastmod: 2019-10-09T12:24:12+09:00
-
-draft: false
 ---
 
 

@@ -1,10 +1,8 @@
 ---
-date: 2016-05-24T00:36:44+0900
-lastmod: 2016-05-24T00:36:44+0900
-tags: ["elixir","event"]
-draft: false
-
 title: tokyo.ex #2
+tags: ["elixir","event"]
+date: 2016-05-24T00:36:44+09:00
+lastmod: 2016-05-24T00:36:44+09:00
 ---
 
 [tokyo.ex](http://beam-lang.connpass.com/event/30513/) に参加してきました。Elixir 初心者なので全部の話が面白かった 🤗

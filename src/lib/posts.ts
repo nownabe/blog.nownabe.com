@@ -8,11 +8,9 @@ export const SITE_DESCRIPTION = "the nownabe's life log";
 
 // Social cards are rendered at build time by pages/og/[...slug].png.ts; this one is for non-post pages.
 export const DEFAULT_IMAGE = "/og/default.png";
-// Two Hugo-era posts name the site logo as their image; treat that as "no banner".
-const LEGACY_LOGO = "/img/nownabe.png";
 
 export async function getPublishedPosts(): Promise<Post[]> {
-  const posts = await getCollection("posts", ({ data }) => !data.draft);
+  const posts = await getCollection("posts");
   return posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 }
 
@@ -35,8 +33,7 @@ export function postYear(post: Post): string {
 export function banner(post: Post): string | undefined {
   const image = post.data.image;
   if (!image) return undefined;
-  const path = image.startsWith("/") ? image : `/${image}`;
-  return path === LEGACY_LOGO ? undefined : path;
+  return image.startsWith("/") ? image : `/${image}`;
 }
 
 export function cardPath(post: Post): string {

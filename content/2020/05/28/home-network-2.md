@@ -4,9 +4,6 @@ tags:
 - network
 date: 2020-05-28T21:30:56+09:00
 lastmod: 2020-05-28T21:30:56+09:00
-
-draft: false
-
 image: images/2020/05/28/gs308t.png
 ---
 

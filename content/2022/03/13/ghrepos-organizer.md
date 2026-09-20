@@ -6,9 +6,6 @@ tags:
 - CLI
 date: 2022-03-13T23:27:09+09:00
 lastmod: 2022-03-13T23:27:09+09:00
-
-draft: false
-
 image: images/2022/03/13/ghrepos-organizer.png
 ---
 

@@ -4,9 +4,6 @@ tags:
 - resolution
 date: 2024-01-04T11:02:08+09:00
 lastmod: 2024-01-03T11:02:08+09:00
-
-draft: false
-
 image: /images/resolution-2024/banner2.png
 ---
 

@@ -3,8 +3,6 @@ title: "GCE Machine Types Overview"
 tags:
 date: 2019-10-10T16:45:00+09:00
 lastmod: 2019-10-10T16:45:00+09:00
-
-draft: false
 ---
 
 [GCP Updates | Semtember 30, 2019 - nownab.log](http://localhost:1313/2019/10/09/gcp-updates-semtember-30-2019/#compute-engine-name-change-for-memory-optimized-vms-ga) で

@@ -1,10 +1,8 @@
 ---
-date: 2015-03-07T02:15:01+0900
-lastmod: 2015-03-07T02:15:01+0900
-tags: ["ruby","easy_settings"]
-draft: false
-
 title: EasySettingsをSettingslogicの替りにいかがでしょうか
+tags: ["ruby","easy_settings"]
+date: 2015-03-07T02:15:01+09:00
+lastmod: 2015-03-07T02:15:01+09:00
 ---
 
 今まで Rails とかその他諸々のアプリケーションで、定数の管理に [Settingslogic](https://github.com/settingslogic/settingslogic) を使ってました。

@@ -5,8 +5,6 @@ tags:
 - GCP Updates
 date: 2019-12-13T17:48:21+09:00
 lastmod: 2019-12-13T17:48:21+09:00
-
-draft: false
 ---
 
 Product updates | December 9, 2019

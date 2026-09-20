@@ -7,10 +7,6 @@ tags:
   - Professional Cloud Architect
 date: 2020-04-05T13:56:13+09:00
 lastmod: 2020-04-05T13:56:13+09:00
-
-draft: false
-
-image: img/nownabe.png
 ---
 
 カスタマーエンジニアになったので [GCPの認定資格](https://cloud.google.com/certification) を取得しました。
