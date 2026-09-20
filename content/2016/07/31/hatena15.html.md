@@ -7,21 +7,21 @@ draft: false
 title: PostgreSQLの更新でRails 5が動かなくなった
 ---
 
-CentOS 7です。
+CentOS 7 です。
 
-Rails 5のアプリがある日こんなメッセージを出して動かなくなってました。
+Rails 5 のアプリがある日こんなメッセージを出して動かなくなってました。
 
 ```
 An unhandled lowlevel error occurred. The application logs may have details.
 ```
 
-`puma_error.log`をみてみると、
+`puma_error.log` をみてみると、
 
 ```
 2016-07-24 14:42:22 +0900: Rack app error: #<PG::ConnectionBad: could not connect to server: No such file or directory
 ```
 
-とでていて、systemctlでstatusみてみると、
+とでていて、systemctl で status みてみると、
 
 ```bash
 [root@bots ~]# systemctl status postgresql-9.6
@@ -42,7 +42,7 @@ An unhandled lowlevel error occurred. The application logs may have details.
 ```
 
 とこんな感じ。
-どうやらyum-cronで更新されたらしい。
+どうやら yum-cron で更新されたらしい。
 
 動いてた時のやつ:
 
@@ -65,18 +65,18 @@ Jul 22 05:50:18 更新: postgresql96-server.x86_64 9.6beta3-1PGDG.rhel7
 Jul 22 05:50:18 更新: postgresql96-devel.x86_64 9.6beta3-1PGDG.rhel7
 ```
 
-beta2からbeta3になってデータファイルの互換性がなくなったのか…。さすがβ版 😱
+beta2 から beta3 になってデータファイルの互換性がなくなったのか…。さすがβ版 😱
 
-beta3のリリースノートみたらちゃんと書いてあった。
+beta3 のリリースノートみたらちゃんと書いてあった。
 
 > Due to changes in system catalogs, a pg_upgrade or dump and restore will be required for users migrating databases from earlier betas.
 
 [PostgreSQL: PostgreSQL 9.6 Beta 3 Released](https://www.postgresql.org/about/news/1686/)
 
-というわけで、pg_upgradeしたら動きました。以下、そのときの手順です。
+というわけで、pg_upgrade したら動きました。以下、そのときの手順です。
 
-pg_upgradeでは新旧のバイナリと旧データが必要になります。
-yum-cronで新しいバイナリしか残ってないので、古いバイナリを入手します。
+pg_upgrade では新旧のバイナリと旧データが必要になります。
+yum-cron で新しいバイナリしか残ってないので、古いバイナリを入手します。
 
 
 ```bash
@@ -101,7 +101,7 @@ $ sudo chown postgres. /var/lib/pgsql/9.6/data
 $ sudo -u postgres /usr/pgsql-9.6/bin/initdb -D /var/lib/pgsql/9.6/data
 ```
 
-pg_upgradeを実行します。
+pg_upgrade を実行します。
 
 ```bash
 # postgresユーザでカレントディレクトリにログを吐くため移動する
@@ -165,7 +165,7 @@ Running this script will delete the old cluster's data files:
     ./delete_old_cluster.sh
 ```
 
-pg_upgradeが作ったスクリプトを実行しろと言われるので、実行します。
+pg_upgrade が作ったスクリプトを実行しろと言われるので、実行します。
 
 ```bash
 $ systemctl start postgresql-9.6

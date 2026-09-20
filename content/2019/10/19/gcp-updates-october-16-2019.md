@@ -46,7 +46,7 @@ draft: false
 
 > Enhance traffic visibility, performance, and scalability by creating services using [network endpoint groups (NEGs)](https://cloud.google.com/load-balancing/docs/negs/). NEGs ensure requests to your service are distributed directly to the containers serving the requests. [Documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/container-native-load-balancing) | [Blog](https://cloud.google.com/blog/products/containers-kubernetes/container-native-load-balancing-on-gke-now-generally-available)
 
-NEGに移行したいなぁ。
+NEG に移行したいなぁ。
 
 
 ## Kubernetes Engine – usage metering: GA

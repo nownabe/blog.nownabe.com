@@ -23,7 +23,7 @@ image: /images/resolution-2024/banner2.png
 
 自分の健康。健康がないとなにもできない。今は肉体がボロボロなので回復したい。
 
-* [リングフィットアドベンチャー](https://www.amazon.co.jp/dp/B07XV8VSZT?tag=nownabe02-22)をクリアする
+* [リングフィットアドベンチャー](https://www.amazon.co.jp/dp/B07XV8VSZT?tag=nownabe02-22) をクリアする
 * 整体に通う
   * 2 週間に 1 回のペースをキープしたい
 * 時間外労働を 10 時間/月に抑える
@@ -39,7 +39,7 @@ image: /images/resolution-2024/banner2.png
   * 具体的には残業しない、プロモーションする、ぐらいしか思いついてない
   * 本業以外に何かもう一軸欲しい
 * 夕方に散歩する
-  * 2023年後半は仕事で犬の散歩が遅くなった日が多かったので日が沈む前に散歩する
+  * 2023 年後半は仕事で犬の散歩が遅くなった日が多かったので日が沈む前に散歩する
 
 ### 3. ずとまよのライブに行く
 
@@ -55,7 +55,7 @@ image: /images/resolution-2024/banner2.png
 
 * プロモーションする
   * 以前は全く興味なかったけど、より大きな責任と裁量を持って大きな結果を生み出したいという欲が芽生えてきた
-* [開発者体験がよさそうな会社](https://dxd2023.cto-a.org/dxaward)としてナレッジワークが認知されるようにする
+* [開発者体験がよさそうな会社](https://dxd2023.cto-a.org/dxaward) としてナレッジワークが認知されるようにする
   * 外から見える Platform Engineering の結果のひとつかな、と
 
 ### 5. 英語の勉強を再開する
@@ -64,16 +64,16 @@ image: /images/resolution-2024/banner2.png
 
 * 1 月から毎日勉強再開する
   * 勉強内容はなんでも。1 秒以上やれば OK
-* [DUO 3.0](https://www.amazon.co.jp/dp/4900790052?tag=nownabe02-22)を 5 周する
-* [英文解釈教室](https://www.amazon.co.jp/dp/4327764876?tag=nownabe02-22)をやりきる
-* [Busuu](https://app.busuu.com/4Lq1fUH8KHyG4QkM7)を毎日やる
-* [ELSA Speak](https://share.elsanow.io/3U45UuS2ZFb)を毎日やる
+* [DUO 3.0](https://www.amazon.co.jp/dp/4900790052?tag=nownabe02-22) を 5 周する
+* [英文解釈教室](https://www.amazon.co.jp/dp/4327764876?tag=nownabe02-22) をやりきる
+* [Busuu](https://app.busuu.com/4Lq1fUH8KHyG4QkM7) を毎日やる
+* [ELSA Speak](https://share.elsanow.io/3U45UuS2ZFb) を毎日やる
 * カランメソッドを週 2 でやる
   * 自分にあってそうなら年間通してやる
   * 1 年で Stage 4 終わるぐらいだろうか
-  * あってなかったら他になにかやる。[英語のハノン 初級](https://www.amazon.co.jp/dp/B09NY53725?tag=nownabe02-22)、[英語のハノン 中級](https://www.amazon.co.jp/dp/B09Y5N53N6?tag=nownabe02-22)とかかな
-* [A Philosophy of Software Design, 2nd Edition](https://www.amazon.co.jp/dp/B09B8LFKQL?tag=nownabe02-22)を読む
-  * 英語の本を1冊通して読み切ったことないので読み切りたい
+  * あってなかったら他になにかやる。[英語のハノン 初級](https://www.amazon.co.jp/dp/B09NY53725?tag=nownabe02-22)、[英語のハノン 中級](https://www.amazon.co.jp/dp/B09Y5N53N6?tag=nownabe02-22) とかかな
+* [A Philosophy of Software Design, 2nd Edition](https://www.amazon.co.jp/dp/B09B8LFKQL?tag=nownabe02-22) を読む
+  * 英語の本を 1 冊通して読み切ったことないので読み切りたい
   * 興味のある分野かつ読みやすそうな本
 
 ### 6. スプラトゥーンを頑張る

@@ -21,22 +21,22 @@ GitHub のリポジトリを一括で整理するための [ghrepos-organizer](h
 
 ## できること
 
-あるOwner (user or organization) のリポジトリのうち、選択したリポジトリに対して一括で以下の操作を適用できます。
+ある Owner (user or organization) のリポジトリのうち、選択したリポジトリに対して一括で以下の操作を適用できます。
 
 * 削除
 * すべての Issue を Close
 * すべての Pull Request を Close
 * 属性の変更
-  * Visibility (Public / Private)
-  * Wiki機能の On/Off
-  * Project機能の On/Off
+  * Visibility (Public/Private)
+  * Wiki 機能の On/Off
+  * Project 機能の On/Off
   * マージした時に自動でブランチを削除する機能の On/Off
   * アーカイブ
 * 他の Organization への Transfer
 
 ## 使い方
 
-ghrepos-organizerを使うためには GitHub の Personal Access Token が必要に成ります。`repo` スコープがついていればOKです。リポジトリの削除を実行するためには `delete_repo` スコープも必要です。
+ghrepos-organizer を使うためには GitHub の Personal Access Token が必要に成ります。`repo` スコープがついていれば OK です。リポジトリの削除を実行するためには `delete_repo` スコープも必要です。
 
 npx コマンドで実行できます。
 
@@ -61,11 +61,11 @@ npx ghrepos-organizer
 環境変数で一部の挙動を設定できるようになっています。
 
 * `GH_PAT` - Personal Access Token を環境変数で設定できます。
-* `CONCURRENCY` - 操作の並列数を設定できます。デフォルトは5です。
+* `CONCURRENCY` - 操作の並列数を設定できます。デフォルトは 5 です。
 * `ENABLE_DELETE` - 削除機能を有効化します。
 
 ## おわりに
 
 昔のリポジトリをまるっとアーカイブしたい時や、ブランチ自動削除機能を一括で有効化したいときなんかにぜひ使ってみてください。
 
-今回初めてNodeでCLIを作ってみたので、そのことについての記事もまた書きたいと思います。
+今回初めて Node で CLI を作ってみたので、そのことについての記事もまた書きたいと思います。

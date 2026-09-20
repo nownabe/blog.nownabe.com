@@ -8,49 +8,49 @@ draft: false
 ---
 
 [GCP Updates | Semtember 30, 2019 - nownab.log](http://localhost:1313/2019/10/09/gcp-updates-semtember-30-2019/#compute-engine-name-change-for-memory-optimized-vms-ga) で
-memory-optimized マシンタイプの名前がn1からm1に変わったという項目があったので、マシンタイプのprefixを整理してみた。
+memory-optimized マシンタイプの名前が n1 から m1 に変わったという項目があったので、マシンタイプの prefix を整理してみた。
 
 # Prefixes
 
 ## n1: 第1世代汎用マシンタイプ
 
-* 最大96vCPU、6.5GB/vCPU memory
+* 最大 96vCPU、6.5GB/vCPU memory
 * Sandy Bridge, Ivy Bridge, Haswell, Broadwell, Skylake
-* 割引きがn2よりでかい
-* GPUが使える
+* 割引きが n2 よりでかい
+* GPU が使える
 
 ## n2: 第2世代汎用マシンタイプ
 
-* 最大80vCPU
+* 最大 80vCPU
 * 8GB/vCPU memory
 * Cascade Lake
 * 特定のリージョン、ゾーンのみ
 
 ## m1: 第1世代メモリ最適化マシンタイプ
 
-* n1-highmemよりさらにhighmem
-* regional persistent diskが使えない
+* n1-highmem よりさらに highmem
+* regional persistent disk が使えない
 * 特定のリージョン、ゾーンのみ
 * Broadwell, Skylake
 
 ## m2: 第2世代メモリ最適化マシンタイプ
 
-* 長期でつかう場合はCommitted use contractが必要
-* 短期でつかう場合はquotaの申請をする？
+* 長期でつかう場合は Committed use contract が必要
+* 短期でつかう場合は quota の申請をする？
 * Cascade Lake
 
 ## c2: 計算最適化マシンタイプ
 
-* c1はない
+* c1 はない
 * Cascade Lake
-* 基本3.1GHz、全コアターボ3.8GHz、1コアターボ3.9GHz
-  * n2-highcpuは基本2.8GHz、全コアターボ3.4GHz、1コアターボ3.9GHz
-* regional persistent diskが使えない
+* 基本 3.1GHz、全コアターボ 3.8GHz、1 コアターボ 3.9GHz
+  * n2-highcpu は基本 2.8GHz、全コアターボ 3.4GHz、1 コアターボ 3.9GHz
+* regional persistent disk が使えない
 * 特定のリージョン、ゾーンのみ
 
 ## f1 / g1: Shared-core
 
-* CPUコアを他のVMと共有
+* CPU コアを他の VM と共有
 
 
 

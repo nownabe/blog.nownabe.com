@@ -8,13 +8,13 @@ title: 超簡単にサーバのデータをIDCFオブストに定期バックア
 ---
 
 # はじめに
-サーバのあるディレクトリ内のファイルを[IDCFのオブジェクトストレージ](http://www.idcf.jp/cloud/storage/)に定期バックアップする[Itamae](http://itamae.kitchen/)プラグインを作ったので紹介します！
+サーバのあるディレクトリ内のファイルを [IDCFのオブジェクトストレージ](http://www.idcf.jp/cloud/storage/) に定期バックアップする [Itamae](http://itamae.kitchen/) プラグインを作ったので紹介します！
 
 [nownabe/itamae-plugin-recipe-idcf-backup_to_object_storage](https://github.com/nownabe-infra/itamae-plugin-recipe-idcf-backup_to_object_storage)
 
 # 結論
-作ったのは`itamae-plugin-recipe-idcf-backup_to_object_storage`というクソ長い名前のGem（Itamaeプラグイン）です。
-このプラグインを使うと、下の図のように任意の期間のバックアップファイルをオブジェクトストレージに保存することができます。
+作ったのは `itamae-plugin-recipe-idcf-backup_to_object_storage` というクソ長い名前の Gem（Itamae プラグイン）です。
+このプラグインを使うと、下の図のように任意の期間のバックアップファイルをオブジェクトストレージに保存できます。
 
 ![01](/images/articles/hatena08/01.png)
 
@@ -22,12 +22,12 @@ title: 超簡単にサーバのデータをIDCFオブストに定期バックア
 このプラグインを使ってプロビジョニングするとどうなるのか簡単に説明します。
 
 * バックアップスクリプトが作成される
-* バックアップスクリプトを叩くcronジョブが作成される
+* バックアップスクリプトを叩く cron ジョブが作成される
 * バックアップスクリプトは
   * 指定されたサーバのディレクトリと指定されたオブストのバケットを同期する
   * 指定された期間より古いファイルはサーバからもオブストからも削除する
 * バックアップ実行前に任意のコマンドを実行できる
-  * mysqldumpとかtar zcfとか
+  * mysqldump とか tar zcf とか
   * このコマンドで、指定したディレクトリ内にバックアップファイルを生成する
 
 # 使い方
@@ -37,7 +37,7 @@ title: 超簡単にサーバのデータをIDCFオブストに定期バックア
 https://github.com/nownabe-infra/example-idcf-backup_to_object_storage
 
 ## Gemfile
-Gemfileにプラグインを追加します。
+Gemfile にプラグインを追加します。
 
 ```ruby
 # Gemfile
@@ -45,14 +45,14 @@ source "https://rubygems.org"
 gem "itamae-plugin-recipe-idcf-backup_to_object_storage"
 ```
 
-bundle installも忘れずにやっておきましょう。
+bundle install も忘れずにやっておきましょう。
 
 ```bash
 $ bundle install
 ```
 
 ## node.yml
-node.ymlでいろいろ設定します。
+node.yml でいろいろ設定します。
 
 ```yaml
 # node.yml
@@ -74,23 +74,23 @@ idcf:
 
 バックアップの設定は、次のようになってます。
 
-* `schedule`: バックアップを実行するスケジュール。みんなおなじみのcron形式
+* `schedule`: バックアップを実行するスケジュール。みんなおなじみの cron 形式
 * `path`: バックアップ元のディレクトリ。この中のファイルをオブストに同期します
 * `bucket`: 同期先のバケット
 * `expire`: ファイルを保持する期間。ここで設定した日数より前に作成されたファイルは、サーバーからもオブストからも削除されます
-* `command`: (optional) バックアップ前に実行するコマンド。だいたいはこのコマンドで`path`のディレクトリ内にバックアップファイルを作ることになると思います
+* `command`: (optional) バックアップ前に実行するコマンド。だいたいはこのコマンドで `path` のディレクトリ内にバックアップファイルを作ることになると思います
 
 上記のサンプルだと、
 
-* 毎日3時30分に
-* mysqldumpで/backupsディレクトリに全データベースのdumpをとる
-* 7日前より古く作成されたファイルを削除する
-* /backupsディレクトリをbackup.yourbucketに同期する
+* 毎日 3 時 30 分に
+* mysqldump で/backups ディレクトリに全データベースの dump をとる
+* 7 日前より古く作成されたファイルを削除する
+* /backups ディレクトリを backup.yourbucket に同期する
 
 という一連の処理になります。
 
 ## recipe
-recipeには、1行追加するだけでOKです。
+recipe には、1 行追加するだけで OK です。
 
 ```ruby
 # recipe.rb
@@ -98,13 +98,13 @@ include_recipe "idcf-backup_to_object_storage"
 ```
 
 ## プロビジョニング
-最後に、SSH経由でプロビジョニングします。
+最後に、SSH 経由でプロビジョニングします。
 
 ```bash
 $ bundle exec itamae ssh -h ${YOURHOST} -y node.yml recipe.rb
 ```
 
-ユーザを指定する場合は`-u`オプション、ポートを指定する場合は`-p`オプションを使います。
+ユーザを指定する場合は `-u` オプション、ポートを指定する場合は `-p` オプションを使います。
 
 プロビジョニングが完了してスケジュールが実行されると、オブストにバックアップファイルがアップロードされているはずです。
 コントロールパネルでファイル一覧を表示できるので確認してみてください。

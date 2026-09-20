@@ -38,7 +38,7 @@ JavaScript だと Linux、Windows、macOS すべてで動作します。
   * マシン上で直接動作するのではやいです。小さいビルド済みイメージだとそんな変わらないかもしれませんが、ビルドが走る場合と比べたら爆速です
   * あと単純に余分なものがなくて minimal 感があっていいです
 * [toolkit](https://github.com/actions/toolkit) が便利
-  * Action を実装するための npm パッケージなんですが、便利でした。inputを直感的に得られたり、Octokitが簡単に使えたりして助かりました
+  * Action を実装するための npm パッケージなんですが、便利でした。input を直感的に得られたり、Octokit が簡単に使えたりして助かりました
   * 今回は core と github だけ使いましたが、exec、io、tool-cache も便利そうです
 * テストしやすい
   * JavaScript なテストができます
@@ -63,4 +63,4 @@ prettier したり jest したりもできて開発体験はよかったです�
 そんなことはないです。
 Dockerfile を書いた方がいいという場合も全然あるので、適材適所で使い分けるのが良いです。
 
-とはいえ、JavaScriptだとすべてのOSで動作するので、今後は公開する Action は JavaScrpit で作る努力をしたほうがいいのかなーと思います。
+とはいえ、JavaScript だとすべての OS で動作するので、今後は公開する Action は JavaScrpit で作る努力をしたほうがいいのかなーと思います。

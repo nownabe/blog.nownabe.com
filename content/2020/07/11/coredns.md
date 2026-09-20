@@ -14,14 +14,14 @@ image: images/2020/07/11/coredns.png
 
 [CoreDNS](https://coredns.io/) を使って自宅のネットワークに DNS サーバをたてました。
 
-Kubernetesを構築して[^1]プライベートのサービスを動かそうと思ってたんですが、そのときにサービスにもドメインつけたいし、サーバごにょごにょするときのもドメインほしいしってことでDNSサーバをたてました。
+Kubernetes を構築して[^1]プライベートのサービスを動かそうと思ってたんですが、そのときにサービスにもドメインつけたいし、サーバごにょごにょするときのもドメインほしいしってことで DNS サーバをたてました。
 
 [^1]: [おうちKubernetes構築日記その1 Raspberry Pi編 - nownab.log](https://blog.nownabe.com/2020/06/28/home-kubernetes-1)
 
 ## そもそもたてる必要あるの？
 
-SSHするときもWebでアクセスするときもIPよりはドメインの方がいいので、なんらかのDNSサーバは必要でした。
-DNSサーバの選択肢として、他にはパブリッククラウドのDNSサービス、ルータのDNS機能がありました。
+SSH するときも Web でアクセスするときも IP よりはドメインの方がいいので、なんらかの DNS サーバは必要でした。
+DNS サーバの選択肢として、他にはパブリッククラウドの DNS サービス、ルータの DNS 機能がありました。
 
 簡単に比較するとこんな感じです。
 
@@ -34,29 +34,29 @@ DNSサーバの選択肢として、他にはパブリッククラウドのDNS�
 | 自動化 | :satisfied: | :smiley: | :mask: | etcdプラグインとか使えば簡単にできる |
 | 機能 | :smile: | :satisfied: | :mask: | まあいろいろできる |
 
-速くて無料で必要な機能が実現できる、ということで自前でDNSサーバたてることを選択しました。
+速くて無料で必要な機能が実現できる、ということで自前で DNS サーバたてることを選択しました。
 運用に関しても、データぶっ飛んでもすぐ復旧できるレベルでしか使わないだろうし、なんか問題でてきたらクラウドに移せばいいぐらいの感覚です。
 
 ## なんでCoreDNS？
 
-[CoreDNS](https://coredns.io/)っていうのはCNCFにホストされている、Goで書かれたDNSサーバです。
+[CoreDNS](https://coredns.io/) っていうのは CNCF にホストされている、Go で書かれた DNS サーバです。
 
-CoreDNSを選んだのはこのへんが理由です。
+CoreDNS を選んだのはこのへんが理由です。
 
-* CNCFのプロジェクトということで以前から使ってみたいと思ってた
-* dnsmasq的な `/etc/hosts` での設定ができる
+* CNCF のプロジェクトということで以前から使ってみたいと思ってた
+* dnsmasq 的な `/etc/hosts` での設定ができる
 * DB (etcd) をバックエンドにできるのでバックアップとか自動化とかが楽
 * プラグインが簡単に書けるので楽しそう
 * 設定がシンプル
 * 機能が全部プラグインで実現されてるって思想が良い
-* Goで書かれている
+* Go で書かれている
 
-今までBind、dnsmasq、PowerDNSを構築、運用したことあるんですが、今の所一番気に入ってます。
+今まで Bind、dnsmasq、PowerDNS を構築、運用したことあるんですが、今の所一番気に入ってます。
 使用感もいいし、わくわく感もあります。
 
 ## 構築手順
 
-Kubernetesのマスターとなるサーバにインストールしました。以下rootでの実行コマンドです。
+Kubernetes のマスターとなるサーバにインストールしました。以下 root での実行コマンドです。
 
 ```bash
 # ダウンロード、インストール
@@ -138,16 +138,16 @@ systemctl enable coredns
 systemctl start coredns
 ```
 
-バイナリひとつで動くのがいいですよね。Goプロダクトって感じです。
+バイナリひとつで動くのがいいですよね。Go プロダクトって感じです。
 
-systemdのユニットファイルは、[coredns/deployment](https://github.com/coredns/deployment)というリポジトリにある[coredns.service](https://github.com/coredns/deployment/blob/master/systemd/coredns.service)を参考にしました。
+systemd のユニットファイルは、[coredns/deployment](https://github.com/coredns/deployment) というリポジトリにある [coredns.service](https://github.com/coredns/deployment/blob/master/systemd/coredns.service) を参考にしました。
 ちょっと古かったり余計な権限がついてたりしたので、少し修正しています。
 
-今の所レコードは/etc/hosts形式で設定しています。
+今の所レコードは/etc/hosts 形式で設定しています。
 
 ## DHCPの設定
 
-ルータ RTX830 をDHCPサーバに使っているので、構築したDNSサーバを設定しました。
+ルータ RTX830 を DHCP サーバに使っているので、構築した DNS サーバを設定しました。
 
 ```txt
 no dns server pp 1
@@ -161,7 +161,7 @@ dns domain cf.nownabe.in
 
 ## クライアントの設定
 
-DHCPを使っていないサーバにはそれぞれ手動で設定しました。
+DHCP を使っていないサーバにはそれぞれ手動で設定しました。
 いろいろあるのでそれぞれの設定は省略しますが、 `/etc/resolv.conf` はこんな感じです。
 
 ```txt
@@ -199,9 +199,9 @@ kube-worker-1.cf.nownabe.in. 2288 IN    A       10.0.1.101
 ;; MSG SIZE  rcvd: 111
 ```
 
-いいですねー。0msで答えが返ってきてます。
+いいですねー。0ms で答えが返ってきてます。
 
-外部ドメインでもキャッシュされてると0msで返ってきます。
+外部ドメインでもキャッシュされてると 0ms で返ってきます。
 
 ```bash
 $ dig google.com
@@ -227,7 +227,7 @@ google.com.             298     IN      A       172.217.24.142
 ;; MSG SIZE  rcvd: 77
 ```
 
-パブリックDNSサーバに問い合わせると4msとかかかります。
+パブリック DNS サーバに問い合わせると 4ms とかかかります。
 
 ```bash
 $ dig google.com @8.8.8.8
@@ -284,6 +284,6 @@ google.com.             299     IN      A       172.217.24.142
 以上です。無事に `ssh kube-worker-1` ができるようになって満足です。
 キャッシュにのってない外部ドメインのクエリがめっちゃ遅いのは不便なのでなんとかしたいですね。[^2]
 
-今後は、簡単なWeb UIとかを作りたいなーと思ってます。
+今後は、簡単な Web UI とかを作りたいなーと思ってます。
 
 [^2]: 記事書いた直後に調べたら、単純にサーバから外に出る回線(PPPoE)が遅いだけだった

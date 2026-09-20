@@ -30,9 +30,9 @@ draft: false
 
 > Run your apps in a Docker image by building your own custom container to run jobs on AI Platform. Use machine learning frameworks and versions – as well as non-ML dependencies, libraries, and binaries not otherwise supported on AI Platform. [Documentation](https://cloud.google.com/ml-engine/docs/containers-overview)
 
-中ではCloud Runが使われてんのかな :thinking:
+中では Cloud Run が使われてんのかな :thinking:
 
-AI Platformの方のドキュメント見るとDockerのインストールとかDockerfileの書き方とかまで書いてあっておもしろい。
+AI Platform の方のドキュメント見ると Docker のインストールとか Dockerfile の書き方とかまで書いてあっておもしろい。
 
 ## AI Platform – use predefined machine-type names to configure training job: GA
 

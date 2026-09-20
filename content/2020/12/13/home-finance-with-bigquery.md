@@ -107,7 +107,7 @@ Cloud Functions のコンテナイメージを管理している Container Regis
 
 [![billing report](/images/2020/12/13/billing_report.png)](/images/2020/12/13/billing_report.png)
 
-Cloud Storage や Cloud Functions や BigQuery は[無料枠](https://cloud.google.com/free)におさまっています。
+Cloud Storage や Cloud Functions や BigQuery は [無料枠](https://cloud.google.com/free) におさまっています。
 もし既に無料枠を使い切っている場合は料金が発生します。それぞれ以下のように無料枠があります。
 
 * Cloud Storage: 5GB-月 (us-east1, us-west1, us-central1)
@@ -124,7 +124,7 @@ Cloud Storage の無料枠はリージョンが限定されています。
 
 ### bqloader 概要
 
-[bqloader](https://github.com/nownabe/go-bqloader)は Go 製のシンプルな ETL フレームワークです。
+[bqloader](https://github.com/nownabe/go-bqloader) は Go 製のシンプルな ETL フレームワークです。
 弊家の ETL をフレームワークとして切り出したものになります。
 以下のような特徴があります。
 
@@ -147,11 +147,11 @@ Go で実装することになるので Go の知識はあった方がいいで�
 
 ### bqloader 使い方
 
-[サンプルプロジェクト](https://github.com/nownabe/go-bqloader/tree/main/examples/quickstart)を見てもらうのがはやいです。
+[サンプルプロジェクト](https://github.com/nownabe/go-bqloader/tree/main/examples/quickstart) を見てもらうのがはやいです。
 このサンプルの中で Service Account の作成や Function のデプロイ、BigQuery への ETL まで一通りカバーしています。
 
 以下ではフレームワークのさわりだけ丁寧に説明していきます。
-詳しくは[godoc](https://pkg.go.dev/go.nownabe.dev/bqloader)やサンプルを見てください。
+詳しくは [godoc](https://pkg.go.dev/go.nownabe.dev/bqloader) やサンプルを見てください。
 
 まず import します。
 
@@ -186,7 +186,7 @@ handler := &bqloader.Handler{
 }
 ```
 
-変換のコアは`projector`です。`projector`は行単位の変換を実現する関数です。
+変換のコアは `projector` です。`projector` は行単位の変換を実現する関数です。
 
 ```go
 /*
@@ -215,7 +215,7 @@ projector := func(_ context.Context, row []string) ([]string, error) {
 }
 ```
 
-`notifier`は通知です。
+`notifier` は通知です。
 
 ```go
 notifier := &bqloader.SlackNotifier{
@@ -245,7 +245,7 @@ func MyFunc(ctx context.Context, e bqloader.Event) error {
 
 Cloud Storage へのファイルアップロードなどのイベントで実行されます。[^4]
 
-[^4]: イベントについての詳細は[Cloud Functions のドキュメント](https://cloud.google.com/functions/docs/calling/storage)を参照してください。
+[^4]: イベントについての詳細は [Cloud Functions のドキュメント](https://cloud.google.com/functions/docs/calling/storage) を参照してください。
 
 こんな感じで bqloader による関数を Cloud Functions にデプロイして、対応するバケットにファイルをアップロードすればデータが BigQuery にロードされます。
 
@@ -253,11 +253,11 @@ Cloud Storage へのファイルアップロードなどのイベントで実行
 
 では銀行の明細を BigQuery にロードする ETL システムを構築してダッシュボードを作ってみましょう。
 
-銀行の明細は[このサンプル](https://docs.google.com/spreadsheets/d/1vTK8w2pA4Rrdi1fTBB9nq_dZ9VOIdGW35CdWQxzfWc4/edit?usp=sharing)を利用します。このデータを多くの銀行に倣って ShiftJIS の CSV として扱います。
+銀行の明細は [このサンプル](https://docs.google.com/spreadsheets/d/1vTK8w2pA4Rrdi1fTBB9nq_dZ9VOIdGW35CdWQxzfWc4/edit?usp=sharing) を利用します。このデータを多くの銀行に倣って ShiftJIS の CSV として扱います。
 
 前提として、Google Cloud のプロジェクトが必要になるので用意してください。
 以下ではプロジェクト ID が `GCP_PROJECT` 環境変数にあるものとして説明します。
-また、Go 環境と[Google Cloud SDK](https://cloud.google.com/sdk/docs/install)はセットアップ済みとします。
+また、Go 環境と [Google Cloud SDK](https://cloud.google.com/sdk/docs/install) はセットアップ済みとします。
 
 作成するリソースはそれぞれ次の名前を使用します。
 
@@ -506,7 +506,7 @@ bq --project_id $GCP_PROJECT \
 
 ### ダッシュボード作成
 
-最後に[Data Studio](https://datastudio.google.com/)[^6]でダッシュボードを作成します。
+最後に [Data Studio](https://datastudio.google.com/)[^6]でダッシュボードを作成します。
 が、Data Studio は操作が GUI で説明がめんどくさいのでフィーリングでやってみてください。
 画面をポチポチやっていけば、なんとなく BigQuery の銀行明細データを読み込んでグラフが作れそうな雰囲気は感じてもらえると思います。
 

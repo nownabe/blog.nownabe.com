@@ -19,7 +19,7 @@ image: /images/dev-env-2026/dev-env-2026.jpg
 
 ## きっかけ
 
-複数の同僚から WezTerm や Nix の Home Manager を勧められていたところに、貸与PCのリプレースのタイミングが重なり、SRE Kaigi でもらった熱量を活かして開発環境を見直すことにした。
+複数の同僚から WezTerm や Nix の Home Manager を勧められていたところに、貸与 PC のリプレースのタイミングが重なり、SRE Kaigi でもらった熱量を活かして開発環境を見直すことにした。
 
 ## OS
 

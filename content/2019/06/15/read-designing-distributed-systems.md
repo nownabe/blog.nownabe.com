@@ -27,7 +27,7 @@ draft: false
 
 全体的に図が非常にわかりづらいのが残念でした。
 
-Kubernetes上で構築するワークキューの例なんかは、おーなるほど！Kubernetesだ！って感じで興味深かったです。
+Kubernetes 上で構築するワークキューの例なんかは、おーなるほど！Kubernetes だ！って感じで興味深かったです。
 実際あんな感じで構築することはないと思いますが。
 
 
@@ -49,15 +49,15 @@ Kubernetes上で構築するワークキューの例なんかは、おーなる�
 ある程度インフラの経験がある人にとっては、デザインパターンなだけあって「ああ、これ作ったことあるな」というものばかりです。
 内容的には物足りないですが、共通言語を得るという意味では読む価値はあると思います。
 
-全体を通してKubernetesが例として使われているのでKubernetesがわからないと例を理解するのが難しいかもしれません。
-逆に、Kubernetesを使った構築手法を知ることができるかもしれません。
+全体を通して Kubernetes が例として使われているので Kubernetes がわからないと例を理解するのが難しいかもしれません。
+逆に、Kubernetes を使った構築手法を知ることができるかもしれません。
 
 
 # 著者紹介
 
 ## Brendan Burns
 
-* Kubernetesの創始者
+* Kubernetes の創始者
 * GCP, Microsoft
 * Twitter: [@brendanburns](https://twitter.com/brendandburns)
 * GitHub: [@brendanburns](https://github.com/brendandburns)

@@ -8,37 +8,37 @@ title: Gem in a Boxに簡単にリリースできるGem作ったけどいっぱ�
 ---
 
 # はじめに
-プライベートなGem Serverというか、[Gem in a Box](https://github.com/geminabox/geminabox)に手軽にGemをリリースできるようにする[geminabox-rake_tasks](https://github.com/nownabe/geminabox-rake_tasks)というGemを作りました。
+プライベートな Gem Server というか、[Gem in a Box](https://github.com/geminabox/geminabox) に手軽に Gem をリリースできるようにする [geminabox-rake_tasks](https://github.com/nownabe/geminabox-rake_tasks) という Gem を作りました。
 
 https://github.com/nownabe/geminabox-rake_tasks
 
-このGemを使うと、次の2点が実現できます。
+この Gem を使うと、次の 2 点が実現できます。
 
-* Rubygems.orgにリリースできない
-* 通常のrakeタスクと同じコマンドでGem in a Boxサーバにリリースできる
+* Rubygems.org にリリースできない
+* 通常の rake タスクと同じコマンドで Gem in a Box サーバにリリースできる
 
-社内でプライベートなGem ServerをGem in a Boxで構築してる場合など手軽でいいんじゃないかと思います。
+社内でプライベートな Gem Server を Gem in a Box で構築してる場合など手軽でいいんじゃないかと思います。
 
 # 使い方
-まず、gemspecファイルに次の行を追加します。
+まず、gemspec ファイルに次の行を追加します。
 
 ```ruby
 spec.add_development_dependency "geminabox-rake_tasks"
 ```
 
-お決まりのbundle installしてください。
+お決まりの bundle install してください。
 
 ```bash
 $ bundle
 ```
 
-Rakefileの`require "bundler/gem_tasks"`を削除して、次の行を追加します。
+Rakefile の `require "bundler/gem_tasks"` を削除して、次の行を追加します。
 
 ```ruby
 require "geminabox/rake_tasks"
 ```
 
-リリースする前に、Gem in a Boxサーバの設定が必要になります。
+リリースする前に、Gem in a Box サーバの設定が必要になります。
 
 ```bash
 $ bundle exec gem inabox -c
@@ -46,7 +46,7 @@ Enter the root url for your personal geminabox instance (e.g. http://gems/).
 Host:  http://yourgeminabox/
 ```
 
-このコマンドで、`./gem/geminabox`が設定されます。
+このコマンドで、`./gem/geminabox` が設定されます。
 
 ```bash
 $ cat ~/.gem/geminabox
@@ -66,7 +66,7 @@ Pushed testgem 0.1.0
 
 ![01](/images/articles/hatena07/01.png)
 
-他にも、`bundler/gem_tasks`と同じタスクが使えます。
+他にも、`bundler/gem_tasks` と同じタスクが使えます。
 
 ```bash
 $ bundle exec rake -T
@@ -144,10 +144,10 @@ rake install:local      # Build and install testgem-0.1.0.gem into system gems w
 rake release            # [WARN] Release to rubygems.org is prohibited, use rake geminabox_release
 ```
 
-このGemは`bundle gem`の所から面倒みてくれるみたいです。
-こっちのほうがうっかりrubygems.orgにリリースすることはないかもしれません。
+この Gem は `bundle gem` の所から面倒みてくれるみたいです。
+こっちのほうがうっかり rubygems.org にリリースすることはないかもしれません。
 
-というかこのGemでいいような気がしてきました。
+というかこの Gem でいいような気がしてきました。
 
 ```bash
 GEMINABOX=https://your.rubygems.org bundle-geminabox gem foo
@@ -186,4 +186,4 @@ rake release        # Create tag v0.1.0 and build and push testgem-0.1.0.gem to 
 ほぼ同じでした。
 
 # おわりに
-急いでたのでろくに調べずに作ってしまったんですが、まあ普通に考えたら誰か作りますよねw
+急いでたのでろくに調べずに作ってしまったんですが、まあ普通に考えたら誰か作りますよね w

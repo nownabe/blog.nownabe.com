@@ -1,8 +1,12 @@
+// Errors are mechanical and block CI. Warnings are style hints to read while writing;
+// they never fail the check. Rules that would contradict this blog's voice are off.
+const warning = (options = {}) => ({ severity: "warning", ...options });
+
 module.exports = {
   plugins: {
     "@textlint/markdown": {
-      "extensions": [".md"]
-    }
+      extensions: [".md"],
+    },
   },
   rules: {
     "preset-ja-spacing": {
@@ -11,24 +15,38 @@ module.exports = {
         exceptPunctuation: true,
       },
       "ja-space-around-code": {
-        "before": true,
-        "after": true
+        before: true,
+        after: true,
       },
-      "textlint-rule-ja-no-space-around-parentheses": false
+      "ja-space-around-link": {
+        before: true,
+        after: true,
+      },
+      "ja-no-space-around-parentheses": false,
     },
 
-    // https://github.com/textlint-ja/textlint-rule-preset-ja-technical-writing
     "preset-ja-technical-writing": {
-      // https://github.com/textlint-ja/textlint-rule-ja-no-mixed-period
-      "ja-no-mixed-period": {
-        allowEmojiAtEnd: true,   // 句点としてEmojiを許可
-        allowPeriodMarks: [":"], // 句点として":"を許可
-      },
+      // Style hints
+      "sentence-length": warning({ max: 120 }),
+      "max-comma": warning(),
+      "max-ten": warning(),
+      "max-kanji-continuous-len": warning(),
+      "ja-no-redundant-expression": warning(),
+      "ja-no-weak-phrase": warning(),
+      "ja-no-successive-word": warning(),
+      "no-doubled-joshi": warning(),
+      "no-doubled-conjunction": warning(),
+      "no-doubled-conjunctive-particle-ga": warning(),
+      "no-double-negative-ja": warning(),
+      "ja-no-mixed-period": warning({ allowEmojiAtEnd: true, allowPeriodMarks: [":"] }),
 
+      // Off: the mixed register, ら抜き and exclamation marks are this blog's voice;
+      // arabic-kanji-numbers rewrites 何一つ to 何1つ; ja-unnatural-alphabet flags math symbols.
+      "no-mix-dearu-desumasu": false,
+      "no-dropping-the-ra": false,
       "no-exclamation-question-mark": false,
-      "sentence-length": {
-        max: 120,
-      },
+      "arabic-kanji-numbers": false,
+      "ja-unnatural-alphabet": false,
     },
-  }
+  },
 };

@@ -74,7 +74,7 @@ Google はもちろん今までの会社と異なるところも多く、なか�
 
 9 月、認証基盤を刷新するための Design Doc を書いてたりした気がします。また、今は Platform Group という社内の基盤を整えるようなチームに所属しているんですが、9 月頃は社内の様々な課題や会社が目指しているところなんかがわかってきたのでプラットフォームの将来像を描いたりもしていました。
 
-10 月、社内向けに SRE のトレーニングを主催したり、[Encraft #7 AppDev with Google Cloud](https://knowledgework.connpass.com/event/294440/)というイベントで登壇したりしました。
+10 月、社内向けに SRE のトレーニングを主催したり、[Encraft #7 AppDev with Google Cloud](https://knowledgework.connpass.com/event/294440/) というイベントで登壇したりしました。
 会社のカジュアル面談を担当するようにもなりました。
 
 11 月、設計した新認証基盤の実装が本格化して、とにかく Terraform と Go を書いてた気がします。

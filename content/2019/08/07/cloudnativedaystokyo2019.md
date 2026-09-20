@@ -10,7 +10,7 @@ lastmod: 2019-08-07T16:00:00+09:00
 draft: false
 ---
 
-先日[CloudNative Days Tokyo 2019](https://cloudnativedays.jp/cndt2019/)に参加してきました。
+先日 [CloudNative Days Tokyo 2019](https://cloudnativedays.jp/cndt2019/) に参加してきました。
 
 見たやつのメモだったり、見れなかったけど気になったやつのメモだったり、資料まとめだったりです。
 
@@ -81,7 +81,7 @@ CRD で Bigtable の Autoscaler を作った話。
 
 <script async class="speakerdeck-embed" data-id="d5d77ff6e35d45509ecf7bacf987f54d" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 
-- [Rook](https://rook.io/)使ってみたい
+- [Rook](https://rook.io/) 使ってみたい
   - ceph-operator 的な感じっぽい
     - ceph 以外も使えるっぽい
   - production ready
@@ -400,7 +400,7 @@ https://docs.google.com/presentation/d/1O9Q9E1hH6mBA5w8oDENnCYObZvij1-Dr_obvsY3X
 
 <script async class="speakerdeck-embed" data-id="a2412affcedc48399db7c5ddb406bb25" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 
-- ResponseStarted / ResponseComplete
+- ResponseStarted/ResponseComplete
   - リクエストによってはヘッダを先に返して Body は後で返すみたいなやつがある
 - おすすめは Pattern 3: audit webhook log + falco
 - audit2rbac 便利そう

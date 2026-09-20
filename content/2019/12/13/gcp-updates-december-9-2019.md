@@ -18,7 +18,7 @@ Product updates | December 9, 2019
 
 > AutoML Tables now provides full support to users with EU data residency requirements. [Documentation](https://cloud.google.com/automl-tables/docs/locations) | [Release notes](https://cloud.google.com/automl-tables/docs/release-notes)
 
-GDPR大変そう
+GDPR 大変そう
 
 ## Contact Center AI: GA
 
@@ -31,12 +31,12 @@ GDPR大変そう
 
 > Run your batch workload in the cloud using Kubernetes with flexible resources that are dynamically allocated to match your needs and budget. Create queues, prioritize jobs, and handle dependencies with the functions and familiarity of a traditional batch job scheduler. [Documentation](https://cloud.google.com/kubernetes-engine/docs/concepts/batch) | [Blog](https://cloud.google.com/blog/topics/hpc/introducing-batch-gke-modernizing-hpc-kubernetes-cloud)
 
-GKEで大規模なバッチ処理を実行するためのものみたいです。
-JobやQueue、Budgetなどなどを持ってるらしい。
+GKE で大規模なバッチ処理を実行するためのものみたいです。
+Job や Queue、Budget などなどを持ってるらしい。
 
-インストールは今の所[GitHub](https://github.com/GoogleCloudPlatform/Kbatch/tree/master/releases)にあるYAMLをapplyして行います。
+インストールは今の所 [GitHub](https://github.com/GoogleCloudPlatform/Kbatch/tree/master/releases) にある YAML を apply して行います。
 
-こんな感じのCRDがありました。
+こんな感じの CRD がありました。
 
 ```bash
 $ egrep '\skind: [^"]' install/01-crds.yaml
@@ -51,8 +51,8 @@ $ egrep '\skind: [^"]' install/01-crds.yaml
     kind: BatchUserContext
 ```
 
-Jobの作成には先ほどのアーカイブに同梱されているksubコマンドを使うみたいです。
-ksubで[Bashスクリプト](https://github.com/GoogleCloudPlatform/Kbatch/tree/master/samples/defaultresources)を指定するみたいです。
+Job の作成には先ほどのアーカイブに同梱されている ksub コマンドを使うみたいです。
+ksub で [Bashスクリプト](https://github.com/GoogleCloudPlatform/Kbatch/tree/master/samples/defaultresources) を指定するみたいです。
 
 面白そうなのでまた触ってみたい。
 
@@ -80,7 +80,7 @@ ksubで[Bashスクリプト](https://github.com/GoogleCloudPlatform/Kbatch/tree/
 
 > Export and import Cloud Datastore entities using your Cloud Console, the gcloud command-line tool, or the Cloud Datastore API. Use the service to recover from accidental deletion of data and export data for offline processing. [Documentation](https://cloud.google.com/datastore/docs/export-import-entities)
 
-おー、ついにGA :tada:
+おー、ついに GA :tada:
 
 
 # DEVELOPER TOOLS
@@ -89,14 +89,14 @@ ksubで[Bashスクリプト](https://github.com/GoogleCloudPlatform/Kbatch/tree/
 
 > Access your Stackdriver logs directly in the Visual Studio Code IDE. Simplify and streamline the diagnostics process with features including integration with Stackdriver Logging, a customizable logs viewer, and Kubernetes-specific filtering. [Documentation](https://cloud.google.com/code/docs/vscode/logging) | [Blog](https://cloud.google.com/blog/products/application-development/stackdriver-logging-comes-to-cloud-code-in-visual-studio-code)
 
-Documentationにある動画みたけど便利そう。
+Documentation にある動画みたけど便利そう。
 公式でこういうのだしてくれるのいいなー。
 
 ## Go developer hub and discovery site: beta
 
 > Visit the new site to discover and evaluate Go packages and modules – and learn how to integrate them into your projects. Find a wealth of resources to get started with the language, featured use cases, and case studies of companies that use Go. [Product page](https://go.dev/) | [Blog](https://blog.golang.org/go.dev)
 
-Goの新しいサイト？
+Go の新しいサイト？
 
 # IDENTITY & SECURITY
 
@@ -149,13 +149,13 @@ Goの新しいサイト？
 
 > Control traffic within your Traffic Director deployment by using route rules and traffic policies to implement traffic splitting, traffic steering, fault injection, circuit breaking, and mirroring. Traffic policies further manage traffic using a range of actions. [Documentation](https://cloud.google.com/traffic-director/docs/traffic-control)
 
-お、GAなったのか。使ってみたいなー。
+お、GA なったのか。使ってみたいなー。
 
 ## Virtual Private Cloud – Packet Mirroring: beta
 
 > Inspect all traffic in your network to perform advanced security analytics, and troubleshoot app performance, for both Compute Engine instances and GKE clusters. Clone traffic in specific instances in your VPC to a private collector endpoint to run security and monitoring software on the collector back ends. [Documentation](https://cloud.google.com/vpc/docs/packet-mirroring) | [Video](https://www.youtube.com/watch)
 
-いいね！GCEインスタンスだけが対象かな。そのうちコンテナとかも対象にできるようになんのかな。
+いいね！GCE インスタンスだけが対象かな。そのうちコンテナとかも対象にできるようになんのかな。
 
 ## VPC – custom routes: GA
 
