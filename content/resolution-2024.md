@@ -6,8 +6,6 @@ date: 2024-01-04T11:02:08+09:00
 lastmod: 2024-01-03T11:02:08+09:00
 ---
 
-![banner](/images/resolution-2024/banner.png)
-
 バナー画像は Stable Diffusion と Canva で作った。
 
 

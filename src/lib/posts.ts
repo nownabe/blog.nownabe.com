@@ -29,25 +29,15 @@ export function postYear(post: Post): string {
   return post.data.date.toLocaleDateString("en-CA", { year: "numeric", timeZone: "Asia/Tokyo" });
 }
 
-const BANNER_EXTENSIONS = ["png", "jpg", "jpeg", "webp"];
-
-// A banner is public/images/<post path>/banner.<ext>, shown in lists and at the top of the article.
+// A banner is public/images/<post path>/banner.png or .jpg, shown in lists and at the top of the article.
 // It is not the social card: every post's og:image is the generated card at cardPath().
 export function banner(post: Post): string | undefined {
   const dir = `/images${postPath(post).slice(0, -1)}`;
-  const ext = BANNER_EXTENSIONS.find((ext) => existsSync(`public${dir}/banner.${ext}`));
-  return ext && `${dir}/banner.${ext}`;
+  return [`${dir}/banner.png`, `${dir}/banner.jpg`].find((path) => existsSync(`public${path}`));
 }
 
 export function cardPath(post: Post): string {
   return `/og${postPath(post).slice(0, -1)}.png`;
-}
-
-// Many posts open with the banner as a Markdown image, a linked image or a raw <img>; render it once, not twice.
-export function bannerOpensBody(post: Post): boolean {
-  const image = banner(post);
-  const firstLine = (post.body ?? "").trimStart().split("\n", 1)[0] ?? "";
-  return !!image && firstLine.includes(image);
 }
 
 const dotted = new Intl.DateTimeFormat("en-CA", {

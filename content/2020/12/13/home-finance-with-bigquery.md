@@ -9,8 +9,6 @@ date: 2020-12-13T00:00:00+09:00
 lastmod: 2020-12-13T00:00:00+09:00
 ---
 
-[![dashboard](/images/2020/12/13/home-finance-with-bigquery/banner.png)](/images/2020/12/13/home-finance-with-bigquery/banner.png)
-
 弊家では銀行やクレジットカードの明細を BigQuery に取り込んでダッシュボードを作ったりしています。
 また、そのために作った BigQuery 向けの Go 製 ETL フレームワークを OSS として公開しました。
 本記事ではざっくりどんなもんかを紹介して、どう作るのかを説明します。

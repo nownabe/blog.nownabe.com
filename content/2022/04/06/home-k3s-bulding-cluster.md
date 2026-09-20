@@ -8,8 +8,6 @@ date: 2022-04-06T21:06:40+09:00
 lastmod: 2022-04-06T21:06:40+09:00
 ---
 
-[![Raspberry Pi stack](/images/2022/04/06/home-k3s-bulding-cluster/banner.jpg)](/images/2022/04/06/home-k3s-bulding-cluster/banner.jpg)
-
 ## 概要
 
 [以前作った](https://blog.nownabe.com/2020/06/28/home-kubernetes-1/) Kubernetes 用のラズパイクラスタが埃をかぶっていたので k3s クラスタとして蘇らせた。

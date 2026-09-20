@@ -6,8 +6,6 @@ date: 2022-04-21T22:55:21+09:00
 lastmod: 2022-04-21T22:55:21+09:00
 ---
 
-![ob_start](/images/2022/04/21/php-ob-start/banner.png)
-
 ## はじめに
 
 先日 [ZUTOMAYO FACTORY「鷹は飢えても踊り忘れず」で表示されていたプログラムについて](/2022/04/18/zfactory-programs/) という記事を書きました。
