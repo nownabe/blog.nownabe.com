@@ -36,11 +36,10 @@
   --code-bg: #1f2130;
   --code-ink: #dcdde8;
 
-  --display:
-    "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Noto Sans JP", "Yu Gothic", "YuGothic", Meiryo,
-    sans-serif;
-  --sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "YuGothic", Meiryo, sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  /* Family names and fallback stacks live in astro.config.mjs (fonts). */
+  --display: var(--font-zen-maru-gothic);
+  --sans: var(--font-noto-sans-jp);
+  --mono: var(--font-ibm-plex-mono);
 
   --measure: 41rem; /* 41 characters at 1rem */
   --aside: 14rem;
