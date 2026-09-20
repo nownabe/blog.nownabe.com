@@ -55,7 +55,7 @@ const bannerSrc = banner(post);
         <span aria-hidden="true"> · </span>{readingMinutes(post)} min read
       </p>
       <TagList tags={post.data.tags} class="article-tags" />
-      {bannerSrc && <img class="banner" src={bannerSrc} alt="" width="800" height="420" />}
+      {bannerSrc && <img class="banner" src={bannerSrc} alt="" width="800" height="420" fetchpriority="high" />}
       {
         toc.length > 0 && (
           <details class="toc toc-inline">
