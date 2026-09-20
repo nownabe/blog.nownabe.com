@@ -40,6 +40,11 @@ export function cardPath(post: Post): string {
   return `/og${postPath(post).slice(0, -1)}.png`;
 }
 
+// The list thumbnail, a resized banner rendered at build time by pages/thumb/[...slug].webp.ts.
+export function thumbPath(post: Post): string {
+  return `/thumb${postPath(post).slice(0, -1)}.webp`;
+}
+
 const dotted = new Intl.DateTimeFormat("en-CA", {
   year: "numeric",
   month: "2-digit",

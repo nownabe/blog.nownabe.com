@@ -1,13 +1,13 @@
 ---
 import TagList from "./TagList.astro";
-import { banner, formatDate, lead, postPath, type Post } from "../lib/posts";
+import { banner, formatDate, lead, postPath, thumbPath, type Post } from "../lib/posts";
 
 interface Props {
   post: Post;
 }
 
 const { post } = Astro.props;
-const thumb = banner(post);
+const thumb = banner(post) && thumbPath(post);
 ---
 
 <article class="entry">
