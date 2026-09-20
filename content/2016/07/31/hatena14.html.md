@@ -1,10 +1,8 @@
 ---
-date: 2016-07-22T00:47:58+0900
-lastmod: 2016-07-22T00:47:58+0900
-tags: ["event","book"]
-draft: false
-
 title: プログラミングのための確率統計読み始めた
+tags: ["event","book"]
+date: 2016-07-22T00:47:58+09:00
+lastmod: 2016-07-22T00:47:58+09:00
 ---
 
 [プログラミングのための確率統計](https://www.amazon.co.jp/dp/4274067750?tag=nownabe02-22)

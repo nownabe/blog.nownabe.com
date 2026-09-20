@@ -1,10 +1,8 @@
 ---
-date: 2015-08-31T01:11:48+0900
-lastmod: 2015-08-31T01:11:48+0900
-tags: ["gem in a box","ruby"]
-draft: false
-
 title: Gem in a Boxの冗長化
+tags: ["gem in a box","ruby"]
+date: 2015-08-31T01:11:48+09:00
+lastmod: 2015-08-31T01:11:48+09:00
 ---
 
 Gem in a Box 冗長化の情報があんまりない気がしたので Qiita に記事を書きました。

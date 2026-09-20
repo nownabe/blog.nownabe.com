@@ -1,10 +1,8 @@
 ---
-date: 2015-08-10T23:46:12+0900
-lastmod: 2015-08-10T23:46:12+0900
-tags: ["idcf cloud","dns"]
-draft: false
-
 title: お名前.comからIDCF DNSに移行した話
+tags: ["idcf cloud","dns"]
+date: 2015-08-10T23:46:12+09:00
+lastmod: 2015-08-10T23:46:12+09:00
 ---
 
 ネームサーバーをお名前.com から IDCF DNS に移行しました。

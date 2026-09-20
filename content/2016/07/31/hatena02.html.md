@@ -1,10 +1,8 @@
 ---
-date: 2015-03-01T19:10:15+0900
-lastmod: 2015-03-01T19:10:15+0900
-tags: ["ruby","leveldb","ruboty"]
-draft: false
-
 title: RubotyのデータをLevelDBで永続化するruboty-leveldbというGemを作った
+tags: ["ruby","leveldb","ruboty"]
+date: 2015-03-01T19:10:15+09:00
+lastmod: 2015-03-01T19:10:15+09:00
 ---
 
 # 経緯

@@ -4,8 +4,6 @@ tags:
 - resolutions
 date: 2020-01-01T19:30:00+09:00
 lastmod: 2020-01-01T19:30:00+09:00
-
-draft: false
 ---
 
 ## 2019年の振り返り

@@ -1,10 +1,8 @@
 ---
-date: 2015-08-09T00:21:18+0900
-lastmod: 2015-08-09T00:21:18+0900
-tags: ["raspberry pi"]
-draft: false
-
 title: 今更Raspberry PiでLチカやってみた
+tags: ["raspberry pi"]
+date: 2015-08-09T00:21:18+09:00
+lastmod: 2015-08-09T00:21:18+09:00
 ---
 
 ![Lチカ](/images/articles/hatena09/01.jpg)

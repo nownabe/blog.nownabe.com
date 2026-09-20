@@ -6,9 +6,6 @@ tags:
 - YAMAHA RTX830
 date: 2020-06-10T21:33:46+09:00
 lastmod: 2020-06-10T21:33:46+09:00
-
-draft: false
-
 image: images/2020/06/10/logical-diagram.png
 ---
 

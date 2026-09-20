@@ -1,10 +1,8 @@
 ---
-date: 2015-05-20T00:53:44+0900
-lastmod: 2015-05-20T00:53:44+0900
-tags: ["ruby","rubygems","gem in a box"]
-draft: false
-
 title: Gem in a Boxに簡単にリリースできるGem作ったけどいっぱいあったのでまとめ
+tags: ["ruby","rubygems","gem in a box"]
+date: 2015-05-20T00:53:44+09:00
+lastmod: 2015-05-20T00:53:44+09:00
 ---
 
 # はじめに

@@ -1,10 +1,8 @@
 ---
-date: 2016-07-26T23:57:51+0900
-lastmod: 2016-07-26T23:57:51+0900
-tags: ["ruby","middleman","markdown","github pages"]
-draft: false
-
 title: qiita-markdownをMiddlemanで使えるようにするGemを作った
+tags: ["ruby","middleman","markdown","github pages"]
+date: 2016-07-26T23:57:51+09:00
+lastmod: 2016-07-26T23:57:51+09:00
 ---
 
 github pages で blog を公開しようと思ってゆるりと構築中なんですが、静的ジェネレータとして [Middleman](https://middlemanapp.com/) を使うことにしました。

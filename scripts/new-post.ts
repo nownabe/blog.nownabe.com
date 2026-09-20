@@ -15,10 +15,6 @@ title: "${title}"
 tags:
 date: ${jst}
 lastmod: ${jst}
-
-draft: true
-
-image: img/nownabe.png
 ---
 
 `;

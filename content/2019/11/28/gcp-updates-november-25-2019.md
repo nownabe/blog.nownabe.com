@@ -5,8 +5,6 @@ tags:
 - GCP Updates
 date: 2019-11-28T14:58:32+09:00
 lastmod: 2019-11-28T14:58:32+09:00
-
-draft: false
 ---
 
 # AI & MACHINE LEARNING

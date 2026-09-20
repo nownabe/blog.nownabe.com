@@ -4,9 +4,6 @@ tags:
 - network
 date: 2020-05-29T22:43:54+09:00
 lastmod: 2020-05-29T22:43:54+09:00
-
-draft: false
-
 image: images/2020/05/29/compare.png
 ---
 

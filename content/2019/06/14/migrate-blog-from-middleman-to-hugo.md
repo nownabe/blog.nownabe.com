@@ -6,9 +6,6 @@ tags:
 - hugo
 date: 2019-06-14T22:45:14+09:00
 lastmod: 2019-06-14T22:45:14+09:00
-
-draft: false
-CJKLanguage: true
 ---
 
 

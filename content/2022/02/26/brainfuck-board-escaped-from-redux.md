@@ -3,9 +3,6 @@ title: "5年前に書いた React/Redux アプリから Redux を処した"
 tags: ["note", "React", "Redux", "Recoil"]
 date: 2022-02-26T17:17:16+09:00
 lastmod: 2022-02-26T17:17:16+09:00
-
-draft: false
-
 image: images/2022/02/26/brainfuck-board-escaped-from-redux.png
 ---
 

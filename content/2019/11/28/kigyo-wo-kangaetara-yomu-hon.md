@@ -3,8 +3,6 @@ title: "『起業を考えたら必ず読む本』を読んだ"
 tags:
 date: 2019-11-28T14:35:55+09:00
 lastmod: 2019-11-28T14:35:55+09:00
-
-draft: false
 ---
 
 [起業を考えたら必ず読む本](https://www.amazon.co.jp/dp/B07C71Z1KD?tag=nownabe02-22)
