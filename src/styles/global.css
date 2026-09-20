@@ -774,6 +774,23 @@ h6 {
   font-weight: 500;
 }
 
+.prose .math-block {
+  margin: 1.5rem 0;
+  /* Long formulas scroll instead of widening the page on narrow screens. */
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* overflow above opens a block formatting context, so KaTeX's own margin would
+   stack on top of .math-block's instead of collapsing into it. */
+.prose .math-block > .katex-display {
+  margin: 0;
+}
+
+.prose .katex {
+  font-size: 1.05em;
+}
+
 .prose code {
   font-family: var(--mono);
   font-size: 0.875em;
