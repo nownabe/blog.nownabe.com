@@ -11,7 +11,8 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
-    uses: nownabe/workflows/.github/workflows/pr.yaml@e598375106333096c7c09d215b6d65ca4ba63099 # v2.0.1
+    # Pinned to nownabe/workflows#249 until it is released; then pin the release tag.
+    uses: nownabe/workflows/.github/workflows/pr.yaml@f70fd7b4c6f310d0f49561a3cac50120b330f12d # fix-mise-caller-config
 
   check:
     name: Check
