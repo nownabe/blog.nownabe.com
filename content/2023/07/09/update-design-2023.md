@@ -14,15 +14,15 @@ date: 2023-07-09T17:24:34+09:00
 
 ## Before
 
-<img src="/images/2023/07/09/before-home.png" width="600" alt="before: home">
-<img src="/images/2023/07/09/before-article-header.png" width="600" alt="before: article header">
-<img src="/images/2023/07/09/before-article-footer.png" width="600" alt="before: article footer">
+<img src="/images/2023/07/09/before-home.png" width="600" alt="before: home" height="531">
+<img src="/images/2023/07/09/before-article-header.png" width="600" alt="before: article header" height="635">
+<img src="/images/2023/07/09/before-article-footer.png" width="600" alt="before: article footer" height="385">
 
 ## After
 
-<img src="/images/2023/07/09/update-design-2023/banner.png" width="600" alt="after: home">
-<img src="/images/2023/07/09/after-article-header.png" width="600" alt="after: article header">
-<img src="/images/2023/07/09/after-article-footer.png" width="600" alt="after: article footer">
+<img src="/images/2023/07/09/update-design-2023/banner.png" width="600" alt="after: home" height="502">
+<img src="/images/2023/07/09/after-article-header.png" width="600" alt="after: article header" height="664">
+<img src="/images/2023/07/09/after-article-footer.png" width="600" alt="after: article footer" height="695">
 
 ## Todo
 

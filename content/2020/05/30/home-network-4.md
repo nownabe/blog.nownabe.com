@@ -24,13 +24,13 @@ lastmod: 2020-05-30T14:19:10+09:00
 
 前回は、ついに光回線が開通して高速な回線とグローバル IP を手に入れました。
 
-<img src="/images/2020/05/29/physical-diagram.png" width="800">
+<img src="/images/2020/05/29/physical-diagram.png" width="800" alt="" height="463">
 
 しかし、ただ接続しただけだと、速いときは速いものの夜は 1Mbps を切るぐらいのスピードしかでないという状態でした。
 
 ## YAMAHA RTX830
 
-<img src="/images/2020/05/30/rtx830.png" width="600">
+<img src="/images/2020/05/30/rtx830.png" width="600" alt="" height="232">
 
 家とか小規模オフィスに置くのには定番のルータなんじゃないかなーと思います。
 今回は次の要素が理由でこのルータを選びました。
@@ -51,7 +51,7 @@ lastmod: 2020-05-30T14:19:10+09:00
 
 ToR に設置しました。写真は設置後の ToR の様子です。
 
-<img src="/images/2020/05/30/home-network-4/banner.png" width="800">
+<img src="/images/2020/05/30/home-network-4/banner.png" width="800" alt="" height="477">
 
 いい感じですね :blush:
 ただ、L2SW (GS308T) が結構熱を出していて心配です。
@@ -59,7 +59,7 @@ ToR に設置しました。写真は設置後の ToR の様子です。
 
 RTX830 を設置して物理構成はこんな感じになりました。
 
-<img src="/images/2020/05/30/physical-diagram.png" width="800">
+<img src="/images/2020/05/30/physical-diagram.png" width="800" alt="" height="501">
 
 コンシューマ向け無線ルータのかわりにルータっぽいルータが入って、いよいよネットワークっぽくなってきました。
 Google Wifi はブリッジモードに変更しました。

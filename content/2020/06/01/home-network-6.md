@@ -10,7 +10,7 @@ lastmod: 2020-06-01T22:18:28+09:00
 
 今回は DS-Lite で IPv4 通信が 90 倍速くなった話です。
 
-<img src="/images/2020/06/01/home-network-6/banner.png" width="800">
+<img src="/images/2020/06/01/home-network-6/banner.png" width="800" alt="" height="365">
 
 全日記:
 
@@ -43,7 +43,7 @@ Netflix の [fast.com](https://fast.com) や Cloudflare の [Speed Test](https:/
 
 次の画像は、混雑時間に連続して PPPoE な IPv4 と IPoE な IPv6 を fast.com で計測した結果です。
 
-<img src="/images/2020/06/01/compare-pppoe-ipoe.png" width="800">
+<img src="/images/2020/06/01/compare-pppoe-ipoe.png" width="800" alt="" height="386">
 
 IPv4 か IPv6 かは下部に表示されているクライアントの IP で判断できます。
 IPv4 に比べて IPv6 だと 120 倍以上のスピードが出ていることがわかります。
@@ -80,7 +80,7 @@ Web GUI では設定できないので、公式の [設定例](http://www.rtpro.
 
 次の画像は、連続して DS-Lite な IPv4 と IPoE な IPv6 を fast.com で計測した結果です。
 
-<img src="/images/2020/06/01/compare-ipoe.png" width="800">
+<img src="/images/2020/06/01/compare-ipoe.png" width="800" alt="" height="396">
 
 IPv4 でも IPv6 と同等のスピードがでています！！やったぜ！！！　:tada::tada::tada:
 

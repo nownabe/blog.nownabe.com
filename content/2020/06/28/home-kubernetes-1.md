@@ -8,7 +8,7 @@ lastmod: 2020-06-28T19:55:52+09:00
 
 [家に光回線を引いて](https://blog.nownabe.com/2020/05/29/home-network-3/) グローバル IP が手に入ったとほぼ同時に Raspberry Pi 4 の 8GB 版が発売になり、機は熟したということでずっとやりたかったおうち Kubernetes を構築しました。
 
-<img src="/images/2020/06/28/home-kubernetes-1/banner.jpg">
+<img src="/images/2020/06/28/home-kubernetes-1/banner.jpg" alt="">
 
 ## おうちKubernetesとは
 
@@ -128,8 +128,8 @@ LAN ケーブルと電源ケーブルを接続していきます。
 こんな感じです。
 
 <div style="display: flex; max-width: 100%;">
-<img src="/images/2020/06/28/home-kubernetes-1/banner.jpg" style="max-width: 50%; height: auto;">
-<img src="/images/2020/06/28/pi-stack2.jpg" style="max-width: 50%; height: auto;">
+<img src="/images/2020/06/28/home-kubernetes-1/banner.jpg" style="max-width: 50%; height: auto;" alt="">
+<img src="/images/2020/06/28/pi-stack2.jpg" style="max-width: 50%; height: auto;" alt="">
 </div>
 
 このときは 30cm の LAN ケーブルを使っていてくるくるしてる部分があるのですが、今は 15cm のケーブルに買い替えてよりすっきりしています。
