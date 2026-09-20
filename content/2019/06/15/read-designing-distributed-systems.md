@@ -13,7 +13,7 @@ draft: false
 
 分散システムデザインパターンを読みました。
 
-<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&language=ja_JP&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=4873118751&linkId=339b848407093bcf66332b2b34510ec3"></iframe>
+[分散システムデザインパターン ―コンテナを使ったスケーラブルなサービスの設計](https://www.amazon.co.jp/dp/4873118751?tag=nownabe02-22)
 
 # 感想
 
@@ -70,4 +70,4 @@ Kubernetes上で構築するワークキューの例なんかは、おーなる�
 * GitHub: [@doublemarket](https://github.com/doublemarket)
 
 
-<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=nownabe0c-22&language=ja_JP&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=4873118751&linkId=339b848407093bcf66332b2b34510ec3"></iframe>
+[分散システムデザインパターン ―コンテナを使ったスケーラブルなサービスの設計](https://www.amazon.co.jp/dp/4873118751?tag=nownabe02-22)
