@@ -5,7 +5,11 @@ export type Post = CollectionEntry<"posts">;
 
 export const SITE_TITLE = "nownab.log";
 export const SITE_DESCRIPTION = "the nownabe's life log";
-export const DEFAULT_IMAGE = "/img/nownabe.png";
+
+// Social cards are rendered at build time by pages/og/[...slug].png.ts; this one is for non-post pages.
+export const DEFAULT_IMAGE = "/og/default.png";
+// Two Hugo-era posts name the site logo as their image; treat that as "no banner".
+const LEGACY_LOGO = "/img/nownabe.png";
 
 export async function getPublishedPosts(): Promise<Post[]> {
   const posts = await getCollection("posts", ({ data }) => !data.draft);
@@ -26,16 +30,17 @@ export function postYear(post: Post): string {
   return post.data.date.toLocaleDateString("en-CA", { year: "numeric", timeZone: "Asia/Tokyo" });
 }
 
-// A banner is an image the author chose for the post; the site logo is the fallback for social cards only.
+// A banner is an image the author chose for the post, shown in lists and at the top of the article.
+// It is not the social card: every post's og:image is the generated card at cardPath().
 export function banner(post: Post): string | undefined {
   const image = post.data.image;
   if (!image) return undefined;
   const path = image.startsWith("/") ? image : `/${image}`;
-  return path === DEFAULT_IMAGE ? undefined : path;
+  return path === LEGACY_LOGO ? undefined : path;
 }
 
-export function socialImage(post: Post): string {
-  return banner(post) ?? DEFAULT_IMAGE;
+export function cardPath(post: Post): string {
+  return `/og${postPath(post).slice(0, -1)}.png`;
 }
 
 // Many posts open with the banner as a Markdown image, a linked image or a raw <img>; render it once, not twice.

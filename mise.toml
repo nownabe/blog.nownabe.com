@@ -37,7 +37,7 @@ description = "Lint articles with textlint"
 run = "bun run lint"
 
 [tasks.test]
-description = "Run the Markdown plugin checks"
+description = "Run the Markdown plugin and social card checks"
 run = "bun run test"
 
 [tasks.new]

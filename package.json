@@ -8,7 +8,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "lint": "textlint .",
-    "test": "bun src/plugins/satteri-katex.test.mjs",
+    "test": "bun src/plugins/satteri-katex.test.mjs && bun src/lib/card.test.ts",
     "new": "bun scripts/new-post.ts"
   },
   "dependencies": {
@@ -18,7 +18,9 @@
     "astro": "^7.3.3",
     "gemoji": "^8.1.0",
     "katex": "^0.18.7",
-    "satteri": "^0.10.5"
+    "satori": "^0.33.4",
+    "satteri": "^0.10.5",
+    "sharp": "^0.35.4"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",

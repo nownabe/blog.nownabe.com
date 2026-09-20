@@ -7,6 +7,7 @@ import TagList from "../components/TagList.astro";
 import {
   banner,
   bannerOpensBody,
+  cardPath,
   excerpt,
   formatDate,
   formatYearMonth,
@@ -15,7 +16,6 @@ import {
   postPath,
   readingMinutes,
   relatedPosts,
-  socialImage,
   type Post,
 } from "../lib/posts";
 
@@ -41,7 +41,13 @@ const toc = headings.filter((h) => h.depth >= 2 && h.depth <= 3 && h.slug !== "f
 const bannerSrc = bannerOpensBody(post) ? undefined : banner(post);
 ---
 
-<Base title={post.data.title} description={excerpt(post)} image={socialImage(post)} canonical={postPath(post)}>
+<Base
+  title={post.data.title}
+  description={excerpt(post)}
+  image={cardPath(post)}
+  type="article"
+  canonical={postPath(post)}
+>
   <div class="article">
     <article class="article-main">
       <h1 class="article-title">{post.data.title}</h1>
