@@ -11,14 +11,29 @@ export default defineMdastPlugin({
 });
 
 function render(node, ctx, displayMode) {
+  const where = ctx.fileURL?.pathname ?? "?";
+  // KaTeX's own strict warnings name the offending character but not the file,
+  // and fire once per character; report the formula once instead.
+  const reported = new Set();
+  const strict = (code, message) => {
+    if (!reported.has(code)) {
+      reported.add(code);
+      warn(where, node.value, `${message} [${code}]`);
+    }
+    return "ignore";
+  };
   try {
-    return katex.renderToString(node.value, { displayMode, throwOnError: true });
+    return katex.renderToString(node.value, { displayMode, strict, throwOnError: true });
   } catch (e) {
     // A bad formula in one legacy article shouldn't fail the whole build, but it
     // must not pass unnoticed either: warn here, and let KaTeX print it in red.
-    console.warn(`[katex] ${ctx.fileURL?.pathname ?? "?"}: ${node.value}\n  ${e.message}`);
-    return katex.renderToString(node.value, { displayMode, throwOnError: false });
+    warn(where, node.value, e.message);
+    return katex.renderToString(node.value, { displayMode, strict: "ignore", throwOnError: false });
   }
+}
+
+function warn(where, tex, message) {
+  console.warn(`[katex] ${where}: ${tex}\n  ${message}`);
 }
 
 const html = (value) => ({ type: "html", value });
