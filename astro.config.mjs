@@ -1,6 +1,6 @@
 import { existsSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import { satteri } from "@astrojs/markdown-satteri";
 import codeFilename from "./src/plugins/satteri-code-filename.mjs";
@@ -17,9 +17,53 @@ function postLastmod(url) {
   return (front.match(/^lastmod: (.+)$/m) ?? front.match(/^date: (.+)$/m))?.[1];
 }
 
+// Shared by every family: hold text until the web font arrives instead of swapping it in after
+// first paint, and keep the hand-written fallback stacks as they are. Astro's optimized fallbacks
+// would put a metrics-adjusted Arial ahead of the Japanese system fonts, which has no CJK glyphs.
+const fontDefaults = {
+  provider: fontProviders.google(),
+  styles: ["normal"],
+  formats: ["woff2"],
+  display: "block",
+  optimizedFallbacks: false,
+};
+
 export default defineConfig({
   site: "https://blog.nownabe.com",
   trailingSlash: "always",
+  fonts: [
+    {
+      ...fontDefaults,
+      name: "Zen Maru Gothic",
+      cssVariable: "--font-zen-maru-gothic",
+      weights: [500, 700],
+      subsets: ["japanese", "latin"],
+      fallbacks: [
+        "Hiragino Maru Gothic ProN",
+        "Noto Sans JP",
+        "Yu Gothic",
+        "YuGothic",
+        "Meiryo",
+        "sans-serif",
+      ],
+    },
+    {
+      ...fontDefaults,
+      name: "Noto Sans JP",
+      cssVariable: "--font-noto-sans-jp",
+      weights: [400, 700],
+      subsets: ["japanese", "latin"],
+      fallbacks: ["Hiragino Sans", "Yu Gothic", "YuGothic", "Meiryo", "sans-serif"],
+    },
+    {
+      ...fontDefaults,
+      name: "IBM Plex Mono",
+      cssVariable: "--font-ibm-plex-mono",
+      weights: [400],
+      subsets: ["latin"],
+      fallbacks: ["ui-monospace", "Menlo", "Consolas", "monospace"],
+    },
+  ],
   integrations: [
     sitemap({
       // Redirect-only pages (old /page/N/ and legacy .html/ paths) stay out of the sitemap.
