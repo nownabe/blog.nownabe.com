@@ -36,7 +36,7 @@ lastmod: 2020-05-31T09:15:15+09:00
 今回新しく [Google Nest Wifi](https://store.google.com/jp/product/nest_wifi) を買いました。
 ルータは RTX830 にやらせるので無線アクセスポイントはブリッジするアクセスポイントであればシンプルなものほど嬉しくて、前から使ってた Google Wifi がシンプルでよかったので後継の Nest Wifi にしました。
 
-<img src="/images/2020/05/31/nest-wifi-photo.png" width="800" alt="" height="439">
+<img src="/images/2020/05/31/nest-wifi-photo.webp" width="800" alt="" height="439">
 
 ルータとして動かす必要がなくなったことで置き場所が自由になりました。
 というわけで、ToR ではなくリビングの Google Home の横に置いて、壁内配線を経由して ToR の L2SW に接続しています。

@@ -32,7 +32,7 @@ for (const path of files) {
   const title = front.match(/^title: "(.*)"$/m)?.[1];
   const lines = body.split("\n");
   const firstLine = lines.find((line) => line.trim() !== "") ?? "";
-  if (/\/banner\.(png|jpg)/.test(firstLine)) {
+  if (/\/banner\.(png|jpg|webp)/.test(firstLine)) {
     problems.push(`${path}: the banner is rendered by the template; do not open the body with it`);
   }
 
@@ -61,11 +61,11 @@ for (const path of files) {
   }
 }
 
-// A banner is only found at public/images/<post path>/banner.png|jpg, so a misplaced one silently disappears.
+// A banner is only found at public/images/<post path>/banner.png|jpg|webp, so a misplaced one silently disappears.
 for (const banner of globSync("public/images/**/banner.*")) {
   const dir = banner.slice("public/images/".length, banner.lastIndexOf("/"));
-  if (!/\/banner\.(png|jpg)$/.test(banner)) {
-    problems.push(`${banner}: banners are banner.png or banner.jpg`);
+  if (!/\/banner\.(png|jpg|webp)$/.test(banner)) {
+    problems.push(`${banner}: banners are banner.png, banner.jpg or banner.webp`);
   } else if (!existsSync(`content/${dir}.md`) && !existsSync(`content/${dir}.html.md`)) {
     problems.push(`${banner}: no article at content/${dir}.md`);
   }

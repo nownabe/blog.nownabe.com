@@ -71,14 +71,14 @@ lastmod: 2020-05-26T21:28:14+09:00
 
 ### L2SW
 
-<img src="/images/2020/05/26/tor-photo.png" width="800" alt="" height="599">
+<img src="/images/2020/05/26/tor-photo.webp" width="800" alt="" height="599">
 
 弊家は壁内配線によって各部屋に LAN ポートが用意されているんですが、そのハブになっている L2SW は Corega の [BSW08TX](http://corega.jp/prod/co-bsw08tx/) という製品でした。
 このスイッチはマンション備え付けのもので、入居したときから ToR (Top of 収納 Rack) として写真のような形で設置されていました (LAN ケーブルがいっぱいささってるやつ)。
 入居した時にはこのスイッチに大元のマンションネットワークからのケーブルと、各部屋の LAN ポートまでつながるケーブルが挿してありました。
 今はマンション NW との間には Google Wifi をはさんでいます。
 
-<img src="/images/2020/05/26/iodata-photo.png" width="800" alt="" height="600">
+<img src="/images/2020/05/26/iodata-photo.webp" width="800" alt="" height="600">
 
 もう一つ L2SW があり、こちらは IO DATA の [ETX-SH5](https://www.iodata.jp/product/lan/hub/etx-sh5/) という製品です。
 僕の部屋 (リビングの片隅) で LAN ポートと各機器のハブとして使っていました。
@@ -90,14 +90,14 @@ lastmod: 2020-05-26T21:28:14+09:00
 次に ToR のスイッチと各部屋の LAN ポートを壁内配線で接続している LAN ケーブルの規格を調べました。
 ToR 側に見えているケーブルだけだと何もわからなかったので、コンセントを開きました。
 
-<img src="/images/2020/05/26/lan-port-back.png" width="600" alt="" height="383">
+<img src="/images/2020/05/26/lan-port-back.webp" width="600" alt="" height="383">
 
 裏に CAT.5E と書いてあって Category 5e だということがわかりました。
 もし Category 5 だったら 100Mbps しか出ないので壁内配線全部取り替えることになるなぁと思ってたんですが、その必要はなくて安心しました。
 
 ちなみに、コンセントを開いて閉じてから表にも 5e って書いてあることに気づきました :innocent:
 
-<img src="/images/2020/05/26/lan-port-front.png" width="600" alt="" height="388">
+<img src="/images/2020/05/26/lan-port-front.webp" width="600" alt="" height="388">
 
 ## 論理構成
 
