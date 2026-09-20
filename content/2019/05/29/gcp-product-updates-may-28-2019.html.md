@@ -16,7 +16,7 @@ title: GCP Updates | May 28, 2019
 
 > Manage configuration and enforce policy across your clusters – whether they’re on-premises or in the cloud. Set a declarative configuration for role-based access controls, resource quotas, and Namespaces – all from a single place. [Documentation](https://cloud.google.com/anthos/docs/concepts/anthos-overview#centralized_config_management) | [Blog](https://cloud.google.com/blog/topics/hybrid-cloud/new-platform-for-managing-applications-in-todays-multi-cloud-world)
 
-GitOpsみたいなことができるっぽいけどContact Salesになってる。。。
+GitOps みたいなことができるっぽいけど Contact Sales になってる。。。
 
 
 # COMPUTE
@@ -25,7 +25,7 @@ GitOpsみたいなことができるっぽいけどContact Salesになってる�
 
 > This feature makes all your network traffic visible to the GCP network. You can see flow logs for all traffic between Pods, including traffic between Pods on the same node. And you can create firewall rules that apply to all traffic between Pods. [Documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/intranode-visibility)
 
-Pod間のトラフィックに対してflow logとファイアウォールを有効にするもの。既存クラスタも有効にできる。
+Pod 間のトラフィックに対して flow log とファイアウォールを有効にするもの。既存クラスタも有効にできる。
 
 ```bash
 gcloud beta container clusters update [CLUSTER_NAME] --enable-intra-node-visibility
@@ -67,5 +67,5 @@ gcloud beta container clusters update [CLUSTER_NAME] --enable-intra-node-visibil
 
 > Get increased security for your Kubernetes Engine containers – without added complexity. This managed service, based on the open-source project gVisor, is a container-isolation solution that provides a second layer of defense between your containerized workloads on Kubernetes Engine. [Product page](https://cloud.google.com/kubernetes-engine/sandbox/) | [Blog](https://cloud.google.com/blog/products/identity-security/increasing-trust-in-google-cloud-visibility-control-and-automation)
 
-GKEでgVisorが使えるやつ。GKE Sandboxを有効にしたNode Poolを新しく作ってPod templateで`runtimeClassName: gvisor`とすれば使える。
+GKE で gVisor が使えるやつ。GKE Sandbox を有効にした Node Pool を新しく作って Pod template で `runtimeClassName: gvisor` とすれば使える。
 いろいろ制約があるみたいなので使うときは注意が必要ですね。

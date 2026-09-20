@@ -47,7 +47,7 @@ draft: false
 
 > Create new clusters using a [Rapid](https://cloud.google.com/kubernetes-engine/docs/release-notes-rapid), [Regular](https://cloud.google.com/kubernetes-engine/docs/release-notes-regular), or [Stable](https://cloud.google.com/kubernetes-engine/docs/release-notes-stable) release channel. Channels represent the level of stability and freshness of GKE versions, and you can pick the channel most aligned with your risk profile and business needs. [Documentation](https://cloud.google.com/kubernetes-engine/docs/concepts/release-channels)
 
-組織によって適切な更新頻度に設定したり、Kubernetesの新しい機能をGKEで試しやすくなったりするからとてもありがたい。
+組織によって適切な更新頻度に設定したり、Kubernetes の新しい機能を GKE で試しやすくなったりするからとてもありがたい。
 
 
 ## GKE – vertical pod autoscaling: GA
@@ -60,8 +60,8 @@ draft: false
 
 > Create a new node pool in GKE cluster autoscaler if none of the existing node pools can accommodate pending pods or if running the pods on a new node pool is significantly less expensive. [Documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/node-auto-provisioning)
 
-Node poolを作ったり消したりするってことか。
-結局いろいろauto-provisioningの設定しないといけないっぽいけど、もし多めに設定してたnode poolsのキャパシティがいっぱいになったとしても新しいの作れるよ、っていうこと？
+Node pool を作ったり消したりするってことか。
+結局いろいろ auto-provisioning の設定しないといけないっぽいけど、もし多めに設定してた node pools のキャパシティがいっぱいになったとしても新しいの作れるよ、っていうこと？
 
 ## App Engine – Java 11 on App Engine standard environment: GA
 

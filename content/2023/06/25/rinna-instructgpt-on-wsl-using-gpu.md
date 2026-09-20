@@ -24,19 +24,19 @@ image: images/2023/06/25/rinna-instructgpt.png
 
 ここでの GPU は NVIDIA のもので、GPU の環境構築は WSL で CUDA を使えるようにすることを意味する。また、WSL の Distribution は Ubuntu-22.04。
 
-LLM としては rinna 社の[日本語特化 InstructGPT](https://rinna.co.jp/news/2023/05/20220531.html) を使った。
+LLM としては rinna 社の [日本語特化 InstructGPT](https://rinna.co.jp/news/2023/05/20220531.html) を使った。
 
 ## GPU on WSL
 
 基本的に [この手順](https://docs.nvidia.com/cuda/wsl-user-guide/index.html#getting-started-with-cuda-on-wsl) に従って進めれば WSL で GPU が使えるようになる。具体的には、Windows 11 へ WSL 対応 NVIDIA ドライバのインストール、WSL 内で CUDA Toolkit インストールの 2 点。
 
-NVIDIA ドライバのインストールは NVIDIA の[ドライバダウンロードサイト](https://www.nvidia.com/Download/index.aspx)で Windows 11 のものを選んでダウンロードしてインストールする。最新のものであれば WSL 2 の CUDA サポートが入っている。自分の環境だとこんな感じ。
+NVIDIA ドライバのインストールは NVIDIA の [ドライバダウンロードサイト](https://www.nvidia.com/Download/index.aspx) で Windows 11 のものを選んでダウンロードしてインストールする。最新のものであれば WSL 2 の CUDA サポートが入っている。自分の環境だとこんな感じ。
 
 ![nvidia-driver-download](/images/2023/06/25/nvidia-driver-download.png)
 
 Windows 側でドライバをインストールすると、WSL 側でマウントしている `/usr/lib/wsl/lib` に CUDA の共有ライブラリなどが見えるようになる。
 
-CUDA Toolkit は [ダウンロードページ](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=WSL-Ubuntu&target_version=2.0&target_type=deb_network)から WSL 用のものをインストールする。これは、Windows 側でインストールした NVIDIA ドライバが提供するファイルを上書きしないように配慮されている。自分の環境だとこんな感じ。
+CUDA Toolkit は [ダウンロードページ](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=WSL-Ubuntu&target_version=2.0&target_type=deb_network) から WSL 用のものをインストールする。これは、Windows 側でインストールした NVIDIA ドライバが提供するファイルを上書きしないように配慮されている。自分の環境だとこんな感じ。
 
 ![install-cuda-toolkit](/images/2023/06/25/install-cuda-toolkit.png)
 
@@ -112,7 +112,7 @@ poetry install
 poetry run jupyter lab
 ```
 
-Windows 側のブラウザから http://localhost:8888/ にアクセスする。トークンは JupyterLab を起動したコンソールにログとして表示されている。
+Windows 側のブラウザから http://localhost:8888/にアクセスする。トークンは JupyterLab を起動したコンソールにログとして表示されている。
 
 まずはサンプルをそのまま動かしてみた。
 

@@ -10,23 +10,23 @@ draft: false
 image: images/2020/06/28/pi-stack.jpg
 ---
 
-[前回](https://blog.nownabe.com/2020/06/28/home-kubernetes-1/)からだいぶ時間があいてしまいましたが、その2のKubernetes構築編です。
-前回組み立てたマシンたちにKubernetesをインストールしました。
+[前回](https://blog.nownabe.com/2020/06/28/home-kubernetes-1/) からだいぶ時間があいてしまいましたが、その 2 の Kubernetes 構築編です。
+前回組み立てたマシンたちに Kubernetes をインストールしました。
 
 ## あらすじ
 
-前回はWorkerノード用のRaspberry Pi 4 8GBを4台組み立てました。
-今回、それとは別のサーバを1台Control Planeとしました。
+前回は Worker ノード用の Raspberry Pi 4 8GB を 4 台組み立てました。
+今回、それとは別のサーバを 1 台 Control Plane としました。
 
 ![nodes](/images/2020/06/28/nodes.png)
 
-構築には[kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/)を使いました。
+構築には [kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/) を使いました。
 
 ## Control Plane 構築
 
 基本的にドキュメントに従って構築していきます。
-kubeadmを使って簡単に構築できました。
-kubeadmはKubernetesクラスタを構築するためのツールです。
+kubeadm を使って簡単に構築できました。
+kubeadm は Kubernetes クラスタを構築するためのツールです。
 
 公式ドキュメント的にはこの辺の内容になります。
 
@@ -34,11 +34,11 @@ kubeadmはKubernetesクラスタを構築するためのツールです。
 * [Creating a single control-plane cluster with kubeadm | Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
 * [Container runtimes | Kubernetes](https://kubernetes.io/docs/setup/production-environment/container-runtimes/)
 
-今回Control Planeとして使うサーバのOSはDebian Busterです。
+今回 Control Plane として使うサーバの OS は Debian Buster です。
 
 ### ネットワーク設定
 
-Kubernetesからiptablesでブリッジのトラフィックを制御できるようにします。
+Kubernetes から iptables でブリッジのトラフィックを制御できるようにします。
 
 ```bash
 modprobe br_netfilter
@@ -51,8 +51,8 @@ sysctl --system
 
 ### Dockerインストール
 
-コンテナを実行するためにDockerをインストールします。
-最初はcri-oでやってみたんですが、Kubernetesの最新バージョンに対応していなかったのと、構築でエラーが出たのでさっさと諦めてDockerにしました。
+コンテナを実行するために Docker をインストールします。
+最初は cri-o でやってみたんですが、Kubernetes の最新バージョンに対応していなかったのと、構築でエラーが出たのでさっさと諦めて Docker にしました。
 
 ドキュメントに従ってインストールしていきます。
 
@@ -94,15 +94,15 @@ systemctl daemon-reload
 systemctl restart docker
 ```
 
-`/etc/docker/daemon.json`のcgroup driverはkubeletと同じにする必要があります。
-Dockerのデフォルトは`cgroupfs`ですが、kubeadmで構築するとkubeletは`systemd`に設定されるので`systemd`にあわせます。
+`/etc/docker/daemon.json` の cgroup driver は kubelet と同じにする必要があります。
+Docker のデフォルトは `cgroupfs` ですが、kubeadm で構築すると kubelet は `systemd` に設定されるので `systemd` にあわせます。
 
-systemdのUnitファイルにはいろいろ書いてありますが、kubeletのcgroup driverを変更する場合は`/var/lib/kubelet/config.yaml`での設定が推奨のようです。
+systemd の Unit ファイルにはいろいろ書いてありますが、kubelet の cgroup driver を変更する場合は `/var/lib/kubelet/config.yaml` での設定が推奨のようです。
 
 
 ### kubeadmインストール
 
-kubeadm、kubelet、kubectlをインストールします。
+kubeadm、kubelet、kubectl をインストールします。
 
 ```bash
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
@@ -114,7 +114,7 @@ apt-mark hold kubelet kubeadm kubectl
 
 ### Control Plane初期化
 
-kubeadmでControl Planeを初期化します。
+kubeadm で Control Plane を初期化します。
 
 ```bash
 kubeadm init \
@@ -125,7 +125,7 @@ kubeadm init \
   --service-dns-domain "kube.cf.nownabe.in"
 ```
 
-これはdry runコマンドなので、大丈夫そうなら`--dry-run`を消して実行します。
+これは dry run コマンドなので、大丈夫そうなら `--dry-run` を消して実行します。
 うまくいったら次のようなメッセージが表示されます。
 
 ```bash
@@ -152,13 +152,13 @@ kubeadm join kube-master.cf.nownabe.in:6443 --token XXXX \
     --discovery-token-ca-cert-hash sha256:XXXX
 ```
 
-Control Planeは今回この1ノードだけなので、次にやることはこの3つですね。
+Control Plane は今回この 1 ノードだけなので、次にやることはこの 3 つですね。
 
-* 設定コピーしてkubectl使えるようにする
-* Podネットワークadd-onデプロイ
-* Workerノード追加
+* 設定コピーして kubectl 使えるようにする
+* Pod ネットワーク add-on デプロイ
+* Worker ノード追加
 
-設定を`/etc/kubernetes/admin.conf`からコピーして、別のマシンから`kubectl get po`してみました。
+設定を `/etc/kubernetes/admin.conf` からコピーして、別のマシンから `kubectl get po` してみました。
 
 ```bash
 $ kubectl version
@@ -175,18 +175,18 @@ kube-system   kube-proxy-t4hgb                             1/1     Running      
 kube-system   kube-scheduler-sv-1.cf.nownabe.in            1/1     Running
 ```
 
-おおー、動いてますね！！ :tada:
-クライアントのkubectlがやたら古いのが気になりますが、ちゃんとapiserverは動いてそうです。
+おおー、動いてますね！！　:tada:
+クライアントの kubectl がやたら古いのが気になりますが、ちゃんと apiserver は動いてそうです。
 
 ## Workerノード構築
 
-Control Planeができたので、Raspberry PiをWorkerノードとして構築してクラスタに追加していきます。
+Control Plane ができたので、Raspberry Pi を Worker ノードとして構築してクラスタに追加していきます。
 
-Raspberry PiにインストールしたOSはRaspberry Pi OS Busterです。
+Raspberry Pi にインストールした OS は Raspberry Pi OS Buster です。
 
 ### Swap無効化
 
-Raspberry Pi OSではデフォルトだとSwapが有効になっているので無効化します。
+Raspberry Pi OS ではデフォルトだと Swap が有効になっているので無効化します。
 
 ```bash
 dphys-swapfile swapoff
@@ -196,8 +196,8 @@ systemctl disable dphys-swapfile
 
 ### いろいろ
 
-Dockerインストールしたりkubeadmインストールしたりします。
-ここはControl Planeとほぼ同じなのでコマンドだけ。
+Docker インストールしたり kubeadm インストールしたりします。
+ここは Control Plane とほぼ同じなのでコマンドだけ。
 
 ```bash
 modprobe br_netfilter
@@ -235,15 +235,15 @@ apt-mark hold kubelet kubeadm kubectl
 
 ### Workerノード初期化
 
-kubeadmで初期化し、クラスタに参加します。
-Control Planeをkubeadmで初期化したときに表示されたコマンドを実行するだけです。
+kubeadm で初期化し、クラスタに参加します。
+Control Plane を kubeadm で初期化したときに表示されたコマンドを実行するだけです。
 
 ```bash
 kubeadm join kube-master.cf.nownabe.in:6443 --token XXXX \
     --discovery-token-ca-cert-hash sha256:XXXX
 ```
 
-もしトークンの期限が切れていてエラーになる場合は、Control Planeでトークンを再発行します。
+もしトークンの期限が切れていてエラーになる場合は、Control Plane でトークンを再発行します。
 
 ```bash
 kubeadm token create --print-join-command
@@ -257,8 +257,8 @@ kubeadm token list
 
 [kubeadm token | Kubernetes](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/)
 
-無事実行できたら、kubectlで確認してみましょう。
-ちゃんと追加されてますね！やった！ :clap:
+無事実行できたら、kubectl で確認してみましょう。
+ちゃんと追加されてますね！やった！　:clap:
 
 ```bash
 $ kubectl get nodes --output wide
@@ -272,18 +272,18 @@ sv-1.cf.nownabe.in            Ready    master   31d   v1.18.3   10.0.1.1      <n
 
 ## flannel インストール
 
-最後にNetwork Add-onとしてflannelをインストールしました。
-最初にCalico、次にCiliumをインストールしようとしたんですが上手く行かずにflannelになりました。
-調べてからインストールすればよかったんですが、Armの64bitに対応できてませんでした。
+最後に Network Add-on として flannel をインストールしました。
+最初に Calico、次に Cilium をインストールしようとしたんですが上手く行かずに flannel になりました。
+調べてからインストールすればよかったんですが、Arm の 64bit に対応できてませんでした。
 
-flannelのインストールは公式で用意されているマニフェストYAMLをapplyでOKです。
+flannel のインストールは公式で用意されているマニフェスト YAML を apply で OK です。
 
 ```bash
 curl -O https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 kubectl apply -f kube-flannel.yml
 ```
 
-するとこんな感じでDaemon Setとしてflannelがデプロイされます。
+するとこんな感じで Daemon Set として flannel がデプロイされます。
 
 ```bash
 $ kubectl get po --output wide --all-namespaces
@@ -306,13 +306,13 @@ kube-system   kube-proxy-hntn9                             1/1     Running   0  
 kube-system   kube-scheduler-sv-1.cf.nownabe.in            1/1     Running   190        31d   10.0.1.1     sv-1.cf.nownabe.in            <none>           <none>
 ```
 
-1ヶ月ブログ書くの先延ばしにしてたこともばっちりわかって素晴らしいですね :raised_hands:
+1 ヶ月ブログ書くの先延ばしにしてたこともばっちりわかって素晴らしいですね :raised_hands:
 
 ## おわりに
 
-Kubernetes構築編は以上です。
-無事にKubernetesが構築できて満足です :satisfied:
+Kubernetes 構築編は以上です。
+無事に Kubernetes が構築できて満足です :satisfied:
 
-Networkに関してはflannelだけだとNetwork Policyが使えないので、またそのうちなんとかしたいと思います。
+Network に関しては flannel だけだと Network Policy が使えないので、またそのうちなんとかしたいと思います。
 
-次からはいろいろ機能追加していきたいので、まずはGitOpsですかねー。
+次からはいろいろ機能追加していきたいので、まずは GitOps ですかねー。

@@ -7,19 +7,19 @@ draft: false
 title: qiita-markdownをMiddlemanで使えるようにするGemを作った
 ---
 
-github pagesでblogを公開しようと思ってゆるりと構築中なんですが、静的ジェネレータとして[Middleman](https://middlemanapp.com/)を使うことにしました。
+github pages で blog を公開しようと思ってゆるりと構築中なんですが、静的ジェネレータとして [Middleman](https://middlemanapp.com/) を使うことにしました。
 
-[esa.io](https://esa.io/)のGitHub Webhookから記事を投稿することを目論んでるので、記事の執筆にはMarkdownを使うことになります。
+[esa.io](https://esa.io/) の GitHub Webhook から記事を投稿することを目論んでるので、記事の執筆には Markdown を使うことになります。
 
-で、esaのMarkdownって拡張されていて、その中でも[コードブロックのファイル名表示](https://docs.esa.io/posts/49#11-4-0)がどうしても使いたいんです。
+で、esa の Markdown って拡張されていて、その中でも [コードブロックのファイル名表示](https://docs.esa.io/posts/49#11-4-0) がどうしても使いたいんです。
 良い機能ですよね。
 
-というわけでesaのMarkdownをそのままレンダリングするものがあればいいんですが、なさそうなので同じくファイル名表示ができる[qiita-markdown](https://github.com/increments/qiita-markdown)を使うことにしました。
+というわけで esa の Markdown をそのままレンダリングするものがあればいいんですが、なさそうなので同じくファイル名表示ができる [qiita-markdown](https://github.com/increments/qiita-markdown) を使うことにしました。
 
-といってもMiddleman内部では各種レンダリングに[Tilt](https://github.com/rtomayko/tilt)を使用しているので、Tiltに対応させれば使うことはできます。
+といっても Middleman 内部では各種レンダリングに [Tilt](https://github.com/rtomayko/tilt) を使用しているので、Tilt に対応させれば使うことはできます。
 
-次のようなクラスをひとつ作るだけでOKです。
-(Middlemanが対応しているTiltがちょっと古いので注意が必要です)
+次のようなクラスをひとつ作るだけで OK です。
+(Middleman が対応している Tilt がちょっと古いので注意が必要です)
 
 ```ruby
 # frozen_string_literal: true
@@ -48,11 +48,11 @@ end
 ```
 
 
-なんですが簡単に使えるようにGemにもしました。
+なんですが簡単に使えるように Gem にもしました。
 
 [middleman-renderers-qiita_template | RubyGems.org | your community gem host](https://rubygems.org/gems/middleman-renderers-qiita_template)
 
-`Gemfile`に`gem "middleman-renderers-qiita_template"`を追加して、`config.rb`に
+`Gemfile` に `gem "middleman-renderers-qiita_template"` を追加して、`config.rb` に
 
 ```ruby
 set :markdown_engine_prefix, Middleman::Renderers
@@ -63,6 +63,6 @@ set :markdown_engine, :qiita
 
 突貫で作ったのでいろいろできてない感はあります。
 
-数式への対応とかMiddleman風のリンクへの対応とかしたいですねー。
+数式への対応とか Middleman 風のリンクへの対応とかしたいですねー。
 
-何かアレばぜひPRください :innocent:
+何かアレばぜひ PR ください :innocent:

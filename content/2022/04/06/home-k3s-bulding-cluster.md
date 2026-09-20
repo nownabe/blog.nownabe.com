@@ -31,7 +31,7 @@ image: images/2020/06/28/pi-stack.jpg
 
 ### ラズパイについて
 
-最新 (と言っても出たのは 2 年以上前) の [Raspberry Pi 4 Model B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) を 4 台使っている。詳細は[前回の記事](https://blog.nownabe.com/2020/06/28/home-kubernetes-1/)を参照してほしい。ラズパイ 4 はクアッドコアで最大 8GB のメモリが積めるのでそれなりに遊べるスペックを持っていて、4 台使えば 16 コア、32GB メモリのクラスタになるので Kubernetes クラスタとして個人で遊ぶには十分なものになる。
+最新 (と言っても出たのは 2 年以上前) の [Raspberry Pi 4 Model B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) を 4 台使っている。詳細は [前回の記事](https://blog.nownabe.com/2020/06/28/home-kubernetes-1/) を参照してほしい。ラズパイ 4 はクアッドコアで最大 8GB のメモリが積めるのでそれなりに遊べるスペックを持っていて、4 台使えば 16 コア、32GB メモリのクラスタになるので Kubernetes クラスタとして個人で遊ぶには十分なものになる。
 
 今回は以前組んだものがあったので 4 台のラズパイでクラスタを組んだが、**k3s は軽いので 1 台でも動作するし十分遊べる。[^1]とりあえず試してみたいって人は 1 台で試してみてほしい。**
 
@@ -39,7 +39,7 @@ image: images/2020/06/28/pi-stack.jpg
 
 ### K3s
 
-[K3s](https://k3s.io/) は [Rancher](https://rancher.com/) が立ち上げた軽量 Kubernetes ディストリビューションで、今は [CNCF のサンドボックスプロジェクト](https://www.cncf.io/projects/k3s/)になっている。以下の特徴を謳っている。
+[K3s](https://k3s.io/) は [Rancher](https://rancher.com/) が立ち上げた軽量 Kubernetes ディストリビューションで、今は [CNCF のサンドボックスプロジェクト](https://www.cncf.io/projects/k3s/) になっている。以下の特徴を謳っている。
 
 * High availability (を達成するためのオプションがある)
 * [認定 Kubernetes ディストリビューション](https://www.cncf.io/certification/software-conformance/)

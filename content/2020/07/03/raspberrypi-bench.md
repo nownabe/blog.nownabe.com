@@ -16,7 +16,7 @@ image: images/2020/07/04/fio.png
 ---
 
 Raspberry Pi 4 の各種ベンチマークを取ってみました。
-UnixBenchとfioです。
+UnixBench と fio です。
 雑にほぼデフォルト設定で計測ました。
 チューニング等もまったくしてません。
 
@@ -33,7 +33,7 @@ Raspberry Pi 4 の生の結果は最後にまとめて貼っておきます。
 | Server | [Core i3-2100T 2.5GHz 2 cores 4 threads](https://www.amazon.co.jp/dp/B004P8FBFC?tag=nownabe02-22) | 16GB | WD SATA 1TB | - | Debian buster | Linux 4.19.0 |
 | Desktop PC | [Core i7-8700K 3.7GHz 6 cores 12 threads](https://www.amazon.co.jp/dp/B07598VZR8?tag=nownabe02-22) | 64GB | [CFD SATA3.0 NAND SSD 240GB](https://www.amazon.co.jp/dp/B075M3C6Q9?tag=nownabe02-22) | [WD Blue SATA3.0 5400rpm 4TB](https://www.amazon.co.jp/dp/B015FGGX5O?tag=nownabe02-22) | Ubuntu 19.10 | Linux 5.3.0 |
 
-注意点として、Raspberry Pi 4は多分電力が足りてません。[^1]
+注意点として、Raspberry Pi 4 は多分電力が足りてません。[^1]
 
 [^1]: [おうちKubernetes構築日記その1 Raspberry Pi編 - nownab.log](https://blog.nownabe.com/2020/06/28/home-kubernetes-1/#%E6%9D%90%E6%96%99)
 
@@ -50,12 +50,12 @@ cd byte-unixbench/UnixBench
 
 ### 結果
 
-Raspberry Pi 3に比べるとだいぶ良い結果が出てますね。
-System Call Overheadだけなぜか負けてます。
+Raspberry Pi 3 に比べるとだいぶ良い結果が出てますね。
+System Call Overhead だけなぜか負けてます。
 
-一番お金かかってるデスクトップPCが圧倒的に勝ってて安心しました。
+一番お金かかってるデスクトップ PC が圧倒的に勝ってて安心しました。
 
-グラフはIndex Scoreです。
+グラフは Index Score です。
 
 ![UnixBench Single Core](/images/2020/07/04/unix_bench_single.png)
 ![UnixBench Multi Core](/images/2020/07/04/unix_bench_multi.png)
@@ -68,7 +68,7 @@ System Call Overheadだけなぜか負けてます。
 sudo apt install libaio-dev fio
 ```
 
-fioのバージョンは3.12。
+fio のバージョンは 3.12。
 
 ### 設定
 
@@ -104,7 +104,7 @@ group_reporting
 
 ### 結果
 
-今回Evo PlusというそこそこいいSDカードを使ってますが、Seqeuntial、RandomともにReadが2500IOPS、Writeが600IPS程度でした。
+今回 Evo Plus というそこそこいい SD カードを使ってますが、Seqeuntial、Random ともに Read が 2500IOPS、Write が 600IPS 程度でした。
 
 Raspberry Pi 3 は遅すぎたので計測してません。
 
@@ -112,7 +112,7 @@ Raspberry Pi 3 は遅すぎたので計測してません。
 
 ## ログ
 
-以下、Raspberry Pi 4の計測ログです。
+以下、Raspberry Pi 4 の計測ログです。
 
 ### UnixBench
 

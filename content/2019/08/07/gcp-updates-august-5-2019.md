@@ -66,7 +66,7 @@ Merchant Center なんてあるのか。
 
 > Now you can easily build and deploy an application that can reliably run under heavy loads with large amounts of data. Your application can run in its own secure, reliable environment that’s independent of the hardware, operating system, and physical location of the server. [Documentation](https://cloud.google.com/appengine/docs/standard/ruby/)
 
-Ruby の Standard Environment きた！！！！！ :tada:
+Ruby の Standard Environment きた！！！！！　:tada:
 
 # MANAGEMENT TOOLS
 

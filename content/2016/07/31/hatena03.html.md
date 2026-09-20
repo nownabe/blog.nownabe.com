@@ -7,12 +7,12 @@ draft: false
 title: EasySettingsをSettingslogicの替りにいかがでしょうか
 ---
 
-今までRailsとかその他諸々のアプリケーションで、定数の管理に[Settingslogic](https://github.com/settingslogic/settingslogic)を使ってました。
-色々不満がありつつ使ってたんですが、この度[EasySettings](https://rubygems.org/gems/easy_settings)というGemを新しく作りました。
+今まで Rails とかその他諸々のアプリケーションで、定数の管理に [Settingslogic](https://github.com/settingslogic/settingslogic) を使ってました。
+色々不満がありつつ使ってたんですが、この度 [EasySettings](https://rubygems.org/gems/easy_settings) という Gem を新しく作りました。
 
 https://github.com/nownabe/easy_settings
 
-元々はアプリ側でデフォルト値を設定したくて[SettingslogicDefault](https://rubygems.org/gems/settingslogic_default)みたいなGemを作ったんですが、色々と限界を感じたのでもう新しいの作ってしまおうと。
+元々はアプリ側でデフォルト値を設定したくて [SettingslogicDefault](https://rubygems.org/gems/settingslogic_default) みたいな Gem を作ったんですが、色々と限界を感じたのでもう新しいの作ってしまおうと。
 
 ## 初期化いらず
 ```ruby
@@ -37,7 +37,7 @@ Settingslogic::MissingSetting: Missing setting 'foo' in settings1.yml
 ```
 
 ## ネストされたHashで同じキーが使える
-というか使えないSettingslogicにびっくり。
+というか使えない Settingslogic にびっくり。
 
 ```ruby
 # EasySettings
@@ -79,7 +79,7 @@ Settingslogic::MissingSetting: Missing setting 'foo' in settings.yml
 => {"foo"=>{"bar"=>"baz"}}
 ```
 
-Settingslogicだとできない。
+Settingslogic だとできない。
 
 ```ruby
 > (Settings[:foo] ||= {})[:bar] ||= "baz"
@@ -88,6 +88,6 @@ Settingslogicだとできない。
 => nil
 ```
 
-詳しい使い方はGithubのREADMEに書いてます。
+詳しい使い方は Github の README に書いてます。
 
 是非、使ってみてください。

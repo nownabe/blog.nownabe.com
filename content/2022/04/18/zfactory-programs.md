@@ -15,7 +15,7 @@ image: images/2022/04/18/3.png
 
 ## 注意点
 
-私は歌詞や MV の考察はできないので、本記事で取り扱うのはあくまでもプログラムや[ZTMY LEAKS](http://ihihi.me/)から読み取れる内容だけです。また、PHP については素人同然なので的外れな部分があるかもしれませんがご了承ください。
+私は歌詞や MV の考察はできないので、本記事で取り扱うのはあくまでもプログラムや [ZTMY LEAKS](http://ihihi.me/) から読み取れる内容だけです。また、PHP については素人同然なので的外れな部分があるかもしれませんがご了承ください。
 
 ## ライブで現れた 3 つのプログラム
 
@@ -30,19 +30,19 @@ image: images/2022/04/18/3.png
 ## バナー画像のプログラム
 
 1 つ目は「バナー画像のプログラム」です。
-このプログラムはずとまよの[公式サイト](https://zutomayo.net/live/21/)やグッズパンフレットの画像の中に登場しています。
+このプログラムはずとまよの [公式サイト](https://zutomayo.net/live/21/) やグッズパンフレットの画像の中に登場しています。
 
 [![1](/images/2022/04/18/1.jpg)](/images/2022/04/18/1.jpg)
 
 ![product lineup](/images/2022/04/18/2.jpg)
 
 バナーのプログラムは JavaScript というプログラミング言語で書かれています。
-JavaScript は Web サイトでよく使われるプログラミング言語で、バナーのプログラムも実際に[ずとまよ公式サイト](https://zutomayo.net/)で使われている JavaScript プログラムから引用されています。
+JavaScript は Web サイトでよく使われるプログラミング言語で、バナーのプログラムも実際に [ずとまよ公式サイト](https://zutomayo.net/) で使われている JavaScript プログラムから引用されています。
 例えば公式サイトのトップページでは再生ボタンをクリックしたら YouTube の動画を再生できたり、お知らせウィンドウを移動できたりしますが、そういった部分の制御にこのプログラムが利用されています。
 
 ![3](/images/2022/04/18/3.png)
 
-公式サイトで使われている JavaScript プログラムの一部に次のような部分があります。(プログラム全文は[こちら](https://zutomayo.net/themes/zutomayo/_assets/js/common.js?22021803)から確認できます)
+公式サイトで使われている JavaScript プログラムの一部に次のような部分があります。(プログラム全文は [こちら](https://zutomayo.net/themes/zutomayo/_assets/js/common.js?22021803) から確認できます)
 
 ```javascript
 var TopAnim = (function () {
@@ -160,7 +160,7 @@ PHP は Web サイトでよく使われる言語で、ずとまよの公式サ�
 >
 > ――。
 
-灰版電機工業は[勘ぐれい](https://youtu.be/ugpywe34_30)、[Ham](https://youtu.be/ouLndhBRL4w)、[袖のキルト](https://youtu.be/9PnCSI8ndws)などの MV に登場しています。
+灰版電機工業は [勘ぐれい](https://youtu.be/ugpywe34_30)、[Ham](https://youtu.be/ouLndhBRL4w)、[袖のキルト](https://youtu.be/9PnCSI8ndws) などの MV に登場しています。
 
 ### プログラムの解説
 
@@ -473,7 +473,7 @@ ob_start();
   - 感情(bug)を持つ"人間"が現れ、2022 年 4 月 16 日に `memory_limit = -1` して世界に抗う
   - なんだかんだで灰版電機工業の権威が崩落して向上は朽ち果てる
   - 2122 年 4 月 17 日に工場が再稼働して `ob_start()` する
-- [袖のキルト](https://youtu.be/9PnCSI8ndws)の MV が 2122 年 4 月 17 日だろうか？
+- [袖のキルト](https://youtu.be/9PnCSI8ndws) の MV が 2122 年 4 月 17 日だろうか？
 - `ob_start()` にはこれからアウトプットを始めるよ、活動を始めるよ、という意味が込められている？
 
 ## おわりに
