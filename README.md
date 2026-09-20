@@ -24,7 +24,7 @@ mise run new <slug>    # create content/<slug>.md and public/images/<slug>/
                        # the title is the only h1: body headings start at ##
 mise run lint          # textlint, all articles (errors block CI; warnings are style hints)
 bunx textlint content/<slug>.md   # one article
-mise run test          # Markdown plugin and social card checks
+mise run test          # Markdown plugin, social card and article convention checks (scripts/check-content.ts)
 mise run check         # astro check
 mise run build         # build into dist/
 ```
