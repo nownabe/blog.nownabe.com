@@ -17,4 +17,6 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 export const GET: APIRoute<CardProps> = async ({ props }) =>
-  new Response(new Uint8Array(await renderCard(props)), { headers: { "Content-Type": "image/png" } });
+  new Response(new Uint8Array(await renderCard(props)), {
+    headers: { "Content-Type": "image/png" },
+  });

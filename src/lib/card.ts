@@ -6,13 +6,16 @@ import sharp from "sharp";
 export const CARD_WIDTH = 1200;
 export const CARD_HEIGHT = 630;
 
-const FONT_URL = "https://raw.githubusercontent.com/google/fonts/main/ofl/zenmarugothic/ZenMaruGothic-Bold.ttf";
+const FONT_URL =
+  "https://raw.githubusercontent.com/google/fonts/main/ofl/zenmarugothic/ZenMaruGothic-Bold.ttf";
 
 // Same palette as global.css; satori has no CSS variables.
 const INK = "#1b1b1f";
 const MUTED = "#6f7285";
-const AURORA = "linear-gradient(90deg, #6d6ff5, #9293fe, #b6b9ff, #f0b3f7, #b6b9ff, #8ee7d9, #b6f0e6, #9293fe, #6d6ff5)";
-const AURORA_TEXT = "linear-gradient(90deg, #5b5ce6, #9293fe, #d98bf0, #9293fe, #4fd3c2, #6d6ff5, #5b5ce6)";
+const AURORA =
+  "linear-gradient(90deg, #6d6ff5, #9293fe, #b6b9ff, #f0b3f7, #b6b9ff, #8ee7d9, #b6f0e6, #9293fe, #6d6ff5)";
+const AURORA_TEXT =
+  "linear-gradient(90deg, #5b5ce6, #9293fe, #d98bf0, #9293fe, #4fd3c2, #6d6ff5, #5b5ce6)";
 
 let font: Promise<ArrayBuffer> | undefined;
 
@@ -51,12 +54,28 @@ export async function renderCard({ title, date }: CardProps): Promise<Buffer> {
         fontFamily: "Zen Maru Gothic",
       },
       [
-        el("div", { display: "flex", alignItems: "flex-end", fontSize: 48, lineHeight: 1, letterSpacing: "-0.01em" }, [
-          "nownab",
-          // The dot sits on the baseline like a period; flex-end aligns to the descender, so lift it by that much.
-          el("div", { width: 15, height: 15, margin: "0 3px 4px", borderRadius: 8, backgroundImage: AURORA_TEXT }),
-          "log",
-        ]),
+        el(
+          "div",
+          {
+            display: "flex",
+            alignItems: "flex-end",
+            fontSize: 48,
+            lineHeight: 1,
+            letterSpacing: "-0.01em",
+          },
+          [
+            "nownab",
+            // The dot sits on the baseline like a period; flex-end aligns to the descender, so lift it by that much.
+            el("div", {
+              width: 15,
+              height: 15,
+              margin: "0 3px 4px",
+              borderRadius: 8,
+              backgroundImage: AURORA_TEXT,
+            }),
+            "log",
+          ],
+        ),
         el(
           "div",
           {
@@ -69,7 +88,11 @@ export async function renderCard({ title, date }: CardProps): Promise<Buffer> {
           title,
         ),
         el("div", { display: "flex", flexDirection: "column" }, [
-          el("div", { height: 48, fontSize: 36, color: MUTED, marginBottom: 32 }, date ?? "the nownabe's life log"),
+          el(
+            "div",
+            { height: 48, fontSize: 36, color: MUTED, marginBottom: 32 },
+            date ?? "the nownabe's life log",
+          ),
           el("div", { height: 10, margin: "0 -80px", backgroundImage: AURORA }),
         ]),
       ],

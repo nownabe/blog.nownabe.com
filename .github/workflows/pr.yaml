@@ -6,6 +6,13 @@ on:
 permissions: {}
 
 jobs:
+  common-checks:
+    name: Common Checks
+    permissions:
+      contents: read
+      pull-requests: read
+    uses: nownabe/workflows/.github/workflows/pr.yaml@58b03aa95d431bcf5b200c27f4958c2740dc0076 # v2.0.2
+
   check:
     name: Check
     runs-on: ubuntu-latest
@@ -17,10 +24,10 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - name: Set up Node and Bun
+      - name: Set up Bun
         uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
         with:
-          install_args: node bun
+          install_args: bun
       - name: Install dependencies
         run: bun install --frozen-lockfile
       - name: Type-check
@@ -42,10 +49,10 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-      - name: Set up Node and Bun
+      - name: Set up Bun
         uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
         with:
-          install_args: node bun
+          install_args: bun
       - name: Install dependencies
         run: bun install --frozen-lockfile
       # Only articles touched by the PR: warnings are style hints, errors fail the job.
@@ -59,3 +66,20 @@ jobs:
           else
             echo "$files" | xargs bunx textlint
           fi
+
+  result:
+    name: Pull Request Checks
+    if: always()
+    needs:
+      - common-checks
+      - check
+      - textlint
+    runs-on: ubuntu-slim
+    timeout-minutes: 5
+    permissions: {}
+    steps:
+      - name: Check job results
+        env:
+          HAS_FAILURE: ${{ contains(needs.*.result, 'failure') }}
+          HAS_CANCELLED: ${{ contains(needs.*.result, 'cancelled') }}
+        run: '[[ "$HAS_FAILURE" == "false" && "$HAS_CANCELLED" == "false" ]]'

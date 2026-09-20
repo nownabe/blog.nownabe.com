@@ -7,7 +7,8 @@ import katex from "katex";
 export default defineMdastPlugin({
   name: "katex",
   inlineMath: (node, ctx) => ctx.replaceNode(node, html(render(node, ctx, false))),
-  math: (node, ctx) => ctx.replaceNode(node, html(`<div class="math-block">${render(node, ctx, true)}</div>`)),
+  math: (node, ctx) =>
+    ctx.replaceNode(node, html(`<div class="math-block">${render(node, ctx, true)}</div>`)),
 });
 
 function render(node, ctx, displayMode) {
