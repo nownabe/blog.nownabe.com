@@ -1,5 +1,5 @@
 ---
-title: qiita-markdownをMiddlemanで使えるようにするGemを作った
+title: "qiita-markdownをMiddlemanで使えるようにするGemを作った"
 tags: ["ruby","middleman","markdown","github pages"]
 date: 2016-07-26T23:57:51+09:00
 lastmod: 2016-07-26T23:57:51+09:00

@@ -1,22 +1,22 @@
 ---
-title: 超簡単にサーバのデータをIDCFオブストに定期バックアップするItamaeプラグイン
+title: "超簡単にサーバのデータをIDCFオブストに定期バックアップするItamaeプラグイン"
 tags: ["idcf cloud","itamae"]
 date: 2015-05-21T00:47:50+09:00
 lastmod: 2015-05-21T00:47:50+09:00
 ---
 
-# はじめに
+## はじめに
 サーバのあるディレクトリ内のファイルを [IDCFのオブジェクトストレージ](http://www.idcf.jp/cloud/storage/) に定期バックアップする [Itamae](http://itamae.kitchen/) プラグインを作ったので紹介します！
 
 [nownabe/itamae-plugin-recipe-idcf-backup_to_object_storage](https://github.com/nownabe-infra/itamae-plugin-recipe-idcf-backup_to_object_storage)
 
-# 結論
+## 結論
 作ったのは `itamae-plugin-recipe-idcf-backup_to_object_storage` というクソ長い名前の Gem（Itamae プラグイン）です。
 このプラグインを使うと、下の図のように任意の期間のバックアップファイルをオブジェクトストレージに保存できます。
 
 ![01](/images/articles/hatena08/01.png)
 
-# 概要
+## 概要
 このプラグインを使ってプロビジョニングするとどうなるのか簡単に説明します。
 
 * バックアップスクリプトが作成される
@@ -28,13 +28,13 @@ lastmod: 2015-05-21T00:47:50+09:00
   * mysqldump とか tar zcf とか
   * このコマンドで、指定したディレクトリ内にバックアップファイルを生成する
 
-# 使い方
-## サンプル
+## 使い方
+### サンプル
 サンプルを見てもらうのが一番はやいと思います。
 
 https://github.com/nownabe-infra/example-idcf-backup_to_object_storage
 
-## Gemfile
+### Gemfile
 Gemfile にプラグインを追加します。
 
 ```ruby
@@ -49,7 +49,7 @@ bundle install も忘れずにやっておきましょう。
 $ bundle install
 ```
 
-## node.yml
+### node.yml
 node.yml でいろいろ設定します。
 
 ```yaml
@@ -87,7 +87,7 @@ idcf:
 
 という一連の処理になります。
 
-## recipe
+### recipe
 recipe には、1 行追加するだけで OK です。
 
 ```ruby
@@ -95,7 +95,7 @@ recipe には、1 行追加するだけで OK です。
 include_recipe "idcf-backup_to_object_storage"
 ```
 
-## プロビジョニング
+### プロビジョニング
 最後に、SSH 経由でプロビジョニングします。
 
 ```bash
@@ -107,5 +107,5 @@ $ bundle exec itamae ssh -h ${YOURHOST} -y node.yml recipe.rb
 プロビジョニングが完了してスケジュールが実行されると、オブストにバックアップファイルがアップロードされているはずです。
 コントロールパネルでファイル一覧を表示できるので確認してみてください。
 
-# おわりに
+## おわりに
 プルリクお待ちしております！

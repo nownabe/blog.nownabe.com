@@ -1,5 +1,5 @@
 ---
-title: Gem in a Boxの冗長化
+title: "Gem in a Boxの冗長化"
 tags: ["gem in a box","ruby"]
 date: 2015-08-31T01:11:48+09:00
 lastmod: 2015-08-31T01:11:48+09:00

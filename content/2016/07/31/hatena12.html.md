@@ -1,5 +1,5 @@
 ---
-title: tokyo.ex #2
+title: "tokyo.ex #2"
 tags: ["elixir","event"]
 date: 2016-05-24T00:36:44+09:00
 lastmod: 2016-05-24T00:36:44+09:00

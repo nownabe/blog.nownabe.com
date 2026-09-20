@@ -1,5 +1,5 @@
 ---
-title: EasySettingsをSettingslogicの替りにいかがでしょうか
+title: "EasySettingsをSettingslogicの替りにいかがでしょうか"
 tags: ["ruby","easy_settings"]
 date: 2015-03-07T02:15:01+09:00
 lastmod: 2015-03-07T02:15:01+09:00

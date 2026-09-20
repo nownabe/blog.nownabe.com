@@ -1,11 +1,11 @@
 ---
-title: RubotyのデータをLevelDBで永続化するruboty-leveldbというGemを作った
+title: "RubotyのデータをLevelDBで永続化するruboty-leveldbというGemを作った"
 tags: ["ruby","leveldb","ruboty"]
 date: 2015-03-01T19:10:15+09:00
 lastmod: 2015-03-01T19:10:15+09:00
 ---
 
-# 経緯
+## 経緯
 会社でチャットボットとして [Ruboty](https://github.com/r7kamura/ruboty) を使ってます。
 
 Ruboty はデータの永続化にプラグインを使わないといけないんですが、今は Redis 用のプラグインしか用意されていません。
@@ -18,7 +18,7 @@ Ruboty はデータの永続化にプラグインを使わないといけない�
 
 けどこのままはアカンなーということで、[LevelDB](https://github.com/google/leveldb) を使って Ruboty のデータを永続化できる [ruboty-leveldb](https://rubygems.org/gems/ruboty-leveldb) というプラグインを作成しました！
 
-# なぜLevelDB？
+## なぜLevelDB？
 正直言うと、余分なサーバ建てずにデータの永続化ができればテキストファイルでも他の KVS でもなんでも良かったんですが、使ってみたかったので LevelDB にしました。
 
 Ruboty のデータぐらいだと、LevelDB が他の KVS に比べてどういいのかとかは全然見えません。
@@ -30,12 +30,12 @@ LevelDB についてはここがまとまってました。
 
 * [LevelDB入門 (基本編)](http://yosuke-furukawa.hatenablog.com/entry/2014/05/05/095207)
 
-# 使い方
+## 使い方
 Qiita に書きました。
 
 * [Rubotyのデータ永続化にLevelDBを使う](http://qiita.com/nownabe/items/06977acec7f08133d8c9)
 
-# 感想
+## 感想
 Ruboty まわりはとてもコードが綺麗でよく見てるんですが、本当に参考になります。
 ruboty-leveldb もほとんど [ruboty-redis](https://github.com/r7kamura/ruboty-redis) まんまです w
 

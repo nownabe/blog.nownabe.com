@@ -11,7 +11,7 @@ const posts = defineCollection({
     generateId: ({ entry }) => entry.replace(/\.md$/, ""),
   }),
   schema: z.object({
-    title: z.coerce.string(),
+    title: z.string(),
     date: z.coerce.date(),
     lastmod: z.coerce.date().optional(),
     tags: z
