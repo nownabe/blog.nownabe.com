@@ -6,12 +6,11 @@ tags:
 - DS-Lite
 date: 2020-06-01T22:18:28+09:00
 lastmod: 2020-06-01T22:18:28+09:00
-image: images/2020/06/01/compare-ipv4.png
 ---
 
 今回は DS-Lite で IPv4 通信が 90 倍速くなった話です。
 
-<img src="/images/2020/06/01/compare-ipv4.png" width="800">
+<img src="/images/2020/06/01/home-network-6/banner.png" width="800">
 
 全日記:
 

@@ -6,10 +6,7 @@ tags:
 - Raspberry Pi
 date: 2022-04-06T21:06:40+09:00
 lastmod: 2022-04-06T21:06:40+09:00
-image: images/2020/06/28/pi-stack.jpg
 ---
-
-[![Raspberry Pi stack](/images/2020/06/28/pi-stack.jpg)](/images/2020/06/28/pi-stack.jpg)
 
 ## 概要
 

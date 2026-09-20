@@ -4,10 +4,7 @@ tags:
 - CoreDNS
 date: 2020-07-11T20:30:44+09:00
 lastmod: 2020-07-11T20:30:44+09:00
-image: images/2020/07/11/coredns.png
 ---
-
-<img src="/images/2020/07/11/coredns.png" style="border: none">
 
 [CoreDNS](https://coredns.io/) を使って自宅のネットワークに DNS サーバをたてました。
 

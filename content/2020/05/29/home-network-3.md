@@ -4,7 +4,6 @@ tags:
 - network
 date: 2020-05-29T22:43:54+09:00
 lastmod: 2020-05-29T22:43:54+09:00
-image: images/2020/05/29/compare.png
 ---
 
 ついに光回線が開通しました :tada::tada::tada::tada::tada:
@@ -47,7 +46,7 @@ IPv4 over IPv6 するときの VNE サービスとして transix は少数派っ
 
 開通直後にマンションネットワークと光回線で比較するとこんな感じでした。倍のスピードが出てますね！！素晴らしい！　:rocket:
 
-<img src="/images/2020/05/29/compare.png" width="800">
+<img src="/images/2020/05/29/home-network-3/banner.png" width="800">
 
 と思ったんですが、光回線の方も夜になるとめちゃくちゃ遅くなりました :sob:
 1Mbps 出ないぐらい。

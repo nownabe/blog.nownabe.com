@@ -6,7 +6,6 @@ tags:
 - RTX830
 date: 2020-05-30T14:19:10+09:00
 lastmod: 2020-05-30T14:19:10+09:00
-image: images/2020/05/30/tor-photo.png
 ---
 
 今回はルータとして YAMAHA の [RTX830](https://network.yamaha.com/products/routers/rtx830/index) を導入しました。
@@ -52,7 +51,7 @@ image: images/2020/05/30/tor-photo.png
 
 ToR に設置しました。写真は設置後の ToR の様子です。
 
-<img src="/images/2020/05/30/tor-photo.png" width="800">
+<img src="/images/2020/05/30/home-network-4/banner.png" width="800">
 
 いい感じですね :blush:
 ただ、L2SW (GS308T) が結構熱を出していて心配です。

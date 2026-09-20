@@ -7,7 +7,6 @@ tags:
 - Nest Wifi
 date: 2020-05-31T09:15:15+09:00
 lastmod: 2020-05-31T09:15:15+09:00
-image: images/2020/05/31/wifi-analyzer.png
 ---
 
 今回は Google Nest Wifi を新しく導入した話です。
@@ -65,7 +64,7 @@ Google Wifi と Nest Wifi の 2 つ AP を置くことで、物理構成的に�
 
 Android の [Wifi Analyzer](https://play.google.com/store/apps/details?id=abdelrahman.wifianalyzerpro&hl=ja) というアプリで調べるとこんな感じでした。
 
-<img src="/images/2020/05/31/wifi-analyzer.png" width="800">
+<img src="/images/2020/05/31/home-network-5/banner.png" width="800">
 
 やはりリビングではかなり改善しています。
 距離はそんなに変わらないものの、棚の中にあるかどうかという点で大きく差がついている感じです。

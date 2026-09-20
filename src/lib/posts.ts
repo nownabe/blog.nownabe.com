@@ -1,3 +1,4 @@
+import { existsSync } from "node:fs";
 import { getCollection, type CollectionEntry } from "astro:content";
 import { nameToEmoji } from "gemoji";
 
@@ -28,23 +29,15 @@ export function postYear(post: Post): string {
   return post.data.date.toLocaleDateString("en-CA", { year: "numeric", timeZone: "Asia/Tokyo" });
 }
 
-// A banner is an image the author chose for the post, shown in lists and at the top of the article.
+// A banner is public/images/<post path>/banner.png or .jpg, shown in lists and at the top of the article.
 // It is not the social card: every post's og:image is the generated card at cardPath().
 export function banner(post: Post): string | undefined {
-  const image = post.data.image;
-  if (!image) return undefined;
-  return image.startsWith("/") ? image : `/${image}`;
+  const dir = `/images${postPath(post).slice(0, -1)}`;
+  return [`${dir}/banner.png`, `${dir}/banner.jpg`].find((path) => existsSync(`public${path}`));
 }
 
 export function cardPath(post: Post): string {
   return `/og${postPath(post).slice(0, -1)}.png`;
-}
-
-// Many posts open with the banner as a Markdown image, a linked image or a raw <img>; render it once, not twice.
-export function bannerOpensBody(post: Post): boolean {
-  const image = banner(post);
-  const firstLine = (post.body ?? "").trimStart().split("\n", 1)[0] ?? "";
-  return !!image && firstLine.includes(image.split("/").pop() ?? image);
 }
 
 const dotted = new Intl.DateTimeFormat("en-CA", {

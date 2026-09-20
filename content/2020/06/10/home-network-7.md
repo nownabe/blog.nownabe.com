@@ -6,7 +6,6 @@ tags:
 - YAMAHA RTX830
 date: 2020-06-10T21:33:46+09:00
 lastmod: 2020-06-10T21:33:46+09:00
-image: images/2020/06/10/logical-diagram.png
 ---
 
 今回は VLAN を設定してサーバをインターネットに公開した話です。
@@ -157,7 +156,7 @@ LAN 間もインターネットへも自動でルーティング設定される�
 
 図にするとこんな感じです。
 
-<img src="/images/2020/06/10/logical-diagram.png" width="800">
+<img src="/images/2020/06/10/home-network-7/banner.png" width="800">
 
 RTX830 のフィルタ型ルーティングを使ってデフォルト GW を設定して、DS-Lite と PPPoE の使い分けを実現しました。
 

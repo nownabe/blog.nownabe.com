@@ -4,7 +4,6 @@ tags:
 - network
 date: 2020-05-28T21:30:56+09:00
 lastmod: 2020-05-28T21:30:56+09:00
-image: images/2020/05/28/gs308t.png
 ---
 
 [前回の調査](https://blog.nownabe.com/2020/05/26/home-network-1/) で自宅 LAN を構成している L2 スイッチがすべて 100Mbps だということがわかったのでまとめて交換しました。
@@ -49,7 +48,7 @@ TCP window size:  162 KByte (default)
 
 今回は NETGEAR の [GS308T](https://www.jp.netgear.com/business/products/switches/smart/GS308T.aspx) という L2SW を 2 つ買いました。
 
-<img src="/images/2020/05/28/gs308t.png" width="600">
+<img src="/images/2020/05/28/home-network-2/banner.png" width="600">
 
 選んだ理由は、
 

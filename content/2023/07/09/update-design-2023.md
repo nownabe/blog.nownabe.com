@@ -3,7 +3,6 @@ title: "ブログのデザインを変えた (2023 年版)"
 tags:
 - design
 date: 2023-07-09T17:24:34+09:00
-image: images/2023/07/09/after-home.png
 ---
 
 2016 年から大きく変わってなかったブログのデザインを変えた。
@@ -21,7 +20,7 @@ image: images/2023/07/09/after-home.png
 
 ## After
 
-<img src="/images/2023/07/09/after-home.png" width="600" alt="after: home">
+<img src="/images/2023/07/09/update-design-2023/banner.png" width="600" alt="after: home">
 <img src="/images/2023/07/09/after-article-header.png" width="600" alt="after: article header">
 <img src="/images/2023/07/09/after-article-footer.png" width="600" alt="after: article footer">
 

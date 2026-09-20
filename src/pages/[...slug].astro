@@ -6,7 +6,6 @@ import Base from "../layouts/Base.astro";
 import TagList from "../components/TagList.astro";
 import {
   banner,
-  bannerOpensBody,
   cardPath,
   excerpt,
   formatDate,
@@ -38,7 +37,7 @@ if ("redirectTo" in Astro.props) return Astro.redirect(Astro.props.redirectTo, 3
 const { post, related, newer, older } = Astro.props;
 const { Content, headings } = await render(post);
 const toc = headings.filter((h) => h.depth >= 2 && h.depth <= 3 && h.slug !== "footnote-label");
-const bannerSrc = bannerOpensBody(post) ? undefined : banner(post);
+const bannerSrc = banner(post);
 ---
 
 <Base
