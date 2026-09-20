@@ -1,11 +1,10 @@
 ---
 date: 2015-03-14T04:04:43+0900
 lastmod: 2015-03-14T04:04:43+0900
-tags: ["event"]
+tags: ["Diary","event"]
 draft: false
 
 title: サバフェス始まりました
-category: Diary
 ---
 
 ![01](/images/articles/hatena05/01.png)

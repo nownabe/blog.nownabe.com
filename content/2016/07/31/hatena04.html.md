@@ -1,11 +1,10 @@
 ---
 date: 2015-03-08T02:02:14+0900
 lastmod: 2015-03-08T02:02:14+0900
-tags: 
+tags: ["Diary"]
 draft: false
 
 title: OSS活動初心者になりました
-category: Diary
 ---
 
 ついこないだまでOSS活動にあんまり興味がなかった。

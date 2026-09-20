@@ -1,10 +1,6 @@
 ---
 title: "5年前に書いた React/Redux アプリから Redux を処した"
-category: note
-tags:
-- React
-- Redux
-- Recoil
+tags: ["note", "React", "Redux", "Recoil"]
 date: 2022-02-26T17:17:16+09:00
 lastmod: 2022-02-26T17:17:16+09:00
 

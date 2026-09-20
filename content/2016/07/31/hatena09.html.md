@@ -1,11 +1,10 @@
 ---
 date: 2015-08-09T00:21:18+0900
 lastmod: 2015-08-09T00:21:18+0900
-tags: ["raspberry pi"]
+tags: ["Diary","raspberry pi"]
 draft: false
 
 title: 今更Raspberry PiでLチカやってみた
-category: Diary
 ---
 
 ![Lチカ](/images/articles/hatena09/01.jpg)
