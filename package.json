@@ -8,7 +8,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "lint": "textlint .",
-    "test": "bun src/plugins/satteri-katex.test.mjs && bun src/lib/card.test.ts",
+    "test": "bun src/plugins/satteri-katex.test.mjs && bun src/lib/card.test.ts && bun scripts/check-content.ts",
     "new": "bun scripts/new-post.ts"
   },
   "dependencies": {
