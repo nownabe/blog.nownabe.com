@@ -24,7 +24,9 @@ for (const path of files) {
   }
   const [, front, body] = m;
   if (!FRONT_MATTER.test(front)) {
-    problems.push(`${path}: front matter must be exactly title (double-quoted), tags, date, optional lastmod`);
+    problems.push(
+      `${path}: front matter must be exactly title (double-quoted), tags, date, optional lastmod`,
+    );
   }
 
   const title = front.match(/^title: "(.*)"$/m)?.[1];
@@ -42,7 +44,10 @@ for (const path of files) {
     if (fence) return;
     const heading = line.match(/^(#+) (.*)$/);
     if (!heading) return;
-    if (heading[1] === "#") problems.push(`${path}:${bodyStartsAtLine + i}: body headings start at ##; the title is the only h1`);
+    if (heading[1] === "#")
+      problems.push(
+        `${path}:${bodyStartsAtLine + i}: body headings start at ##; the title is the only h1`,
+      );
     firstHeading ??= heading[2].trim();
   });
   if (title && firstHeading === title) {

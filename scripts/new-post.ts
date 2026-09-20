@@ -7,7 +7,9 @@ if (!slug || !/^[a-z0-9-]+$/.test(slug)) {
 }
 
 const now = new Date();
-const jst = new Date(now.getTime() + 9 * 60 * 60 * 1000).toISOString().replace(/\.\d{3}Z$/, "+09:00");
+const jst = new Date(now.getTime() + 9 * 60 * 60 * 1000)
+  .toISOString()
+  .replace(/\.\d{3}Z$/, "+09:00");
 const frontmatter = `---
 title: ""
 tags:
@@ -19,4 +21,6 @@ lastmod: ${jst}
 
 await writeFile(`content/${slug}.md`, frontmatter, { flag: "wx" });
 await mkdir(`public/images/${slug}`, { recursive: true });
-console.log(`created content/${slug}.md and public/images/${slug}/ (put banner.png there for a banner)`);
+console.log(
+  `created content/${slug}.md and public/images/${slug}/ (put banner.png there for a banner)`,
+);

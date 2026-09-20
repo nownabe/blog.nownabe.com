@@ -10,13 +10,35 @@
   --accent-soft: #b6b9ff;
   --link: #5b5ce6;
   /* Aurora: periwinkle through lavender into mint, used for underlines and the header rule. */
-  --aurora: linear-gradient(90deg, #6d6ff5, #9293fe, #b6b9ff, #f0b3f7, #b6b9ff, #8ee7d9, #b6f0e6, #9293fe, #6d6ff5);
+  --aurora: linear-gradient(
+    90deg,
+    #6d6ff5,
+    #9293fe,
+    #b6b9ff,
+    #f0b3f7,
+    #b6b9ff,
+    #8ee7d9,
+    #b6f0e6,
+    #9293fe,
+    #6d6ff5
+  );
   /* Same hues, deeper stops: gradient text needs more contrast against the paper than a 2px line does. */
-  --aurora-text: linear-gradient(90deg, #5b5ce6, #9293fe, #d98bf0, #9293fe, #4fd3c2, #6d6ff5, #5b5ce6);
+  --aurora-text: linear-gradient(
+    90deg,
+    #5b5ce6,
+    #9293fe,
+    #d98bf0,
+    #9293fe,
+    #4fd3c2,
+    #6d6ff5,
+    #5b5ce6
+  );
   --code-bg: #1f2130;
   --code-ink: #dcdde8;
 
-  --display: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Noto Sans JP", "Yu Gothic", "YuGothic", Meiryo, sans-serif;
+  --display:
+    "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Noto Sans JP", "Yu Gothic", "YuGothic", Meiryo,
+    sans-serif;
   --sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "YuGothic", Meiryo, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
 
@@ -329,7 +351,6 @@ h6 {
   color: var(--ink);
   text-decoration-line: underline;
 }
-
 
 .list-title {
   font-size: 2rem;

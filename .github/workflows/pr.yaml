@@ -6,6 +6,13 @@ on:
 permissions: {}
 
 jobs:
+  common-checks:
+    name: Common Checks
+    permissions:
+      contents: read
+      pull-requests: read
+    uses: nownabe/workflows/.github/workflows/pr.yaml@e598375106333096c7c09d215b6d65ca4ba63099 # v2.0.1
+
   check:
     name: Check
     runs-on: ubuntu-latest
@@ -59,3 +66,20 @@ jobs:
           else
             echo "$files" | xargs bunx textlint
           fi
+
+  result:
+    name: Pull Request Checks
+    if: always()
+    needs:
+      - common-checks
+      - check
+      - textlint
+    runs-on: ubuntu-slim
+    timeout-minutes: 5
+    permissions: {}
+    steps:
+      - name: Check job results
+        env:
+          HAS_FAILURE: ${{ contains(needs.*.result, 'failure') }}
+          HAS_CANCELLED: ${{ contains(needs.*.result, 'cancelled') }}
+        run: '[[ "$HAS_FAILURE" == "false" && "$HAS_CANCELLED" == "false" ]]'

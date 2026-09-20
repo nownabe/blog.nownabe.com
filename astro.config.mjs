@@ -10,7 +10,9 @@ export default defineConfig({
   site: "https://blog.nownabe.com",
   trailingSlash: "always",
   // Redirect-only pages (old /page/N/ and legacy .html/ paths) stay out of the sitemap.
-  integrations: [sitemap({ filter: (page) => !page.includes("/page/") && !page.endsWith(".html/") })],
+  integrations: [
+    sitemap({ filter: (page) => !page.includes("/page/") && !page.endsWith(".html/") }),
+  ],
   vite: {
     server: {
       // Claude Code keeps git worktrees (each with its own dist/) under .claude/, and every
