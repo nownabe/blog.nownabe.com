@@ -12,7 +12,7 @@ permissions: {}
 
 jobs:
   analyze:
-    name: Analyze Actions
+    name: Analyze
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -26,6 +26,6 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@b96794f015dfd88f77b49b1c93e0fa7110f94c63 # v4.38.0
         with:
-          languages: actions
+          languages: actions, javascript-typescript
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@b96794f015dfd88f77b49b1c93e0fa7110f94c63 # v4.38.0
