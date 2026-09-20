@@ -26,7 +26,7 @@ lastmod: 2020-05-31T09:15:15+09:00
 前回、YAMAHA の RTX830 を導入したことにより Google Wifi のルータとしての任が解かれました。
 構成図はこんな感じで、ただのアクセスポイントとして機能しています。
 
-<img src="/images/2020/05/30/physical-diagram.png" width="800">
+<img src="/images/2020/05/30/physical-diagram.png" width="800" alt="" height="501">
 
 というわけで、Wifi アクセスポイントを自由に配置できるようになりました。
 今は新しく買った Google Nest Wifi と今まで使ってた Google Wifi とを併用しています。
@@ -36,7 +36,7 @@ lastmod: 2020-05-31T09:15:15+09:00
 今回新しく [Google Nest Wifi](https://store.google.com/jp/product/nest_wifi) を買いました。
 ルータは RTX830 にやらせるので無線アクセスポイントはブリッジするアクセスポイントであればシンプルなものほど嬉しくて、前から使ってた Google Wifi がシンプルでよかったので後継の Nest Wifi にしました。
 
-<img src="/images/2020/05/31/nest-wifi-photo.png" width="800">
+<img src="/images/2020/05/31/nest-wifi-photo.png" width="800" alt="" height="439">
 
 ルータとして動かす必要がなくなったことで置き場所が自由になりました。
 というわけで、ToR ではなくリビングの Google Home の横に置いて、壁内配線を経由して ToR の L2SW に接続しています。
@@ -53,7 +53,7 @@ lastmod: 2020-05-31T09:15:15+09:00
 
 Google Wifi と Nest Wifi の 2 つ AP を置くことで、物理構成的には予定していたものが完成しました :clap:
 
-<img src="/images/2020/05/31/physical-diagram.png" width="800">
+<img src="/images/2020/05/31/physical-diagram.png" width="800" alt="" height="434">
 
 ## 計測
 
@@ -64,7 +64,7 @@ Google Wifi と Nest Wifi の 2 つ AP を置くことで、物理構成的に�
 
 Android の [Wifi Analyzer](https://play.google.com/store/apps/details?id=abdelrahman.wifianalyzerpro&hl=ja) というアプリで調べるとこんな感じでした。
 
-<img src="/images/2020/05/31/home-network-5/banner.png" width="800">
+<img src="/images/2020/05/31/home-network-5/banner.png" width="800" alt="" height="408">
 
 やはりリビングではかなり改善しています。
 距離はそんなに変わらないものの、棚の中にあるかどうかという点で大きく差がついている感じです。

@@ -7,7 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "lint": "textlint .",
+    "lint": "textlint content",
     "test": "bun src/plugins/satteri-katex.test.mjs && bun src/lib/card.test.ts && bun src/lib/thumb.test.ts && bun scripts/check-content.ts",
     "new": "bun scripts/new-post.ts"
   },

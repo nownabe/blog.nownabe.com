@@ -23,11 +23,11 @@ lastmod: 2020-05-28T21:30:56+09:00
 交換前の物理構成図はこんな感じです。
 交換対象の L2SW は CO-BSW08TX と ETX-SH5 ですね。
 
-<img src="/images/2020/05/26/physical-diagram.png" width="800">
+<img src="/images/2020/05/26/physical-diagram.png" width="800" alt="" height="536">
 
 で、有線だと 100BASE-TX のスイッチを経由するので 100Mbps までしかでませんでした。
 
-<img src="/images/2020/05/26/compare-lan.png" width="600">
+<img src="/images/2020/05/26/compare-lan.png" width="600" alt="" height="294">
 
 インターネットではなく、LAN 内で iperf を使って計測した結果は次の通りです。
 
@@ -48,7 +48,7 @@ TCP window size:  162 KByte (default)
 
 今回は NETGEAR の [GS308T](https://www.jp.netgear.com/business/products/switches/smart/GS308T.aspx) という L2SW を 2 つ買いました。
 
-<img src="/images/2020/05/28/home-network-2/banner.png" width="600">
+<img src="/images/2020/05/28/home-network-2/banner.png" width="600" alt="" height="303">
 
 選んだ理由は、
 
@@ -64,7 +64,7 @@ TCP window size:  162 KByte (default)
 といっても ToR (Top of 収納 Rack) と nownabe 部屋 (リビングの片隅) の L2SW を入れ替えただけです。
 他の部分も論理構成も変えてません。
 
-<img src="/images/2020/05/28/physical-diagram.png" width="800">
+<img src="/images/2020/05/28/physical-diagram.png" width="800" alt="" height="530">
 
 おかげで LAN 内の有線接続がすべて 1000BASE-T となりました :tada:
 
@@ -88,7 +88,7 @@ TCP window size:  484 KByte (default)
 
 次に、インターネット速度を計測しました。
 
-<img src="/images/2020/05/28/compare.png" width="800">
+<img src="/images/2020/05/28/compare.png" width="800" alt="" height="327">
 
 ちゃんと 100Mbps 以上出ています！めでたい :fish:
 
@@ -104,4 +104,4 @@ TCP window size:  484 KByte (default)
 
 以下、ウキウキで OS をラズパイにインストールしてる様子とウキウキで計測し始めるも 94Mbps しか出ず絶望に打ちひしがれている様子です。
 
-<img src="/images/2020/05/28/raspberrypi.png" width="800">
+<img src="/images/2020/05/28/raspberrypi.png" width="800" alt="" height="301">
