@@ -36,6 +36,10 @@ run = "bun run check"
 description = "Lint articles with textlint"
 run = "bun run lint"
 
+[tasks.test]
+description = "Run the Markdown plugin checks"
+run = "bun run test"
+
 [tasks.new]
 description = "Create content/<slug>.md and public/images/<slug>/"
 usage = 'arg "<slug>"'

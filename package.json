@@ -8,6 +8,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "lint": "textlint .",
+    "test": "bun src/plugins/satteri-katex.test.mjs",
     "new": "bun scripts/new-post.ts"
   },
   "dependencies": {
@@ -16,6 +17,7 @@
     "@astrojs/sitemap": "^3.7.4",
     "astro": "^7.3.3",
     "gemoji": "^8.1.0",
+    "katex": "^0.18.7",
     "satteri": "^0.10.5"
   },
   "devDependencies": {
