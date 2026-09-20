@@ -6,7 +6,6 @@ date: 2020-07-19T19:26:56+09:00
 lastmod: 2020-07-19T19:26:56+09:00
 
 draft: false
-isCJKLanguage: true
 
 image: images/2020/06/28/pi-stack.jpg
 ---

@@ -6,7 +6,6 @@ date: 2023-09-06T20:26:22+09:00
 lastmod: 2023-09-06T20:26:22+09:00
 
 draft: false
-isCJKLanguage: true
 
 image: images/2023/09/06/my-step.png
 ---

@@ -5,7 +5,6 @@ date: 2023-07-08T18:32:54+09:00
 lastmod: 2023-07-08T18:32:54+09:00
 
 draft: false
-isCJKLanguage: true
 
 image: images/2023/07/08/pc.jpg
 ---

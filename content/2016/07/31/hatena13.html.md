@@ -3,13 +3,9 @@ date: 2016-07-22T00:44:19+0900
 lastmod: 2016-07-22T00:44:19+0900
 tags: ["machine learning", "event"]
 draft: false
-isCJKLanguage: true
 
 title: 機械学習勉強会というものを始めた
 category: Diary
-
-created_at: 2016-07-22 00:44:19 +0900
-updated_at: 2016-07-22 00:44:19 +0900
 ---
 
 最近、機械学習をちゃんと学ぼうと思って機械学習勉強会というものを始めました。

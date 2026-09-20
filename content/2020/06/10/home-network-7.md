@@ -8,7 +8,6 @@ date: 2020-06-10T21:33:46+09:00
 lastmod: 2020-06-10T21:33:46+09:00
 
 draft: false
-isCJKLanguage: true
 
 image: images/2020/06/10/logical-diagram.png
 ---

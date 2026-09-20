@@ -3,12 +3,9 @@ date: 2015-03-08T02:02:14+0900
 lastmod: 2015-03-08T02:02:14+0900
 tags: 
 draft: false
-isCJKLanguage: true
 
 title: OSS活動初心者になりました
 category: Diary
-created_at: 2015-03-08 02:02:14 +0900
-updated_at: 2015-03-08 02:02:14 +0900
 ---
 
 ついこないだまでOSS活動にあんまり興味がなかった。

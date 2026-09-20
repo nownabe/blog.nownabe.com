@@ -3,13 +3,9 @@ date: 2015-04-19T23:55:16+0900
 lastmod: 2015-04-19T23:55:16+0900
 tags: ["github pages"]
 draft: false
-isCJKLanguage: true
 
 title: Github Pagesが便利すぎてイイ
 category: Diary
-
-created_at: 2015-04-19 23:55:16 +0900
-updated_at: 2015-04-19 23:55:16 +0900
 ---
 
 見事に三日坊主になってしまってました。

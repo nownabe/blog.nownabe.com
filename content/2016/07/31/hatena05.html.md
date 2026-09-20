@@ -3,13 +3,9 @@ date: 2015-03-14T04:04:43+0900
 lastmod: 2015-03-14T04:04:43+0900
 tags: ["event"]
 draft: false
-isCJKLanguage: true
 
 title: サバフェス始まりました
 category: Diary
-
-created_at: 2015-03-14 04:04:43 +0900
-updated_at: 2015-03-14 04:04:43 +0900
 ---
 
 ![01](/images/articles/hatena05/01.png)

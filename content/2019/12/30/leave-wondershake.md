@@ -7,7 +7,6 @@ date: 2019-12-30T23:20:05+09:00
 lastmod: 2019-12-30T23:20:05+09:00
 
 draft: false
-isCJKLanguage: true
 ---
 
 # はじめに

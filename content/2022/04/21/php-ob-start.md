@@ -6,7 +6,6 @@ date: 2022-04-21T22:55:21+09:00
 lastmod: 2022-04-21T22:55:21+09:00
 
 draft: false
-isCJKLanguage: true
 
 image: images/2022/04/21/ob_start.png
 ---

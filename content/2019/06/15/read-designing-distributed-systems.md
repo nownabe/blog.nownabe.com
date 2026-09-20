@@ -9,7 +9,6 @@ date: 2019-06-15T19:27:08+09:00
 lastmod: 2019-06-15T19:27:08+09:00
 
 draft: false
-isCJKLanguage: true
 ---
 
 分散システムデザインパターンを読みました。

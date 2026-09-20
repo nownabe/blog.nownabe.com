@@ -9,7 +9,6 @@ date: 2022-02-26T17:17:16+09:00
 lastmod: 2022-02-26T17:17:16+09:00
 
 draft: false
-isCJKLanguage: true
 
 image: images/2022/02/26/brainfuck-board-escaped-from-redux.png
 ---

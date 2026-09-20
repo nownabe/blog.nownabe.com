@@ -7,7 +7,6 @@ date: 2019-12-13T17:48:21+09:00
 lastmod: 2019-12-13T17:48:21+09:00
 
 draft: false
-isCJKLanguage: true
 ---
 
 Product updates | December 9, 2019

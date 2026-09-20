@@ -3,12 +3,9 @@ date: 2015-03-01T00:46:24+0900
 lastmod: 2015-03-01T00:46:24+0900
 tags: 
 draft: false
-isCJKLanguage: true
 
 title: "ブログはじめよう"
 category: Diary
-created_at: 2015-03-01 00:46:24 +0900
-updated_at: 2015-03-01 00:46:24 +0900
 ---
 
 だいぶ前に箱だけ作って全然投稿してなかったけど、こっちにも書いていこうと思います。

@@ -5,7 +5,6 @@ date: 2021-09-25T16:41:22+09:00
 lastmod: 2021-09-25T16:41:22+09:00
 
 draft: false
-isCJKLanguage: true
 
 image: images/2021/09/25/banner.png
 ---

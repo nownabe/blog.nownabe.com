@@ -3,13 +3,9 @@ date: 2016-05-24T00:36:44+0900
 lastmod: 2016-05-24T00:36:44+0900
 tags: ["elixir", "event"]
 draft: false
-isCJKLanguage: true
 
 title: tokyo.ex #2
 category: Diary
-
-created_at: 2016-05-24 00:36:44 +0900
-updated_at: 2016-05-24 00:36:44 +0900
 ---
 
 [tokyo.ex](http://beam-lang.connpass.com/event/30513/)に参加してきました。Elixir初心者なので全部の話が面白かった 🤗
