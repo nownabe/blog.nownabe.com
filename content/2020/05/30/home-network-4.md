@@ -51,7 +51,7 @@ lastmod: 2020-05-30T14:19:10+09:00
 
 ToR に設置しました。写真は設置後の ToR の様子です。
 
-<img src="/images/2020/05/30/home-network-4/banner.png" width="800" alt="" height="477">
+<img src="/images/2020/05/30/home-network-4/banner.webp" width="800" alt="" height="477">
 
 いい感じですね :blush:
 ただ、L2SW (GS308T) が結構熱を出していて心配です。

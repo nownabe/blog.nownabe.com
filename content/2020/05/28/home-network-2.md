@@ -48,7 +48,7 @@ TCP window size:  162 KByte (default)
 
 今回は NETGEAR の [GS308T](https://www.jp.netgear.com/business/products/switches/smart/GS308T.aspx) という L2SW を 2 つ買いました。
 
-<img src="/images/2020/05/28/home-network-2/banner.png" width="600" alt="" height="303">
+<img src="/images/2020/05/28/home-network-2/banner.webp" width="600" alt="" height="303">
 
 選んだ理由は、
 
@@ -104,4 +104,4 @@ TCP window size:  484 KByte (default)
 
 以下、ウキウキで OS をラズパイにインストールしてる様子とウキウキで計測し始めるも 94Mbps しか出ず絶望に打ちひしがれている様子です。
 
-<img src="/images/2020/05/28/raspberrypi.png" width="800" alt="" height="301">
+<img src="/images/2020/05/28/raspberrypi.webp" width="800" alt="" height="301">

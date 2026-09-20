@@ -14,7 +14,7 @@ lastmod: 2015-05-21T00:47:50+09:00
 作ったのは `itamae-plugin-recipe-idcf-backup_to_object_storage` というクソ長い名前の Gem（Itamae プラグイン）です。
 このプラグインを使うと、下の図のように任意の期間のバックアップファイルをオブジェクトストレージに保存できます。
 
-![01](/images/articles/hatena08/01.png)
+![01](/images/articles/hatena08/01.webp)
 
 ## 概要
 このプラグインを使ってプロビジョニングするとどうなるのか簡単に説明します。

@@ -5,7 +5,7 @@ date: 2015-03-14T04:04:43+09:00
 lastmod: 2015-03-14T04:04:43+09:00
 ---
 
-![01](/images/articles/hatena05/01.png)
+![01](/images/articles/hatena05/01.webp)
 
 今日（昨日？）から始まったサバフェスというイベントに参加してます。
 

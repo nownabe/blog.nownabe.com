@@ -29,11 +29,13 @@ export function postYear(post: Post): string {
   return post.data.date.toLocaleDateString("en-CA", { year: "numeric", timeZone: "Asia/Tokyo" });
 }
 
-// A banner is public/images/<post path>/banner.png or .jpg, shown in lists and at the top of the article.
+// A banner is public/images/<post path>/banner.png, .jpg or .webp, shown in lists and at the top of the article.
 // It is not the social card: every post's og:image is the generated card at cardPath().
 export function banner(post: Post): string | undefined {
   const dir = `/images${postPath(post).slice(0, -1)}`;
-  return [`${dir}/banner.png`, `${dir}/banner.jpg`].find((path) => existsSync(`public${path}`));
+  return ["png", "jpg", "webp"]
+    .map((ext) => `${dir}/banner.${ext}`)
+    .find((path) => existsSync(`public${path}`));
 }
 
 export function cardPath(post: Post): string {

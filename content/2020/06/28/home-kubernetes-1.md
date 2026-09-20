@@ -8,7 +8,7 @@ lastmod: 2020-06-28T19:55:52+09:00
 
 [家に光回線を引いて](https://blog.nownabe.com/2020/05/29/home-network-3/) グローバル IP が手に入ったとほぼ同時に Raspberry Pi 4 の 8GB 版が発売になり、機は熟したということでずっとやりたかったおうち Kubernetes を構築しました。
 
-<img src="/images/2020/06/28/home-kubernetes-1/banner.jpg" alt="">
+<img src="/images/2020/06/28/home-kubernetes-1/banner.webp" alt="">
 
 ## おうちKubernetesとは
 
@@ -39,7 +39,7 @@ master 用のサーバははるか昔にファイルサーバ用として組ん�
 
 Kubernetes まわりの材料はこんな感じです。
 
-![parts](/images/2020/06/28/parts.jpg)
+![parts](/images/2020/06/28/parts.webp)
 
 | 材料 | 個数 | 備考 |
 |---|---|---|
@@ -80,56 +80,56 @@ umount /dev/sdc1
 sudo dd bs=4M if=2020-05-27-raspios-buster-lite-armhf.img of=/dev/sdc
 ```
 
-![sd cards](/images/2020/06/28/sdcards.jpg)
+![sd cards](/images/2020/06/28/sdcards.webp)
 
 ## ラック組み立て
 
 ラックケースにはこんな感じの部品が入っていました。
 互換性があるのでラズパイ 3 用のヒートシンクも入っていますが今回は使いません。
 
-![case parts](/images/2020/06/28/case-parts.jpg)
+![case parts](/images/2020/06/28/case-parts.webp)
 
 まずはアクリル板に貼ってある保護シールを剥がします。
 透明のラックを買ったはずが白いやんけおいと思ってたんですが、シールを剥がすと透明になりました。
 
-![rack plate](/images/2020/06/28/rack-plate.jpg)
+![rack plate](/images/2020/06/28/rack-plate.webp)
 
 次にヒートシンクを取り付けました。
 熱された空気がお互い干渉しないように、ヒートシンクの向きはすべて揃えました。
 結構小さいので、ピンセットみたいな道具があった方がやりやすいと思います。
 
-![heat sink](/images/2020/06/28/heatsink.jpg)
+![heat sink](/images/2020/06/28/heatsink.webp)
 
 次はラズパイの取り付けです。
 ファン用の換気口が空いていない底用のプレートにラズパイを取り付けます。
 
-![on plate](/images/2020/06/28/on-plate.jpg)
+![on plate](/images/2020/06/28/on-plate.webp)
 
 次にその上にくるプレートを組み立てます。
 直下のラズパイ用の空冷ファンと、そこに設置されるラズパイの基礎となるスペーサーを取り付けます。
 ファンは向きを間違えるとまったく空冷の意味をなさないので、向きをしっかり確認してから取り付けました。
 また、底のプレートにはプレート同士を接続するための長いスペーサーを取り付けます。
 
-![fan](/images/2020/06/28/fan.jpg)
+![fan](/images/2020/06/28/fan.webp)
 
 これを繰り返し、4 台のラズパイをインストールすればラックの組み立ては完了です！
 お美しい！！　:tada: :sparkles:
 
-![non cabled rack](/images/2020/06/28/non-cabled-rack.jpg)
+![non cabled rack](/images/2020/06/28/non-cabled-rack.webp)
 
 ## ケーブリング
 
 次はケーブリングです。
 LAN ケーブルと電源ケーブルを接続していきます。
 
-![cables](/images/2020/06/28/cables.jpg)
+![cables](/images/2020/06/28/cables.webp)
 
 いろいろ試行錯誤して最も綺麗に納まるなというところで、Anker とハブを両面テープでラックに固定しました。
 こんな感じです。
 
 <div style="display: flex; max-width: 100%;">
-<img src="/images/2020/06/28/home-kubernetes-1/banner.jpg" style="max-width: 50%; height: auto;" alt="">
-<img src="/images/2020/06/28/pi-stack2.jpg" style="max-width: 50%; height: auto;" alt="">
+<img src="/images/2020/06/28/home-kubernetes-1/banner.webp" style="max-width: 50%; height: auto;" alt="">
+<img src="/images/2020/06/28/pi-stack2.webp" style="max-width: 50%; height: auto;" alt="">
 </div>
 
 このときは 30cm の LAN ケーブルを使っていてくるくるしてる部分があるのですが、今は 15cm のケーブルに買い替えてよりすっきりしています。
@@ -143,7 +143,7 @@ LAN ケーブルと電源ケーブルを接続していきます。
 
 こんな感じで、1 台ずつポータブルモニタとキーボードをつないでセットアップしていきました。
 
-![os-setup](/images/2020/06/28/os-setup.jpg)
+![os-setup](/images/2020/06/28/os-setup.webp)
 
 以下はだいたい `root` でコマンドを実行しています。
 
@@ -253,6 +253,6 @@ $ exit
 組み立てたラックケースは机の隅っこに置いてるんですが、ストレス感じたときとかにラズパイの LED をぼーっと眺めると癒やされるのでとても重宝しています。
 あとは電気消して暗闇で光ってるの眺めると満足感を得られるのでおすすめです :satisfied:
 
-![on-desk](/images/2020/06/28/on-desk.jpg)
+![on-desk](/images/2020/06/28/on-desk.webp)
 
 次回 Kubernetes！といきたいところですが、次回は自宅用 DNS サーバを立てる話になりそうです。

@@ -84,10 +84,10 @@ while :; do sudo echo 1 > /sys/class/gpio/gpio4/value; sleep 0.001; sudo echo 0 
 電圧を測ってみると 5V ピンも 3V ピンも 3.3V でした。
 う〜んなんでだろう。
 
-![02](/images/articles/hatena09/02.jpg)
+![02](/images/articles/hatena09/02.webp)
 
 GND と畳の電位差はほとんどなかったので GND はちゃんととれてるみたいです w
-![03](/images/articles/hatena09/03.jpg)
+![03](/images/articles/hatena09/03.webp)
 
 ## おわりに
 高専時代にやった Z80 ぶりの L チカでした。

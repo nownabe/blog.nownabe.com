@@ -36,7 +36,7 @@ lastmod: 2022-04-19T22:38:00+09:00
 JavaScript は Web サイトでよく使われるプログラミング言語で、バナーのプログラムも実際に [ずとまよ公式サイト](https://zutomayo.net/) で使われている JavaScript プログラムから引用されています。
 例えば公式サイトのトップページでは再生ボタンをクリックしたら YouTube の動画を再生できたり、お知らせウィンドウを移動できたりしますが、そういった部分の制御にこのプログラムが利用されています。
 
-![3](/images/2022/04/18/zfactory-programs/banner.png)
+![3](/images/2022/04/18/zfactory-programs/banner.webp)
 
 公式サイトで使われている JavaScript プログラムの一部に次のような部分があります。(プログラム全文は [こちら](https://zutomayo.net/themes/zutomayo/_assets/js/common.js?22021803) から確認できます)
 
