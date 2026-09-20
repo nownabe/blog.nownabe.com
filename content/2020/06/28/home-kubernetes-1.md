@@ -48,16 +48,16 @@ Kubernetesまわりの材料はこんな感じです。
 | 材料 | 個数 | 備考 |
 |---|---|---|
 | [Raspberry Pi 4 Model B / 8GB](https://www.switch-science.com/catalog/6370/) | 4 | Switch Scienceに在庫がありました。 |
-| [サムスン EVO Plus 512GB microSDCX](https://amzn.to/3dzHxnO) | 4 | 正直こんなでかい容量いらんかった… |
-| [GeeekPi Raspberry Pi 4 モデルB用Piラックケース](https://amzn.to/31rHuYG) | 1 | ラズパイ4はヒートシンクとファン必須らしい |
-| [エレコム EHC-G05PA-SB](https://amzn.to/3i9jZJM) | 1 | ハブ。USB給電で動くもの |
-| [エレコム LANケーブル CAT6 0.15m](https://amzn.to/3g50iB5) | 2 | あとでもう2本買い足した |
-| [エレコム LANケーブル CAT6 0.30m](https://amzn.to/3eBykN3) | 2 | 全部0.15mで良かった |
-| [Anker PowerPort Speed 5](https://amzn.to/2YEAi9I) | 1 | 給電用。5ポートある |
-| [Micro USB充電ケーブル 30cm](https://amzn.to/2YHPUcS) | 1 | ハブ用 |
-| [USB-C 充電ケーブル 30cm 2本入り](https://amzn.to/3dzGCDS) | 2 | ラズパイ用。合計4本 |
-| [8.9インチポータブルモニタ](https://amzn.to/2Ag5L96) | 1 | 初期設定用 |
-| [Micro-HDMI to Mini-HDMI ケーブル](https://amzn.to/2VlbsKb) | 1 | ラズパイとポータブルモニタ接続用 |
+| [サムスン EVO Plus 512GB microSDCX](https://www.amazon.co.jp/dp/B07MVLX5XV?tag=nownabe02-22) | 4 | 正直こんなでかい容量いらんかった… |
+| GeeekPi Raspberry Pi 4 モデルB用Piラックケース | 1 | ラズパイ4はヒートシンクとファン必須らしい |
+| [エレコム EHC-G05PA-SB](https://www.amazon.co.jp/dp/B017SFTMFS?tag=nownabe02-22) | 1 | ハブ。USB給電で動くもの |
+| [エレコム LANケーブル CAT6 0.15m](https://www.amazon.co.jp/dp/B00G2PY0NU?tag=nownabe02-22) | 2 | あとでもう2本買い足した |
+| [エレコム LANケーブル CAT6 0.30m](https://www.amazon.co.jp/dp/B00G2PY0VW?tag=nownabe02-22) | 2 | 全部0.15mで良かった |
+| [Anker PowerPort Speed 5](https://www.amazon.co.jp/dp/B01MRO0S1P?tag=nownabe02-22) | 1 | 給電用。5ポートある |
+| [Micro USB充電ケーブル 30cm](https://www.amazon.co.jp/dp/B07PXQJGW5?tag=nownabe02-22) | 1 | ハブ用 |
+| [USB-C 充電ケーブル 30cm 2本入り](https://www.amazon.co.jp/dp/B07PYT3S5V?tag=nownabe02-22) | 2 | ラズパイ用。合計4本 |
+| [8.9インチポータブルモニタ](https://www.amazon.co.jp/dp/B07H93YBTQ?tag=nownabe02-22) | 1 | 初期設定用 |
+| [Micro-HDMI to Mini-HDMI ケーブル](https://www.amazon.co.jp/dp/B07RFKYM8K?tag=nownabe02-22) | 1 | ラズパイとポータブルモニタ接続用 |
 
 この構成だとラズパイ4の仕様的に電源容量が不足してるんですが、今の所問題なく動作しています。
 負荷があがったときとかに問題が出てきたらまたなんか考えます。

@@ -23,7 +23,7 @@ image: /images/resolution-2024/banner2.png
 
 自分の健康。健康がないとなにもできない。今は肉体がボロボロなので回復したい。
 
-* [リングフィットアドベンチャー](https://amzn.to/3vq1tIw)をクリアする
+* [リングフィットアドベンチャー](https://www.amazon.co.jp/dp/B07XV8VSZT?tag=nownabe02-22)をクリアする
 * 整体に通う
   * 2 週間に 1 回のペースをキープしたい
 * 時間外労働を 10 時間/月に抑える
@@ -64,15 +64,15 @@ image: /images/resolution-2024/banner2.png
 
 * 1 月から毎日勉強再開する
   * 勉強内容はなんでも。1 秒以上やれば OK
-* [DUO 3.0](https://amzn.to/3tL4YZh)を 5 周する
-* [英文解釈教室](https://amzn.to/3S6pCwB)をやりきる
+* [DUO 3.0](https://www.amazon.co.jp/dp/4900790052?tag=nownabe02-22)を 5 周する
+* [英文解釈教室](https://www.amazon.co.jp/dp/4327764876?tag=nownabe02-22)をやりきる
 * [Busuu](https://app.busuu.com/4Lq1fUH8KHyG4QkM7)を毎日やる
 * [ELSA Speak](https://share.elsanow.io/3U45UuS2ZFb)を毎日やる
 * カランメソッドを週 2 でやる
   * 自分にあってそうなら年間通してやる
   * 1 年で Stage 4 終わるぐらいだろうか
-  * あってなかったら他になにかやる。[英語のハノン 初級](https://amzn.to/3RN9DlG)、[英語のハノン 中級](https://amzn.to/3tGRb6g)とかかな
-* [A Philosophy of Software Design, 2nd Edition](https://amzn.to/48l5cWj)を読む
+  * あってなかったら他になにかやる。[英語のハノン 初級](https://www.amazon.co.jp/dp/B09NY53725?tag=nownabe02-22)、[英語のハノン 中級](https://www.amazon.co.jp/dp/B09Y5N53N6?tag=nownabe02-22)とかかな
+* [A Philosophy of Software Design, 2nd Edition](https://www.amazon.co.jp/dp/B09B8LFKQL?tag=nownabe02-22)を読む
   * 英語の本を1冊通して読み切ったことないので読み切りたい
   * 興味のある分野かつ読みやすそうな本
 

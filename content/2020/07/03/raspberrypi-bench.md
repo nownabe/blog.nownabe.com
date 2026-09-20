@@ -28,10 +28,10 @@ Raspberry Pi 4 の生の結果は最後にまとめて貼っておきます。
 
 | マシン | CPU | Memory | Disk 1 | Disk 2 | OS | Kernel |
 |---|---|---|---|---|---|---|
-| [Raspberry Pi 4 Model B](https://amzn.to/2NS7WCG) | Arm Cortex-A72 1.5GHz 4 cores | 8GB | [Samsung EVO Plus 512GB microSDXC](https://amzn.to/3dVGkaE) | - | Raspberry OS buster | Linux 4.19.118 |
-| [Raspberry Pi 3 Model B](https://amzn.to/2ZtDG6w) | Arm Cortex-A53 1.2GHz 4 cores | 1GB | [Kingston microSDHC 16GB](https://amzn.to/3gqyuaq) | - | Raspberry OS | ? |
-| Server | [Core i3-2100T 2.5GHz 2 cores 4 threads](https://amzn.to/3grgxsw) | 16GB | WD SATA 1TB | - | Debian buster | Linux 4.19.0 |
-| Desktop PC | [Core i7-8700K 3.7GHz 6 cores 12 threads](https://amzn.to/3eTKfG6) | 64GB | [CFD SATA3.0 NAND SSD 240GB](https://amzn.to/2NVY4rS) | [WD Blue SATA3.0 5400rpm 4TB](https://amzn.to/31JSHnO) | Ubuntu 19.10 | Linux 5.3.0 |
+| [Raspberry Pi 4 Model B](https://www.amazon.co.jp/dp/B081YD3VL5?tag=nownabe02-22) | Arm Cortex-A72 1.5GHz 4 cores | 8GB | [Samsung EVO Plus 512GB microSDXC](https://www.amazon.co.jp/dp/B07MVLX5XV?tag=nownabe02-22) | - | Raspberry OS buster | Linux 4.19.118 |
+| [Raspberry Pi 3 Model B](https://www.amazon.co.jp/dp/B07K4CV1Y8?tag=nownabe02-22) | Arm Cortex-A53 1.2GHz 4 cores | 1GB | [Kingston microSDHC 16GB](https://www.amazon.co.jp/dp/B0162YQEIE?tag=nownabe02-22) | - | Raspberry OS | ? |
+| Server | [Core i3-2100T 2.5GHz 2 cores 4 threads](https://www.amazon.co.jp/dp/B004P8FBFC?tag=nownabe02-22) | 16GB | WD SATA 1TB | - | Debian buster | Linux 4.19.0 |
+| Desktop PC | [Core i7-8700K 3.7GHz 6 cores 12 threads](https://www.amazon.co.jp/dp/B07598VZR8?tag=nownabe02-22) | 64GB | [CFD SATA3.0 NAND SSD 240GB](https://www.amazon.co.jp/dp/B075M3C6Q9?tag=nownabe02-22) | [WD Blue SATA3.0 5400rpm 4TB](https://www.amazon.co.jp/dp/B015FGGX5O?tag=nownabe02-22) | Ubuntu 19.10 | Linux 5.3.0 |
 
 注意点として、Raspberry Pi 4は多分電力が足りてません。[^1]
 

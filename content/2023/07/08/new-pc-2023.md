@@ -50,15 +50,15 @@ arkhive か Sycom で arkhive を選んだ理由はこんな感じ。
 
 選んだパーツはこんな感じ。今コンシューマー向けで選べるほぼ最強の構成になったと思う。
 
-- CPU: [Intel Core i9-13900KF](https://amzn.to/44gO41F)
-- M/B: [ASUS ROG MAXIMUS Z790 HERO](https://amzn.to/3rnhkFo)
-- メモリ: [G.Skill DDR5-5600 32GBx2](https://amzn.to/3O3SaVb)
-- GPU: [ZOTAC GAMING GeForce RTX 4090 AMP Extreme AIRO](https://amzn.to/3JSvqVN)
-- ストレージ 1: [Western Digital WD_BLACK SN850X NVMe SSD](https://amzn.to/43gD1Er)
-- ストレージ 2: [Samsung 980 PRO 4.0 NVMe SSD 2TB](https://amzn.to/3pE5w1b)
-- ケース: [Fractal Design Torrent White RGB TG Clear Tint](https://amzn.to/46yZEHj)
-- CPU クーラー: [ASUS ROG STRIX LC II 360 ARGB White Edition](https://amzn.to/3reSdER)
-- 電源: [SilverStone HELA 1200R Platinum](https://amzn.to/3riRrXo)
+- CPU: [Intel Core i9-13900KF](https://www.amazon.co.jp/dp/B0BJ91FHN3?tag=nownabe02-22)
+- M/B: [ASUS ROG MAXIMUS Z790 HERO](https://www.amazon.co.jp/dp/B0BM988CZ6?tag=nownabe02-22)
+- メモリ: [G.Skill DDR5-5600 32GBx2](https://www.amazon.co.jp/dp/B0B3DP63RB?tag=nownabe02-22)
+- GPU: [ZOTAC GAMING GeForce RTX 4090 AMP Extreme AIRO](https://www.amazon.co.jp/dp/B0BHKGTYS9?tag=nownabe02-22)
+- ストレージ 1: [Western Digital WD_BLACK SN850X NVMe SSD](https://www.amazon.co.jp/dp/B0B3RQDGL7?tag=nownabe02-22)
+- ストレージ 2: [Samsung 980 PRO 4.0 NVMe SSD 2TB](https://www.amazon.co.jp/dp/B08THM8YGY?tag=nownabe02-22)
+- ケース: [Fractal Design Torrent White RGB TG Clear Tint](https://www.amazon.co.jp/dp/B0BPS41V89?tag=nownabe02-22)
+- CPU クーラー: [ASUS ROG STRIX LC II 360 ARGB White Edition](https://www.amazon.co.jp/dp/B0B1CWYBC7?tag=nownabe02-22)
+- 電源: [SilverStone HELA 1200R Platinum](https://www.amazon.co.jp/dp/B0BQ6BJ95P?tag=nownabe02-22)
 - OS: Windows 11 Pro 64bit
 
 メモリだけは欲しいのが BTO の選択肢としてなかったので自分で買って挿し換えた。
