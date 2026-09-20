@@ -1,3 +1,4 @@
+import { existsSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
@@ -6,12 +7,25 @@ import codeFilename from "./src/plugins/satteri-code-filename.mjs";
 import emojiShortcodes from "./src/plugins/satteri-emoji.mjs";
 import katex from "./src/plugins/satteri-katex.mjs";
 
+// The sitemap integration only sees URLs, so an article's lastmod (or date) is read back
+// from its front matter. Pages that are not articles get no lastmod.
+function postLastmod(url) {
+  const path = new URL(url).pathname.slice(1, -1);
+  const file = [`content/${path}.md`, `content/${path}.html.md`].find(existsSync);
+  if (!file) return undefined;
+  const front = readFileSync(file, "utf8").match(/^---\n([\s\S]*?)\n---\n/)?.[1] ?? "";
+  return (front.match(/^lastmod: (.+)$/m) ?? front.match(/^date: (.+)$/m))?.[1];
+}
+
 export default defineConfig({
   site: "https://blog.nownabe.com",
   trailingSlash: "always",
-  // Redirect-only pages (old /page/N/ and legacy .html/ paths) stay out of the sitemap.
   integrations: [
-    sitemap({ filter: (page) => !page.includes("/page/") && !page.endsWith(".html/") }),
+    sitemap({
+      // Redirect-only pages (old /page/N/ and legacy .html/ paths) stay out of the sitemap.
+      filter: (page) => !page.includes("/page/") && !page.endsWith(".html/"),
+      serialize: (item) => ({ ...item, lastmod: postLastmod(item.url) }),
+    }),
   ],
   vite: {
     server: {
