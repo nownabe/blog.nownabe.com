@@ -1,5 +1,5 @@
 // Enforces the article conventions that the schema cannot see (see README "Writing"):
-// exact front matter shape, the title as the only h1, the banner living at its path only.
+// exact front matter shape, the title as the only h1, alt on raw <img> tags, the banner living at its path only.
 // Usage: bun scripts/check-content.ts [content/foo.md ...]   (default: every article)
 import { existsSync, globSync } from "node:fs";
 import { readFile } from "node:fs/promises";
@@ -42,6 +42,12 @@ for (const path of files) {
   lines.forEach((line, i) => {
     if (/^(```|~~~)/.test(line)) fence = !fence;
     if (fence) return;
+    for (const tag of line.match(/<img\b[^>]*>/g) ?? []) {
+      if (!/\salt\s*=/.test(tag))
+        problems.push(
+          `${path}:${bodyStartsAtLine + i}: <img> needs an alt attribute (alt="" if decorative)`,
+        );
+    }
     const heading = line.match(/^(#+) (.*)$/);
     if (!heading) return;
     if (heading[1] === "#")

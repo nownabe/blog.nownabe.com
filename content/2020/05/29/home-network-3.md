@@ -23,7 +23,7 @@ lastmod: 2020-05-29T22:43:54+09:00
 前回は L2SW を交換して自宅 LAN の帯域を 1Gbps にしました。
 物理構成図はこんな感じです。
 
-<img src="/images/2020/05/28/physical-diagram.png" width="800">
+<img src="/images/2020/05/28/physical-diagram.png" width="800" alt="" height="530">
 
 今回は、ついに光回線が開通したので WAN をマンションネットワークからそちらに切り替えました。
 
@@ -31,7 +31,7 @@ lastmod: 2020-05-29T22:43:54+09:00
 
 今日の午後に工事がきて、ONU を設置してもらいました。
 
-<img src="/images/2020/05/29/physical-diagram.png" width="800">
+<img src="/images/2020/05/29/physical-diagram.png" width="800" alt="" height="463">
 
 それ以外の作業はほとんどなくて、ONU と Google Wifi を接続して PPPoE の設定をしただけです。
 
@@ -46,7 +46,7 @@ IPv4 over IPv6 するときの VNE サービスとして transix は少数派っ
 
 開通直後にマンションネットワークと光回線で比較するとこんな感じでした。倍のスピードが出てますね！！素晴らしい！　:rocket:
 
-<img src="/images/2020/05/29/home-network-3/banner.png" width="800">
+<img src="/images/2020/05/29/home-network-3/banner.png" width="800" alt="" height="487">
 
 と思ったんですが、光回線の方も夜になるとめちゃくちゃ遅くなりました :sob:
 1Mbps 出ないぐらい。

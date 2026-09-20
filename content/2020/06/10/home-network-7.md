@@ -26,7 +26,7 @@ lastmod: 2020-06-10T21:33:46+09:00
 
 前回 IPv4 over IPv6 を設定したことで、ついに快適にインターネットできる環境が整いました。
 
-<img src="/images/2020/06/01/compare-ipoe.png" width="800">
+<img src="/images/2020/06/01/compare-ipoe.png" width="800" alt="" height="396">
 
 普通にインターネットを使う環境が整ったので、今回は特に困ってないけどやりたかったことをやりました。具体的には、
 
@@ -72,13 +72,13 @@ VLAN1001 を無駄にでかく設計してしまって、未来永劫こんな�
 
 この段階を構成図にするとこんな感じです。
 
-<img src="/images/2020/06/10/rough-logical-diagram.png" width="800">
+<img src="/images/2020/06/10/rough-logical-diagram.png" width="800" alt="" height="383">
 
 NAS はインターネットに公開しなくてもインターネット側から使うことができるのと、サーバから使わない予定なので、ホームネットワークに置いています。
 
 次に、物理構成を設計しました。どのケーブルをどのポートにつなぐかってところですね。
 
-<img src="/images/2020/06/10/physical-diagram.png" width="800">
+<img src="/images/2020/06/10/physical-diagram.png" width="800" alt="" height="482">
 
 この構成図にはないですが、現在は nownabe room のスイッチのポート 6 の先にもう一台スイッチがあり、Raspberry Pi 4 が 4 台接続されています。
 
@@ -104,7 +104,7 @@ IP がわかったらブラウザでその IP にアクセスして、デフォ�
 * `Switching > VLAN > Advanced > VLAN Configuration`
   * わかりやすいように名前をつけて VLAN 1001 を追加
 
-<img src="/images/2020/06/10/vlan1.png" width="600">
+<img src="/images/2020/06/10/vlan1.png" width="600" alt="" height="381">
 
 * `Switching > VLAN > Advanced > VLAN Membership`
   * VLAN ID で `1001` を選択
@@ -113,14 +113,14 @@ IP がわかったらブラウザでその IP にアクセスして、デフォ�
   * `T` は Trunk (VLAN タグを付けたまま送信する) ポート
   * 空白はその VLAN に属さないポート
 
-<img src="/images/2020/06/10/vlan2.png" width="600">
+<img src="/images/2020/06/10/vlan2.png" width="600" alt="" height="402">
 
 * `Switching > VLAN > Advanced > Port PVID Configuration`
   * `g5`、`g6`、`g7` を選択
   * PVID を `1001` に設定
   * PVID は VLAN の入り口
 
-<img src="/images/2020/06/10/vlan3.png" width="600">
+<img src="/images/2020/06/10/vlan3.png" width="600" alt="" height="364">
 
 ### RTX830
 
@@ -156,7 +156,7 @@ LAN 間もインターネットへも自動でルーティング設定される�
 
 図にするとこんな感じです。
 
-<img src="/images/2020/06/10/home-network-7/banner.png" width="800">
+<img src="/images/2020/06/10/home-network-7/banner.png" width="800" alt="" height="461">
 
 RTX830 のフィルタ型ルーティングを使ってデフォルト GW を設定して、DS-Lite と PPPoE の使い分けを実現しました。
 
@@ -196,7 +196,7 @@ pp select 1
 
 図にするとこんな感じです。
 
-<img src="/images/2020/06/10/filtering.png" width="800">
+<img src="/images/2020/06/10/filtering.png" width="800" alt="" height="355">
 
 最初はルーティングや NAT、フィルタリングの関係性がよくわかってなくてこの図を作りました。
 こう図にするとわかりやすい気がします。
