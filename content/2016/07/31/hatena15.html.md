@@ -1,11 +1,10 @@
 ---
 date: 2016-07-24T15:31:39+0900
 lastmod: 2016-07-24T15:31:39+0900
-tags: ["postgresql", "rails", "ruby"]
+tags: ["Log","postgresql","rails","ruby"]
 draft: false
 
 title: PostgreSQLの更新でRails 5が動かなくなった
-category: Log
 ---
 
 CentOS 7です。

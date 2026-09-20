@@ -5,7 +5,6 @@ tags: ["github pages"]
 draft: false
 
 title: Github Pagesが便利すぎてイイ
-category: Diary
 ---
 
 見事に三日坊主になってしまってました。

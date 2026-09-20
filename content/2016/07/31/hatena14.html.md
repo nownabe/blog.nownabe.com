@@ -1,11 +1,10 @@
 ---
 date: 2016-07-22T00:47:58+0900
 lastmod: 2016-07-22T00:47:58+0900
-tags: ["event", "book"]
+tags: ["event","book"]
 draft: false
 
 title: プログラミングのための確率統計読み始めた
-category: Diary
 ---
 
 <div class="asin"><div class="asin-image"><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4274067750/nownabe0c-22/"><img src="http://images-jp.amazon.com/images/P/4274067750.09._SL160_.jpg" alt="プログラミングのための確率統計" title="プログラミングのための確率統計"></a></div><div class="asin-detail"><p><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4274067750/nownabe0c-22/">プログラミングのための確率統計</a></p><ul><li>平岡 和幸, 堀 玄</li><li>オーム社</li></ul></div></div>

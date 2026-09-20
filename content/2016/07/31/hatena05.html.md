@@ -5,7 +5,6 @@ tags: ["event"]
 draft: false
 
 title: サバフェス始まりました
-category: Diary
 ---
 
 ![01](/images/articles/hatena05/01.png)

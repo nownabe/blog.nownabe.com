@@ -5,7 +5,6 @@ tags: ["raspberry pi"]
 draft: false
 
 title: 今更Raspberry PiでLチカやってみた
-category: Diary
 ---
 
 ![Lチカ](/images/articles/hatena09/01.jpg)
