@@ -28,6 +28,16 @@ jobs:
         uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
         with:
           install_args: bun
+      # Astro's cache holds the self-hosted font files (360 downloads per cold build) and
+      # generated images; Bun's holds the package tarballs.
+      - name: Restore build cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            node_modules/.astro
+            ~/.bun/install/cache
+          key: build-${{ runner.os }}-${{ hashFiles('bun.lock') }}
+          restore-keys: build-${{ runner.os }}-
       - name: Install dependencies
         run: bun install --frozen-lockfile
       - name: Type-check
