@@ -1,4 +1,12 @@
 {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
   extends: ["github>nownabe/renovate-config"],
+  packageRules: [
+    {
+      // astro check needs TypeScript's programmatic API, which the native
+      // compiler (7.x) doesn't ship yet: https://github.com/withastro/roadmap/discussions/1321
+      matchPackageNames: ["typescript"],
+      allowedVersions: "<7",
+    },
+  ],
 }
