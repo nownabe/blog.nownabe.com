@@ -11,7 +11,7 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
-    uses: nownabe/workflows/.github/workflows/pr.yaml@61479ab352f44180bef4dd8a4d9c19eb68dccb1a # v2.0.4
+    uses: nownabe/workflows/.github/workflows/pr.yaml@c2b17684a106bc0e24a4de3e01db56d1a6ea3a79 # v2.1.0
 
   check:
     name: Check
@@ -25,7 +25,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Set up Bun
-        uses: jdx/mise-action@6be3c7ed4c21d4f76b208d351d95aac273ebb76d # v5.2.4
+        uses: jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785 # v5.2.8
         with:
           install_args: bun
       # Astro's cache holds the self-hosted font files (360 downloads per cold build) and
@@ -60,7 +60,7 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
       - name: Set up Bun
-        uses: jdx/mise-action@6be3c7ed4c21d4f76b208d351d95aac273ebb76d # v5.2.4
+        uses: jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785 # v5.2.8
         with:
           install_args: bun
       - name: Install dependencies
